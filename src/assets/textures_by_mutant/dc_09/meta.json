@@ -1,0 +1,77 @@
+{
+  "id": "specimen_dc_09",
+  "code": "dc_09",
+  "name": "Мастер Синдзо",
+  "created_at": "2025-09-02T01:35:05.301574Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_saber/bronze/DC_09_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_09/DC_09_bronze.png",
+      "filename": "DC_09_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_saber/gold/DC_09_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_09/DC_09_gold.png",
+      "filename": "DC_09_gold.png"
+    },
+    {
+      "src": "full-char/zoo_saber/normal/DC_09_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_09/DC_09_normal.png",
+      "filename": "DC_09_normal.png"
+    },
+    {
+      "src": "full-char/zoo_saber/platinum/DC_09_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_09/DC_09_platinum.png",
+      "filename": "DC_09_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_saber/silver/DC_09_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_09/DC_09_silver.png",
+      "filename": "DC_09_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_C/silver/specimen_dc_09_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_09/specimen_dc_09_silver_silver.png",
+      "filename": "specimen_dc_09_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_C/platinum/specimen_dc_09_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_09/specimen_dc_09_platinum_platinum.png",
+      "filename": "specimen_dc_09_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_C/normal/specimen_dc_09_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_09/specimen_dc_09_normal.png",
+      "filename": "specimen_dc_09_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_C/gold/specimen_dc_09_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_09/specimen_dc_09_gold_gold.png",
+      "filename": "specimen_dc_09_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_C/bronze/specimen_dc_09_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_09/specimen_dc_09_bronze_bronze.png",
+      "filename": "specimen_dc_09_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_saber/larva_dc_09.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/dc_09/larva_dc_09.png",
+      "filename": "larva_dc_09.png"
+    }
+  ],
+  "bingo": [
+    "research_8"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ef_06",
+  "code": "ef_06",
+  "name": "Мэндор",
+  "created_at": "2025-09-02T01:35:03.663246Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_mythic/bronze/EF_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_06/EF_06_bronze.png",
+      "filename": "EF_06_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/gold/EF_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_06/EF_06_gold.png",
+      "filename": "EF_06_gold.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/normal/EF_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_06/EF_06_normal.png",
+      "filename": "EF_06_normal.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/platinum/EF_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_06/EF_06_platinum.png",
+      "filename": "EF_06_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/silver/EF_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_06/EF_06_silver.png",
+      "filename": "EF_06_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/silver/specimen_ef_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_06/specimen_ef_06_silver_silver.png",
+      "filename": "specimen_ef_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/platinum/specimen_ef_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_06/specimen_ef_06_platinum_platinum.png",
+      "filename": "specimen_ef_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_F/normal/specimen_ef_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_06/specimen_ef_06_normal.png",
+      "filename": "specimen_ef_06_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_F/gold/specimen_ef_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_06/specimen_ef_06_gold_gold.png",
+      "filename": "specimen_ef_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_F/bronze/specimen_ef_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_06/specimen_ef_06_bronze_bronze.png",
+      "filename": "specimen_ef_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ef_06/larva_ef_06.png",
+      "filename": "larva_ef_06.png"
+    }
+  ],
+  "bingo": [
+    "research_5"
+  ]
+}

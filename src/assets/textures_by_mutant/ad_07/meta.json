@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ad_07",
+  "code": "ad_07",
+  "name": "Бензиновая оса",
+  "created_at": "2025-09-02T01:35:03.894512Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_zoo/bronze/AD_07_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_07/AD_07_bronze.png",
+      "filename": "AD_07_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/gold/AD_07_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_07/AD_07_gold.png",
+      "filename": "AD_07_gold.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/normal/AD_07_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_07/AD_07_normal.png",
+      "filename": "AD_07_normal.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/platinum/AD_07_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_07/AD_07_platinum.png",
+      "filename": "AD_07_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/silver/AD_07_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_07/AD_07_silver.png",
+      "filename": "AD_07_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/silver/specimen_ad_07_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_07/specimen_ad_07_silver_silver.png",
+      "filename": "specimen_ad_07_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/platinum/specimen_ad_07_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_07/specimen_ad_07_platinum_platinum.png",
+      "filename": "specimen_ad_07_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_D/normal/specimen_ad_07_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_07/specimen_ad_07_normal.png",
+      "filename": "specimen_ad_07_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_D/gold/specimen_ad_07_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_07/specimen_ad_07_gold_gold.png",
+      "filename": "specimen_ad_07_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_D/bronze/specimen_ad_07_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_07/specimen_ad_07_bronze_bronze.png",
+      "filename": "specimen_ad_07_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_zoo/larva_ad_07.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ad_07/larva_ad_07.png",
+      "filename": "larva_ad_07.png"
+    }
+  ],
+  "bingo": [
+    "research_6"
+  ]
+}

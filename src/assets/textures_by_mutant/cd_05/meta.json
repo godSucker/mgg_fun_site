@@ -1,0 +1,29 @@
+{
+  "id": "specimen_cd_05",
+  "code": "cd_05",
+  "name": "Свин-потрошитель",
+  "created_at": "2025-09-02T01:35:02.791578Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_zoo/normal/CD_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_05/CD_05_normal.png",
+      "filename": "CD_05_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_D/normal/specimen_cd_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_05/specimen_cd_05_normal.png",
+      "filename": "specimen_cd_05_normal.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_zoo/larva_cd_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cd_05/larva_cd_05.png",
+      "filename": "larva_cd_05.png"
+    }
+  ],
+  "bingo": [
+    "research_4"
+  ]
+}

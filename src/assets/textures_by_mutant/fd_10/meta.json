@@ -1,0 +1,30 @@
+{
+  "id": "specimen_fd_10",
+  "code": "fd_10",
+  "name": "Мастер Лапа",
+  "created_at": "2025-09-02T01:35:05.949701Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_zoo/normal/FD_10_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_10/FD_10_normal.png",
+      "filename": "FD_10_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_D/normal/specimen_fd_10_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_10/specimen_fd_10_normal.png",
+      "filename": "specimen_fd_10_normal.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_zoo/larva_fd_10.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fd_10/larva_fd_10.png",
+      "filename": "larva_fd_10.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_9"
+  ]
+}

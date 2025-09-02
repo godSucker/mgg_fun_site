@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cb_12",
+  "code": "cb_12",
+  "name": "Кранекен",
+  "created_at": "2025-09-02T01:35:06.591596Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_necro/bronze/CB_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_12/CB_12_bronze.png",
+      "filename": "CB_12_bronze.png"
+    },
+    {
+      "src": "full-char/saber_necro/gold/CB_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_12/CB_12_gold.png",
+      "filename": "CB_12_gold.png"
+    },
+    {
+      "src": "full-char/saber_necro/normal/CB_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_12/CB_12_normal.png",
+      "filename": "CB_12_normal.png"
+    },
+    {
+      "src": "full-char/saber_necro/platinum/CB_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_12/CB_12_platinum.png",
+      "filename": "CB_12_platinum.png"
+    },
+    {
+      "src": "full-char/saber_necro/silver/CB_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_12/CB_12_silver.png",
+      "filename": "CB_12_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_B/silver/specimen_cb_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_12/specimen_cb_12_silver_silver.png",
+      "filename": "specimen_cb_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_B/platinum/specimen_cb_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_12/specimen_cb_12_platinum_platinum.png",
+      "filename": "specimen_cb_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_B/normal/specimen_cb_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_12/specimen_cb_12_normal.png",
+      "filename": "specimen_cb_12_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_B/gold/specimen_cb_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_12/specimen_cb_12_gold_gold.png",
+      "filename": "specimen_cb_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_B/bronze/specimen_cb_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_12/specimen_cb_12_bronze_bronze.png",
+      "filename": "specimen_cb_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_necro/larva_cb_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cb_12/larva_cb_12.png",
+      "filename": "larva_cb_12.png"
+    }
+  ],
+  "tier": "хзЧ",
+  "bingo": [
+    "research_11"
+  ]
+}

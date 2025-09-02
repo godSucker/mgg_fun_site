@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cf_04",
+  "code": "cf_04",
+  "name": "Азог",
+  "created_at": "2025-09-02T01:35:02.126881Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_mythic/bronze/CF_04_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_04/CF_04_bronze.png",
+      "filename": "CF_04_bronze.png"
+    },
+    {
+      "src": "full-char/saber_mythic/gold/CF_04_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_04/CF_04_gold.png",
+      "filename": "CF_04_gold.png"
+    },
+    {
+      "src": "full-char/saber_mythic/normal/CF_04_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_04/CF_04_normal.png",
+      "filename": "CF_04_normal.png"
+    },
+    {
+      "src": "full-char/saber_mythic/platinum/CF_04_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_04/CF_04_platinum.png",
+      "filename": "CF_04_platinum.png"
+    },
+    {
+      "src": "full-char/saber_mythic/silver/CF_04_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_04/CF_04_silver.png",
+      "filename": "CF_04_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/silver/specimen_cf_04_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_04/specimen_cf_04_silver_silver.png",
+      "filename": "specimen_cf_04_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/platinum/specimen_cf_04_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_04/specimen_cf_04_platinum_platinum.png",
+      "filename": "specimen_cf_04_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_F/normal/specimen_cf_04_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_04/specimen_cf_04_normal.png",
+      "filename": "specimen_cf_04_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_F/gold/specimen_cf_04_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_04/specimen_cf_04_gold_gold.png",
+      "filename": "specimen_cf_04_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_F/bronze/specimen_cf_04_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_04/specimen_cf_04_bronze_bronze.png",
+      "filename": "specimen_cf_04_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_mythic/larva_cf_04.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cf_04/larva_cf_04.png",
+      "filename": "larva_cf_04.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_3"
+  ]
+}

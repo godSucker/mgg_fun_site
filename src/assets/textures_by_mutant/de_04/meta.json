@@ -1,0 +1,79 @@
+{
+  "id": "specimen_de_04",
+  "code": "de_04",
+  "name": "Генсириоку",
+  "created_at": "2025-09-02T01:35:02.212266Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_galactic/bronze/DE_04_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_04/DE_04_bronze.png",
+      "filename": "DE_04_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/gold/DE_04_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_04/DE_04_gold.png",
+      "filename": "DE_04_gold.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/normal/DE_04_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_04/DE_04_normal.png",
+      "filename": "DE_04_normal.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/platinum/DE_04_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_04/DE_04_platinum.png",
+      "filename": "DE_04_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/silver/DE_04_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_04/DE_04_silver.png",
+      "filename": "DE_04_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_E/silver/specimen_de_04_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_04/specimen_de_04_silver_silver.png",
+      "filename": "specimen_de_04_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_E/platinum/specimen_de_04_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_04/specimen_de_04_platinum_platinum.png",
+      "filename": "specimen_de_04_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_E/normal/specimen_de_04_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_04/specimen_de_04_normal.png",
+      "filename": "specimen_de_04_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_E/gold/specimen_de_04_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_04/specimen_de_04_gold_gold.png",
+      "filename": "specimen_de_04_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_E/bronze/specimen_de_04_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_04/specimen_de_04_bronze_bronze.png",
+      "filename": "specimen_de_04_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_galactic/larva_de_04.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/de_04/larva_de_04.png",
+      "filename": "larva_de_04.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_3",
+    "reactor"
+  ]
+}

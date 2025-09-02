@@ -1,0 +1,30 @@
+{
+  "id": "specimen_af_05",
+  "code": "af_05",
+  "name": "Авраам Линкольн",
+  "created_at": "2025-09-02T01:35:02.624942Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_mythic/normal/AF_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_05/AF_05_normal.png",
+      "filename": "AF_05_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_F/normal/specimen_af_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_05/specimen_af_05_normal.png",
+      "filename": "specimen_af_05_normal.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_mythic/larva_af_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/af_05/larva_af_05.png",
+      "filename": "larva_af_05.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_4"
+  ]
+}

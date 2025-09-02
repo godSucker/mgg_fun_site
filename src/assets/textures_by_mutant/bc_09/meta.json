@@ -1,0 +1,78 @@
+{
+  "id": "specimen_bc_09",
+  "code": "bc_09",
+  "name": "Сборщик",
+  "created_at": "2025-09-02T01:35:05.151144Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_saber/bronze/BC_09_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_09/BC_09_bronze.png",
+      "filename": "BC_09_bronze.png"
+    },
+    {
+      "src": "full-char/necro_saber/gold/BC_09_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_09/BC_09_gold.png",
+      "filename": "BC_09_gold.png"
+    },
+    {
+      "src": "full-char/necro_saber/normal/BC_09_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_09/BC_09_normal.png",
+      "filename": "BC_09_normal.png"
+    },
+    {
+      "src": "full-char/necro_saber/platinum/BC_09_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_09/BC_09_platinum.png",
+      "filename": "BC_09_platinum.png"
+    },
+    {
+      "src": "full-char/necro_saber/silver/BC_09_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_09/BC_09_silver.png",
+      "filename": "BC_09_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_C/silver/specimen_bc_09_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_09/specimen_bc_09_silver_silver.png",
+      "filename": "specimen_bc_09_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_C/platinum/specimen_bc_09_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_09/specimen_bc_09_platinum_platinum.png",
+      "filename": "specimen_bc_09_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_C/normal/specimen_bc_09_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_09/specimen_bc_09_normal.png",
+      "filename": "specimen_bc_09_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_C/gold/specimen_bc_09_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_09/specimen_bc_09_gold_gold.png",
+      "filename": "specimen_bc_09_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_C/bronze/specimen_bc_09_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_09/specimen_bc_09_bronze_bronze.png",
+      "filename": "specimen_bc_09_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_saber/larva_bc_09.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bc_09/larva_bc_09.png",
+      "filename": "larva_bc_09.png"
+    }
+  ],
+  "bingo": [
+    "research_8",
+    "event_2019"
+  ]
+}

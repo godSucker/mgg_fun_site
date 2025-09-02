@@ -1,0 +1,79 @@
+{
+  "id": "specimen_fb_10",
+  "code": "fb_10",
+  "name": "Иггдрасиль",
+  "created_at": "2025-09-02T01:35:05.927099Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_necro/bronze/FB_10_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_10/FB_10_bronze.png",
+      "filename": "FB_10_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_necro/gold/FB_10_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_10/FB_10_gold.png",
+      "filename": "FB_10_gold.png"
+    },
+    {
+      "src": "full-char/mythic_necro/normal/FB_10_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_10/FB_10_normal.png",
+      "filename": "FB_10_normal.png"
+    },
+    {
+      "src": "full-char/mythic_necro/platinum/FB_10_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_10/FB_10_platinum.png",
+      "filename": "FB_10_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_necro/silver/FB_10_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_10/FB_10_silver.png",
+      "filename": "FB_10_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_B/silver/specimen_fb_10_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_10/specimen_fb_10_silver_silver.png",
+      "filename": "specimen_fb_10_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_B/platinum/specimen_fb_10_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_10/specimen_fb_10_platinum_platinum.png",
+      "filename": "specimen_fb_10_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_B/normal/specimen_fb_10_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_10/specimen_fb_10_normal.png",
+      "filename": "specimen_fb_10_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_B/gold/specimen_fb_10_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_10/specimen_fb_10_gold_gold.png",
+      "filename": "specimen_fb_10_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_B/bronze/specimen_fb_10_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_10/specimen_fb_10_bronze_bronze.png",
+      "filename": "specimen_fb_10_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_necro/larva_fb_10.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fb_10/larva_fb_10.png",
+      "filename": "larva_fb_10.png"
+    }
+  ],
+  "tier": "3-",
+  "bingo": [
+    "research_9",
+    "heroic"
+  ]
+}

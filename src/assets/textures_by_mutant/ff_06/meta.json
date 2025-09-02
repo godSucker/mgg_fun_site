@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ff_06",
+  "code": "ff_06",
+  "name": "Намасте",
+  "created_at": "2025-09-02T01:35:03.757631Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_mythic/bronze/FF_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_06/FF_06_bronze.png",
+      "filename": "FF_06_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/gold/FF_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_06/FF_06_gold.png",
+      "filename": "FF_06_gold.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/normal/FF_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_06/FF_06_normal.png",
+      "filename": "FF_06_normal.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/platinum/FF_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_06/FF_06_platinum.png",
+      "filename": "FF_06_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/silver/FF_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_06/FF_06_silver.png",
+      "filename": "FF_06_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_F/silver/specimen_ff_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_06/specimen_ff_06_silver_silver.png",
+      "filename": "specimen_ff_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_F/platinum/specimen_ff_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_06/specimen_ff_06_platinum_platinum.png",
+      "filename": "specimen_ff_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_F/normal/specimen_ff_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_06/specimen_ff_06_normal.png",
+      "filename": "specimen_ff_06_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_F/gold/specimen_ff_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_06/specimen_ff_06_gold_gold.png",
+      "filename": "specimen_ff_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_F/bronze/specimen_ff_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_06/specimen_ff_06_bronze_bronze.png",
+      "filename": "specimen_ff_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_mythic/larva_ff_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ff_06/larva_ff_06.png",
+      "filename": "larva_ff_06.png"
+    }
+  ],
+  "bingo": [
+    "research_5"
+  ]
+}

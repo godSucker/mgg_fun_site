@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ba_03",
+  "code": "ba_03",
+  "name": "Тачдаун",
+  "created_at": "2025-09-02T01:35:01.193795Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_cyber/bronze/BA_03_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_03/BA_03_bronze.png",
+      "filename": "BA_03_bronze.png"
+    },
+    {
+      "src": "full-char/necro_cyber/gold/BA_03_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_03/BA_03_gold.png",
+      "filename": "BA_03_gold.png"
+    },
+    {
+      "src": "full-char/necro_cyber/normal/BA_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_03/BA_03_normal.png",
+      "filename": "BA_03_normal.png"
+    },
+    {
+      "src": "full-char/necro_cyber/platinum/BA_03_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_03/BA_03_platinum.png",
+      "filename": "BA_03_platinum.png"
+    },
+    {
+      "src": "full-char/necro_cyber/silver/BA_03_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_03/BA_03_silver.png",
+      "filename": "BA_03_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/silver/specimen_ba_03_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_03/specimen_ba_03_silver_silver.png",
+      "filename": "specimen_ba_03_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/platinum/specimen_ba_03_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_03/specimen_ba_03_platinum_platinum.png",
+      "filename": "specimen_ba_03_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_A/normal/specimen_ba_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_03/specimen_ba_03_normal.png",
+      "filename": "specimen_ba_03_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_A/gold/specimen_ba_03_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_03/specimen_ba_03_gold_gold.png",
+      "filename": "specimen_ba_03_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_A/bronze/specimen_ba_03_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_03/specimen_ba_03_bronze_bronze.png",
+      "filename": "specimen_ba_03_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_cyber/larva_ba_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ba_03/larva_ba_03.png",
+      "filename": "larva_ba_03.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_2",
+    "reactor"
+  ]
+}

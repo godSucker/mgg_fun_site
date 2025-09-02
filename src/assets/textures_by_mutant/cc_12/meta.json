@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cc_12",
+  "code": "cc_12",
+  "name": "Скарамуш",
+  "created_at": "2025-09-02T01:35:06.601331Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_saber/bronze/CC_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_12/CC_12_bronze.png",
+      "filename": "CC_12_bronze.png"
+    },
+    {
+      "src": "full-char/saber_saber/gold/CC_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_12/CC_12_gold.png",
+      "filename": "CC_12_gold.png"
+    },
+    {
+      "src": "full-char/saber_saber/normal/CC_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_12/CC_12_normal.png",
+      "filename": "CC_12_normal.png"
+    },
+    {
+      "src": "full-char/saber_saber/platinum/CC_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_12/CC_12_platinum.png",
+      "filename": "CC_12_platinum.png"
+    },
+    {
+      "src": "full-char/saber_saber/silver/CC_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_12/CC_12_silver.png",
+      "filename": "CC_12_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_C/silver/specimen_cc_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_12/specimen_cc_12_silver_silver.png",
+      "filename": "specimen_cc_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_C/platinum/specimen_cc_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_12/specimen_cc_12_platinum_platinum.png",
+      "filename": "specimen_cc_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_C/normal/specimen_cc_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_12/specimen_cc_12_normal.png",
+      "filename": "specimen_cc_12_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_C/gold/specimen_cc_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_12/specimen_cc_12_gold_gold.png",
+      "filename": "specimen_cc_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_C/bronze/specimen_cc_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_12/specimen_cc_12_bronze_bronze.png",
+      "filename": "specimen_cc_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_saber/larva_cc_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cc_12/larva_cc_12.png",
+      "filename": "larva_cc_12.png"
+    }
+  ],
+  "tier": "2",
+  "bingo": [
+    "research_11"
+  ]
+}

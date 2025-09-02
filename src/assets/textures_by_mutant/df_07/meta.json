@@ -1,0 +1,78 @@
+{
+  "id": "specimen_df_07",
+  "code": "df_07",
+  "name": "Химера",
+  "created_at": "2025-09-02T01:35:04.202861Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_mythic/bronze/DF_07_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_07/DF_07_bronze.png",
+      "filename": "DF_07_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/gold/DF_07_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_07/DF_07_gold.png",
+      "filename": "DF_07_gold.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/normal/DF_07_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_07/DF_07_normal.png",
+      "filename": "DF_07_normal.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/platinum/DF_07_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_07/DF_07_platinum.png",
+      "filename": "DF_07_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/silver/DF_07_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_07/DF_07_silver.png",
+      "filename": "DF_07_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/silver/specimen_df_07_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_07/specimen_df_07_silver_silver.png",
+      "filename": "specimen_df_07_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/platinum/specimen_df_07_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_07/specimen_df_07_platinum_platinum.png",
+      "filename": "specimen_df_07_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_F/normal/specimen_df_07_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_07/specimen_df_07_normal.png",
+      "filename": "specimen_df_07_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_F/gold/specimen_df_07_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_07/specimen_df_07_gold_gold.png",
+      "filename": "specimen_df_07_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_F/bronze/specimen_df_07_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_07/specimen_df_07_bronze_bronze.png",
+      "filename": "specimen_df_07_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_mythic/larva_df_07.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/df_07/larva_df_07.png",
+      "filename": "larva_df_07.png"
+    }
+  ],
+  "tier": "хзЧ",
+  "bingo": [
+    "research_6"
+  ]
+}

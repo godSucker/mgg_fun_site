@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ce_04",
+  "code": "ce_04",
+  "name": "Апекс",
+  "created_at": "2025-09-02T01:35:02.109845Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_galactic/bronze/CE_04_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_04/CE_04_bronze.png",
+      "filename": "CE_04_bronze.png"
+    },
+    {
+      "src": "full-char/saber_galactic/gold/CE_04_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_04/CE_04_gold.png",
+      "filename": "CE_04_gold.png"
+    },
+    {
+      "src": "full-char/saber_galactic/normal/CE_04_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_04/CE_04_normal.png",
+      "filename": "CE_04_normal.png"
+    },
+    {
+      "src": "full-char/saber_galactic/platinum/CE_04_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_04/CE_04_platinum.png",
+      "filename": "CE_04_platinum.png"
+    },
+    {
+      "src": "full-char/saber_galactic/silver/CE_04_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_04/CE_04_silver.png",
+      "filename": "CE_04_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_E/silver/specimen_ce_04_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_04/specimen_ce_04_silver_silver.png",
+      "filename": "specimen_ce_04_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_E/platinum/specimen_ce_04_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_04/specimen_ce_04_platinum_platinum.png",
+      "filename": "specimen_ce_04_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_E/normal/specimen_ce_04_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_04/specimen_ce_04_normal.png",
+      "filename": "specimen_ce_04_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_E/gold/specimen_ce_04_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_04/specimen_ce_04_gold_gold.png",
+      "filename": "specimen_ce_04_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_E/bronze/specimen_ce_04_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_04/specimen_ce_04_bronze_bronze.png",
+      "filename": "specimen_ce_04_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_galactic/larva_ce_04.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ce_04/larva_ce_04.png",
+      "filename": "larva_ce_04.png"
+    }
+  ],
+  "bingo": [
+    "research_3"
+  ]
+}

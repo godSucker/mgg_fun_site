@@ -1,0 +1,78 @@
+{
+  "id": "specimen_bb_03",
+  "code": "bb_03",
+  "name": "Проклятый гонщик",
+  "created_at": "2025-09-02T01:35:01.212843Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_necro/bronze/BB_03_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_03/BB_03_bronze.png",
+      "filename": "BB_03_bronze.png"
+    },
+    {
+      "src": "full-char/necro_necro/gold/BB_03_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_03/BB_03_gold.png",
+      "filename": "BB_03_gold.png"
+    },
+    {
+      "src": "full-char/necro_necro/normal/BB_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_03/BB_03_normal.png",
+      "filename": "BB_03_normal.png"
+    },
+    {
+      "src": "full-char/necro_necro/platinum/BB_03_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_03/BB_03_platinum.png",
+      "filename": "BB_03_platinum.png"
+    },
+    {
+      "src": "full-char/necro_necro/silver/BB_03_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_03/BB_03_silver.png",
+      "filename": "BB_03_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_B/silver/specimen_bb_03_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_03/specimen_bb_03_silver_silver.png",
+      "filename": "specimen_bb_03_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_B/platinum/specimen_bb_03_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_03/specimen_bb_03_platinum_platinum.png",
+      "filename": "specimen_bb_03_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_B/normal/specimen_bb_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_03/specimen_bb_03_normal.png",
+      "filename": "specimen_bb_03_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_B/gold/specimen_bb_03_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_03/specimen_bb_03_gold_gold.png",
+      "filename": "specimen_bb_03_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_B/bronze/specimen_bb_03_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_03/specimen_bb_03_bronze_bronze.png",
+      "filename": "specimen_bb_03_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_necro/larva_bb_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bb_03/larva_bb_03.png",
+      "filename": "larva_bb_03.png"
+    }
+  ],
+  "bingo": [
+    "research_2",
+    "legend"
+  ]
+}

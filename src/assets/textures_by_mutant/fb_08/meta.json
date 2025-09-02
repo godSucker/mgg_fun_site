@@ -1,0 +1,77 @@
+{
+  "id": "specimen_fb_08",
+  "code": "fb_08",
+  "name": "Слизун",
+  "created_at": "2025-09-02T01:35:04.894105Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_necro/bronze/FB_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_08/FB_08_bronze.png",
+      "filename": "FB_08_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_necro/gold/FB_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_08/FB_08_gold.png",
+      "filename": "FB_08_gold.png"
+    },
+    {
+      "src": "full-char/mythic_necro/normal/FB_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_08/FB_08_normal.png",
+      "filename": "FB_08_normal.png"
+    },
+    {
+      "src": "full-char/mythic_necro/platinum/FB_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_08/FB_08_platinum.png",
+      "filename": "FB_08_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_necro/silver/FB_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_08/FB_08_silver.png",
+      "filename": "FB_08_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_B/silver/specimen_fb_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_08/specimen_fb_08_silver_silver.png",
+      "filename": "specimen_fb_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_B/platinum/specimen_fb_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_08/specimen_fb_08_platinum_platinum.png",
+      "filename": "specimen_fb_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_B/normal/specimen_fb_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_08/specimen_fb_08_normal.png",
+      "filename": "specimen_fb_08_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_B/gold/specimen_fb_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_08/specimen_fb_08_gold_gold.png",
+      "filename": "specimen_fb_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_B/bronze/specimen_fb_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_08/specimen_fb_08_bronze_bronze.png",
+      "filename": "specimen_fb_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_necro/larva_fb_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fb_08/larva_fb_08.png",
+      "filename": "larva_fb_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7"
+  ]
+}

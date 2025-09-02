@@ -1,0 +1,27 @@
+{
+  "id": "specimen_c_02",
+  "code": "c_02",
+  "name": "Слабый Воин",
+  "created_at": "2025-09-02T01:35:00.390535Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_saber/normal/C_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/c_02/C_02_normal.png",
+      "filename": "C_02_normal.png"
+    },
+    {
+      "src": "semi-full/C/C/normal/specimen_c_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/c_02/specimen_c_02_normal.png",
+      "filename": "specimen_c_02_normal.png"
+    },
+    {
+      "src": "larva/3) SABER/monogen_saber/larva_c_02.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/c_02/larva_c_02.png",
+      "filename": "larva_c_02.png"
+    }
+  ],
+  "bingo": []
+}

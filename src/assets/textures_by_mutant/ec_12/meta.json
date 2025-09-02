@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ec_12",
+  "code": "ec_12",
+  "name": "Стелларийский литошахтер",
+  "created_at": "2025-09-02T01:35:06.713466Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_saber/bronze/EC_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_12/EC_12_bronze.png",
+      "filename": "EC_12_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_saber/gold/EC_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_12/EC_12_gold.png",
+      "filename": "EC_12_gold.png"
+    },
+    {
+      "src": "full-char/galactic_saber/normal/EC_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_12/EC_12_normal.png",
+      "filename": "EC_12_normal.png"
+    },
+    {
+      "src": "full-char/galactic_saber/platinum/EC_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_12/EC_12_platinum.png",
+      "filename": "EC_12_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_saber/silver/EC_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_12/EC_12_silver.png",
+      "filename": "EC_12_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_C/silver/specimen_ec_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_12/specimen_ec_12_silver_silver.png",
+      "filename": "specimen_ec_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_C/platinum/specimen_ec_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_12/specimen_ec_12_platinum_platinum.png",
+      "filename": "specimen_ec_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_C/normal/specimen_ec_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_12/specimen_ec_12_normal.png",
+      "filename": "specimen_ec_12_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_C/gold/specimen_ec_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_12/specimen_ec_12_gold_gold.png",
+      "filename": "specimen_ec_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_C/bronze/specimen_ec_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_12/specimen_ec_12_bronze_bronze.png",
+      "filename": "specimen_ec_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_saber/larva_ec_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ec_12/larva_ec_12.png",
+      "filename": "larva_ec_12.png"
+    }
+  ],
+  "tier": "2",
+  "bingo": [
+    "research_11"
+  ]
+}

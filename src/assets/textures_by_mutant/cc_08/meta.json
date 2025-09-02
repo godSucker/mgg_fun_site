@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cc_08",
+  "code": "cc_08",
+  "name": "Йокодзуна",
+  "created_at": "2025-09-02T01:35:04.662628Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_saber/bronze/CC_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_08/CC_08_bronze.png",
+      "filename": "CC_08_bronze.png"
+    },
+    {
+      "src": "full-char/saber_saber/gold/CC_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_08/CC_08_gold.png",
+      "filename": "CC_08_gold.png"
+    },
+    {
+      "src": "full-char/saber_saber/normal/CC_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_08/CC_08_normal.png",
+      "filename": "CC_08_normal.png"
+    },
+    {
+      "src": "full-char/saber_saber/platinum/CC_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_08/CC_08_platinum.png",
+      "filename": "CC_08_platinum.png"
+    },
+    {
+      "src": "full-char/saber_saber/silver/CC_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_08/CC_08_silver.png",
+      "filename": "CC_08_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_C/silver/specimen_cc_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_08/specimen_cc_08_silver_silver.png",
+      "filename": "specimen_cc_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_C/platinum/specimen_cc_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_08/specimen_cc_08_platinum_platinum.png",
+      "filename": "specimen_cc_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_C/normal/specimen_cc_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_08/specimen_cc_08_normal.png",
+      "filename": "specimen_cc_08_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_C/gold/specimen_cc_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_08/specimen_cc_08_gold_gold.png",
+      "filename": "specimen_cc_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_C/bronze/specimen_cc_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_08/specimen_cc_08_bronze_bronze.png",
+      "filename": "specimen_cc_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_saber/larva_cc_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cc_08/larva_cc_08.png",
+      "filename": "larva_cc_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7",
+    "event_2021"
+  ]
+}

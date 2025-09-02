@@ -1,0 +1,79 @@
+{
+  "id": "specimen_c_01",
+  "code": "c_01",
+  "name": "Воин",
+  "created_at": "2025-09-02T01:34:59.792262Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_saber/bronze/C_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/c_01/C_01_bronze.png",
+      "filename": "C_01_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_saber/gold/C_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/c_01/C_01_gold.png",
+      "filename": "C_01_gold.png"
+    },
+    {
+      "src": "full-char/monogen_saber/normal/C_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/c_01/C_01_normal.png",
+      "filename": "C_01_normal.png"
+    },
+    {
+      "src": "full-char/monogen_saber/platinum/C_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/c_01/C_01_platinum.png",
+      "filename": "C_01_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_saber/silver/C_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/c_01/C_01_silver.png",
+      "filename": "C_01_silver.png"
+    },
+    {
+      "src": "semi-full/C/C/silver/specimen_c_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/c_01/specimen_c_01_silver_silver.png",
+      "filename": "specimen_c_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C/platinum/specimen_c_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/c_01/specimen_c_01_platinum_platinum.png",
+      "filename": "specimen_c_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C/normal/specimen_c_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/c_01/specimen_c_01_normal.png",
+      "filename": "specimen_c_01_normal.png"
+    },
+    {
+      "src": "semi-full/C/C/gold/specimen_c_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/c_01/specimen_c_01_gold_gold.png",
+      "filename": "specimen_c_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C/bronze/specimen_c_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/c_01/specimen_c_01_bronze_bronze.png",
+      "filename": "specimen_c_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/monogen_saber/larva_c_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/c_01/larva_c_01.png",
+      "filename": "larva_c_01.png"
+    }
+  ],
+  "bingo": [
+    "Starter",
+    "reactor",
+    "starter_plat"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ab_06",
+  "code": "ab_06",
+  "name": "Друзелла",
+  "created_at": "2025-09-02T01:35:03.237080Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_necro/bronze/AB_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ab_06/AB_06_bronze.png",
+      "filename": "AB_06_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_necro/gold/AB_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ab_06/AB_06_gold.png",
+      "filename": "AB_06_gold.png"
+    },
+    {
+      "src": "full-char/cyber_necro/normal/AB_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ab_06/AB_06_normal.png",
+      "filename": "AB_06_normal.png"
+    },
+    {
+      "src": "full-char/cyber_necro/platinum/AB_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ab_06/AB_06_platinum.png",
+      "filename": "AB_06_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_necro/silver/AB_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ab_06/AB_06_silver.png",
+      "filename": "AB_06_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_B/silver/specimen_ab_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ab_06/specimen_ab_06_silver_silver.png",
+      "filename": "specimen_ab_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_B/platinum/specimen_ab_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ab_06/specimen_ab_06_platinum_platinum.png",
+      "filename": "specimen_ab_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_B/normal/specimen_ab_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ab_06/specimen_ab_06_normal.png",
+      "filename": "specimen_ab_06_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_B/gold/specimen_ab_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ab_06/specimen_ab_06_gold_gold.png",
+      "filename": "specimen_ab_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_B/bronze/specimen_ab_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ab_06/specimen_ab_06_bronze_bronze.png",
+      "filename": "specimen_ab_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_necro/larva_ab_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ab_06/larva_ab_06.png",
+      "filename": "larva_ab_06.png"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_5",
+    "amazons"
+  ]
+}

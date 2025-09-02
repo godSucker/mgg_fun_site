@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ca_02",
+  "code": "ca_02",
+  "name": "Перехватчица",
+  "created_at": "2025-09-02T01:35:00.635032Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_cyber/bronze/CA_02_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_02/CA_02_bronze.png",
+      "filename": "CA_02_bronze.png"
+    },
+    {
+      "src": "full-char/saber_cyber/gold/CA_02_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_02/CA_02_gold.png",
+      "filename": "CA_02_gold.png"
+    },
+    {
+      "src": "full-char/saber_cyber/normal/CA_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_02/CA_02_normal.png",
+      "filename": "CA_02_normal.png"
+    },
+    {
+      "src": "full-char/saber_cyber/platinum/CA_02_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_02/CA_02_platinum.png",
+      "filename": "CA_02_platinum.png"
+    },
+    {
+      "src": "full-char/saber_cyber/silver/CA_02_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_02/CA_02_silver.png",
+      "filename": "CA_02_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_A/silver/specimen_ca_02_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_02/specimen_ca_02_silver_silver.png",
+      "filename": "specimen_ca_02_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_A/platinum/specimen_ca_02_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_02/specimen_ca_02_platinum_platinum.png",
+      "filename": "specimen_ca_02_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_A/normal/specimen_ca_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_02/specimen_ca_02_normal.png",
+      "filename": "specimen_ca_02_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_A/gold/specimen_ca_02_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_02/specimen_ca_02_gold_gold.png",
+      "filename": "specimen_ca_02_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_A/bronze/specimen_ca_02_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_02/specimen_ca_02_bronze_bronze.png",
+      "filename": "specimen_ca_02_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_cyber/larva_ca_02.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ca_02/larva_ca_02.png",
+      "filename": "larva_ca_02.png"
+    }
+  ],
+  "bingo": [
+    "research_1"
+  ]
+}

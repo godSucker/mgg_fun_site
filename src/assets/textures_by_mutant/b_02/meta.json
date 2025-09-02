@@ -1,0 +1,21 @@
+{
+  "id": "specimen_b_02",
+  "code": "b_02",
+  "name": "Слабый Зомби",
+  "created_at": "2025-09-02T01:35:00.371727Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_necro/normal/B_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_02/B_02_normal.png",
+      "filename": "B_02_normal.png"
+    },
+    {
+      "src": "semi-full/B/B/normal/specimen_b_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_02/specimen_b_02_normal.png",
+      "filename": "specimen_b_02_normal.png"
+    }
+  ],
+  "bingo": []
+}

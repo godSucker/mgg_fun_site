@@ -1,0 +1,81 @@
+{
+  "id": "specimen_af_01",
+  "code": "af_01",
+  "name": "Бог Машин",
+  "created_at": "2025-09-02T01:34:59.612949Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_mythic/bronze/AF_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_01/AF_01_bronze.png",
+      "filename": "AF_01_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/gold/AF_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_01/AF_01_gold.png",
+      "filename": "AF_01_gold.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/normal/AF_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_01/AF_01_normal.png",
+      "filename": "AF_01_normal.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/platinum/AF_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_01/AF_01_platinum.png",
+      "filename": "AF_01_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/silver/AF_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_01/AF_01_silver.png",
+      "filename": "AF_01_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_F/silver/specimen_af_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_01/specimen_af_01_silver_silver.png",
+      "filename": "specimen_af_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_F/platinum/specimen_af_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_01/specimen_af_01_platinum_platinum.png",
+      "filename": "specimen_af_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_F/normal/specimen_af_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_01/specimen_af_01_normal.png",
+      "filename": "specimen_af_01_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_F/gold/specimen_af_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_01/specimen_af_01_gold_gold.png",
+      "filename": "specimen_af_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_F/bronze/specimen_af_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_01/specimen_af_01_bronze_bronze.png",
+      "filename": "specimen_af_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_mythic/larva_af_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/af_01/larva_af_01.png",
+      "filename": "larva_af_01.png"
+    }
+  ],
+  "bingo": [
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat"
+  ]
+}

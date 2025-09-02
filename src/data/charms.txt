@@ -1,0 +1,253 @@
+</CustomScript>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Critical_1" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="1440"/>
+<Tag key="charm" value="criticalGiven"/>
+<Tag key="renewFilter" value="charm_critical_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Critical_3" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="4320"/>
+<Tag key="charm" value="criticalGiven"/>
+<Tag key="renewFilter" value="charm_critical_3_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Critical_7" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="10080"/>
+<Tag key="charm" value="criticalGiven"/>
+<Tag key="renewFilter" value="charm_critical_7_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_1" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="1440"/>
+<Tag key="charm" value="criticalReceived"/>
+<Tag key="renewFilter" value="charm_anticritical_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_3" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="4320"/>
+<Tag key="charm" value="criticalReceived"/>
+<Tag key="renewFilter" value="charm_anticritical_3_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_7" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="10080"/>
+<Tag key="charm" value="criticalReceived"/>
+<Tag key="renewFilter" value="charm_anticritical_7_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_1" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="1440"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp2l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_3" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="4320"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp2l_3_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_7" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10080"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp2l_7_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_30" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="43200"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp2l_30_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx3_1" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx3"/>
+<Tag key="charmPct" value="200"/>
+<Tag key="timeGain" value="1440"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp3l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx3_3" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx3"/>
+<Tag key="charmPct" value="200"/>
+<Tag key="timeGain" value="4320"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp3l_3_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx3_7" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx3"/>
+<Tag key="charmPct" value="200"/>
+<Tag key="timeGain" value="10080"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp3_7_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_1" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="1440"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen2l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_3" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="4320"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen2l_3_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_7" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10080"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen2l_7_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx4_1" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx4"/>
+<Tag key="charmPct" value="300"/>
+<Tag key="timeGain" value="1440"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen4l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx4_3" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx4"/>
+<Tag key="charmPct" value="300"/>
+<Tag key="timeGain" value="4320"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen4l_3_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx4_7" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx4"/>
+<Tag key="charmPct" value="300"/>
+<Tag key="timeGain" value="10080"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen4l_7_filter_renew"/>
+</EntityDescriptor>
+
+<EntityDescriptor id="Charm_Critical_0" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalGiven"/>
+<Tag key="renewFilter" value="charm_critical_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_0" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalReceived"/>
+<Tag key="renewFilter" value="charm_anticritical_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_0" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp2l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx3_0" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx3"/>
+<Tag key="charmPct" value="200"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="xp"/>
+<Tag key="renewFilter" value="charm_xp3l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_0" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen2l_1_filter_renew"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx4_0" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx4"/>
+<Tag key="charmPct" value="300"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="regeneration"/>
+<Tag key="renewFilter" value="charm_regen4l_1_filter_renew"/>
+</EntityDescriptor>
+
+</CustomScript>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Critical_99" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalGiven"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_99" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalReceived"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_99" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="xp"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_99" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="regeneration"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Critical_98" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalGiven"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_98" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalReceived"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_98" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="xp"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_98" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="regeneration"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Critical_97" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_critical"/>
+<Tag key="charmPct" value="50"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalGiven"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Anticritical_97" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_anticritical"/>
+<Tag key="charmPct" value="-75"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="criticalReceived"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Xpx2_97" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_xpx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="xp"/>
+</EntityDescriptor>
+<EntityDescriptor id="Charm_Regenx2_97" category="material" sizeX="1" sizeY="1">
+<State x="173" y="122" id="InitialState" spriteId="charm_regenx2"/>
+<Tag key="charmPct" value="100"/>
+<Tag key="timeGain" value="10"/>
+<Tag key="charm" value="regeneration"/>
+</EntityDescriptor>

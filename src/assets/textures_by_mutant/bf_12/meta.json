@@ -1,0 +1,79 @@
+{
+  "id": "specimen_bf_12",
+  "code": "bf_12",
+  "name": "Оскверненный священник",
+  "created_at": "2025-09-02T01:35:06.572494Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_mythic/bronze/BF_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bf_12/BF_12_bronze.png",
+      "filename": "BF_12_bronze.png"
+    },
+    {
+      "src": "full-char/necro_mythic/gold/BF_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bf_12/BF_12_gold.png",
+      "filename": "BF_12_gold.png"
+    },
+    {
+      "src": "full-char/necro_mythic/normal/BF_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bf_12/BF_12_normal.png",
+      "filename": "BF_12_normal.png"
+    },
+    {
+      "src": "full-char/necro_mythic/platinum/BF_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bf_12/BF_12_platinum.png",
+      "filename": "BF_12_platinum.png"
+    },
+    {
+      "src": "full-char/necro_mythic/silver/BF_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bf_12/BF_12_silver.png",
+      "filename": "BF_12_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_F/silver/specimen_bf_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bf_12/specimen_bf_12_silver_silver.png",
+      "filename": "specimen_bf_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_F/platinum/specimen_bf_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bf_12/specimen_bf_12_platinum_platinum.png",
+      "filename": "specimen_bf_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_F/normal/specimen_bf_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bf_12/specimen_bf_12_normal.png",
+      "filename": "specimen_bf_12_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_F/gold/specimen_bf_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bf_12/specimen_bf_12_gold_gold.png",
+      "filename": "specimen_bf_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_F/bronze/specimen_bf_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bf_12/specimen_bf_12_bronze_bronze.png",
+      "filename": "specimen_bf_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_mythic/larva_bf_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bf_12/larva_bf_12.png",
+      "filename": "larva_bf_12.png"
+    }
+  ],
+  "tier": "3+",
+  "bingo": [
+    "2025_skins",
+    "research_11"
+  ]
+}

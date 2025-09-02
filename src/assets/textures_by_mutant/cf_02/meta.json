@@ -1,0 +1,79 @@
+{
+  "id": "specimen_cf_02",
+  "code": "cf_02",
+  "name": "Тор",
+  "created_at": "2025-09-02T01:35:00.727899Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_mythic/bronze/CF_02_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_02/CF_02_bronze.png",
+      "filename": "CF_02_bronze.png"
+    },
+    {
+      "src": "full-char/saber_mythic/gold/CF_02_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_02/CF_02_gold.png",
+      "filename": "CF_02_gold.png"
+    },
+    {
+      "src": "full-char/saber_mythic/normal/CF_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_02/CF_02_normal.png",
+      "filename": "CF_02_normal.png"
+    },
+    {
+      "src": "full-char/saber_mythic/platinum/CF_02_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_02/CF_02_platinum.png",
+      "filename": "CF_02_platinum.png"
+    },
+    {
+      "src": "full-char/saber_mythic/silver/CF_02_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_02/CF_02_silver.png",
+      "filename": "CF_02_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/silver/specimen_cf_02_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_02/specimen_cf_02_silver_silver.png",
+      "filename": "specimen_cf_02_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/platinum/specimen_cf_02_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_02/specimen_cf_02_platinum_platinum.png",
+      "filename": "specimen_cf_02_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_F/normal/specimen_cf_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_02/specimen_cf_02_normal.png",
+      "filename": "specimen_cf_02_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_F/gold/specimen_cf_02_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_02/specimen_cf_02_gold_gold.png",
+      "filename": "specimen_cf_02_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_F/bronze/specimen_cf_02_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_02/specimen_cf_02_bronze_bronze.png",
+      "filename": "specimen_cf_02_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_mythic/larva_cf_02.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cf_02/larva_cf_02.png",
+      "filename": "larva_cf_02.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_1",
+    "legend"
+  ]
+}

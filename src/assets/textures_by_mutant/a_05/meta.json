@@ -1,0 +1,76 @@
+{
+  "id": "specimen_a_05",
+  "code": "a_05",
+  "name": "Охотник за головами",
+  "created_at": "2025-09-02T01:35:03.128273Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_cyber/bronze/A_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_05/A_05_bronze.png",
+      "filename": "A_05_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/gold/A_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_05/A_05_gold.png",
+      "filename": "A_05_gold.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/normal/A_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_05/A_05_normal.png",
+      "filename": "A_05_normal.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/platinum/A_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_05/A_05_platinum.png",
+      "filename": "A_05_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/silver/A_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_05/A_05_silver.png",
+      "filename": "A_05_silver.png"
+    },
+    {
+      "src": "semi-full/A/A/silver/specimen_a_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_05/specimen_a_05_silver_silver.png",
+      "filename": "specimen_a_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A/platinum/specimen_a_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_05/specimen_a_05_platinum_platinum.png",
+      "filename": "specimen_a_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A/normal/specimen_a_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_05/specimen_a_05_normal.png",
+      "filename": "specimen_a_05_normal.png"
+    },
+    {
+      "src": "semi-full/A/A/gold/specimen_a_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_05/specimen_a_05_gold_gold.png",
+      "filename": "specimen_a_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A/bronze/specimen_a_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_05/specimen_a_05_bronze_bronze.png",
+      "filename": "specimen_a_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/monogen_cyber/larva_a_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/a_05/larva_a_05.png",
+      "filename": "larva_a_05.png"
+    }
+  ],
+  "tier": "хзЧ",
+  "bingo": []
+}

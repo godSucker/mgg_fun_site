@@ -1,0 +1,27 @@
+{
+  "id": "specimen_f_04",
+  "code": "f_04",
+  "name": "Лепрекон",
+  "created_at": "2025-09-02T01:35:02.525942Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_mythic/normal/F_04_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/f_04/F_04_normal.png",
+      "filename": "F_04_normal.png"
+    },
+    {
+      "src": "semi-full/F/F/normal/specimen_f_04_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/f_04/specimen_f_04_normal.png",
+      "filename": "specimen_f_04_normal.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/monogen_mythic/larva_f_04.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/f_04/larva_f_04.png",
+      "filename": "larva_f_04.png"
+    }
+  ],
+  "bingo": []
+}

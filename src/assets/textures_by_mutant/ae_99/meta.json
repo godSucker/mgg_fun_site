@@ -1,0 +1,32 @@
+{
+  "id": "specimen_ae_99",
+  "code": "ae_99",
+  "name": "Случайним",
+  "created_at": "2025-09-02T01:35:07.236833Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_galactic/normal/AE_99_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_99/AE_99_normal.png",
+      "filename": "AE_99_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_E/normal/specimen_ae_99_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_99/specimen_ae_99_normal.png",
+      "filename": "specimen_ae_99_normal.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_galactic/larva_ae_99.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ae_99/larva_ae_99.png",
+      "filename": "larva_ae_99.png"
+    }
+  ],
+  "tier": "3",
+  "bingo": [
+    "anniversary_25",
+    "event_2022",
+    "event_2024"
+  ]
+}

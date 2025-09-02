@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cf_12",
+  "code": "cf_12",
+  "name": "Наследник Пяти колец",
+  "created_at": "2025-09-02T01:35:06.629376Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_mythic/bronze/CF_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_12/CF_12_bronze.png",
+      "filename": "CF_12_bronze.png"
+    },
+    {
+      "src": "full-char/saber_mythic/gold/CF_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_12/CF_12_gold.png",
+      "filename": "CF_12_gold.png"
+    },
+    {
+      "src": "full-char/saber_mythic/normal/CF_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_12/CF_12_normal.png",
+      "filename": "CF_12_normal.png"
+    },
+    {
+      "src": "full-char/saber_mythic/platinum/CF_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_12/CF_12_platinum.png",
+      "filename": "CF_12_platinum.png"
+    },
+    {
+      "src": "full-char/saber_mythic/silver/CF_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_12/CF_12_silver.png",
+      "filename": "CF_12_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/silver/specimen_cf_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_12/specimen_cf_12_silver_silver.png",
+      "filename": "specimen_cf_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/platinum/specimen_cf_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_12/specimen_cf_12_platinum_platinum.png",
+      "filename": "specimen_cf_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_F/normal/specimen_cf_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_12/specimen_cf_12_normal.png",
+      "filename": "specimen_cf_12_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_F/gold/specimen_cf_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_12/specimen_cf_12_gold_gold.png",
+      "filename": "specimen_cf_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_F/bronze/specimen_cf_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_12/specimen_cf_12_bronze_bronze.png",
+      "filename": "specimen_cf_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_mythic/larva_cf_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cf_12/larva_cf_12.png",
+      "filename": "larva_cf_12.png"
+    }
+  ],
+  "tier": "2",
+  "bingo": [
+    "research_11"
+  ]
+}

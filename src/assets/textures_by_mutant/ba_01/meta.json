@@ -1,0 +1,84 @@
+{
+  "id": "specimen_ba_01",
+  "code": "ba_01",
+  "name": "Зомборг",
+  "created_at": "2025-09-02T01:34:59.654714Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_cyber/bronze/BA_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_01/BA_01_bronze.png",
+      "filename": "BA_01_bronze.png"
+    },
+    {
+      "src": "full-char/necro_cyber/gold/BA_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_01/BA_01_gold.png",
+      "filename": "BA_01_gold.png"
+    },
+    {
+      "src": "full-char/necro_cyber/normal/BA_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_01/BA_01_normal.png",
+      "filename": "BA_01_normal.png"
+    },
+    {
+      "src": "full-char/necro_cyber/platinum/BA_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_01/BA_01_platinum.png",
+      "filename": "BA_01_platinum.png"
+    },
+    {
+      "src": "full-char/necro_cyber/silver/BA_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_01/BA_01_silver.png",
+      "filename": "BA_01_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/silver/specimen_ba_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_01/specimen_ba_01_silver_silver.png",
+      "filename": "specimen_ba_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/platinum/specimen_ba_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_01/specimen_ba_01_platinum_platinum.png",
+      "filename": "specimen_ba_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_A/normal/specimen_ba_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_01/specimen_ba_01_normal.png",
+      "filename": "specimen_ba_01_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_A/gold/specimen_ba_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_01/specimen_ba_01_gold_gold.png",
+      "filename": "specimen_ba_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_A/bronze/specimen_ba_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_01/specimen_ba_01_bronze_bronze.png",
+      "filename": "specimen_ba_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_cyber/larva_ba_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ba_01/larva_ba_01.png",
+      "filename": "larva_ba_01.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "Starter",
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat",
+    "starter_plat"
+  ]
+}

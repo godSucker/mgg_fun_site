@@ -1,0 +1,80 @@
+{
+  "id": "specimen_ac_08",
+  "code": "ac_08",
+  "name": "Шнайдер",
+  "created_at": "2025-09-02T01:35:04.493608Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_saber/bronze/AC_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_08/AC_08_bronze.png",
+      "filename": "AC_08_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_saber/gold/AC_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_08/AC_08_gold.png",
+      "filename": "AC_08_gold.png"
+    },
+    {
+      "src": "full-char/cyber_saber/normal/AC_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_08/AC_08_normal.png",
+      "filename": "AC_08_normal.png"
+    },
+    {
+      "src": "full-char/cyber_saber/platinum/AC_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_08/AC_08_platinum.png",
+      "filename": "AC_08_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_saber/silver/AC_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_08/AC_08_silver.png",
+      "filename": "AC_08_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_C/silver/specimen_ac_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_08/specimen_ac_08_silver_silver.png",
+      "filename": "specimen_ac_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_C/platinum/specimen_ac_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_08/specimen_ac_08_platinum_platinum.png",
+      "filename": "specimen_ac_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_C/normal/specimen_ac_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_08/specimen_ac_08_normal.png",
+      "filename": "specimen_ac_08_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_C/gold/specimen_ac_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_08/specimen_ac_08_gold_gold.png",
+      "filename": "specimen_ac_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_C/bronze/specimen_ac_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_08/specimen_ac_08_bronze_bronze.png",
+      "filename": "specimen_ac_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_saber/larva_ac_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ac_08/larva_ac_08.png",
+      "filename": "larva_ac_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7",
+    "rumble",
+    "event_2022",
+    "event_2024"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cf_08",
+  "code": "cf_08",
+  "name": "Винн",
+  "created_at": "2025-09-02T01:35:04.704355Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_mythic/bronze/CF_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_08/CF_08_bronze.png",
+      "filename": "CF_08_bronze.png"
+    },
+    {
+      "src": "full-char/saber_mythic/gold/CF_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_08/CF_08_gold.png",
+      "filename": "CF_08_gold.png"
+    },
+    {
+      "src": "full-char/saber_mythic/normal/CF_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_08/CF_08_normal.png",
+      "filename": "CF_08_normal.png"
+    },
+    {
+      "src": "full-char/saber_mythic/platinum/CF_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_08/CF_08_platinum.png",
+      "filename": "CF_08_platinum.png"
+    },
+    {
+      "src": "full-char/saber_mythic/silver/CF_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_08/CF_08_silver.png",
+      "filename": "CF_08_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/silver/specimen_cf_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_08/specimen_cf_08_silver_silver.png",
+      "filename": "specimen_cf_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_F/platinum/specimen_cf_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_08/specimen_cf_08_platinum_platinum.png",
+      "filename": "specimen_cf_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_F/normal/specimen_cf_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_08/specimen_cf_08_normal.png",
+      "filename": "specimen_cf_08_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_F/gold/specimen_cf_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_08/specimen_cf_08_gold_gold.png",
+      "filename": "specimen_cf_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_F/bronze/specimen_cf_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_08/specimen_cf_08_bronze_bronze.png",
+      "filename": "specimen_cf_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_mythic/larva_cf_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cf_08/larva_cf_08.png",
+      "filename": "larva_cf_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7",
+    "rumble"
+  ]
+}

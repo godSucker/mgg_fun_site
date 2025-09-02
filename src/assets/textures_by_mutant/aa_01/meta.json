@@ -1,0 +1,83 @@
+{
+  "id": "specimen_aa_01",
+  "code": "aa_01",
+  "name": "Андроид",
+  "created_at": "2025-09-02T01:34:59.509544Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_cyber/bronze/AA_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/aa_01/AA_01_bronze.png",
+      "filename": "AA_01_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_cyber/gold/AA_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/aa_01/AA_01_gold.png",
+      "filename": "AA_01_gold.png"
+    },
+    {
+      "src": "full-char/cyber_cyber/normal/AA_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/aa_01/AA_01_normal.png",
+      "filename": "AA_01_normal.png"
+    },
+    {
+      "src": "full-char/cyber_cyber/platinum/AA_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/aa_01/AA_01_platinum.png",
+      "filename": "AA_01_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_cyber/silver/AA_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/aa_01/AA_01_silver.png",
+      "filename": "AA_01_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_A/silver/specimen_aa_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/aa_01/specimen_aa_01_silver_silver.png",
+      "filename": "specimen_aa_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_A/platinum/specimen_aa_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/aa_01/specimen_aa_01_platinum_platinum.png",
+      "filename": "specimen_aa_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_A/normal/specimen_aa_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/aa_01/specimen_aa_01_normal.png",
+      "filename": "specimen_aa_01_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_A/gold/specimen_aa_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/aa_01/specimen_aa_01_gold_gold.png",
+      "filename": "specimen_aa_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_A/bronze/specimen_aa_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/aa_01/specimen_aa_01_bronze_bronze.png",
+      "filename": "specimen_aa_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_cyber/larva_aa_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/aa_01/larva_aa_01.png",
+      "filename": "larva_aa_01.png"
+    }
+  ],
+  "bingo": [
+    "Starter",
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat",
+    "starter_plat"
+  ]
+}

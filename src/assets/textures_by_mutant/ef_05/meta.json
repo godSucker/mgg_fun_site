@@ -1,0 +1,80 @@
+{
+  "id": "specimen_ef_05",
+  "code": "ef_05",
+  "name": "Кракен",
+  "created_at": "2025-09-02T01:35:03.017593Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_mythic/bronze/EF_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_05/EF_05_bronze.png",
+      "filename": "EF_05_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/gold/EF_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_05/EF_05_gold.png",
+      "filename": "EF_05_gold.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/normal/EF_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_05/EF_05_normal.png",
+      "filename": "EF_05_normal.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/platinum/EF_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_05/EF_05_platinum.png",
+      "filename": "EF_05_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/silver/EF_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_05/EF_05_silver.png",
+      "filename": "EF_05_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/silver/specimen_ef_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_05/specimen_ef_05_silver_silver.png",
+      "filename": "specimen_ef_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/platinum/specimen_ef_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_05/specimen_ef_05_platinum_platinum.png",
+      "filename": "specimen_ef_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_F/normal/specimen_ef_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_05/specimen_ef_05_normal.png",
+      "filename": "specimen_ef_05_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_F/gold/specimen_ef_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_05/specimen_ef_05_gold_gold.png",
+      "filename": "specimen_ef_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_F/bronze/specimen_ef_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_05/specimen_ef_05_bronze_bronze.png",
+      "filename": "specimen_ef_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ef_05/larva_ef_05.png",
+      "filename": "larva_ef_05.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "2025_skins",
+    "research_4",
+    "amazons"
+  ]
+}

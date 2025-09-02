@@ -1,0 +1,78 @@
+{
+  "id": "specimen_fd_02",
+  "code": "fd_02",
+  "name": "Гор",
+  "created_at": "2025-09-02T01:35:01.025950Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_zoo/bronze/FD_02_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_02/FD_02_bronze.png",
+      "filename": "FD_02_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/gold/FD_02_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_02/FD_02_gold.png",
+      "filename": "FD_02_gold.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/normal/FD_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_02/FD_02_normal.png",
+      "filename": "FD_02_normal.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/platinum/FD_02_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_02/FD_02_platinum.png",
+      "filename": "FD_02_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/silver/FD_02_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_02/FD_02_silver.png",
+      "filename": "FD_02_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_D/silver/specimen_fd_02_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_02/specimen_fd_02_silver_silver.png",
+      "filename": "specimen_fd_02_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_D/platinum/specimen_fd_02_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_02/specimen_fd_02_platinum_platinum.png",
+      "filename": "specimen_fd_02_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_D/normal/specimen_fd_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_02/specimen_fd_02_normal.png",
+      "filename": "specimen_fd_02_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_D/gold/specimen_fd_02_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_02/specimen_fd_02_gold_gold.png",
+      "filename": "specimen_fd_02_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_D/bronze/specimen_fd_02_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_02/specimen_fd_02_bronze_bronze.png",
+      "filename": "specimen_fd_02_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_zoo/larva_fd_02.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fd_02/larva_fd_02.png",
+      "filename": "larva_fd_02.png"
+    }
+  ],
+  "bingo": [
+    "research_1",
+    "event_2020"
+  ]
+}

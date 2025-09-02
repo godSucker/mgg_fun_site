@@ -1,0 +1,1798 @@
+ 
+<EntityDescriptor id="orb_basic_attack" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_02_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="12"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="12"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_03_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="12"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_03_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="12"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="14"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="14"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="16"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="16"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_05_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="16"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="17"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="17"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_06_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="17"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="18"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="18"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_08" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_08_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_09" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_attack_09_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="attack_bonus"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_03_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_03_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="28"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="35"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_08" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="40"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_09" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="45"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="11"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="13"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="13"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_03_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="13"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_03_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="13"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="3"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="7"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="28"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="65"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="3"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="7"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="17"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="18"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="65"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="3"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="7"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="22"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="24"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="65"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="3"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="7"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="22"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="24"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="65"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="3"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="7"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="22"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="24"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="26"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="3"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="7"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="15"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="21"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="24"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="65"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="14"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="22"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="22"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_03_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="22"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_03_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="22"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="29"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="35"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-1"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-25"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="13"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_03_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_03_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="26"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-26"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="13"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="26"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-2"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-5"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-26"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="2"/>
+<Tag key="special" value="true"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="5"/>
+<Tag key="special" value="true"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="special" value="true"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_02_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_02_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="15"/>
+<Tag key="special" value="true"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="18"/>
+<Tag key="special" value="true"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="20"/>
+<Tag key="special" value="true"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="17"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="18"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_07" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="19"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_01" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="40"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_02" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="80"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_03" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="120"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_04" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="150"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_05" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="200"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_06" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="300"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_02_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="28"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_05_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="28"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="30"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_06_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="30"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="75"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_08_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="113"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_life_09_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="life_bonus"/>
+<Tag key="pct" value="150"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="11"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="3"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="28"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="30"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_regenerate_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="pct" value="65"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="3"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="17"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="18"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_retaliate_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="pct" value="65"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="3"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="22"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="24"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_shield_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="pct" value="65"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="3"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_03_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="22"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="24"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_slash_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="pct" value="65"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="3"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_01_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="22"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="24"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_strengthen_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="pct" value="65"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="3"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="7"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="15"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="19"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="21"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="24"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_weaken_07_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability_bonus"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="pct" value="65"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="14"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_02_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="14"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="29"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addregenerate_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_regen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="35"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-1"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addretaliate_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_retaliate"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-25"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="13"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="26"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addshield_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_shield"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="30"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_02_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-26"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addslash_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_slash"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-30"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="13"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="26"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addstrengthen_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_strengthen"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="30"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-2"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-5"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-13"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-20"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-26"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_addweaken_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="ability"/>
+<Tag key="ability" value="ability_weaken"/>
+<Tag key="special" value="true"/>
+<Tag key="pct" value="-30"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="2"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="5"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="15"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="18"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="20"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="17"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_05_ephemeral_30" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="17"/>
+<Tag key="count" value="30"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_critical_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="critical_bonus"/>
+<Tag key="pct" value="18"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_01_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="40"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_02_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="80"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_03_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="120"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_04_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="150"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_05_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="200"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_basic_xp_06_ephemeral_10" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="xp_bonus"/>
+<Tag key="pct" value="300"/>
+<Tag key="count" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="orb_special_speed_02_xmas_2015_ephemeral_20" storable="true" category="orb" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="type" value="speed_bonus"/>
+<Tag key="pct" value="10"/>
+<Tag key="special" value="true"/>
+<Tag key="count" value="20"/>
+</EntityDescriptor>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

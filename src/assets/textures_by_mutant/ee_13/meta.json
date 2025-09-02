@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ee_13",
+  "code": "ee_13",
+  "name": "Орбитальный Нексус",
+  "created_at": "2025-09-02T01:35:07.097932Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_galactic/bronze/EE_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_13/EE_13_bronze.png",
+      "filename": "EE_13_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/gold/EE_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_13/EE_13_gold.png",
+      "filename": "EE_13_gold.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/normal/EE_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_13/EE_13_normal.png",
+      "filename": "EE_13_normal.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/platinum/EE_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_13/EE_13_platinum.png",
+      "filename": "EE_13_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/silver/EE_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_13/EE_13_silver.png",
+      "filename": "EE_13_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_E/silver/specimen_ee_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_13/specimen_ee_13_silver_silver.png",
+      "filename": "specimen_ee_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_E/platinum/specimen_ee_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_13/specimen_ee_13_platinum_platinum.png",
+      "filename": "specimen_ee_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_E/normal/specimen_ee_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_13/specimen_ee_13_normal.png",
+      "filename": "specimen_ee_13_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_E/gold/specimen_ee_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_13/specimen_ee_13_gold_gold.png",
+      "filename": "specimen_ee_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_E/bronze/specimen_ee_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_13/specimen_ee_13_bronze_bronze.png",
+      "filename": "specimen_ee_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_galactic/larva_ee_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ee_13/larva_ee_13.png",
+      "filename": "larva_ee_13.png"
+    }
+  ],
+  "bingo": [
+    "2025_mutants"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "specimen_ff_12",
+  "code": "ff_12",
+  "name": "Вечный архивариус",
+  "created_at": "2025-09-02T01:35:06.795634Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_mythic/bronze/FF_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_12/FF_12_bronze.png",
+      "filename": "FF_12_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/gold/FF_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_12/FF_12_gold.png",
+      "filename": "FF_12_gold.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/normal/FF_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_12/FF_12_normal.png",
+      "filename": "FF_12_normal.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/platinum/FF_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_12/FF_12_platinum.png",
+      "filename": "FF_12_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/silver/FF_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_12/FF_12_silver.png",
+      "filename": "FF_12_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_F/silver/specimen_ff_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_12/specimen_ff_12_silver_silver.png",
+      "filename": "specimen_ff_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_F/platinum/specimen_ff_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_12/specimen_ff_12_platinum_platinum.png",
+      "filename": "specimen_ff_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_F/normal/specimen_ff_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_12/specimen_ff_12_normal.png",
+      "filename": "specimen_ff_12_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_F/gold/specimen_ff_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_12/specimen_ff_12_gold_gold.png",
+      "filename": "specimen_ff_12_gold_gold.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_mythic/larva_ff_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ff_12/larva_ff_12.png",
+      "filename": "larva_ff_12.png"
+    }
+  ],
+  "tier": "2+",
+  "bingo": [
+    "research_11"
+  ]
+}

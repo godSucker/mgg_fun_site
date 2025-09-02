@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ea_06",
+  "code": "ea_06",
+  "name": "Кранк",
+  "created_at": "2025-09-02T01:35:03.588170Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_cyber/bronze/EA_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_06/EA_06_bronze.png",
+      "filename": "EA_06_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_cyber/gold/EA_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_06/EA_06_gold.png",
+      "filename": "EA_06_gold.png"
+    },
+    {
+      "src": "full-char/galactic_cyber/normal/EA_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_06/EA_06_normal.png",
+      "filename": "EA_06_normal.png"
+    },
+    {
+      "src": "full-char/galactic_cyber/platinum/EA_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_06/EA_06_platinum.png",
+      "filename": "EA_06_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_cyber/silver/EA_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_06/EA_06_silver.png",
+      "filename": "EA_06_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_A/silver/specimen_ea_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_06/specimen_ea_06_silver_silver.png",
+      "filename": "specimen_ea_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_A/platinum/specimen_ea_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_06/specimen_ea_06_platinum_platinum.png",
+      "filename": "specimen_ea_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_A/normal/specimen_ea_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_06/specimen_ea_06_normal.png",
+      "filename": "specimen_ea_06_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_A/gold/specimen_ea_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_06/specimen_ea_06_gold_gold.png",
+      "filename": "specimen_ea_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_A/bronze/specimen_ea_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_06/specimen_ea_06_bronze_bronze.png",
+      "filename": "specimen_ea_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_cyber/larva_ea_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ea_06/larva_ea_06.png",
+      "filename": "larva_ea_06.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_5"
+  ]
+}

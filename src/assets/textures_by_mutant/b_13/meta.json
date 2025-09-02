@@ -1,0 +1,76 @@
+{
+  "id": "specimen_b_13",
+  "code": "b_13",
+  "name": "ДЭР, зомби-властитель",
+  "created_at": "2025-09-02T01:35:07.168950Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_necro/bronze/B_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_13/B_13_bronze.png",
+      "filename": "B_13_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_necro/gold/B_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_13/B_13_gold.png",
+      "filename": "B_13_gold.png"
+    },
+    {
+      "src": "full-char/monogen_necro/normal/B_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_13/B_13_normal.png",
+      "filename": "B_13_normal.png"
+    },
+    {
+      "src": "full-char/monogen_necro/platinum/B_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_13/B_13_platinum.png",
+      "filename": "B_13_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_necro/silver/B_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_13/B_13_silver.png",
+      "filename": "B_13_silver.png"
+    },
+    {
+      "src": "semi-full/B/B/silver/specimen_b_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_13/specimen_b_13_silver_silver.png",
+      "filename": "specimen_b_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B/platinum/specimen_b_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_13/specimen_b_13_platinum_platinum.png",
+      "filename": "specimen_b_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B/normal/specimen_b_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_13/specimen_b_13_normal.png",
+      "filename": "specimen_b_13_normal.png"
+    },
+    {
+      "src": "semi-full/B/B/gold/specimen_b_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_13/specimen_b_13_gold_gold.png",
+      "filename": "specimen_b_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B/bronze/specimen_b_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_13/specimen_b_13_bronze_bronze.png",
+      "filename": "specimen_b_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/monogen_necro/larva_b_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/b_13/larva_b_13.png",
+      "filename": "larva_b_13.png"
+    }
+  ],
+  "tier": "1-",
+  "bingo": []
+}
