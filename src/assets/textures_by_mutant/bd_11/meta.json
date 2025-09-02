@@ -1,0 +1,78 @@
+{
+  "id": "specimen_bd_11",
+  "code": "bd_11",
+  "name": "Коктуй",
+  "created_at": "2025-09-02T01:35:06.138287Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_zoo/bronze/BD_11_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_11/BD_11_bronze.png",
+      "filename": "BD_11_bronze.png"
+    },
+    {
+      "src": "full-char/necro_zoo/gold/BD_11_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_11/BD_11_gold.png",
+      "filename": "BD_11_gold.png"
+    },
+    {
+      "src": "full-char/necro_zoo/normal/BD_11_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_11/BD_11_normal.png",
+      "filename": "BD_11_normal.png"
+    },
+    {
+      "src": "full-char/necro_zoo/platinum/BD_11_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_11/BD_11_platinum.png",
+      "filename": "BD_11_platinum.png"
+    },
+    {
+      "src": "full-char/necro_zoo/silver/BD_11_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_11/BD_11_silver.png",
+      "filename": "BD_11_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_D/silver/specimen_bd_11_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_11/specimen_bd_11_silver_silver.png",
+      "filename": "specimen_bd_11_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_D/platinum/specimen_bd_11_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_11/specimen_bd_11_platinum_platinum.png",
+      "filename": "specimen_bd_11_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_D/normal/specimen_bd_11_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_11/specimen_bd_11_normal.png",
+      "filename": "specimen_bd_11_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_D/gold/specimen_bd_11_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_11/specimen_bd_11_gold_gold.png",
+      "filename": "specimen_bd_11_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_D/bronze/specimen_bd_11_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_11/specimen_bd_11_bronze_bronze.png",
+      "filename": "specimen_bd_11_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necrco_zoo/larva_bd_11.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bd_11/larva_bd_11.png",
+      "filename": "larva_bd_11.png"
+    }
+  ],
+  "tier": "хзЧ",
+  "bingo": [
+    "research_10"
+  ]
+}

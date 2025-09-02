@@ -1,0 +1,82 @@
+{
+  "id": "specimen_eb_01",
+  "code": "eb_01",
+  "name": "Прилипала",
+  "created_at": "2025-09-02T01:35:00.110408Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_necro/bronze/EB_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_01/EB_01_bronze.png",
+      "filename": "EB_01_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_necro/gold/EB_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_01/EB_01_gold.png",
+      "filename": "EB_01_gold.png"
+    },
+    {
+      "src": "full-char/galactic_necro/normal/EB_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_01/EB_01_normal.png",
+      "filename": "EB_01_normal.png"
+    },
+    {
+      "src": "full-char/galactic_necro/platinum/EB_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_01/EB_01_platinum.png",
+      "filename": "EB_01_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_necro/silver/EB_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_01/EB_01_silver.png",
+      "filename": "EB_01_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_B/silver/specimen_eb_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_01/specimen_eb_01_silver_silver.png",
+      "filename": "specimen_eb_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_B/platinum/specimen_eb_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_01/specimen_eb_01_platinum_platinum.png",
+      "filename": "specimen_eb_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_B/normal/specimen_eb_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_01/specimen_eb_01_normal.png",
+      "filename": "specimen_eb_01_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_B/gold/specimen_eb_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_01/specimen_eb_01_gold_gold.png",
+      "filename": "specimen_eb_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_B/bronze/specimen_eb_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_01/specimen_eb_01_bronze_bronze.png",
+      "filename": "specimen_eb_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_necro/larva_eb_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/eb_01/larva_eb_01.png",
+      "filename": "larva_eb_01.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat"
+  ]
+}

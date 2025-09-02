@@ -1,0 +1,78 @@
+{
+  "id": "specimen_e_03",
+  "code": "e_03",
+  "name": "Церера",
+  "created_at": "2025-09-02T01:35:01.801498Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_galactic/bronze/E_03_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_03/E_03_bronze.png",
+      "filename": "E_03_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/gold/E_03_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_03/E_03_gold.png",
+      "filename": "E_03_gold.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/normal/E_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_03/E_03_normal.png",
+      "filename": "E_03_normal.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/platinum/E_03_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_03/E_03_platinum.png",
+      "filename": "E_03_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/silver/E_03_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_03/E_03_silver.png",
+      "filename": "E_03_silver.png"
+    },
+    {
+      "src": "semi-full/E/E/silver/specimen_e_03_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_03/specimen_e_03_silver_silver.png",
+      "filename": "specimen_e_03_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E/platinum/specimen_e_03_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_03/specimen_e_03_platinum_platinum.png",
+      "filename": "specimen_e_03_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E/normal/specimen_e_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_03/specimen_e_03_normal.png",
+      "filename": "specimen_e_03_normal.png"
+    },
+    {
+      "src": "semi-full/E/E/gold/specimen_e_03_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_03/specimen_e_03_gold_gold.png",
+      "filename": "specimen_e_03_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E/bronze/specimen_e_03_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_03/specimen_e_03_bronze_bronze.png",
+      "filename": "specimen_e_03_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/monogen_galactic/larva_e_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/e_03/larva_e_03.png",
+      "filename": "larva_e_03.png"
+    }
+  ],
+  "tier": "3",
+  "bingo": [
+    "amazons"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "specimen_a_14",
+  "code": "a_14",
+  "name": "Автомат",
+  "created_at": "2025-09-02T01:35:07.995634Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_cyber/bronze/A_14_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_14/A_14_bronze.png",
+      "filename": "A_14_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/gold/A_14_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_14/A_14_gold.png",
+      "filename": "A_14_gold.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/normal/A_14_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_14/A_14_normal.png",
+      "filename": "A_14_normal.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/platinum/A_14_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_14/A_14_platinum.png",
+      "filename": "A_14_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_cyber/silver/A_14_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_14/A_14_silver.png",
+      "filename": "A_14_silver.png"
+    },
+    {
+      "src": "semi-full/A/A/silver/specimen_a_14_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_14/specimen_a_14_silver_silver.png",
+      "filename": "specimen_a_14_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A/platinum/specimen_a_14_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_14/specimen_a_14_platinum_platinum.png",
+      "filename": "specimen_a_14_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A/normal/specimen_a_14_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_14/specimen_a_14_normal.png",
+      "filename": "specimen_a_14_normal.png"
+    },
+    {
+      "src": "semi-full/A/A/gold/specimen_a_14_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_14/specimen_a_14_gold_gold.png",
+      "filename": "specimen_a_14_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A/bronze/specimen_a_14_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_14/specimen_a_14_bronze_bronze.png",
+      "filename": "specimen_a_14_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/monogen_cyber/larva_a_14.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/a_14/larva_a_14.png",
+      "filename": "larva_a_14.png"
+    }
+  ],
+  "bingo": [
+    "2025_mutants"
+  ]
+}

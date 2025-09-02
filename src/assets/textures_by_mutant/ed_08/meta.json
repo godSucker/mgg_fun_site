@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ed_08",
+  "code": "ed_08",
+  "name": "Черноглаз",
+  "created_at": "2025-09-02T01:35:04.839580Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_zoo/bronze/ED_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_08/ED_08_bronze.png",
+      "filename": "ED_08_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/gold/ED_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_08/ED_08_gold.png",
+      "filename": "ED_08_gold.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/normal/ED_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_08/ED_08_normal.png",
+      "filename": "ED_08_normal.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/platinum/ED_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_08/ED_08_platinum.png",
+      "filename": "ED_08_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/silver/ED_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_08/ED_08_silver.png",
+      "filename": "ED_08_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_D/silver/specimen_ed_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_08/specimen_ed_08_silver_silver.png",
+      "filename": "specimen_ed_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_D/platinum/specimen_ed_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_08/specimen_ed_08_platinum_platinum.png",
+      "filename": "specimen_ed_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_D/normal/specimen_ed_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_08/specimen_ed_08_normal.png",
+      "filename": "specimen_ed_08_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_D/gold/specimen_ed_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_08/specimen_ed_08_gold_gold.png",
+      "filename": "specimen_ed_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_D/bronze/specimen_ed_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_08/specimen_ed_08_bronze_bronze.png",
+      "filename": "specimen_ed_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_zoo/larva_ed_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ed_08/larva_ed_08.png",
+      "filename": "larva_ed_08.png"
+    }
+  ],
+  "bingo": [
+    "research_6",
+    "research_7",
+    "event_2021"
+  ]
+}

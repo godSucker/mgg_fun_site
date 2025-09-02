@@ -1,0 +1,78 @@
+{
+  "id": "specimen_d_01",
+  "code": "d_01",
+  "name": "Зверь",
+  "created_at": "2025-09-02T01:34:59.932532Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_zoo/bronze/D_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_01/D_01_bronze.png",
+      "filename": "D_01_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/gold/D_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_01/D_01_gold.png",
+      "filename": "D_01_gold.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/normal/D_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_01/D_01_normal.png",
+      "filename": "D_01_normal.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/platinum/D_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_01/D_01_platinum.png",
+      "filename": "D_01_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/silver/D_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_01/D_01_silver.png",
+      "filename": "D_01_silver.png"
+    },
+    {
+      "src": "semi-full/D/D/silver/specimen_d_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_01/specimen_d_01_silver_silver.png",
+      "filename": "specimen_d_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D/platinum/specimen_d_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_01/specimen_d_01_platinum_platinum.png",
+      "filename": "specimen_d_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D/normal/specimen_d_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_01/specimen_d_01_normal.png",
+      "filename": "specimen_d_01_normal.png"
+    },
+    {
+      "src": "semi-full/D/D/gold/specimen_d_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_01/specimen_d_01_gold_gold.png",
+      "filename": "specimen_d_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D/bronze/specimen_d_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_01/specimen_d_01_bronze_bronze.png",
+      "filename": "specimen_d_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/monogen_zoo/larva_d_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/d_01/larva_d_01.png",
+      "filename": "larva_d_01.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "reactor"
+  ]
+}

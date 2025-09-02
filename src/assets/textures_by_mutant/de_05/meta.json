@@ -1,0 +1,78 @@
+{
+  "id": "specimen_de_05",
+  "code": "de_05",
+  "name": "Халкомяк",
+  "created_at": "2025-09-02T01:35:02.904766Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_galactic/bronze/DE_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_05/DE_05_bronze.png",
+      "filename": "DE_05_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/gold/DE_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_05/DE_05_gold.png",
+      "filename": "DE_05_gold.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/normal/DE_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_05/DE_05_normal.png",
+      "filename": "DE_05_normal.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/platinum/DE_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_05/DE_05_platinum.png",
+      "filename": "DE_05_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/silver/DE_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_05/DE_05_silver.png",
+      "filename": "DE_05_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_E/silver/specimen_de_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_05/specimen_de_05_silver_silver.png",
+      "filename": "specimen_de_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_E/platinum/specimen_de_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_05/specimen_de_05_platinum_platinum.png",
+      "filename": "specimen_de_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_E/normal/specimen_de_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_05/specimen_de_05_normal.png",
+      "filename": "specimen_de_05_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_E/gold/specimen_de_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_05/specimen_de_05_gold_gold.png",
+      "filename": "specimen_de_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_E/bronze/specimen_de_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_05/specimen_de_05_bronze_bronze.png",
+      "filename": "specimen_de_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_galactic/larva_de_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/de_05/larva_de_05.png",
+      "filename": "larva_de_05.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_4"
+  ]
+}

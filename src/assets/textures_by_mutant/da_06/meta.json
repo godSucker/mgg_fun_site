@@ -1,0 +1,78 @@
+{
+  "id": "specimen_da_06",
+  "code": "da_06",
+  "name": "Трицератанк",
+  "created_at": "2025-09-02T01:35:03.496587Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_cyber/bronze/DA_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_06/DA_06_bronze.png",
+      "filename": "DA_06_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/gold/DA_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_06/DA_06_gold.png",
+      "filename": "DA_06_gold.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/normal/DA_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_06/DA_06_normal.png",
+      "filename": "DA_06_normal.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/platinum/DA_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_06/DA_06_platinum.png",
+      "filename": "DA_06_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/silver/DA_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_06/DA_06_silver.png",
+      "filename": "DA_06_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_A/silver/specimen_da_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_06/specimen_da_06_silver_silver.png",
+      "filename": "specimen_da_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_A/platinum/specimen_da_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_06/specimen_da_06_platinum_platinum.png",
+      "filename": "specimen_da_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_A/normal/specimen_da_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_06/specimen_da_06_normal.png",
+      "filename": "specimen_da_06_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_A/gold/specimen_da_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_06/specimen_da_06_gold_gold.png",
+      "filename": "specimen_da_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_A/bronze/specimen_da_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_06/specimen_da_06_bronze_bronze.png",
+      "filename": "specimen_da_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_cyber/larva_da_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/da_06/larva_da_06.png",
+      "filename": "larva_da_06.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_5"
+  ]
+}

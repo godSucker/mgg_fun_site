@@ -1,0 +1,78 @@
+{
+  "id": "specimen_da_05",
+  "code": "da_05",
+  "name": "Фенек-Ультралис",
+  "created_at": "2025-09-02T01:35:02.839999Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_cyber/bronze/DA_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_05/DA_05_bronze.png",
+      "filename": "DA_05_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/gold/DA_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_05/DA_05_gold.png",
+      "filename": "DA_05_gold.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/normal/DA_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_05/DA_05_normal.png",
+      "filename": "DA_05_normal.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/platinum/DA_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_05/DA_05_platinum.png",
+      "filename": "DA_05_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_cyber/silver/DA_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_05/DA_05_silver.png",
+      "filename": "DA_05_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_A/silver/specimen_da_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_05/specimen_da_05_silver_silver.png",
+      "filename": "specimen_da_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_A/platinum/specimen_da_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_05/specimen_da_05_platinum_platinum.png",
+      "filename": "specimen_da_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_A/normal/specimen_da_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_05/specimen_da_05_normal.png",
+      "filename": "specimen_da_05_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_A/gold/specimen_da_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_05/specimen_da_05_gold_gold.png",
+      "filename": "specimen_da_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_A/bronze/specimen_da_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_05/specimen_da_05_bronze_bronze.png",
+      "filename": "specimen_da_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_cyber/larva_da_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/da_05/larva_da_05.png",
+      "filename": "larva_da_05.png"
+    }
+  ],
+  "bingo": [
+    "research_4",
+    "event_2021"
+  ]
+}

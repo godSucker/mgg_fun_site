@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ef_09",
+  "code": "ef_09",
+  "name": "Маг Ризафредд",
+  "created_at": "2025-09-02T01:35:05.412852Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_mythic/bronze/EF_09_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_09/EF_09_bronze.png",
+      "filename": "EF_09_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/gold/EF_09_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_09/EF_09_gold.png",
+      "filename": "EF_09_gold.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/normal/EF_09_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_09/EF_09_normal.png",
+      "filename": "EF_09_normal.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/platinum/EF_09_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_09/EF_09_platinum.png",
+      "filename": "EF_09_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/silver/EF_09_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_09/EF_09_silver.png",
+      "filename": "EF_09_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/silver/specimen_ef_09_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_09/specimen_ef_09_silver_silver.png",
+      "filename": "specimen_ef_09_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/platinum/specimen_ef_09_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_09/specimen_ef_09_platinum_platinum.png",
+      "filename": "specimen_ef_09_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_F/normal/specimen_ef_09_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_09/specimen_ef_09_normal.png",
+      "filename": "specimen_ef_09_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_F/gold/specimen_ef_09_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_09/specimen_ef_09_gold_gold.png",
+      "filename": "specimen_ef_09_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_F/bronze/specimen_ef_09_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_09/specimen_ef_09_bronze_bronze.png",
+      "filename": "specimen_ef_09_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_09.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ef_09/larva_ef_09.png",
+      "filename": "larva_ef_09.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_8"
+  ]
+}

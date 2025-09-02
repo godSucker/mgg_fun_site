@@ -1,0 +1,79 @@
+{
+  "id": "specimen_db_08",
+  "code": "db_08",
+  "name": "Смертозавр",
+  "created_at": "2025-09-02T01:35:04.732199Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_necro/bronze/DB_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_08/DB_08_bronze.png",
+      "filename": "DB_08_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_necro/gold/DB_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_08/DB_08_gold.png",
+      "filename": "DB_08_gold.png"
+    },
+    {
+      "src": "full-char/zoo_necro/normal/DB_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_08/DB_08_normal.png",
+      "filename": "DB_08_normal.png"
+    },
+    {
+      "src": "full-char/zoo_necro/platinum/DB_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_08/DB_08_platinum.png",
+      "filename": "DB_08_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_necro/silver/DB_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_08/DB_08_silver.png",
+      "filename": "DB_08_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_B/silver/specimen_db_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_08/specimen_db_08_silver_silver.png",
+      "filename": "specimen_db_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_B/platinum/specimen_db_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_08/specimen_db_08_platinum_platinum.png",
+      "filename": "specimen_db_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_B/normal/specimen_db_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_08/specimen_db_08_normal.png",
+      "filename": "specimen_db_08_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_B/gold/specimen_db_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_08/specimen_db_08_gold_gold.png",
+      "filename": "specimen_db_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_B/bronze/specimen_db_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_08/specimen_db_08_bronze_bronze.png",
+      "filename": "specimen_db_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_necro/larva_db_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/db_08/larva_db_08.png",
+      "filename": "larva_db_08.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_7",
+    "event_2021"
+  ]
+}

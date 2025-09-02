@@ -1,0 +1,78 @@
+{
+  "id": "specimen_be_06",
+  "code": "be_06",
+  "name": "Апофис",
+  "created_at": "2025-09-02T01:35:03.375327Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_galactic/bronze/BE_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_06/BE_06_bronze.png",
+      "filename": "BE_06_bronze.png"
+    },
+    {
+      "src": "full-char/necro_galactic/gold/BE_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_06/BE_06_gold.png",
+      "filename": "BE_06_gold.png"
+    },
+    {
+      "src": "full-char/necro_galactic/normal/BE_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_06/BE_06_normal.png",
+      "filename": "BE_06_normal.png"
+    },
+    {
+      "src": "full-char/necro_galactic/platinum/BE_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_06/BE_06_platinum.png",
+      "filename": "BE_06_platinum.png"
+    },
+    {
+      "src": "full-char/necro_galactic/silver/BE_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_06/BE_06_silver.png",
+      "filename": "BE_06_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_E/silver/specimen_be_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_06/specimen_be_06_silver_silver.png",
+      "filename": "specimen_be_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_E/platinum/specimen_be_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_06/specimen_be_06_platinum_platinum.png",
+      "filename": "specimen_be_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_E/normal/specimen_be_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_06/specimen_be_06_normal.png",
+      "filename": "specimen_be_06_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_E/gold/specimen_be_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_06/specimen_be_06_gold_gold.png",
+      "filename": "specimen_be_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_E/bronze/specimen_be_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_06/specimen_be_06_bronze_bronze.png",
+      "filename": "specimen_be_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_galactic/larva_be_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/be_06/larva_be_06.png",
+      "filename": "larva_be_06.png"
+    }
+  ],
+  "bingo": [
+    "research_5",
+    "rumble"
+  ]
+}

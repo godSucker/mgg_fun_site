@@ -1,0 +1,28 @@
+{
+  "id": "specimen_cf_99",
+  "code": "cf_99",
+  "name": "Рид, Истинный герой",
+  "created_at": "2025-09-02T01:35:07.327203Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_mythic/normal/CF_99_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cf_99/CF_99_normal.png",
+      "filename": "CF_99_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_F/normal/specimen_cf_99_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cf_99/specimen_cf_99_normal.png",
+      "filename": "specimen_cf_99_normal.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_mythic/larva_cf_99.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cf_99/larva_cf_99.png",
+      "filename": "larva_cf_99.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": []
+}

@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ed_10",
+  "code": "ed_10",
+  "name": "Сердитый Свин",
+  "created_at": "2025-09-02T01:35:05.881786Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_zoo/bronze/ED_10_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_10/ED_10_bronze.png",
+      "filename": "ED_10_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/gold/ED_10_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_10/ED_10_gold.png",
+      "filename": "ED_10_gold.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/normal/ED_10_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_10/ED_10_normal.png",
+      "filename": "ED_10_normal.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/platinum/ED_10_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_10/ED_10_platinum.png",
+      "filename": "ED_10_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/silver/ED_10_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_10/ED_10_silver.png",
+      "filename": "ED_10_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_D/silver/specimen_ed_10_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_10/specimen_ed_10_silver_silver.png",
+      "filename": "specimen_ed_10_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_D/platinum/specimen_ed_10_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_10/specimen_ed_10_platinum_platinum.png",
+      "filename": "specimen_ed_10_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_D/normal/specimen_ed_10_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_10/specimen_ed_10_normal.png",
+      "filename": "specimen_ed_10_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_D/gold/specimen_ed_10_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_10/specimen_ed_10_gold_gold.png",
+      "filename": "specimen_ed_10_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_D/bronze/specimen_ed_10_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_10/specimen_ed_10_bronze_bronze.png",
+      "filename": "specimen_ed_10_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_zoo/larva_ed_10.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ed_10/larva_ed_10.png",
+      "filename": "larva_ed_10.png"
+    }
+  ],
+  "tier": "хзЧ",
+  "bingo": [
+    "research_9"
+  ]
+}

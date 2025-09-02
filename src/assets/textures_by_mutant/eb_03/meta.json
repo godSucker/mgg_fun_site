@@ -1,0 +1,77 @@
+{
+  "id": "specimen_eb_03",
+  "code": "eb_03",
+  "name": "Пожиратель",
+  "created_at": "2025-09-02T01:35:01.538875Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_necro/bronze/EB_03_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_03/EB_03_bronze.png",
+      "filename": "EB_03_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_necro/gold/EB_03_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_03/EB_03_gold.png",
+      "filename": "EB_03_gold.png"
+    },
+    {
+      "src": "full-char/galactic_necro/normal/EB_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_03/EB_03_normal.png",
+      "filename": "EB_03_normal.png"
+    },
+    {
+      "src": "full-char/galactic_necro/platinum/EB_03_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_03/EB_03_platinum.png",
+      "filename": "EB_03_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_necro/silver/EB_03_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_03/EB_03_silver.png",
+      "filename": "EB_03_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_B/silver/specimen_eb_03_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_03/specimen_eb_03_silver_silver.png",
+      "filename": "specimen_eb_03_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_B/platinum/specimen_eb_03_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_03/specimen_eb_03_platinum_platinum.png",
+      "filename": "specimen_eb_03_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_B/normal/specimen_eb_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_03/specimen_eb_03_normal.png",
+      "filename": "specimen_eb_03_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_B/gold/specimen_eb_03_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_03/specimen_eb_03_gold_gold.png",
+      "filename": "specimen_eb_03_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_B/bronze/specimen_eb_03_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_03/specimen_eb_03_bronze_bronze.png",
+      "filename": "specimen_eb_03_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_necro/larva_eb_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/eb_03/larva_eb_03.png",
+      "filename": "larva_eb_03.png"
+    }
+  ],
+  "bingo": [
+    "research_2"
+  ]
+}

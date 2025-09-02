@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ed_14",
+  "code": "ed_14",
+  "name": "Гидридра",
+  "created_at": "2025-09-02T01:35:07.935549Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_zoo/bronze/ED_14_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_14/ED_14_bronze.png",
+      "filename": "ED_14_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/gold/ED_14_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_14/ED_14_gold.png",
+      "filename": "ED_14_gold.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/normal/ED_14_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_14/ED_14_normal.png",
+      "filename": "ED_14_normal.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/platinum/ED_14_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_14/ED_14_platinum.png",
+      "filename": "ED_14_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_zoo/silver/ED_14_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_14/ED_14_silver.png",
+      "filename": "ED_14_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_D/silver/specimen_ed_14_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_14/specimen_ed_14_silver_silver.png",
+      "filename": "specimen_ed_14_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_D/platinum/specimen_ed_14_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_14/specimen_ed_14_platinum_platinum.png",
+      "filename": "specimen_ed_14_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_D/normal/specimen_ed_14_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_14/specimen_ed_14_normal.png",
+      "filename": "specimen_ed_14_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_D/gold/specimen_ed_14_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_14/specimen_ed_14_gold_gold.png",
+      "filename": "specimen_ed_14_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_D/bronze/specimen_ed_14_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_14/specimen_ed_14_bronze_bronze.png",
+      "filename": "specimen_ed_14_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_zoo/larva_ed_14.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ed_14/larva_ed_14.png",
+      "filename": "larva_ed_14.png"
+    }
+  ],
+  "tier": "2+",
+  "bingo": [
+    "2025_mutants"
+  ]
+}

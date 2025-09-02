@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ad_09",
+  "code": "ad_09",
+  "name": "Гигантский Краб",
+  "created_at": "2025-09-02T01:35:05.079971Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_zoo/bronze/AD_09_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_09/AD_09_bronze.png",
+      "filename": "AD_09_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/gold/AD_09_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_09/AD_09_gold.png",
+      "filename": "AD_09_gold.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/normal/AD_09_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_09/AD_09_normal.png",
+      "filename": "AD_09_normal.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/platinum/AD_09_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_09/AD_09_platinum.png",
+      "filename": "AD_09_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/silver/AD_09_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_09/AD_09_silver.png",
+      "filename": "AD_09_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/silver/specimen_ad_09_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_09/specimen_ad_09_silver_silver.png",
+      "filename": "specimen_ad_09_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/platinum/specimen_ad_09_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_09/specimen_ad_09_platinum_platinum.png",
+      "filename": "specimen_ad_09_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_D/normal/specimen_ad_09_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_09/specimen_ad_09_normal.png",
+      "filename": "specimen_ad_09_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_D/gold/specimen_ad_09_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_09/specimen_ad_09_gold_gold.png",
+      "filename": "specimen_ad_09_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_D/bronze/specimen_ad_09_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_09/specimen_ad_09_bronze_bronze.png",
+      "filename": "specimen_ad_09_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_zoo/larva_ad_09.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ad_09/larva_ad_09.png",
+      "filename": "larva_ad_09.png"
+    }
+  ],
+  "tier": "3+",
+  "bingo": [
+    "research_8"
+  ]
+}

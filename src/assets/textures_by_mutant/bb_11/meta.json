@@ -1,0 +1,30 @@
+{
+  "id": "specimen_bb_11",
+  "code": "bb_11",
+  "name": "Забытая",
+  "created_at": "2025-09-02T01:35:06.117122Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_necro/normal/BB_11_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_11/BB_11_normal.png",
+      "filename": "BB_11_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_B/normal/specimen_bb_11_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_11/specimen_bb_11_normal.png",
+      "filename": "specimen_bb_11_normal.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_necro/larva_bb_11.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bb_11/larva_bb_11.png",
+      "filename": "larva_bb_11.png"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_10"
+  ]
+}

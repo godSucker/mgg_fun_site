@@ -1,0 +1,77 @@
+{
+  "id": "specimen_fa_08",
+  "code": "fa_08",
+  "name": "Футбот",
+  "created_at": "2025-09-02T01:35:04.879351Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_cyber/bronze/FA_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_08/FA_08_bronze.png",
+      "filename": "FA_08_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/gold/FA_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_08/FA_08_gold.png",
+      "filename": "FA_08_gold.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/normal/FA_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_08/FA_08_normal.png",
+      "filename": "FA_08_normal.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/platinum/FA_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_08/FA_08_platinum.png",
+      "filename": "FA_08_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/silver/FA_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_08/FA_08_silver.png",
+      "filename": "FA_08_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_A/silver/specimen_fa_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_08/specimen_fa_08_silver_silver.png",
+      "filename": "specimen_fa_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_A/platinum/specimen_fa_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_08/specimen_fa_08_platinum_platinum.png",
+      "filename": "specimen_fa_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_A/normal/specimen_fa_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_08/specimen_fa_08_normal.png",
+      "filename": "specimen_fa_08_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_A/gold/specimen_fa_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_08/specimen_fa_08_gold_gold.png",
+      "filename": "specimen_fa_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_A/bronze/specimen_fa_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_08/specimen_fa_08_bronze_bronze.png",
+      "filename": "specimen_fa_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_cyber/larva_fa_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fa_08/larva_fa_08.png",
+      "filename": "larva_fa_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7"
+  ]
+}

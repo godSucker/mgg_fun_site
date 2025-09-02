@@ -1,0 +1,181 @@
+<EntityDescriptor id="Material_Jackpot_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Preorder_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Preorder_Token_DE_10_gold" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_XP10" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="xpGain" value="10"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_XP250" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="xpGain" value="250"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_XP1000" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="xpGain" value="1000"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_XP10000" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+<Tag key="xpGain" value="10000"/>
+</EntityDescriptor>
+---------------------------------
+<EntityDescriptor id="Material_Easter_Contract_CH" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Contract_EO" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Egg_Basic" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Egg_Bronze" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Egg_Silver" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Egg_Gold" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Egg_Platinum" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+-------
+
+<EntityDescriptor id="Material_Halloween_Soul" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Tcg_Corgi_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Winter_Snowball" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_2019_Chocobase" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_2019_Chocoplus" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_2019_Chocomax" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Preorder_Token_FC_11" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Dark_Matter" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Antimatter" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Banshee_Veil" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Claiomh_Solais" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Winter_Orange" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Winter_Coal" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Love_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Mutenstein_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_7th_Anniversary_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Plague_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Toybox_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter21_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Pyramid_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Stygian_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Rime_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Valentines22_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Easter22_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Data_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Grave_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Snowstorm_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Cherub_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Spelunking_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Weirdtech_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Overlay_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Trick_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Capsule_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Cuteness_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Moai_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Conspiracy_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Crawling_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Xmas24_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Mystery25_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Runic_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_BUN_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+<EntityDescriptor id="Material_Masks_Token" category="material" sizeX="1" sizeY="1">
+<State x="134" y="239" id="InitialState" spriteId="brb_sign"/>
+</EntityDescriptor>
+</DynamicEntities>
+</GameDefinitions>
+

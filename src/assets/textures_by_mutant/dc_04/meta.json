@@ -1,0 +1,79 @@
+{
+  "id": "specimen_dc_04",
+  "code": "dc_04",
+  "name": "Сезанн",
+  "created_at": "2025-09-02T01:35:02.177524Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_saber/bronze/DC_04_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_04/DC_04_bronze.png",
+      "filename": "DC_04_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_saber/gold/DC_04_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_04/DC_04_gold.png",
+      "filename": "DC_04_gold.png"
+    },
+    {
+      "src": "full-char/zoo_saber/normal/DC_04_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_04/DC_04_normal.png",
+      "filename": "DC_04_normal.png"
+    },
+    {
+      "src": "full-char/zoo_saber/platinum/DC_04_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_04/DC_04_platinum.png",
+      "filename": "DC_04_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_saber/silver/DC_04_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_04/DC_04_silver.png",
+      "filename": "DC_04_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_C/silver/specimen_dc_04_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_04/specimen_dc_04_silver_silver.png",
+      "filename": "specimen_dc_04_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_C/platinum/specimen_dc_04_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_04/specimen_dc_04_platinum_platinum.png",
+      "filename": "specimen_dc_04_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_C/normal/specimen_dc_04_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_04/specimen_dc_04_normal.png",
+      "filename": "specimen_dc_04_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_C/gold/specimen_dc_04_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_04/specimen_dc_04_gold_gold.png",
+      "filename": "specimen_dc_04_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_C/bronze/specimen_dc_04_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_04/specimen_dc_04_bronze_bronze.png",
+      "filename": "specimen_dc_04_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_saber/larva_dc_04.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/dc_04/larva_dc_04.png",
+      "filename": "larva_dc_04.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_3",
+    "legend"
+  ]
+}

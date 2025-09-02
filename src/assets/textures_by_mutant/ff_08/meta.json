@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ff_08",
+  "code": "ff_08",
+  "name": "Огненная Буря",
+  "created_at": "2025-09-02T01:35:04.952824Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_mythic/bronze/FF_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_08/FF_08_bronze.png",
+      "filename": "FF_08_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/gold/FF_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_08/FF_08_gold.png",
+      "filename": "FF_08_gold.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/normal/FF_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_08/FF_08_normal.png",
+      "filename": "FF_08_normal.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/platinum/FF_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_08/FF_08_platinum.png",
+      "filename": "FF_08_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_mythic/silver/FF_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ff_08/FF_08_silver.png",
+      "filename": "FF_08_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_F/silver/specimen_ff_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_08/specimen_ff_08_silver_silver.png",
+      "filename": "specimen_ff_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_F/platinum/specimen_ff_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_08/specimen_ff_08_platinum_platinum.png",
+      "filename": "specimen_ff_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_F/normal/specimen_ff_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_08/specimen_ff_08_normal.png",
+      "filename": "specimen_ff_08_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_F/gold/specimen_ff_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_08/specimen_ff_08_gold_gold.png",
+      "filename": "specimen_ff_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_F/bronze/specimen_ff_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ff_08/specimen_ff_08_bronze_bronze.png",
+      "filename": "specimen_ff_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_mythic/larva_ff_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ff_08/larva_ff_08.png",
+      "filename": "larva_ff_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7"
+  ]
+}

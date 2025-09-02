@@ -1,0 +1,78 @@
+{
+  "id": "specimen_df_09",
+  "code": "df_09",
+  "name": "Кетцалькоатль",
+  "created_at": "2025-09-02T01:35:05.339050Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_mythic/bronze/DF_09_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_09/DF_09_bronze.png",
+      "filename": "DF_09_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/gold/DF_09_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_09/DF_09_gold.png",
+      "filename": "DF_09_gold.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/normal/DF_09_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_09/DF_09_normal.png",
+      "filename": "DF_09_normal.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/platinum/DF_09_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_09/DF_09_platinum.png",
+      "filename": "DF_09_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/silver/DF_09_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_09/DF_09_silver.png",
+      "filename": "DF_09_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/silver/specimen_df_09_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_09/specimen_df_09_silver_silver.png",
+      "filename": "specimen_df_09_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/platinum/specimen_df_09_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_09/specimen_df_09_platinum_platinum.png",
+      "filename": "specimen_df_09_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_F/normal/specimen_df_09_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_09/specimen_df_09_normal.png",
+      "filename": "specimen_df_09_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_F/gold/specimen_df_09_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_09/specimen_df_09_gold_gold.png",
+      "filename": "specimen_df_09_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_F/bronze/specimen_df_09_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_09/specimen_df_09_bronze_bronze.png",
+      "filename": "specimen_df_09_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_mythic/larva_df_09.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/df_09/larva_df_09.png",
+      "filename": "larva_df_09.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_8"
+  ]
+}

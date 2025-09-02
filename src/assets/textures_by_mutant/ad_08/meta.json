@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ad_08",
+  "code": "ad_08",
+  "name": "Котик-рейнджер",
+  "created_at": "2025-09-02T01:35:04.507819Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_zoo/bronze/AD_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_08/AD_08_bronze.png",
+      "filename": "AD_08_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/gold/AD_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_08/AD_08_gold.png",
+      "filename": "AD_08_gold.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/normal/AD_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_08/AD_08_normal.png",
+      "filename": "AD_08_normal.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/platinum/AD_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_08/AD_08_platinum.png",
+      "filename": "AD_08_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/silver/AD_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_08/AD_08_silver.png",
+      "filename": "AD_08_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/silver/specimen_ad_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_08/specimen_ad_08_silver_silver.png",
+      "filename": "specimen_ad_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/platinum/specimen_ad_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_08/specimen_ad_08_platinum_platinum.png",
+      "filename": "specimen_ad_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_D/normal/specimen_ad_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_08/specimen_ad_08_normal.png",
+      "filename": "specimen_ad_08_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_D/gold/specimen_ad_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_08/specimen_ad_08_gold_gold.png",
+      "filename": "specimen_ad_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_D/bronze/specimen_ad_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_08/specimen_ad_08_bronze_bronze.png",
+      "filename": "specimen_ad_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_zoo/larva_ad_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ad_08/larva_ad_08.png",
+      "filename": "larva_ad_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7",
+    "event_2020"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "specimen_af_13",
+  "code": "af_13",
+  "name": "Голем эпохи",
+  "created_at": "2025-09-02T01:35:06.903335Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_mythic/bronze/AF_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_13/AF_13_bronze.png",
+      "filename": "AF_13_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/gold/AF_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_13/AF_13_gold.png",
+      "filename": "AF_13_gold.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/normal/AF_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_13/AF_13_normal.png",
+      "filename": "AF_13_normal.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/platinum/AF_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_13/AF_13_platinum.png",
+      "filename": "AF_13_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/silver/AF_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_13/AF_13_silver.png",
+      "filename": "AF_13_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_F/silver/specimen_af_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_13/specimen_af_13_silver_silver.png",
+      "filename": "specimen_af_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_F/platinum/specimen_af_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_13/specimen_af_13_platinum_platinum.png",
+      "filename": "specimen_af_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_F/normal/specimen_af_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_13/specimen_af_13_normal.png",
+      "filename": "specimen_af_13_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_F/gold/specimen_af_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_13/specimen_af_13_gold_gold.png",
+      "filename": "specimen_af_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_F/bronze/specimen_af_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_13/specimen_af_13_bronze_bronze.png",
+      "filename": "specimen_af_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_mythic/larva_af_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/af_13/larva_af_13.png",
+      "filename": "larva_af_13.png"
+    }
+  ],
+  "tier": "2-",
+  "bingo": []
+}

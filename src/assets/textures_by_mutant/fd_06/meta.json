@@ -1,0 +1,78 @@
+{
+  "id": "specimen_fd_06",
+  "code": "fd_06",
+  "name": "Кунг Чоу",
+  "created_at": "2025-09-02T01:35:03.723702Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_zoo/bronze/FD_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_06/FD_06_bronze.png",
+      "filename": "FD_06_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/gold/FD_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_06/FD_06_gold.png",
+      "filename": "FD_06_gold.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/normal/FD_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_06/FD_06_normal.png",
+      "filename": "FD_06_normal.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/platinum/FD_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_06/FD_06_platinum.png",
+      "filename": "FD_06_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/silver/FD_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_06/FD_06_silver.png",
+      "filename": "FD_06_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_D/silver/specimen_fd_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_06/specimen_fd_06_silver_silver.png",
+      "filename": "specimen_fd_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_D/platinum/specimen_fd_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_06/specimen_fd_06_platinum_platinum.png",
+      "filename": "specimen_fd_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_D/normal/specimen_fd_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_06/specimen_fd_06_normal.png",
+      "filename": "specimen_fd_06_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_D/gold/specimen_fd_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_06/specimen_fd_06_gold_gold.png",
+      "filename": "specimen_fd_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_D/bronze/specimen_fd_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_06/specimen_fd_06_bronze_bronze.png",
+      "filename": "specimen_fd_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_zoo/larva_fd_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fd_06/larva_fd_06.png",
+      "filename": "larva_fd_06.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_5"
+  ]
+}

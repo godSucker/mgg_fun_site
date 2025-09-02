@@ -1,0 +1,30 @@
+{
+  "id": "specimen_d_03",
+  "code": "d_03",
+  "name": "Пасхальный Грозаяц",
+  "created_at": "2025-09-02T01:35:01.783552Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_zoo/normal/D_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_03/D_03_normal.png",
+      "filename": "D_03_normal.png"
+    },
+    {
+      "src": "semi-full/D/D/normal/specimen_d_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_03/specimen_d_03_normal.png",
+      "filename": "specimen_d_03_normal.png"
+    },
+    {
+      "src": "larva/4) ZOO/monogen_zoo/larva_d_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/d_03/larva_d_03.png",
+      "filename": "larva_d_03.png"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "events"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "specimen_b_05",
+  "code": "b_05",
+  "name": "Drudge Zombie",
+  "created_at": "2025-09-02T01:35:03.144328Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_necro/bronze/B_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_05/B_05_bronze.png",
+      "filename": "B_05_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_necro/gold/B_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_05/B_05_gold.png",
+      "filename": "B_05_gold.png"
+    },
+    {
+      "src": "full-char/monogen_necro/normal/B_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_05/B_05_normal.png",
+      "filename": "B_05_normal.png"
+    },
+    {
+      "src": "full-char/monogen_necro/platinum/B_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_05/B_05_platinum.png",
+      "filename": "B_05_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_necro/silver/B_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_05/B_05_silver.png",
+      "filename": "B_05_silver.png"
+    },
+    {
+      "src": "semi-full/B/B/silver/specimen_b_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_05/specimen_b_05_silver_silver.png",
+      "filename": "specimen_b_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B/platinum/specimen_b_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_05/specimen_b_05_platinum_platinum.png",
+      "filename": "specimen_b_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B/normal/specimen_b_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_05/specimen_b_05_normal.png",
+      "filename": "specimen_b_05_normal.png"
+    },
+    {
+      "src": "semi-full/B/B/gold/specimen_b_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_05/specimen_b_05_gold_gold.png",
+      "filename": "specimen_b_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B/bronze/specimen_b_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_05/specimen_b_05_bronze_bronze.png",
+      "filename": "specimen_b_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/monogen_necro/larva_b_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/b_05/larva_b_05.png",
+      "filename": "larva_b_05.png"
+    }
+  ],
+  "tier": "2-",
+  "bingo": []
+}

@@ -1,0 +1,79 @@
+{
+  "id": "specimen_bb_04",
+  "code": "bb_04",
+  "name": "Бабайка",
+  "created_at": "2025-09-02T01:35:01.956458Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_necro/bronze/BB_04_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_04/BB_04_bronze.png",
+      "filename": "BB_04_bronze.png"
+    },
+    {
+      "src": "full-char/necro_necro/gold/BB_04_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_04/BB_04_gold.png",
+      "filename": "BB_04_gold.png"
+    },
+    {
+      "src": "full-char/necro_necro/normal/BB_04_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_04/BB_04_normal.png",
+      "filename": "BB_04_normal.png"
+    },
+    {
+      "src": "full-char/necro_necro/platinum/BB_04_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_04/BB_04_platinum.png",
+      "filename": "BB_04_platinum.png"
+    },
+    {
+      "src": "full-char/necro_necro/silver/BB_04_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bb_04/BB_04_silver.png",
+      "filename": "BB_04_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_B/silver/specimen_bb_04_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_04/specimen_bb_04_silver_silver.png",
+      "filename": "specimen_bb_04_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_B/platinum/specimen_bb_04_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_04/specimen_bb_04_platinum_platinum.png",
+      "filename": "specimen_bb_04_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_B/normal/specimen_bb_04_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_04/specimen_bb_04_normal.png",
+      "filename": "specimen_bb_04_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_B/gold/specimen_bb_04_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_04/specimen_bb_04_gold_gold.png",
+      "filename": "specimen_bb_04_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_B/bronze/specimen_bb_04_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bb_04/specimen_bb_04_bronze_bronze.png",
+      "filename": "specimen_bb_04_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_necro/larva_bb_04.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bb_04/larva_bb_04.png",
+      "filename": "larva_bb_04.png"
+    }
+  ],
+  "bingo": [
+    "research_3",
+    "amazons",
+    "event_2022"
+  ]
+}

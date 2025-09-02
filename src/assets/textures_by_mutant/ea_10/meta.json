@@ -1,0 +1,30 @@
+{
+  "id": "specimen_ea_10",
+  "code": "ea_10",
+  "name": "Космический серфер",
+  "created_at": "2025-09-02T01:35:05.847008Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_cyber/normal/EA_10_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_10/EA_10_normal.png",
+      "filename": "EA_10_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_A/normal/specimen_ea_10_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_10/specimen_ea_10_normal.png",
+      "filename": "specimen_ea_10_normal.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_cyber/larva_ea_10.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ea_10/larva_ea_10.png",
+      "filename": "larva_ea_10.png"
+    }
+  ],
+  "tier": "3-",
+  "bingo": [
+    "research_9"
+  ]
+}

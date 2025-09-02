@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ad_06",
+  "code": "ad_06",
+  "name": "Биоеж",
+  "created_at": "2025-09-02T01:35:03.267926Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_zoo/bronze/AD_06_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_06/AD_06_bronze.png",
+      "filename": "AD_06_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/gold/AD_06_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_06/AD_06_gold.png",
+      "filename": "AD_06_gold.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/normal/AD_06_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_06/AD_06_normal.png",
+      "filename": "AD_06_normal.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/platinum/AD_06_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_06/AD_06_platinum.png",
+      "filename": "AD_06_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_zoo/silver/AD_06_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_06/AD_06_silver.png",
+      "filename": "AD_06_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/silver/specimen_ad_06_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_06/specimen_ad_06_silver_silver.png",
+      "filename": "specimen_ad_06_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_D/platinum/specimen_ad_06_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_06/specimen_ad_06_platinum_platinum.png",
+      "filename": "specimen_ad_06_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_D/normal/specimen_ad_06_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_06/specimen_ad_06_normal.png",
+      "filename": "specimen_ad_06_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_D/gold/specimen_ad_06_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_06/specimen_ad_06_gold_gold.png",
+      "filename": "specimen_ad_06_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_D/bronze/specimen_ad_06_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_06/specimen_ad_06_bronze_bronze.png",
+      "filename": "specimen_ad_06_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_zoo/larva_ad_06.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ad_06/larva_ad_06.png",
+      "filename": "larva_ad_06.png"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "2025_events",
+    "research_5"
+  ]
+}

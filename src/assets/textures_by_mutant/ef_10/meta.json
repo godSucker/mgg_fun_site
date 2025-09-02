@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ef_10",
+  "code": "ef_10",
+  "name": "Дива Кровилагуна",
+  "created_at": "2025-09-02T01:35:05.904569Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_mythic/bronze/EF_10_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_10/EF_10_bronze.png",
+      "filename": "EF_10_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/gold/EF_10_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_10/EF_10_gold.png",
+      "filename": "EF_10_gold.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/normal/EF_10_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_10/EF_10_normal.png",
+      "filename": "EF_10_normal.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/platinum/EF_10_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_10/EF_10_platinum.png",
+      "filename": "EF_10_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_mythic/silver/EF_10_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_10/EF_10_silver.png",
+      "filename": "EF_10_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/silver/specimen_ef_10_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_10/specimen_ef_10_silver_silver.png",
+      "filename": "specimen_ef_10_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_F/platinum/specimen_ef_10_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_10/specimen_ef_10_platinum_platinum.png",
+      "filename": "specimen_ef_10_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_F/normal/specimen_ef_10_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_10/specimen_ef_10_normal.png",
+      "filename": "specimen_ef_10_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_F/gold/specimen_ef_10_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_10/specimen_ef_10_gold_gold.png",
+      "filename": "specimen_ef_10_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_F/bronze/specimen_ef_10_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_10/specimen_ef_10_bronze_bronze.png",
+      "filename": "specimen_ef_10_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_10.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ef_10/larva_ef_10.png",
+      "filename": "larva_ef_10.png"
+    }
+  ],
+  "bingo": [
+    "research_9",
+    "event_2019"
+  ]
+}

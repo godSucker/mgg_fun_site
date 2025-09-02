@@ -1,0 +1,78 @@
+{
+  "id": "specimen_fd_12",
+  "code": "fd_12",
+  "name": "Симург",
+  "created_at": "2025-09-02T01:35:06.777426Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_zoo/bronze/FD_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_12/FD_12_bronze.png",
+      "filename": "FD_12_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/gold/FD_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_12/FD_12_gold.png",
+      "filename": "FD_12_gold.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/normal/FD_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_12/FD_12_normal.png",
+      "filename": "FD_12_normal.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/platinum/FD_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_12/FD_12_platinum.png",
+      "filename": "FD_12_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_zoo/silver/FD_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fd_12/FD_12_silver.png",
+      "filename": "FD_12_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_D/silver/specimen_fd_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_12/specimen_fd_12_silver_silver.png",
+      "filename": "specimen_fd_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_D/platinum/specimen_fd_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_12/specimen_fd_12_platinum_platinum.png",
+      "filename": "specimen_fd_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_D/normal/specimen_fd_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_12/specimen_fd_12_normal.png",
+      "filename": "specimen_fd_12_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_D/gold/specimen_fd_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_12/specimen_fd_12_gold_gold.png",
+      "filename": "specimen_fd_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_D/bronze/specimen_fd_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fd_12/specimen_fd_12_bronze_bronze.png",
+      "filename": "specimen_fd_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_zoo/larva_fd_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fd_12/larva_fd_12.png",
+      "filename": "larva_fd_12.png"
+    }
+  ],
+  "tier": "3",
+  "bingo": [
+    "research_11"
+  ]
+}

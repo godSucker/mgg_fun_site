@@ -1,0 +1,76 @@
+{
+  "id": "specimen_ba_13",
+  "code": "ba_13",
+  "name": "Анархические",
+  "created_at": "2025-09-02T01:35:06.912100Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_cyber/bronze/BA_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_13/BA_13_bronze.png",
+      "filename": "BA_13_bronze.png"
+    },
+    {
+      "src": "full-char/necro_cyber/gold/BA_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_13/BA_13_gold.png",
+      "filename": "BA_13_gold.png"
+    },
+    {
+      "src": "full-char/necro_cyber/normal/BA_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_13/BA_13_normal.png",
+      "filename": "BA_13_normal.png"
+    },
+    {
+      "src": "full-char/necro_cyber/platinum/BA_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_13/BA_13_platinum.png",
+      "filename": "BA_13_platinum.png"
+    },
+    {
+      "src": "full-char/necro_cyber/silver/BA_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_13/BA_13_silver.png",
+      "filename": "BA_13_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/silver/specimen_ba_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_13/specimen_ba_13_silver_silver.png",
+      "filename": "specimen_ba_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/platinum/specimen_ba_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_13/specimen_ba_13_platinum_platinum.png",
+      "filename": "specimen_ba_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_A/normal/specimen_ba_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_13/specimen_ba_13_normal.png",
+      "filename": "specimen_ba_13_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_A/gold/specimen_ba_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_13/specimen_ba_13_gold_gold.png",
+      "filename": "specimen_ba_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_A/bronze/specimen_ba_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_13/specimen_ba_13_bronze_bronze.png",
+      "filename": "specimen_ba_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_cyber/larva_ba_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ba_13/larva_ba_13.png",
+      "filename": "larva_ba_13.png"
+    }
+  ],
+  "tier": "3-",
+  "bingo": []
+}

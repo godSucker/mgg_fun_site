@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ae_08",
+  "code": "ae_08",
+  "name": "Андромеда",
+  "created_at": "2025-09-02T01:35:04.521934Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_galactic/bronze/AE_08_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_08/AE_08_bronze.png",
+      "filename": "AE_08_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_galactic/gold/AE_08_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_08/AE_08_gold.png",
+      "filename": "AE_08_gold.png"
+    },
+    {
+      "src": "full-char/cyber_galactic/normal/AE_08_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_08/AE_08_normal.png",
+      "filename": "AE_08_normal.png"
+    },
+    {
+      "src": "full-char/cyber_galactic/platinum/AE_08_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_08/AE_08_platinum.png",
+      "filename": "AE_08_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_galactic/silver/AE_08_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_08/AE_08_silver.png",
+      "filename": "AE_08_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_E/silver/specimen_ae_08_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_08/specimen_ae_08_silver_silver.png",
+      "filename": "specimen_ae_08_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_E/platinum/specimen_ae_08_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_08/specimen_ae_08_platinum_platinum.png",
+      "filename": "specimen_ae_08_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_E/normal/specimen_ae_08_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_08/specimen_ae_08_normal.png",
+      "filename": "specimen_ae_08_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_E/gold/specimen_ae_08_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_08/specimen_ae_08_gold_gold.png",
+      "filename": "specimen_ae_08_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_E/bronze/specimen_ae_08_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_08/specimen_ae_08_bronze_bronze.png",
+      "filename": "specimen_ae_08_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_galactic/larva_ae_08.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ae_08/larva_ae_08.png",
+      "filename": "larva_ae_08.png"
+    }
+  ],
+  "bingo": [
+    "research_7",
+    "heroic",
+    "event_2020"
+  ]
+}

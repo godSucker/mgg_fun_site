@@ -1,0 +1,30 @@
+{
+  "id": "specimen_df_12",
+  "code": "df_12",
+  "name": "Базилиск и эсдрагон",
+  "created_at": "2025-09-02T01:35:06.684198Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_mythic/normal/DF_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_12/DF_12_normal.png",
+      "filename": "DF_12_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_F/normal/specimen_df_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_12/specimen_df_12_normal.png",
+      "filename": "specimen_df_12_normal.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_mythic/larva_df_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/df_12/larva_df_12.png",
+      "filename": "larva_df_12.png"
+    }
+  ],
+  "tier": "2",
+  "bingo": [
+    "research_11"
+  ]
+}

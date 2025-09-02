@@ -1,0 +1,79 @@
+{
+  "id": "specimen_b_01",
+  "code": "b_01",
+  "name": "Зомби",
+  "created_at": "2025-09-02T01:34:59.633926Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_necro/bronze/B_01_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_bronze.png",
+      "filename": "B_01_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_necro/gold/B_01_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_gold.png",
+      "filename": "B_01_gold.png"
+    },
+    {
+      "src": "full-char/monogen_necro/normal/B_01_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_normal.png",
+      "filename": "B_01_normal.png"
+    },
+    {
+      "src": "full-char/monogen_necro/platinum/B_01_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_platinum.png",
+      "filename": "B_01_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_necro/silver/B_01_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_silver.png",
+      "filename": "B_01_silver.png"
+    },
+    {
+      "src": "semi-full/B/B/silver/specimen_b_01_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_silver_silver.png",
+      "filename": "specimen_b_01_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B/platinum/specimen_b_01_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_platinum_platinum.png",
+      "filename": "specimen_b_01_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B/normal/specimen_b_01_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_normal.png",
+      "filename": "specimen_b_01_normal.png"
+    },
+    {
+      "src": "semi-full/B/B/gold/specimen_b_01_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_gold_gold.png",
+      "filename": "specimen_b_01_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B/bronze/specimen_b_01_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_bronze_bronze.png",
+      "filename": "specimen_b_01_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/monogen_necro/larva_b_01.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/b_01/larva_b_01.png",
+      "filename": "larva_b_01.png"
+    }
+  ],
+  "bingo": [
+    "Starter",
+    "reactor",
+    "starter_plat"
+  ]
+}

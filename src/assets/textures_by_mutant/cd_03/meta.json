@@ -1,0 +1,79 @@
+{
+  "id": "specimen_cd_03",
+  "code": "cd_03",
+  "name": "Топтыгин",
+  "created_at": "2025-09-02T01:35:01.359751Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_zoo/bronze/CD_03_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_03/CD_03_bronze.png",
+      "filename": "CD_03_bronze.png"
+    },
+    {
+      "src": "full-char/saber_zoo/gold/CD_03_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_03/CD_03_gold.png",
+      "filename": "CD_03_gold.png"
+    },
+    {
+      "src": "full-char/saber_zoo/normal/CD_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_03/CD_03_normal.png",
+      "filename": "CD_03_normal.png"
+    },
+    {
+      "src": "full-char/saber_zoo/platinum/CD_03_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_03/CD_03_platinum.png",
+      "filename": "CD_03_platinum.png"
+    },
+    {
+      "src": "full-char/saber_zoo/silver/CD_03_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_03/CD_03_silver.png",
+      "filename": "CD_03_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_D/silver/specimen_cd_03_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_03/specimen_cd_03_silver_silver.png",
+      "filename": "specimen_cd_03_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_D/platinum/specimen_cd_03_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_03/specimen_cd_03_platinum_platinum.png",
+      "filename": "specimen_cd_03_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/C/C_D/normal/specimen_cd_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_03/specimen_cd_03_normal.png",
+      "filename": "specimen_cd_03_normal.png"
+    },
+    {
+      "src": "semi-full/C/C_D/gold/specimen_cd_03_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_03/specimen_cd_03_gold_gold.png",
+      "filename": "specimen_cd_03_gold_gold.png"
+    },
+    {
+      "src": "semi-full/C/C_D/bronze/specimen_cd_03_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_03/specimen_cd_03_bronze_bronze.png",
+      "filename": "specimen_cd_03_bronze_bronze.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_zoo/larva_cd_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cd_03/larva_cd_03.png",
+      "filename": "larva_cd_03.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_2",
+    "event_2020"
+  ]
+}

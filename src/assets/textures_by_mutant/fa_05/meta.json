@@ -1,0 +1,77 @@
+{
+  "id": "specimen_fa_05",
+  "code": "fa_05",
+  "name": "Теневой шаман",
+  "created_at": "2025-09-02T01:35:03.033583Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_cyber/bronze/FA_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_05/FA_05_bronze.png",
+      "filename": "FA_05_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/gold/FA_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_05/FA_05_gold.png",
+      "filename": "FA_05_gold.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/normal/FA_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_05/FA_05_normal.png",
+      "filename": "FA_05_normal.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/platinum/FA_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_05/FA_05_platinum.png",
+      "filename": "FA_05_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/silver/FA_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_05/FA_05_silver.png",
+      "filename": "FA_05_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_A/silver/specimen_fa_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_05/specimen_fa_05_silver_silver.png",
+      "filename": "specimen_fa_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_A/platinum/specimen_fa_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_05/specimen_fa_05_platinum_platinum.png",
+      "filename": "specimen_fa_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_A/normal/specimen_fa_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_05/specimen_fa_05_normal.png",
+      "filename": "specimen_fa_05_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_A/gold/specimen_fa_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_05/specimen_fa_05_gold_gold.png",
+      "filename": "specimen_fa_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_A/bronze/specimen_fa_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_05/specimen_fa_05_bronze_bronze.png",
+      "filename": "specimen_fa_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_cyber/larva_fa_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fa_05/larva_fa_05.png",
+      "filename": "larva_fa_05.png"
+    }
+  ],
+  "bingo": [
+    "research_4"
+  ]
+}

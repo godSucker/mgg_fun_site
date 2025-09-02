@@ -1,0 +1,76 @@
+{
+  "id": "specimen_df_13",
+  "code": "df_13",
+  "name": "Замороженный император",
+  "created_at": "2025-09-02T01:35:07.056975Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_mythic/bronze/DF_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_13/DF_13_bronze.png",
+      "filename": "DF_13_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/gold/DF_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_13/DF_13_gold.png",
+      "filename": "DF_13_gold.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/normal/DF_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_13/DF_13_normal.png",
+      "filename": "DF_13_normal.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/platinum/DF_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_13/DF_13_platinum.png",
+      "filename": "DF_13_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/silver/DF_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_13/DF_13_silver.png",
+      "filename": "DF_13_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/silver/specimen_df_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_13/specimen_df_13_silver_silver.png",
+      "filename": "specimen_df_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/platinum/specimen_df_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_13/specimen_df_13_platinum_platinum.png",
+      "filename": "specimen_df_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_F/normal/specimen_df_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_13/specimen_df_13_normal.png",
+      "filename": "specimen_df_13_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_F/gold/specimen_df_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_13/specimen_df_13_gold_gold.png",
+      "filename": "specimen_df_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_F/bronze/specimen_df_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_13/specimen_df_13_bronze_bronze.png",
+      "filename": "specimen_df_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_mythic/larva_df_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/df_13/larva_df_13.png",
+      "filename": "larva_df_13.png"
+    }
+  ],
+  "tier": "3+",
+  "bingo": []
+}

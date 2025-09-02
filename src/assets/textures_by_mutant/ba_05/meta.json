@@ -1,0 +1,80 @@
+{
+  "id": "specimen_ba_05",
+  "code": "ba_05",
+  "name": "Доктор Блоу",
+  "created_at": "2025-09-02T01:35:02.641660Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_cyber/bronze/BA_05_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_05/BA_05_bronze.png",
+      "filename": "BA_05_bronze.png"
+    },
+    {
+      "src": "full-char/necro_cyber/gold/BA_05_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_05/BA_05_gold.png",
+      "filename": "BA_05_gold.png"
+    },
+    {
+      "src": "full-char/necro_cyber/normal/BA_05_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_05/BA_05_normal.png",
+      "filename": "BA_05_normal.png"
+    },
+    {
+      "src": "full-char/necro_cyber/platinum/BA_05_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_05/BA_05_platinum.png",
+      "filename": "BA_05_platinum.png"
+    },
+    {
+      "src": "full-char/necro_cyber/silver/BA_05_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_05/BA_05_silver.png",
+      "filename": "BA_05_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/silver/specimen_ba_05_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_05/specimen_ba_05_silver_silver.png",
+      "filename": "specimen_ba_05_silver_silver.png"
+    },
+    {
+      "src": "semi-full/B/B_A/platinum/specimen_ba_05_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_05/specimen_ba_05_platinum_platinum.png",
+      "filename": "specimen_ba_05_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/B/B_A/normal/specimen_ba_05_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_05/specimen_ba_05_normal.png",
+      "filename": "specimen_ba_05_normal.png"
+    },
+    {
+      "src": "semi-full/B/B_A/gold/specimen_ba_05_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_05/specimen_ba_05_gold_gold.png",
+      "filename": "specimen_ba_05_gold_gold.png"
+    },
+    {
+      "src": "semi-full/B/B_A/bronze/specimen_ba_05_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_05/specimen_ba_05_bronze_bronze.png",
+      "filename": "specimen_ba_05_bronze_bronze.png"
+    },
+    {
+      "src": "larva/2) NECRO/necro_cyber/larva_ba_05.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ba_05/larva_ba_05.png",
+      "filename": "larva_ba_05.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_4",
+    "event_2022",
+    "event_2024"
+  ]
+}

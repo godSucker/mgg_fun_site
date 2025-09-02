@@ -1,0 +1,79 @@
+{
+  "id": "specimen_af_09",
+  "code": "af_09",
+  "name": "Паровой громила",
+  "created_at": "2025-09-02T01:35:05.108274Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_mythic/bronze/AF_09_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_09/AF_09_bronze.png",
+      "filename": "AF_09_bronze.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/gold/AF_09_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_09/AF_09_gold.png",
+      "filename": "AF_09_gold.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/normal/AF_09_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_09/AF_09_normal.png",
+      "filename": "AF_09_normal.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/platinum/AF_09_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_09/AF_09_platinum.png",
+      "filename": "AF_09_platinum.png"
+    },
+    {
+      "src": "full-char/cyber_mythic/silver/AF_09_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/af_09/AF_09_silver.png",
+      "filename": "AF_09_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_F/silver/specimen_af_09_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_09/specimen_af_09_silver_silver.png",
+      "filename": "specimen_af_09_silver_silver.png"
+    },
+    {
+      "src": "semi-full/A/A_F/platinum/specimen_af_09_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_09/specimen_af_09_platinum_platinum.png",
+      "filename": "specimen_af_09_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/A/A_F/normal/specimen_af_09_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_09/specimen_af_09_normal.png",
+      "filename": "specimen_af_09_normal.png"
+    },
+    {
+      "src": "semi-full/A/A_F/gold/specimen_af_09_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_09/specimen_af_09_gold_gold.png",
+      "filename": "specimen_af_09_gold_gold.png"
+    },
+    {
+      "src": "semi-full/A/A_F/bronze/specimen_af_09_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/af_09/specimen_af_09_bronze_bronze.png",
+      "filename": "specimen_af_09_bronze_bronze.png"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_mythic/larva_af_09.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/af_09/larva_af_09.png",
+      "filename": "larva_af_09.png"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_8",
+    "heroic"
+  ]
+}

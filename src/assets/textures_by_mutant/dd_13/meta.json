@@ -1,0 +1,76 @@
+{
+  "id": "specimen_dd_13",
+  "code": "dd_13",
+  "name": "Лама-сенсей",
+  "created_at": "2025-09-02T01:35:07.040517Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_zoo/bronze/DD_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_13/DD_13_bronze.png",
+      "filename": "DD_13_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_zoo/gold/DD_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_13/DD_13_gold.png",
+      "filename": "DD_13_gold.png"
+    },
+    {
+      "src": "full-char/zoo_zoo/normal/DD_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_13/DD_13_normal.png",
+      "filename": "DD_13_normal.png"
+    },
+    {
+      "src": "full-char/zoo_zoo/platinum/DD_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_13/DD_13_platinum.png",
+      "filename": "DD_13_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_zoo/silver/DD_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_13/DD_13_silver.png",
+      "filename": "DD_13_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_D/silver/specimen_dd_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_13/specimen_dd_13_silver_silver.png",
+      "filename": "specimen_dd_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_D/platinum/specimen_dd_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_13/specimen_dd_13_platinum_platinum.png",
+      "filename": "specimen_dd_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_D/normal/specimen_dd_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_13/specimen_dd_13_normal.png",
+      "filename": "specimen_dd_13_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_D/gold/specimen_dd_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_13/specimen_dd_13_gold_gold.png",
+      "filename": "specimen_dd_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_D/bronze/specimen_dd_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_13/specimen_dd_13_bronze_bronze.png",
+      "filename": "specimen_dd_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_zoo/larva_dd_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/dd_13/larva_dd_13.png",
+      "filename": "larva_dd_13.png"
+    }
+  ],
+  "tier": "1",
+  "bingo": []
+}

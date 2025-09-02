@@ -1,0 +1,78 @@
+{
+  "id": "specimen_df_02",
+  "code": "df_02",
+  "name": "Сатир-шаман",
+  "created_at": "2025-09-02T01:35:00.839994Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_mythic/bronze/DF_02_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_02/DF_02_bronze.png",
+      "filename": "DF_02_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/gold/DF_02_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_02/DF_02_gold.png",
+      "filename": "DF_02_gold.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/normal/DF_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_02/DF_02_normal.png",
+      "filename": "DF_02_normal.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/platinum/DF_02_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_02/DF_02_platinum.png",
+      "filename": "DF_02_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_mythic/silver/DF_02_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/df_02/DF_02_silver.png",
+      "filename": "DF_02_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/silver/specimen_df_02_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_02/specimen_df_02_silver_silver.png",
+      "filename": "specimen_df_02_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_F/platinum/specimen_df_02_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_02/specimen_df_02_platinum_platinum.png",
+      "filename": "specimen_df_02_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_F/normal/specimen_df_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_02/specimen_df_02_normal.png",
+      "filename": "specimen_df_02_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_F/gold/specimen_df_02_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_02/specimen_df_02_gold_gold.png",
+      "filename": "specimen_df_02_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_F/bronze/specimen_df_02_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/df_02/specimen_df_02_bronze_bronze.png",
+      "filename": "specimen_df_02_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_mythic/larva_df_02.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/df_02/larva_df_02.png",
+      "filename": "larva_df_02.png"
+    }
+  ],
+  "bingo": [
+    "2025_skins",
+    "research_1"
+  ]
+}

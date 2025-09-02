@@ -1,0 +1,79 @@
+{
+  "id": "specimen_fe_03",
+  "code": "fe_03",
+  "name": "Астромаг",
+  "created_at": "2025-09-02T01:35:01.697631Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_galactic/bronze/FE_03_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_03/FE_03_bronze.png",
+      "filename": "FE_03_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_galactic/gold/FE_03_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_03/FE_03_gold.png",
+      "filename": "FE_03_gold.png"
+    },
+    {
+      "src": "full-char/mythic_galactic/normal/FE_03_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_03/FE_03_normal.png",
+      "filename": "FE_03_normal.png"
+    },
+    {
+      "src": "full-char/mythic_galactic/platinum/FE_03_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_03/FE_03_platinum.png",
+      "filename": "FE_03_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_galactic/silver/FE_03_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_03/FE_03_silver.png",
+      "filename": "FE_03_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_E/silver/specimen_fe_03_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_03/specimen_fe_03_silver_silver.png",
+      "filename": "specimen_fe_03_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_E/platinum/specimen_fe_03_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_03/specimen_fe_03_platinum_platinum.png",
+      "filename": "specimen_fe_03_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_E/normal/specimen_fe_03_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_03/specimen_fe_03_normal.png",
+      "filename": "specimen_fe_03_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_E/gold/specimen_fe_03_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_03/specimen_fe_03_gold_gold.png",
+      "filename": "specimen_fe_03_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_E/bronze/specimen_fe_03_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_03/specimen_fe_03_bronze_bronze.png",
+      "filename": "specimen_fe_03_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_galactic/larva_fe_03.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fe_03/larva_fe_03.png",
+      "filename": "larva_fe_03.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "anniversary_25",
+    "event_2022"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "specimen_e_12",
+  "code": "e_12",
+  "name": "Звездный исследователь",
+  "created_at": "2025-09-02T01:35:06.840498Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_galactic/bronze/E_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_12/E_12_bronze.png",
+      "filename": "E_12_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/gold/E_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_12/E_12_gold.png",
+      "filename": "E_12_gold.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/normal/E_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_12/E_12_normal.png",
+      "filename": "E_12_normal.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/platinum/E_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_12/E_12_platinum.png",
+      "filename": "E_12_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_galactic/silver/E_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_12/E_12_silver.png",
+      "filename": "E_12_silver.png"
+    },
+    {
+      "src": "semi-full/E/E/silver/specimen_e_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_12/specimen_e_12_silver_silver.png",
+      "filename": "specimen_e_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E/platinum/specimen_e_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_12/specimen_e_12_platinum_platinum.png",
+      "filename": "specimen_e_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E/normal/specimen_e_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_12/specimen_e_12_normal.png",
+      "filename": "specimen_e_12_normal.png"
+    },
+    {
+      "src": "semi-full/E/E/gold/specimen_e_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_12/specimen_e_12_gold_gold.png",
+      "filename": "specimen_e_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E/bronze/specimen_e_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_12/specimen_e_12_bronze_bronze.png",
+      "filename": "specimen_e_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/monogen_galactic/larva_e_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/e_12/larva_e_12.png",
+      "filename": "larva_e_12.png"
+    }
+  ],
+  "tier": "3-",
+  "bingo": []
+}

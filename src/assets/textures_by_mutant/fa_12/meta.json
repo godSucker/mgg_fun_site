@@ -1,0 +1,78 @@
+{
+  "id": "specimen_fa_12",
+  "code": "fa_12",
+  "name": "Эфирный кибермант",
+  "created_at": "2025-09-02T01:35:06.750651Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_cyber/bronze/FA_12_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_12/FA_12_bronze.png",
+      "filename": "FA_12_bronze.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/gold/FA_12_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_12/FA_12_gold.png",
+      "filename": "FA_12_gold.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/normal/FA_12_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_12/FA_12_normal.png",
+      "filename": "FA_12_normal.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/platinum/FA_12_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_12/FA_12_platinum.png",
+      "filename": "FA_12_platinum.png"
+    },
+    {
+      "src": "full-char/mythic_cyber/silver/FA_12_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fa_12/FA_12_silver.png",
+      "filename": "FA_12_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_A/silver/specimen_fa_12_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_12/specimen_fa_12_silver_silver.png",
+      "filename": "specimen_fa_12_silver_silver.png"
+    },
+    {
+      "src": "semi-full/F/F_A/platinum/specimen_fa_12_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_12/specimen_fa_12_platinum_platinum.png",
+      "filename": "specimen_fa_12_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/F/F_A/normal/specimen_fa_12_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_12/specimen_fa_12_normal.png",
+      "filename": "specimen_fa_12_normal.png"
+    },
+    {
+      "src": "semi-full/F/F_A/gold/specimen_fa_12_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_12/specimen_fa_12_gold_gold.png",
+      "filename": "specimen_fa_12_gold_gold.png"
+    },
+    {
+      "src": "semi-full/F/F_A/bronze/specimen_fa_12_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fa_12/specimen_fa_12_bronze_bronze.png",
+      "filename": "specimen_fa_12_bronze_bronze.png"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_cyber/larva_fa_12.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fa_12/larva_fa_12.png",
+      "filename": "larva_fa_12.png"
+    }
+  ],
+  "tier": "2-",
+  "bingo": [
+    "research_11"
+  ]
+}

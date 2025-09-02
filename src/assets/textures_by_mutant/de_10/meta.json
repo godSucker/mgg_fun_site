@@ -1,0 +1,78 @@
+{
+  "id": "specimen_de_10",
+  "code": "de_10",
+  "name": "Безумный Майк",
+  "created_at": "2025-09-02T01:35:05.824617Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_galactic/bronze/DE_10_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_10/DE_10_bronze.png",
+      "filename": "DE_10_bronze.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/gold/DE_10_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_10/DE_10_gold.png",
+      "filename": "DE_10_gold.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/normal/DE_10_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_10/DE_10_normal.png",
+      "filename": "DE_10_normal.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/platinum/DE_10_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_10/DE_10_platinum.png",
+      "filename": "DE_10_platinum.png"
+    },
+    {
+      "src": "full-char/zoo_galactic/silver/DE_10_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_10/DE_10_silver.png",
+      "filename": "DE_10_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_E/silver/specimen_de_10_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_10/specimen_de_10_silver_silver.png",
+      "filename": "specimen_de_10_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D_E/platinum/specimen_de_10_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_10/specimen_de_10_platinum_platinum.png",
+      "filename": "specimen_de_10_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D_E/normal/specimen_de_10_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_10/specimen_de_10_normal.png",
+      "filename": "specimen_de_10_normal.png"
+    },
+    {
+      "src": "semi-full/D/D_E/gold/specimen_de_10_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_10/specimen_de_10_gold_gold.png",
+      "filename": "specimen_de_10_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D_E/bronze/specimen_de_10_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_10/specimen_de_10_bronze_bronze.png",
+      "filename": "specimen_de_10_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_galactic/larva_de_10.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/de_10/larva_de_10.png",
+      "filename": "larva_de_10.png"
+    }
+  ],
+  "tier": "3",
+  "bingo": [
+    "research_9"
+  ]
+}

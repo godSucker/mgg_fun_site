@@ -1,0 +1,76 @@
+{
+  "id": "specimen_d_13",
+  "code": "d_13",
+  "name": "Сасквоч",
+  "created_at": "2025-09-02T01:35:07.185694Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_zoo/bronze/D_13_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_13/D_13_bronze.png",
+      "filename": "D_13_bronze.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/gold/D_13_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_13/D_13_gold.png",
+      "filename": "D_13_gold.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/normal/D_13_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_13/D_13_normal.png",
+      "filename": "D_13_normal.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/platinum/D_13_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_13/D_13_platinum.png",
+      "filename": "D_13_platinum.png"
+    },
+    {
+      "src": "full-char/monogen_zoo/silver/D_13_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/d_13/D_13_silver.png",
+      "filename": "D_13_silver.png"
+    },
+    {
+      "src": "semi-full/D/D/silver/specimen_d_13_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_13/specimen_d_13_silver_silver.png",
+      "filename": "specimen_d_13_silver_silver.png"
+    },
+    {
+      "src": "semi-full/D/D/platinum/specimen_d_13_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_13/specimen_d_13_platinum_platinum.png",
+      "filename": "specimen_d_13_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/D/D/normal/specimen_d_13_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_13/specimen_d_13_normal.png",
+      "filename": "specimen_d_13_normal.png"
+    },
+    {
+      "src": "semi-full/D/D/gold/specimen_d_13_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_13/specimen_d_13_gold_gold.png",
+      "filename": "specimen_d_13_gold_gold.png"
+    },
+    {
+      "src": "semi-full/D/D/bronze/specimen_d_13_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/d_13/specimen_d_13_bronze_bronze.png",
+      "filename": "specimen_d_13_bronze_bronze.png"
+    },
+    {
+      "src": "larva/4) ZOO/monogen_zoo/larva_d_13.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/d_13/larva_d_13.png",
+      "filename": "larva_d_13.png"
+    }
+  ],
+  "tier": "3-",
+  "bingo": []
+}

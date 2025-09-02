@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ee_11",
+  "code": "ee_11",
+  "name": "Гештальт-астероид",
+  "created_at": "2025-09-02T01:35:06.333871Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_galactic/bronze/EE_11_bronze.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_11/EE_11_bronze.png",
+      "filename": "EE_11_bronze.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/gold/EE_11_gold.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_11/EE_11_gold.png",
+      "filename": "EE_11_gold.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/normal/EE_11_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_11/EE_11_normal.png",
+      "filename": "EE_11_normal.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/platinum/EE_11_platinum.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_11/EE_11_platinum.png",
+      "filename": "EE_11_platinum.png"
+    },
+    {
+      "src": "full-char/galactic_galactic/silver/EE_11_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_11/EE_11_silver.png",
+      "filename": "EE_11_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_E/silver/specimen_ee_11_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_11/specimen_ee_11_silver_silver.png",
+      "filename": "specimen_ee_11_silver_silver.png"
+    },
+    {
+      "src": "semi-full/E/E_E/platinum/specimen_ee_11_platinum_platinum.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_11/specimen_ee_11_platinum_platinum.png",
+      "filename": "specimen_ee_11_platinum_platinum.png"
+    },
+    {
+      "src": "semi-full/E/E_E/normal/specimen_ee_11_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_11/specimen_ee_11_normal.png",
+      "filename": "specimen_ee_11_normal.png"
+    },
+    {
+      "src": "semi-full/E/E_E/gold/specimen_ee_11_gold_gold.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_11/specimen_ee_11_gold_gold.png",
+      "filename": "specimen_ee_11_gold_gold.png"
+    },
+    {
+      "src": "semi-full/E/E_E/bronze/specimen_ee_11_bronze_bronze.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_11/specimen_ee_11_bronze_bronze.png",
+      "filename": "specimen_ee_11_bronze_bronze.png"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_galactic/larva_ee_11.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ee_11/larva_ee_11.png",
+      "filename": "larva_ee_11.png"
+    }
+  ],
+  "tier": "1",
+  "bingo": [
+    "research_10"
+  ]
+}

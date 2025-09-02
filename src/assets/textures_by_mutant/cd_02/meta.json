@@ -1,0 +1,44 @@
+{
+  "id": "specimen_cd_02",
+  "code": "cd_02",
+  "name": "Стрелотавр",
+  "created_at": "2025-09-02T01:35:00.691131Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_zoo/normal/CD_02_normal.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_02/CD_02_normal.png",
+      "filename": "CD_02_normal.png"
+    },
+    {
+      "src": "full-char/saber_zoo/silver/CD_02_silver.png",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cd_02/CD_02_silver.png",
+      "filename": "CD_02_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_D/silver/specimen_cd_02_silver_silver.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_02/specimen_cd_02_silver_silver.png",
+      "filename": "specimen_cd_02_silver_silver.png"
+    },
+    {
+      "src": "semi-full/C/C_D/normal/specimen_cd_02_normal.png",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cd_02/specimen_cd_02_normal.png",
+      "filename": "specimen_cd_02_normal.png"
+    },
+    {
+      "src": "larva/3) SABER/saber_zoo/larva_cd_02.png",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cd_02/larva_cd_02.png",
+      "filename": "larva_cd_02.png"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_1",
+    "zodiac",
+    "zodiac_silver"
+  ]
+}
