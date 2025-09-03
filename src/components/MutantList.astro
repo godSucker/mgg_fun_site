@@ -1,0 +1,73 @@
+---
+// src/components/MutantList.astro
+const { mutants } = Astro.props;
+---
+
+<section>
+  <h2>Список мутантов</h2>
+  <ul>
+    {mutants.map(mutant => (
+      <li key={mutant.id}>
+        <h3>{mutant.name}</h3>
+
+        <!-- Текстуры -->
+        <div>
+          <h4>Текстуры:</h4>
+          {Array.isArray(mutant.image) ? (
+            mutant.image.map((img, index) => (
+              <img key={index} src={img} alt={`${mutant.name} - texture ${index + 1}`} width="100" />
+            ))
+          ) : (
+            <img src={mutant.image} alt={`${mutant.name} - texture`} width="100" />
+          )}
+        </div>
+
+        <!-- Тип -->
+        <p><strong>Тип:</strong> {mutant.type}</p>
+
+        <!-- Гены -->
+        <p><strong>Гены:</strong> {mutant.genes.join(', ')}</p>
+
+        <!-- Статистика уровня 1 -->
+        <h4>Статистика на уровне 1</h4>
+        <ul>
+          <li><strong>HP:</strong> {mutant.base_stats.lvl1.hp}</li>
+          <li><strong>Атака 1:</strong> {mutant.base_stats.lvl1.atk1}</li>
+          <li><strong>Атака 2:</strong> {mutant.base_stats.lvl1.atk2}</li>
+          <li><strong>Скорость:</strong> {mutant.base_stats.lvl1.spd}</li>
+          <li><strong>Атака 1 (AOE):</strong> {mutant.base_stats.lvl1.atk1_AOE ? 'Да' : 'Нет'}</li>
+        </ul>
+
+        <!-- Статистика уровня 30 -->
+        <h4>Статистика на уровне 30</h4>
+        <ul>
+          <li><strong>HP:</strong> {mutant.base_stats.lvl30.hp}</li>
+          <li><strong>Атака 1:</strong> {mutant.base_stats.lvl30.atk1}</li>
+          <li><strong>Атака 2:</strong> {mutant.base_stats.lvl30.atk2}</li>
+          <li><strong>Скорость:</strong> {mutant.base_stats.lvl30.spd}</li>
+          <li><strong>Атака 1 (AOE):</strong> {mutant.base_stats.lvl30.atk1_AOE ? 'Да' : 'Нет'}</li>
+          <li><strong>Атака 2 (AOE):</strong> {mutant.base_stats.lvl30.atk2_AOE ? 'Да' : 'Нет'}</li>
+        </ul>
+
+        <!-- Умения -->
+        <h4>Умения:</h4>
+        <ul>
+          {mutant.abilities.map((ability, index) => (
+            <li key={index}>
+              <strong>{ability.name}:</strong> {ability.pct}%<br/>
+              Атака 1 (lvl1): {ability.value_atk1_lvl1}, Атака 2 (lvl1): {ability.value_atk2_lvl1}<br/>
+              Атака 1 (lvl30): {ability.value_atk1_lvl30}, Атака 2 (lvl30): {ability.value_atk2_lvl30}
+            </li>
+          ))}
+        </ul>
+
+        <!-- Дополнительные данные -->
+        <p><strong>Инкубационное время:</strong> {mutant.incub_time} дней</p>
+        <p><strong>Орбы:</strong> Нормальные: {mutant.orbs.normal}, Специальные: {mutant.orbs.special}</p>
+        <p><strong>Шанс:</strong> {mutant.chance}%</p>
+        <p><strong>Тиер:</strong> {mutant.tier}</p>
+        <p><strong>Бинго:</strong> {mutant.bingo.join(', ')}</p>
+      </li>
+    ))}
+  </ul>
+</section>
