@@ -1,0 +1,3971 @@
+[
+    {
+      "id": "Specimen_A_01",
+      "name": "Робот",
+      "genes": [
+        "A"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2546,
+          "atk1": 320,
+          "atk2": 642
+        }
+      },
+      "star": "silver",
+      "skin": "japan"
+    },
+    {
+      "id": "Specimen_A_05",
+      "name": "Охотник за головами",
+      "genes": [
+        "A"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3363,
+          "atk1": 901,
+          "atk2": 530
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AA_01",
+      "name": "Андроид",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1395,
+          "atk1": 379,
+          "atk2": 218
+        }
+      },
+      "star": "none",
+      "skin": "girl_power"
+    },
+    {
+      "id": "Specimen_AA_02",
+      "name": "Голиаф",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3308,
+          "atk1": 1318,
+          "atk2": 757
+        }
+      },
+      "star": "none",
+      "skin": "army"
+    },
+    {
+      "id": "Specimen_AA_03",
+      "name": "H.U.M.A.N.",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2253,
+          "atk1": 740,
+          "atk2": 426
+        }
+      },
+      "star": "silver",
+      "skin": "disco"
+    },
+    {
+      "id": "Specimen_AA_06",
+      "name": "Геркулес",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4741,
+          "atk1": 1521,
+          "atk2": 873
+        }
+      },
+      "star": "platinum",
+      "skin": "western"
+    },
+    {
+      "id": "Specimen_AA_07",
+      "name": "Проект 3V3",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2099,
+          "atk1": 503,
+          "atk2": 286
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AA_08",
+      "name": "Страж R0B-H4N",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3340,
+          "atk1": 1057,
+          "atk2": 715
+        }
+      },
+      "star": "gold",
+      "skin": "St. Valentine’s Day"
+    },
+    {
+      "id": "Specimen_AA_09",
+      "name": "О.Х.0.Т.Н.№.К",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3391,
+          "atk1": 792,
+          "atk2": 455
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AA_11",
+      "name": "ТреАД",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1988,
+          "atk1": 519,
+          "atk2": 274
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AB_01",
+      "name": "Некробот",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1197,
+          "atk1": 307,
+          "atk2": 307
+        }
+      },
+      "star": "bronze",
+      "skin": "steampunk"
+    },
+    {
+      "id": "Specimen_AB_02",
+      "name": "Темновзор",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2874,
+          "atk1": 771,
+          "atk2": 771
+        }
+      },
+      "star": "gold",
+      "skin": "villain"
+    },
+    {
+      "id": "Specimen_AB_04",
+      "name": "Офицер Эндер",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2215,
+          "atk1": 813,
+          "atk2": 813
+        }
+      },
+      "star": "silver",
+      "skin": "timecop"
+    },
+    {
+      "id": "Specimen_AB_05",
+      "name": "Неоурбан XIII",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1716,
+          "atk1": 725,
+          "atk2": 725
+        }
+      },
+      "star": "none",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AB_06",
+      "name": "Друзелла",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2488,
+          "atk1": 462,
+          "atk2": 462
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AB_07",
+      "name": "Крушила",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3531,
+          "atk1": 881,
+          "atk2": 881
+        }
+      },
+      "star": "none",
+      "skin": "tropical summer"
+    },
+    {
+      "id": "Specimen_AC_01",
+      "name": "Ниндзябот",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1717,
+          "atk1": 387,
+          "atk2": 387
+        }
+      },
+      "star": "bronze",
+      "skin": "Gods_of_Olympus"
+    },
+    {
+      "id": "Specimen_AC_02",
+      "name": "Капитан Гаечный Ключ",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3864,
+          "atk1": 912,
+          "atk2": 912
+        }
+      },
+      "star": "gold",
+      "skin": "steampunk"
+    },
+    {
+      "id": "Specimen_AC_03",
+      "name": "Дезингер",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4548,
+          "atk1": 1531,
+          "atk2": 1531
+        }
+      },
+      "star": "platinum",
+      "skin": "fantasy"
+    },
+    {
+      "id": "Specimen_AC_05",
+      "name": "Киберпанк",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2315,
+          "atk1": 459,
+          "atk2": 459
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AC_08",
+      "name": "Шнайдер",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2143,
+          "atk1": 509,
+          "atk2": 509
+        }
+      },
+      "star": "gold",
+      "skin": "royal"
+    },
+    {
+      "id": "Specimen_AC_09",
+      "name": "Оптимус Зорд",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2993,
+          "atk1": 569,
+          "atk2": 569
+        }
+      },
+      "star": "gold",
+      "skin": "french_revolution"
+    },
+    {
+      "id": "Specimen_AC_11",
+      "name": "Яростный волчок",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1496,
+          "atk1": 661,
+          "atk2": 661
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AD_01",
+      "name": "Жукобот",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3400,
+          "atk1": 1034,
+          "atk2": 1034
+        }
+      },
+      "star": "gold",
+      "skin": "steampunk"
+    },
+    {
+      "id": "Specimen_AD_02",
+      "name": "Механорог",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2759,
+          "atk1": 735,
+          "atk2": 735
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_AD_05",
+      "name": "Киберкрок",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3187,
+          "atk1": 1051,
+          "atk2": 1051
+        }
+      },
+      "star": "gold",
+      "skin": "timecop"
+    },
+    {
+      "id": "Specimen_AD_06",
+      "name": "Биоеж",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3771,
+          "atk1": 1532,
+          "atk2": 1532
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_AD_08",
+      "name": "Котик-рейнджер",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2828,
+          "atk1": 549,
+          "atk2": 549
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AE_01",
+      "name": "Колосс",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1987,
+          "atk1": 490,
+          "atk2": 490
+        }
+      },
+      "star": "bronze",
+      "skin": "hero"
+    },
+    {
+      "id": "Specimen_AE_03",
+      "name": "Инвадрон",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3304,
+          "atk1": 1172,
+          "atk2": 1172
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AE_07",
+      "name": "Элфи",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3013,
+          "atk1": 1377,
+          "atk2": 1377
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AE_08",
+      "name": "Андромеда",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1863,
+          "atk1": 537,
+          "atk2": 537
+        }
+      },
+      "star": "gold",
+      "skin": "oktoberfest"
+    },
+    {
+      "id": "Specimen_AE_11",
+      "name": "Микс0-Лог",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3801,
+          "atk1": 1286,
+          "atk2": 1286
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AF_01",
+      "name": "Бог Машин",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2650,
+          "atk1": 809,
+          "atk2": 809
+        }
+      },
+      "star": "platinum",
+      "skin": "photosynthesis"
+    },
+    {
+      "id": "Specimen_AF_03",
+      "name": "Бородыш",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3440,
+          "atk1": 1361,
+          "atk2": 1361
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AF_04",
+      "name": "Стремглав",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1986,
+          "atk1": 160,
+          "atk2": 160
+        }
+      },
+      "star": "bronze",
+      "skin": "star_wars"
+    },
+    {
+      "id": "Specimen_AF_06",
+      "name": "Репликация Евы",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1843,
+          "atk1": 570,
+          "atk2": 570
+        }
+      },
+      "star": "none",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AF_07",
+      "name": "Бунда",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3071,
+          "atk1": 1442,
+          "atk2": 1442
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AF_08",
+      "name": "ГYд1/-/1",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2793,
+          "atk1": 773,
+          "atk2": 773
+        }
+      },
+      "star": "gold",
+      "skin": "tropical_summer"
+    },
+    {
+      "id": "Specimen_AF_09",
+      "name": "Паровой громила",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3876,
+          "atk1": 955,
+          "atk2": 955
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_AF_10",
+      "name": "Эль Токсино",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1733,
+          "atk1": 399,
+          "atk2": 399
+        }
+      },
+      "star": "none",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_AF_99",
+      "name": "A027441",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4375,
+          "atk1": 1365,
+          "atk2": 1365
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_B_01",
+      "name": "Зомби",
+      "genes": [
+        "B"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1710,
+          "atk1": 473,
+          "atk2": 473
+        }
+      },
+      "star": "silver",
+      "skin": "villain"
+    },
+    {
+      "id": "Specimen_BA_01",
+      "name": "Зомборг",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3230,
+          "atk1": 768,
+          "atk2": 768
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_BA_02",
+      "name": "Страхолюдочка",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2869,
+          "atk1": 454,
+          "atk2": 454
+        }
+      },
+      "star": "gold",
+      "skin": "japan"
+    },
+    {
+      "id": "Specimen_BA_03",
+      "name": "Тачдаун",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3666,
+          "atk1": 1006,
+          "atk2": 1006
+        }
+      },
+      "star": "gold",
+      "skin": "villain"
+    },
+    {
+      "id": "Specimen_BA_05",
+      "name": "Доктор Блоу",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3209,
+          "atk1": 948,
+          "atk2": 948
+        }
+      },
+      "star": "gold",
+      "skin": "summer_skin"
+    },
+    {
+      "id": "Specimen_BA_07",
+      "name": "Бабайка",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3573,
+          "atk1": 654,
+          "atk2": 654
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_BA_08",
+      "name": "Нараксис",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3234,
+          "atk1": 586,
+          "atk2": 586
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_BA_09",
+      "name": "Экскавалипсис",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4046,
+          "atk1": 1424,
+          "atk2": 1424
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_BA_10",
+      "name": "Адский Дровосек",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4653,
+          "atk1": 1216,
+          "atk2": 1216
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_BB_01",
+      "name": "Король Лич",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3011,
+          "atk1": 712,
+          "atk2": 408
+        }
+      },
+      "star": "silver",
+      "skin": "hero"
+    },
+    {
+      "id": "Specimen_BB_02",
+      "name": "Костеглод",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2900,
+          "atk1": 652,
+          "atk2": 375
+        }
+      },
+      "star": "gold",
+      "skin": "photosynthesis"
+    },
+    {
+      "id": "Specimen_BB_03",
+      "name": "Проклятый гонщик",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3432,
+          "atk1": 438,
+          "atk2": 256
+        }
+      },
+      "star": "gold",
+      "skin": "Gods_of_Olympus"
+    },
+    {
+      "id": "Specimen_BB_04",
+      "name": "Бабайка",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2691,
+          "atk1": 446,
+          "atk2": 255
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_BB_05",
+      "name": "Пожиратель душ",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3990,
+          "atk1": 1522,
+          "atk2": 876
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_BB_07",
+      "name": "Некропаразит",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3883,
+          "atk1": 539,
+          "atk2": 306
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin"
+    },
+    {
+      "id": "Specimen_BB_07",
+      "name": "Некропаразит",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4105,
+          "atk1": 485,
+          "atk2": 275
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin"
+    },
+    {
+      "id": "Specimen_BB_08",
+      "name": "Чумная Ведьма",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2157,
+          "atk1": 556,
+          "atk2": 326
+        }
+      },
+      "star": "silver",
+      "skin": "tropical_summer"
+    },
+    {
+      "id": "Specimen_BB_09",
+      "name": "Франкенхуахуа",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2749,
+          "atk1": 602,
+          "atk2": 259
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_BC_01",
+      "name": "Темный Лорд",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3550,
+          "atk1": 880,
+          "atk2": 880
+        }
+      },
+      "star": "gold",
+      "skin": "star_wars"
+    },
+    {
+      "id": "Specimen_BC_02",
+      "name": "Капитан Костьмилягу",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1621,
+          "atk1": 496,
+          "atk2": 496
+        }
+      },
+      "star": "silver",
+      "skin": "Gods_of_Olympus"
+    },
+    {
+      "id": "Specimen_BC_04",
+      "name": "Джордж Вашингтон",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3533,
+          "atk1": 1412,
+          "atk2": 1412
+        }
+      },
+      "star": "none",
+      "skin": "timecop"
+    },
+    {
+      "id": "Specimen_BC_06",
+      "name": "Зомбофрант",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3112,
+          "atk1": 997,
+          "atk2": 997
+        }
+      },
+      "star": "gold",
+      "skin": "saint_patrick_day"
+    },
+    {
+      "id": "Specimen_BC_07",
+      "name": "Болотник",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3066,
+          "atk1": 1214,
+          "atk2": 1214
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_BC_08",
+      "name": "Транн",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2593,
+          "atk1": 943,
+          "atk2": 943
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_BC_09",
+      "name": "Сборщик",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3741,
+          "atk1": 1181,
+          "atk2": 1181
+        }
+      },
+      "star": "gold",
+      "skin": "oktoberfest"
+    },
+    {
+      "id": "Specimen_BC_11",
+      "name": "Клык Ярости",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3952,
+          "atk1": 381,
+          "atk2": 381
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_BD_03",
+      "name": "Жуткий мишка",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2476,
+          "atk1": 631,
+          "atk2": 631
+        }
+      },
+      "star": "gold",
+      "skin": "film"
+    },
+    {
+      "id": "Specimen_BD_04",
+      "name": "Леди Гарпия",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1904,
+          "atk1": 435,
+          "atk2": 435
+        }
+      },
+      "star": "gold",
+      "skin": "elementals_team"
+    },
+    {
+      "id": "Specimen_BD_05",
+      "name": "Бульдозер",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3420,
+          "atk1": 1135,
+          "atk2": 1135
+        }
+      },
+      "star": "platinum",
+      "skin": "fantasy"
+    },
+    {
+      "id": "Specimen_BD_06",
+      "name": "Мор'Гул",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3250,
+          "atk1": 786,
+          "atk2": 786
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_BD_08",
+      "name": "Крошка и Майнд",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2899,
+          "atk1": 824,
+          "atk2": 824
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_BD_09",
+      "name": "Гиена огненная",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2623,
+          "atk1": 493,
+          "atk2": 493
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_BD_10",
+      "name": "Гнильена",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3888,
+          "atk1": 1410,
+          "atk2": 1410
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_BE_03",
+      "name": "Огромнус",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3069,
+          "atk1": 893,
+          "atk2": 893
+        }
+      },
+      "star": "gold",
+      "skin": "summer_skin"
+    },
+    {
+      "id": "Specimen_BE_05",
+      "name": "Ньярлатот",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3439,
+          "atk1": 924,
+          "atk2": 924
+        }
+      },
+      "star": "platinum",
+      "skin": "muchachos"
+    },
+    {
+      "id": "Specimen_BE_08",
+      "name": "Даг Дарио",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3182,
+          "atk1": 962,
+          "atk2": 962
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_BE_09",
+      "name": "Пиротроп",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3174,
+          "atk1": 1018,
+          "atk2": 1018
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_BF_01",
+      "name": "Барон Лэнди",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1925,
+          "atk1": 377,
+          "atk2": 377
+        }
+      },
+      "star": "none",
+      "skin": "gothic"
+    },
+    {
+      "id": "Specimen_BF_02",
+      "name": "Черноличник",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1899,
+          "atk1": 242,
+          "atk2": 242
+        }
+      },
+      "star": "none",
+      "skin": "steampunk"
+    },
+    {
+      "id": "Specimen_BF_05",
+      "name": "Британи",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3455,
+          "atk1": 1003,
+          "atk2": 1003
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_BF_05",
+      "name": "Британи",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3904,
+          "atk1": 1170,
+          "atk2": 1170
+        }
+      },
+      "star": "platinum",
+      "skin": "britani_buranka"
+    },
+    {
+      "id": "Specimen_BF_06",
+      "name": "Фараон из Мимфиса",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2352,
+          "atk1": 596,
+          "atk2": 596
+        }
+      },
+      "star": "silver",
+      "skin": "disco"
+    },
+    {
+      "id": "Specimen_BF_07",
+      "name": "Грибень",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2954,
+          "atk1": 1056,
+          "atk2": 1056
+        }
+      },
+      "star": "gold",
+      "skin": "school_skin"
+    },
+    {
+      "id": "Specimen_BF_08",
+      "name": "Ван Хельсинг",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3252,
+          "atk1": 953,
+          "atk2": 953
+        }
+      },
+      "star": "gold",
+      "skin": "independence_day"
+    },
+    {
+      "id": "Specimen_BF_12",
+      "name": "Оскверненный священник",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 5400,
+          "atk1": 1102,
+          "atk2": 615
+        }
+      },
+      "star": "gold",
+      "skin": "saint_patrick_day"
+    },
+    {
+      "id": "Specimen_C_01",
+      "name": "Воин",
+      "genes": [
+        "C"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1819,
+          "atk1": 543,
+          "atk2": 543
+        }
+      },
+      "star": "silver",
+      "skin": "steampunk"
+    },
+    {
+      "id": "Specimen_CA_01",
+      "name": "Амбал",
+      "genes": [
+        "C"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2898,
+          "atk1": 763,
+          "atk2": 763
+        }
+      },
+      "star": "gold",
+      "skin": "hero"
+    },
+    {
+      "id": "Specimen_CA_02",
+      "name": "Перехватчица",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2140,
+          "atk1": 616,
+          "atk2": 616
+        }
+      },
+      "star": "platinum",
+      "skin": "blood_sport"
+    },
+    {
+      "id": "Specimen_CA_05",
+      "name": "Челленджер",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2140,
+          "atk1": 567,
+          "atk2": 567
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day"
+    },
+    {
+      "id": "Specimen_CA_06",
+      "name": "РАЗ-РУ-Бот",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3829,
+          "atk1": 1212,
+          "atk2": 1212
+        }
+      },
+      "star": "gold",
+      "skin": "photosynthesis"
+    },
+    {
+      "id": "Specimen_CA_07",
+      "name": "Рокки Болтбоа",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2795,
+          "atk1": 1094,
+          "atk2": 1094
+        }
+      },
+      "star": "silver",
+      "skin": "blood_sport"
+    },
+    {
+      "id": "Specimen_CA_08",
+      "name": "Макино",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1722,
+          "atk1": 382,
+          "atk2": 382
+        }
+      },
+      "star": "gold",
+      "skin": "blood_sport"
+    },
+    {
+      "id": "Specimen_CB_01",
+      "name": "Королева Банши",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1152,
+          "atk1": 328,
+          "atk2": 328
+        }
+      },
+      "star": "none",
+      "skin": "girl_power"
+    },
+    {
+      "id": "Specimen_CB_02",
+      "name": "Буши",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3274,
+          "atk1": 850,
+          "atk2": 850
+        }
+      },
+      "star": "gold",
+      "skin": "japan"
+    },
+    {
+  "specimens": [
+    {
+      "id": "Specimen_CB_03",
+      "name": "Рагнар",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2602,
+          "atk1": 875,
+          "atk2": 875
+        }
+      },
+      "star": "gold",
+      "skin": "film"
+    },
+    {
+      "id": "Specimen_CB_04",
+      "name": "Леонид",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3109,
+          "atk1": 903,
+          "atk2": 903
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_CB_08",
+      "name": "Щратх",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2589,
+          "atk1": 1749,
+          "atk2": 1749
+        }
+      },
+      "star": "gold",
+      "skin": "autumn_skin"
+    },
+    {
+      "id": "Specimen_CB_09",
+      "name": "Пилатесса",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3630,
+          "atk1": 1166,
+          "atk2": 1166
+        }
+      },
+      "star": "gold",
+      "skin": "1_april"
+    },
+    {
+      "id": "Specimen_CB_10",
+      "name": "Франкендворф",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3904,
+          "atk1": 1197,
+          "atk2": 1197
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day"
+    },
+    {
+      "id": "Specimen_CC_01",
+      "name": "Кошмарыцарь Севера",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2211,
+          "atk1": 509,
+          "atk2": 293
+        }
+      },
+      "star": "bronze",
+      "skin": "japan"
+    },
+    {
+      "id": "Specimen_CC_02",
+      "name": "Бак Морис",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4818,
+          "atk1": 1917,
+          "atk2": 1141
+        }
+      },
+      "star": "gold",
+      "skin": "film"
+    },
+    {
+      "id": "Specimen_CC_03",
+      "name": "Зена",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1015,
+          "atk1": 503,
+          "atk2": 253
+        }
+      },
+      "star": "silver",
+      "skin": "star_wars"
+    },
+    {
+      "id": "Specimen_CC_04",
+      "name": "Лара",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2565,
+          "atk1": 478,
+          "atk2": 276
+        }
+      },
+      "star": "none",
+      "skin": "Gods_of_Olympus"
+    },
+    {
+      "id": "Specimen_CC_08",
+      "name": "Йокодзуна",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2789,
+          "atk1": 575,
+          "atk2": 330
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day"
+    },
+    {
+      "id": "Specimen_CC_09",
+      "name": "Ланселот",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2887,
+          "atk1": 1669,
+          "atk2": 626
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_CC_10",
+      "name": "Урган",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4210,
+          "atk1": 1970,
+          "atk2": 995
+        }
+      },
+      "star": "gold",
+      "skin": "royal"
+    },
+    {
+      "id": "Specimen_CD_01",
+      "name": "Ниндзяйка",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 976,
+          "atk1": 199,
+          "atk2": 199
+        }
+      },
+      "star": "none",
+      "skin": "girl_power"
+    },
+    {
+      "id": "Specimen_CD_01_gold",
+      "name": "Ниндзяйка",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1790,
+          "atk1": 348,
+          "atk2": 348
+        }
+      },
+      "star": "gold",
+      "skin": "star_wars"
+    },
+    {
+      "id": "Specimen_CD_03",
+      "name": "Топтыгин",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3255,
+          "atk1": 1121,
+          "atk2": 1121
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_CD_06",
+      "name": "Сэр Мопсингтон",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 5449,
+          "atk1": 1537,
+          "atk2": 1537
+        }
+      },
+      "star": "platinum",
+      "skin": "timecop"
+    },
+    {
+      "id": "Specimen_CD_09",
+      "name": "Отпетые приматы",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2515,
+          "atk1": 620,
+          "atk2": 620
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_CD_10",
+      "name": "Страж Мен'ки",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2335,
+          "atk1": 722,
+          "atk2": 722
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day"
+    },
+    {
+      "id": "Specimen_CE_01",
+      "name": "Марсианский Воин",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 998,
+          "atk1": 231,
+          "atk2": 231
+        }
+      },
+      "star": "none",
+      "skin": "gothic"
+    },
+    {
+      "id": "Specimen_CE_03",
+      "name": "Страж Галактики",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3293,
+          "atk1": 1023,
+          "atk2": 1023
+        }
+      },
+      "star": "gold",
+      "skin": "Gods_of_Olympus"
+    },
+    {
+      "id": "Specimen_CE_07",
+      "name": "Аран",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2561,
+          "atk1": 989,
+          "atk2": 989
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_CE_08",
+      "name": "Безымянный король",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2636,
+          "atk1": 1142,
+          "atk2": 1142
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_CF_01",
+      "name": "Валькирия",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2567,
+          "atk1": 802,
+          "atk2": 802
+        }
+      },
+      "star": "gold",
+      "skin": "girl_power"
+    },
+    {
+      "id": "Specimen_CF_02",
+      "name": "Тор",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3163,
+          "atk1": 1347,
+          "atk2": 1347
+        }
+      },
+      "star": "gold",
+      "skin": "timecop"
+    },
+    {
+      "id": "Specimen_CF_03",
+      "name": "Кромсалочка",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1380,
+          "atk1": 346,
+          "atk2": 346
+        }
+      },
+      "star": "gold",
+      "skin": "muchachos"
+    },
+    {
+      "id": "Specimen_CF_05",
+      "name": "Темный монах",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2493,
+          "atk1": 562,
+          "atk2": 562
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_CF_06",
+      "name": "Дядя Сэм",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3815,
+          "atk1": 1077,
+          "atk2": 1077
+        }
+      },
+      "star": "none",
+      "skin": "western"
+    },
+    {
+      "id": "Specimen_CF_08",
+      "name": "Винн",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3841,
+          "atk1": 1265,
+          "atk2": 1265
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_CF_09",
+      "name": "Хранитель Ключей",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3403,
+          "atk1": 1123,
+          "atk2": 1123
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day"
+    },
+    {
+      "id": "Specimen_D_01",
+      "name": "Зверь",
+      "genes": [
+        "D"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1935,
+          "atk1": 609,
+          "atk2": 609
+        }
+      },
+      "star": "silver",
+      "skin": "big_boss"
+    },
+    {
+      "id": "Specimen_DA_01",
+      "name": "Рептоид",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1492,
+          "atk1": 360,
+          "atk2": 360
+        }
+      },
+      "star": "bronze",
+      "skin": "villain"
+    },
+    {
+      "id": "Specimen_DA_02",
+      "name": "Арахно",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3864,
+          "atk1": 1121,
+          "atk2": 1121
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_DA_05",
+      "name": "Фенек-Ультралис",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3109,
+          "atk1": 644,
+          "atk2": 644
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DA_08",
+      "name": "Асайлан",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2390,
+          "atk1": 1408,
+          "atk2": 1408
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DA_10",
+      "name": "Соколиный глаз",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2604,
+          "atk1": 526,
+          "atk2": 526
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_DA_11",
+      "name": "Ан0малия",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2758,
+          "atk1": 508,
+          "atk2": 625
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_DB_01",
+      "name": "Цербер",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2450,
+          "atk1": 616,
+          "atk2": 616
+        }
+      },
+      "star": "gold",
+      "skin": "big_boss"
+    },
+    {
+      "id": "Specimen_DB_04",
+      "name": "Людовик XVI",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2889,
+          "atk1": 1076,
+          "atk2": 1076
+        }
+      },
+      "star": "none",
+      "skin": "western"
+    },
+    {
+      "id": "Specimen_DB_06",
+      "name": "Зомбобр",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2067,
+          "atk1": 521,
+          "atk2": 521
+        }
+      },
+      "star": "gold",
+      "skin": "fantasy"
+    },
+    {
+      "id": "Specimen_DB_07",
+      "name": "Лорд-Дракон",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1741,
+          "atk1": 362,
+          "atk2": 362
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_DB_08",
+      "name": "Смертозавр",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3556,
+          "atk1": 1076,
+          "atk2": 1076
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_DB_09",
+      "name": "Хоракс",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3549,
+          "atk1": 1177,
+          "atk2": 1177
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_DB_10",
+      "name": "Буффалор",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3694,
+          "atk1": 1502,
+          "atk2": 1502
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_DC_01",
+      "name": "Ракшаса",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1299,
+          "atk1": 302,
+          "atk2": 302
+        }
+      },
+      "star": "none",
+      "skin": "gothic"
+    },
+    {
+      "id": "Specimen_DC_05",
+      "name": "Король обезьян",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2648,
+          "atk1": 658,
+          "atk2": 658
+        }
+      },
+      "star": "gold",
+      "skin": "muchachos"
+    },
+    {
+      "id": "Specimen_DC_06",
+      "name": "Бабка-волчанка",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3727,
+          "atk1": 1107,
+          "atk2": 1107
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DC_08",
+      "name": "Саник",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3316,
+          "atk1": 429,
+          "atk2": 429
+        }
+      },
+      "star": "silver",
+      "skin": "photosynthesis"
+    },
+    {
+      "id": "Specimen_DC_09",
+      "name": "Мастер Синдзо",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2657,
+          "atk1": 494,
+          "atk2": 494
+        }
+      },
+      "star": "gold",
+      "skin": "1_april"
+    },
+    {
+      "id": "Specimen_DC_10",
+      "name": "Крампус",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3694,
+          "atk1": 1092,
+          "atk2": 1092
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DC_11",
+      "name": "Спада",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2957,
+          "atk1": 738,
+          "atk2": 738
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DD_01",
+      "name": "Киска Кайдзю",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3253,
+          "atk1": 754,
+          "atk2": 434
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_DD_05",
+      "name": "Хищнозавр",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1705,
+          "atk1": 520,
+          "atk2": 301
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_DD_05",
+      "name": "Хищнозавр",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1003,
+          "atk1": 283,
+          "atk2": 164
+        }
+      },
+      "star": "none",
+      "skin": "spring_skin"
+    },
+    {
+      "id": "Specimen_DD_07",
+      "name": "Шершеляшар",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2910,
+          "atk1": 873,
+          "atk2": 500
+        }
+      },
+      "star": "gold",
+      "skin": "army"
+    },
+    {
+      "id": "Specimen_DD_08",
+      "name": "Ринотавр",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 5233,
+          "atk1": 1262,
+          "atk2": 631
+        }
+      },
+      "star": "gold",
+      "skin": "school_skin"
+    },
+    {
+      "id": "Specimen_DD_10",
+      "name": "Камео",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2907,
+          "atk1": 764,
+          "atk2": 450
+        }
+      },
+      "star": "gold",
+      "skin": "autumn_skin"
+    },
+    {
+      "id": "Specimen_DE_02",
+      "name": "Космо-Конг",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3083,
+          "atk1": 859,
+          "atk2": 859
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_DE_03",
+      "name": "Панголин",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2107,
+          "atk1": 318,
+          "atk2": 318
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DE_04",
+      "name": "Генсириоку",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2295,
+          "atk1": 889,
+          "atk2": 889
+        }
+      },
+      "star": "silver",
+      "skin": "muchachos"
+    },
+    {
+      "id": "Specimen_DE_05",
+      "name": "Халкомяк",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3638,
+          "atk1": 1531,
+          "atk2": 1531
+        }
+      },
+      "star": "platinum",
+      "skin": "disco"
+    },
+    {
+      "id": "Specimen_DE_07",
+      "name": "Капитан Космоцып",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3370,
+          "atk1": 798,
+          "atk2": 798
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day"
+    },
+    {
+      "id": "Specimen_DE_08",
+      "name": "Космопанды",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1790,
+          "atk1": 348,
+          "atk2": 348
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DE_09",
+      "name": "Зигмо",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2713,
+          "atk1": 344,
+          "atk2": 344
+        }
+      },
+      "star": "gold",
+      "skin": "photosynthesis"
+    },
+    {
+      "id": "Specimen_DE_11",
+      "name": "Дрей, космический корги",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4035,
+          "atk1": 1284,
+          "atk2": 1284
+        }
+      },
+      "star": "platinum",
+      "skin": "card_game_skin"
+    },
+    {
+      "id": "Specimen_DF_01",
+      "name": "Благородный дракон",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3481,
+          "atk1": 1006,
+          "atk2": 1006
+        }
+      },
+      "star": "gold",
+      "skin": "japan"
+    },
+    {
+      "id": "Specimen_DF_02",
+      "name": "Сатир-шаман",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2331,
+          "atk1": 593,
+          "atk2": 593
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin"
+    },
+    {
+      "id": "Specimen_DF_04",
+      "name": "Кон-Тики",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3113,
+          "atk1": 1145,
+          "atk2": 1145
+        }
+      },
+      "star": "gold",
+      "skin": "elementals_team"
+    },
+    {
+      "id": "Specimen_DF_04",
+      "name": "Кон-Тики",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3302,
+          "atk1": 1041,
+          "atk2": 1041
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DF_05",
+      "name": "Мать Драконов",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1837,
+          "atk1": 1022,
+          "atk2": 1022
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_DF_07",
+      "name": "Химера",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3276,
+          "atk1": 1027,
+          "atk2": 1027
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_DF_08",
+      "name": "Шантеклер",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2943,
+          "atk1": 1552,
+          "atk2": 1552
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day"
+    },
+    {
+      "id": "Specimen_DF_09",
+      "name": "Кетцалькоатль",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3055,
+          "atk1": 764,
+          "atk2": 764
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_DF_10",
+      "name": "Gwenn",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3047,
+          "atk1": 679,
+          "atk2": 679
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_E_01",
+      "name": "Пришелец",
+      "genes": [
+        "E"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1049,
+          "atk1": 199,
+          "atk2": 199
+        }
+      },
+      "star": "bronze",
+      "skin": "gothic"
+    },
+    {
+      "id": "Specimen_EA_01",
+      "name": "Опустошитель",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3333,
+          "atk1": 995,
+          "atk2": 995
+        }
+      },
+      "star": "gold",
+      "skin": "big_boss"
+    },
+    {
+      "id": "Specimen_EA_02",
+      "name": "Долгоног",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2528,
+          "atk1": 598,
+          "atk2": 598
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_EA_05",
+      "name": "Кинг Стивен",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3152,
+          "atk1": 677,
+          "atk2": 677
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_EA_06",
+      "name": "Кранк",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3155,
+          "atk1": 994,
+          "atk2": 994
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day"
+    },
+    {
+      "id": "Specimen_EA_07",
+      "name": "Капитан Патриот",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4770,
+          "atk1": 838,
+          "atk2": 838
+        }
+      },
+      "star": "gold",
+      "skin": "oktoberfest"
+    },
+    {
+      "id": "Specimen_EB_02",
+      "name": "Сирения",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1554,
+          "atk1": 384,
+          "atk2": 384
+        }
+      },
+      "star": "silver",
+      "skin": "elementals_team"
+    },
+    {
+      "id": "Specimen_EB_04",
+      "name": "Охотник за привидениями",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1977,
+          "atk1": 536,
+          "atk2": 536
+        }
+      },
+      "star": "silver",
+      "skin": "film"
+    },
+    {
+      "id": "Specimen_EB_05",
+      "name": "Мертвый солдат",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3069,
+          "atk1": 1233,
+          "atk2": 1233
+        }
+      },
+      "star": "gold",
+      "skin": "elementals_team"
+    },
+    {
+      "id": "Specimen_EB_09",
+      "name": "Королева Сильвидра",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2808,
+          "atk1": 1345,
+          "atk2": 1345
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_EC_01",
+      "name": "Галактический Охотник",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1262,
+          "atk1": 402,
+          "atk2": 402
+        }
+      },
+      "star": "none",
+      "skin": "steampunk"
+    },
+    {
+      "id": "Specimen_EC_01",
+      "name": "Галактический Охотник",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2314,
+          "atk1": 704,
+          "atk2": 704
+        }
+      },
+      "star": "gold",
+      "skin": "star_wars"
+    },
+    {
+      "id": "Specimen_EC_03",
+      "name": "Звездный Десантник",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1953,
+          "atk1": 448,
+          "atk2": 448
+        }
+      },
+      "star": "gold",
+      "skin": "villain"
+    },
+    {
+      "id": "Specimen_EC_09",
+      "name": "Щиткалибур",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3519,
+          "atk1": 908,
+          "atk2": 908
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_ED_01",
+      "name": "Ксенос",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2014,
+          "atk1": 406,
+          "atk2": 406
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_ED_03",
+      "name": "Вампаа",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2056,
+          "atk1": 551,
+          "atk2": 551
+        }
+      },
+      "star": "bronze",
+      "skin": "film"
+    },
+    {
+      "id": "Specimen_ED_05",
+      "name": "Инсектрон",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3067,
+          "atk1": 1088,
+          "atk2": 1088
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_ED_06",
+      "name": "Китти Перри",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2024,
+          "atk1": 598,
+          "atk2": 598
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_ED_07",
+      "name": "Парамик",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2859,
+          "atk1": 385,
+          "atk2": 385
+        }
+      },
+      "star": "gold",
+      "skin": "summer_skin"
+    },
+    {
+      "id": "Specimen_ED_08",
+      "name": "Черноглаз",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1373,
+          "atk1": 467,
+          "atk2": 467
+        }
+      },
+      "star": "none",
+      "skin": "army"
+    },
+    {
+      "id": "Specimen_ED_10",
+      "name": "Сердитый Свин",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3459,
+          "atk1": 990,
+          "atk2": 990
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_ED_11",
+      "name": "Совабатор",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3598,
+          "atk1": 1379,
+          "atk2": 1379
+        }
+      },
+      "star": "gold",
+      "skin": "carnival"
+    },
+    {
+      "id": "Specimen_EE_02",
+      "name": "Сверхновус",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3202,
+          "atk1": 854,
+          "atk2": 490
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_EE_03",
+      "name": "Мастер Йоуда",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2587,
+          "atk1": 652,
+          "atk2": 375
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_EE_04",
+      "name": "Летающий Джордсон",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3238,
+          "atk1": 1118,
+          "atk2": 644
+        }
+      },
+      "star": "gold",
+      "skin": "disco"
+    },
+    {
+      "id": "Specimen_EE_06",
+      "name": "Королева Раккти",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3252,
+          "atk1": 1026,
+          "atk2": 591
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_EE_07",
+      "name": "Маршал Мэллоу",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3336,
+          "atk1": 794,
+          "atk2": 457
+        }
+      },
+      "star": "platinum",
+      "skin": "tropical_summer"
+    },
+    {
+      "id": "Specimen_EE_08",
+      "name": "Големаг",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4226,
+          "atk1": 1400,
+          "atk2": 803
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_EE_09",
+      "name": "Мегастрал",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4316,
+          "atk1": 1653,
+          "atk2": 828
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_EE_10",
+      "name": "Инопланетянин-велосипедист",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3548,
+          "atk1": 886,
+          "atk2": 510
+        }
+      },
+      "star": "gold",
+      "skin": "school_skin"
+    },
+    {
+      "id": "Specimen_EF_01",
+      "name": "Небулон",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1581,
+          "atk1": 318,
+          "atk2": 318
+        }
+      },
+      "star": "bronze",
+      "skin": "elementals_team"
+    },
+    {
+      "id": "Specimen_EF_04",
+      "name": "Мефистофель",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2192,
+          "atk1": 515,
+          "atk2": 515
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_EF_05",
+      "name": "Кракен",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3048,
+          "atk1": 1181,
+          "atk2": 1181
+        }
+      },
+      "star": "gold",
+      "skin": "blue_planet"
+    },
+    {
+      "id": "Specimen_EF_09",
+      "name": "Маг Ризафредд",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3262,
+          "atk1": 1032,
+          "atk2": 1032
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_EF_10",
+      "name": "Дива Кровилагуна",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2721,
+          "atk1": 588,
+          "atk2": 588
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_F_01",
+      "name": "Демон",
+      "genes": [
+        "F"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1952,
+          "atk1": 456,
+          "atk2": 456
+        }
+      },
+      "star": "bronze",
+      "skin": "girl_power"
+    },
+    {
+      "id": "Specimen_FA_01",
+      "name": "Кибермонах",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2941,
+          "atk1": 806,
+          "atk2": 806
+        }
+      },
+      "star": "gold",
+      "skin": "hero"
+    },
+    {
+      "id": "Specimen_FA_02",
+      "name": "Мекали",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2462,
+          "atk1": 560,
+          "atk2": 560
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_FA_05",
+      "name": "Теневой шаман",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2562,
+          "atk1": 682,
+          "atk2": 682
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FA_08",
+      "name": "Футбот",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2034,
+          "atk1": 363,
+          "atk2": 363
+        }
+      },
+      "star": "silver",
+      "skin": "blood_sport"
+    },
+    {
+      "id": "Specimen_FA_10",
+      "name": "Часовщица Мими",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1621,
+          "atk1": 766,
+          "atk2": 766
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_FB_01",
+      "name": "Мрачная Жница",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2194,
+          "atk1": 653,
+          "atk2": 653
+        }
+      },
+      "star": "bronze",
+      "skin": "girl_power"
+    },
+    {
+      "id": "Specimen_FB_03",
+      "name": "Анубис",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3191,
+          "atk1": 833,
+          "atk2": 833
+        }
+      },
+      "star": "gold",
+      "skin": "big_boss"
+    },
+    {
+      "id": "Specimen_FB_05",
+      "name": "Аццкий металл",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3872,
+          "atk1": 802,
+          "atk2": 802
+        }
+      },
+      "star": "platinum",
+      "skin": "disco"
+    },
+    {
+      "id": "Specimen_FB_06",
+      "name": "Колдунья",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2003,
+          "atk1": 434,
+          "atk2": 434
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FB_10",
+      "name": "Иггдрасиль",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3879,
+          "atk1": 1305,
+          "atk2": 1305
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FC_01",
+      "name": "Гэндолфус",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1989,
+          "atk1": 357,
+          "atk2": 357
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FC_02",
+      "name": "Капитан Мир",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3619,
+          "atk1": 966,
+          "atk2": 966
+        }
+      },
+      "star": "none",
+      "skin": "hero"
+    },
+    {
+      "id": "Specimen_FC_04",
+      "name": "Мексикоатль",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3423,
+          "atk1": 816,
+          "atk2": 816
+        }
+      },
+      "star": "silver",
+      "skin": "fantasy"
+    },
+    {
+      "id": "Specimen_FC_05",
+      "name": "Йельда",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3126,
+          "atk1": 916,
+          "atk2": 916
+        }
+      },
+      "star": "silver",
+      "skin": "fantasy"
+    },
+    {
+      "id": "Specimen_FC_07",
+      "name": "Амарок",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2291,
+          "atk1": 575,
+          "atk2": 575
+        }
+      },
+      "star": "gold",
+      "skin": "western"
+    },
+    {
+      "id": "Specimen_FC_08",
+      "name": "Кудамоно",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3099,
+          "atk1": 842,
+          "atk2": 842
+        }
+      },
+      "star": "gold",
+      "skin": "europe_day"
+    },
+    {
+      "id": "Specimen_FD_01",
+      "name": "Горгона",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2109,
+          "atk1": 510,
+          "atk2": 510
+        }
+      },
+      "star": "silver",
+      "skin": "gothic"
+    },
+    {
+      "id": "Specimen_FD_02",
+      "name": "Гор",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2199,
+          "atk1": 409,
+          "atk2": 409
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day"
+    },
+    {
+      "id": "Specimen_FD_04",
+      "name": "Буранка",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2597,
+          "atk1": 670,
+          "atk2": 670
+        }
+      },
+      "star": "gold",
+      "skin": "britani_buranka"
+    },
+    {
+      "id": "Specimen_FD_05",
+      "name": "Пандомонах",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2140,
+          "atk1": 567,
+          "atk2": 567
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_FD_06",
+      "name": "Кунг Чоу",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2814,
+          "atk1": 985,
+          "atk2": 985
+        }
+      },
+      "star": "gold",
+      "skin": "blood_sport"
+    },
+    {
+      "id": "Specimen_FD_07",
+      "name": "Феникс",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2666,
+          "atk1": 9,
+          "atk2": 9
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_FD_08",
+      "name": "Омиками",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3249,
+          "atk1": 995,
+          "atk2": 995
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FD_09",
+      "name": "Маг-дракон",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3066,
+          "atk1": 1013,
+          "atk2": 1013
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_FE_02",
+      "name": "Синеглазка",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2425,
+          "atk1": 598,
+          "atk2": 598
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_FE_03",
+      "name": "Астромаг",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2723,
+          "atk1": 902,
+          "atk2": 902
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_FE_04",
+      "name": "Принцесса Селена",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2382,
+          "atk1": 596,
+          "atk2": 596
+        }
+      },
+      "star": "platinum",
+      "skin": "muchachos"
+    },
+    {
+      "id": "Specimen_FE_07",
+      "name": "Король жуков",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2973,
+          "atk1": 954,
+          "atk2": 954
+        }
+      },
+      "star": "gold",
+      "skin": "easter"
+    },
+    {
+      "id": "Specimen_FE_08",
+      "name": "Маджин Зам",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3187,
+          "atk1": 1232,
+          "atk2": 1232
+        }
+      },
+      "star": "gold",
+      "skin": "tropical_summer"
+    },
+    {
+      "id": "Specimen_FE_09",
+      "name": "Кселерот",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3753,
+          "atk1": 1345,
+          "atk2": 1345
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FE_10",
+      "name": "Бахамут",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2833,
+          "atk1": 688,
+          "atk2": 688
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary"
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2836,
+          "atk1": 668,
+          "atk2": 668
+        }
+      },
+      "star": "none",
+      "skin": "autumn_skin"
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2600,
+          "atk1": 720,
+          "atk2": 720
+        }
+      },
+      "star": "none",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2925,
+          "atk1": 649,
+          "atk2": 649
+        }
+      },
+      "star": "none",
+      "skin": "spring_skin"
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3014,
+          "atk1": 630,
+          "atk2": 630
+        }
+      },
+      "star": "none",
+      "skin": "summer_skin"
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3191,
+          "atk1": 591,
+          "atk2": 591
+        }
+      },
+      "star": "none",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FF_01",
+      "name": "Лорд Преисподней",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3099,
+          "atk1": 939,
+          "atk2": 539
+        }
+      },
+      "star": "bronze",
+      "skin": "big_boss"
+    },
+    {
+      "id": "Specimen_FF_02",
+      "name": "Ангел Мести",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3116,
+          "atk1": 798,
+          "atk2": 460
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    },
+    {
+      "id": "Specimen_FF_03",
+      "name": "Вороний Глаз",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3363,
+          "atk1": 547,
+          "atk2": 315
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin"
+    },
+    {
+      "id": "Specimen_FF_04",
+      "name": "Монолит",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3720,
+          "atk1": 1050,
+          "atk2": 1050
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FF_06",
+      "name": "Намасте",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2745,
+          "atk1": 837,
+          "atk2": 571
+        }
+      },
+      "star": "gold",
+      "skin": "western"
+    },
+    {
+      "id": "Specimen_FF_08",
+      "name": "Огненная Буря",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2870,
+          "atk1": 743,
+          "atk2": 428
+        }
+      },
+      "star": "gold",
+      "skin": "winter"
+    },
+    {
+      "id": "Specimen_FF_09",
+      "name": "Мокрушник",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3988,
+          "atk1": 1170,
+          "atk2": 672
+        }
+      },
+      "star": "gold",
+      "skin": "halloween"
+    }]
