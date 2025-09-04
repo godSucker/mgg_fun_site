@@ -13,8 +13,7 @@
 
   onMount(() => {
     const handleClickOutside = (event) => {
-      // если кликнули вне элемента с меню, закрываем
-      if (!event.target.closest('.relative.inline-block')) {
+      if (!event.target.closest('.relative')) {
         isMenuOpen = false;
       }
     };
@@ -31,15 +30,14 @@
     on:click={() => { isMenuOpen = !isMenuOpen; }}>
     Мутанты ▾
   </button>
-
-  {#if isMenuOpen}
-    <div class="absolute left-0 mt-2 bg-gray-800 text-white rounded shadow-lg z-10">
-      <a href="/mutants" class="block px-4 py-2 hover:bg-gray-700">Обычные версии</a>
-      <a href="/bronze" class="block px-4 py-2 hover:bg-gray-700">Бронзовые версии</a>
-      <a href="/silver" class="block px-4 py-2 hover:bg-gray-700">Серебряные версии</a>
-      <a href="/gold" class="block px-4 py-2 hover:bg-gray-700">Золотые версии</a>
-      <a href="/platinum" class="block px-4 py-2 hover:bg-gray-700">Платиновые версии</a>
-      <a href="/skins" class="block px-4 py-2 hover:bg-gray-700">Скины</a>
-    </div>
-  {/if}
+  <div
+    class="absolute left-0 mt-2 bg-gray-800 text-white rounded shadow-lg z-10"
+    class:hidden={!isMenuOpen ? 'hidden' : 'block'}>
+    <a href="/mutants" class="block px-4 py-2 hover:bg-gray-700">Обычные версии</a>
+    <a href="/bronze" class="block px-4 py-2 hover:bg-gray-700">Бронзовые версии</a>
+    <a href="/silver" class="block px-4 py-2 hover:bg-gray-700">Серебряные версии</a>
+    <a href="/gold" class="block px-4 py-2 hover:bg-gray-700">Золотые версии</a>
+    <a href="/platinum" class="block px-4 py-2 hover:bg-gray-700">Платиновые версии</a>
+    <a href="/skins" class="block px-4 py-2 hover:bg-gray-700">Скины</a>
+  </div>
 </div>
