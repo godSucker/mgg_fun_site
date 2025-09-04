@@ -1,77 +1,48 @@
-import os
 import json
-import shutil
+import os
 
-# Путь к папкам с текстурами
-full_char_folder = "full-char"
-semi_full_folder = "semi-full"
+# Путь к файлу с данными мутантов и текстурами
+mutants_file = 'mutants_data.json'  # Путь к файлу данных мутантов
+textures_folder = 'textures_by_skins'  # Папка с текстурами
 
-# Папка, куда будут создаваться новые папки с текстурами
-output_dir = "textures_by_skins"
+# Загружаем данные мутантов из JSON файла
+with open(mutants_file, 'r', encoding='utf-8') as f:
+    mutants_data = json.load(f)
 
-# Папка с файлом skins.json
-skins_json_path = "skins.json"
+# Печать данных, чтобы убедиться, что структура правильная
+print(mutants_data)  # Выведем структуру данных для анализа
 
-# Заголовки для имитации браузера
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
+# Обрабатываем мутантов
+updated_mutants = []
 
-# Загружаем данные из существующего skins.json
-with open(skins_json_path, "r", encoding="utf-8") as f:
-    skins_data = json.load(f)
+for mutant in mutants_data:  # Каждый мутант в списке
+    if isinstance(mutant, dict):  # Убедимся, что это словарь
+        mutant_id = mutant.get('id', '')
+        skin = mutant.get('skin', '')
 
-# Словарь для быстрого поиска путей по id мутанта
-skin_dict = {skin['id']: skin for skin in skins_data}
+        # Папки с текстурами, для которых нужно добавить пути
+        semi_full_texture_folder = os.path.join(textures_folder, 'semi-full', skin)
+        full_char_texture_folder = os.path.join(textures_folder, 'full-char', skin)
 
-# Создаем папки для мутантов и meta.json
-os.makedirs(output_dir, exist_ok=True)
+        # Составляем список путей для текстур
+        texture_paths = []
+        for texture_type in ['semi-full', 'full-char']:
+            folder = os.path.join(textures_folder, texture_type, skin)
+            if os.path.exists(folder):  # Проверим, существует ли папка
+                for filename in os.listdir(folder):
+                    if filename.endswith('.png'):  # Или другой формат
+                        texture_paths.append(os.path.join(folder, filename))
 
-# Список файлов в папке full-char
-full_char_textures = os.listdir(full_char_folder)
+        # Добавляем информацию о путях текстур к мутанту
+        mutant['textures'] = texture_paths
 
-# Перебираем текстуры и создаем папки для мутантов
-for texture in full_char_textures:
-    # Пример формата имени: A_01_japan.png
-    # Получаем ID мутанта (первую часть имени файла)
-    mutant_id = texture.split('_')[0] + '_' + texture.split('_')[1]
+        # Добавляем мутанта в итоговый список
+        updated_mutants.append(mutant)
+    else:
+        print(f"Неверная структура данных для мутанта: {mutant}")
 
-    # Ищем мутанта в skins.json по его ID
-    if mutant_id in skin_dict:
-        mutant = skin_dict[mutant_id]
+# Сохраняем обновленный файл JSON
+with open('updated_mutants_data.json', 'w', encoding='utf-8') as f:
+    json.dump(updated_mutants, f, indent=4, ensure_ascii=False)
 
-        # Пути к изображениям
-        full_char_image = os.path.join(full_char_folder, texture)
-        semi_full_image = os.path.join(semi_full_folder, "specimen_" + texture)
-
-        # Создаем папку для мутанта
-        mutant_folder = os.path.join(output_dir, f"{mutant_id}_{texture.split('.')[0]}")
-        os.makedirs(mutant_folder, exist_ok=True)
-
-        # Копируем изображения в соответствующие папки
-        shutil.copy(full_char_image, os.path.join(mutant_folder, f"{mutant_id}_normal.png"))
-        shutil.copy(semi_full_image, os.path.join(mutant_folder, f"specimen_{mutant_id}_normal.png"))
-
-        # Создаем meta.json с информацией о путях к изображениям
-        meta_data = {
-            "id": mutant_id,
-            "name": mutant.get("name", mutant_id),  # Если имя есть, берем его, если нет — используем id
-            "type": mutant.get("type", "default"),  # Если тип есть, берем его, если нет — "default"
-            "image": [
-                f"textures_by_skins/{mutant_id}/{mutant_id}_normal.png",
-                f"textures_by_skins/{mutant_id}/specimen_{mutant_id}_normal.png"
-            ]
-        }
-
-        # Сохраняем meta.json в папку мутанта
-        with open(os.path.join(mutant_folder, "meta.json"), 'w', encoding='utf-8') as f:
-            json.dump(meta_data, f, ensure_ascii=False, indent=4)
-
-        # Обновляем запись о мутанте в skins.json, добавляя пути к изображениям
-        mutant["image"] = meta_data["image"]
-
-# Сохраняем обновленный файл skins.json
-with open(skins_json_path, 'w', encoding='utf-8') as f:
-    json.dump(skins_data, f, ensure_ascii=False, indent=4)
-
-print("Скрипт выполнен успешно!")
+print("Обновление текстур завершено.")
