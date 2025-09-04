@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MutantList from '../components/MutantList.astro';
+import silverMutants from '../data/silver_mutants.json';
+const mutants = silverMutants;
+---
+<BaseLayout title="Серебрянные мутанты | Mutants Fan Site">
+  <h1 class="text-3xl font-bold mb-4">Серебрянные мутанты</h1>
+  <MutantList {mutants} />
+</BaseLayout>
+

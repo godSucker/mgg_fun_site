@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MutantList from '../components/MutantList.astro';
+import platMutants from '../data/plat_mutants.json';
+const mutants = platMutants;
+---
+<BaseLayout title="Платиновые мутанты | Mutants Fan Site">
+  <h1 class="text-3xl font-bold mb-4">Платиновые мутанты</h1>
+  <MutantList {mutants} />
+</BaseLayout>
+
