@@ -1,0 +1,18 @@
+---
+import SkinList from '../components/SkinList.astro';
+import skinsData from '../data/skins.json';
+
+const skins = skinsData.specimens ?? skinsData;
+---
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Тестовая страница скинов</title>
+  </head>
+  <body>
+    <h1>Тестовая страница скинов</h1>
+    <SkinList {skins} />
+  </body>
+</html>
+
