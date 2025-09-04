@@ -1,0 +1,308 @@
+<Recipe id="token_sink_01" bonusPer1000="10">
+<ingredient regex="Material_Gacha_Token" amount="7"/>
+<reward id="Star_Platinum"/>
+</Recipe>
+<Recipe id="token_sink_02" bonusPer1000="10">
+<ingredient regex="Material_Gacha_Token" amount="4"/>
+<reward id="Star_Gold"/>
+</Recipe>
+<Recipe id="token_sink_03" bonusPer1000="10">
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_Jackpot_Token" amount="6"/>
+<reward id="Star_Silver"/>
+</Recipe>
+<Recipe id="token_sink_04" bonusPer1000="10">
+<ingredient regex="Material_Jackpot_Token" amount="7"/>
+<reward id="Star_Bronze"/>
+</Recipe>
+<Recipe id="token_sink_05" bonusPer1000="10">
+<ingredient regex="Material_Gacha_Token" amount="3"/>
+<ingredient regex="Material_Event_Token" amount="4"/>
+<reward id="Star_Gold"/>
+</Recipe>
+<Recipe id="token_sink_06" bonusPer1000="10">
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_Event_Token" amount="1"/>
+<reward id="Star_Silver" amount="3"/>
+</Recipe>
+<Recipe id="pot_pourri_03" bonusPer1000="10">
+<ingredient regex="orb_(special|basic)_[abcdefghijklmnopqrstuvwxyz]+_.*|Star_Bronze|Material_Jackpot_Token|(Material_XP|Material_Muto).*|Material_LP100|Material_LP1000" amount="3"/>
+<reward id="Material_LP1000" amount="5" odds="10"/>
+<reward id="Charm_Xpx3_3" odds="10"/>
+<reward id="Charm_Xpx2_3" odds="10"/>
+<reward id="Charm_Regenx4_3" odds="10"/>
+<reward id="Charm_Regenx2_3" odds="10"/>
+<reward id="Charm_Critical_3" odds="10"/>
+<reward id="Charm_Anticritical_3" odds="9"/>
+<reward id="Material_Jackpot_Token" odds="2"/>
+<reward id="orb_basic_attack_01" amount="1" odds="1"/>
+<reward id="orb_basic_life_01" amount="1" odds="1"/>
+<reward id="orb_basic_critical_01" amount="1" odds="1"/>
+<reward id="orb_basic_regenerate_01" amount="1" odds="1"/>
+<reward id="orb_basic_retaliate_01" amount="1" odds="1"/>
+<reward id="orb_basic_shield_01" amount="1" odds="1"/>
+<reward id="orb_basic_slash_01" amount="1" odds="1"/>
+<reward id="orb_basic_strengthen_01" amount="1" odds="1"/>
+<reward id="orb_basic_weaken_01" amount="1" odds="1"/>
+<reward id="orb_basic_xp_01" amount="1" odds="1"/>
+<reward id="Star_Bronze" amount="3" odds="3"/>
+</Recipe>
+<Recipe id="pot_pourri_04" bonusPer1000="10">
+<ingredient regex="orb_(special|basic)_[abcdefghijklmnopqrstuvwxyz]+_.*|Star_Bronze|Star_Silver|Material_Jackpot_Token|(Material_XP|Material_Muto).*|Material_LP100|Material_LP1000" amount="4"/>
+<reward id="Material_LP1000" amount="5" odds="75"/>
+<reward id="Charm_Xpx3_3" odds="50"/>
+<reward id="Charm_Xpx2_3" odds="50"/>
+<reward id="Charm_Regenx4_3" odds="50"/>
+<reward id="Charm_Regenx2_3" odds="50"/>
+<reward id="Charm_Critical_3" odds="50"/>
+<reward id="Charm_Anticritical_3" odds="50"/>
+<reward id="Material_Jackpot_Token" odds="20"/>
+<reward id="orb_basic_attack_01" amount="2" odds="10"/>
+<reward id="orb_basic_life_01" amount="2" odds="10"/>
+<reward id="orb_basic_critical_01" amount="2" odds="10"/>
+<reward id="orb_basic_regenerate_01" amount="2" odds="10"/>
+<reward id="orb_basic_retaliate_01" amount="2" odds="10"/>
+<reward id="orb_basic_shield_01" amount="2" odds="10"/>
+<reward id="orb_basic_slash_01" amount="2" odds="10"/>
+<reward id="orb_basic_strengthen_01" amount="2" odds="10"/>
+<reward id="orb_basic_weaken_01" amount="2" odds="10"/>
+<reward id="orb_basic_xp_01" amount="2" odds="10"/>
+<reward id="orb_basic_attack_02" amount="2" odds="5"/>
+<reward id="orb_basic_life_02" amount="1" odds="5"/>
+<reward id="orb_basic_critical_02" amount="1" odds="5"/>
+<reward id="orb_basic_regenerate_02" amount="1" odds="5"/>
+<reward id="orb_basic_retaliate_02" amount="1" odds="5"/>
+<reward id="orb_basic_shield_02" amount="1" odds="5"/>
+<reward id="orb_basic_slash_02" amount="1" odds="5"/>
+<reward id="orb_basic_strengthen_02" amount="1" odds="5"/>
+<reward id="orb_basic_weaken_02" amount="1" odds="5"/>
+<reward id="orb_basic_xp_02" amount="1" odds="5"/>
+<reward id="orb_special_addregenerate_01" amount="1" odds="1"/>
+<reward id="Star_Bronze" amount="3" odds="25"/>
+</Recipe>
+<Recipe id="pot_pourri_05" bonusPer1000="10">
+<ingredient regex="orb_(special|basic)_[abcdefghijklmnopqrstuvwxyz]+_.*|Star_Bronze|Star_Silver|Material_Jackpot_Token|(Material_XP|Material_Muto).*|Material_LP100|Material_LP1000" amount="5"/>
+<reward id="Material_LP1000" amount="5" odds="500"/>
+<reward id="Charm_Xpx3_3" odds="500"/>
+<reward id="Charm_Regenx4_3" odds="500"/>
+<reward id="Charm_Critical_3" odds="500"/>
+<reward id="Charm_Anticritical_3" odds="500"/>
+<reward id="Material_Jackpot_Token" odds="200"/>
+<reward id="orb_basic_attack_01" amount="2" odds="100"/>
+<reward id="orb_basic_life_01" amount="2" odds="100"/>
+<reward id="orb_basic_critical_01" amount="2" odds="100"/>
+<reward id="orb_basic_regenerate_01" amount="2" odds="100"/>
+<reward id="orb_basic_retaliate_01" amount="2" odds="100"/>
+<reward id="orb_basic_shield_01" amount="2" odds="100"/>
+<reward id="orb_basic_slash_01" amount="2" odds="100"/>
+<reward id="orb_basic_strengthen_01" amount="2" odds="100"/>
+<reward id="orb_basic_weaken_01" amount="2" odds="100"/>
+<reward id="orb_basic_xp_01" amount="2" odds="100"/>
+<reward id="orb_basic_attack_02" amount="1" odds="80"/>
+<reward id="orb_basic_life_02" amount="1" odds="80"/>
+<reward id="orb_basic_critical_02" amount="1" odds="80"/>
+<reward id="orb_basic_regenerate_02" amount="1" odds="80"/>
+<reward id="orb_basic_retaliate_02" amount="1" odds="80"/>
+<reward id="orb_basic_shield_02" amount="1" odds="80"/>
+<reward id="orb_basic_slash_02" amount="1" odds="80"/>
+<reward id="orb_basic_strengthen_02" amount="1" odds="80"/>
+<reward id="orb_basic_weaken_02" amount="1" odds="80"/>
+<reward id="orb_basic_xp_02" amount="1" odds="80"/>
+<reward id="orb_special_addshield_01" amount="1" odds="10"/>
+<reward id="orb_special_speed_01" amount="1" odds="1"/>
+<reward id="Star_Bronze" amount="4" odds="250"/>
+</Recipe>
+<Recipe id="pot_pourri_06" bonusPer1000="10">
+<ingredient regex="orb_(special|basic)_[abcdefghijklmnopqrstuvwxyz]+_.*|Star_Bronze|Star_Silver|Material_Jackpot_Token|(Material_XP|Material_Muto).*|Material_LP100|Material_LP1000" amount="6"/>
+<reward id="Material_LP1000" amount="5" odds="500"/>
+<reward id="Charm_Xpx3_3" odds="500"/>
+<reward id="Charm_Regenx4_3" odds="500"/>
+<reward id="Charm_Critical_3" odds="500"/>
+<reward id="Charm_Anticritical_3" odds="500"/>
+<reward id="Material_Jackpot_Token" odds="200"/>
+<reward id="orb_basic_attack_01" amount="2" odds="100"/>
+<reward id="orb_basic_life_01" amount="2" odds="100"/>
+<reward id="orb_basic_critical_01" amount="2" odds="100"/>
+<reward id="orb_basic_regenerate_01" amount="2" odds="100"/>
+<reward id="orb_basic_retaliate_01" amount="2" odds="100"/>
+<reward id="orb_basic_shield_01" amount="2" odds="100"/>
+<reward id="orb_basic_slash_01" amount="2" odds="100"/>
+<reward id="orb_basic_strengthen_01" amount="2" odds="100"/>
+<reward id="orb_basic_weaken_01" amount="2" odds="100"/>
+<reward id="orb_basic_xp_01" amount="2" odds="100"/>
+<reward id="orb_basic_attack_02" amount="1" odds="80"/>
+<reward id="orb_basic_life_02" amount="1" odds="80"/>
+<reward id="orb_basic_critical_02" amount="1" odds="80"/>
+<reward id="orb_basic_regenerate_02" amount="1" odds="80"/>
+<reward id="orb_basic_retaliate_02" amount="1" odds="80"/>
+<reward id="orb_basic_shield_02" amount="1" odds="80"/>
+<reward id="orb_basic_slash_02" amount="1" odds="80"/>
+<reward id="orb_basic_strengthen_02" amount="1" odds="80"/>
+<reward id="orb_basic_weaken_02" amount="1" odds="80"/>
+<reward id="orb_basic_xp_02" amount="1" odds="80"/>
+<reward id="orb_special_addshield_01" amount="1" odds="10"/>
+<reward id="orb_special_speed_01" amount="1" odds="1"/>
+<reward id="Star_Bronze" amount="4" odds="120"/>
+<reward id="Star_Silver" amount="1" odds="60"/>
+<reward id="Star_Gold" amount="1" odds="1"/>
+</Recipe>
+<Recipe id="pot_pourri_07" bonusPer1000="10">
+<ingredient regex="orb_(special|basic)_[abcdefghijklmnopqrstuvwxyz]+_.*|Star_Bronze|Star_Silver|Material_Jackpot_Token|(Material_XP|Material_Muto).*|Material_LP100|Material_LP1000" amount="7"/>
+<reward id="Material_LP1000" amount="5" odds="5000"/>
+<reward id="Charm_Xpx3_3" odds="5000"/>
+<reward id="Charm_Regenx4_3" odds="5000"/>
+<reward id="Charm_Critical_3" odds="5000"/>
+<reward id="Charm_Anticritical_3" odds="5000"/>
+<reward id="Material_Jackpot_Token" odds="200"/>
+<reward id="orb_basic_attack_01" amount="2" odds="1000"/>
+<reward id="orb_basic_life_01" amount="2" odds="1000"/>
+<reward id="orb_basic_critical_01" amount="2" odds="1000"/>
+<reward id="orb_basic_regenerate_01" amount="2" odds="1000"/>
+<reward id="orb_basic_retaliate_01" amount="2" odds="1000"/>
+<reward id="orb_basic_shield_01" amount="2" odds="1000"/>
+<reward id="orb_basic_slash_01" amount="2" odds="1000"/>
+<reward id="orb_basic_strengthen_01" amount="2" odds="1000"/>
+<reward id="orb_basic_weaken_01" amount="2" odds="1000"/>
+<reward id="orb_basic_xp_01" amount="2" odds="1000"/>
+<reward id="orb_basic_attack_02" amount="1" odds="800"/>
+<reward id="orb_basic_life_02" amount="1" odds="800"/>
+<reward id="orb_basic_critical_02" amount="1" odds="800"/>
+<reward id="orb_basic_regenerate_02" amount="1" odds="800"/>
+<reward id="orb_basic_retaliate_02" amount="1" odds="800"/>
+<reward id="orb_basic_shield_02" amount="1" odds="800"/>
+<reward id="orb_basic_slash_02" amount="1" odds="800"/>
+<reward id="orb_basic_strengthen_02" amount="1" odds="800"/>
+<reward id="orb_basic_weaken_02" amount="1" odds="800"/>
+<reward id="orb_basic_xp_02" amount="1" odds="800"/>
+<reward id="orb_special_addshield_01" amount="1" odds="100"/>
+<reward id="orb_special_speed_01" amount="1" odds="100"/>
+<reward id="Star_Bronze" amount="4" odds="1200"/>
+<reward id="Star_Silver" amount="1" odds="600"/>
+<reward id="Star_Gold" amount="1" odds="10"/>
+<reward id="Star_Platinum" amount="1" odds="1"/>
+<reward id="orb_basic_attack_03" amount="1" odds="100"/>
+<reward id="orb_basic_life_03" amount="1" odds="100"/>
+<reward id="orb_basic_critical_03" amount="1" odds="100"/>
+<reward id="orb_basic_regenerate_03" amount="1" odds="100"/>
+<reward id="orb_basic_retaliate_03" amount="1" odds="100"/>
+<reward id="orb_basic_shield_03" amount="1" odds="100"/>
+<reward id="orb_basic_slash_03" amount="1" odds="100"/>
+<reward id="orb_basic_strengthen_03" amount="1" odds="100"/>
+<reward id="orb_basic_weaken_03" amount="1" odds="100"/>
+<reward id="orb_basic_xp_03" amount="1" odds="100"/>
+</Recipe>
+<Recipe id="chronoshifted_addshield" bonusPer1000="0">
+<ingredient regex="orb_basic_shield_04" amount="1"/>
+<ingredient regex="orb_special_addshield_03" amount="2"/>
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_LP1000" amount="1"/>
+<ingredient regex="Material_Muto50" amount="1"/>
+<ingredient regex="orb_basic_shield_03" amount="1"/>
+<reward id="orb_special_addshield_04" amount="1" odds="5000"/>
+</Recipe>
+<Recipe id="chronoshifted_addslash" bonusPer1000="0">
+<ingredient regex="orb_basic_slash_04" amount="1"/>
+<ingredient regex="orb_special_addslash_03" amount="1"/>
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_LP1000" amount="1"/>
+<ingredient regex="orb_basic_slash_03" amount="1"/>
+<ingredient regex="orb_basic_slash_02" amount="1"/>
+<ingredient regex="orb_special_addslash_02" amount="1"/>
+<reward id="orb_special_addslash_04" amount="1" odds="5000"/>
+</Recipe>
+<Recipe id="chronoshifted_addregen" bonusPer1000="0">
+<ingredient regex="orb_basic_regenerate_04" amount="1"/>
+<ingredient regex="orb_basic_life_04" amount="1"/>
+<ingredient regex="orb_special_addregenerate_03" amount="1"/>
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_LP1000" amount="1"/>
+<ingredient regex="orb_basic_life_03" amount="1"/>
+<ingredient regex="orb_basic_regenerate_02" amount="1"/>
+<reward id="orb_special_addregenerate_04" amount="1" odds="5000"/>
+</Recipe>
+<Recipe id="chronoshifted_addweaken" bonusPer1000="0">
+<ingredient regex="orb_basic_weaken_04" amount="1"/>
+<ingredient regex="orb_basic_critical_04" amount="1"/>
+<ingredient regex="orb_special_addweaken_03" amount="1"/>
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_LP1000" amount="1"/>
+<ingredient regex="orb_basic_critical_03" amount="1"/>
+<ingredient regex="orb_basic_weaken_02" amount="1"/>
+<reward id="orb_special_addweaken_04" amount="1" odds="5000"/>
+</Recipe>
+<Recipe id="chronoshifted_addstrengthen" bonusPer1000="0">
+<ingredient regex="orb_basic_strengthen_04" amount="1"/>
+<ingredient regex="orb_basic_attack_04" amount="1"/>
+<ingredient regex="orb_special_addstrengthen_03" amount="1"/>
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_Muto50" amount="1"/>
+<ingredient regex="orb_basic_critical_03" amount="1"/>
+<ingredient regex="orb_basic_strengthen_02" amount="1"/>
+<reward id="orb_special_addstrengthen_04" amount="1" odds="5000"/>
+</Recipe>
+<Recipe id="chronoshifted_retaliate" bonusPer1000="0">
+<ingredient regex="orb_basic_retaliate_04" amount="1"/>
+<ingredient regex="orb_basic_life_04" amount="1"/>
+<ingredient regex="orb_special_addretaliate_03" amount="1"/>
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="Material_Muto50" amount="1"/>
+<ingredient regex="orb_basic_attack_03" amount="1"/>
+<ingredient regex="orb_basic_retaliate_02" amount="1"/>
+<reward id="orb_special_addretaliate_04" amount="1" odds="5000"/>
+</Recipe>
+<Recipe id="little_rewards_01" bonusPer1000="10">
+<ingredient regex="Material_Muto50|Material_XP1000" amount="1"/>
+<ingredient regex="orb_(basic|special)_[abcdefghijklmnopqrstuvwxyz]+" amount="1"/>
+<reward id="Material_LP10" amount="4" odds="10"/>
+<reward id="Material_LP100" amount="4" odds="6"/>
+<reward id="Material_LP1000" amount="4" odds="4"/>
+<reward id="Material_Muto1" amount="4" odds="10"/>
+<reward id="Material_Muto10" amount="4" odds="6"/>
+<reward id="Material_Muto50" amount="4" odds="4"/>
+<reward id="Material_XP10" amount="4" odds="10"/>
+<reward id="Material_XP1000" amount="4" odds="6"/>
+<reward id="Material_XP250" amount="4" odds="4"/>
+<reward id="Charm_Xpx3_1" odds="5"/>
+<reward id="Charm_Xpx2_1" odds="5"/>
+<reward id="Charm_Regenx4_1" odds="5"/>
+<reward id="Charm_Regenx2_1" odds="5"/>
+<reward id="Charm_Critical_1" odds="5"/>
+<reward id="Charm_Anticritical_1" odds="1"/>
+<reward id="Star_Bronze" odds="8"/>
+</Recipe>
+<Recipe id="big_rewards_01" bonusPer1000="10">
+<ingredient regex="Material_Gacha_Token" amount="1"/>
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+_01" amount="1"/>
+<ingredient regex="Star_Bronze" amount="1"/>
+<reward id="Star_Silver" amount="3" odds="80"/>
+<reward id="Star_Gold" odds="100"/>
+<reward id="Material_Event_Token" amount="2" odds="55"/>
+<reward id="orb_special_addregenerate_03" odds="3"/>
+<reward id="orb_special_addretaliate_03" odds="3"/>
+<reward id="orb_special_addshield_03" odds="3"/>
+<reward id="orb_special_addslash_03" odds="3"/>
+<reward id="orb_special_addstrengthen_03" odds="3"/>
+<reward id="orb_special_addweaken_03" odds="3"/>
+<reward id="orb_special_speed_03" odds="1"/>
+<reward id="Star_Platinum" odds="8"/>
+</Recipe>
+<Recipe id="big_rewards_02" bonusPer1000="10">
+<ingredient regex="Material_Event_Token" amount="1"/>
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_03" amount="3"/>
+<ingredient regex="Star_Silver" amount="2"/>
+<reward id="Charm_Xpx3_7" odds="7"/>
+<reward id="Charm_Xpx2_7" odds="8"/>
+<reward id="Charm_Regenx4_7" odds="7"/>
+<reward id="Charm_Regenx2_7" odds="8"/>
+<reward id="Charm_Critical_7" odds="7"/>
+<reward id="Charm_Anticritical_7" odds="8"/>
+<reward id="orb_special_addregenerate_02" odds="5"/>
+<reward id="orb_special_addretaliate_02" odds="5"/>
+<reward id="orb_special_addshield_02" odds="5"/>
+<reward id="orb_special_addslash_02" odds="5"/>
+<reward id="orb_special_addstrengthen_02" odds="5"/>
+<reward id="orb_special_addweaken_02" odds="5"/>
+<reward id="orb_special_speed_02" odds="3"/>
+<reward id="Material_Gacha_Token" odds="15"/>
+<reward id="Star_Platinum" odds="7"/>
+</Recipe>

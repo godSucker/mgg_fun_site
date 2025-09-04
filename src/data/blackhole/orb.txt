@@ -1,0 +1,395 @@
+<Recipe id="orb_rankup_basic_xp_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_xp" amount="7"/>
+<reward id="orb_basic_xp_01" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_attack_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_attack" amount="7"/>
+<reward id="orb_basic_attack_01" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_life_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_life" amount="7"/>
+<reward id="orb_basic_life_01" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_critical_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_critical" amount="7"/>
+<reward id="orb_basic_critical_01" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_strengthen_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_strengthen" amount="7"/>
+<reward id="orb_basic_strengthen_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_weaken_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_weaken" amount="7"/>
+<reward id="orb_basic_weaken_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_regenerate_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_regenerate" amount="7"/>
+<reward id="orb_basic_regenerate_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_shield_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_shield" amount="7"/>
+<reward id="orb_basic_shield_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_retaliate_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_retaliate" amount="7"/>
+<reward id="orb_basic_retaliate_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_slash_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_slash" amount="7"/>
+<reward id="orb_basic_slash_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addstrengthen_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addstrengthen" amount="7"/>
+<reward id="orb_special_addstrengthen_01" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addweaken_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addweaken" amount="7"/>
+<reward id="orb_special_addweaken_01" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addregenerate_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addregenerate" amount="7"/>
+<reward id="orb_special_addregenerate_01" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addshield_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addshield" amount="7"/>
+<reward id="orb_special_addshield_01" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addretaliate_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addretaliate" amount="7"/>
+<reward id="orb_special_addretaliate_01" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addslash_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addslash" amount="7"/>
+<reward id="orb_special_addslash_01" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_speed_0" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_speed" amount="7"/>
+<reward id="orb_special_speed_01" odds="2"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_xp_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_xp_01" amount="7"/>
+<reward id="orb_basic_xp_02" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_attack_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_attack_01" amount="7"/>
+<reward id="orb_basic_attack_02" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_life_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_life_01" amount="7"/>
+<reward id="orb_basic_life_02" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_critical_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_critical_01" amount="7"/>
+<reward id="orb_basic_critical_02" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_strengthen_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_strengthen_01" amount="7"/>
+<reward id="orb_basic_strengthen_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_weaken_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_weaken_01" amount="7"/>
+<reward id="orb_basic_weaken_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_regenerate_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_regenerate_01" amount="7"/>
+<reward id="orb_basic_regenerate_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_shield_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_shield_01" amount="7"/>
+<reward id="orb_basic_shield_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_retaliate_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_retaliate_01" amount="7"/>
+<reward id="orb_basic_retaliate_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_slash_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_slash_01" amount="7"/>
+<reward id="orb_basic_slash_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addstrengthen_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addstrengthen_01" amount="7"/>
+<reward id="orb_special_addstrengthen_02" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addweaken_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addweaken_01" amount="7"/>
+<reward id="orb_special_addweaken_02" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addregenerate_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addregenerate_01" amount="7"/>
+<reward id="orb_special_addregenerate_02" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addshield_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addshield_01" amount="7"/>
+<reward id="orb_special_addshield_02" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addretaliate_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addretaliate_01" amount="7"/>
+<reward id="orb_special_addretaliate_02" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addslash_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addslash_01" amount="7"/>
+<reward id="orb_special_addslash_02" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_speed_01" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_speed_01" amount="7"/>
+<reward id="orb_special_speed_02" odds="2"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_xp_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_xp_02" amount="7"/>
+<reward id="orb_basic_xp_03" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_attack_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_attack_02" amount="7"/>
+<reward id="orb_basic_attack_03" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_life_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_life_02" amount="7"/>
+<reward id="orb_basic_life_03" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_critical_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_critical_02" amount="7"/>
+<reward id="orb_basic_critical_03" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_strengthen_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_strengthen_02" amount="7"/>
+<reward id="orb_basic_strengthen_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_weaken_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_weaken_02" amount="7"/>
+<reward id="orb_basic_weaken_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_regenerate_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_regenerate_02" amount="7"/>
+<reward id="orb_basic_regenerate_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_shield_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_shield_02" amount="7"/>
+<reward id="orb_basic_shield_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_retaliate_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_retaliate_02" amount="7"/>
+<reward id="orb_basic_retaliate_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_slash_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_slash_02" amount="7"/>
+<reward id="orb_basic_slash_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addstrengthen_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addstrengthen_02" amount="7"/>
+<reward id="orb_special_addstrengthen_03" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addweaken_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addweaken_02" amount="7"/>
+<reward id="orb_special_addweaken_03" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addregenerate_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addregenerate_02" amount="7"/>
+<reward id="orb_special_addregenerate_03" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addshield_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addshield_02" amount="7"/>
+<reward id="orb_special_addshield_03" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addretaliate_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addretaliate_02" amount="7"/>
+<reward id="orb_special_addretaliate_03" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_addslash_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_addslash_02" amount="7"/>
+<reward id="orb_special_addslash_03" odds="5"/>
+</Recipe>
+<Recipe id="orb_rankup_special_speed_02" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_speed_02" amount="7"/>
+<reward id="orb_special_speed_03" odds="2"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_xp_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_xp_03" amount="7"/>
+<reward id="orb_basic_xp_04" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_attack_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_attack_03" amount="7"/>
+<reward id="orb_basic_attack_04" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_life_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_life_03" amount="7"/>
+<reward id="orb_basic_life_04" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_critical_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_critical_03" amount="7"/>
+<reward id="orb_basic_critical_04" odds="10"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_strengthen_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_strengthen_03" amount="7"/>
+<reward id="orb_basic_strengthen_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_weaken_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_weaken_03" amount="7"/>
+<reward id="orb_basic_weaken_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_regenerate_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_regenerate_03" amount="7"/>
+<reward id="orb_basic_regenerate_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_shield_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_shield_03" amount="7"/>
+<reward id="orb_basic_shield_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_retaliate_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_retaliate_03" amount="7"/>
+<reward id="orb_basic_retaliate_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_rankup_basic_slash_03" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_slash_03" amount="7"/>
+<reward id="orb_basic_slash_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_reroll_basic_1" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_01" amount="3"/>
+<reward id="orb_basic_xp_01" odds="10"/>
+<reward id="orb_basic_attack_01" odds="10"/>
+<reward id="orb_basic_life_01" odds="10"/>
+<reward id="orb_basic_critical_01" odds="10"/>
+<reward id="orb_basic_strengthen_01" odds="7"/>
+<reward id="orb_basic_weaken_01" odds="7"/>
+<reward id="orb_basic_regenerate_01" odds="7"/>
+<reward id="orb_basic_shield_01" odds="7"/>
+<reward id="orb_basic_retaliate_01" odds="7"/>
+<reward id="orb_basic_slash_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_reroll_special_1" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+_01" amount="3"/>
+<reward id="orb_special_addstrengthen_01" odds="5"/>
+<reward id="orb_special_addweaken_01" odds="5"/>
+<reward id="orb_special_addregenerate_01" odds="5"/>
+<reward id="orb_special_addshield_01" odds="5"/>
+<reward id="orb_special_addretaliate_01" odds="5"/>
+<reward id="orb_special_addslash_01" odds="5"/>
+<reward id="orb_special_speed_01" odds="2"/>
+</Recipe>
+<Recipe id="orb_reroll_basic_2" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_02" amount="3"/>
+<reward id="orb_basic_xp_02" odds="10"/>
+<reward id="orb_basic_attack_02" odds="10"/>
+<reward id="orb_basic_life_02" odds="10"/>
+<reward id="orb_basic_critical_02" odds="10"/>
+<reward id="orb_basic_strengthen_02" odds="7"/>
+<reward id="orb_basic_weaken_02" odds="7"/>
+<reward id="orb_basic_regenerate_02" odds="7"/>
+<reward id="orb_basic_shield_02" odds="7"/>
+<reward id="orb_basic_retaliate_02" odds="7"/>
+<reward id="orb_basic_slash_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_reroll_special_2" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+_02" amount="3"/>
+<reward id="orb_special_addstrengthen_02" odds="5"/>
+<reward id="orb_special_addweaken_02" odds="5"/>
+<reward id="orb_special_addregenerate_02" odds="5"/>
+<reward id="orb_special_addshield_02" odds="5"/>
+<reward id="orb_special_addretaliate_02" odds="5"/>
+<reward id="orb_special_addslash_02" odds="5"/>
+<reward id="orb_special_speed_02" odds="2"/>
+</Recipe>
+<Recipe id="orb_reroll_basic_3" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_03" amount="3"/>
+<reward id="orb_basic_xp_03" odds="5"/>
+<reward id="orb_basic_attack_03" odds="10"/>
+<reward id="orb_basic_life_03" odds="10"/>
+<reward id="orb_basic_critical_03" odds="10"/>
+<reward id="orb_basic_strengthen_03" odds="7"/>
+<reward id="orb_basic_weaken_03" odds="7"/>
+<reward id="orb_basic_regenerate_03" odds="7"/>
+<reward id="orb_basic_shield_03" odds="7"/>
+<reward id="orb_basic_retaliate_03" odds="7"/>
+<reward id="orb_basic_slash_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_reroll_special_3" category="orb" bonusPer1000="100">
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+_03" amount="3"/>
+<reward id="orb_special_addstrengthen_03" odds="5"/>
+<reward id="orb_special_addweaken_03" odds="5"/>
+<reward id="orb_special_addregenerate_03" odds="5"/>
+<reward id="orb_special_addshield_03" odds="5"/>
+<reward id="orb_special_addretaliate_03" odds="5"/>
+<reward id="orb_special_addslash_03" odds="5"/>
+<reward id="orb_special_speed_03" odds="2"/>
+</Recipe>
+<Recipe id="orb_basic_1" category="orb" bonusPer1000="100">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+" amount="7"/>
+<reward id="orb_basic_xp_01" odds="5"/>
+<reward id="orb_basic_attack_01" odds="10"/>
+<reward id="orb_basic_life_01" odds="10"/>
+<reward id="orb_basic_critical_01" odds="10"/>
+<reward id="orb_basic_strengthen_01" odds="7"/>
+<reward id="orb_basic_weaken_01" odds="7"/>
+<reward id="orb_basic_regenerate_01" odds="7"/>
+<reward id="orb_basic_shield_01" odds="7"/>
+<reward id="orb_basic_retaliate_01" odds="7"/>
+<reward id="orb_basic_slash_01" odds="7"/>
+</Recipe>
+<Recipe id="orb_basic_2" category="orb" bonusPer1000="200" okHC="80">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_01" amount="7"/>
+<reward id="orb_basic_xp_02" odds="5"/>
+<reward id="orb_basic_attack_02" odds="10"/>
+<reward id="orb_basic_life_02" odds="10"/>
+<reward id="orb_basic_critical_02" odds="10"/>
+<reward id="orb_basic_strengthen_02" odds="7"/>
+<reward id="orb_basic_weaken_02" odds="7"/>
+<reward id="orb_basic_regenerate_02" odds="7"/>
+<reward id="orb_basic_shield_02" odds="7"/>
+<reward id="orb_basic_retaliate_02" odds="7"/>
+<reward id="orb_basic_slash_02" odds="7"/>
+</Recipe>
+<Recipe id="orb_basic_3" category="orb" bonusPer1000="800" okHC="150">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_02" amount="7"/>
+<reward id="orb_basic_xp_03" odds="5"/>
+<reward id="orb_basic_attack_03" odds="10"/>
+<reward id="orb_basic_life_03" odds="10"/>
+<reward id="orb_basic_critical_03" odds="10"/>
+<reward id="orb_basic_strengthen_03" odds="7"/>
+<reward id="orb_basic_weaken_03" odds="7"/>
+<reward id="orb_basic_regenerate_03" odds="7"/>
+<reward id="orb_basic_shield_03" odds="7"/>
+<reward id="orb_basic_retaliate_03" odds="7"/>
+<reward id="orb_basic_slash_03" odds="7"/>
+</Recipe>
+<Recipe id="orb_basic_4" category="orb" bonusPer1000="800" okHC="280">
+<ingredient regex="orb_basic_[abcdefghijklmnopqrstuvwxyz]+_03" amount="7"/>
+<reward id="orb_basic_attack_04" odds="10"/>
+<reward id="orb_basic_life_04" odds="10"/>
+<reward id="orb_basic_xp_04" odds="5"/>
+<reward id="orb_basic_critical_04" odds="10"/>
+<reward id="orb_basic_strengthen_04" odds="7"/>
+<reward id="orb_basic_weaken_04" odds="7"/>
+<reward id="orb_basic_regenerate_04" odds="7"/>
+<reward id="orb_basic_shield_04" odds="7"/>
+<reward id="orb_basic_retaliate_04" odds="7"/>
+<reward id="orb_basic_slash_04" odds="7"/>
+</Recipe>
+<Recipe id="orb_special_1" category="orb" bonusPer1000="200" okHC="80">
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+" amount="7"/>
+<reward id="orb_special_addstrengthen_01" odds="5"/>
+<reward id="orb_special_addweaken_01" odds="5"/>
+<reward id="orb_special_addregenerate_01" odds="5"/>
+<reward id="orb_special_addshield_01" odds="5"/>
+<reward id="orb_special_addretaliate_01" odds="5"/>
+<reward id="orb_special_addslash_01" odds="5"/>
+<reward id="orb_special_speed_01" odds="2"/>
+</Recipe>
+<Recipe id="orb_special_2" category="orb" bonusPer1000="800" okHC="150">
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+_01" amount="7"/>
+<reward id="orb_special_addstrengthen_02" odds="5"/>
+<reward id="orb_special_addweaken_02" odds="5"/>
+<reward id="orb_special_addregenerate_02" odds="5"/>
+<reward id="orb_special_addshield_02" odds="5"/>
+<reward id="orb_special_addretaliate_02" odds="5"/>
+<reward id="orb_special_addslash_02" odds="5"/>
+<reward id="orb_special_speed_02" odds="2"/>
+</Recipe>
+<Recipe id="orb_special_3" category="orb" bonusPer1000="800" okHC="280">
+<ingredient regex="orb_special_[abcdefghijklmnopqrstuvwxyz]+_02" amount="7"/>
+<reward id="orb_special_addstrengthen_03" odds="5"/>
+<reward id="orb_special_addweaken_03" odds="5"/>
+<reward id="orb_special_addregenerate_03" odds="5"/>
+<reward id="orb_special_addshield_03" odds="5"/>
+<reward id="orb_special_addretaliate_03" odds="5"/>
+<reward id="orb_special_addslash_03" odds="5"/>
+<reward id="orb_special_speed_03" odds="2"/>
+</Recipe>

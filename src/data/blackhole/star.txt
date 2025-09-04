@@ -1,0 +1,12 @@
+<Recipe id="star_bronze" category="star" bonusPer1000="100" okHC="200">
+<ingredient regex="Star_Bronze" amount="5"/>
+<reward id="Star_Silver"/>
+</Recipe>
+<Recipe id="star_silver" category="star" bonusPer1000="250" okHC="400">
+<ingredient regex="Star_Silver" amount="5"/>
+<reward id="Star_Gold"/>
+</Recipe>
+<Recipe id="star_gold" category="star" bonusPer1000="300" okHC="700">  -->
+<ingredient regex="Star_Gold" amount="5"/>
+<reward id="Star_Platinum"/>
+</Recipe>
