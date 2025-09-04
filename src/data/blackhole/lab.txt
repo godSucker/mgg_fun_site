@@ -1,0 +1,20 @@
+<Recipe id="muto_1" category="lab">
+<ingredient regex="Material_Muto1" amount="9"/>
+<reward id="Material_Muto10"/>
+</Recipe>
+<Recipe id="muto_10" category="lab">
+<ingredient regex="Material_Muto10" amount="5"/>
+<reward id="Material_Muto50"/>
+</Recipe>
+<Recipe id="xp_10" category="lab">
+<ingredient regex="Material_XP10" amount="23"/>
+<reward id="Material_XP250"/>
+</Recipe>
+<Recipe id="xp_250" category="lab">
+<ingredient regex="Material_XP250" amount="4"/>
+<reward id="Material_XP1000"/>
+</Recipe>
+<Recipe id="medpack_1" category="lab">
+<ingredient regex="Material_LP10" amount="9"/>
+<reward id="Material_LP100"/>
+</Recipe>
