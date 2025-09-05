@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.svelte';
 ---
 <BaseLayout title="Главная | Mutants Fan Site">
+
+    <Header client:load />
+
   <h1 class="text-4xl font-bold mb-4 text-center">Добро пожаловать на фан‑сайт Mutants!</h1>
   <p class="text-center max-w-xl mx-auto">
     Здесь будут интерактивные калькуляторы, база мутантов, симуляторы боёв и чёрной дыры.
