@@ -1,0 +1,335 @@
+[
+    {
+        "id": "Daily_Token",
+        "name": "Магнитный ключ",
+        "description": ""
+    },
+    {
+        "id": "Material_Jackpot_Token",
+        "name": "Жетон джекпота",
+        "description": "Используй этот жетон в «Рулетке мутантов» и попробуй выиграть Супер-Джекпот!"
+    },
+    {
+        "id": "Material_Gacha_Token",
+        "name": "Жетон генератора",
+        "description": "Каждый жетон дает вам возможности выиграть уникального мутанта в Генераторе мутантов."
+    },
+    {
+        "id": "Material_Event_Token",
+        "name": "Жетон испытаний",
+        "description": "Используй этот жетон в Зале испытаний, чтобы выиграть уникальные призы!"
+    },
+    {
+        "id": "Material_7th_Anniversary_Token",
+        "name": "Жетон 7-й годовщины",
+        "description": "Жетон в честь 7-й годовщины игры Mutants: Genetic Gladiators"
+    },
+    {
+        "id": "Material_Plague_Token",
+        "name": "Жетон чумы",
+        "description": "Жетон чумы"
+    },
+    {
+        "id": "Material_Toybox_Token",
+        "name": "Жетон ящика игрушек",
+        "description": "Жетон ящика игрушек"
+    },
+    {
+        "id": "Material_Easter21_Token",
+        "name": "Жетон пасхи (2021)",
+        "description": ""
+    },
+    {
+        "id": "Material_Pyramid_Token",
+        "name": "Жетон пирамиды",
+        "description": "Жетон пирамиды"
+    },
+    {
+        "id": "Material_Stygian_Token",
+        "name": "Стигийский жетон",
+        "description": "Стигийский жетон"
+    },
+    {
+        "id": "Material_Rime_Token",
+        "name": "Жетон инея",
+        "description": "Жетон инея"
+    },
+    {
+        "id": "Material_Valentines22_Token",
+        "name": "Жетон дня Святого Валентина (2022)",
+        "description": ""
+    },
+    {
+        "id": "Material_Easter22_Token",
+        "name": "Жетон пасхи (2022)",
+        "description": ""
+    },
+    {
+        "id": "Material_Data_Token",
+        "name": "Жетон данных",
+        "description": "Жетон данных"
+    },
+    {
+        "id": "Material_Grave_Token",
+        "name": "Могильный жетон",
+        "description": "Могильный жетон"
+    },
+    {
+        "id": "Material_Snowstorm_Token",
+        "name": "Жетон Буря",
+        "description": "Жетон Буря"
+    },
+    {
+        "id": "Material_Cherub_Token",
+        "name": "Жетон Херувим",
+        "description": "Жетон Херувим"
+    },
+    {
+        "id": "Material_Spelunking_Token",
+        "name": "Жетон спелеологии",
+        "description": "Жетон спелеологии"
+    },
+    {
+        "id": "Material_Weirdtech_Token",
+        "name": "Жетон FutureTech",
+        "description": "Жетон спелеологии"
+    },
+    {
+        "id": "Material_Overlay_Token",
+        "name": "Накладной жетон",
+        "description": "Накладной жетон"
+    },
+    {
+        "id": "Material_Trick_Token",
+        "name": "Жетон фокусов",
+        "description": "Жетон фокусов"
+    },
+    {
+        "id": "Material_Capsule_Token",
+        "name": "Жетон капсулы",
+        "description": "Жетон капсулы"
+    },
+    {
+        "id": "Material_Cuteness_Token",
+        "name": "Жетон миловидности",
+        "description": "Жетон миловидности"
+    },
+    {
+        "id": "Material_Moai_Token",
+        "name": "Жетон Моаи",
+        "description": "Жетон Моаи"
+    },
+    {
+        "id": "Material_Conspiracy_Token",
+        "name": "Жетон заговора",
+        "description": "Жетон заговора"
+    },
+    {
+        "id": "Material_Crawling_Token",
+        "name": "Жетон ползучего",
+        "description": "Жетон ползучего"
+    },
+    {
+        "id": "Material_Xmas24_Token",
+        "name": "Закатный жетон",
+        "description": "Закатный жетон"
+    },
+    {
+        "id": "Material_Mystery25_Token",
+        "name": "Таинственный жетон 2025",
+        "description": "Таинственный жетон 2025"
+    },
+    {
+        "id": "Material_Runic_Token",
+        "name": "Рунический жетон",
+        "description": "Рунический жетон"
+    },
+    {
+        "id": "Material_BUN_Token",
+        "name": "Жетон Б.У.Н",
+        "description": "Жетон Б.У.Н"
+    },
+    {
+        "id": "Material_Masks_Token",
+        "name": "Токен «Смута»",
+        "description": "Токен «Смута»"
+    },
+    {
+        "id": "Material_Halloween_Soul",
+        "name": "Потерянная душа",
+        "description": "Душа мутанта. Можно обменять у Торговца душами."
+    },
+    {
+        "id": "Material_Tcg_Corgi_Token",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Winter_Snowball",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Easter_2019_Chocobase",
+        "name": "Chocpbase",
+        "description": "Маленькая шоколадная конфета. Можно использовать, чтобы получить немного опыта, или рафинировать в Черной дыре и получить продвинутый шоколад."
+    },
+    {
+        "id": "Material_Easter_2019_Chocoplus",
+        "name": "Chocoplus",
+        "description": "Продвинутый шоколад. Можно использовать, чтобы получить хорошее количество опыта, или еще больше рафинировать его в Черной дыре."
+    },
+    {
+        "id": "Material_Easter_2019_Chocomax",
+        "name": "Chocomax",
+        "description": "Лучший шоколад. Можно использовать, чтобы получить много опыта, или обменять в Обменном пункте."
+    },
+    {
+        "id": "Material_Preorder_Token_FC_11",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Dark_Matter",
+        "name": "Осколок темной материи",
+        "description": "Стабильный осколок странного черного-фиолетового кристалла. Возможно, они связаны с текущими событиями?"
+    },
+    {
+        "id": "Material_Antimatter",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Banshee_Veil",
+        "name": "Фрагмент вуали",
+        "description": "Кусок призрачной материи."
+    },
+    {
+        "id": "Material_Claiomh_Solais",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Winter_Orange",
+        "name": "Апельсин",
+        "description": "Подарок, который можно получить, выполнив задания Рождественского события."
+    },
+        {
+        "id": "Material_Winter_Coal",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Love_Token",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Material_Mutenstein_Token",
+        "name": "Мутенштейн жетон",
+        "description": "Мутенштейн жетон"
+    },
+    {
+        "id": "Material_Easter_Token",
+        "name": "",
+        "description": ""
+    },
+    {
+        "id": "Star_Bronze",
+        "name": "Бронзовая звезда",
+        "description": "Используйте при скрещивании 2 существ 10-ого уровня и получите бронзового мутанта (на 10% сильнее)."
+    },
+    {
+        "id": "Star_Silver",
+        "name": "Серебряная звезда",
+        "description": "Используйте при скрещивании 2 существ 15-ого уровня и получите серебряного мутанта (на 30% сильнее)."
+    },
+    {
+        "id": "Star_Gold",
+        "name": "Золотая звезда",
+        "description": "Используйте при скрещивании 2 существ 20-ого уровня и получите золотого мутанта (на 75% сильнее)."
+    },
+    {
+        "id": "Star_Platinum",
+        "name": "Платиновая звезда",
+        "description": "Скрести двух одинаковых золотых мутантов уровня 30+ с использованием данной звезды, чтобы получить платинового мутанта (на 100% сильнее). Внимание: мутанты из коллекции «Реактор» не могут быть использованы для слияния."
+    },
+    {
+        "id": "Material_LP10",
+        "name": "Маленькая аптечка",
+        "percent": "1",
+        "description": "Восстанавливает 1% здоровья."
+    },
+    {
+        "id": "Material_LP100",
+        "name": "Аптечка",
+        "percent": "10",
+        "description": "Восстанавливает 10% здоровья."
+    },
+    {
+        "id": "Material_LP1000",
+        "name": "Большая аптечка",
+        "percent": "25",
+        "description": "Восстанавливает 25% здоровья."
+    },
+    {
+        "id": "Material_Muto1",
+        "name": "Малая доза мустерона",
+        "percent": "1",
+        "description": "Существо получает 1% мутостерона."
+    },
+    {
+        "id": "Material_Muto10",
+        "name": "Доза мутостерона",
+        "percent": "10",
+        "description": "Существо получает 10% мутостерона."
+    },
+    {
+        "id": "Material_Muto50",
+        "name": "Большая доза мутостерона",
+        "percent": "50",
+        "description": "Существо получает 50% мутостерона."
+    },
+    {
+        "id": "Material_Energy1",
+        "name": "Пропуск x1",
+        "percent": "2",
+        "description": "1 пропуск."
+    },
+    {
+        "id": "Material_Energy5",
+        "name": "Пропуск x5",
+        "percent": "10",
+        "description": "5 пропусков."
+    },
+    {
+        "id": "Material_Energy25",
+        "name": "Пропуск x25",
+        "percent": "50",
+        "description": "25 пропусков."
+    },
+    {
+        "id": "Material_XP10",
+        "name": "Плитка опыта",
+        "value": "10",
+        "description": "Существо получает 10 очков опыта."
+    },
+    {
+        "id": "Material_XP250",
+        "name": "Баночка опыта",
+        "value": "250",
+        "description": "Существо получает 250 очков опыта."
+    },
+    {
+        "id": "Material_XP1000",
+        "name": "Банка опыта",
+        "value": "1000",
+        "description": "Существо получает 1000 очков опыта."
+    },
+    {
+        "id": "Material_XP10000",
+        "name": "Банка спирта",
+        "value": "10000",
+        "description": "Существо получает 10000 очков опыта."
+    }
+]
