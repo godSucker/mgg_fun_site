@@ -1,0 +1,6180 @@
+{
+  "specimens": [
+    {
+      "id": "Specimen_A_01",
+      "name": "Робот",
+      "genes": [
+        "A"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2546,
+          "atk1": 320,
+          "atk2": 642
+        },
+        "lvl30": {
+          "hp": 9929,
+          "atk1": 1881,
+          "atk2": 3763
+        }
+      },
+      "star": "silver",
+      "skin": "japan",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/A_01_japan.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_a_01_japan.png"
+      ]
+    },
+    {
+      "id": "Specimen_A_05",
+      "name": "Охотник за головами",
+      "genes": [
+        "A"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3363,
+          "atk1": 901,
+          "atk2": 530
+        },
+        "lvl30": {
+          "hp": 13116,
+          "atk1": 5281,
+          "atk2": 3097
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/A_05_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_a_05_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_01",
+      "name": "Андроид",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1395,
+          "atk1": 379,
+          "atk2": 218
+        },
+        "lvl30": {
+          "hp": 5440,
+          "atk1": 2224,
+          "atk2": 1273
+        }
+      },
+      "star": "none",
+      "skin": "girl_power",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_01_girl.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_01_girl.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_02",
+      "name": "Голиаф",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3308,
+          "atk1": 1318,
+          "atk2": 757
+        },
+        "lvl30": {
+          "hp": 12901,
+          "atk1": 7712,
+          "atk2": 4431
+        }
+      },
+      "star": "none",
+      "skin": "army",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_02_camo.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_02_camo.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_03",
+      "name": "H.U.M.A.N.",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2253,
+          "atk1": 740,
+          "atk2": 426
+        },
+        "lvl30": {
+          "hp": 8787,
+          "atk1": 4335,
+          "atk2": 2498
+        }
+      },
+      "star": "silver",
+      "skin": "disco",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_03_music.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_03_music.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_06",
+      "name": "Геркулес",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4741,
+          "atk1": 1521,
+          "atk2": 873
+        },
+        "lvl30": {
+          "hp": 18490,
+          "atk1": 8908,
+          "atk2": 5118
+        }
+      },
+      "star": "platinum",
+      "skin": "western",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_06_western.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_06_western.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_07",
+      "name": "Проект 3V3",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2099,
+          "atk1": 503,
+          "atk2": 286
+        },
+        "lvl30": {
+          "hp": 8186,
+          "atk1": 5119,
+          "atk2": 2939
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_07_wireframe.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_07_wireframe.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_08",
+      "name": "Страж R0B-H4N",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3340,
+          "atk1": 1057,
+          "atk2": 715
+        },
+        "lvl30": {
+          "hp": 13026,
+          "atk1": 8245,
+          "atk2": 4234
+        }
+      },
+      "star": "gold",
+      "skin": "St. Valentine’s Day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_08_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_08_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_09",
+      "name": "О.Х.0.Т.Н.№.К",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3391,
+          "atk1": 792,
+          "atk2": 455
+        },
+        "lvl30": {
+          "hp": 13225,
+          "atk1": 4630,
+          "atk2": 2669
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AA_11",
+      "name": "ТреАД",
+      "genes": [
+        "AA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1988,
+          "atk1": 519,
+          "atk2": 274
+        },
+        "lvl30": {
+          "hp": 7753,
+          "atk1": 2929,
+          "atk2": 2616
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AA_11_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_11_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_AB_01",
+      "name": "Некробот",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1197,
+          "atk1": 307,
+          "atk2": 307
+        },
+        "lvl30": {
+          "hp": 4668,
+          "atk1": 1801,
+          "atk2": 1801
+        }
+      },
+      "star": "bronze",
+      "skin": "steampunk",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AB_01_steampunk.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_01_steampunk.png"
+      ]
+    },
+    {
+      "id": "Specimen_AB_02",
+      "name": "Темновзор",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2874,
+          "atk1": 771,
+          "atk2": 771
+        },
+        "lvl30": {
+          "hp": 11209,
+          "atk1": 4510,
+          "atk2": 4510
+        }
+      },
+      "star": "gold",
+      "skin": "villain",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AB_02_villains.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_02_villains.png"
+      ]
+    },
+    {
+      "id": "Specimen_AB_04",
+      "name": "Офицер Эндер",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2215,
+          "atk1": 813,
+          "atk2": 813
+        },
+        "lvl30": {
+          "hp": 8638,
+          "atk1": 4759,
+          "atk2": 4759
+        }
+      },
+      "star": "silver",
+      "skin": "timecop",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AB_04_soldiers.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_04_soldiers.png"
+      ]
+    },
+    {
+      "id": "Specimen_AB_05",
+      "name": "Неоурбан XIII",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1716,
+          "atk1": 725,
+          "atk2": 725
+        },
+        "lvl30": {
+          "hp": 6692,
+          "atk1": 7013,
+          "atk2": 7013
+        }
+      },
+      "star": "none",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AB_05_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_05_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_AB_06",
+      "name": "Друзелла",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2488,
+          "atk1": 462,
+          "atk2": 462
+        },
+        "lvl30": {
+          "hp": 9703,
+          "atk1": 3651,
+          "atk2": 3651
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AB_06_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_06_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AB_07",
+      "name": "Крушила",
+      "genes": [
+        "AB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3531,
+          "atk1": 881,
+          "atk2": 881
+        },
+        "lvl30": {
+          "hp": 13771,
+          "atk1": 5166,
+          "atk2": 5166
+        }
+      },
+      "star": "none",
+      "skin": "tropical summer",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AB_07_beach.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_07_beach.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_01",
+      "name": "Ниндзябот",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1717,
+          "atk1": 387,
+          "atk2": 387
+        },
+        "lvl30": {
+          "hp": 6696,
+          "atk1": 2266,
+          "atk2": 2266
+        }
+      },
+      "star": "bronze",
+      "skin": "Gods_of_Olympus",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_01_olympians.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_01_olympians.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_02",
+      "name": "Капитан Гаечный Ключ",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3864,
+          "atk1": 912,
+          "atk2": 912
+        },
+        "lvl30": {
+          "hp": 15070,
+          "atk1": 6086,
+          "atk2": 6086
+        }
+      },
+      "star": "gold",
+      "skin": "steampunk",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_02_steampunk.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_02_steampunk.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_03",
+      "name": "Дезингер",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4548,
+          "atk1": 1531,
+          "atk2": 1531
+        },
+        "lvl30": {
+          "hp": 17737,
+          "atk1": 8785,
+          "atk2": 8785
+        }
+      },
+      "star": "platinum",
+      "skin": "fantasy",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_03_fantasy.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_03_fantasy.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_05",
+      "name": "Киберпанк",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2315,
+          "atk1": 459,
+          "atk2": 459
+        },
+        "lvl30": {
+          "hp": 9028,
+          "atk1": 2685,
+          "atk2": 2685
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_05_wireframe.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_05_wireframe.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_08",
+      "name": "Шнайдер",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2143,
+          "atk1": 509,
+          "atk2": 509
+        },
+        "lvl30": {
+          "hp": 8358,
+          "atk1": 2981,
+          "atk2": 2981
+        }
+      },
+      "star": "gold",
+      "skin": "royal",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_08_kings.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_08_kings.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_09",
+      "name": "Оптимус Зорд",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2993,
+          "atk1": 569,
+          "atk2": 569
+        },
+        "lvl30": {
+          "hp": 11673,
+          "atk1": 4059,
+          "atk2": 4059
+        }
+      },
+      "star": "gold",
+      "skin": "french_revolution",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_09_revolution.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_09_revolution.png"
+      ]
+    },
+    {
+      "id": "Specimen_AC_11",
+      "name": "Яростный волчок",
+      "genes": [
+        "AC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1496,
+          "atk1": 661,
+          "atk2": 661
+        },
+        "lvl30": {
+          "hp": 5834,
+          "atk1": 3983,
+          "atk2": 3983
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AC_11_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_11_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AD_01",
+      "name": "Жукобот",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3400,
+          "atk1": 1034,
+          "atk2": 1034
+        },
+        "lvl30": {
+          "hp": 13260,
+          "atk1": 6058,
+          "atk2": 6058
+        }
+      },
+      "star": "gold",
+      "skin": "steampunk",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AD_01_steampunk.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_01_steampunk.png"
+      ]
+    },
+    {
+      "id": "Specimen_AD_02",
+      "name": "Механорог",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2759,
+          "atk1": 735,
+          "atk2": 735
+        },
+        "lvl30": {
+          "hp": 10760,
+          "atk1": 4307,
+          "atk2": 4307
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AD_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_AD_05",
+      "name": "Киберкрок",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3187,
+          "atk1": 1051,
+          "atk2": 1051
+        },
+        "lvl30": {
+          "hp": 12429,
+          "atk1": 6163,
+          "atk2": 6163
+        }
+      },
+      "star": "gold",
+      "skin": "timecop",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AD_05_soldiers.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_05_soldiers.png"
+      ]
+    },
+    {
+      "id": "Specimen_AD_06",
+      "name": "Биоеж",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3771,
+          "atk1": 1532,
+          "atk2": 1532
+        },
+        "lvl30": {
+          "hp": 14707,
+          "atk1": 8917,
+          "atk2": 8917
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AD_06_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_06_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_AD_08",
+      "name": "Котик-рейнджер",
+      "genes": [
+        "AD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2828,
+          "atk1": 549,
+          "atk2": 549
+        },
+        "lvl30": {
+          "hp": 11029,
+          "atk1": 3218,
+          "atk2": 3218
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AD_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AE_01",
+      "name": "Колосс",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1987,
+          "atk1": 490,
+          "atk2": 490
+        },
+        "lvl30": {
+          "hp": 7749,
+          "atk1": 2872,
+          "atk2": 2872
+        }
+      },
+      "star": "bronze",
+      "skin": "hero",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AE_01_heroes.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_01_heroes.png"
+      ]
+    },
+    {
+      "id": "Specimen_AE_03",
+      "name": "Инвадрон",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3304,
+          "atk1": 1172,
+          "atk2": 1172
+        },
+        "lvl30": {
+          "hp": 12886,
+          "atk1": 6863,
+          "atk2": 6863
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AE_03_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_03_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AE_07",
+      "name": "Элфи",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3013,
+          "atk1": 1377,
+          "atk2": 1377
+        },
+        "lvl30": {
+          "hp": 11751,
+          "atk1": 8073,
+          "atk2": 8073
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AE_07_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_07_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AE_08",
+      "name": "Андромеда",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1863,
+          "atk1": 537,
+          "atk2": 537
+        },
+        "lvl30": {
+          "hp": 7266,
+          "atk1": 3145,
+          "atk2": 3145
+        }
+      },
+      "star": "gold",
+      "skin": "oktoberfest",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AE_08_oktoberfest.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_08_oktoberfest.png"
+      ]
+    },
+    {
+      "id": "Specimen_AE_11",
+      "name": "Микс0-Лог",
+      "genes": [
+        "AE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3801,
+          "atk1": 1286,
+          "atk2": 1286
+        },
+        "lvl30": {
+          "hp": 14824,
+          "atk1": 10099,
+          "atk2": 5015
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AE_11_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_11_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_01",
+      "name": "Бог Машин",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2650,
+          "atk1": 809,
+          "atk2": 809
+        },
+        "lvl30": {
+          "hp": 10335,
+          "atk1": 4733,
+          "atk2": 4733
+        }
+      },
+      "star": "platinum",
+      "skin": "photosynthesis",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_01_vegetal.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_01_vegetal.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_03",
+      "name": "Бородыш",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3440,
+          "atk1": 1361,
+          "atk2": 1361
+        },
+        "lvl30": {
+          "hp": 13416,
+          "atk1": 7962,
+          "atk2": 7962
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_03_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_03_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_04",
+      "name": "Стремглав",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1986,
+          "atk1": 160,
+          "atk2": 160
+        },
+        "lvl30": {
+          "hp": 7745,
+          "atk1": 1021,
+          "atk2": 1021
+        }
+      },
+      "star": "bronze",
+      "skin": "star_wars",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_04_starwars.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_04_starwars.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_06",
+      "name": "Репликация Евы",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1843,
+          "atk1": 570,
+          "atk2": 570
+        },
+        "lvl30": {
+          "hp": 7188,
+          "atk1": 3332,
+          "atk2": 3332
+        }
+      },
+      "star": "none",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_06_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_06_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_07",
+      "name": "Бунда",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3071,
+          "atk1": 1442,
+          "atk2": 1442
+        },
+        "lvl30": {
+          "hp": 11977,
+          "atk1": 8443,
+          "atk2": 8443
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_07_opalescent.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_07_opalescent.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_08",
+      "name": "ГYд1/-/1",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2793,
+          "atk1": 773,
+          "atk2": 773
+        },
+        "lvl30": {
+          "hp": 10893,
+          "atk1": 4522,
+          "atk2": 4522
+        }
+      },
+      "star": "gold",
+      "skin": "tropical_summer",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_08_beach.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_08_beach.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_09",
+      "name": "Паровой громила",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3876,
+          "atk1": 955,
+          "atk2": 955
+        },
+        "lvl30": {
+          "hp": 15116,
+          "atk1": 5498,
+          "atk2": 5498
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_10",
+      "name": "Эль Токсино",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1733,
+          "atk1": 399,
+          "atk2": 399
+        },
+        "lvl30": {
+          "hp": 6759,
+          "atk1": 2426,
+          "atk2": 2426
+        }
+      },
+      "star": "none",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_10_purgatory.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_10_purgatory.png"
+      ]
+    },
+    {
+      "id": "Specimen_AF_99",
+      "name": "A027441",
+      "genes": [
+        "AF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4375,
+          "atk1": 1365,
+          "atk2": 1365
+        },
+        "lvl30": {
+          "hp": 17062,
+          "atk1": 7985,
+          "atk2": 7985
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/AF_99_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_99_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_B_01",
+      "name": "Зомби",
+      "genes": [
+        "B"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1710,
+          "atk1": 473,
+          "atk2": 473
+        },
+        "lvl30": {
+          "hp": 6669,
+          "atk1": 2764,
+          "atk2": 2764
+        }
+      },
+      "star": "silver",
+      "skin": "villain",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/B_01_villains.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_b_01_villains.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_01",
+      "name": "Зомборг",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3230,
+          "atk1": 768,
+          "atk2": 768
+        },
+        "lvl30": {
+          "hp": 12597,
+          "atk1": 4496,
+          "atk2": 4496
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_01_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_01_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_02",
+      "name": "Страхолюдочка",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2869,
+          "atk1": 454,
+          "atk2": 454
+        },
+        "lvl30": {
+          "hp": 11189,
+          "atk1": 2806,
+          "atk2": 2806
+        }
+      },
+      "star": "gold",
+      "skin": "japan",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_02_japan.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_02_japan.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_03",
+      "name": "Тачдаун",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3666,
+          "atk1": 1006,
+          "atk2": 1006
+        },
+        "lvl30": {
+          "hp": 14297,
+          "atk1": 5894,
+          "atk2": 5894
+        }
+      },
+      "star": "gold",
+      "skin": "villain",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_03_villains.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_03_villains.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_05",
+      "name": "Доктор Блоу",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3209,
+          "atk1": 948,
+          "atk2": 948
+        },
+        "lvl30": {
+          "hp": 12515,
+          "atk1": 5546,
+          "atk2": 5546
+        }
+      },
+      "star": "gold",
+      "skin": "summer_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_05_summer.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_05_summer.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_07",
+      "name": "Бабайка",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3573,
+          "atk1": 654,
+          "atk2": 654
+        },
+        "lvl30": {
+          "hp": 13935,
+          "atk1": 4515,
+          "atk2": 4515
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_07_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_07_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_08",
+      "name": "Нараксис",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3234,
+          "atk1": 586,
+          "atk2": 586
+        },
+        "lvl30": {
+          "hp": 12613,
+          "atk1": 3704,
+          "atk2": 3704
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_08_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_08_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_09",
+      "name": "Экскавалипсис",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4046,
+          "atk1": 1424,
+          "atk2": 1424
+        },
+        "lvl30": {
+          "hp": 15779,
+          "atk1": 8330,
+          "atk2": 8330
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BA_10",
+      "name": "Адский Дровосек",
+      "genes": [
+        "BA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4653,
+          "atk1": 1216,
+          "atk2": 1216
+        },
+        "lvl30": {
+          "hp": 18147,
+          "atk1": 7114,
+          "atk2": 7114
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BA_10_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_10_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_01",
+      "name": "Король Лич",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3011,
+          "atk1": 712,
+          "atk2": 408
+        },
+        "lvl30": {
+          "hp": 11743,
+          "atk1": 4167,
+          "atk2": 2394
+        }
+      },
+      "star": "silver",
+      "skin": "hero",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_01_heroes.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_01_heroes.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_02",
+      "name": "Костеглод",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2900,
+          "atk1": 652,
+          "atk2": 375
+        },
+        "lvl30": {
+          "hp": 11310,
+          "atk1": 3818,
+          "atk2": 2182
+        }
+      },
+      "star": "gold",
+      "skin": "photosynthesis",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_02_vegetal.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_02_vegetal.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_03",
+      "name": "Проклятый гонщик",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3432,
+          "atk1": 438,
+          "atk2": 256
+        },
+        "lvl30": {
+          "hp": 13385,
+          "atk1": 2390,
+          "atk2": 1486
+        }
+      },
+      "star": "gold",
+      "skin": "Gods_of_Olympus",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_03_olympians.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_03_olympians.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_04",
+      "name": "Бабайка",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2691,
+          "atk1": 446,
+          "atk2": 255
+        },
+        "lvl30": {
+          "hp": 10495,
+          "atk1": 2619,
+          "atk2": 1499
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_04_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_04_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_05",
+      "name": "Пожиратель душ",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3990,
+          "atk1": 1522,
+          "atk2": 876
+        },
+        "lvl30": {
+          "hp": 15561,
+          "atk1": 8900,
+          "atk2": 5117
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_05_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_05_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_07",
+      "name": "Некропаразит",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3883,
+          "atk1": 539,
+          "atk2": 306
+        },
+        "lvl30": {
+          "hp": 15144,
+          "atk1": 3146,
+          "atk2": 1807
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_07",
+      "name": "Некропаразит",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4105,
+          "atk1": 485,
+          "atk2": 275
+        },
+        "lvl30": {
+          "hp": 16010,
+          "atk1": 2831,
+          "atk2": 1624
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_08",
+      "name": "Чумная Ведьма",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2157,
+          "atk1": 556,
+          "atk2": 326
+        },
+        "lvl30": {
+          "hp": 8412,
+          "atk1": 4432,
+          "atk2": 2699
+        }
+      },
+      "star": "silver",
+      "skin": "tropical_summer",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_08_beach.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_08_beach.png"
+      ]
+    },
+    {
+      "id": "Specimen_BB_09",
+      "name": "Франкенхуахуа",
+      "genes": [
+        "BB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2749,
+          "atk1": 602,
+          "atk2": 259
+        },
+        "lvl30": {
+          "hp": 10721,
+          "atk1": 3515,
+          "atk2": 2020
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BB_09_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_09_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_01",
+      "name": "Темный Лорд",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3550,
+          "atk1": 880,
+          "atk2": 880
+        },
+        "lvl30": {
+          "hp": 13845,
+          "atk1": 5157,
+          "atk2": 5157
+        }
+      },
+      "star": "gold",
+      "skin": "star_wars",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_01_starwars.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_01_starwars.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_02",
+      "name": "Капитан Костьмилягу",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1621,
+          "atk1": 496,
+          "atk2": 496
+        },
+        "lvl30": {
+          "hp": 6322,
+          "atk1": 2899,
+          "atk2": 2899
+        }
+      },
+      "star": "silver",
+      "skin": "Gods_of_Olympus",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_02_olympians.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_02_olympians.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_04",
+      "name": "Джордж Вашингтон",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3533,
+          "atk1": 1412,
+          "atk2": 1412
+        },
+        "lvl30": {
+          "hp": 13779,
+          "atk1": 8264,
+          "atk2": 8264
+        }
+      },
+      "star": "none",
+      "skin": "timecop",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_04_soldiers.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_04_soldiers.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_06",
+      "name": "Зомбофрант",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3112,
+          "atk1": 997,
+          "atk2": 997
+        },
+        "lvl30": {
+          "hp": 12137,
+          "atk1": 5836,
+          "atk2": 5836
+        }
+      },
+      "star": "gold",
+      "skin": "saint_patrick_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_06_patrick.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_06_patrick.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_07",
+      "name": "Болотник",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3066,
+          "atk1": 1214,
+          "atk2": 1214
+        },
+        "lvl30": {
+          "hp": 11957,
+          "atk1": 6911,
+          "atk2": 6911
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_07_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_07_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_08",
+      "name": "Транн",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2593,
+          "atk1": 943,
+          "atk2": 943
+        },
+        "lvl30": {
+          "hp": 10113,
+          "atk1": 6564,
+          "atk2": 6564
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_09",
+      "name": "Сборщик",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3741,
+          "atk1": 1181,
+          "atk2": 1181
+        },
+        "lvl30": {
+          "hp": 14590,
+          "atk1": 6905,
+          "atk2": 6905
+        }
+      },
+      "star": "gold",
+      "skin": "oktoberfest",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_09_oktoberfest.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_09_oktoberfest.png"
+      ]
+    },
+    {
+      "id": "Specimen_BC_11",
+      "name": "Клык Ярости",
+      "genes": [
+        "BC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3952,
+          "atk1": 381,
+          "atk2": 381
+        },
+        "lvl30": {
+          "hp": 15413,
+          "atk1": 2229,
+          "atk2": 2229
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BC_11_masks.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_11_masks.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_03",
+      "name": "Жуткий мишка",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2476,
+          "atk1": 631,
+          "atk2": 631
+        },
+        "lvl30": {
+          "hp": 9656,
+          "atk1": 3706,
+          "atk2": 3706
+        }
+      },
+      "star": "gold",
+      "skin": "film",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_03_movies.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_03_movies.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_04",
+      "name": "Леди Гарпия",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1904,
+          "atk1": 435,
+          "atk2": 435
+        },
+        "lvl30": {
+          "hp": 7426,
+          "atk1": 2552,
+          "atk2": 2552
+        }
+      },
+      "star": "gold",
+      "skin": "elementals_team",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_04_elements.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_04_elements.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_05",
+      "name": "Бульдозер",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3420,
+          "atk1": 1135,
+          "atk2": 1135
+        },
+        "lvl30": {
+          "hp": 13338,
+          "atk1": 6640,
+          "atk2": 6640
+        }
+      },
+      "star": "platinum",
+      "skin": "fantasy",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_05_fantasy.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_05_fantasy.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_06",
+      "name": "Мор'Гул",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3250,
+          "atk1": 786,
+          "atk2": 786
+        },
+        "lvl30": {
+          "hp": 12675,
+          "atk1": 4612,
+          "atk2": 4612
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_06_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_06_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_08",
+      "name": "Крошка и Майнд",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2899,
+          "atk1": 824,
+          "atk2": 824
+        },
+        "lvl30": {
+          "hp": 11306,
+          "atk1": 4824,
+          "atk2": 4824
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_09",
+      "name": "Гиена огненная",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2623,
+          "atk1": 493,
+          "atk2": 493
+        },
+        "lvl30": {
+          "hp": 10230,
+          "atk1": 3089,
+          "atk2": 3089
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BD_10",
+      "name": "Гнильена",
+      "genes": [
+        "BD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3888,
+          "atk1": 1410,
+          "atk2": 1410
+        },
+        "lvl30": {
+          "hp": 15163,
+          "atk1": 8255,
+          "atk2": 8255
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BD_10_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_10_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BE_03",
+      "name": "Огромнус",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3069,
+          "atk1": 893,
+          "atk2": 893
+        },
+        "lvl30": {
+          "hp": 11969,
+          "atk1": 5228,
+          "atk2": 5228
+        }
+      },
+      "star": "gold",
+      "skin": "summer_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BE_03_summer.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_03_summer.png"
+      ]
+    },
+    {
+      "id": "Specimen_BE_05",
+      "name": "Ньярлатот",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3439,
+          "atk1": 924,
+          "atk2": 924
+        },
+        "lvl30": {
+          "hp": 13412,
+          "atk1": 5414,
+          "atk2": 5414
+        }
+      },
+      "star": "platinum",
+      "skin": "muchachos",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BE_05_lucha.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_05_lucha.png"
+      ]
+    },
+    {
+      "id": "Specimen_BE_08",
+      "name": "Даг Дарио",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3182,
+          "atk1": 962,
+          "atk2": 962
+        },
+        "lvl30": {
+          "hp": 12410,
+          "atk1": 5635,
+          "atk2": 5635
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BE_08_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_08_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_BE_09",
+      "name": "Пиротроп",
+      "genes": [
+        "BE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3174,
+          "atk1": 1018,
+          "atk2": 1018
+        },
+        "lvl30": {
+          "hp": 12379,
+          "atk1": 6477,
+          "atk2": 6477
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BE_09_masks.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_09_masks.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_01",
+      "name": "Барон Лэнди",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1925,
+          "atk1": 377,
+          "atk2": 377
+        },
+        "lvl30": {
+          "hp": 7508,
+          "atk1": 2207,
+          "atk2": 2207
+        }
+      },
+      "star": "none",
+      "skin": "gothic",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_01_gothic.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_01_gothic.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_02",
+      "name": "Черноличник",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1899,
+          "atk1": 242,
+          "atk2": 242
+        },
+        "lvl30": {
+          "hp": 7406,
+          "atk1": 1420,
+          "atk2": 1420
+        }
+      },
+      "star": "none",
+      "skin": "steampunk",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_02_steampunk.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_02_steampunk.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_05",
+      "name": "Британи",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3455,
+          "atk1": 1003,
+          "atk2": 1003
+        },
+        "lvl30": {
+          "hp": 13474,
+          "atk1": 5864,
+          "atk2": 5864
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_05",
+      "name": "Британи",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3904,
+          "atk1": 1170,
+          "atk2": 1170
+        },
+        "lvl30": {
+          "hp": 15226,
+          "atk1": 6841,
+          "atk2": 6841
+        }
+      },
+      "star": "platinum",
+      "skin": "britani_buranka",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.png",
+        "textures_by_skins/textures_by_skin/full-char/BF_05_confrontation.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_confrontation.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_06",
+      "name": "Фараон из Мимфиса",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2352,
+          "atk1": 596,
+          "atk2": 596
+        },
+        "lvl30": {
+          "hp": 9173,
+          "atk1": 3491,
+          "atk2": 3491
+        }
+      },
+      "star": "silver",
+      "skin": "disco",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_06_music.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_06_music.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_07",
+      "name": "Грибень",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2954,
+          "atk1": 1056,
+          "atk2": 1056
+        },
+        "lvl30": {
+          "hp": 11521,
+          "atk1": 6840,
+          "atk2": 6840
+        }
+      },
+      "star": "gold",
+      "skin": "school_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_07_school.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_07_school.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_08",
+      "name": "Ван Хельсинг",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3252,
+          "atk1": 953,
+          "atk2": 953
+        },
+        "lvl30": {
+          "hp": 12683,
+          "atk1": 5801,
+          "atk2": 5801
+        }
+      },
+      "star": "gold",
+      "skin": "independence_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_08_jefferson.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_08_jefferson.png"
+      ]
+    },
+    {
+      "id": "Specimen_BF_12",
+      "name": "Оскверненный священник",
+      "genes": [
+        "BF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 5400,
+          "atk1": 1102,
+          "atk2": 615
+        },
+        "lvl30": {
+          "hp": 21060,
+          "atk1": 6444,
+          "atk2": 3617
+        }
+      },
+      "star": "gold",
+      "skin": "saint_patrick_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/BF_12_patrick.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_12_patrick.png"
+      ]
+    },
+    {
+      "id": "Specimen_C_01",
+      "name": "Воин",
+      "genes": [
+        "C"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1819,
+          "atk1": 543,
+          "atk2": 543
+        },
+        "lvl30": {
+          "hp": 7094,
+          "atk1": 3182,
+          "atk2": 3182
+        }
+      },
+      "star": "silver",
+      "skin": "steampunk",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/C_01_steampunk.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_c_01_steampunk.png"
+      ]
+    },
+    {
+      "id": "Specimen_CA_01",
+      "name": "Амбал",
+      "genes": [
+        "C"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2898,
+          "atk1": 763,
+          "atk2": 763
+        },
+        "lvl30": {
+          "hp": 11302,
+          "atk1": 4467,
+          "atk2": 4467
+        }
+      },
+      "star": "gold",
+      "skin": "hero",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CA_01_heroes.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_01_heroes.png"
+      ]
+    },
+    {
+      "id": "Specimen_CA_02",
+      "name": "Перехватчица",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2140,
+          "atk1": 616,
+          "atk2": 616
+        },
+        "lvl30": {
+          "hp": 8346,
+          "atk1": 3599,
+          "atk2": 3599
+        }
+      },
+      "star": "platinum",
+      "skin": "blood_sport",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CA_02_olympics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_02_olympics.png"
+      ]
+    },
+    {
+      "id": "Specimen_CA_05",
+      "name": "Челленджер",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2140,
+          "atk1": 567,
+          "atk2": 567
+        },
+        "lvl30": {
+          "hp": 8346,
+          "atk1": 3328,
+          "atk2": 3328
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CA_05_worker.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_05_worker.png"
+      ]
+    },
+    {
+      "id": "Specimen_CA_06",
+      "name": "РАЗ-РУ-Бот",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3829,
+          "atk1": 1212,
+          "atk2": 1212
+        },
+        "lvl30": {
+          "hp": 14933,
+          "atk1": 8823,
+          "atk2": 8823
+        }
+      },
+      "star": "gold",
+      "skin": "photosynthesis",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CA_06_vegetal.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_06_vegetal.png"
+      ]
+    },
+    {
+      "id": "Specimen_CA_07",
+      "name": "Рокки Болтбоа",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2795,
+          "atk1": 1094,
+          "atk2": 1094
+        },
+        "lvl30": {
+          "hp": 10900,
+          "atk1": 6412,
+          "atk2": 6412
+        }
+      },
+      "star": "silver",
+      "skin": "blood_sport",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CA_07_olympics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_07_olympics.png"
+      ]
+    },
+    {
+      "id": "Specimen_CA_08",
+      "name": "Макино",
+      "genes": [
+        "CA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1722,
+          "atk1": 382,
+          "atk2": 382
+        },
+        "lvl30": {
+          "hp": 6716,
+          "atk1": 4819,
+          "atk2": 4819
+        }
+      },
+      "star": "gold",
+      "skin": "blood_sport",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CA_08_olympics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_08_olympics.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_01",
+      "name": "Королева Банши",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1152,
+          "atk1": 328,
+          "atk2": 328
+        },
+        "lvl30": {
+          "hp": 4493,
+          "atk1": 1925,
+          "atk2": 1925
+        }
+      },
+      "star": "none",
+      "skin": "girl_power",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_01_girl.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_01_girl.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_02",
+      "name": "Буши",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3274,
+          "atk1": 850,
+          "atk2": 850
+        },
+        "lvl30": {
+          "hp": 12769,
+          "atk1": 4979,
+          "atk2": 4979
+        }
+      },
+      "star": "gold",
+      "skin": "japan",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_02_japan.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_02_japan.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_03",
+      "name": "Рагнар",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2602,
+          "atk1": 875,
+          "atk2": 875
+        },
+        "lvl30": {
+          "hp": 10148,
+          "atk1": 5122,
+          "atk2": 5122
+        }
+      },
+      "star": "gold",
+      "skin": "film",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_03_movies.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_03_movies.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_04",
+      "name": "Леонид",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3109,
+          "atk1": 903,
+          "atk2": 903
+        },
+        "lvl30": {
+          "hp": 12125,
+          "atk1": 5283,
+          "atk2": 5283
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_04_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_04_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_08",
+      "name": "Щратх",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2589,
+          "atk1": 1749,
+          "atk2": 1749
+        },
+        "lvl30": {
+          "hp": 10097,
+          "atk1": 10232,
+          "atk2": 10232
+        }
+      },
+      "star": "gold",
+      "skin": "autumn_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_08_autumn.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_08_autumn.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_09",
+      "name": "Пилатесса",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3630,
+          "atk1": 1166,
+          "atk2": 1166
+        },
+        "lvl30": {
+          "hp": 14157,
+          "atk1": 6825,
+          "atk2": 6825
+        }
+      },
+      "star": "gold",
+      "skin": "1_april",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_09_aprilfools.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_09_aprilfools.png"
+      ]
+    },
+    {
+      "id": "Specimen_CB_10",
+      "name": "Франкендворф",
+      "genes": [
+        "CB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3904,
+          "atk1": 1197,
+          "atk2": 1197
+        },
+        "lvl30": {
+          "hp": 15226,
+          "atk1": 7002,
+          "atk2": 7002
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CB_10_thanksgiving.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_10_thanksgiving.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_01",
+      "name": "Кошмарыцарь Севера",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2211,
+          "atk1": 509,
+          "atk2": 293
+        },
+        "lvl30": {
+          "hp": 8623,
+          "atk1": 2983,
+          "atk2": 1714
+        }
+      },
+      "star": "bronze",
+      "skin": "japan",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_01_japan.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_01_japan.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_02",
+      "name": "Бак Морис",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4818,
+          "atk1": 1917,
+          "atk2": 1141
+        },
+        "lvl30": {
+          "hp": 18790,
+          "atk1": 11320,
+          "atk2": 6671
+        }
+      },
+      "star": "gold",
+      "skin": "film",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_02_movies.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_02_movies.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_03",
+      "name": "Зена",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1015,
+          "atk1": 503,
+          "atk2": 253
+        },
+        "lvl30": {
+          "hp": 3958,
+          "atk1": 2792,
+          "atk2": 1951
+        }
+      },
+      "star": "silver",
+      "skin": "star_wars",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_03_starwars.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_03_starwars.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_04",
+      "name": "Лара",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2565,
+          "atk1": 478,
+          "atk2": 276
+        },
+        "lvl30": {
+          "hp": 10004,
+          "atk1": 2803,
+          "atk2": 1608
+        }
+      },
+      "star": "none",
+      "skin": "Gods_of_Olympus",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_04_olympians.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_04_olympians.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_08",
+      "name": "Йокодзуна",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2789,
+          "atk1": 575,
+          "atk2": 330
+        },
+        "lvl30": {
+          "hp": 10877,
+          "atk1": 3360,
+          "atk2": 1913
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_08_labor.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_08_labor.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_09",
+      "name": "Ланселот",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2887,
+          "atk1": 1669,
+          "atk2": 626
+        },
+        "lvl30": {
+          "hp": 11259,
+          "atk1": 9764,
+          "atk2": 4876
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_09_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_09_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_CC_10",
+      "name": "Урган",
+      "genes": [
+        "CC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4210,
+          "atk1": 1970,
+          "atk2": 995
+        },
+        "lvl30": {
+          "hp": 16419,
+          "atk1": 10910,
+          "atk2": 5817
+        }
+      },
+      "star": "gold",
+      "skin": "royal",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CC_10_kings.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_10_kings.png"
+      ]
+    },
+    {
+      "id": "Specimen_CD_01",
+      "name": "Ниндзяйка",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 976,
+          "atk1": 199,
+          "atk2": 199
+        },
+        "lvl30": {
+          "hp": 3806,
+          "atk1": 1162,
+          "atk2": 1162
+        }
+      },
+      "star": "none",
+      "skin": "girl_power",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CD_01_girl.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_01_girl.png"
+      ]
+    },
+    {
+      "id": "Specimen_CD_01_gold",
+      "name": "Ниндзяйка",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1790,
+          "atk1": 348,
+          "atk2": 348
+        },
+        "lvl30": {
+          "hp": 6981,
+          "atk1": 1357,
+          "atk2": 1357
+        }
+      },
+      "star": "gold",
+      "skin": "star_wars",
+      "image": []
+    },
+    {
+      "id": "Specimen_CD_03",
+      "name": "Топтыгин",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3255,
+          "atk1": 1121,
+          "atk2": 1121
+        },
+        "lvl30": {
+          "hp": 12694,
+          "atk1": 6554,
+          "atk2": 6554
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CD_03_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_03_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_CD_06",
+      "name": "Сэр Мопсингтон",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 5449,
+          "atk1": 1537,
+          "atk2": 1537
+        },
+        "lvl30": {
+          "hp": 21251,
+          "atk1": 8996,
+          "atk2": 8996
+        }
+      },
+      "star": "platinum",
+      "skin": "timecop",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CD_06_soldiers.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_06_soldiers.png"
+      ]
+    },
+    {
+      "id": "Specimen_CD_09",
+      "name": "Отпетые приматы",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2515,
+          "atk1": 620,
+          "atk2": 620
+        },
+        "lvl30": {
+          "hp": 9808,
+          "atk1": 6361,
+          "atk2": 6361
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CD_09_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_09_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_CD_10",
+      "name": "Страж Мен'ки",
+      "genes": [
+        "CD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2335,
+          "atk1": 722,
+          "atk2": 722
+        },
+        "lvl30": {
+          "hp": 9106,
+          "atk1": 4220,
+          "atk2": 4220
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CD_10_worker.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_10_worker.png"
+      ]
+    },
+    {
+      "id": "Specimen_CE_01",
+      "name": "Марсианский Воин",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 998,
+          "atk1": 231,
+          "atk2": 231
+        },
+        "lvl30": {
+          "hp": 3892,
+          "atk1": 1480,
+          "atk2": 1480
+        }
+      },
+      "star": "none",
+      "skin": "gothic",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CE_01_gothic.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_01_gothic.png"
+      ]
+    },
+    {
+      "id": "Specimen_CE_03",
+      "name": "Страж Галактики",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3293,
+          "atk1": 1023,
+          "atk2": 1023
+        },
+        "lvl30": {
+          "hp": 12843,
+          "atk1": 5985,
+          "atk2": 5985
+        }
+      },
+      "star": "gold",
+      "skin": "Gods_of_Olympus",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CE_03_olympians.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_03_olympians.png"
+      ]
+    },
+    {
+      "id": "Specimen_CE_07",
+      "name": "Аран",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2561,
+          "atk1": 989,
+          "atk2": 989
+        },
+        "lvl30": {
+          "hp": 9988,
+          "atk1": 5795,
+          "atk2": 5795
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CE_07_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_07_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_CE_08",
+      "name": "Безымянный король",
+      "genes": [
+        "CE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2636,
+          "atk1": 1142,
+          "atk2": 1142
+        },
+        "lvl30": {
+          "hp": 10280,
+          "atk1": 6681,
+          "atk2": 6681
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CE_08_cybernetics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_08_cybernetics.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_01",
+      "name": "Валькирия",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2567,
+          "atk1": 802,
+          "atk2": 802
+        },
+        "lvl30": {
+          "hp": 10011,
+          "atk1": 4688,
+          "atk2": 4688
+        }
+      },
+      "star": "gold",
+      "skin": "girl_power",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_01_girl.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_01_girl.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_02",
+      "name": "Тор",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3163,
+          "atk1": 1347,
+          "atk2": 1347
+        },
+        "lvl30": {
+          "hp": 12336,
+          "atk1": 7880,
+          "atk2": 7880
+        }
+      },
+      "star": "gold",
+      "skin": "timecop",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_02_soldiers.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_02_soldiers.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_03",
+      "name": "Кромсалочка",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1380,
+          "atk1": 346,
+          "atk2": 346
+        },
+        "lvl30": {
+          "hp": 5382,
+          "atk1": 4576,
+          "atk2": 4576
+        }
+      },
+      "star": "gold",
+      "skin": "muchachos",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_03_lucha.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_03_lucha.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_05",
+      "name": "Темный монах",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2493,
+          "atk1": 562,
+          "atk2": 562
+        },
+        "lvl30": {
+          "hp": 9723,
+          "atk1": 3288,
+          "atk2": 3288
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_05_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_05_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_06",
+      "name": "Дядя Сэм",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3815,
+          "atk1": 1077,
+          "atk2": 1077
+        },
+        "lvl30": {
+          "hp": 14878,
+          "atk1": 6513,
+          "atk2": 6513
+        }
+      },
+      "star": "none",
+      "skin": "western",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_06_western.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_06_western.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_08",
+      "name": "Винн",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3841,
+          "atk1": 1265,
+          "atk2": 1265
+        },
+        "lvl30": {
+          "hp": 14980,
+          "atk1": 7404,
+          "atk2": 7404
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_08_solarflare.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_08_solarflare.png"
+      ]
+    },
+    {
+      "id": "Specimen_CF_09",
+      "name": "Хранитель Ключей",
+      "genes": [
+        "CF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3403,
+          "atk1": 1123,
+          "atk2": 1123
+        },
+        "lvl30": {
+          "hp": 13272,
+          "atk1": 6526,
+          "atk2": 6526
+        }
+      },
+      "star": "gold",
+      "skin": "workers_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/CF_09_worker.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_09_worker.png"
+      ]
+    },
+    {
+      "id": "Specimen_D_01",
+      "name": "Зверь",
+      "genes": [
+        "D"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1935,
+          "atk1": 609,
+          "atk2": 609
+        },
+        "lvl30": {
+          "hp": 7546,
+          "atk1": 3568,
+          "atk2": 3568
+        }
+      },
+      "star": "silver",
+      "skin": "big_boss",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/D_01_gachaboss.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_d_01_gachaboss.png"
+      ]
+    },
+    {
+      "id": "Specimen_DA_01",
+      "name": "Рептоид",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1492,
+          "atk1": 360,
+          "atk2": 360
+        },
+        "lvl30": {
+          "hp": 5819,
+          "atk1": 2285,
+          "atk2": 2285
+        }
+      },
+      "star": "bronze",
+      "skin": "villain",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DA_01_villains.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_01_villains.png"
+      ]
+    },
+    {
+      "id": "Specimen_DA_02",
+      "name": "Арахно",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3864,
+          "atk1": 1121,
+          "atk2": 1121
+        },
+        "lvl30": {
+          "hp": 15070,
+          "atk1": 5511,
+          "atk2": 5511
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DA_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_DA_05",
+      "name": "Фенек-Ультралис",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3109,
+          "atk1": 644,
+          "atk2": 644
+        },
+        "lvl30": {
+          "hp": 12125,
+          "atk1": 3774,
+          "atk2": 3774
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DA_05_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_05_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DA_08",
+      "name": "Асайлан",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2390,
+          "atk1": 1408,
+          "atk2": 1408
+        },
+        "lvl30": {
+          "hp": 9321,
+          "atk1": 8227,
+          "atk2": 8227
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DA_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DA_10",
+      "name": "Соколиный глаз",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2604,
+          "atk1": 526,
+          "atk2": 526
+        },
+        "lvl30": {
+          "hp": 10156,
+          "atk1": 3949,
+          "atk2": 3949
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DA_10_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_10_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_DA_11",
+      "name": "Ан0малия",
+      "genes": [
+        "DA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2758,
+          "atk1": 508,
+          "atk2": 625
+        },
+        "lvl30": {
+          "hp": 10756,
+          "atk1": 5043,
+          "atk2": 5362
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DA_11_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_11_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_01",
+      "name": "Цербер",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2450,
+          "atk1": 616,
+          "atk2": 616
+        },
+        "lvl30": {
+          "hp": 9555,
+          "atk1": 3611,
+          "atk2": 3611
+        }
+      },
+      "star": "gold",
+      "skin": "big_boss",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_01_gachaboss.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_01_gachaboss.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_04",
+      "name": "Людовик XVI",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2889,
+          "atk1": 1076,
+          "atk2": 1076
+        },
+        "lvl30": {
+          "hp": 11267,
+          "atk1": 6738,
+          "atk2": 6738
+        }
+      },
+      "star": "none",
+      "skin": "western",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_04_western.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_04_western.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_06",
+      "name": "Зомбобр",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2067,
+          "atk1": 521,
+          "atk2": 521
+        },
+        "lvl30": {
+          "hp": 8061,
+          "atk1": 3052,
+          "atk2": 3052
+        }
+      },
+      "star": "gold",
+      "skin": "fantasy",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_06_fantasy.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_06_fantasy.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_07",
+      "name": "Лорд-Дракон",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1741,
+          "atk1": 362,
+          "atk2": 362
+        },
+        "lvl30": {
+          "hp": 6790,
+          "atk1": 2067,
+          "atk2": 2067
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_07_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_07_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_08",
+      "name": "Смертозавр",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3556,
+          "atk1": 1076,
+          "atk2": 1076
+        },
+        "lvl30": {
+          "hp": 13868,
+          "atk1": 6298,
+          "atk2": 6298
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_08_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_08_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_09",
+      "name": "Хоракс",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3549,
+          "atk1": 1177,
+          "atk2": 1177
+        },
+        "lvl30": {
+          "hp": 13841,
+          "atk1": 6889,
+          "atk2": 6889
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_09_nebula.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_09_nebula.png"
+      ]
+    },
+    {
+      "id": "Specimen_DB_10",
+      "name": "Буффалор",
+      "genes": [
+        "DB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3694,
+          "atk1": 1502,
+          "atk2": 1502
+        },
+        "lvl30": {
+          "hp": 14407,
+          "atk1": 8993,
+          "atk2": 8993
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DB_10_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_10_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_01",
+      "name": "Ракшаса",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1299,
+          "atk1": 302,
+          "atk2": 302
+        },
+        "lvl30": {
+          "hp": 5066,
+          "atk1": 1773,
+          "atk2": 1773
+        }
+      },
+      "star": "none",
+      "skin": "gothic",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_01_gothic.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_01_gothic.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_05",
+      "name": "Король обезьян",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2648,
+          "atk1": 658,
+          "atk2": 658
+        },
+        "lvl30": {
+          "hp": 10327,
+          "atk1": 3864,
+          "atk2": 3864
+        }
+      },
+      "star": "gold",
+      "skin": "muchachos",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_05_lucha.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_05_lucha.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_06",
+      "name": "Бабка-волчанка",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3727,
+          "atk1": 1107,
+          "atk2": 1107
+        },
+        "lvl30": {
+          "hp": 14535,
+          "atk1": 6486,
+          "atk2": 6486
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_06_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_06_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_08",
+      "name": "Саник",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3316,
+          "atk1": 429,
+          "atk2": 429
+        },
+        "lvl30": {
+          "hp": 12932,
+          "atk1": 2512,
+          "atk2": 2512
+        }
+      },
+      "star": "silver",
+      "skin": "photosynthesis",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_08_vegetal.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_08_vegetal.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_09",
+      "name": "Мастер Синдзо",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2657,
+          "atk1": 494,
+          "atk2": 494
+        },
+        "lvl30": {
+          "hp": 10362,
+          "atk1": 2908,
+          "atk2": 2908
+        }
+      },
+      "star": "gold",
+      "skin": "1_april",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_09_aprilfools.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_09_aprilfools.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_10",
+      "name": "Крампус",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3694,
+          "atk1": 1092,
+          "atk2": 1092
+        },
+        "lvl30": {
+          "hp": 14407,
+          "atk1": 6381,
+          "atk2": 6381
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_10_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_10_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DC_11",
+      "name": "Спада",
+      "genes": [
+        "DC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2957,
+          "atk1": 738,
+          "atk2": 738
+        },
+        "lvl30": {
+          "hp": 11532,
+          "atk1": 4317,
+          "atk2": 4317
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DC_11_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_11_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DD_01",
+      "name": "Киска Кайдзю",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3253,
+          "atk1": 754,
+          "atk2": 434
+        },
+        "lvl30": {
+          "hp": 12687,
+          "atk1": 4407,
+          "atk2": 2546
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DD_01_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_01_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_DD_05",
+      "name": "Хищнозавр",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1705,
+          "atk1": 520,
+          "atk2": 301
+        },
+        "lvl30": {
+          "hp": 6650,
+          "atk1": 4615,
+          "atk2": 2305
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.png"
+      ]
+    },
+    {
+      "id": "Specimen_DD_05",
+      "name": "Хищнозавр",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1003,
+          "atk1": 283,
+          "atk2": 164
+        },
+        "lvl30": {
+          "hp": 3912,
+          "atk1": 2512,
+          "atk2": 1256
+        }
+      },
+      "star": "none",
+      "skin": "spring_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.png"
+      ]
+    },
+    {
+      "id": "Specimen_DD_07",
+      "name": "Шершеляшар",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2910,
+          "atk1": 873,
+          "atk2": 500
+        },
+        "lvl30": {
+          "hp": 11349,
+          "atk1": 5130,
+          "atk2": 2932
+        }
+      },
+      "star": "gold",
+      "skin": "army",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DD_07_camo.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_07_camo.png"
+      ]
+    },
+    {
+      "id": "Specimen_DD_08",
+      "name": "Ринотавр",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 5233,
+          "atk1": 1262,
+          "atk2": 631
+        },
+        "lvl30": {
+          "hp": 20409,
+          "atk1": 7758,
+          "atk2": 4789
+        }
+      },
+      "star": "gold",
+      "skin": "school_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DD_08_school.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_08_school.png"
+      ]
+    },
+    {
+      "id": "Specimen_DD_10",
+      "name": "Камео",
+      "genes": [
+        "DD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2907,
+          "atk1": 764,
+          "atk2": 450
+        },
+        "lvl30": {
+          "hp": 11337,
+          "atk1": 4498,
+          "atk2": 2679
+        }
+      },
+      "star": "gold",
+      "skin": "autumn_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DD_10_autumn.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_10_autumn.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_02",
+      "name": "Космо-Конг",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3083,
+          "atk1": 859,
+          "atk2": 859
+        },
+        "lvl30": {
+          "hp": 12024,
+          "atk1": 5029,
+          "atk2": 5029
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_03",
+      "name": "Панголин",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2107,
+          "atk1": 318,
+          "atk2": 318
+        },
+        "lvl30": {
+          "hp": 8217,
+          "atk1": 1874,
+          "atk2": 1874
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_03_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_03_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_04",
+      "name": "Генсириоку",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2295,
+          "atk1": 889,
+          "atk2": 889
+        },
+        "lvl30": {
+          "hp": 8950,
+          "atk1": 5206,
+          "atk2": 5206
+        }
+      },
+      "star": "silver",
+      "skin": "muchachos",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_04_lucha.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_04_lucha.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_05",
+      "name": "Халкомяк",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3638,
+          "atk1": 1531,
+          "atk2": 1531
+        },
+        "lvl30": {
+          "hp": 14188,
+          "atk1": 8974,
+          "atk2": 8974
+        }
+      },
+      "star": "platinum",
+      "skin": "disco",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_05_music.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_05_music.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_07",
+      "name": "Капитан Космоцып",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3370,
+          "atk1": 798,
+          "atk2": 798
+        },
+        "lvl30": {
+          "hp": 13143,
+          "atk1": 4668,
+          "atk2": 4668
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_07_thanksgiving.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_07_thanksgiving.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_08",
+      "name": "Космопанды",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1790,
+          "atk1": 348,
+          "atk2": 348
+        },
+        "lvl30": {
+          "hp": 6981,
+          "atk1": 3990,
+          "atk2": 3990
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_09",
+      "name": "Зигмо",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2713,
+          "atk1": 344,
+          "atk2": 344
+        },
+        "lvl30": {
+          "hp": 10581,
+          "atk1": 2015,
+          "atk2": 2015
+        }
+      },
+      "star": "gold",
+      "skin": "photosynthesis",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_09_vegetal.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_09_vegetal.png"
+      ]
+    },
+    {
+      "id": "Specimen_DE_11",
+      "name": "Дрей, космический корги",
+      "genes": [
+        "DE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4035,
+          "atk1": 1284,
+          "atk2": 1284
+        },
+        "lvl30": {
+          "hp": 15736,
+          "atk1": 9192,
+          "atk2": 9192
+        }
+      },
+      "star": "platinum",
+      "skin": "card_game_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DE_11_tcg.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_11_tcg.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_01",
+      "name": "Благородный дракон",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3481,
+          "atk1": 1006,
+          "atk2": 1006
+        },
+        "lvl30": {
+          "hp": 13576,
+          "atk1": 5894,
+          "atk2": 5894
+        }
+      },
+      "star": "gold",
+      "skin": "japan",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_01_japan.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_01_japan.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_02",
+      "name": "Сатир-шаман",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2331,
+          "atk1": 593,
+          "atk2": 593
+        },
+        "lvl30": {
+          "hp": 9091,
+          "atk1": 3481,
+          "atk2": 3481
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_02_spring.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_02_spring.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_04",
+      "name": "Кон-Тики",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3113,
+          "atk1": 1145,
+          "atk2": 1145
+        },
+        "lvl30": {
+          "hp": 12141,
+          "atk1": 6694,
+          "atk2": 6694
+        }
+      },
+      "star": "gold",
+      "skin": "elementals_team",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_04_elements.png",
+        "textures_by_skins/textures_by_skin/full-char/DF_04_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_elements.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_04",
+      "name": "Кон-Тики",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3302,
+          "atk1": 1041,
+          "atk2": 1041
+        },
+        "lvl30": {
+          "hp": 12878,
+          "atk1": 6086,
+          "atk2": 6086
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_04_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_05",
+      "name": "Мать Драконов",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1837,
+          "atk1": 1022,
+          "atk2": 1022
+        },
+        "lvl30": {
+          "hp": 7164,
+          "atk1": 5979,
+          "atk2": 5979
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_05_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_05_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_07",
+      "name": "Химера",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3276,
+          "atk1": 1027,
+          "atk2": 1027
+        },
+        "lvl30": {
+          "hp": 12776,
+          "atk1": 9048,
+          "atk2": 9048
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_07_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_07_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_08",
+      "name": "Шантеклер",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2943,
+          "atk1": 1552,
+          "atk2": 1552
+        },
+        "lvl30": {
+          "hp": 11478,
+          "atk1": 9083,
+          "atk2": 9083
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_08_thanksgiving.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_08_thanksgiving.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_09",
+      "name": "Кетцалькоатль",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3055,
+          "atk1": 764,
+          "atk2": 764
+        },
+        "lvl30": {
+          "hp": 11914,
+          "atk1": 4480,
+          "atk2": 4480
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_09_purgatory.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_09_purgatory.png"
+      ]
+    },
+    {
+      "id": "Specimen_DF_10",
+      "name": "Gwenn",
+      "genes": [
+        "DF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3047,
+          "atk1": 679,
+          "atk2": 679
+        },
+        "lvl30": {
+          "hp": 11883,
+          "atk1": 3991,
+          "atk2": 3991
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/DF_10_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_10_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_E_01",
+      "name": "Пришелец",
+      "genes": [
+        "E"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1049,
+          "atk1": 199,
+          "atk2": 199
+        },
+        "lvl30": {
+          "hp": 4091,
+          "atk1": 1176,
+          "atk2": 1176
+        }
+      },
+      "star": "bronze",
+      "skin": "gothic",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/E_01_gothic.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_e_01_gothic.png"
+      ]
+    },
+    {
+      "id": "Specimen_EA_01",
+      "name": "Опустошитель",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3333,
+          "atk1": 995,
+          "atk2": 995
+        },
+        "lvl30": {
+          "hp": 12999,
+          "atk1": 5833,
+          "atk2": 5833
+        }
+      },
+      "star": "gold",
+      "skin": "big_boss",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EA_01_gachaboss.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_01_gachaboss.png"
+      ]
+    },
+    {
+      "id": "Specimen_EA_02",
+      "name": "Долгоног",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2528,
+          "atk1": 598,
+          "atk2": 598
+        },
+        "lvl30": {
+          "hp": 9859,
+          "atk1": 3512,
+          "atk2": 3512
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EA_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_EA_05",
+      "name": "Кинг Стивен",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3152,
+          "atk1": 677,
+          "atk2": 677
+        },
+        "lvl30": {
+          "hp": 12293,
+          "atk1": 4152,
+          "atk2": 4152
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EA_05_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_05_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_EA_06",
+      "name": "Кранк",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3155,
+          "atk1": 994,
+          "atk2": 994
+        },
+        "lvl30": {
+          "hp": 12304,
+          "atk1": 5822,
+          "atk2": 5822
+        }
+      },
+      "star": "gold",
+      "skin": "thanksgiving_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EA_06_thanksgiving.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_06_thanksgiving.png"
+      ]
+    },
+    {
+      "id": "Specimen_EA_07",
+      "name": "Капитан Патриот",
+      "genes": [
+        "EA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4770,
+          "atk1": 838,
+          "atk2": 838
+        },
+        "lvl30": {
+          "hp": 18603,
+          "atk1": 5301,
+          "atk2": 4906
+        }
+      },
+      "star": "gold",
+      "skin": "oktoberfest",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EA_07_oktoberfest.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_07_oktoberfest.png"
+      ]
+    },
+    {
+      "id": "Specimen_EB_02",
+      "name": "Сирения",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1554,
+          "atk1": 384,
+          "atk2": 384
+        },
+        "lvl30": {
+          "hp": 6061,
+          "atk1": 2633,
+          "atk2": 2633
+        }
+      },
+      "star": "silver",
+      "skin": "elementals_team",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EB_02_elements.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_02_elements.png"
+      ]
+    },
+    {
+      "id": "Specimen_EB_04",
+      "name": "Охотник за привидениями",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1977,
+          "atk1": 536,
+          "atk2": 536
+        },
+        "lvl30": {
+          "hp": 7710,
+          "atk1": 3138,
+          "atk2": 3138
+        }
+      },
+      "star": "silver",
+      "skin": "film",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EB_04_movies.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_04_movies.png"
+      ]
+    },
+    {
+      "id": "Specimen_EB_05",
+      "name": "Мертвый солдат",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3069,
+          "atk1": 1233,
+          "atk2": 1233
+        },
+        "lvl30": {
+          "hp": 11969,
+          "atk1": 7209,
+          "atk2": 7209
+        }
+      },
+      "star": "gold",
+      "skin": "elementals_team",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EB_05_elements.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_05_elements.png"
+      ]
+    },
+    {
+      "id": "Specimen_EB_09",
+      "name": "Королева Сильвидра",
+      "genes": [
+        "EB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2808,
+          "atk1": 1345,
+          "atk2": 1345
+        },
+        "lvl30": {
+          "hp": 10951,
+          "atk1": 7864,
+          "atk2": 7864
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EB_09_masks.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_09_masks.png"
+      ]
+    },
+    {
+      "id": "Specimen_EC_01",
+      "name": "Галактический Охотник",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1262,
+          "atk1": 402,
+          "atk2": 402
+        },
+        "lvl30": {
+          "hp": 4922,
+          "atk1": 2352,
+          "atk2": 2352
+        }
+      },
+      "star": "none",
+      "skin": "steampunk",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EC_01_steampunk.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_01_steampunk.png"
+      ]
+    },
+    {
+      "id": "Specimen_EC_01",
+      "name": "Галактический Охотник",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2314,
+          "atk1": 704,
+          "atk2": 704
+        },
+        "lvl30": {
+          "hp": 9025,
+          "atk1": 4118,
+          "atk2": 4118
+        }
+      },
+      "star": "gold",
+      "skin": "star_wars",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EC_01_starwars.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_01_starwars.png"
+      ]
+    },
+    {
+      "id": "Specimen_EC_03",
+      "name": "Звездный Десантник",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1953,
+          "atk1": 448,
+          "atk2": 448
+        },
+        "lvl30": {
+          "hp": 7617,
+          "atk1": 2752,
+          "atk2": 2752
+        }
+      },
+      "star": "gold",
+      "skin": "villain",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EC_03_villains.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_03_villains.png"
+      ]
+    },
+    {
+      "id": "Specimen_EC_09",
+      "name": "Щиткалибур",
+      "genes": [
+        "EC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3519,
+          "atk1": 908,
+          "atk2": 908
+        },
+        "lvl30": {
+          "hp": 13724,
+          "atk1": 5322,
+          "atk2": 5322
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EC_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_01",
+      "name": "Ксенос",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2014,
+          "atk1": 406,
+          "atk2": 406
+        },
+        "lvl30": {
+          "hp": 7855,
+          "atk1": 2389,
+          "atk2": 2389
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_01_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_01_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_03",
+      "name": "Вампаа",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2056,
+          "atk1": 551,
+          "atk2": 551
+        },
+        "lvl30": {
+          "hp": 8018,
+          "atk1": 3225,
+          "atk2": 3225
+        }
+      },
+      "star": "bronze",
+      "skin": "film",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_03_movies.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_03_movies.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_05",
+      "name": "Инсектрон",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3067,
+          "atk1": 1088,
+          "atk2": 1088
+        },
+        "lvl30": {
+          "hp": 11961,
+          "atk1": 6372,
+          "atk2": 6372
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_05_solarflare.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_05_solarflare.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_06",
+      "name": "Китти Перри",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2024,
+          "atk1": 598,
+          "atk2": 598
+        },
+        "lvl30": {
+          "hp": 7894,
+          "atk1": 3495,
+          "atk2": 3495
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_06_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_06_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_07",
+      "name": "Парамик",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2859,
+          "atk1": 385,
+          "atk2": 385
+        },
+        "lvl30": {
+          "hp": 11150,
+          "atk1": 2266,
+          "atk2": 2266
+        }
+      },
+      "star": "gold",
+      "skin": "summer_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_07_summer.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_07_summer.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_08",
+      "name": "Черноглаз",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1373,
+          "atk1": 467,
+          "atk2": 467
+        },
+        "lvl30": {
+          "hp": 5355,
+          "atk1": 2730,
+          "atk2": 2730
+        }
+      },
+      "star": "none",
+      "skin": "army",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_08_camo.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_08_camo.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_10",
+      "name": "Сердитый Свин",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3459,
+          "atk1": 990,
+          "atk2": 990
+        },
+        "lvl30": {
+          "hp": 13490,
+          "atk1": 6508,
+          "atk2": 6508
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_10_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_10_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_ED_11",
+      "name": "Совабатор",
+      "genes": [
+        "ED"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3598,
+          "atk1": 1379,
+          "atk2": 1379
+        },
+        "lvl30": {
+          "hp": 14032,
+          "atk1": 9059,
+          "atk2": 9059
+        }
+      },
+      "star": "gold",
+      "skin": "carnival",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/ED_11_carnival.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_11_carnival.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_02",
+      "name": "Сверхновус",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3202,
+          "atk1": 854,
+          "atk2": 490
+        },
+        "lvl30": {
+          "hp": 12488,
+          "atk1": 5003,
+          "atk2": 2866
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_03",
+      "name": "Мастер Йоуда",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2587,
+          "atk1": 652,
+          "atk2": 375
+        },
+        "lvl30": {
+          "hp": 10089,
+          "atk1": 3818,
+          "atk2": 2182
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_03_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_03_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_04",
+      "name": "Летающий Джордсон",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3238,
+          "atk1": 1118,
+          "atk2": 644
+        },
+        "lvl30": {
+          "hp": 12628,
+          "atk1": 6559,
+          "atk2": 3756
+        }
+      },
+      "star": "gold",
+      "skin": "disco",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_04_music.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_04_music.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_06",
+      "name": "Королева Раккти",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3252,
+          "atk1": 1026,
+          "atk2": 591
+        },
+        "lvl30": {
+          "hp": 12683,
+          "atk1": 6002,
+          "atk2": 3450
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_06_masks.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_06_masks.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_07",
+      "name": "Маршал Мэллоу",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3336,
+          "atk1": 794,
+          "atk2": 457
+        },
+        "lvl30": {
+          "hp": 13010,
+          "atk1": 4658,
+          "atk2": 2656
+        }
+      },
+      "star": "platinum",
+      "skin": "tropical_summer",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_07_beach.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_07_beach.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_08",
+      "name": "Големаг",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4226,
+          "atk1": 1400,
+          "atk2": 803
+        },
+        "lvl30": {
+          "hp": 16481,
+          "atk1": 8197,
+          "atk2": 4708
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_09",
+      "name": "Мегастрал",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 4316,
+          "atk1": 1653,
+          "atk2": 828
+        },
+        "lvl30": {
+          "hp": 16832,
+          "atk1": 9677,
+          "atk2": 4833
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_09_wireframe.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_09_wireframe.png"
+      ]
+    },
+    {
+      "id": "Specimen_EE_10",
+      "name": "Инопланетянин-велосипедист",
+      "genes": [
+        "EE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3548,
+          "atk1": 886,
+          "atk2": 510
+        },
+        "lvl30": {
+          "hp": 13837,
+          "atk1": 5179,
+          "atk2": 2976
+        }
+      },
+      "star": "gold",
+      "skin": "school_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EE_10_school.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_10_school.png"
+      ]
+    },
+    {
+      "id": "Specimen_EF_01",
+      "name": "Небулон",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1581,
+          "atk1": 318,
+          "atk2": 318
+        },
+        "lvl30": {
+          "hp": 6166,
+          "atk1": 1864,
+          "atk2": 1864
+        }
+      },
+      "star": "bronze",
+      "skin": "elementals_team",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EF_01_elements.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_01_elements.png"
+      ]
+    },
+    {
+      "id": "Specimen_EF_04",
+      "name": "Мефистофель",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2192,
+          "atk1": 515,
+          "atk2": 515
+        },
+        "lvl30": {
+          "hp": 8549,
+          "atk1": 4991,
+          "atk2": 4991
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EF_04_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_04_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_EF_05",
+      "name": "Кракен",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3048,
+          "atk1": 1181,
+          "atk2": 1181
+        },
+        "lvl30": {
+          "hp": 11887,
+          "atk1": 6913,
+          "atk2": 6913
+        }
+      },
+      "star": "gold",
+      "skin": "blue_planet",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EF_05_blueplanet.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_05_blueplanet.png"
+      ]
+    },
+    {
+      "id": "Specimen_EF_09",
+      "name": "Маг Ризафредд",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3262,
+          "atk1": 1032,
+          "atk2": 1032
+        },
+        "lvl30": {
+          "hp": 12722,
+          "atk1": 6030,
+          "atk2": 6030
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EF_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_EF_10",
+      "name": "Дива Кровилагуна",
+      "genes": [
+        "EF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2721,
+          "atk1": 588,
+          "atk2": 588
+        },
+        "lvl30": {
+          "hp": 10612,
+          "atk1": 3549,
+          "atk2": 3549
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/EF_10_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_10_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_F_01",
+      "name": "Демон",
+      "genes": [
+        "F"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1952,
+          "atk1": 456,
+          "atk2": 456
+        },
+        "lvl30": {
+          "hp": 7613,
+          "atk1": 2662,
+          "atk2": 2662
+        }
+      },
+      "star": "bronze",
+      "skin": "girl_power",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/F_01_girl.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_f_01_girl.png"
+      ]
+    },
+    {
+      "id": "Specimen_FA_01",
+      "name": "Кибермонах",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2941,
+          "atk1": 806,
+          "atk2": 806
+        },
+        "lvl30": {
+          "hp": 11470,
+          "atk1": 4721,
+          "atk2": 4721
+        }
+      },
+      "star": "gold",
+      "skin": "hero",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FA_01_heroes.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_01_heroes.png"
+      ]
+    },
+    {
+      "id": "Specimen_FA_02",
+      "name": "Мекали",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2462,
+          "atk1": 560,
+          "atk2": 560
+        },
+        "lvl30": {
+          "hp": 9602,
+          "atk1": 3283,
+          "atk2": 3283
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FA_02_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_02_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_FA_05",
+      "name": "Теневой шаман",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2562,
+          "atk1": 682,
+          "atk2": 682
+        },
+        "lvl30": {
+          "hp": 9992,
+          "atk1": 3997,
+          "atk2": 3997
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FA_05_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_05_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FA_08",
+      "name": "Футбот",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2034,
+          "atk1": 363,
+          "atk2": 363
+        },
+        "lvl30": {
+          "hp": 7933,
+          "atk1": 2135,
+          "atk2": 2135
+        }
+      },
+      "star": "silver",
+      "skin": "blood_sport",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FA_08_olympics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_08_olympics.png"
+      ]
+    },
+    {
+      "id": "Specimen_FA_10",
+      "name": "Часовщица Мими",
+      "genes": [
+        "FA"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1621,
+          "atk1": 766,
+          "atk2": 766
+        },
+        "lvl30": {
+          "hp": 6322,
+          "atk1": 4106,
+          "atk2": 4106
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FA_10_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_10_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_FB_01",
+      "name": "Мрачная Жница",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2194,
+          "atk1": 653,
+          "atk2": 653
+        },
+        "lvl30": {
+          "hp": 8557,
+          "atk1": 3828,
+          "atk2": 3828
+        }
+      },
+      "star": "bronze",
+      "skin": "girl_power",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FB_01_girl.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_01_girl.png"
+      ]
+    },
+    {
+      "id": "Specimen_FB_03",
+      "name": "Анубис",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3191,
+          "atk1": 833,
+          "atk2": 833
+        },
+        "lvl30": {
+          "hp": 12445,
+          "atk1": 4876,
+          "atk2": 4876
+        }
+      },
+      "star": "gold",
+      "skin": "big_boss",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FB_03_gachaboss.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_03_gachaboss.png"
+      ]
+    },
+    {
+      "id": "Specimen_FB_05",
+      "name": "Аццкий металл",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3872,
+          "atk1": 802,
+          "atk2": 802
+        },
+        "lvl30": {
+          "hp": 15101,
+          "atk1": 4874,
+          "atk2": 4874
+        }
+      },
+      "star": "platinum",
+      "skin": "disco",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FB_05_music.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_05_music.png"
+      ]
+    },
+    {
+      "id": "Specimen_FB_06",
+      "name": "Колдунья",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2003,
+          "atk1": 434,
+          "atk2": 434
+        },
+        "lvl30": {
+          "hp": 7812,
+          "atk1": 3563,
+          "atk2": 3563
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FB_06_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_06_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FB_10",
+      "name": "Иггдрасиль",
+      "genes": [
+        "FB"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3879,
+          "atk1": 1305,
+          "atk2": 1305
+        },
+        "lvl30": {
+          "hp": 15128,
+          "atk1": 7641,
+          "atk2": 7641
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FB_10_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_10_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FC_01",
+      "name": "Гэндолфус",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1989,
+          "atk1": 357,
+          "atk2": 357
+        },
+        "lvl30": {
+          "hp": 7757,
+          "atk1": 2573,
+          "atk2": 2573
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FC_01_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_01_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FC_02",
+      "name": "Капитан Мир",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3619,
+          "atk1": 966,
+          "atk2": 966
+        },
+        "lvl30": {
+          "hp": 14114,
+          "atk1": 5644,
+          "atk2": 5644
+        }
+      },
+      "star": "none",
+      "skin": "hero",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FC_02_heroes.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_02_heroes.png"
+      ]
+    },
+    {
+      "id": "Specimen_FC_04",
+      "name": "Мексикоатль",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3423,
+          "atk1": 816,
+          "atk2": 816
+        },
+        "lvl30": {
+          "hp": 13350,
+          "atk1": 4778,
+          "atk2": 4778
+        }
+      },
+      "star": "silver",
+      "skin": "fantasy",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FC_04_fantasy.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_04_fantasy.png"
+      ]
+    },
+    {
+      "id": "Specimen_FC_05",
+      "name": "Йельда",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3126,
+          "atk1": 916,
+          "atk2": 916
+        },
+        "lvl30": {
+          "hp": 12191,
+          "atk1": 5361,
+          "atk2": 5361
+        }
+      },
+      "star": "silver",
+      "skin": "fantasy",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FC_05_fantasy.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_05_fantasy.png"
+      ]
+    },
+    {
+      "id": "Specimen_FC_07",
+      "name": "Амарок",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2291,
+          "atk1": 575,
+          "atk2": 575
+        },
+        "lvl30": {
+          "hp": 8935,
+          "atk1": 3375,
+          "atk2": 3375
+        }
+      },
+      "star": "gold",
+      "skin": "western",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FC_07_western.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_07_western.png"
+      ]
+    },
+    {
+      "id": "Specimen_FC_08",
+      "name": "Кудамоно",
+      "genes": [
+        "FC"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3099,
+          "atk1": 842,
+          "atk2": 842
+        },
+        "lvl30": {
+          "hp": 12086,
+          "atk1": 4929,
+          "atk2": 4929
+        }
+      },
+      "star": "gold",
+      "skin": "europe_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FC_08_europe.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_08_europe.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_01",
+      "name": "Горгона",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2109,
+          "atk1": 510,
+          "atk2": 510
+        },
+        "lvl30": {
+          "hp": 8225,
+          "atk1": 2984,
+          "atk2": 2984
+        }
+      },
+      "star": "silver",
+      "skin": "gothic",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_01_gothic.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_01_gothic.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_02",
+      "name": "Гор",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2199,
+          "atk1": 409,
+          "atk2": 409
+        },
+        "lvl30": {
+          "hp": 8576,
+          "atk1": 3845,
+          "atk2": 3845
+        }
+      },
+      "star": "gold",
+      "skin": "valentine’s_day",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_02_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_02_valentines.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_04",
+      "name": "Буранка",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2597,
+          "atk1": 670,
+          "atk2": 670
+        },
+        "lvl30": {
+          "hp": 10128,
+          "atk1": 3923,
+          "atk2": 3923
+        }
+      },
+      "star": "gold",
+      "skin": "britani_buranka",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_04_confrontation.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_04_confrontation.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_05",
+      "name": "Пандомонах",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2140,
+          "atk1": 567,
+          "atk2": 567
+        },
+        "lvl30": {
+          "hp": 8346,
+          "atk1": 3328,
+          "atk2": 3328
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_05_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_05_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_06",
+      "name": "Кунг Чоу",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2814,
+          "atk1": 985,
+          "atk2": 985
+        },
+        "lvl30": {
+          "hp": 10975,
+          "atk1": 5770,
+          "atk2": 5770
+        }
+      },
+      "star": "gold",
+      "skin": "blood_sport",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_06_olympics.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_06_olympics.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_07",
+      "name": "Феникс",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2666,
+          "atk1": 9,
+          "atk2": 9
+        },
+        "lvl30": {
+          "hp": 10397,
+          "atk1": 9512,
+          "atk2": 9512
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_07_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_07_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_08",
+      "name": "Омиками",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3249,
+          "atk1": 995,
+          "atk2": 995
+        },
+        "lvl30": {
+          "hp": 12671,
+          "atk1": 5811,
+          "atk2": 5811
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FD_09",
+      "name": "Маг-дракон",
+      "genes": [
+        "FD"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3066,
+          "atk1": 1013,
+          "atk2": 1013
+        },
+        "lvl30": {
+          "hp": 11957,
+          "atk1": 5936,
+          "atk2": 5936
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FD_09_anniversary.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_09_anniversary.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_02",
+      "name": "Синеглазка",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2425,
+          "atk1": 598,
+          "atk2": 598
+        },
+        "lvl30": {
+          "hp": 9458,
+          "atk1": 3498,
+          "atk2": 3498
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_03",
+      "name": "Астромаг",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2723,
+          "atk1": 902,
+          "atk2": 902
+        },
+        "lvl30": {
+          "hp": 10620,
+          "atk1": 5280,
+          "atk2": 5280
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_03_wireframe.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_03_wireframe.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_04",
+      "name": "Принцесса Селена",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2382,
+          "atk1": 596,
+          "atk2": 596
+        },
+        "lvl30": {
+          "hp": 9290,
+          "atk1": 3491,
+          "atk2": 3491
+        }
+      },
+      "star": "platinum",
+      "skin": "muchachos",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_04_lucha.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_04_lucha.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_07",
+      "name": "Король жуков",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2973,
+          "atk1": 954,
+          "atk2": 954
+        },
+        "lvl30": {
+          "hp": 11595,
+          "atk1": 5596,
+          "atk2": 5596
+        }
+      },
+      "star": "gold",
+      "skin": "easter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_07_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_07_easter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_08",
+      "name": "Маджин Зам",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3187,
+          "atk1": 1232,
+          "atk2": 1232
+        },
+        "lvl30": {
+          "hp": 12429,
+          "atk1": 7215,
+          "atk2": 7215
+        }
+      },
+      "star": "gold",
+      "skin": "tropical_summer",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_08_beach.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_08_beach.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_09",
+      "name": "Кселерот",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3753,
+          "atk1": 1345,
+          "atk2": 1345
+        },
+        "lvl30": {
+          "hp": 14637,
+          "atk1": 7865,
+          "atk2": 7865
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_09_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_09_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_10",
+      "name": "Бахамут",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2833,
+          "atk1": 688,
+          "atk2": 688
+        },
+        "lvl30": {
+          "hp": 11049,
+          "atk1": 4036,
+          "atk2": 4036
+        }
+      },
+      "star": "gold",
+      "skin": "anniversary",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_10_masks.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_10_masks.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2836,
+          "atk1": 668,
+          "atk2": 668
+        },
+        "lvl30": {
+          "hp": 11060,
+          "atk1": 4234,
+          "atk2": 4234
+        }
+      },
+      "star": "none",
+      "skin": "autumn_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_13_autumn.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_autumn.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2925,
+          "atk1": 649,
+          "atk2": 649
+        },
+        "lvl30": {
+          "hp": 11408,
+          "atk1": 4114,
+          "atk2": 4114
+        }
+      },
+      "star": "none",
+      "skin": "spring_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_13_spring.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_spring.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3014,
+          "atk1": 630,
+          "atk2": 630
+        },
+        "lvl30": {
+          "hp": 11755,
+          "atk1": 3993,
+          "atk2": 3993
+        }
+      },
+      "star": "none",
+      "skin": "summer_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_13_summer.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_summer.png"
+      ]
+    },
+    {
+      "id": "Specimen_FE_13",
+      "name": "Вивальди",
+      "genes": [
+        "FE"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3191,
+          "atk1": 591,
+          "atk2": 591
+        },
+        "lvl30": {
+          "hp": 12445,
+          "atk1": 3746,
+          "atk2": 3746
+        }
+      },
+      "star": "none",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FE_13_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_01",
+      "name": "Лорд Преисподней",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3099,
+          "atk1": 939,
+          "atk2": 539
+        },
+        "lvl30": {
+          "hp": 12086,
+          "atk1": 5495,
+          "atk2": 3163
+        }
+      },
+      "star": "bronze",
+      "skin": "big_boss",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_01_gachaboss.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_01_gachaboss.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_02",
+      "name": "Ангел Мести",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3116,
+          "atk1": 798,
+          "atk2": 460
+        },
+        "lvl30": {
+          "hp": 12152,
+          "atk1": 4682,
+          "atk2": 2688
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_02_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_02_halloween.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_03",
+      "name": "Вороний Глаз",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3363,
+          "atk1": 547,
+          "atk2": 315
+        },
+        "lvl30": {
+          "hp": 13116,
+          "atk1": 3197,
+          "atk2": 1843
+        }
+      },
+      "star": "gold",
+      "skin": "spring_skin",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_03_spring.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_03_spring.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_04",
+      "name": "Монолит",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3720,
+          "atk1": 1050,
+          "atk2": 1050
+        },
+        "lvl30": {
+          "hp": 14508,
+          "atk1": 5494,
+          "atk2": 6131
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_04_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_04_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_06",
+      "name": "Намасте",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2745,
+          "atk1": 837,
+          "atk2": 571
+        },
+        "lvl30": {
+          "hp": 10706,
+          "atk1": 4928,
+          "atk2": 3881
+        }
+      },
+      "star": "gold",
+      "skin": "western",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_06_western.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_06_western.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_08",
+      "name": "Огненная Буря",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2870,
+          "atk1": 743,
+          "atk2": 428
+        },
+        "lvl30": {
+          "hp": 11193,
+          "atk1": 4364,
+          "atk2": 2507
+        }
+      },
+      "star": "gold",
+      "skin": "winter",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_08_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_08_winter.png"
+      ]
+    },
+    {
+      "id": "Specimen_FF_09",
+      "name": "Мокрушник",
+      "genes": [
+        "FF"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3988,
+          "atk1": 1170,
+          "atk2": 672
+        },
+        "lvl30": {
+          "hp": 15553,
+          "atk1": 7660,
+          "atk2": 3924
+        }
+      },
+      "star": "gold",
+      "skin": "halloween",
+      "image": [
+        "textures_by_skins/textures_by_skin/full-char/FF_09_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_09_halloween.png"
+      ]
+    }
+  ]
+}
