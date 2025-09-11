@@ -1,240 +1,245 @@
 <script>
-  // Импортируем заранее распарсенные данные. Массив costs индексирован по id: costs[id] содержит { id, gold, silver }
-  import costs from '../data/evotech-data.js';
+  import evotech from '../data/evotech-data.js';
 
-  // Текущий уровень пользователя
-  let currentLevel = 1;
-  // Доступное золото и серебро (как строки, чтобы привязка к input работала)
-  let availableGold = '';
-  let availableSilver = '';
-  // Скидка (0, 60, 70, 80) как строка
-  let discount = '0';
-  /**
-   * Режим оплаты:
-   * - 'both' – можно платить и золотом, и серебром. На каждом уровне выбирается лучший вариант.
-   * - 'gold' – только золото.
-   * - 'silver' – только серебро.
-   */
-  // Режим оплаты: 'both' (золото + серебро), 'gold' (только золото) или 'silver' (только серебро)
-  let currencyMode = 'both';
+  let mode = 'byLevels';          // byLevels | byResources
+  let discount = 0;               // 0 | 60 | 70 | 80
+  let priority = 'silver';        // 'silver' | 'gold' — приоритет валюты
 
-  // Итоговый уровень после трат
-  let resultLevel = currentLevel;
+  // поля пустые по умолчанию
+  let current = '';
+  let target = '';
+  let haveGold = '';
+  let haveSilver = '';
 
-  /**
-   * Вычисляет стоимость апгрейда до заданного уровня с учётом скидки.
-   * @param level уровень, на который совершается переход
-   * @returns {gold: number, silver: number} округлённые стоимости золота и серебра
-   */
-  function computeCosts(level) {
-    // Берём запись о стоимости текущего уровня или 328‑го, если уровень больше
-    const record = costs[level <= 328 ? level : 328];
-    // вычисляем коэффициент скидки
-    const disc = parseInt(discount);
-    let factor = 1;
-    if (disc === 60) factor = 0.4;
-    else if (disc === 70) factor = 0.3;
-    else if (disc === 80) factor = 0.2;
-    // умножаем и округляем
-    const goldCost = Math.round(record.gold * factor);
-    const silverCost = Math.round(record.silver * factor);
-    return { gold: goldCost, silver: silverCost };
+  let resultLevels = null;
+  let resultResources = null;
+  let errorMessage = '';
+
+  const fmt = (n) => (n ?? 0).toLocaleString('ru-RU');
+  const toNum = (v, def = 0) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : def;
+  };
+
+  // минимум применяется только при расчёте
+  function clampLevel(v) {
+    v = Number(v);
+    if (!Number.isFinite(v)) return 5;
+    return Math.max(5, Math.floor(v));
   }
 
-  /**
-   * Выполняет апгрейды, используя только золото (без серебра).
-   * Возвращает конечный уровень и оставшееся золото. После 328‑го уровня
-   * стоимость уровня фиксирована, поэтому применяем деление вместо
-   * посчёта каждого уровня.
-   */
-  function upgradeWithGold(startLevel, gold) {
-    let level = startLevel;
-    let remainGold = gold;
-    // Оплачиваем уровни до 328‑го по одному
-    while (level < 328) {
-      const next = level + 1;
-      const { gold: costGold } = computeCosts(next);
-      if (costGold <= remainGold) {
-        remainGold -= costGold;
-        level = next;
-      } else {
-        break;
-      }
-    }
-    // После 328‑го стоимость фиксированная — можно поднять несколько уровней сразу
-    if (level >= 328 && remainGold > 0) {
-      const constantCost = computeCosts(level + 1).gold;
-      if (constantCost > 0) {
-        const additional = Math.floor(remainGold / constantCost);
-        level += additional;
-        remainGold -= additional * constantCost;
-      }
-    }
-    return { level, goldLeft: remainGold };
+  // после 328 стоимость фиксируется на 328-м уровне
+  function getLevelCost(level) {
+    const idx = Math.min(level, 328);
+    const row = evotech[idx] || {};
+    return { gold: row.gold || 0, silver: row.silver || 0 };
   }
 
-  /**
-   * Выполняет апгрейды, используя только серебро. Аналогично upgradeWithGold,
-   * после 328‑го стоимость фиксирована, поэтому используем деление.
-   */
-  function upgradeWithSilver(startLevel, silver) {
-    let level = startLevel;
-    let remainSilver = silver;
-    while (level < 328) {
-      const next = level + 1;
-      const { silver: costSilver } = computeCosts(next);
-      if (costSilver <= remainSilver) {
-        remainSilver -= costSilver;
-        level = next;
-      } else {
-        break;
-      }
+  // суммарная стоимость между уровнями [a+1..b]
+  function sumCostBetween(a, b) {
+    if (b <= a) return { gold: 0, silver: 0, outOfRange: false };
+    let gold = 0, silver = 0;
+    for (let L = a + 1; L <= b; L++) {
+      const cost = getLevelCost(L);
+      gold += cost.gold;
+      silver += cost.silver;
     }
-    if (level >= 328 && remainSilver > 0) {
-      const constantCost = computeCosts(level + 1).silver;
-      if (constantCost > 0) {
-        const additional = Math.floor(remainSilver / constantCost);
-        level += additional;
-        remainSilver -= additional * constantCost;
-      }
-    }
-    return { level, silverLeft: remainSilver };
+    const factor = (100 - discount) / 100;
+    return {
+      gold: Math.round(gold * factor),
+      silver: Math.round(silver * factor),
+      outOfRange: false
+    };
   }
 
-  /**
-   * Основная функция расчёта уровня, до которого можно прокачаться.
-   * В режиме 'gold' и 'silver' используются соответствующие функции.
-   * В режиме 'both' ищется оптимальная стратегия: сколько уровней взять за одну валюту, затем за другую.
-   */
+  // расчёт по ресурсам: приоритетная валюта -> попытка оплатить ей; иначе — второй валютой.
+  // За один уровень списывается только ОДНА валюта (без смешивания).
+  function reachWithResources(start, goldBudget, silverBudget) {
+    let level = start;
+    const factor = (100 - discount) / 100;
+    let steps = 0, MAX_STEPS = 1000000;
+
+    while (steps < MAX_STEPS) {
+      const nextLevel = level + 1;
+      const cost = getLevelCost(nextLevel);
+      const needGold   = Math.round((cost.gold   || 0) * factor);
+      const needSilver = Math.round((cost.silver || 0) * factor);
+
+      const trySilverFirst = (priority === 'silver');
+
+      // helper: попытка списать выбранной валютой
+      const canPaySilver = needSilver > 0 && silverBudget >= needSilver;
+      const canPayGold   = needGold   > 0 && goldBudget   >= needGold;
+
+      let paid = false;
+      if (trySilverFirst) {
+        if (canPaySilver) { silverBudget -= needSilver; paid = true; }
+        else if (canPayGold) { goldBudget -= needGold; paid = true; }
+      } else { // gold first
+        if (canPayGold) { goldBudget -= needGold; paid = true; }
+        else if (canPaySilver) { silverBudget -= needSilver; paid = true; }
+      }
+
+      if (!paid) break;
+
+      level++;
+      steps++;
+    }
+
+    return { level, goldLeft: goldBudget, silverLeft: silverBudget };
+  }
+
+  function validateInputs() {
+    errorMessage = '';
+
+    // фиксированный минимум 5 при расчёте
+    current = clampLevel(current);
+    target  = clampLevel(target);
+
+    if (mode === 'byLevels' && target <= current) {
+      errorMessage = 'Целевой уровень должен быть больше текущего.';
+      return false;
+    }
+
+    // по ресурсам — можно вводить только одну валюту или обе; пустые = 0.
+    return true;
+  }
+
   function calculate() {
-    // преобразуем входные ресурсы в числа
-    const startLevel = Number(currentLevel) || 1;
-    const gold = parseFloat(availableGold || '0');
-    const silver = parseFloat(availableSilver || '0');
-
-    // если входные значения некорректны
-    if (startLevel < 1) {
-      resultLevel = 1;
+    if (!validateInputs()) {
+      resultLevels = null;
+      resultResources = null;
       return;
     }
 
-    // однотипные валютные режимы — просто вызываем соответствующую функцию
-    if (currencyMode === 'gold') {
-      const { level } = upgradeWithGold(startLevel, gold);
-      resultLevel = level;
-      return;
+    if (mode === 'byLevels') {
+      resultLevels = sumCostBetween(toNum(current, 5), toNum(target, 5));
+      resultResources = null;
+    } else {
+      resultResources = reachWithResources(
+        toNum(current, 5),
+        toNum(haveGold, 0),
+        toNum(haveSilver, 0)
+      );
+      resultLevels = null;
     }
-    if (currencyMode === 'silver') {
-      const { level } = upgradeWithSilver(startLevel, silver);
-      resultLevel = level;
-      return;
-    }
-
-    // режим both: пробуем оплату за счёт золота, затем серебра, и наоборот. выбираем максимум
-    let best = startLevel;
-
-    // 1) сперва платим некоторое количество уровней только золотом, потом — сколько сможем только серебром
-    {
-      // массив вариантов после каждого числа оплат золотом
-      let levelGold = startLevel;
-      let remainGold = gold;
-      // вариация i=0: без оплат золота
-      {
-        const { level: finalSilver } = upgradeWithSilver(levelGold, silver);
-        if (finalSilver > best) best = finalSilver;
-      }
-      // i от 1, пока хватает золота
-      while (true) {
-        const next = levelGold + 1;
-        const { gold: costG } = computeCosts(next);
-        if (costG <= remainGold) {
-          remainGold -= costG;
-          levelGold = next;
-          // теперь платим серебром
-          const { level: finalSilver } = upgradeWithSilver(levelGold, silver);
-          if (finalSilver > best) best = finalSilver;
-        } else {
-          break;
-        }
-      }
-    }
-
-    // 2) сперва платим некоторое количество уровней только серебром, потом — золото
-    {
-      let levelSilver = startLevel;
-      let remainSilver = silver;
-      // вариация i=0: без оплат серебром
-      {
-        const { level: finalGold } = upgradeWithGold(levelSilver, gold);
-        if (finalGold > best) best = finalGold;
-      }
-      while (true) {
-        const next = levelSilver + 1;
-        const { silver: costS } = computeCosts(next);
-        if (costS <= remainSilver) {
-          remainSilver -= costS;
-          levelSilver = next;
-          // теперь платим золотом
-          const { level: finalGold } = upgradeWithGold(levelSilver, gold);
-          if (finalGold > best) best = finalGold;
-        } else {
-          break;
-        }
-      }
-    }
-
-    resultLevel = best;
   }
-
-  // пересчитываем автоматически при изменении входов
-  $: calculate();
 </script>
 
-<div class="p-4 rounded-2xl bg-gray-800 text-white shadow-xl max-w-md mx-auto">
-  <h2 class="text-xl font-bold mb-4">ЭвоTech калькулятор</h2>
-  <div class="space-y-3">
-    <label class="block">
-      <span class="text-sm">Текущий уровень:</span>
-      <input type="number" min="1" bind:value={currentLevel} class="w-full bg-gray-700 p-2 rounded" />
-    </label>
-    <label class="block">
-      <span class="text-sm">Скидка:</span>
-      <select bind:value={discount} class="w-full bg-gray-700 p-2 rounded">
-        <option value="0">0 %</option>
-        <option value="60">60 %</option>
-        <option value="70">70 %</option>
-        <option value="80">80 %</option>
-      </select>
-    </label>
-    <label class="block">
-      <span class="text-sm">Тип валюты:</span>
-      <select bind:value={currencyMode} class="w-full bg-gray-700 p-2 rounded">
-        <option value="both">Золото + серебро</option>
-        <option value="gold">Только золото</option>
-        <option value="silver">Только серебро</option>
-      </select>
-    </label>
-    {#if currencyMode !== 'silver'}
-      <label class="block">
-        <span class="text-sm">Доступное золото:</span>
-        <input type="number" min="0" bind:value={availableGold} class="w-full bg-gray-700 p-2 rounded" />
-      </label>
-    {/if}
-    {#if currencyMode !== 'gold'}
-      <label class="block">
-        <span class="text-sm">Доступное серебро:</span>
-        <input type="number" min="0" bind:value={availableSilver} class="w-full bg-gray-700 p-2 rounded" />
-      </label>
-    {/if}
-    <div class="mt-4 p-2 bg-gray-700 rounded space-y-2">
-      <!-- Кнопка вручную вызывает перерасчёт -->
-      <button type="button" on:click={calculate} class="bg-blue-500 text-white px-4 py-2 rounded">
-        Рассчитать
-      </button>
-      <p>
-        После траты вы достигнете уровня:
-        <strong>{resultLevel}</strong>
-      </p>
+<div class="evotech-calculator">
+  <div class="tabs">
+    <button class:active={mode === 'byLevels'} on:click={() => mode='byLevels'}>По уровням</button>
+    <button class:active={mode === 'byResources'} on:click={() => mode='byResources'}>По ресурсам</button>
+  </div>
+
+  <div class="strategy">
+    <label>Скидка</label>
+    <div class="segmented">
+      <button class:segActive={discount===0}  on:click={() => discount=0}>0%</button>
+      <button class:segActive={discount===60} on:click={() => discount=60}>60%</button>
+      <button class:segActive={discount===70} on:click={() => discount=70}>70%</button>
+      <button class:segActive={discount===80} on:click={() => discount=80}>80%</button>
     </div>
   </div>
+
+  {#if mode === 'byLevels'}
+    <div class="panel">
+      <div class="row">
+        <div class="field">
+          <label>Текущий уровень</label>
+          <input type="number" min="5" bind:value={current} placeholder="Введите уровень…" />
+        </div>
+        <div class="field">
+          <label>Целевой уровень</label>
+          <input type="number" min="5" bind:value={target} placeholder="Введите уровень…" />
+        </div>
+      </div>
+
+      <button class="calculate-btn" on:click={calculate}>Рассчитать</button>
+
+      {#if errorMessage}
+        <p class="note error">{errorMessage}</p>
+      {/if}
+
+      {#if resultLevels}
+        <div class="result">
+          <h3>Сумма затрат с {current} до {target}</h3>
+          <ul>
+            <li>Золото:  <strong>{fmt(resultLevels.gold)}</strong></li>
+            <li>Серебро: <strong>{fmt(resultLevels.silver)}</strong></li>
+          </ul>
+        </div>
+      {/if}
+    </div>
+  {:else}
+    <div class="panel">
+      <div class="row">
+        <div class="field">
+          <label>Текущий уровень</label>
+          <input type="number" min="5" bind:value={current} placeholder="Введите уровень…" />
+        </div>
+        <div class="field">
+          <label>Золото (есть)</label>
+          <input type="number" min="0" bind:value={haveGold} placeholder="Введите золото…" />
+        </div>
+        <div class="field">
+          <label>Серебро (есть)</label>
+          <input type="number" min="0" bind:value={haveSilver} placeholder="Введите серебро…" />
+        </div>
+      </div>
+
+      <div class="strategy">
+        <label>Приоритет валюты</label>
+        <div class="segmented">
+          <button class:segActive={priority==='silver'} on:click={() => priority='silver'}>Серебро → Золото</button>
+          <button class:segActive={priority==='gold'}   on:click={() => priority='gold'}>Золото → Серебро</button>
+        </div>
+        <p class="note">
+          За уровень списывается только одна валюта. Сначала пытаемся оплатить приоритетной валютой,
+          если не хватает — пробуем второй. Если ни одна не тянет цену следующего уровня — расчёт останавливается.
+        </p>
+      </div>
+
+      <button class="calculate-btn" on:click={calculate}>Рассчитать</button>
+
+      {#if errorMessage}
+        <p class="note error">{errorMessage}</p>
+      {/if}
+
+      {#if resultResources}
+        <div class="result">
+          <h3>Максимальный уровень с ресурсами</h3>
+          <p>Достигнете: <strong>{resultResources.level}</strong></p>
+          <ul>
+            <li>Остаток золота:  <strong>{fmt(resultResources.goldLeft)}</strong></li>
+            <li>Остаток серебра: <strong>{fmt(resultResources.silverLeft)}</strong></li>
+          </ul>
+        </div>
+      {/if}
+    </div>
+  {/if}
 </div>
+
+<style>
+  .evotech-calculator { padding: 1rem; background:#0d1117; border:1px solid #30363d; border-radius:12px; }
+  .tabs { display:flex; gap:.5rem; margin-bottom:1rem; }
+  .tabs button { padding:.5rem .75rem; border:1px solid #30363d; background:#161b22; color:#c9d1d9; border-radius:8px; cursor:pointer; }
+  .tabs button.active { background:#1f6feb; border-color:#1f6feb; color:#fff; }
+
+  .strategy { display:grid; gap:.5rem; margin-bottom:1rem; }
+  .segmented { display:inline-flex; border:1px solid #30363d; border-radius:10px; overflow:hidden; }
+  .segmented button { padding:.4rem .7rem; background:transparent; color:#c9d1d9; border:none; border-right:1px solid #30363d; cursor:pointer; }
+  .segmented button:last-child { border-right:none; }
+  .segmented button.segActive { background:#1f6feb; color:#fff; }
+
+  .panel { display:grid; gap:1rem; }
+  .row { display:grid; gap:.75rem; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); }
+  .field label { display:block; font-weight:600; margin-bottom:.25rem; }
+  .field input { width:100%; padding:.55rem .6rem; border:1px solid #30363d; border-radius:10px; background:#0b0f14; color:#c9d1d9; }
+  .result { border-top:1px dashed #30363d; padding-top:.75rem; }
+  .result h3 { margin:0 0 .5rem; }
+  .note { color:#8b949e; margin-top:.25rem; }
+  .note.error { color:#f85149; font-weight:600; }
+  .calculate-btn { padding:0.5rem 0.75rem; border:1px solid #30363d; border-radius:8px; background:#238636; color:#fff; cursor:pointer; }
+  .calculate-btn:hover { background:#2ea043; }
+</style>

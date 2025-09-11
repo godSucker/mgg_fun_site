@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DataTable from '../../components/DataTable.astro';
+import charmsData from '../../data/materials/charms.json';
+
+const charmsColumns = charmsData && charmsData.length > 0
+  ? Object.keys(charmsData[0]).map((key) => ({ key, label: key }))
+  : [];
+---
+
+<BaseLayout title="Чары (Charms)">
+  <h1>Чары</h1>
+  <p>Бустеры, увеличивающие статы и возможности мутантов.</p>
+  <DataTable columns={charmsColumns} rows={charmsData} title="Список чаров" />
+</BaseLayout>

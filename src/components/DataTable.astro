@@ -1,0 +1,83 @@
+---
+// Универсальный компонент таблицы. Принимает
+// props: columns (массив объектов {key, label}), rows (массив объектов).
+// Отображает простую таблицу без стилизации сортировки.
+const { columns = [], rows = [], title } = Astro.props;
+---
+
+<section class="data-table-wrapper">
+  {title && <h2 class="table-title">{title}</h2>}
+  {rows && rows.length > 0 ? (
+    <table class="data-table">
+      <thead>
+        <tr>
+          {columns.map((col) => (
+            <th>{col.label}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr>
+            {columns.map((col) => (
+              <td>{row[col.key]}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <p>Нет данных для отображения.</p>
+  )}
+</section>
+
+  <style>
+  .data-table-wrapper {
+    margin-bottom: 2rem;
+  }
+  .table-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  /* Table styling for dark theme with zebra stripes and hover effect */
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .data-table thead th {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    padding: 0.75rem;
+    font-weight: 600;
+    border-bottom: 2px solid #30363d;
+  }
+  .data-table tbody tr:nth-child(even) {
+    background-color: #0f141a;
+  }
+  .data-table tbody tr:nth-child(odd) {
+    background-color: #0a0f14;
+  }
+  .data-table tbody tr:hover {
+    background-color: #161b22;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-right: 1px solid #30363d;
+  }
+  .data-table tbody td {
+    border-bottom: 1px solid #30363d;
+    color: #e6edf3;
+  }
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .data-table tr:last-child td:last-child {
+    border-right: none;
+  }
+  </style>

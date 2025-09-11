@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DataTable from '../../components/DataTable.astro';
+import orbsData from '../../data/materials/orbs.json';
+
+const orbsColumns = orbsData && orbsData.length > 0
+  ? Object.keys(orbsData[0]).map((key) => ({ key, label: key }))
+  : [];
+---
+
+<BaseLayout title="Сферы (Orbs)">
+  <h1>Сферы</h1>
+  <p>Сферы дают уникальные бонусы при установке на мутантов.</p>
+  <DataTable columns={orbsColumns} rows={orbsData} title="Список сфер" />
+</BaseLayout>

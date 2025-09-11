@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DataTable from '../../components/DataTable.astro';
+import materialData from '../../data/materials/material.json';
+import charmsData from '../../data/materials/charms.json';
+import orbsData from '../../data/materials/orbs.json';
+
+// Dynamically derive column definitions based on first object in each dataset.
+const materialColumns = materialData && materialData.length > 0
+  ? Object.keys(materialData[0]).map((key) => ({ key, label: key }))
+  : [];
+const charmsColumns = charmsData && charmsData.length > 0
+  ? Object.keys(charmsData[0]).map((key) => ({ key, label: key }))
+  : [];
+const orbsColumns = orbsData && orbsData.length > 0
+  ? Object.keys(orbsData[0]).map((key) => ({ key, label: key }))
+  : [];
+---
+
+<BaseLayout title="Материалы, чармы и сферы">
+  <h1>Материалы и ресурсы</h1>
+  <p>Ниже представлены токены и расходники (Material), бустеры (Charms) и сферы (Orbs). Данные загружаются из JSON‑файлов в папке <code>src/data/materials</code>.</p>
+  <DataTable columns={materialColumns} rows={materialData} title="Material — токены и расходники" />
+  <p><a href="./material">Подробнее о токенах и расходниках →</a></p>
+  <DataTable columns={charmsColumns} rows={charmsData} title="Charms — бустеры" />
+  <p><a href="./charms">Подробнее о чарах →</a></p>
+  <DataTable columns={orbsColumns} rows={orbsData} title="Orbs — сферы" />
+  <p><a href="./orbs">Подробнее о сферах →</a></p>
+</BaseLayout>
