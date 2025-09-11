@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import MutantsBrowser from '@/components/MutantsBrowser.svelte';
+
+// новые имена JSON-файлов:
+import normalData  from '@/data/mutants/normal.json';
+import bronzeData  from '@/data/mutants/bronze.json';
+import silverData  from '@/data/mutants/silver.json';
+import goldData    from '@/data/mutants/gold.json';
+import platinumRaw from '@/data/mutants/platinum.json';
+
+export function getStaticPaths() {
+  const tiers = ['all','normal','bronze','silver','gold','platinum'];
+  return tiers.map(tier => ({ params: { tier } }));
+}
+
+const { tier } = Astro.params;
+const datasets = { normal: normalData, bronze: bronzeData, silver: silverData, gold: goldData, platinum: platinumRaw };
+
+let rows = [];
+let pageTitle = '';
+
+if (tier === 'all') {
+  rows = [...normalData, ...bronzeData, ...silverData, ...goldData, ...platinumRaw];
+  pageTitle = 'Все мутанты';
+} else if (datasets[tier]) {
+  rows = datasets[tier];
+  pageTitle = { normal:'Обычные мутанты', bronze:'Бронза', silver:'Серебро', gold:'Золото', platinum:'Платина' }[tier];
+} else {
+  throw new Error(`Неизвестный путь: /mutants/${tier}`);
+}
+---
+
+<BaseLayout title={pageTitle}>
+  <section style="display:grid;gap:12px">
+    <h1>{pageTitle}</h1>
+    <MutantsBrowser client:load rows={rows} initialTier={tier} />
+  </section>
+</BaseLayout>

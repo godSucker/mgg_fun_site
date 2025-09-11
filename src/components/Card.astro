@@ -1,0 +1,49 @@
+---
+// Карточка для раздела или симулятора.
+// Принимает свойства: title (string), desc (string), href (string), icon (optional URL).
+const { title, desc, href, icon } = Astro.props;
+---
+
+<a href={href} class="card">
+  {icon ? (
+    <div class="card-icon">
+      <img src={icon} alt="" />
+    </div>
+  ) : null}
+  <h3 class="card-title">{title}</h3>
+  <p class="card-desc">{desc}</p>
+</a>
+
+<style>
+  .card {
+    display: block;
+    padding: 1.25rem;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.1s;
+  }
+  .card:hover {
+    border-color: #58a6ff;
+    transform: translateY(-2px);
+  }
+  .card-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+  }
+  .card-title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .card-desc {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #8b949e;
+  }
+</style>

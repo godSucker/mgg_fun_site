@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DataTable from '../../components/DataTable.astro';
+import materialData from '../../data/materials/material.json';
+
+const materialColumns = materialData && materialData.length > 0
+  ? Object.keys(materialData[0]).map((key) => ({ key, label: key }))
+  : [];
+---
+
+<BaseLayout title="Материалы: расходники и токены">
+  <h1>Материалы</h1>
+  <p>Токены и расходники, использующиеся для развития и эволюции мутантов.</p>
+  <DataTable columns={materialColumns} rows={materialData} title="Расходники и токены" />
+</BaseLayout>

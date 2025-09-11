@@ -1,0 +1,21 @@
+---
+import MutantCard from './MutantCard.svelte';
+const { rows = [] } = Astro.props;
+
+// подчистим id, tier и т.п., чтобы карточка всегда имела кодовое имя
+const norm = rows.map((r, i) => ({
+  ...r,
+  id: r?.id ?? r?.ID ?? r?.code ?? r?.slug ?? i + 1
+}));
+---
+<div class="grid">
+  {norm.map((m) => <MutantCard client:visible mutant={m} />)}
+</div>
+
+<style>
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+</style>

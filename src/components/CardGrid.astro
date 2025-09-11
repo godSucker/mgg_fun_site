@@ -1,0 +1,28 @@
+---
+// Сетка карточек. Принимает проп cards — массив объектов
+// { title, desc, href, icon } и опциональный заголовок.
+import Card from './Card.astro';
+const { cards, heading } = Astro.props;
+---
+
+<section class="card-grid-section">
+  {heading && <h2 class="grid-heading">{heading}</h2>}
+  <div class="card-grid">
+    {cards.map((card) => (
+      <Card {...card} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .grid-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+</style>

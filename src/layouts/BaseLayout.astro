@@ -1,20 +1,72 @@
 ---
-import Header from '../components/Header.svelte';
-import Footer from '../components/Footer.svelte';
+// Simple base layout for the site.
+// It provides a consistent header, footer and sets a dark theme background.
 const { title } = Astro.props;
 ---
 
+<!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <title>{title}</title>
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ?? 'MGG Hub'}</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background-color: #0d1117;
+        color: #c9d1d9;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        background-color: #161b22;
+        border-bottom: 1px solid #30363d;
+      }
+      header a {
+        color: #58a6ff;
+        text-decoration: none;
+        margin-right: 1rem;
+      }
+      header nav a:hover {
+        text-decoration: underline;
+      }
+      main {
+        padding: 2rem;
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+      footer {
+        margin-top: 3rem;
+        padding: 1rem 2rem;
+        background-color: #161b22;
+        border-top: 1px solid #30363d;
+        text-align: center;
+        color: #7d8590;
+        font-size: 0.875rem;
+      }
+    </style>
   </head>
-  <body class="bg-gray-900 text-white min-h-screen flex flex-col">
-    <Header />
-    <main class="flex-1 p-6">
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/">MGG Hub</a>
+      </div>
+      <nav>
+        <a href="/mutants">Мутанты</a>
+        <a href="/skins">Скины</a>
+        <a href="/evolution/calculator">Калькулятор</a>
+        <a href="/materials">Материалы</a>
+        <a href="/simulators">Симуляторы</a>
+      </nav>
+    </header>
+    <main>
       <slot />
     </main>
-    <Footer />
+    <footer>
+      <p>&copy; {new Date().getFullYear()} MGG Hub — всё о мутантах, скинах и симуляторах.</p>
+    </footer>
   </body>
 </html>

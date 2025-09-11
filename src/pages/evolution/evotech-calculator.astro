@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EvoTechCalculator from '../../components/EvoTechCalculator.svelte';
+---
+<BaseLayout title="ЭвоTech калькулятор">
+  <h1 class="text-3xl font-bold mb-4">ЭвоTech калькулятор</h1>
+  <p class="mb-4">Введите текущий и желаемый уровень, чтобы узнать стоимость улучшения здания.</p>
+  <!-- Загрузка Svelte-компонента на клиенте -->
+  <EvoTechCalculator client:load />
+</BaseLayout>

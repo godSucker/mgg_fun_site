@@ -1,20 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.svelte';
+import CardGrid from '../components/CardGrid.astro';
+import materialPreview from '../data/materials/material.json';
+import charmsPreview from '../data/materials/charms.json';
+import orbsPreview from '../data/materials/orbs.json';
 ---
-<BaseLayout title="Главная | Mutants Fan Site">
 
-    <Header client:load />
+<BaseLayout title="MGG Hub — база мутантов и симуляторов">
+  <section class="hero">
+    <h1>MGG Hub</h1>
+    <p class="tagline">Всё о мутантах, скинах и честных симуляторах.</p>
+    <div class="hero-buttons">
+      <a href="/mutants" class="btn">Перейти к мутантам</a>
+      <a href="/simulators" class="btn btn-secondary">Симуляторы</a>
+    </div>
+  </section>
 
-  <h1 class="text-4xl font-bold mb-4 text-center">Добро пожаловать на фан‑сайт Mutants!</h1>
-  <p class="text-center max-w-xl mx-auto">
-    Здесь будут интерактивные калькуляторы, база мутантов, симуляторы боёв и чёрной дыры.
-  </p>
-  <div class="text-center mt-6">
-    <a href="/evotech-calculator" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-      Эво калькулятор
-    </a>
-  </div>
+  <CardGrid
+    heading="Разделы сайта"
+    cards={[
+      {
+        title: 'Мутанты',
+        desc: 'Просмотрите список мутантов всех уровней',
+        href: '/mutants',
+      },
+      {
+        title: 'Скины',
+        desc: 'Каталог скинов и их бонусов',
+        href: '/skins',
+      },
+      {
+        title: 'Калькулятор эволюции',
+        desc: 'Рассчитайте развитие вашего мутанта',
+        href: '/evolution/calculator',
+      },
+      {
+        title: 'ЭвоTech',
+        desc: 'Калькулятор уровня здания EvoTech',
+        href: '/evolution/evotech-calculator',
+      },
+      {
+        title: 'Материалы',
+        desc: 'Токены, бустеры и сферы',
+        href: '/materials',
+      },
+      {
+        title: 'Симуляторы',
+        desc: 'Запускайте рулетки, чёрную дыру и реактор',
+        href: '/simulators',
+      },
+    ]}
+  />
+
+  <section class="materials-preview">
+    <h2>Материалы и ресурсы</h2>
+    <p>Небольшой предварительный просмотр: первые элементы из каждого типа. Перейдите в раздел «Материалы», чтобы увидеть полный список.</p>
+    <div class="preview-lists">
+      <div class="preview-group">
+        <h3>Материалы</h3>
+        <ul>
+          {materialPreview.slice(0, 2).map((item) => (
+            <li>{item.name}</li>
+          ))}
+        </ul>
+        <a href="/materials/material">Смотреть все</a>
+      </div>
+      <div class="preview-group">
+        <h3>Чары</h3>
+        <ul>
+          {charmsPreview.slice(0, 2).map((item) => (
+            <li>{item.name}</li>
+          ))}
+        </ul>
+        <a href="/materials/charms">Смотреть все</a>
+      </div>
+      <div class="preview-group">
+        <h3>Сферы</h3>
+        <ul>
+          {orbsPreview.slice(0, 2).map((item) => (
+            <li>{item.name}</li>
+          ))}
+        </ul>
+        <a href="/materials/orbs">Смотреть все</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="simulators-preview">
+    <h2>Симуляторы</h2>
+    <p>Запускайте виртуальные рулетки и реактор прямо на сайте. Выберите симулятор, настройте параметры и получите статистику.</p>
+  </section>
+
 </BaseLayout>
 
-
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .tagline {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: #8b949e;
+  }
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    background-color: #238636;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .btn:hover {
+    background-color: #2ea043;
+  }
+  .btn-secondary {
+    background-color: #0969da;
+  }
+  .btn-secondary:hover {
+    background-color: #218bff;
+  }
+  .preview-lists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .preview-group h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+  }
+  .preview-group ul {
+    list-style: disc;
+    margin-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .preview-group a {
+    color: #58a6ff;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  .preview-group a:hover {
+    text-decoration: underline;
+  }
+</style>

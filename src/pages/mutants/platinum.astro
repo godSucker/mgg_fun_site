@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import MutantsBrowser from '@/components/MutantsBrowser.svelte';
+import rows from '@/data/mutants/platinum.json';
+---
+
+<BaseLayout title="Мутанты — платина">
+  <MutantsBrowser client:load {rows} initialTier="platinum" />
+</BaseLayout>
