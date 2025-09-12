@@ -16,9 +16,8 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.12",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.13",
     "vite-plugin-raw": "^1.0.3"
   }
 }
