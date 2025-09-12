@@ -1,21 +1,20 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import MutantsBrowser from '@/components/MutantsBrowser.svelte';
+
+// Берём существующие файлы как у тебя сейчас
+import bronze   from '@/data/mutants/bronze.json';
+import silver   from '@/data/mutants/silver.json';
+import gold     from '@/data/mutants/gold.json';
+import platinum from '@/data/mutants/platinum.json';
+
+// Собираем всех мутантов в один список.
+// Внутри MutantsBrowser фильтр по звёздам сам покажет нужную подвыборку.
+const items = [...bronze, ...silver, ...gold, ...platinum];
+
+export const prerender = true;
 ---
 
-<BaseLayout title="Мутанты — выбрать тир">
-  <section style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
-    <a href="/mutants/normal"   class="tile">Обычные</a>
-    <a href="/mutants/bronze"   class="tile">Бронза</a>
-    <a href="/mutants/silver"   class="tile">Серебро</a>
-    <a href="/mutants/gold"     class="tile">Золото</a>
-    <a href="/mutants/platinum" class="tile">Платина</a>
-  </section>
-
-  <style>
-    .tile{
-      display:grid;place-items:center;height:120px;border:1px solid #2b3646;border-radius:14px;
-      background:#0b0f14;color:#cfe3ff;text-decoration:none;font-weight:600;transition:transform .12s ease, background .12s ease;
-    }
-    .tile:hover{ transform:translateY(-2px); background:#0f1520; }
-  </style>
+<BaseLayout>
+  <MutantsBrowser items={items} title="Мутанты" />
 </BaseLayout>
