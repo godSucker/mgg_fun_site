@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import MutantsBrowser from '@/components/MutantsBrowser.svelte';
-import rows from '@/data/mutants/bronze.json';
+import data from '@/data/mutants/bronze.json'; // путь как у тебя сейчас
+
+const title = 'Бронзовые мутанты';
 ---
 
-<BaseLayout title="Мутанты — бронза">
-  <MutantsBrowser client:load {rows} initialTier="bronze" />
+<BaseLayout title={title}>
+  <MutantsBrowser client:load items={data} star="bronze" title={title} />
 </BaseLayout>

@@ -72,7 +72,7 @@ from telegram.ext import (
 
 # Задайте URL вашего мини‑приложения. При развертывании через ngrok
 # подставьте публичный адрес, заканчивающийся на `/miniapp/mutants`.
-BASE_APP_URL = "https://456f0f37aa09.ngrok-free.app/miniapp/mutants"
+BASE_APP_URL = "https://vfmu8g-89-23-110-120.ru.tuna.am/miniapp/mutants"
 
 # Укажите ваш токен бота здесь, если не хотите использовать переменные
 # окружения. Если оставить пустую строку, будет использована

@@ -1,401 +1,436 @@
 <script>
-  import MutantCard from './MutantCard.svelte';
-  import MutantModal from './MutantModal.svelte';
-  import { onMount, onDestroy } from 'svelte';
+  // ====== ВХОДНЫЕ ДАННЫЕ ОТ СТРАНИЦЫ ======
+  /** @type {Array<any>} */
+  export let items = [];
+  /** @type {string} - нормал/bronze/silver/gold/platinum (для плашки редкости) */
+  export let star = '';
+  /** @type {string} */
+  export let title = '';
 
-  export let rows = [];
-  export let initialTier = 'all'; // 'all' | 'normal' | 'bronze' | 'silver' | 'gold' | 'platinum'
-
-  const IS_BROWSER = typeof window !== 'undefined';
-
-  // Коллатор для сортировки по имени/алфавитных списков (SSR-safe)
-  const coll = (globalThis.Intl && Intl.Collator)
-    ? new Intl.Collator('ru', { sensitivity: 'base', numeric: true })
-    : { compare: (a, b) => String(a ?? '').localeCompare(String(b ?? '')) };
-
-  // === Словарь генов ===
-  const GENE_LABELS = { A:'Киборг', B:'Нежить', C:'Рубака', D:'Зверь', E:'Галактик', F:'Мифик' };
-  const GENE_ORDER  = { A:0, B:1, C:2, D:3, E:4, F:5 };
-  const REVERSE_GENE = Object.fromEntries(Object.entries(GENE_LABELS).map(([k,v])=>[v.toLowerCase(), k]));
-
-  const geneLabel = (g) => GENE_LABELS[String(g).toUpperCase()] ?? String(g);
-  const geneRank  = (g) => GENE_ORDER[String(g).toUpperCase()] ?? 999;
-
-  // Хелперы нормализации
-  const pickFirst = (obj, keys, def='') => {
-    for (const k of keys) if (obj[k] != null && obj[k] !== '') return obj[k];
-    return def;
+  // ====== СЛОВАРИ ======
+  const GENE_RU = {
+    A: 'Киборг', B: 'Нежить', C: 'Рубака', D: 'Зверь', E: 'Галактик', F: 'Мифик'
   };
-  function normalizeName(r) {
-    const val = pickFirst(r, [
-      'name','Name','mutant_name','mutantName','displayName','title',
-      'name_ru','nameRu','ruName','name_en','nameEn','fullname','fullName','mutant'
-    ], '');
-    return String(val ?? '').trim();
-  }
-  function normalizeType(r) {
-    const val = pickFirst(r, ['type','Type','class','Class','category','Category'], '');
-    return String(val ?? '').trim();
-  }
-  function normalizeGene(r) {
-    let raw = pickFirst(r, ['gene','Gene','GENE','gen','Gen','gene_code','geneCode','g','gene_label','geneLabel'], '');
-    raw = String(raw ?? '').trim();
-    if (!raw) return '';
-    // если пришло «Киборг» и т.п. — переведём в A–F
-    const asLetter = raw.length === 1 ? raw.toUpperCase() : (REVERSE_GENE[raw.toLowerCase()] ?? '');
-    return (asLetter || raw.slice(0,1).toUpperCase());
-  }
 
-  // ID для путей (без specimen_ и без _normal/_bronze/_silver/_gold/_platinum/_plat)
-  function baseCoreFromId(raw) {
-    const noSpecimen = String(raw ?? '').trim().replace(/\s+/g,'_').replace(/^specimen[_-]*/i,'');
-    const m = noSpecimen.match(/^(.*?)(?:_(normal|bronze|silver|gold|platinum|plat))?$/i);
-    return (m ? m[1] : noSpecimen).toUpperCase();
-  }
-
-  // Нормализация строки бинго
-  function normalizeBingo(r) {
-    const bingoRaw = pickFirst(r, ['bingo','bingoType','bingo_name','bingoName','bingos','Bingo'], null);
-    if (Array.isArray(bingoRaw)) {
-      return bingoRaw.map(x => typeof x === 'string' ? x : (x?.name ?? x?.type ?? String(x))).filter(Boolean);
-    }
-    if (bingoRaw != null) {
-      return String(bingoRaw).split(/[|,/;]/).map(s=>s.trim()).filter(Boolean);
-    }
-    return [];
-  }
-
-  // --- нормализация входных данных ---
-  const mapRow = (r, i) => {
-    const idRaw = pickFirst(r, ['id','ID','code','slug'], (i+1));
-    const idStr = String(idRaw);
-    const tier  = String(pickFirst(r, ['tier','Tier'], '')).toLowerCase();
-
-    const gCode = normalizeGene(r);
-    const gLbl  = geneLabel(gCode);
-    const gRnk  = geneRank(gCode);
-
-    const baseIdUpper = baseCoreFromId(idStr);
-
-    return {
-      ...r,
-      _id: idStr,
-      _baseIdUpper: baseIdUpper,
-      _name: normalizeName(r),
-      _tier: tier,
-      _gene: gCode,
-      _geneLabel: gLbl,
-      _geneRank: gRnk,
-      _type: normalizeType(r),
-      _bingo: normalizeBingo(r),
-      _speed: Number(pickFirst(r, ['speed','Speed','spd'], 0)) || 0,
-      _hp: Number(pickFirst(r, ['hp','HP','health'], 0)) || 0,
-      _attack: Number(pickFirst(r, ['attack','Attack','atk'], 0)) || 0,
-    };
+  // Бинго: базовый словарь + graceful fallback.
+  const BINGO_RU = {
+    hp: 'ХП', health: 'ХП',
+    atk: 'Атака', attack: 'Атака', attack1: 'Атака 1', attack2: 'Атака 2',
+    spd: 'Скорость', speed: 'Скорость',
+    credit: 'Кредиты', credits: 'Кредиты',
+    xp: 'Опыт',
+    gene_A: 'Киборг', gene_B: 'Нежить', gene_C: 'Рубака', gene_D: 'Зверь', gene_E: 'Галактик', gene_F: 'Мифик'
   };
-  const data = rows.map(mapRow);
 
-  const uniq = (arr) => Array.from(new Set(arr)).filter(v=>v!=='' && v!=null);
+  // Цвета/стили для плашек редкости (Tailwind v3-safe)
+  const STAR_STYLE = {
+    bronze:  { bg: 'bg-amber-700',   ring: 'ring-amber-400',   text: 'Бронза' },
+    silver:  { bg: 'bg-slate-400',   ring: 'ring-slate-200',   text: 'Серебро' },
+    gold:    { bg: 'bg-yellow-500',  ring: 'ring-yellow-300',  text: 'Золото' },
+    platinum:{ bg: 'bg-cyan-500',    ring: 'ring-cyan-200',    text: 'Платина' }
+  };
 
-  // гены — только присутствующие, в порядке A→F
-  const geneOptions = uniq(data.map(r=>r._gene)).sort((a,b)=>geneRank(a)-geneRank(b));
-  // типы/бинго — алфавит
-  const allTypes  = uniq(data.map(r=>r._type)).sort((a,b)=>coll.compare(String(a), String(b)));
-  const allBingos = uniq(data.flatMap(r=>r._bingo ?? [])).sort((a,b)=>coll.compare(String(a), String(b)));
-
-  // --- состояние фильтров/сортировки ---
-  let q = '';
-  let tier = initialTier;
-  const tierSelectable = initialTier === 'all';
-
-  let gene = '';
-  let type = '';
-  let bingo = '';
-  let speedMin = '';
-  let speedMax = '';
-
-  let sortBy = 'name';   // 'name' | 'gene' | 'speed' | 'hp' | 'attack'
-  let sortDir = 'asc';   // 'asc' | 'desc'
-  let withTextureOnly = false;
-
-  // --- статус текстур из карточек ---
-  // ключ: baseIdUpper → true/false
-  const textureOK = new Map();
-  function onTexture(e) {
-    const { id, ok } = e.detail || {};
-    if (!id) return;
-    textureOK.set(String(id), !!ok);
+  // ====== ВСПОМОГАТЕЛЬНЫЕ ======
+  function humanizeGenes(genes) {
+    // В JSON это массив из одной строки, например ["AB"] или ["A"].
+    if (!Array.isArray(genes) || genes.length === 0 || typeof genes[0] !== 'string') return '';
+    const g = genes[0].toUpperCase();
+    // Комбинации типа "AB" -> "Киборг+Нежить", "AA" -> "Киборг+Киборг"
+    return g.split('').map((ch) => GENE_RU[ch] || ch).join('+');
   }
 
-  // --- ленивый показ ---
-  let pageSize = 60;
-  let visibleCount = pageSize;
-
-  let scrollHandler;
-  onMount(() => {
-    // init из URL
-    const p = new URLSearchParams(window.location.search);
-    q = p.get('q') ?? q;
-    if (tierSelectable) tier = p.get('tier') ?? tier;
-    gene = p.get('gene') ?? gene;
-    type = p.get('type') ?? type;
-    bingo = p.get('bingo') ?? bingo;
-    speedMin = p.get('smin') ?? speedMin;
-    speedMax = p.get('smax') ?? speedMax;
-    sortBy = p.get('sort') ?? sortBy;
-    sortDir = p.get('dir') ?? sortDir;
-    withTextureOnly = p.get('tex') === '1' ? true : withTextureOnly;
-
-    scrollHandler = () => {
-      const nearBottom = (window.innerHeight + window.scrollY) > (document.body.offsetHeight - 800);
-      if (nearBottom) visibleCount += pageSize;
-    };
-    window.addEventListener('scroll', scrollHandler);
-  });
-  onDestroy(() => {
-    if (IS_BROWSER && scrollHandler) window.removeEventListener('scroll', scrollHandler);
-  });
-
-  // --- фильтры ---
-  function passFilters(m) {
-    if (tierSelectable && tier !== 'all' && m._tier !== String(tier).toLowerCase()) return false;
-    if (gene && m._gene !== gene) return false;
-    if (type && m._type !== type) return false;
-    if (bingo) {
-      const hay = (m._bingo ?? []).map(s=>String(s).toLowerCase());
-      if (!hay.includes(bingo.toLowerCase())) return false;
-    }
-    if (q) {
-      const needle = q.toLowerCase().trim();
-      const byName = (m._name ?? '').toLowerCase().includes(needle);
-      const byId   = (m._id   ?? '').toLowerCase().includes(needle);
-      if (!byName && !byId) return false;
-    }
-    if (speedMin !== '' && m._speed < Number(speedMin)) return false;
-    if (speedMax !== '' && m._speed > Number(speedMax)) return false;
-
-    if (withTextureOnly) {
-      const baseId = m._baseIdUpper;
-      // жёсткое требование: только карточки, которые подтвердили загрузку текстуры
-      if (textureOK.get(baseId) !== true) return false;
-    }
-    return true;
+  function ruBingoKey(key) {
+    if (!key) return '';
+    const k = String(key).toLowerCase();
+    return BINGO_RU[k] || key;
   }
 
-  // --- вычисления: фильтр → сортировка → видимая часть ---
-  $: filtered = data.filter(passFilters);
-
-  // явный токен — чтобы Svelte пересортировал при смене sortBy/sortDir
-  $: __sortToken = `${sortBy}|${sortDir}`;
-
-  $: sorted = [...filtered].sort((a, b) => {
-    let res;
-    switch (sortBy) {
-      case 'speed':
-        res = (a._speed > b._speed) - (a._speed < b._speed);
-        break;
-      case 'hp':
-        res = (a._hp > b._hp) - (a._hp < b._hp);
-        break;
-      case 'attack':
-        res = (a._attack > b._attack) - (a._attack < b._attack);
-        break;
-      case 'gene':
-        res = (a._geneRank > b._geneRank) - (a._geneRank < b._geneRank);
-        if (res === 0) res = coll.compare(a._name ?? '', b._name ?? '');
-        break;
-      default: // name
-        res = coll.compare(a._name ?? '', b._name ?? '');
-    }
-    return sortDir === 'asc' ? res : -res;
-  });
-
-  $: visible = sorted.slice(0, visibleCount);
-
-  // QoL: при смене сортировки сбрасываем пагинацию
-  let __prevSortToken = '';
-  $: {
-    if (__sortToken !== __prevSortToken) {
-      visibleCount = pageSize;
-      __prevSortToken = __sortToken;
-    }
+  function safeNum(n) {
+    const v = Number(n);
+    return Number.isFinite(v) ? v : undefined;
   }
 
-  // --- безопасное обновление URL ---
-  function updateURL(){
-    if (!IS_BROWSER) return;
-    const params = new URLSearchParams();
-    if (q) params.set('q', q);
-    if (tierSelectable && tier !== 'all') params.set('tier', tier);
-    if (gene) params.set('gene', gene);
-    if (type) params.set('type', type);
-    if (bingo) params.set('bingo', bingo);
-    if (speedMin !== '') params.set('smin', String(speedMin));
-    if (speedMax !== '') params.set('smax', String(speedMax));
-    if (sortBy !== 'name') params.set('sort', sortBy);
-    if (sortDir !== 'asc') params.set('dir', sortDir);
-    if (withTextureOnly) params.set('tex', '1');
-
-    const qs = params.toString();
-    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
-    window.history.replaceState(null, '', url);
+  // Вытащить lvl1 статы (для фильтров; ты просил именно базовые)
+  function statAtLvl1(item, key) {
+    const lvl1 = item?.base_stats?.lvl1 || {};
+    if (key === 'hp') return safeNum(lvl1.hp);
+    if (key === 'atk') return safeNum(lvl1.atk1); // используем атаку 1 как опорную
+    if (key === 'spd') return safeNum(lvl1.spd);
+    return undefined;
   }
-  $: IS_BROWSER && updateURL();
 
-  // --- модалка ---
-  let modalOpen = false;
-  let modalMutant = null;
-  function openModal(m){ modalMutant = m; modalOpen = true; }
-  function closeModal(){ modalOpen = false; modalMutant = null; }
+  // Надёжно выбрать полноразмерную текстуру из массива image.
+  // Берём первый путь, который НЕ содержит 'specimen' и 'larva'.
+  function pickFullTexture(item) {
+    const raw = item?.image;
+    let imgs = [];
+    if (Array.isArray(raw)) imgs = raw;
+    else if (typeof raw === 'string' && raw) imgs = [raw];
 
-  // чипсы и сброс
-  function removeChip(kind){
-    if (kind==='q') q='';
-    if (kind==='tier') tier='all';
-    if (kind==='gene') gene='';
-    if (kind==='type') type='';
-    if (kind==='bingo') bingo='';
-    if (kind==='smin') speedMin='';
-    if (kind==='smax') speedMax='';
+    const chosen = imgs.find(
+      (p) => typeof p === 'string'
+        && p.toLowerCase().indexOf('specimen') === -1
+        && p.toLowerCase().indexOf('larva') === -1
+        && p.toLowerCase().endsWith('.png')
+    ) || imgs.find((p) => typeof p === 'string') || '';
+
+    // В JSON путь уже корректный (пример: "textures_by_mutant/a_01/A_01_bronze.png"),
+    // поэтому NOP. Оставляю replace лишь как страховку от лишних слэшей/пробелов.
+    return String(chosen).replace(/\s+/g, ' ').trim();
   }
-  function resetAll(){
-    q=''; if (tierSelectable) tier='all'; gene=''; type=''; bingo='';
-    speedMin=''; speedMax='';
-    sortBy='name'; sortDir='asc'; withTextureOnly=false; visibleCount=pageSize;
+
+  function rarityFor(item) {
+    // В JSON по звёздам лежит star: 'bronze'/'silver'/'gold'/'platinum' (или пусто у normal)
+    // Если страница типовая (normal/bronze/... передаёт star пропом), используем star || item.star
+    const s = (star || item?.star || 'normal').toLowerCase();
+    return STAR_STYLE[s] || STAR_STYLE.normal;
   }
+
+  // ====== UI СОСТОЯНИЕ (ФИЛЬТРЫ) ======
+  let query = '';          // поиск по имени
+  let geneSel = '';        // фильтр по гену (значение как в JSON: 'A','AB','F' и т.д.)
+  let bingoSel = '';       // фильтр по бинго (строка ключа, как в JSON)
+  let minHP = '', maxHP = '';
+  let minATK = '', maxATK = '';
+  let minSPD = '', maxSPD = '';
+
+  // Списки значений для селектов — собираем из данных
+  const geneOptions = Array.from(new Set(
+    items
+      .map(it => (Array.isArray(it.genes) && typeof it.genes[0] === 'string') ? it.genes[0].toUpperCase() : '')
+      .filter(Boolean)
+  )).sort();
+
+  const bingoOptions = Array.from(new Set(
+    items.flatMap(it => Array.isArray(it.bingo) ? it.bingo.map(String) : [])
+  )).sort((a, b) => ruBingoKey(a).localeCompare(ruBingoKey(b), 'ru'));
+
+  // ====== ФИЛЬТРАЦИЯ ======
+  function passName(it) {
+    if (!query) return true;
+    return String(it.name || '').toLowerCase().includes(query.toLowerCase());
+  }
+  function passGene(it) {
+    if (!geneSel) return true;
+    const g = Array.isArray(it.genes) && typeof it.genes[0] === 'string' ? it.genes[0].toUpperCase() : '';
+    return g === geneSel;
+  }
+  function passBingo(it) {
+    if (!bingoSel) return true;
+    const arr = Array.isArray(it.bingo) ? it.bingo.map(String) : [];
+    return arr.some(x => String(x) === bingoSel);
+  }
+  function passRange(it, key, minV, maxV) {
+    const v = statAtLvl1(it, key);
+    if (v === undefined) return false; // нет стат — не показываем
+    const minOk = (minV === '' || minV === undefined) ? true : v >= Number(minV);
+    const maxOk = (maxV === '' || maxV === undefined) ? true : v <= Number(maxV);
+    return minOk && maxOk;
+  }
+
+  $: filtered = items
+    .filter(passName)
+    .filter(passGene)
+    .filter(passBingo)
+    .filter(it => passRange(it, 'spd', minSPD, maxSPD))
+    .filter(it => passRange(it, 'hp',  minHP,  maxHP))
+    .filter(it => passRange(it, 'atk', minATK, maxATK))
+    // По умолчанию — сортируем по имени для стабильности
+    .sort((a, b) => String(a.name || '').localeCompare(String(b.name || ''), 'ru'));
+
+  // ====== МОДАЛКА ======
+  let openItem = null;
+  function openModal(it) { openItem = it; }
+  function closeModal() { openItem = null; }
 </script>
 
-<div class="toolbar">
-  <div class="control grow">
-    <input class="input" placeholder="Поиск по имени или ID…" bind:value={q} />
-  </div>
-
-  {#if tierSelectable}
-  <div class="control">
-    <select bind:value={tier} class="select">
-      <option value="all">Все тиры</option>
-      <option value="normal">Обычные</option>
-      <option value="bronze">Бронза</option>
-      <option value="silver">Серебро</option>
-      <option value="gold">Золото</option>
-      <option value="platinum">Платина</option>
-    </select>
-  </div>
+<!-- ====== ЛЕЙАУТ ====== -->
+<div class="mx-auto max-w-[1400px] px-4 py-6">
+  {#if title}
+    <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">{title}</h1>
   {/if}
 
-  <div class="control">
-    <select bind:value={gene} class="select">
-      <option value="">{geneOptions.length ? 'Ген (все)' : 'Ген (нет данных)'}</option>
-      {#each geneOptions as g}
-        <option value={g}>{geneLabel(g)}</option>
-      {/each}
-    </select>
+  <!-- Панель фильтров -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
+    <div class="md:col-span-6 lg:col-span-7 p-4 rounded-xl bg-slate-800 bg-opacity-80 ring-1 ring-white/10">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Поиск по имени -->
+        <label class="flex flex-col gap-1">
+          <span class="text-xs text-slate-300">Поиск по имени</span>
+          <input
+            class="px-3 py-2 rounded-lg bg-slate-900 text-slate-100 placeholder-slate-400 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            placeholder="Введите имя мутанта…"
+            bind:value={query}
+          />
+        </label>
+
+        <!-- Ген -->
+        <label class="flex flex-col gap-1">
+          <span class="text-xs text-slate-300">Ген</span>
+          <select
+            class="px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            bind:value={geneSel}
+          >
+            <option value=''>Любой</option>
+            {#each geneOptions as g}
+              <option value={g}>{humanizeGenes([g])}</option>
+            {/each}
+          </select>
+        </label>
+
+        <!-- Бинго -->
+        <label class="flex flex-col gap-1">
+          <span class="text-xs text-slate-300">Бинго</span>
+          <select
+            class="px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            bind:value={bingoSel}
+          >
+            <option value=''>Любое</option>
+            {#each bingoOptions as b}
+              <option value={b}>{ruBingoKey(b)}</option>
+            {/each}
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <!-- Диапазоны статов -->
+    <div class="md:col-span-6 lg:col-span-5 p-4 rounded-xl bg-slate-800 bg-opacity-80 ring-1 ring-white/10">
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+        <!-- Скорость -->
+        <div class="col-span-2 md:col-span-2">
+          <div class="text-xs text-slate-300 mb-1">Скорость</div>
+          <div class="flex gap-2">
+            <input class="w-full px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10"
+                   type="number" step="0.001" placeholder="Мин" bind:value={minSPD} />
+            <input class="w-full px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10"
+                   type="number" step="0.001" placeholder="Макс" bind:value={maxSPD} />
+          </div>
+        </div>
+
+        <!-- ХП -->
+        <div class="col-span-1 md:col-span-2">
+          <div class="text-xs text-slate-300 mb-1">ХП</div>
+          <div class="flex gap-2">
+            <input class="w-full px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10"
+                   type="number" step="1" placeholder="Мин" bind:value={minHP} />
+            <input class="w-full px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10"
+                   type="number" step="1" placeholder="Макс" bind:value={maxHP} />
+          </div>
+        </div>
+
+        <!-- Атака -->
+        <div class="col-span-1 md:col-span-2">
+          <div class="text-xs text-slate-300 mb-1">Атака (Atk1)</div>
+          <div class="flex gap-2">
+            <input class="w-full px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10"
+                   type="number" step="1" placeholder="Мин" bind:value={minATK} />
+            <input class="w-full px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10"
+                   type="number" step="1" placeholder="Макс" bind:value={maxATK} />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="control">
-    <select bind:value={type} class="select">
-      <option value="">{allTypes.length ? 'Тип (все)' : 'Тип (нет данных)'}</option>
-      {#each allTypes as t}<option value={t}>{t}</option>{/each}
-    </select>
+  <!-- Сетка карточек -->
+  <div class="grid gap-4
+              grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+    {#each filtered as it (it.id)}
+      {#key it.id}
+        <div
+          class="group relative rounded-xl overflow-hidden
+                 bg-slate-800 ring-1 ring-white/10
+                 transition-transform duration-200 ease-out
+                 cursor-pointer"
+          on:click={() => openModal(it)}
+          style="transform: perspective(900px) translateZ(0)"
+          on:mousemove={(e) => {
+            const card = e.currentTarget;
+            const r = card.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width/2);
+            const dy = e.clientY - (r.top + r.height/2);
+            const tiltX = (+dy / r.height) * -6; // лёгкий «прогиб»
+            const tiltY = (+dx / r.width) * 6;
+            card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.01)`;
+          }}
+          on:mouseleave={(e) => {
+            e.currentTarget.style.transform = 'perspective(900px) rotateX(0) rotateY(0) scale(1)';
+          }}
+        >
+          <!-- Текстура -->
+          <img
+            alt={it.name}
+            class="w-full h-48 object-contain bg-slate-900"
+            src={'/' + pickFullTexture(it)}
+            loading="lazy"
+            on:error={(ev) => { ev.currentTarget.classList.add('opacity-0'); }}
+            on:load={(ev) => { ev.currentTarget.classList.remove('opacity-0'); }}
+          />
+
+          <!-- Плашки -->
+          <div class="absolute left-0 top-0 m-2 flex gap-2 items-center">
+            <!-- Плашка редкости -->
+            {#if rarityFor(it)}
+              {#await Promise.resolve(rarityFor(it)) then r}
+                <span class={`px-2 py-0.5 text-[11px] font-semibold rounded-md ${r.bg} ${r.ring} ring-1 text-slate-50`}>
+                  {r.text}
+                </span>
+              {/await}
+            {/if}
+
+            <!-- Плашка тира (если есть поле tier) -->
+            {#if it.tier}
+              <span class="px-2 py-0.5 text-[11px] font-semibold rounded-md bg-gray-300 ring-1 ring-gray-150 text-white">
+                {it.tier}
+              </span>
+            {/if}
+          </div>
+
+          <!-- Имя -->
+          <div class="px-3 pt-2 pb-3">
+            <div class="relative">
+              {#if (String(it.name || '').length > 18)}
+                <div class="overflow-hidden">
+                  <div class="whitespace-nowrap text-slate-100 font-semibold text-sm animate-marquee">
+                    {it.name}
+                  </div>
+                </div>
+              {:else}
+                <div class="text-slate-100 font-semibold text-sm truncate">
+                  {it.name}
+                </div>
+              {/if}
+            </div>
+          </div>
+        </div>
+      {/key}
+    {/each}
   </div>
 
-  <div class="control">
-    <select bind:value={bingo} class="select">
-      <option value="">{allBingos.length ? 'Бинго (все)' : 'Бинго (нет данных)'}</option>
-      {#each allBingos as b}<option value={b}>{b}</option>{/each}
-    </select>
-  </div>
+  <!-- Модалка -->
+  {#if openItem}
+    <div class="fixed inset-0 z-50 flex items-center justify-center">
+      <div class="absolute inset-0 bg-black bg-opacity-60" on:click={closeModal}></div>
 
-  <div class="control speed">
-    <span>Скорость</span>
-    <input type="number" placeholder="мин" min="0" bind:value={speedMin}/>
-    <span class="dash">—</span>
-    <input type="number" placeholder="макс" min="0" bind:value={speedMax}/>
-  </div>
+      <div class="relative z-10 w-[min(1000px,95vw)] max-h-[90vh] overflow-hidden
+                  bg-slate-900 text-slate-100 rounded-2xl ring-1 ring-white/10 shadow-2xl">
+        <button class="absolute right-3 top-3 px-3 py-1 rounded-md bg-slate-800 ring-1 ring-white/10 hover:bg-slate-700"
+                on:click={closeModal}>✕</button>
 
-  <div class="control sort">
-    <select bind:value={sortBy} class="select">
-      <option value="name">Имя</option>
-      <option value="gene">Ген</option>
-      <option value="speed">Скорость</option>
-      <option value="hp">ХП</option>
-      <option value="attack">Атака</option>
-    </select>
-    <button class="dir" title="Направление" on:click={() => sortDir = (sortDir==='asc'?'desc':'asc')} type="button">
-      {sortDir==='asc' ? '↑' : '↓'}
-    </button>
-  </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          <!-- Картинка -->
+          <div class="p-4 flex items-center justify-center bg-slate-950">
+            <img class="max-h-[70vh] object-contain" src={'/' + pickFullTexture(openItem)} alt={openItem.name} />
+          </div>
 
-  <label class="control chk">
-    <input type="checkbox" bind:checked={withTextureOnly}/>
-    <span>Только с текстурой</span>
-  </label>
+          <!-- Характеристики -->
+          <div class="p-6 overflow-y-auto">
+            <h2 class="text-xl font-bold mb-2">{openItem.name}</h2>
+            <div class="text-sm text-slate-300 mb-4">
+              Ген: <span class="text-slate-100 font-medium">{humanizeGenes(openItem.genes)}</span>
+            </div>
 
-  <button class="reset" on:click={resetAll} type="button">Сбросить</button>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Скорость</div>
+                <div class="text-lg font-semibold">{statAtLvl1(openItem, 'spd') ?? '—'}</div>
+              </div>
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">ХП (1 ур.)</div>
+                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl1?.hp ?? '—'}</div>
+              </div>
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Атака1 (1 ур.)</div>
+                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl1?.atk1 ?? '—'}</div>
+              </div>
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Атака2 (1 ур.)</div>
+                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl1?.atk2 ?? '—'}</div>
+              </div>
+
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">ХП (30 ур.)</div>
+                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl30?.hp ?? '—'}</div>
+              </div>
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Атака1 (30 ур.)</div>
+                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl30?.atk1 ?? '—'}</div>
+              </div>
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Атака2 (30 ур.)</div>
+                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl30?.atk2 ?? '—'}</div>
+              </div>
+
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Инкубация (мин)</div>
+                <div class="text-lg font-semibold">{openItem?.incub_time ?? '—'}</div>
+              </div>
+              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
+                <div class="text-xs text-slate-400">Тип</div>
+                <div class="text-lg font-semibold">{openItem?.type ?? '—'}</div>
+              </div>
+            </div>
+
+            <!-- Бинго / способности -->
+            <div class="mb-3">
+              <div class="text-sm text-slate-300 mb-1">Бинго:</div>
+              {#if Array.isArray(openItem.bingo) && openItem.bingo.length}
+                <div class="flex flex-wrap gap-2">
+                  {#each openItem.bingo as b}
+                    <span class="text-xs px-2 py-1 rounded-md bg-slate-800 ring-1 ring-white/10">{ruBingoKey(b)}</span>
+                  {/each}
+                </div>
+              {:else}
+                <div class="text-slate-500 text-sm">—</div>
+              {/if}
+            </div>
+
+            <div class="mb-3">
+              <div class="text-sm text-slate-300 mb-1">Способности:</div>
+              {#if Array.isArray(openItem.abilities) && openItem.abilities.length}
+                <div class="space-y-1">
+                  {#each openItem.abilities as ab}
+                    <div class="text-xs bg-slate-800 ring-1 ring-white/10 rounded-md px-2 py-1">
+                      <span class="font-semibold">{ab.name}</span>
+                      <span class="text-slate-400"> — {ab.pct ?? '?'}%</span>
+                    </div>
+                  {/each}
+                </div>
+              {:else}
+                <div class="text-slate-500 text-sm">—</div>
+              {/if}
+            </div>
+
+            <!-- Описание — резерв -->
+            <div class="mt-4 text-sm text-slate-300">
+              <div class="mb-1">Описание:</div>
+              <div class="text-slate-400">Скоро здесь будет лор мутанта.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/if}
 </div>
-
-<!-- chips -->
-<div class="chips">
-  {#if q}<button class="chip" on:click={()=>removeChip('q')} type="button">Поиск: “{q}” ✕</button>{/if}
-  {#if tierSelectable && tier!=='all'}<button class="chip" on:click={()=>removeChip('tier')} type="button">Тир: {tier} ✕</button>{/if}
-  {#if gene}<button class="chip" on:click={()=>removeChip('gene')} type="button">Ген: {geneLabel(gene)} ✕</button>{/if}
-  {#if type}<button class="chip" on:click={()=>removeChip('type')} type="button">Тип: {type} ✕</button>{/if}
-  {#if bingo}<button class="chip" on:click={()=>removeChip('bingo')} type="button">Бинго: {bingo} ✕</button>{/if}
-  {#if speedMin!==''}<button class="chip" on:click={()=>removeChip('smin')} type="button">Скор. ≥ {speedMin} ✕</button>{/if}
-  {#if speedMax!==''}<button class="chip" on:click={()=>removeChip('smax')} type="button">Скор. ≤ {speedMax} ✕</button>{/if}
-</div>
-
-<p class="count">Найдено: <strong>{filtered.length}</strong> {filtered.length !== visible.length ? `(показано ${visible.length})` : ''}</p>
-
-<div class="grid">
-  {#each visible as m (m._id)}
-    <MutantCard
-      client:visible
-      mutant={{ id: m._id, name: m._name, tier: m._tier, gene: m._gene, type: m._type, bingo: m._bingo, speed: m._speed, hp: m._hp, attack: m._attack }}
-      on:texture={onTexture}
-      on:select={()=>openModal({ id: m._id, name: m._name, tier: m._tier, gene: m._gene, type: m._type, bingo: m._bingo, speed: m._speed, hp: m._hp, attack: m._attack })}
-    />
-  {/each}
-</div>
-
-{#if IS_BROWSER}
-  <MutantModal open={modalOpen} mutant={modalMutant} onClose={closeModal}>
-    <svelte:fragment slot="image">
-      <div style="width:100%;max-height:520px;display:grid;place-items:center;"></div>
-    </svelte:fragment>
-  </MutantModal>
-{/if}
 
 <style>
-.toolbar{
-  display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
-  margin: .2rem 0 .5rem;
-}
-.control{ display:flex; gap:.4rem; align-items:center; min-width:180px; }
-.control.grow{ flex:1 1 260px; min-width:220px; }
-.input, .select{
-  width:100%; padding:.55rem .6rem; border:1px solid #30363d; border-radius:10px;
-  background:#0b0f14; color:#c9d1d9;
-}
-.speed input{ width:90px; padding:.45rem .5rem; border:1px solid #30363d; border-radius:10px; background:#0b0f14; color:#c9d1d9; }
-.speed .dash{ color:#8b949e; }
-.sort .dir{
-  width:40px; height:38px; border:1px solid #30363d; border-radius:10px; background:#161b22; color:#c9d1d9; cursor:pointer;
-}
-.chk{ gap:.35rem; color:#c9d1d9; }
-.reset{ padding:.5rem .7rem; border:1px solid #304357; background:#0d1520; color:#cfe3ff; border-radius:10px; cursor:pointer; }
+   /* Мягкий «прогиб» карточки под курсор сохраняется — если у тебя свой класс, оставляй его */
+  .card {
+    transform-style: preserve-3d;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover {
+    transform: perspective(900px) rotateX(3deg) rotateY(-3deg) translateZ(2px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  }
 
-.chips{ display:flex; flex-wrap:wrap; gap:.4rem; margin:.2rem 0 .6rem; }
-.chip{
-  background:#111826; color:#cfe3ff; border:1px solid #2a3f5a; border-radius:999px;
-  padding:.2rem .5rem; font-size:.83rem; cursor:pointer;
-}
-
-.count{ color:#8b949e; margin:.2rem 0 .6rem; }
-
-.grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-}
+  /* Бегущая строка */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* т.к. дублируем текст */
+  }
+  .animate-marquee {
+    animation: marquee 8s linear infinite;
+  }
 </style>
