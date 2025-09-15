@@ -42,7 +42,7 @@
 
 {#if open && mutant}
 <div class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" on:click|self={close}>
-  <div class="relative w-full max-w-5xl grid md:grid-cols-[380px_1fr] gap-6 bg-[#0b1220] border border-white/10 rounded-2xl p-5 shadow-2xl">
+  <div class="relative w-full max-w-5xl grid md:grid-cols-[380px_1fr] gap-6 bg-[#0b1220] border border-white/10 rounded-2xl p-5 shadow-2xl modal-panel">
     <!-- изображение -->
     <div class="bg-gradient-to-b from-slate-900 to-slate-800 rounded-xl p-4 flex items-center justify-center ring-1 ring-white/10">
       <img alt={mutant?.name} src={imgSrc(mutant)} class="max-h-[420px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]" />
@@ -124,4 +124,15 @@
 <style>
   .stat-icon { width: 16px; height: 16px; opacity: .85; display:inline-block; }
   .row-icon { display: inline-flex; align-items: center; gap: .35rem; }
+
+/* Mobile-only shrink for modal, no scrolling change on desktop */
+@media (max-width: 767.98px){
+  :global(.modal-panel){
+    width: calc(100vw - 1rem);
+    max-width: 100%;
+    transform: scale(0.66);
+    transform-origin: center;
+  }
+}
+
 </style>
