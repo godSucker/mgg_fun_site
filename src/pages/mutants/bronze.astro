@@ -1,11 +1,5 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import MutantsBrowser from '@/components/MutantsBrowser.svelte';
-import data from '@/data/mutants/bronze.json'; // путь как у тебя сейчас
-
-const title = 'Бронзовые мутанты';
+import { redirect } from 'astro';
+redirect('/mutants/');
+export const prerender = true;
 ---
-
-<BaseLayout title={title}>
-  <MutantsBrowser client:load items={data} star="bronze" title={title} />
-</BaseLayout>

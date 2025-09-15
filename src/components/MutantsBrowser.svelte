@@ -1,624 +1,343 @@
-<script>
-  // ====== ВХОДНЫЕ ДАННЫЕ ОТ СТРАНИЦЫ ======
-  /** @type {Array<any>} */
-  export let items = [];
-  // Убираем проп star — сортировка по звёздам теперь полностью контролируется
-  // внутри компонента через starSel. Внешняя пропка больше не используется.
-  /** @type {string} */
+<script lang="ts">
+  import MutantModal from './MutantModal.svelte';
+  import { TYPE_RU, geneLabel, bingoLabel } from '@/lib/mutant-dicts';
+
+  // Пропсы
+  export let items: any[] = [];     // normal + bronze + silver + gold + platinum
+  export let skins: any[] = [];     // skins.json -> specimens[]
   export let title = '';
+  export let bingoIndex: string[] = [];
 
-  // ====== СЛОВАРИ ======
-  const GENE_RU = {
-    A: 'Киборг', B: 'Нежить', C: 'Рубака', D: 'Зверь', E: 'Галактик', F: 'Мифик'
-  };
-
-  // Бинго: базовый словарь + расширенный список для фильтра
-  const BINGO_RU = {
-    hp: 'ХП', health: 'ХП',
-    atk: 'Атака', attack: 'Атака', attack1: 'Атака 1', attack2: 'Атака 2',
-    spd: 'Скорость', speed: 'Скорость',
-    credit: 'Кредиты', credits: 'Кредиты',
-    xp: 'Опыт',
-    gene_A: 'Киборг', gene_B: 'Нежить', gene_C: 'Рубака', gene_D: 'Зверь', gene_E: 'Галактик', gene_F: 'Мифик',
-    // Переводы бинго
-    '2025_events': 'Ивенты 2025',
-    '2025_mutants': 'Мутанты 2025',
-    '2025_skins': 'Скины 2025',
-    amazons: 'Амазонки',
-    anniversary_25: 'Годовщина',
-    bingo_bronze: 'Бронзовое разведение',
-    bingo_silver: 'Серебряное разведение',
-    bingo_gold: 'Золотое разведение',
-    bingo_plat: 'Платиновое разведение',
-    cross_mutation: 'Кросс‑мутация',
-    events_2019: 'Ивенты 2019',
-    events_2020: 'Ивенты 2020',
-    events_2021: 'Ивенты 2021',
-    events_2022: 'Ивенты 2022',
-    events_2024: 'Ивенты 2024',
-    events: 'Праздники',
-    heroic: 'Герои',
-    legend: 'Легенды',
-    reactor: 'Реактор',
-    research_1: 'Исследование 1',
-    research_2: 'Исследование 2',
-    research_3: 'Исследование 3',
-    research_4: 'Исследование 4',
-    research_5: 'Исследование 5',
-    research_6: 'Исследование 6',
-    research_7: 'Исследование 7',
-    research_8: 'Исследование 8',
-    research_9: 'Исследование 9',
-    research_10: 'Исследование 10',
-    research_11: 'Исследование 11',
-    rumble: 'Грохот',
-    Starter: 'Базовое бинго',
-    starter_plat: 'Платиновое бинго',
-    zodiac: 'Зодиаки',
-    zodiac_silver: 'Серебряные зодиаки'
-  };
-
-  // Типы мутантов и их переводы. Если тип не в словаре, оставляем как есть.
-  const TYPE_RU = {
-    Pvp: 'ПВП',
-    Special: 'Особые',
-    Zodiac: 'Зодиаки',
-    GACHA: 'Реактор'
-  };
-
-  // Цвета/стили для плашек редкости (Tailwind v3-safe)
-  const STAR_STYLE = {
-    bronze:  { bg: 'bg-amber-700',   ring: 'ring-amber-400',   text: 'Бронза' },
-    silver:  { bg: 'bg-slate-400',   ring: 'ring-slate-200',   text: 'Серебро' },
-    gold:    { bg: 'bg-yellow-500',  ring: 'ring-yellow-300',  text: 'Золото' },
-    platinum:{ bg: 'bg-cyan-500',    ring: 'ring-cyan-200',    text: 'Платина' }
-  };
-
-  // ====== ВСПОМОГАТЕЛЬНЫЕ ======
-  function humanizeGenes(genes) {
-    // В JSON это массив из одной строки, например ["AB"] или ["A"].
-    if (!Array.isArray(genes) || genes.length === 0 || typeof genes[0] !== 'string') return '';
-    const g = genes[0].toUpperCase();
-    // Комбинации типа "AB" -> "Киборг+Нежить", "AA" -> "Киборг+Киборг"
-    return g.split('').map((ch) => GENE_RU[ch] || ch).join('+');
+  // =========================
+  // НОРМАЛИЗАЦИЯ ДАННЫХ SKINS
+  // =========================
+  function mapSkin(s: any) {
+    return {
+      id: s?.id,
+      name: s?.name,
+      genes: s?.genes,
+      base_stats: s?.base_stats,
+      image: s?.image,
+      type: s?.type ?? 'default',
+      star: !s?.star || s.star === 'none' ? 'normal' : String(s.star).toLowerCase(),
+      bingo: Array.isArray(s?.bingo) || typeof s?.bingo === 'object' ? s.bingo : [],
+      skin: s?.skin ?? true,
+      __source: 'skin' as const
+    };
   }
+  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map(mapSkin);
 
+  // ===========
+  // КОНТРОЛЫ UI
+  // ===========
+  // Режимы отображения
+  type Mode = 'mutants' | 'skins';
+  let mode: Mode = 'mutants';
 
-  function safeNum(n) {
-    const v = Number(n);
-    return Number.isFinite(v) ? v : undefined;
+  // Поиск/фильтры МУТАНТОВ
+  let query = '';
+  let gene1Sel = '';
+  let gene2Sel = '';
+  $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join(''); // 'AB' | 'A' | ''
+
+  // Типы/бинго считаем по items (мустантам)
+  function uniq<T>(arr: T[]) { return Array.from(new Set(arr)); }
+  $: typeOptions = uniq(items.map(it => it?.type).filter(Boolean))
+      .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru'));
+  let typeSel = '';
+
+  function collectBingoKeys(it:any): string[] {
+    const b = it?.bingo;
+    if (!b) return [];
+    if (Array.isArray(b)) return b.map((x:any) => typeof x === 'string' ? x : (x?.key ?? '')).filter(Boolean);
+    if (typeof b === 'object') return Object.keys(b);
+    return [];
   }
+  function flatten<T>(arr: T[][]): T[] { const out:T[]=[]; for (let i=0;i<arr.length;i++) out.push(...arr[i]); return out; }
+  $: bingoOptions = (bingoIndex?.length
+      ? [...bingoIndex]
+      : uniq(flatten(items.map(collectBingoKeys)))
+    ).sort((a,b) => String(bingoLabel?.(a) ?? a).localeCompare(String(bingoLabel?.(b) ?? b), 'ru'));
+  let bingoSel = '';
 
-  // Вытащить lvl1 статы (для фильтров; ты просил именно базовые)
-  function statAtLvl1(item, key) {
-    const lvl1 = item?.base_stats?.lvl1 || {};
-    if (key === 'hp') return safeNum(lvl1.hp);
-    if (key === 'atk') return safeNum(lvl1.atk1); // используем атаку 1 как опорную
-    if (key === 'spd') return safeNum(lvl1.spd);
-    return undefined;
-  }
+  // ЗВЁЗДЫ (раздельные состояния для разных режимов)
+  type StarKey = 'normal'|'bronze'|'silver'|'gold'|'platinum';
+  type SkinStarKey = 'any'|'normal'|'bronze'|'silver'|'gold'|'platinum';
 
-  // Надёжно выбрать полноразмерную текстуру из массива image.
-  // Берём первый путь, который НЕ содержит 'specimen' и 'larva'.
-  function pickFullTexture(item) {
-    const raw = item?.image;
-    let imgs = [];
-    if (Array.isArray(raw)) imgs = raw;
-    else if (typeof raw === 'string' && raw) imgs = [raw];
-
-    const chosen = imgs.find(
-      (p) => typeof p === 'string'
-        && p.toLowerCase().indexOf('specimen') === -1
-        && p.toLowerCase().indexOf('larva') === -1
-        && p.toLowerCase().endsWith('.png')
-    ) || imgs.find((p) => typeof p === 'string') || '';
-
-    // В JSON путь уже корректный (пример: "textures_by_mutant/a_01/A_01_bronze.png"),
-    // поэтому NOP. Оставляю replace лишь как страховку от лишних слэшей/пробелов.
-    return String(chosen).replace(/\s+/g, ' ').trim();
-  }
-
-  /**
-   * Определяет тип звёздной редкости для мутанта.
-   * В JSON по звёздам лежит star: 'bronze'/'silver'/'gold'/'platinum' (или пусто у normal).
-   * Если страница типовая (normal/bronze/... передаёт star пропом), используем star || item.star.
-   * Возвращает строку типа ('bronze', 'silver', 'gold', 'platinum') либо 'normal'.
-   */
-  function rarityType(item) {
-    // Не опираемся на параметр star (используем реальное поле элемента)
-    const s = (item?.star || 'normal').toLowerCase();
-    // Явно перечисляем допустимые звёздные версии; любое другое значение считаем normal
-    return ['bronze','silver','gold','platinum'].includes(s) ? s : 'normal';
-  }
-
-  /**
-   * Возвращает объект стиля для звёздной плашки.
-   * Для нормальной версии возвращает undefined, чтобы ничего не рисовать.
-   */
-  function rarityFor(item) {
-    const type = rarityType(item);
-    if (type === 'normal') return undefined;
-    return STAR_STYLE[type];
-  }
-
-  /**
-   * Путь к иконке звёздной редкости. Если тип normal, возвращает пустую строку.
-   */
-  function rarityIconPath(item) {
-    const type = rarityType(item);
-    if (type === 'normal') return '';
-    // Иконки лежат в папке public/stars/, например star_bronze.png
-    return `/stars/star_${type}.png`;
-  }
-
-  /**
-   * Путь к иконке для гена/комбинации генов. Возвращает массив путей (одна иконка на каждый символ).
-   * Например 'AB' -> ['genes/icon_gene_a.png','genes/icon_gene_b.png'].
-   */
-  function geneIconPaths(code) {
-    if (!code || typeof code !== 'string') return [];
-    return code.toLowerCase().split('').map(ch => `/genes/icon_gene_${ch}.png`);
-  }
-
-  // Отдельная иконка для «любой» (без фильтра по гену)
-  const geneAllIcon = '/genes/icon_gene_all.png';
-
-  /**
-   * Перевод типа бинго или возвращает исходное значение.
-   */
-  function ruBingoKey(key) {
-    if (!key) return '';
-    const k = String(key).toLowerCase();
-    return BINGO_RU[k] || BINGO_RU[key] || key;
-  }
-
-  /**
-   * Перевод типа мутанта (PvP, Special ...). Если нет перевода, возвращает исходное.
-   */
-  function ruTypeKey(key) {
-    if (!key) return '';
-    const k = String(key);
-    return TYPE_RU[k] || TYPE_RU[k.toLowerCase()] || k;
-  }
-
-  // ====== UI СОСТОЯНИЕ (ФИЛЬТРЫ) ======
-  let query = '';          // поиск по имени
-  // Выбранные гены (можно выбрать до двух). Если массив пуст, фильтр не применяется.
-  let selectedGenes = [];
-  let bingoSel = '';       // фильтр по бинго (строка ключа, как в JSON)
-  let typeSel = '';        // фильтр по типу мутанта
-  // Выбранная звёздная редкость. Пустая строка означает, что звёздный фильтр не применён и ничего не отображается.
-  let starSel = '';
-
-  // Списки значений для селектов — собираем из данных
-  const geneOptions = Array.from(new Set(
-    items
-      .map(it => (Array.isArray(it.genes) && typeof it.genes[0] === 'string') ? it.genes[0].toUpperCase() : '')
-      .filter(Boolean)
-  )).sort();
-
-  // Разбиваем список генов на две строки по шесть элементов.
-  const geneRows = [
-    geneOptions.slice(0, 6),
-    geneOptions.slice(6, 12)
+  const STAR_MUTANTS: {key: StarKey; icon: string; label: string}[] = [
+    { key: 'normal',   icon: '/stars/no_stars.png',      label: 'Обычные' },
+    { key: 'bronze',   icon: '/stars/star_bronze.png',   label: 'Бронза' },
+    { key: 'silver',   icon: '/stars/star_silver.png',   label: 'Серебро' },
+    { key: 'gold',     icon: '/stars/star_gold.png',     label: 'Золото' },
+    { key: 'platinum', icon: '/stars/star_platinum.png', label: 'Платина' },
+  ];
+  const STAR_SKINS: {key: SkinStarKey; icon?: string; label: string}[] = [
+    { key: 'any',      label: 'Any' },
+    { key: 'normal',   label: 'No stars' },
+    { key: 'bronze',   label: 'Bronze' },
+    { key: 'silver',   label: 'Silver' },
+    { key: 'gold',     label: 'Gold' },
+    { key: 'platinum', label: 'Platinum' },
   ];
 
-  const bingoOptions = Array.from(new Set(
-    items.flatMap(it => Array.isArray(it.bingo) ? it.bingo.map(String) : [])
-  )).sort((a, b) => ruBingoKey(a).localeCompare(ruBingoKey(b), 'ru'));
+  // По умолчанию: мутанты = только обычные; скины = любые
+  let starSelMutants: StarKey = 'normal';
+  let starSelSkins: SkinStarKey = 'any';
 
-  // Список уникальных типов мутантов
-  const typeOptions = Array.from(new Set(
-    items.map(it => it?.type).filter(Boolean)
-  )).sort((a, b) => ruTypeKey(a).localeCompare(ruTypeKey(b), 'ru'));
-
-  // Варианты звёздной фильтрации. normal означает обычные версии.
-  const starOptions = ['normal','bronze','silver','gold','platinum'];
-
-  // ====== ФИЛЬТРАЦИЯ ======
-  function passName(it) {
-    if (!query) return true;
-    return String(it.name || '').toLowerCase().includes(query.toLowerCase());
-  }
-
-  // Фильтр по выбранным генам. Если не выбрано ни одного, пропускаем. Если один ген —
-  // мутант должен содержать этот символ в своём коде (прим.: код может быть 'AB', 'A' и т.п.).
-  // Если два гена — код должен содержать оба символа в любом порядке.
-  function passGene(it) {
-    if (!selectedGenes || selectedGenes.length === 0) return true;
-    const g = (Array.isArray(it.genes) && typeof it.genes[0] === 'string') ? it.genes[0].toUpperCase() : '';
-    if (selectedGenes.length === 1) {
-      return g.includes(selectedGenes[0]);
+  // Переход режимов: подстраиваем дефолты
+  function switchTo(next: Mode) {
+    mode = next;
+    if (mode === 'mutants') {
+      // ничего не трогаем — остаётся последний выбор мутантов
+      if (!['normal','bronze','silver','gold','platinum'].includes(starSelMutants)) starSelMutants = 'normal';
+    } else {
+      // в SKINS по умолчанию показываем все
+      if (!['any','normal','bronze','silver','gold','platinum'].includes(starSelSkins)) starSelSkins = 'any';
     }
-    if (selectedGenes.length === 2) {
-      return selectedGenes.every((ch) => g.includes(ch));
-    }
-    return true;
   }
 
-  function passBingo(it) {
-    if (!bingoSel) return true;
-    const arr = Array.isArray(it.bingo) ? it.bingo.map(String) : [];
-    return arr.some(x => String(x) === bingoSel);
+  // Гены — иконки (public/genes)
+  const geneList = [
+    { key: '',  label: 'Все',                   icon: '/genes/icon_gene_all.png' },
+    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.png' },
+    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/icon_gene_b.png' },
+    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/icon_gene_c.png' },
+    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/icon_gene_d.png' },
+    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.png' },
+    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.png' },
+  ];
+
+  // =================
+  // ПОМОЩНИКИ ФИЛЬТРОВ
+  // =================
+  const normalizeGene = (s:string) => (s ?? '').toUpperCase().split('').sort().join('');
+  const starOf = (it:any) => String(it?.star ?? 'normal').toLowerCase();
+  function readGeneCode(it:any): string {
+    if (Array.isArray(it?.genes) && typeof it.genes[0] === 'string') return it.genes[0];
+    if (typeof it?.gene === 'string') return it.gene;
+    if (typeof it?.gene_code === 'string') return it.gene_code;
+    return '';
   }
+  const isSkin = (it:any) => it?.__source === 'skin' || typeof it?.skin !== 'undefined';
+  const keyOf  = (it:any) => (isSkin(it) ? `skin:${it.id}` : `mut:${it.id}`);
 
-  // Фильтр по типу мутанта
-  function passType(it) {
-    if (!typeSel) return true;
-    const t = it?.type;
-    return String(t) === String(typeSel);
+  // ===========
+  // ФИЛЬТРАЦИЯ
+  // ===========
+  // Мутанты: имя, тип, бинго, гены, звезда (из STAR_MUTANTS)
+  $: filteredMutants = items
+    .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
+    .filter(it => !typeSel || String(it?.type ?? '') === typeSel)
+    .filter(it => {
+      if (!bingoSel) return true;
+      const keys = new Set(collectBingoKeys(it).map(String));
+      return keys.has(String(bingoSel));
+    })
+    .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
+    .filter(it => {
+      const k = starSelMutants;
+      return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
+    })
+    .slice()
+    .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'));
+
+  // Скины: ТОЛЬКО звезда (собственные), независимы от остальных фильтров
+  $: filteredSkins = normalizedSkins
+    .filter(it => {
+      const k = starSelSkins;
+      if (k === 'any') return true;
+      return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
+    })
+    .slice()
+    .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'));
+
+  // =========
+  // МОДАЛКА
+  // =========
+  let openItem:any = null;
+  const openModal  = (it:any) => { openItem = it; };
+  const closeModal = () => { openItem = null; };
+
+  function pickTexture(it:any){
+    if (Array.isArray(it?.image) && typeof it.image[0] === 'string') return it.image[0];
+    if (typeof it?.image === 'string') return it.image;
+    return '';
   }
-
-  // Фильтр по звёздной редкости. Если starSel пустой, ничего не отображаем
-  // (данные загружены, но пользователю необходимо выбрать звезду).
-  function passStar(it) {
-    if (!starSel) return false;
-    const s = String(it?.star || 'normal').toLowerCase();
-    const sel = starSel.toLowerCase();
-    return s === '' ? sel === 'normal' : s === sel;
+  function rarityType(item:any){
+    const s = (item?.star ?? 'normal').toLowerCase();
+    return ['bronze','silver','gold','platinum'].includes(s) ? s : 'normal';
   }
-
-  // ====== КНОПКА «НАВЕРХ» ======
-  import { onMount } from 'svelte';
-  let showScrollTop = false;
-  function handleScroll() {
-    showScrollTop = window.scrollY > 400;
-  }
-  onMount(() => {
-    // Обновляем состояние при инициализации
-    handleScroll();
-  });
-
-  $: filtered = items
-    .filter(passName)
-    .filter(passGene)
-    .filter(passBingo)
-    .filter(passType)
-    .filter(passStar)
-    // По умолчанию — сортируем по имени для стабильности
-    .sort((a, b) => String(a.name || '').localeCompare(String(b.name || ''), 'ru'));
-
-  // ====== МОДАЛКА ======
-  let openItem = null;
-  function openModal(it) { openItem = it; }
-  function closeModal() { openItem = null; }
 </script>
 
-<!-- Слушаем прокрутку окна для отображения кнопки "наверх" -->
-<svelte:window on:scroll={handleScroll} />
-
-<!-- ====== ЛЕЙАУТ ====== -->
 <div class="mx-auto max-w-[1400px] px-4 py-6">
   {#if title}
     <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">{title}</h1>
   {/if}
 
-  <!-- Кнопка для быстрого возврата наверх -->
-  {#if showScrollTop}
-    <button
-      class="fixed bottom-4 left-1/2 -translate-x-1/2 p-3 rounded-full bg-slate-800 bg-opacity-70 ring-1 ring-white/10 hover:bg-slate-700 hover:ring-cyan-400 text-slate-200 transition"
-      on:click={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-      aria-label="Наверх"
+  <!-- Переключатель режимов -->
+  <div class="mb-4 flex flex-wrap gap-2">
+    <button type="button"
+      class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wide ' + (mode==='mutants' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
+      on:click={() => switchTo('mutants')}
+      aria-pressed={mode==='mutants'}
     >
-      <!-- Стрелочка вверх -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-        <polyline points="18 15 12 9 6 15" />
-      </svg>
+      MUTANTS
     </button>
+    <button type="button"
+      class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wide ' + (mode==='skins' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
+      on:click={() => switchTo('skins')}
+      aria-pressed={mode==='skins'}
+    >
+      SKINS
+    </button>
+  </div>
+
+  <!-- Поиск (только для MUTANTS) -->
+  <div class="mb-3">
+    <input
+      class={'w-full md:w-[420px] px-3 py-2 rounded-lg ring-1 focus:outline-none '
+        + (mode==='mutants'
+            ? 'bg-slate-900 text-slate-100 placeholder-slate-400 ring-white/10 focus:ring-2 focus:ring-cyan-400'
+            : 'bg-slate-800/60 text-slate-400 placeholder-slate-500 ring-white/10/30 pointer-events-none')}
+      placeholder={mode==='mutants' ? 'Введите имя мутанта…' : 'Поиск отключён для SKINS'}
+      bind:value={query}
+      disabled={mode!=='mutants'}
+    />
+  </div>
+
+  <!-- Гены: две строки (только для MUTANTS; в SKINS заблокировано и приглушено) -->
+  <div class="mb-2 flex flex-col gap-2">
+    <div class="flex flex-wrap gap-2">
+      {#each geneList as g}
+        <button type="button"
+          class={'p-1 rounded-lg ring-1 '
+            + (mode==='mutants'
+                ? (gene1Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
+                : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
+          on:click={() => { if(mode==='mutants'){ gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); } }}
+          title={g.label}
+          aria-pressed={gene1Sel===g.key}
+        >
+          <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+        </button>
+      {/each}
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {#each geneList as g}
+        <button type="button"
+          class={'p-1 rounded-lg ring-1 '
+            + (mode==='mutants'
+                ? (gene2Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
+                : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
+          on:click={() => { if(mode==='mutants'){ gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); } }}
+          title={g.label}
+          aria-pressed={gene2Sel===g.key}
+        >
+          <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+        </button>
+      {/each}
+    </div>
+  </div>
+
+  <!-- Звёзды: отдельные ряды под генами -->
+  <!-- Ряд для MUTANTS -->
+  {#if mode === 'mutants'}
+    <div class="mb-6 flex flex-wrap gap-2">
+      {#each STAR_MUTANTS as s}
+        <button type="button"
+          class={'p-1 rounded-lg ring-1 ' + (starSelMutants===s.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')}
+          on:click={() => { starSelMutants = s.key; }}
+          title={s.label}
+          aria-pressed={starSelMutants===s.key}
+        >
+          <img src={s.icon} alt={s.label} class="h-8 w-8 object-contain" />
+        </button>
+      {/each}
+    </div>
   {/if}
 
-  <!-- Панель фильтров -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
-  <div class="md:col-span-12 p-4 rounded-xl bg-slate-800 bg-opacity-80 ring-1 ring-white/10">
-    <div class="flex flex-col gap-3">
-        <!-- Строка поиска по имени -->
-        <div class="flex flex-col gap-1">
-          <span class="text-xs text-slate-300">Поиск по имени</span>
-          <input
-            class="px-3 py-2 rounded-lg bg-slate-900 text-slate-100 placeholder-slate-400 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-            placeholder="Введите имя мутанта…"
-            bind:value={query}
-          />
-        </div>
-        <!-- Строка выбора генов (две строки по 6 элементов). Поддерживается выбор до двух генов одновременно. -->
-        <div class="flex flex-col gap-1">
-          <span class="text-xs text-slate-300">Гены</span>
-          <!-- Кнопка для сброса выбранных генов -->
-          <div class="flex flex-row flex-wrap gap-2 mb-1">
-            <button
-              class={`p-1 rounded-md ring-1 transition ${selectedGenes.length === 0 ? 'ring-cyan-400' : 'ring-white/10'}`}
-              on:click={() => { selectedGenes = []; }}
-              title="Любые"
-            >
-              <img src={geneAllIcon} alt="любые" class="w-10 h-10 object-contain" />
-            </button>
-          </div>
-          <!-- Ряды генов -->
-          {#each geneRows as row}
-            <div class="flex flex-row flex-wrap gap-2 mb-1">
-              {#each row as g}
-                <button
-                  class={`p-1 rounded-md ring-1 transition ${selectedGenes.includes(g) ? 'ring-cyan-400' : 'ring-white/10'}`}
-                  on:click={() => {
-                    // логика выбора: если уже выбран, снимаем; если ещё не выбран, добавляем (до двух)
-                    if (selectedGenes.includes(g)) {
-                      selectedGenes = selectedGenes.filter((x) => x !== g);
-                    } else {
-                      if (selectedGenes.length >= 2) {
-                        // убираем самый старый выбранный ген (первый в массиве)
-                        selectedGenes = [...selectedGenes.slice(1), g];
-                      } else {
-                        selectedGenes = [...selectedGenes, g];
-                      }
-                    }
-                  }}
-                  title={humanizeGenes([g])}
-                >
-                  {#each geneIconPaths(g) as icon}
-                    <img src={icon} alt={humanizeGenes([g])} class="w-10 h-10 object-contain inline-block" />
-                  {/each}
-                </button>
-              {/each}
-            </div>
-          {/each}
-        </div>
-        <!-- Строка селектов по бинго и типу -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3">
-          <!-- Бинго -->
-          <div class="flex flex-col gap-1">
-            <span class="text-xs text-slate-300">Бинго</span>
-            <select
-              class="px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-              bind:value={bingoSel}
-            >
-              <option value=''>Любое</option>
-              {#each bingoOptions as b}
-                <option value={b}>{ruBingoKey(b)}</option>
-              {/each}
-            </select>
-          </div>
-
-          <!-- Тип мутанта -->
-          <div class="flex flex-col gap-1">
-            <span class="text-xs text-slate-300">Тип</span>
-            <select
-              class="px-3 py-2 rounded-lg bg-slate-900 text-slate-100 ring-1 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-              bind:value={typeSel}
-            >
-              <option value=''>Любой</option>
-              {#each typeOptions as t}
-                <option value={t}>{ruTypeKey(t)}</option>
-              {/each}
-            </select>
-          </div>
-        </div>
-        <!-- Фильтр по звёздам -->
-        <div class="flex flex-wrap gap-2 items-center">
-          {#each starOptions as s}
-            <button
-              class={`p-1 rounded-md ring-1 transition ${starSel === s ? 'ring-cyan-400' : 'ring-white/10'}`}
-              on:click={() => {
-                // клик по уже выбранной звезде снимает выбор
-                if (starSel === s) {
-                  starSel = '';
-                } else {
-                  starSel = s;
-                }
-              }}
-              title={s === 'normal' ? 'Обычные' : (STAR_STYLE[s]?.text || s)}
-            >
-              <img
-                src={s === 'normal' ? '/stars/no_stars.png' : `/stars/star_${s}.png`}
-                alt={s}
-                class="w-6 h-6 object-contain"
-              />
-            </button>
-          {/each}
-        </div>
-      </div>
+  <!-- Ряд для SKINS -->
+  {#if mode === 'skins'}
+    <div class="mb-6 flex flex-wrap gap-2">
+      {#each STAR_SKINS as s}
+        <button type="button"
+          class={'px-2 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wide '
+                 + (starSelSkins===s.key ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
+          on:click={() => { starSelSkins = s.key; }}
+          aria-pressed={starSelSkins===s.key}
+          title={'SKINS: ' + s.label}
+        >
+          {s.label}
+        </button>
+      {/each}
     </div>
+  {/if}
 
+  <!-- Тип и Бинго (только для MUTANTS) -->
+  <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-slate-300">Тип</span>
+      <select
+        class={'px-3 py-2 rounded-lg ring-1 '
+          + (mode==='mutants'
+              ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
+              : 'bg-slate-800/60 text-slate-400 ring-white/10/30 pointer-events-none')}
+        bind:value={typeSel}
+        disabled={mode!=='mutants'}
+      >
+        <option value=''>Любой</option>
+        {#each typeOptions as t}
+          <option value={t}>{TYPE_RU?.[t] ?? t}</option>
+        {/each}
+      </select>
+    </label>
+
+    <label class="flex flex-col gap-1">
+      <span class="text-xs text-slate-300">Бинго</span>
+      <select
+        class={'px-3 py-2 rounded-lg ring-1 '
+          + (mode==='mutants'
+              ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
+              : 'bg-slate-800/60 text-slate-400 ring-white/10/30 pointer-events-none')}
+        bind:value={bingoSel}
+        disabled={mode!=='mutants'}
+      >
+        <option value=''>Любое</option>
+        {#each bingoOptions as b}
+          <option value={b}>{bingoLabel?.(b) ?? b}</option>
+        {/each}
+      </select>
+    </label>
   </div>
 
   <!-- Сетка карточек -->
-  <div class="grid gap-4
-              grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
-    {#each filtered as it (it.id)}
-      {#key it.id}
-        <div
-          class="group relative rounded-xl overflow-hidden
-                 bg-slate-800 ring-1 ring-white/10
-                 transition-transform duration-200 ease-out
-                 cursor-pointer"
-          on:click={() => openModal(it)}
-          style="transform: perspective(900px) translateZ(0)"
-          on:mousemove={(e) => {
-            const card = e.currentTarget;
-            const r = card.getBoundingClientRect();
-            const dx = e.clientX - (r.left + r.width/2);
-            const dy = e.clientY - (r.top + r.height/2);
-            const tiltX = (+dy / r.height) * -6; // лёгкий «прогиб»
-            const tiltY = (+dx / r.width) * 6;
-            card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.01)`;
-          }}
-          on:mouseleave={(e) => {
-            e.currentTarget.style.transform = 'perspective(900px) rotateX(0) rotateY(0) scale(1)';
-          }}
-        >
-          <!-- Текстура -->
-          <img
-            alt={it.name}
-            class="w-full h-48 object-contain bg-slate-900"
-            src={'/' + pickFullTexture(it)}
-            loading="lazy"
-            on:error={(ev) => { ev.currentTarget.classList.add('opacity-0'); }}
-            on:load={(ev) => { ev.currentTarget.classList.remove('opacity-0'); }}
-          />
-
-          <!-- Плашки -->
-          <div class="absolute left-0 top-0 m-2 flex gap-2 items-center">
-            <!-- Плашка редкости: для звёздных версий выводим иконку звезды -->
-            {#if rarityIconPath(it)}
-              <img
-                src={rarityIconPath(it)}
-                alt="звёздная редкость"
-                class="h-5 w-5 md:h-6 md:w-6 object-contain"
-              />
-            {/if}
-
-            <!-- Плашка тира (не показываем для un-tired) -->
-            {#if it.tier && it.tier !== 'un-tired'}
-              <!-- делаем цвет менее ярким и более мягким -->
-              <span class="px-2 py-0.5 text-[11px] font-semibold rounded-md bg-slate-700 bg-opacity-70 ring-1 ring-slate-500 text-slate-100">
-                {it.tier}
-              </span>
-            {/if}
-          </div>
-
-          <!-- Имя -->
-          <div class="px-3 pt-2 pb-3">
-            <div class="relative">
-              {#if (String(it.name || '').length > 10)}
-                <div class="overflow-hidden">
-                  <div class="whitespace-nowrap text-slate-100 font-semibold text-sm animate-marquee">
-                    {it.name}
-                  </div>
-                </div>
-              {:else}
-                <div class="text-slate-100 font-semibold text-sm truncate">
-                  {it.name}
-                </div>
-              {/if}
+  <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+    {#if mode === 'mutants'}
+      {#each filteredMutants as it (keyOf(it))}
+        <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
+          <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
+            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" />
+            <div class="px-3 pt-2 pb-3">
+              <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>
           </div>
         </div>
-      {/key}
-    {/each}
+      {/each}
+    {:else}
+      {#each filteredSkins as it (keyOf(it))}
+        <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
+          <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
+            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" />
+            <div class="px-3 pt-2 pb-3">
+              <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
+            </div>
+          </div>
+        </div>
+      {/each}
+    {/if}
   </div>
 
-  <!-- Модалка -->
   {#if openItem}
-    <div class="fixed inset-0 z-50 flex items-center justify-center">
-      <div class="absolute inset-0 bg-black bg-opacity-60" on:click={closeModal}></div>
-
-      <div class="relative z-10 w-[min(1000px,95vw)] max-h-[90vh] overflow-y-auto overflow-x-hidden
-                  bg-slate-900 text-slate-100 rounded-2xl ring-1 ring-white/10 shadow-2xl">
-        <button class="absolute right-3 top-3 px-3 py-1 rounded-md bg-slate-800 ring-1 ring-white/10 hover:bg-slate-700"
-                on:click={closeModal}>✕</button>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-          <!-- Картинка -->
-          <div class="p-4 flex items-center justify-center bg-slate-950">
-            <img class="max-h-[70vh] object-contain" src={'/' + pickFullTexture(openItem)} alt={openItem.name} />
-          </div>
-
-          <!-- Характеристики -->
-          <div class="p-6 overflow-y-auto">
-            <h2 class="text-xl font-bold mb-2">{openItem.name}</h2>
-            <div class="text-sm text-slate-300 mb-4">
-              Ген: <span class="text-slate-100 font-medium">{humanizeGenes(openItem.genes)}</span>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 mb-4">
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Скорость</div>
-                <div class="text-lg font-semibold">{statAtLvl1(openItem, 'spd') ?? '—'}</div>
-              </div>
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">ХП (1 ур.)</div>
-                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl1?.hp ?? '—'}</div>
-              </div>
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Атака1 (1 ур.)</div>
-                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl1?.atk1 ?? '—'}</div>
-              </div>
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Атака2 (1 ур.)</div>
-                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl1?.atk2 ?? '—'}</div>
-              </div>
-
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">ХП (30 ур.)</div>
-                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl30?.hp ?? '—'}</div>
-              </div>
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Атака1 (30 ур.)</div>
-                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl30?.atk1 ?? '—'}</div>
-              </div>
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Атака2 (30 ур.)</div>
-                <div class="text-lg font-semibold">{openItem?.base_stats?.lvl30?.atk2 ?? '—'}</div>
-              </div>
-
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Инкубация (мин)</div>
-                <div class="text-lg font-semibold">{openItem?.incub_time ?? '—'}</div>
-              </div>
-              <div class="rounded-lg bg-slate-800 p-3 ring-1 ring-white/10">
-                <div class="text-xs text-slate-400">Тип</div>
-                <div class="text-lg font-semibold">{openItem?.type ?? '—'}</div>
-              </div>
-            </div>
-
-            <!-- Бинго / способности -->
-            <div class="mb-3">
-              <div class="text-sm text-slate-300 mb-1">Бинго:</div>
-              {#if Array.isArray(openItem.bingo) && openItem.bingo.length}
-                <div class="flex flex-wrap gap-2">
-                  {#each openItem.bingo as b}
-                    <span class="text-xs px-2 py-1 rounded-md bg-slate-800 ring-1 ring-white/10">{ruBingoKey(b)}</span>
-                  {/each}
-                </div>
-              {:else}
-                <div class="text-slate-500 text-sm">—</div>
-              {/if}
-            </div>
-
-            <div class="mb-3">
-              <div class="text-sm text-slate-300 mb-1">Способности:</div>
-              {#if Array.isArray(openItem.abilities) && openItem.abilities.length}
-                <div class="space-y-1">
-                  {#each openItem.abilities as ab}
-                    <div class="text-xs bg-slate-800 ring-1 ring-white/10 rounded-md px-2 py-1">
-                      <span class="font-semibold">{ab.name}</span>
-                      <span class="text-slate-400"> — {ab.pct ?? '?'}%</span>
-                    </div>
-                  {/each}
-                </div>
-              {:else}
-                <div class="text-slate-500 text-sm">—</div>
-              {/if}
-            </div>
-
-            <!-- Описание — резерв -->
-            <div class="mt-4 text-sm text-slate-300">
-              <div class="mb-1">Описание:</div>
-              <div class="text-slate-400">Скоро здесь будет лор мутанта.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} on:close={closeModal} />
   {/if}
 </div>
-
-<style>
-   /* Мягкий «прогиб» карточки под курсор сохраняется — если у тебя свой класс, оставляй его */
-  .card {
-    transform-style: preserve-3d;
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .card:hover {
-    transform: perspective(900px) rotateX(3deg) rotateY(-3deg) translateZ(2px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.35);
-  }
-
-  /* Бегущая строка */
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* т.к. дублируем текст */
-  }
-  .animate-marquee {
-    animation: marquee 8s linear infinite;
-  }
-</style>

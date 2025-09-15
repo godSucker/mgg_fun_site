@@ -1,0 +1,10 @@
+normal_updated.json: удалено с единственной STAND-текстурой: 133
+normal_updated.json: итог 534 (из 667), дубликатов убрано 0. Записан normal_updated_clean.json.
+bronze_updated.json: удалено с единственной STAND-текстурой: 115
+bronze_updated.json: итог 408 (из 523), дубликатов убрано 0. Записан bronze_updated_clean.json.
+silver_updated.json: удалено с единственной STAND-текстурой: 115
+silver_updated.json: итог 421 (из 536), дубликатов убрано 0. Записан silver_updated_clean.json.
+gold_updated.json: удалено с единственной STAND-текстурой: 115
+gold_updated.json: итог 408 (из 523), дубликатов убрано 0. Записан gold_updated_clean.json.
+platinum_updated.json: удалено с единственной STAND-текстурой: 115
+platinum_updated.json: итог 408 (из 523), дубликатов убрано 0. Записан platinum_updated_clean.json.
