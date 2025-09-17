@@ -1,10 +1,11 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-<style is:global>
-  body {
-    font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system,
-                 "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-                 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  }
-</style>
+/* шрифт проекта — можно кинуть и в BaseLayout, и сюда */
+:root {
+  --font-ui: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system,
+             "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+body { font-family: var(--font-ui); }
+/* при желании — вернуть твою тему для .prose.prose-invert */

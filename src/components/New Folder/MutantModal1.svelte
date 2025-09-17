@@ -134,10 +134,8 @@
   };
 </script>
 
-<div class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto overscroll-contain" on:click|self={close}
-  aria-hidden={!open}
-  hidden={!open}
-  >
+{#if open && mutant}
+<div class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto overscroll-contain" on:click|self={close}>
   <div class="relative w-full max-w-5xl grid md:grid-cols-[380px_1fr] gap-6 bg-[#0b1220] border border-white/10 rounded-2xl p-5 shadow-2xl max-h-[90svh] md:max-h-[88vh] overflow-y-auto scroll-panel">
     <!-- изображение -->
     <div class="bg-gradient-to-b from-slate-900 to-slate-800 rounded-xl p-4 flex items-center justify-center ring-1 ring-white/10">
@@ -148,10 +146,8 @@
     <div class="space-y-4">
         <div class="flip-scene">
           <div class="flip-card" class:flipped={showAbilities}>
-            <div class="flip-face front"
-                aria-hidden={showAbilities}
-                inert={showAbilities}
-                class:pointer-events-none={showAbilities}>
+            <div class="flip-face front">
+
       <div class="flex items-start justify-between">
         <div>
           <h2 class="text-xl md:text-2xl font-bold tracking-wide">{mutant?.name}</h2>
@@ -193,8 +189,39 @@
         </div>
       </div>
 
-      <div class="grid gap-4">
+      <div class="grid sm:grid-cols-2 gap-4">
         <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
+          <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.png" alt="bingo" /> Бинго</span></div>
+          {#if bingoFor(mutant).length}
+            <div class="flex flex-wrap gap-2">
+              {#each bingoFor(mutant) as b}
+                <span class="text-xs px-2 py-1 rounded-full bg-indigo-900/50 ring-1 ring-indigo-500/40 text-indigo-100">{bingoLabel(b)}</span>
+              {/each}
+            </div>
+          {:else}
+            <div class="text-sm text-white/50">—</div>
+          {/if}
+        </div>
+        <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
+          <div class="text-xs text-white/60 mb-1">Прочее</div>
+          <div class="text-sm text-white/80 space-y-1">
+            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.png" alt="timer" /> Инкубация:</span> <span class="text-white">{mutant?.incub_time ?? '—'}</span><span class="opacity-80"> мин.</span></div>
+            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.png" alt="chance" /> Шанс:</span> <span class="text-white">{mutant?.chance ?? '—'}</span><span class="opacity-80"> %</span></div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <button class="mt-2 inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10"
+              on:click={close}>Закрыть</button>
+      <button class="mt-2 inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
+              on:click={() => showAbilities = !showAbilities}>
+        {showAbilities ? 'Статы' : 'Switch'}
+      </button>
+
+    
+      <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
         <div class="text-xs text-white/60 mb-1">Способности</div>
         {#if abilitiesFor(mutant).length}
           <div class="grid md:grid-cols-2 gap-4">
@@ -229,48 +256,19 @@
               </div>
             </div>
           </div>
+        {:else}
+          <div class="text-sm text-white/60">Скоро будет добавлено…</div>
         {/if}
       </div>
 
       <!-- Сферовка (зарезервировано) -->
-      
+      <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
 
-            </div><div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
-          <div class="text-xs text-white/60 mb-1">Прочее</div>
-          <div class="text-sm text-white/80 space-y-1">
-            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.png" alt="timer" /> Инкубация:</span> <span class="text-white">{mutant?.incub_time ?? '—'}</span><span class="opacity-80"> мин.</span></div>
-            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.png" alt="chance" /> Шанс:</span> <span class="text-white">{mutant?.chance ?? '—'}</span><span class="opacity-80"> %</span></div>
-          </div>
-        </div><div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
-          <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.png" alt="bingo" /> Бинго</span></div>
-          {#if bingoFor(mutant).length}
-            <div class="flex flex-wrap gap-2">
-              {#each bingoFor(mutant) as b}
-                <span class="text-xs px-2 py-1 rounded-full bg-indigo-900/50 ring-1 ring-indigo-500/40 text-indigo-100">{bingoLabel(b)}</span>
-              {/each}
-            </div>
-          {:else}
-            <div class="text-sm text-white/50">—</div>
-          {/if}
-        </div>
-
-      <div class="mt-4 flex items-center justify-end gap-2">
-        <button class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
-                on:click={close}>
-          Закрыть
-        </button>
-        <button class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
-                on:click={() => (showAbilities = !showAbilities)}>
-          {showAbilities ? 'Перейти к статам' : 'Перейти к сферовке'}
-        </button>
+        <div class="text-sm text-white/60">Скоро будет добавлено…</div>
       </div>
 
-
-            <div class="flip-face back"
-                aria-hidden={!showAbilities}
-                inert={!showAbilities}
-                class:pointer-events-none={!showAbilities}>
-
+            </div>
+            <div class="flip-face back">
 
       <div class="space-y-4">
 <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
@@ -285,7 +283,7 @@
 <div class="flex justify-end">
           <button class="mt-2 inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
                   on:click={() => showAbilities = false}>
-            Перейти к статам
+            Назад к статам
           </button>
         </div>
       </div>
@@ -296,7 +294,7 @@
 </div>
   </div>
 </div>
-</div>
+{/if}
 
 <style>
   .stat-icon { width: 18px; height: 18px; display:inline-block; }

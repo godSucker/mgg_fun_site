@@ -118,20 +118,3 @@ export function bingoLabel(key: string): string {
   const lower = key.toLowerCase();
   return BINGO_RU[lower] || BINGO_RU[key] || key;
 }
-
-
-export const ABILITY_RU: Record<string, string> = {
-  ability_shield: "Щит",
-  ability_shield_plus: "Щит",
-  ability_regen: "Вытягивание жизни",
-  ability_regen_plus: "Вытягивание жизни",
-  ability_retaliate: "Отражение",
-  ability_retaliate_plus: "Отражение",
-  ability_slash: "Рана",
-  ability_slash_plus: "Рана",
-  ability_strengthen: "Усиление",
-  ability_strengthen_plus: "Усиление",
-  ability_weaken: "Проклятие",
-  ability_weaken_plus: "Проклятие",
-};
-

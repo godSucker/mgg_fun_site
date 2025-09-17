@@ -32733,6 +32733,7 @@
       }
     ],
     "image": [
+      "textures_by_mutant/bd_99/BD_99_normal.png",
       "textures_by_mutant/bd_99/larva_bd_99.png"
     ],
     "type": "LEGEND",

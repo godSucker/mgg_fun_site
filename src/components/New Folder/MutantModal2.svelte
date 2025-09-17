@@ -148,10 +148,8 @@
     <div class="space-y-4">
         <div class="flip-scene">
           <div class="flip-card" class:flipped={showAbilities}>
-            <div class="flip-face front"
-                aria-hidden={showAbilities}
-                inert={showAbilities}
-                class:pointer-events-none={showAbilities}>
+            <div class="flip-face front">
+
       <div class="flex items-start justify-between">
         <div>
           <h2 class="text-xl md:text-2xl font-bold tracking-wide">{mutant?.name}</h2>
@@ -193,7 +191,7 @@
         </div>
       </div>
 
-      <div class="grid gap-4">
+      <div class="grid sm:grid-cols-2 gap-4">
         <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
         <div class="text-xs text-white/60 mb-1">Способности</div>
         {#if abilitiesFor(mutant).length}
@@ -230,18 +228,7 @@
             </div>
           </div>
         {/if}
-      </div>
-
-      <!-- Сферовка (зарезервировано) -->
-      
-
-            </div><div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
-          <div class="text-xs text-white/60 mb-1">Прочее</div>
-          <div class="text-sm text-white/80 space-y-1">
-            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.png" alt="timer" /> Инкубация:</span> <span class="text-white">{mutant?.incub_time ?? '—'}</span><span class="opacity-80"> мин.</span></div>
-            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.png" alt="chance" /> Шанс:</span> <span class="text-white">{mutant?.chance ?? '—'}</span><span class="opacity-80"> %</span></div>
-          </div>
-        </div><div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
+      </div><div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
           <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.png" alt="bingo" /> Бинго</span></div>
           {#if bingoFor(mutant).length}
             <div class="flex flex-wrap gap-2">
@@ -252,7 +239,18 @@
           {:else}
             <div class="text-sm text-white/50">—</div>
           {/if}
+        </div><div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
+          <div class="text-xs text-white/60 mb-1">Прочее</div>
+          <div class="text-sm text-white/80 space-y-1">
+            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.png" alt="timer" /> Инкубация:</span> <span class="text-white">{mutant?.incub_time ?? '—'}</span><span class="opacity-80"> мин.</span></div>
+            <div class="flex items-center gap-2 leading-tight"><span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.png" alt="chance" /> Шанс:</span> <span class="text-white">{mutant?.chance ?? '—'}</span><span class="opacity-80"> %</span></div>
+          </div>
         </div>
+
+      <!-- Сферовка (зарезервировано) -->
+      
+
+            </div>
 
       <div class="mt-4 flex items-center justify-end gap-2">
         <button class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
@@ -261,16 +259,12 @@
         </button>
         <button class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
                 on:click={() => (showAbilities = !showAbilities)}>
-          {showAbilities ? 'Перейти к статам' : 'Перейти к сферовке'}
+          {showAbilities ? 'Статы' : 'Switch'}
         </button>
       </div>
 
 
-            <div class="flip-face back"
-                aria-hidden={!showAbilities}
-                inert={!showAbilities}
-                class:pointer-events-none={!showAbilities}>
-
+            <div class="flip-face back">
 
       <div class="space-y-4">
 <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-3">
@@ -285,7 +279,7 @@
 <div class="flex justify-end">
           <button class="mt-2 inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
                   on:click={() => showAbilities = false}>
-            Перейти к статам
+            Назад к статам
           </button>
         </div>
       </div>
