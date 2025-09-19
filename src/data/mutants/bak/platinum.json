@@ -925,14 +925,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -11400,
-        "value_atk1_lvl30": -66810
+        "value_atk1_lvl1": -114,
+        "value_atk1_lvl30": -668,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -19000,
-        "value_atk1_lvl30": -111350
+        "value_atk1_lvl1": -190,
+        "value_atk1_lvl30": -1114,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -985,14 +989,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -14550,
-        "value_atk1_lvl30": -85170
+        "value_atk1_lvl1": -146,
+        "value_atk1_lvl30": -852,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -24250,
-        "value_atk1_lvl30": -141950
+        "value_atk1_lvl1": -242,
+        "value_atk1_lvl30": -1420,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -1045,14 +1053,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -8970,
-        "value_atk1_lvl30": -52650
+        "value_atk1_lvl1": -90,
+        "value_atk1_lvl30": -526,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -14950,
-        "value_atk1_lvl30": -87750
+        "value_atk1_lvl1": -150,
+        "value_atk1_lvl30": -878,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -1105,14 +1117,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -15450,
-        "value_atk1_lvl30": -90570
+        "value_atk1_lvl1": -154,
+        "value_atk1_lvl30": -906,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -41200,
-        "value_atk1_lvl30": -241520
+        "value_atk1_lvl1": -412,
+        "value_atk1_lvl30": -2415,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -1165,14 +1181,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -5430,
-        "value_atk1_lvl30": -31710
+        "value_atk1_lvl1": -54,
+        "value_atk1_lvl30": -317,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -20,
-        "value_atk1_lvl1": -7240,
-        "value_atk1_lvl30": -42280
+        "value_atk1_lvl1": -72,
+        "value_atk1_lvl30": -423,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -1225,14 +1245,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -6300,
-        "value_atk1_lvl30": -40380
+        "value_atk1_lvl1": -63,
+        "value_atk1_lvl30": -404,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -10500,
-        "value_atk1_lvl30": -67300
+        "value_atk1_lvl1": -105,
+        "value_atk1_lvl30": -673,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -1285,14 +1309,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -12510,
-        "value_atk1_lvl30": -73140
+        "value_atk1_lvl1": -125,
+        "value_atk1_lvl30": -731,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -44,
-        "value_atk1_lvl1": -36696,
-        "value_atk1_lvl30": -214544
+        "value_atk1_lvl1": -367,
+        "value_atk1_lvl30": -2145,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -1345,18 +1373,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -17040,
-        "value_atk2_lvl1": -17040,
-        "value_atk1_lvl30": -99840,
-        "value_atk2_lvl30": -99840
+        "value_atk1_lvl1": -170,
+        "value_atk2_lvl1": -170,
+        "value_atk1_lvl30": -998,
+        "value_atk2_lvl30": -998
       },
       {
         "name": "ability_slash_plus",
         "pct": -30,
-        "value_atk1_lvl1": -25560,
-        "value_atk2_lvl1": -25560,
-        "value_atk1_lvl30": -149760,
-        "value_atk2_lvl30": -149760
+        "value_atk1_lvl1": -256,
+        "value_atk2_lvl1": -256,
+        "value_atk1_lvl30": -1498,
+        "value_atk2_lvl30": -1498
       }
     ],
     "image": [
@@ -1409,18 +1437,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11920,
-        "value_atk2_lvl1": -11920,
-        "value_atk1_lvl30": -75680,
-        "value_atk2_lvl30": -75680
+        "value_atk1_lvl1": -119,
+        "value_atk2_lvl1": -119,
+        "value_atk1_lvl30": -757,
+        "value_atk2_lvl30": -757
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -23840,
-        "value_atk2_lvl1": -23840,
-        "value_atk1_lvl30": -151360,
-        "value_atk2_lvl30": -151360
+        "value_atk1_lvl1": -238,
+        "value_atk2_lvl1": -238,
+        "value_atk1_lvl30": -1514,
+        "value_atk2_lvl30": -1514
       }
     ],
     "image": [
@@ -1473,18 +1501,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -12800,
-        "value_atk2_lvl1": -12800,
-        "value_atk1_lvl30": -75040,
-        "value_atk2_lvl30": -75040
+        "value_atk1_lvl1": -128,
+        "value_atk2_lvl1": -128,
+        "value_atk1_lvl30": -750,
+        "value_atk2_lvl30": -750
       },
       {
         "name": "ability_slash_plus",
         "pct": -55,
-        "value_atk1_lvl1": -35200,
-        "value_atk2_lvl1": -35200,
-        "value_atk1_lvl30": -206360,
-        "value_atk2_lvl30": -206360
+        "value_atk1_lvl1": -352,
+        "value_atk2_lvl1": -352,
+        "value_atk1_lvl30": -2064,
+        "value_atk2_lvl30": -2064
       }
     ],
     "image": [
@@ -1537,18 +1565,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11000,
-        "value_atk2_lvl1": -11000,
-        "value_atk1_lvl30": -64600,
-        "value_atk2_lvl30": -64600
+        "value_atk1_lvl1": -110,
+        "value_atk2_lvl1": -110,
+        "value_atk1_lvl30": -646,
+        "value_atk2_lvl30": -646
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -27500,
-        "value_atk2_lvl1": -27500,
-        "value_atk1_lvl30": -161500,
-        "value_atk2_lvl30": -161500
+        "value_atk1_lvl1": -275,
+        "value_atk2_lvl1": -275,
+        "value_atk1_lvl30": -1615,
+        "value_atk2_lvl30": -1615
       }
     ],
     "image": [
@@ -1601,18 +1629,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -17240,
-        "value_atk2_lvl1": -9920,
-        "value_atk1_lvl30": -100760,
-        "value_atk2_lvl30": -58200
+        "value_atk1_lvl1": -172,
+        "value_atk2_lvl1": -99,
+        "value_atk1_lvl30": -1008,
+        "value_atk2_lvl30": -582
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -43100,
-        "value_atk2_lvl1": -24800,
-        "value_atk1_lvl30": -251900,
-        "value_atk2_lvl30": -145500
+        "value_atk1_lvl1": -431,
+        "value_atk2_lvl1": -248,
+        "value_atk1_lvl30": -2519,
+        "value_atk2_lvl30": -1455
       }
     ],
     "image": [
@@ -1665,18 +1693,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -9240,
-        "value_atk2_lvl1": -9240,
-        "value_atk1_lvl30": -54120,
-        "value_atk2_lvl30": -54120
+        "value_atk1_lvl1": -92,
+        "value_atk2_lvl1": -92,
+        "value_atk1_lvl30": -541,
+        "value_atk2_lvl30": -541
       },
       {
         "name": "ability_slash_plus",
         "pct": -70,
-        "value_atk1_lvl1": -32340,
-        "value_atk2_lvl1": -32340,
-        "value_atk1_lvl30": -189420,
-        "value_atk2_lvl30": -189420
+        "value_atk1_lvl1": -323,
+        "value_atk2_lvl1": -323,
+        "value_atk1_lvl30": -1894,
+        "value_atk2_lvl30": -1894
       }
     ],
     "image": [
@@ -1729,18 +1757,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -25560,
-        "value_atk2_lvl1": -25560,
-        "value_atk1_lvl30": -149760,
-        "value_atk2_lvl30": -149760
+        "value_atk1_lvl1": -256,
+        "value_atk2_lvl1": -256,
+        "value_atk1_lvl30": -1498,
+        "value_atk2_lvl30": -1498
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -51120,
-        "value_atk2_lvl1": -51120,
-        "value_atk1_lvl30": -299520,
-        "value_atk2_lvl30": -299520
+        "value_atk1_lvl1": -511,
+        "value_atk2_lvl1": -511,
+        "value_atk1_lvl30": -2995,
+        "value_atk2_lvl30": -2995
       }
     ],
     "image": [
@@ -2241,18 +2269,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -18440,
-        "value_atk2_lvl1": -18440,
-        "value_atk1_lvl30": -107640,
-        "value_atk2_lvl30": -107640
+        "value_atk1_lvl1": -184,
+        "value_atk2_lvl1": -184,
+        "value_atk1_lvl30": -1076,
+        "value_atk2_lvl30": -1076
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -27660,
-        "value_atk2_lvl1": -27660,
-        "value_atk1_lvl30": -161460,
-        "value_atk2_lvl30": -161460
+        "value_atk1_lvl1": -277,
+        "value_atk2_lvl1": -277,
+        "value_atk1_lvl30": -1615,
+        "value_atk2_lvl30": -1615
       }
     ],
     "image": [
@@ -2305,18 +2333,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -15360,
-        "value_atk2_lvl1": -15360,
-        "value_atk1_lvl30": -89970,
-        "value_atk2_lvl30": -89970
+        "value_atk1_lvl1": -154,
+        "value_atk2_lvl1": -154,
+        "value_atk1_lvl30": -900,
+        "value_atk2_lvl30": -900
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -25600,
-        "value_atk2_lvl1": -25600,
-        "value_atk1_lvl30": -149950,
-        "value_atk2_lvl30": -149950
+        "value_atk1_lvl1": -256,
+        "value_atk2_lvl1": -256,
+        "value_atk1_lvl30": -1500,
+        "value_atk2_lvl30": -1500
       }
     ],
     "image": [
@@ -2369,18 +2397,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -19800,
-        "value_atk2_lvl1": -19800,
-        "value_atk1_lvl30": -116070,
-        "value_atk2_lvl30": -116070
+        "value_atk1_lvl1": -198,
+        "value_atk2_lvl1": -198,
+        "value_atk1_lvl30": -1161,
+        "value_atk2_lvl30": -1161
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -33000,
-        "value_atk2_lvl1": -33000,
-        "value_atk1_lvl30": -193450,
-        "value_atk2_lvl30": -193450
+        "value_atk1_lvl1": -330,
+        "value_atk2_lvl1": -330,
+        "value_atk1_lvl30": -1934,
+        "value_atk2_lvl30": -1934
       }
     ],
     "image": [
@@ -2433,18 +2461,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -6120,
-        "value_atk2_lvl1": -6120,
-        "value_atk1_lvl30": -44100,
-        "value_atk2_lvl30": -44100
+        "value_atk1_lvl1": -61,
+        "value_atk2_lvl1": -61,
+        "value_atk1_lvl30": -441,
+        "value_atk2_lvl30": -441
       },
       {
         "name": "ability_weaken_plus",
         "pct": -40,
-        "value_atk1_lvl1": -16320,
-        "value_atk2_lvl1": -16320,
-        "value_atk1_lvl30": -117600,
-        "value_atk2_lvl30": -117600
+        "value_atk1_lvl1": -163,
+        "value_atk2_lvl1": -163,
+        "value_atk1_lvl30": -1176,
+        "value_atk2_lvl30": -1176
       }
     ],
     "image": [
@@ -2497,18 +2525,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -17440,
-        "value_atk2_lvl1": -17440,
-        "value_atk1_lvl30": -102040,
-        "value_atk2_lvl30": -102040
+        "value_atk1_lvl1": -174,
+        "value_atk2_lvl1": -174,
+        "value_atk1_lvl30": -1020,
+        "value_atk2_lvl30": -1020
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -21800,
-        "value_atk2_lvl1": -21800,
-        "value_atk1_lvl30": -127550,
-        "value_atk2_lvl30": -127550
+        "value_atk1_lvl1": -218,
+        "value_atk2_lvl1": -218,
+        "value_atk1_lvl30": -1276,
+        "value_atk2_lvl30": -1276
       }
     ],
     "image": [
@@ -2561,18 +2589,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -16890,
-        "value_atk2_lvl1": -16890,
-        "value_atk1_lvl30": -98760,
-        "value_atk2_lvl30": -98760
+        "value_atk1_lvl1": -169,
+        "value_atk2_lvl1": -169,
+        "value_atk1_lvl30": -988,
+        "value_atk2_lvl30": -988
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -28150,
-        "value_atk2_lvl1": -28150,
-        "value_atk1_lvl30": -164600,
-        "value_atk2_lvl30": -164600
+        "value_atk1_lvl1": -282,
+        "value_atk2_lvl1": -282,
+        "value_atk1_lvl30": -1646,
+        "value_atk2_lvl30": -1646
       }
     ],
     "image": [
@@ -2625,18 +2653,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -28470,
-        "value_atk2_lvl1": -16350,
-        "value_atk1_lvl30": -166620,
-        "value_atk2_lvl30": -95940
+        "value_atk1_lvl1": -285,
+        "value_atk2_lvl1": -164,
+        "value_atk1_lvl30": -1666,
+        "value_atk2_lvl30": -959
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -47450,
-        "value_atk2_lvl1": -27250,
-        "value_atk1_lvl30": -277700,
-        "value_atk2_lvl30": -159900
+        "value_atk1_lvl1": -474,
+        "value_atk2_lvl1": -272,
+        "value_atk1_lvl30": -2777,
+        "value_atk2_lvl30": -1599
       }
     ],
     "image": [
@@ -2815,14 +2843,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -4500,
-        "value_atk1_lvl30": -43860
+        "value_atk1_lvl1": -45,
+        "value_atk1_lvl30": -439,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -7500,
-        "value_atk1_lvl30": -73100
+        "value_atk1_lvl1": -75,
+        "value_atk1_lvl30": -731,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -2875,18 +2907,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -19600,
-        "value_atk2_lvl1": -19600,
-        "value_atk1_lvl30": -114640,
-        "value_atk2_lvl30": -114640
+        "value_atk1_lvl1": -196,
+        "value_atk2_lvl1": -196,
+        "value_atk1_lvl30": -1146,
+        "value_atk2_lvl30": -1146
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -29400,
-        "value_atk2_lvl1": -29400,
-        "value_atk1_lvl30": -171960,
-        "value_atk2_lvl30": -171960
+        "value_atk1_lvl1": -294,
+        "value_atk2_lvl1": -294,
+        "value_atk1_lvl30": -1720,
+        "value_atk2_lvl30": -1720
       }
     ],
     "image": [
@@ -3067,14 +3099,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -7080,
-        "value_atk1_lvl30": -43770
+        "value_atk1_lvl1": -71,
+        "value_atk1_lvl30": -438,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -28,
-        "value_atk1_lvl1": -13216,
-        "value_atk1_lvl30": -81704
+        "value_atk1_lvl1": -132,
+        "value_atk1_lvl30": -817,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -3319,18 +3355,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -10280,
-        "value_atk2_lvl1": -10280,
-        "value_atk1_lvl30": -60080,
-        "value_atk2_lvl30": -60080
+        "value_atk1_lvl1": -103,
+        "value_atk2_lvl1": -103,
+        "value_atk1_lvl30": -601,
+        "value_atk2_lvl30": -601
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -15420,
-        "value_atk2_lvl1": -15420,
-        "value_atk1_lvl30": -90120,
-        "value_atk2_lvl30": -90120
+        "value_atk1_lvl1": -154,
+        "value_atk2_lvl1": -154,
+        "value_atk1_lvl30": -901,
+        "value_atk2_lvl30": -901
       }
     ],
     "image": [
@@ -3383,18 +3419,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -21600,
-        "value_atk2_lvl1": -21600,
-        "value_atk1_lvl30": -126520,
-        "value_atk2_lvl30": -126520
+        "value_atk1_lvl1": -216,
+        "value_atk2_lvl1": -216,
+        "value_atk1_lvl30": -1265,
+        "value_atk2_lvl30": -1265
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -43200,
-        "value_atk2_lvl1": -43200,
-        "value_atk1_lvl30": -253040,
-        "value_atk2_lvl30": -253040
+        "value_atk1_lvl1": -432,
+        "value_atk2_lvl1": -432,
+        "value_atk1_lvl30": -2530,
+        "value_atk2_lvl30": -2530
       }
     ],
     "image": [
@@ -3447,14 +3483,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -29880,
-        "value_atk1_lvl30": -176430
+        "value_atk1_lvl1": -299,
+        "value_atk1_lvl30": -1764,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -22,
-        "value_atk1_lvl1": -43824,
-        "value_atk1_lvl30": -258764
+        "value_atk1_lvl1": -438,
+        "value_atk1_lvl30": -2588,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -3507,14 +3547,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -21000,
-        "value_atk1_lvl30": -122850
+        "value_atk1_lvl1": -210,
+        "value_atk1_lvl30": -1228,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -35000,
-        "value_atk1_lvl30": -204750
+        "value_atk1_lvl1": -350,
+        "value_atk1_lvl30": -2048,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -3567,18 +3611,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -25640,
-        "value_atk2_lvl1": -25640,
-        "value_atk1_lvl30": -126040,
-        "value_atk2_lvl30": -126040
+        "value_atk1_lvl1": -256,
+        "value_atk2_lvl1": -256,
+        "value_atk1_lvl30": -1260,
+        "value_atk2_lvl30": -1260
       },
       {
         "name": "ability_slash_plus",
         "pct": -80,
-        "value_atk1_lvl1": -102560,
-        "value_atk2_lvl1": -102560,
-        "value_atk1_lvl30": -504160,
-        "value_atk2_lvl30": -504160
+        "value_atk1_lvl1": -1026,
+        "value_atk2_lvl1": -1026,
+        "value_atk1_lvl30": -5042,
+        "value_atk2_lvl30": -5042
       }
     ],
     "image": [
@@ -3631,18 +3675,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -6480,
-        "value_atk2_lvl1": -6480,
-        "value_atk1_lvl30": -37920,
-        "value_atk2_lvl30": -37920
+        "value_atk1_lvl1": -65,
+        "value_atk2_lvl1": -65,
+        "value_atk1_lvl30": -379,
+        "value_atk2_lvl30": -379
       },
       {
         "name": "ability_slash_plus",
         "pct": -80,
-        "value_atk1_lvl1": -25920,
-        "value_atk2_lvl1": -25920,
-        "value_atk1_lvl30": -151680,
-        "value_atk2_lvl30": -151680
+        "value_atk1_lvl1": -259,
+        "value_atk2_lvl1": -259,
+        "value_atk1_lvl30": -1517,
+        "value_atk2_lvl30": -1517
       }
     ],
     "image": [
@@ -3695,18 +3739,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -28440,
-        "value_atk2_lvl1": -16360,
-        "value_atk1_lvl30": -166600,
-        "value_atk2_lvl30": -95800
+        "value_atk1_lvl1": -284,
+        "value_atk2_lvl1": -164,
+        "value_atk1_lvl30": -1666,
+        "value_atk2_lvl30": -958
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -56880,
-        "value_atk2_lvl1": -32720,
-        "value_atk1_lvl30": -333200,
-        "value_atk2_lvl30": -191600
+        "value_atk1_lvl1": -569,
+        "value_atk2_lvl1": -327,
+        "value_atk1_lvl30": -3332,
+        "value_atk2_lvl30": -1916
       }
     ],
     "image": [
@@ -3759,18 +3803,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -19640,
-        "value_atk2_lvl1": -19640,
-        "value_atk1_lvl30": -114960,
-        "value_atk2_lvl30": -114960
+        "value_atk1_lvl1": -196,
+        "value_atk2_lvl1": -196,
+        "value_atk1_lvl30": -1150,
+        "value_atk2_lvl30": -1150
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -49100,
-        "value_atk2_lvl1": -49100,
-        "value_atk1_lvl30": -287400,
-        "value_atk2_lvl30": -287400
+        "value_atk1_lvl1": -491,
+        "value_atk2_lvl1": -491,
+        "value_atk1_lvl30": -2874,
+        "value_atk2_lvl30": -2874
       }
     ],
     "image": [
@@ -3823,18 +3867,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11800,
-        "value_atk2_lvl1": -11800,
-        "value_atk1_lvl30": -69280,
-        "value_atk2_lvl30": -69280
+        "value_atk1_lvl1": -118,
+        "value_atk2_lvl1": -118,
+        "value_atk1_lvl30": -693,
+        "value_atk2_lvl30": -693
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -29500,
-        "value_atk2_lvl1": -29500,
-        "value_atk1_lvl30": -173200,
-        "value_atk2_lvl30": -173200
+        "value_atk1_lvl1": -295,
+        "value_atk2_lvl1": -295,
+        "value_atk1_lvl30": -1732,
+        "value_atk2_lvl30": -1732
       }
     ],
     "image": [
@@ -4207,18 +4251,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -9600,
-        "value_atk2_lvl1": -9600,
-        "value_atk1_lvl30": -56280,
-        "value_atk2_lvl30": -56280
+        "value_atk1_lvl1": -96,
+        "value_atk2_lvl1": -96,
+        "value_atk1_lvl30": -563,
+        "value_atk2_lvl30": -563
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -16000,
-        "value_atk2_lvl1": -16000,
-        "value_atk1_lvl30": -93800,
-        "value_atk2_lvl30": -93800
+        "value_atk1_lvl1": -160,
+        "value_atk2_lvl1": -160,
+        "value_atk1_lvl30": -938,
+        "value_atk2_lvl30": -938
       }
     ],
     "image": [
@@ -4335,18 +4379,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -10260,
-        "value_atk2_lvl1": -10260,
-        "value_atk1_lvl30": -60030,
-        "value_atk2_lvl30": -60030
+        "value_atk1_lvl1": -103,
+        "value_atk2_lvl1": -103,
+        "value_atk1_lvl30": -600,
+        "value_atk2_lvl30": -600
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -17100,
-        "value_atk2_lvl1": -17100,
-        "value_atk1_lvl30": -100050,
-        "value_atk2_lvl30": -100050
+        "value_atk1_lvl1": -171,
+        "value_atk2_lvl1": -171,
+        "value_atk1_lvl30": -1000,
+        "value_atk2_lvl30": -1000
       }
     ],
     "image": [
@@ -4399,18 +4443,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -13680,
-        "value_atk2_lvl1": -7890,
-        "value_atk1_lvl30": -80250,
-        "value_atk2_lvl30": -46110
+        "value_atk1_lvl1": -137,
+        "value_atk2_lvl1": -79,
+        "value_atk1_lvl30": -802,
+        "value_atk2_lvl30": -461
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -22800,
-        "value_atk2_lvl1": -13150,
-        "value_atk1_lvl30": -133750,
-        "value_atk2_lvl30": -76850
+        "value_atk1_lvl1": -228,
+        "value_atk2_lvl1": -132,
+        "value_atk1_lvl30": -1338,
+        "value_atk2_lvl30": -768
       }
     ],
     "image": [
@@ -5103,14 +5147,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -11700,
-        "value_atk1_lvl30": -68550
+        "value_atk1_lvl1": -117,
+        "value_atk1_lvl30": -686,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -31200,
-        "value_atk1_lvl30": -182800
+        "value_atk1_lvl1": -312,
+        "value_atk1_lvl30": -1828,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -5163,14 +5211,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -13650,
-        "value_atk1_lvl30": -79920
+        "value_atk1_lvl1": -136,
+        "value_atk1_lvl30": -799,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -36400,
-        "value_atk1_lvl30": -213120
+        "value_atk1_lvl1": -364,
+        "value_atk1_lvl30": -2131,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -5223,14 +5275,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -10560,
-        "value_atk1_lvl30": -58620
+        "value_atk1_lvl1": -106,
+        "value_atk1_lvl30": -586,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -20,
-        "value_atk1_lvl1": -14080,
-        "value_atk1_lvl30": -78160
+        "value_atk1_lvl1": -141,
+        "value_atk1_lvl30": -782,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -5283,14 +5339,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -19230,
-        "value_atk1_lvl30": -112440
+        "value_atk1_lvl1": -192,
+        "value_atk1_lvl30": -1124,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -32050,
-        "value_atk1_lvl30": -187400
+        "value_atk1_lvl1": -320,
+        "value_atk1_lvl30": -1874,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -5343,14 +5403,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -19500,
-        "value_atk1_lvl30": -114060
+        "value_atk1_lvl1": -195,
+        "value_atk1_lvl30": -1141,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -32500,
-        "value_atk1_lvl30": -190100
+        "value_atk1_lvl1": -325,
+        "value_atk1_lvl30": -1901,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -5403,14 +5467,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -6600,
-        "value_atk1_lvl30": -87270
+        "value_atk1_lvl1": -66,
+        "value_atk1_lvl30": -873,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -11000,
-        "value_atk1_lvl30": -145450
+        "value_atk1_lvl1": -110,
+        "value_atk1_lvl30": -1454,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -5527,18 +5595,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -22760,
-        "value_atk2_lvl1": -22760,
-        "value_atk1_lvl30": -133240,
-        "value_atk2_lvl30": -133240
+        "value_atk1_lvl1": -228,
+        "value_atk2_lvl1": -228,
+        "value_atk1_lvl30": -1332,
+        "value_atk2_lvl30": -1332
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -45520,
-        "value_atk2_lvl1": -45520,
-        "value_atk1_lvl30": -266480,
-        "value_atk2_lvl30": -266480
+        "value_atk1_lvl1": -455,
+        "value_atk2_lvl1": -455,
+        "value_atk1_lvl30": -2665,
+        "value_atk2_lvl30": -2665
       }
     ],
     "image": [
@@ -5591,18 +5659,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11320,
-        "value_atk2_lvl1": -6560,
-        "value_atk1_lvl30": -66320,
-        "value_atk2_lvl30": -38240
+        "value_atk1_lvl1": -113,
+        "value_atk2_lvl1": -66,
+        "value_atk1_lvl30": -663,
+        "value_atk2_lvl30": -382
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -22640,
-        "value_atk2_lvl1": -13120,
-        "value_atk1_lvl30": -132640,
-        "value_atk2_lvl30": -76480
+        "value_atk1_lvl1": -226,
+        "value_atk2_lvl1": -131,
+        "value_atk1_lvl30": -1326,
+        "value_atk2_lvl30": -765
       }
     ],
     "image": [
@@ -5655,18 +5723,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -7280,
-        "value_atk2_lvl1": -7280,
-        "value_atk1_lvl30": -42880,
-        "value_atk2_lvl30": -42880
+        "value_atk1_lvl1": -73,
+        "value_atk2_lvl1": -73,
+        "value_atk1_lvl30": -429,
+        "value_atk2_lvl30": -429
       },
       {
         "name": "ability_slash_plus",
         "pct": -70,
-        "value_atk1_lvl1": -25480,
-        "value_atk2_lvl1": -25480,
-        "value_atk1_lvl30": -150080,
-        "value_atk2_lvl30": -150080
+        "value_atk1_lvl1": -255,
+        "value_atk2_lvl1": -255,
+        "value_atk1_lvl30": -1501,
+        "value_atk2_lvl30": -1501
       }
     ],
     "image": [
@@ -5719,18 +5787,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -19240,
-        "value_atk2_lvl1": -19240,
-        "value_atk1_lvl30": -112480,
-        "value_atk2_lvl30": -112480
+        "value_atk1_lvl1": -192,
+        "value_atk2_lvl1": -192,
+        "value_atk1_lvl30": -1125,
+        "value_atk2_lvl30": -1125
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -48100,
-        "value_atk2_lvl1": -48100,
-        "value_atk1_lvl30": -281200,
-        "value_atk2_lvl30": -281200
+        "value_atk1_lvl1": -481,
+        "value_atk2_lvl1": -481,
+        "value_atk1_lvl30": -2812,
+        "value_atk2_lvl30": -2812
       }
     ],
     "image": [
@@ -6039,18 +6107,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -12420,
-        "value_atk2_lvl1": -12420,
-        "value_atk1_lvl30": -72780,
-        "value_atk2_lvl30": -72780
+        "value_atk1_lvl1": -124,
+        "value_atk2_lvl1": -124,
+        "value_atk1_lvl30": -728,
+        "value_atk2_lvl30": -728
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -20700,
-        "value_atk2_lvl1": -20700,
-        "value_atk1_lvl30": -121300,
-        "value_atk2_lvl30": -121300
+        "value_atk1_lvl1": -207,
+        "value_atk2_lvl1": -207,
+        "value_atk1_lvl30": -1213,
+        "value_atk2_lvl30": -1213
       }
     ],
     "image": [
@@ -6103,18 +6171,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -15870,
-        "value_atk2_lvl1": -15870,
-        "value_atk1_lvl30": -92910,
-        "value_atk2_lvl30": -92910
+        "value_atk1_lvl1": -159,
+        "value_atk2_lvl1": -159,
+        "value_atk1_lvl30": -929,
+        "value_atk2_lvl30": -929
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -26450,
-        "value_atk2_lvl1": -26450,
-        "value_atk1_lvl30": -154850,
-        "value_atk2_lvl30": -154850
+        "value_atk1_lvl1": -264,
+        "value_atk2_lvl1": -264,
+        "value_atk1_lvl30": -1548,
+        "value_atk2_lvl30": -1548
       }
     ],
     "image": [
@@ -6167,18 +6235,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -14730,
-        "value_atk2_lvl1": -14730,
-        "value_atk1_lvl30": -86220,
-        "value_atk2_lvl30": -86220
+        "value_atk1_lvl1": -147,
+        "value_atk2_lvl1": -147,
+        "value_atk1_lvl30": -862,
+        "value_atk2_lvl30": -862
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -24550,
-        "value_atk2_lvl1": -24550,
-        "value_atk1_lvl30": -143700,
-        "value_atk2_lvl30": -143700
+        "value_atk1_lvl1": -246,
+        "value_atk2_lvl1": -246,
+        "value_atk1_lvl30": -1437,
+        "value_atk2_lvl30": -1437
       }
     ],
     "image": [
@@ -6231,18 +6299,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -9390,
-        "value_atk2_lvl1": -5400,
-        "value_atk1_lvl30": -54870,
-        "value_atk2_lvl30": -31590
+        "value_atk1_lvl1": -94,
+        "value_atk2_lvl1": -54,
+        "value_atk1_lvl30": -549,
+        "value_atk2_lvl30": -316
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -15650,
-        "value_atk2_lvl1": -9000,
-        "value_atk1_lvl30": -91450,
-        "value_atk2_lvl30": -52650
+        "value_atk1_lvl1": -156,
+        "value_atk2_lvl1": -90,
+        "value_atk1_lvl30": -914,
+        "value_atk2_lvl30": -526
       }
     ],
     "image": [
@@ -6679,18 +6747,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -10200,
-        "value_atk2_lvl1": -5840,
-        "value_atk1_lvl30": -59920,
-        "value_atk2_lvl30": -34320
+        "value_atk1_lvl1": -102,
+        "value_atk2_lvl1": -58,
+        "value_atk1_lvl30": -599,
+        "value_atk2_lvl30": -343
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -20400,
-        "value_atk2_lvl1": -11680,
-        "value_atk1_lvl30": -119840,
-        "value_atk2_lvl30": -68640
+        "value_atk1_lvl1": -204,
+        "value_atk2_lvl1": -117,
+        "value_atk1_lvl30": -1198,
+        "value_atk2_lvl30": -686
       }
     ],
     "image": [
@@ -6743,18 +6811,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -9040,
-        "value_atk2_lvl1": -9040,
-        "value_atk1_lvl30": -53040,
-        "value_atk2_lvl30": -53040
+        "value_atk1_lvl1": -90,
+        "value_atk2_lvl1": -90,
+        "value_atk1_lvl30": -530,
+        "value_atk2_lvl30": -530
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -13560,
-        "value_atk2_lvl1": -13560,
-        "value_atk1_lvl30": -79560,
-        "value_atk2_lvl30": -79560
+        "value_atk1_lvl1": -136,
+        "value_atk2_lvl1": -136,
+        "value_atk1_lvl30": -796,
+        "value_atk2_lvl30": -796
       }
     ],
     "image": [
@@ -6871,14 +6939,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -4710,
-        "value_atk1_lvl30": -38130
+        "value_atk1_lvl1": -47,
+        "value_atk1_lvl30": -381,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -7850,
-        "value_atk1_lvl30": -63550
+        "value_atk1_lvl1": -78,
+        "value_atk1_lvl30": -636,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -6931,14 +7003,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -15480,
-        "value_atk1_lvl30": -90570
+        "value_atk1_lvl1": -155,
+        "value_atk1_lvl30": -906,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -25800,
-        "value_atk1_lvl30": -150950
+        "value_atk1_lvl1": -258,
+        "value_atk1_lvl30": -1510,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -6991,14 +7067,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -7080,
-        "value_atk1_lvl30": -41800
+        "value_atk1_lvl1": -71,
+        "value_atk1_lvl30": -418,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -8850,
-        "value_atk1_lvl30": -52250
+        "value_atk1_lvl1": -88,
+        "value_atk1_lvl30": -522,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -7115,14 +7195,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -18000,
-        "value_atk1_lvl30": -105300
+        "value_atk1_lvl1": -180,
+        "value_atk1_lvl30": -1053,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -30000,
-        "value_atk1_lvl30": -175500
+        "value_atk1_lvl1": -300,
+        "value_atk1_lvl30": -1755,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -7175,18 +7259,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -23400,
-        "value_atk2_lvl1": -23400,
-        "value_atk1_lvl30": -136960,
-        "value_atk2_lvl30": -136960
+        "value_atk1_lvl1": -234,
+        "value_atk2_lvl1": -234,
+        "value_atk1_lvl30": -1370,
+        "value_atk2_lvl30": -1370
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -46800,
-        "value_atk2_lvl1": -46800,
-        "value_atk1_lvl30": -273920,
-        "value_atk2_lvl30": -273920
+        "value_atk1_lvl1": -468,
+        "value_atk2_lvl1": -468,
+        "value_atk1_lvl30": -2739,
+        "value_atk2_lvl30": -2739
       }
     ],
     "image": [
@@ -7239,18 +7323,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -28000,
-        "value_atk2_lvl1": -28000,
-        "value_atk1_lvl30": -163800,
-        "value_atk2_lvl30": -163800
+        "value_atk1_lvl1": -280,
+        "value_atk2_lvl1": -280,
+        "value_atk1_lvl30": -1638,
+        "value_atk2_lvl30": -1638
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -56000,
-        "value_atk2_lvl1": -56000,
-        "value_atk1_lvl30": -327600,
-        "value_atk2_lvl30": -327600
+        "value_atk1_lvl1": -560,
+        "value_atk2_lvl1": -560,
+        "value_atk1_lvl30": -3276,
+        "value_atk2_lvl30": -3276
       }
     ],
     "image": [
@@ -7303,18 +7387,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -21960,
-        "value_atk2_lvl1": -12600,
-        "value_atk1_lvl30": -128560,
-        "value_atk2_lvl30": -74080
+        "value_atk1_lvl1": -220,
+        "value_atk2_lvl1": -126,
+        "value_atk1_lvl30": -1286,
+        "value_atk2_lvl30": -741
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -54900,
-        "value_atk2_lvl1": -31500,
-        "value_atk1_lvl30": -321400,
-        "value_atk2_lvl30": -185200
+        "value_atk1_lvl1": -549,
+        "value_atk2_lvl1": -315,
+        "value_atk1_lvl30": -3214,
+        "value_atk2_lvl30": -1852
       }
     ],
     "image": [
@@ -7367,18 +7451,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -24880,
-        "value_atk2_lvl1": -24880,
-        "value_atk1_lvl30": -145720,
-        "value_atk2_lvl30": -145720
+        "value_atk1_lvl1": -249,
+        "value_atk2_lvl1": -249,
+        "value_atk1_lvl30": -1457,
+        "value_atk2_lvl30": -1457
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -49760,
-        "value_atk2_lvl1": -49760,
-        "value_atk1_lvl30": -291440,
-        "value_atk2_lvl30": -291440
+        "value_atk1_lvl1": -498,
+        "value_atk2_lvl1": -498,
+        "value_atk1_lvl30": -2914,
+        "value_atk2_lvl30": -2914
       }
     ],
     "image": [
@@ -7431,18 +7515,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -23800,
-        "value_atk2_lvl1": -23800,
-        "value_atk1_lvl30": -139160,
-        "value_atk2_lvl30": -139160
+        "value_atk1_lvl1": -238,
+        "value_atk2_lvl1": -238,
+        "value_atk1_lvl30": -1392,
+        "value_atk2_lvl30": -1392
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -47600,
-        "value_atk2_lvl1": -47600,
-        "value_atk1_lvl30": -278320,
-        "value_atk2_lvl30": -278320
+        "value_atk1_lvl1": -476,
+        "value_atk2_lvl1": -476,
+        "value_atk1_lvl30": -2783,
+        "value_atk2_lvl30": -2783
       }
     ],
     "image": [
@@ -7751,18 +7835,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -16680,
-        "value_atk2_lvl1": -16680,
-        "value_atk1_lvl30": -97590,
-        "value_atk2_lvl30": -97590
+        "value_atk1_lvl1": -167,
+        "value_atk2_lvl1": -167,
+        "value_atk1_lvl30": -976,
+        "value_atk2_lvl30": -976
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -27800,
-        "value_atk2_lvl1": -27800,
-        "value_atk1_lvl30": -162650,
-        "value_atk2_lvl30": -162650
+        "value_atk1_lvl1": -278,
+        "value_atk2_lvl1": -278,
+        "value_atk1_lvl30": -1626,
+        "value_atk2_lvl30": -1626
       }
     ],
     "image": [
@@ -7815,18 +7899,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -11490,
-        "value_atk2_lvl1": -11490,
-        "value_atk1_lvl30": -67260,
-        "value_atk2_lvl30": -67260
+        "value_atk1_lvl1": -115,
+        "value_atk2_lvl1": -115,
+        "value_atk1_lvl30": -673,
+        "value_atk2_lvl30": -673
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -19150,
-        "value_atk2_lvl1": -19150,
-        "value_atk1_lvl30": -112100,
-        "value_atk2_lvl30": -112100
+        "value_atk1_lvl1": -192,
+        "value_atk2_lvl1": -192,
+        "value_atk1_lvl30": -1121,
+        "value_atk2_lvl30": -1121
       }
     ],
     "image": [
@@ -7879,18 +7963,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -8130,
-        "value_atk2_lvl1": -8130,
-        "value_atk1_lvl30": -47610,
-        "value_atk2_lvl30": -47610
+        "value_atk1_lvl1": -81,
+        "value_atk2_lvl1": -81,
+        "value_atk1_lvl30": -476,
+        "value_atk2_lvl30": -476
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -13550,
-        "value_atk2_lvl1": -13550,
-        "value_atk1_lvl30": -79350,
-        "value_atk2_lvl30": -79350
+        "value_atk1_lvl1": -136,
+        "value_atk2_lvl1": -136,
+        "value_atk1_lvl30": -794,
+        "value_atk2_lvl30": -794
       }
     ],
     "image": [
@@ -7943,18 +8027,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -18000,
-        "value_atk2_lvl1": -10380,
-        "value_atk1_lvl30": -94200,
-        "value_atk2_lvl30": -60600
+        "value_atk1_lvl1": -180,
+        "value_atk2_lvl1": -104,
+        "value_atk1_lvl30": -942,
+        "value_atk2_lvl30": -606
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -30000,
-        "value_atk2_lvl1": -17300,
-        "value_atk1_lvl30": -157000,
-        "value_atk2_lvl30": -101000
+        "value_atk1_lvl1": -300,
+        "value_atk2_lvl1": -173,
+        "value_atk1_lvl30": -1570,
+        "value_atk2_lvl30": -1010
       }
     ],
     "image": [
@@ -8071,18 +8155,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -10000,
-        "value_atk2_lvl1": -10000,
-        "value_atk1_lvl30": -58480,
-        "value_atk2_lvl30": -58480
+        "value_atk1_lvl1": -100,
+        "value_atk2_lvl1": -100,
+        "value_atk1_lvl30": -585,
+        "value_atk2_lvl30": -585
       },
       {
         "name": "ability_slash_plus",
         "pct": -60,
-        "value_atk1_lvl1": -30000,
-        "value_atk2_lvl1": -30000,
-        "value_atk1_lvl30": -175440,
-        "value_atk2_lvl30": -175440
+        "value_atk1_lvl1": -300,
+        "value_atk2_lvl1": -300,
+        "value_atk1_lvl30": -1754,
+        "value_atk2_lvl30": -1754
       }
     ],
     "image": [
@@ -8135,18 +8219,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -21840,
-        "value_atk2_lvl1": -21840,
-        "value_atk1_lvl30": -128080,
-        "value_atk2_lvl30": -128080
+        "value_atk1_lvl1": -218,
+        "value_atk2_lvl1": -218,
+        "value_atk1_lvl30": -1281,
+        "value_atk2_lvl30": -1281
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -54600,
-        "value_atk2_lvl1": -54600,
-        "value_atk1_lvl30": -320200,
-        "value_atk2_lvl30": -320200
+        "value_atk1_lvl1": -546,
+        "value_atk2_lvl1": -546,
+        "value_atk1_lvl30": -3202,
+        "value_atk2_lvl30": -3202
       }
     ],
     "image": [
@@ -8199,18 +8283,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -25380,
-        "value_atk2_lvl1": -25380,
-        "value_atk1_lvl30": -159600,
-        "value_atk2_lvl30": -159600
+        "value_atk1_lvl1": -254,
+        "value_atk2_lvl1": -254,
+        "value_atk1_lvl30": -1596,
+        "value_atk2_lvl30": -1596
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -42300,
-        "value_atk2_lvl1": -42300,
-        "value_atk1_lvl30": -266000,
-        "value_atk2_lvl30": -266000
+        "value_atk1_lvl1": -423,
+        "value_atk2_lvl1": -423,
+        "value_atk1_lvl30": -2660,
+        "value_atk2_lvl30": -2660
       }
     ],
     "image": [
@@ -8647,14 +8731,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -8850,
-        "value_atk1_lvl30": -51960
+        "value_atk1_lvl1": -88,
+        "value_atk1_lvl30": -520,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -14750,
-        "value_atk1_lvl30": -86600
+        "value_atk1_lvl1": -148,
+        "value_atk1_lvl30": -866,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -8771,18 +8859,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11680,
-        "value_atk2_lvl1": -11680,
-        "value_atk1_lvl30": -68320,
-        "value_atk2_lvl30": -68320
+        "value_atk1_lvl1": -117,
+        "value_atk2_lvl1": -117,
+        "value_atk1_lvl30": -683,
+        "value_atk2_lvl30": -683
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -23360,
-        "value_atk2_lvl1": -23360,
-        "value_atk1_lvl30": -136640,
-        "value_atk2_lvl30": -136640
+        "value_atk1_lvl1": -234,
+        "value_atk2_lvl1": -234,
+        "value_atk1_lvl30": -1366,
+        "value_atk2_lvl30": -1366
       }
     ],
     "image": [
@@ -8835,18 +8923,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -14720,
-        "value_atk2_lvl1": -14720,
-        "value_atk1_lvl30": -86280,
-        "value_atk2_lvl30": -86280
+        "value_atk1_lvl1": -147,
+        "value_atk2_lvl1": -147,
+        "value_atk1_lvl30": -863,
+        "value_atk2_lvl30": -863
       },
       {
         "name": "ability_slash_plus",
         "pct": -45,
-        "value_atk1_lvl1": -33120,
-        "value_atk2_lvl1": -33120,
-        "value_atk1_lvl30": -194130,
-        "value_atk2_lvl30": -194130
+        "value_atk1_lvl1": -331,
+        "value_atk2_lvl1": -331,
+        "value_atk1_lvl30": -1941,
+        "value_atk2_lvl30": -1941
       }
     ],
     "image": [
@@ -8899,18 +8987,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -13680,
-        "value_atk2_lvl1": -13680,
-        "value_atk1_lvl30": -80320,
-        "value_atk2_lvl30": -80320
+        "value_atk1_lvl1": -137,
+        "value_atk2_lvl1": -137,
+        "value_atk1_lvl30": -803,
+        "value_atk2_lvl30": -803
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -27360,
-        "value_atk2_lvl1": -27360,
-        "value_atk1_lvl30": -160640,
-        "value_atk2_lvl30": -160640
+        "value_atk1_lvl1": -274,
+        "value_atk2_lvl1": -274,
+        "value_atk1_lvl30": -1606,
+        "value_atk2_lvl30": -1606
       }
     ],
     "image": [
@@ -8963,18 +9051,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11320,
-        "value_atk2_lvl1": -6560,
-        "value_atk1_lvl30": -100480,
-        "value_atk2_lvl30": -50240
+        "value_atk1_lvl1": -113,
+        "value_atk2_lvl1": -66,
+        "value_atk1_lvl30": -1005,
+        "value_atk2_lvl30": -502
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -22640,
-        "value_atk2_lvl1": -13120,
-        "value_atk1_lvl30": -200960,
-        "value_atk2_lvl30": -100480
+        "value_atk1_lvl1": -226,
+        "value_atk2_lvl1": -131,
+        "value_atk1_lvl30": -2010,
+        "value_atk2_lvl30": -1005
       }
     ],
     "image": [
@@ -9027,18 +9115,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -27840,
-        "value_atk2_lvl1": -27840,
-        "value_atk1_lvl30": -163160,
-        "value_atk2_lvl30": -163160
+        "value_atk1_lvl1": -278,
+        "value_atk2_lvl1": -278,
+        "value_atk1_lvl30": -1632,
+        "value_atk2_lvl30": -1632
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -55680,
-        "value_atk2_lvl1": -55680,
-        "value_atk1_lvl30": -326320,
-        "value_atk2_lvl30": -326320
+        "value_atk1_lvl1": -557,
+        "value_atk2_lvl1": -557,
+        "value_atk1_lvl30": -3263,
+        "value_atk2_lvl30": -3263
       }
     ],
     "image": [
@@ -9091,18 +9179,18 @@
       {
         "name": "ability_weaken",
         "pct": -10,
-        "value_atk1_lvl1": -11680,
-        "value_atk2_lvl1": -11680,
-        "value_atk1_lvl30": -68320,
-        "value_atk2_lvl30": -68320
+        "value_atk1_lvl1": -117,
+        "value_atk2_lvl1": -117,
+        "value_atk1_lvl30": -683,
+        "value_atk2_lvl30": -683
       },
       {
         "name": "ability_weaken_plus",
         "pct": -15,
-        "value_atk1_lvl1": -17520,
-        "value_atk2_lvl1": -17520,
-        "value_atk1_lvl30": -102480,
-        "value_atk2_lvl30": -102480
+        "value_atk1_lvl1": -175,
+        "value_atk2_lvl1": -175,
+        "value_atk1_lvl30": -1025,
+        "value_atk2_lvl30": -1025
       }
     ],
     "image": [
@@ -9155,14 +9243,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -13050,
-        "value_atk1_lvl30": -80040
+        "value_atk1_lvl1": -130,
+        "value_atk1_lvl30": -800,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -34800,
-        "value_atk1_lvl30": -213440
+        "value_atk1_lvl1": -348,
+        "value_atk1_lvl30": -2134,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -9535,18 +9627,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -11700,
-        "value_atk2_lvl1": -11700,
-        "value_atk1_lvl30": -68550,
-        "value_atk2_lvl30": -68550
+        "value_atk1_lvl1": -117,
+        "value_atk2_lvl1": -117,
+        "value_atk1_lvl30": -686,
+        "value_atk2_lvl30": -686
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -19500,
-        "value_atk2_lvl1": -19500,
-        "value_atk1_lvl30": -114250,
-        "value_atk2_lvl30": -114250
+        "value_atk1_lvl1": -195,
+        "value_atk2_lvl1": -195,
+        "value_atk1_lvl30": -1142,
+        "value_atk2_lvl30": -1142
       }
     ],
     "image": [
@@ -9599,18 +9691,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -13380,
-        "value_atk2_lvl1": -13380,
-        "value_atk1_lvl30": -81300,
-        "value_atk2_lvl30": -81300
+        "value_atk1_lvl1": -134,
+        "value_atk2_lvl1": -134,
+        "value_atk1_lvl30": -813,
+        "value_atk2_lvl30": -813
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -17840,
-        "value_atk2_lvl1": -17840,
-        "value_atk1_lvl30": -108400,
-        "value_atk2_lvl30": -108400
+        "value_atk1_lvl1": -178,
+        "value_atk2_lvl1": -178,
+        "value_atk1_lvl30": -1084,
+        "value_atk2_lvl30": -1084
       }
     ],
     "image": [
@@ -9663,18 +9755,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -8850,
-        "value_atk2_lvl1": -8850,
-        "value_atk1_lvl30": -51960,
-        "value_atk2_lvl30": -51960
+        "value_atk1_lvl1": -88,
+        "value_atk2_lvl1": -88,
+        "value_atk1_lvl30": -520,
+        "value_atk2_lvl30": -520
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -14750,
-        "value_atk2_lvl1": -14750,
-        "value_atk1_lvl30": -86600,
-        "value_atk2_lvl30": -86600
+        "value_atk1_lvl1": -148,
+        "value_atk2_lvl1": -148,
+        "value_atk1_lvl30": -866,
+        "value_atk2_lvl30": -866
       }
     ],
     "image": [
@@ -9727,18 +9819,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -22720,
-        "value_atk2_lvl1": -15960,
-        "value_atk1_lvl30": -134160,
-        "value_atk2_lvl30": -93600
+        "value_atk1_lvl1": -227,
+        "value_atk2_lvl1": -160,
+        "value_atk1_lvl30": -1342,
+        "value_atk2_lvl30": -936
       },
       {
         "name": "ability_weaken_plus",
         "pct": -23,
-        "value_atk1_lvl1": -26128,
-        "value_atk2_lvl1": -18354,
-        "value_atk1_lvl30": -154284,
-        "value_atk2_lvl30": -107640
+        "value_atk1_lvl1": -261,
+        "value_atk2_lvl1": -184,
+        "value_atk1_lvl30": -1543,
+        "value_atk2_lvl30": -1076
       }
     ],
     "image": [
@@ -9919,14 +10011,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -35080,
-        "value_atk1_lvl30": -205120
+        "value_atk1_lvl1": -351,
+        "value_atk1_lvl30": -2051,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -70160,
-        "value_atk1_lvl30": -410240
+        "value_atk1_lvl1": -702,
+        "value_atk1_lvl30": -4102,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -10299,14 +10395,18 @@
       {
         "name": "ability_retaliate",
         "pct": -16,
-        "value_atk1_lvl1": -23904,
-        "value_atk1_lvl30": -140032
+        "value_atk1_lvl1": -239,
+        "value_atk1_lvl30": -1400,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -27,
-        "value_atk1_lvl1": -40338,
-        "value_atk1_lvl30": -236304
+        "value_atk1_lvl1": -403,
+        "value_atk1_lvl30": -2363,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -10551,18 +10651,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -10560,
-        "value_atk2_lvl1": -10560,
-        "value_atk1_lvl30": -61600,
-        "value_atk2_lvl30": -61600
+        "value_atk1_lvl1": -106,
+        "value_atk2_lvl1": -106,
+        "value_atk1_lvl30": -616,
+        "value_atk2_lvl30": -616
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -21120,
-        "value_atk2_lvl1": -21120,
-        "value_atk1_lvl30": -123200,
-        "value_atk2_lvl30": -123200
+        "value_atk1_lvl1": -211,
+        "value_atk2_lvl1": -211,
+        "value_atk1_lvl30": -1232,
+        "value_atk2_lvl30": -1232
       }
     ],
     "image": [
@@ -10679,14 +10779,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -18900,
-        "value_atk1_lvl30": -137580
+        "value_atk1_lvl1": -189,
+        "value_atk1_lvl30": -1376,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -31500,
-        "value_atk1_lvl30": -229300
+        "value_atk1_lvl1": -315,
+        "value_atk1_lvl30": -2293,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -10739,14 +10843,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -9520,
-        "value_atk1_lvl30": -70840
+        "value_atk1_lvl1": -95,
+        "value_atk1_lvl30": -708,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -11900,
-        "value_atk1_lvl30": -88550
+        "value_atk1_lvl1": -119,
+        "value_atk1_lvl30": -886,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -10863,14 +10971,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -9840,
-        "value_atk1_lvl30": -57690
+        "value_atk1_lvl1": -98,
+        "value_atk1_lvl30": -577,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -16400,
-        "value_atk1_lvl30": -96150
+        "value_atk1_lvl1": -164,
+        "value_atk1_lvl30": -962,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -10987,14 +11099,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -8130,
-        "value_atk1_lvl30": -47610
+        "value_atk1_lvl1": -81,
+        "value_atk1_lvl30": -476,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -13550,
-        "value_atk1_lvl30": -79350
+        "value_atk1_lvl1": -136,
+        "value_atk1_lvl30": -794,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -11111,18 +11227,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -13560,
-        "value_atk2_lvl1": -8560,
-        "value_atk1_lvl30": -79400,
-        "value_atk2_lvl30": -52240
+        "value_atk1_lvl1": -136,
+        "value_atk2_lvl1": -86,
+        "value_atk1_lvl30": -794,
+        "value_atk2_lvl30": -522
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -20340,
-        "value_atk2_lvl1": -12840,
-        "value_atk1_lvl30": -119100,
-        "value_atk2_lvl30": -78360
+        "value_atk1_lvl1": -203,
+        "value_atk2_lvl1": -128,
+        "value_atk1_lvl30": -1191,
+        "value_atk2_lvl30": -784
       }
     ],
     "image": [
@@ -11431,18 +11547,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -7440,
-        "value_atk2_lvl1": -7440,
-        "value_atk1_lvl30": -61080,
-        "value_atk2_lvl30": -61080
+        "value_atk1_lvl1": -74,
+        "value_atk2_lvl1": -74,
+        "value_atk1_lvl30": -611,
+        "value_atk2_lvl30": -611
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -9920,
-        "value_atk2_lvl1": -9920,
-        "value_atk1_lvl30": -81440,
-        "value_atk2_lvl30": -81440
+        "value_atk1_lvl1": -99,
+        "value_atk2_lvl1": -99,
+        "value_atk1_lvl30": -814,
+        "value_atk2_lvl30": -814
       }
     ],
     "image": [
@@ -11495,18 +11611,18 @@
       {
         "name": "ability_weaken",
         "pct": -30,
-        "value_atk1_lvl1": -11760,
-        "value_atk2_lvl1": -11760,
-        "value_atk1_lvl30": -61560,
-        "value_atk2_lvl30": -61560
+        "value_atk1_lvl1": -118,
+        "value_atk2_lvl1": -118,
+        "value_atk1_lvl30": -616,
+        "value_atk2_lvl30": -616
       },
       {
         "name": "ability_weaken_plus",
         "pct": -50,
-        "value_atk1_lvl1": -19600,
-        "value_atk2_lvl1": -19600,
-        "value_atk1_lvl30": -102600,
-        "value_atk2_lvl30": -102600
+        "value_atk1_lvl1": -196,
+        "value_atk2_lvl1": -196,
+        "value_atk1_lvl30": -1026,
+        "value_atk2_lvl30": -1026
       }
     ],
     "image": [
@@ -11559,18 +11675,18 @@
       {
         "name": "ability_weaken",
         "pct": -17,
-        "value_atk1_lvl1": -17408,
-        "value_atk2_lvl1": -17408,
-        "value_atk1_lvl30": -101966,
-        "value_atk2_lvl30": -101966
+        "value_atk1_lvl1": -174,
+        "value_atk2_lvl1": -174,
+        "value_atk1_lvl30": -1020,
+        "value_atk2_lvl30": -1020
       },
       {
         "name": "ability_weaken_plus",
         "pct": -26,
-        "value_atk1_lvl1": -26624,
-        "value_atk2_lvl1": -26624,
-        "value_atk1_lvl30": -155948,
-        "value_atk2_lvl30": -155948
+        "value_atk1_lvl1": -266,
+        "value_atk2_lvl1": -266,
+        "value_atk1_lvl30": -1559,
+        "value_atk2_lvl30": -1559
       }
     ],
     "image": [
@@ -11623,18 +11739,18 @@
       {
         "name": "ability_weaken",
         "pct": -13,
-        "value_atk1_lvl1": -11440,
-        "value_atk2_lvl1": -11440,
-        "value_atk1_lvl30": -72410,
-        "value_atk2_lvl30": -72410
+        "value_atk1_lvl1": -114,
+        "value_atk2_lvl1": -114,
+        "value_atk1_lvl30": -724,
+        "value_atk2_lvl30": -724
       },
       {
         "name": "ability_weaken_plus",
         "pct": -22,
-        "value_atk1_lvl1": -19360,
-        "value_atk2_lvl1": -19360,
-        "value_atk1_lvl30": -122540,
-        "value_atk2_lvl30": -122540
+        "value_atk1_lvl1": -194,
+        "value_atk2_lvl1": -194,
+        "value_atk1_lvl30": -1225,
+        "value_atk2_lvl30": -1225
       }
     ],
     "image": [
@@ -11687,18 +11803,18 @@
       {
         "name": "ability_weaken",
         "pct": -19,
-        "value_atk1_lvl1": -15808,
-        "value_atk2_lvl1": -10792,
-        "value_atk1_lvl30": -93062,
-        "value_atk2_lvl30": -73340
+        "value_atk1_lvl1": -158,
+        "value_atk2_lvl1": -108,
+        "value_atk1_lvl30": -931,
+        "value_atk2_lvl30": -733
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -24960,
-        "value_atk2_lvl1": -17040,
-        "value_atk1_lvl30": -146940,
-        "value_atk2_lvl30": -115800
+        "value_atk1_lvl1": -250,
+        "value_atk2_lvl1": -170,
+        "value_atk1_lvl30": -1469,
+        "value_atk2_lvl30": -1158
       }
     ],
     "image": [
@@ -11943,18 +12059,18 @@
       {
         "name": "ability_weaken",
         "pct": -25,
-        "value_atk1_lvl1": -41200,
-        "value_atk2_lvl1": -41200,
-        "value_atk1_lvl30": -241200,
-        "value_atk2_lvl30": -241200
+        "value_atk1_lvl1": -412,
+        "value_atk2_lvl1": -412,
+        "value_atk1_lvl30": -2412,
+        "value_atk2_lvl30": -2412
       },
       {
         "name": "ability_weaken_plus",
         "pct": -35,
-        "value_atk1_lvl1": -57680,
-        "value_atk2_lvl1": -57680,
-        "value_atk1_lvl30": -337680,
-        "value_atk2_lvl30": -337680
+        "value_atk1_lvl1": -577,
+        "value_atk2_lvl1": -577,
+        "value_atk1_lvl30": -3377,
+        "value_atk2_lvl30": -3377
       }
     ],
     "image": [
@@ -12135,14 +12251,18 @@
       {
         "name": "ability_retaliate",
         "pct": -18,
-        "value_atk1_lvl1": -24984,
-        "value_atk1_lvl30": -142236
+        "value_atk1_lvl1": -250,
+        "value_atk1_lvl30": -1422,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -33,
-        "value_atk1_lvl1": -45804,
-        "value_atk1_lvl30": -260766
+        "value_atk1_lvl1": -458,
+        "value_atk1_lvl30": -2608,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -12259,18 +12379,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -23000,
-        "value_atk2_lvl1": -23000,
-        "value_atk1_lvl30": -148960,
-        "value_atk2_lvl30": -148960
+        "value_atk1_lvl1": -230,
+        "value_atk2_lvl1": -230,
+        "value_atk1_lvl30": -1490,
+        "value_atk2_lvl30": -1490
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -34500,
-        "value_atk2_lvl1": -34500,
-        "value_atk1_lvl30": -223440,
-        "value_atk2_lvl30": -223440
+        "value_atk1_lvl1": -345,
+        "value_atk2_lvl1": -345,
+        "value_atk1_lvl30": -2234,
+        "value_atk2_lvl30": -2234
       }
     ],
     "image": [
@@ -12451,18 +12571,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -23800,
-        "value_atk2_lvl1": -23800,
-        "value_atk1_lvl30": -139480,
-        "value_atk2_lvl30": -139480
+        "value_atk1_lvl1": -238,
+        "value_atk2_lvl1": -238,
+        "value_atk1_lvl30": -1395,
+        "value_atk2_lvl30": -1395
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -35700,
-        "value_atk2_lvl1": -35700,
-        "value_atk1_lvl30": -209220,
-        "value_atk2_lvl30": -209220
+        "value_atk1_lvl1": -357,
+        "value_atk2_lvl1": -357,
+        "value_atk1_lvl30": -2092,
+        "value_atk2_lvl30": -2092
       }
     ],
     "image": [
@@ -12579,18 +12699,18 @@
       {
         "name": "ability_slash",
         "pct": -25,
-        "value_atk1_lvl1": -10350,
-        "value_atk2_lvl1": -10350,
-        "value_atk1_lvl30": -59100,
-        "value_atk2_lvl30": -59100
+        "value_atk1_lvl1": -104,
+        "value_atk2_lvl1": -104,
+        "value_atk1_lvl30": -591,
+        "value_atk2_lvl30": -591
       },
       {
         "name": "ability_slash_plus",
         "pct": -85,
-        "value_atk1_lvl1": -35190,
-        "value_atk2_lvl1": -35190,
-        "value_atk1_lvl30": -200940,
-        "value_atk2_lvl30": -200940
+        "value_atk1_lvl1": -352,
+        "value_atk2_lvl1": -352,
+        "value_atk1_lvl30": -2009,
+        "value_atk2_lvl30": -2009
       }
     ],
     "image": [
@@ -12643,18 +12763,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -18160,
-        "value_atk2_lvl1": -10400,
-        "value_atk1_lvl30": -106720,
-        "value_atk2_lvl30": -61000
+        "value_atk1_lvl1": -182,
+        "value_atk2_lvl1": -104,
+        "value_atk1_lvl30": -1067,
+        "value_atk2_lvl30": -610
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -36320,
-        "value_atk2_lvl1": -20800,
-        "value_atk1_lvl30": -213440,
-        "value_atk2_lvl30": -122000
+        "value_atk1_lvl1": -363,
+        "value_atk2_lvl1": -208,
+        "value_atk1_lvl30": -2134,
+        "value_atk2_lvl30": -1220
       }
     ],
     "image": [
@@ -12707,18 +12827,18 @@
       {
         "name": "ability_slash",
         "pct": -15,
-        "value_atk1_lvl1": -13680,
-        "value_atk2_lvl1": -13680,
-        "value_atk1_lvl30": -80040,
-        "value_atk2_lvl30": -80040
+        "value_atk1_lvl1": -137,
+        "value_atk2_lvl1": -137,
+        "value_atk1_lvl30": -800,
+        "value_atk2_lvl30": -800
       },
       {
         "name": "ability_slash_plus",
         "pct": -33,
-        "value_atk1_lvl1": -30096,
-        "value_atk2_lvl1": -30096,
-        "value_atk1_lvl30": -176088,
-        "value_atk2_lvl30": -176088
+        "value_atk1_lvl1": -301,
+        "value_atk2_lvl1": -301,
+        "value_atk1_lvl30": -1761,
+        "value_atk2_lvl30": -1761
       }
     ],
     "image": [
@@ -12771,14 +12891,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -17610,
-        "value_atk1_lvl30": -155130
+        "value_atk1_lvl1": -176,
+        "value_atk1_lvl30": -1551,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -29350,
-        "value_atk1_lvl30": -258550
+        "value_atk1_lvl1": -294,
+        "value_atk1_lvl30": -2586,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -12959,18 +13083,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -23200,
-        "value_atk2_lvl1": -23200,
-        "value_atk1_lvl30": -135720,
-        "value_atk2_lvl30": -135720
+        "value_atk1_lvl1": -232,
+        "value_atk2_lvl1": -232,
+        "value_atk1_lvl30": -1357,
+        "value_atk2_lvl30": -1357
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -34800,
-        "value_atk2_lvl1": -34800,
-        "value_atk1_lvl30": -203580,
-        "value_atk2_lvl30": -203580
+        "value_atk1_lvl1": -348,
+        "value_atk2_lvl1": -348,
+        "value_atk1_lvl30": -2036,
+        "value_atk2_lvl30": -2036
       }
     ],
     "image": [
@@ -13279,18 +13403,18 @@
       {
         "name": "ability_weaken",
         "pct": -17,
-        "value_atk1_lvl1": -10574,
-        "value_atk2_lvl1": -10574,
-        "value_atk1_lvl30": -75174,
-        "value_atk2_lvl30": -75174
+        "value_atk1_lvl1": -106,
+        "value_atk2_lvl1": -106,
+        "value_atk1_lvl30": -752,
+        "value_atk2_lvl30": -752
       },
       {
         "name": "ability_weaken_plus",
         "pct": -28,
-        "value_atk1_lvl1": -17416,
-        "value_atk2_lvl1": -17416,
-        "value_atk1_lvl30": -123816,
-        "value_atk2_lvl30": -123816
+        "value_atk1_lvl1": -174,
+        "value_atk2_lvl1": -174,
+        "value_atk1_lvl30": -1238,
+        "value_atk2_lvl30": -1238
       }
     ],
     "image": [
@@ -13343,18 +13467,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -8970,
-        "value_atk2_lvl1": -8970,
-        "value_atk1_lvl30": -52650,
-        "value_atk2_lvl30": -52650
+        "value_atk1_lvl1": -90,
+        "value_atk2_lvl1": -90,
+        "value_atk1_lvl30": -526,
+        "value_atk2_lvl30": -526
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -14950,
-        "value_atk2_lvl1": -14950,
-        "value_atk1_lvl30": -87750,
-        "value_atk2_lvl30": -87750
+        "value_atk1_lvl1": -150,
+        "value_atk2_lvl1": -150,
+        "value_atk1_lvl30": -878,
+        "value_atk2_lvl30": -878
       }
     ],
     "image": [
@@ -13473,18 +13597,18 @@
       {
         "name": "ability_weaken",
         "pct": -18,
-        "value_atk1_lvl1": -17856,
-        "value_atk2_lvl1": -17856,
-        "value_atk1_lvl30": -104724,
-        "value_atk2_lvl30": -104724
+        "value_atk1_lvl1": -179,
+        "value_atk2_lvl1": -179,
+        "value_atk1_lvl30": -1047,
+        "value_atk2_lvl30": -1047
       },
       {
         "name": "ability_weaken_plus",
         "pct": -28,
-        "value_atk1_lvl1": -27776,
-        "value_atk2_lvl1": -27776,
-        "value_atk1_lvl30": -162904,
-        "value_atk2_lvl30": -162904
+        "value_atk1_lvl1": -278,
+        "value_atk2_lvl1": -278,
+        "value_atk1_lvl30": -1629,
+        "value_atk2_lvl30": -1629
       }
     ],
     "image": [
@@ -13601,18 +13725,18 @@
       {
         "name": "ability_weaken",
         "pct": -22,
-        "value_atk1_lvl1": -14608,
-        "value_atk2_lvl1": -14608,
-        "value_atk1_lvl30": -135740,
-        "value_atk2_lvl30": -135740
+        "value_atk1_lvl1": -146,
+        "value_atk2_lvl1": -146,
+        "value_atk1_lvl30": -1357,
+        "value_atk2_lvl30": -1357
       },
       {
         "name": "ability_weaken_plus",
         "pct": -33,
-        "value_atk1_lvl1": -21912,
-        "value_atk2_lvl1": -21912,
-        "value_atk1_lvl30": -203610,
-        "value_atk2_lvl30": -203610
+        "value_atk1_lvl1": -219,
+        "value_atk2_lvl1": -219,
+        "value_atk1_lvl30": -2036,
+        "value_atk2_lvl30": -2036
       }
     ],
     "image": [
@@ -13665,14 +13789,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -11640,
-        "value_atk1_lvl30": -68160
+        "value_atk1_lvl1": -116,
+        "value_atk1_lvl30": -682,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -30,
-        "value_atk1_lvl1": -17460,
-        "value_atk1_lvl30": -102240
+        "value_atk1_lvl1": -175,
+        "value_atk1_lvl30": -1022,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -13725,18 +13853,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -12560,
-        "value_atk2_lvl1": -12560,
-        "value_atk1_lvl30": -73640,
-        "value_atk2_lvl30": -73640
+        "value_atk1_lvl1": -126,
+        "value_atk2_lvl1": -126,
+        "value_atk1_lvl30": -736,
+        "value_atk2_lvl30": -736
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -25120,
-        "value_atk2_lvl1": -25120,
-        "value_atk1_lvl30": -147280,
-        "value_atk2_lvl30": -147280
+        "value_atk1_lvl1": -251,
+        "value_atk2_lvl1": -251,
+        "value_atk1_lvl30": -1473,
+        "value_atk2_lvl30": -1473
       }
     ],
     "image": [
@@ -14045,18 +14173,18 @@
       {
         "name": "ability_weaken",
         "pct": -22,
-        "value_atk1_lvl1": -23716,
-        "value_atk2_lvl1": -23716,
-        "value_atk1_lvl30": -165088,
-        "value_atk2_lvl30": -165088
+        "value_atk1_lvl1": -237,
+        "value_atk2_lvl1": -237,
+        "value_atk1_lvl30": -1651,
+        "value_atk2_lvl30": -1651
       },
       {
         "name": "ability_weaken_plus",
         "pct": -35,
-        "value_atk1_lvl1": -37730,
-        "value_atk2_lvl1": -37730,
-        "value_atk1_lvl30": -262640,
-        "value_atk2_lvl30": -262640
+        "value_atk1_lvl1": -377,
+        "value_atk2_lvl1": -377,
+        "value_atk1_lvl30": -2626,
+        "value_atk2_lvl30": -2626
       }
     ],
     "image": [
@@ -14109,18 +14237,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -18840,
-        "value_atk2_lvl1": -18840,
-        "value_atk1_lvl30": -110280,
-        "value_atk2_lvl30": -110280
+        "value_atk1_lvl1": -188,
+        "value_atk2_lvl1": -188,
+        "value_atk1_lvl30": -1103,
+        "value_atk2_lvl30": -1103
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -47100,
-        "value_atk2_lvl1": -47100,
-        "value_atk1_lvl30": -275700,
-        "value_atk2_lvl30": -275700
+        "value_atk1_lvl1": -471,
+        "value_atk2_lvl1": -471,
+        "value_atk1_lvl30": -2757,
+        "value_atk2_lvl30": -2757
       }
     ],
     "image": [
@@ -14237,18 +14365,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -20760,
-        "value_atk2_lvl1": -20760,
-        "value_atk1_lvl30": -126360,
-        "value_atk2_lvl30": -126360
+        "value_atk1_lvl1": -208,
+        "value_atk2_lvl1": -208,
+        "value_atk1_lvl30": -1264,
+        "value_atk2_lvl30": -1264
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -31140,
-        "value_atk2_lvl1": -31140,
-        "value_atk1_lvl30": -189540,
-        "value_atk2_lvl30": -189540
+        "value_atk1_lvl1": -311,
+        "value_atk2_lvl1": -311,
+        "value_atk1_lvl30": -1895,
+        "value_atk2_lvl30": -1895
       }
     ],
     "image": [
@@ -14301,14 +14429,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -7290,
-        "value_atk1_lvl30": -91950
+        "value_atk1_lvl1": -73,
+        "value_atk1_lvl30": -920,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -12150,
-        "value_atk1_lvl30": -153250
+        "value_atk1_lvl1": -122,
+        "value_atk1_lvl30": -1532,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -14489,14 +14621,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -20040,
-        "value_atk1_lvl30": -117240
+        "value_atk1_lvl1": -200,
+        "value_atk1_lvl30": -1172,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -33400,
-        "value_atk1_lvl30": -195400
+        "value_atk1_lvl1": -334,
+        "value_atk1_lvl30": -1954,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -14677,18 +14813,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -48300,
-        "value_atk2_lvl1": -48300,
-        "value_atk1_lvl30": -282180,
-        "value_atk2_lvl30": -282180
+        "value_atk1_lvl1": -483,
+        "value_atk2_lvl1": -483,
+        "value_atk1_lvl30": -2822,
+        "value_atk2_lvl30": -2822
       },
       {
         "name": "ability_slash_plus",
         "pct": -60,
-        "value_atk1_lvl1": -96600,
-        "value_atk2_lvl1": -96600,
-        "value_atk1_lvl30": -564360,
-        "value_atk2_lvl30": -564360
+        "value_atk1_lvl1": -966,
+        "value_atk2_lvl1": -966,
+        "value_atk1_lvl30": -5644,
+        "value_atk2_lvl30": -5644
       }
     ],
     "image": [
@@ -14741,18 +14877,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -24600,
-        "value_atk2_lvl1": -24600,
-        "value_atk1_lvl30": -144000,
-        "value_atk2_lvl30": -144000
+        "value_atk1_lvl1": -246,
+        "value_atk2_lvl1": -246,
+        "value_atk1_lvl30": -1440,
+        "value_atk2_lvl30": -1440
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -49200,
-        "value_atk2_lvl1": -49200,
-        "value_atk1_lvl30": -288000,
-        "value_atk2_lvl30": -288000
+        "value_atk1_lvl1": -492,
+        "value_atk2_lvl1": -492,
+        "value_atk1_lvl30": -2880,
+        "value_atk2_lvl30": -2880
       }
     ],
     "image": [
@@ -14805,18 +14941,18 @@
       {
         "name": "ability_slash",
         "pct": -40,
-        "value_atk1_lvl1": -29360,
-        "value_atk2_lvl1": -29360,
-        "value_atk1_lvl30": -171920,
-        "value_atk2_lvl30": -171920
+        "value_atk1_lvl1": -294,
+        "value_atk2_lvl1": -294,
+        "value_atk1_lvl30": -1719,
+        "value_atk2_lvl30": -1719
       },
       {
         "name": "ability_slash_plus",
         "pct": -60,
-        "value_atk1_lvl1": -44040,
-        "value_atk2_lvl1": -44040,
-        "value_atk1_lvl30": -257880,
-        "value_atk2_lvl30": -257880
+        "value_atk1_lvl1": -440,
+        "value_atk2_lvl1": -440,
+        "value_atk1_lvl30": -2579,
+        "value_atk2_lvl30": -2579
       }
     ],
     "image": [
@@ -14869,18 +15005,18 @@
       {
         "name": "ability_slash",
         "pct": -15,
-        "value_atk1_lvl1": -20040,
-        "value_atk2_lvl1": -10020,
-        "value_atk1_lvl30": -123210,
-        "value_atk2_lvl30": -76050
+        "value_atk1_lvl1": -200,
+        "value_atk2_lvl1": -100,
+        "value_atk1_lvl30": -1232,
+        "value_atk2_lvl30": -760
       },
       {
         "name": "ability_slash_plus",
         "pct": -25,
-        "value_atk1_lvl1": -33400,
-        "value_atk2_lvl1": -16700,
-        "value_atk1_lvl30": -205350,
-        "value_atk2_lvl30": -126750
+        "value_atk1_lvl1": -334,
+        "value_atk2_lvl1": -167,
+        "value_atk1_lvl30": -2054,
+        "value_atk2_lvl30": -1268
       }
     ],
     "image": [
@@ -14997,18 +15133,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -35480,
-        "value_atk2_lvl1": -35480,
-        "value_atk1_lvl30": -207640,
-        "value_atk2_lvl30": -207640
+        "value_atk1_lvl1": -355,
+        "value_atk2_lvl1": -355,
+        "value_atk1_lvl30": -2076,
+        "value_atk2_lvl30": -2076
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -70960,
-        "value_atk2_lvl1": -70960,
-        "value_atk1_lvl30": -415280,
-        "value_atk2_lvl30": -415280
+        "value_atk1_lvl1": -710,
+        "value_atk2_lvl1": -710,
+        "value_atk1_lvl30": -4153,
+        "value_atk2_lvl30": -4153
       }
     ],
     "image": [
@@ -15125,18 +15261,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -17000,
-        "value_atk2_lvl1": -17000,
-        "value_atk1_lvl30": -99360,
-        "value_atk2_lvl30": -99360
+        "value_atk1_lvl1": -170,
+        "value_atk2_lvl1": -170,
+        "value_atk1_lvl30": -994,
+        "value_atk2_lvl30": -994
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -34000,
-        "value_atk2_lvl1": -34000,
-        "value_atk1_lvl30": -198720,
-        "value_atk2_lvl30": -198720
+        "value_atk1_lvl1": -340,
+        "value_atk2_lvl1": -340,
+        "value_atk1_lvl30": -1987,
+        "value_atk2_lvl30": -1987
       }
     ],
     "image": [
@@ -15253,18 +15389,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -9330,
-        "value_atk2_lvl1": -9330,
-        "value_atk1_lvl30": -54870,
-        "value_atk2_lvl30": -54870
+        "value_atk1_lvl1": -93,
+        "value_atk2_lvl1": -93,
+        "value_atk1_lvl30": -549,
+        "value_atk2_lvl30": -549
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -15550,
-        "value_atk2_lvl1": -15550,
-        "value_atk1_lvl30": -91450,
-        "value_atk2_lvl30": -91450
+        "value_atk1_lvl1": -156,
+        "value_atk2_lvl1": -156,
+        "value_atk1_lvl30": -914,
+        "value_atk2_lvl30": -914
       }
     ],
     "image": [
@@ -15381,18 +15517,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -15210,
-        "value_atk2_lvl1": -15210,
-        "value_atk1_lvl30": -89040,
-        "value_atk2_lvl30": -89040
+        "value_atk1_lvl1": -152,
+        "value_atk2_lvl1": -152,
+        "value_atk1_lvl30": -890,
+        "value_atk2_lvl30": -890
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -25350,
-        "value_atk2_lvl1": -25350,
-        "value_atk1_lvl30": -148400,
-        "value_atk2_lvl30": -148400
+        "value_atk1_lvl1": -254,
+        "value_atk2_lvl1": -254,
+        "value_atk1_lvl30": -1484,
+        "value_atk2_lvl30": -1484
       }
     ],
     "image": [
@@ -15445,18 +15581,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -22760,
-        "value_atk2_lvl1": -22760,
-        "value_atk1_lvl30": -132920,
-        "value_atk2_lvl30": -132920
+        "value_atk1_lvl1": -228,
+        "value_atk2_lvl1": -228,
+        "value_atk1_lvl30": -1329,
+        "value_atk2_lvl30": -1329
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -45520,
-        "value_atk2_lvl1": -45520,
-        "value_atk1_lvl30": -265840,
-        "value_atk2_lvl30": -265840
+        "value_atk1_lvl1": -455,
+        "value_atk2_lvl1": -455,
+        "value_atk1_lvl30": -2658,
+        "value_atk2_lvl30": -2658
       }
     ],
     "image": [
@@ -15509,18 +15645,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -19200,
-        "value_atk2_lvl1": -19200,
-        "value_atk1_lvl30": -112440,
-        "value_atk2_lvl30": -112440
+        "value_atk1_lvl1": -192,
+        "value_atk2_lvl1": -192,
+        "value_atk1_lvl30": -1124,
+        "value_atk2_lvl30": -1124
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -32000,
-        "value_atk2_lvl1": -32000,
-        "value_atk1_lvl30": -187400,
-        "value_atk2_lvl30": -187400
+        "value_atk1_lvl1": -320,
+        "value_atk2_lvl1": -320,
+        "value_atk1_lvl30": -1874,
+        "value_atk2_lvl30": -1874
       }
     ],
     "image": [
@@ -15573,18 +15709,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -17000,
-        "value_atk2_lvl1": -9800,
-        "value_atk1_lvl30": -99840,
-        "value_atk2_lvl30": -57400
+        "value_atk1_lvl1": -170,
+        "value_atk2_lvl1": -98,
+        "value_atk1_lvl30": -998,
+        "value_atk2_lvl30": -574
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -25500,
-        "value_atk2_lvl1": -14700,
-        "value_atk1_lvl30": -149760,
-        "value_atk2_lvl30": -86100
+        "value_atk1_lvl1": -255,
+        "value_atk2_lvl1": -147,
+        "value_atk1_lvl30": -1498,
+        "value_atk2_lvl30": -861
       }
     ],
     "image": [
@@ -15701,14 +15837,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -9300,
-        "value_atk1_lvl30": -66330
+        "value_atk1_lvl1": -93,
+        "value_atk1_lvl30": -663,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -15500,
-        "value_atk1_lvl30": -110550
+        "value_atk1_lvl1": -155,
+        "value_atk1_lvl30": -1106,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -15889,14 +16029,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -21840,
-        "value_atk1_lvl30": -125720
+        "value_atk1_lvl1": -218,
+        "value_atk1_lvl30": -1257,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -35,
-        "value_atk1_lvl1": -38220,
-        "value_atk1_lvl30": -220010
+        "value_atk1_lvl1": -382,
+        "value_atk1_lvl30": -2200,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -16141,18 +16285,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -11280,
-        "value_atk2_lvl1": -11280,
-        "value_atk1_lvl30": -70680,
-        "value_atk2_lvl30": -70680
+        "value_atk1_lvl1": -113,
+        "value_atk2_lvl1": -113,
+        "value_atk1_lvl30": -707,
+        "value_atk2_lvl30": -707
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -28200,
-        "value_atk2_lvl1": -28200,
-        "value_atk1_lvl30": -176700,
-        "value_atk2_lvl30": -176700
+        "value_atk1_lvl1": -282,
+        "value_atk2_lvl1": -282,
+        "value_atk1_lvl30": -1767,
+        "value_atk2_lvl30": -1767
       }
     ],
     "image": [
@@ -16205,18 +16349,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -21160,
-        "value_atk2_lvl1": -21160,
-        "value_atk1_lvl30": -134640,
-        "value_atk2_lvl30": -134640
+        "value_atk1_lvl1": -212,
+        "value_atk2_lvl1": -212,
+        "value_atk1_lvl30": -1346,
+        "value_atk2_lvl30": -1346
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -26450,
-        "value_atk2_lvl1": -26450,
-        "value_atk1_lvl30": -168300,
-        "value_atk2_lvl30": -168300
+        "value_atk1_lvl1": -264,
+        "value_atk2_lvl1": -264,
+        "value_atk1_lvl30": -1683,
+        "value_atk2_lvl30": -1683
       }
     ],
     "image": [
@@ -16333,18 +16477,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -38160,
-        "value_atk2_lvl1": -14320,
-        "value_atk1_lvl30": -223240,
-        "value_atk2_lvl30": -111520
+        "value_atk1_lvl1": -382,
+        "value_atk2_lvl1": -143,
+        "value_atk1_lvl30": -2232,
+        "value_atk2_lvl30": -1115
       },
       {
         "name": "ability_weaken_plus",
         "pct": -35,
-        "value_atk1_lvl1": -66780,
-        "value_atk2_lvl1": -25060,
-        "value_atk1_lvl30": -390670,
-        "value_atk2_lvl30": -195160
+        "value_atk1_lvl1": -668,
+        "value_atk2_lvl1": -251,
+        "value_atk1_lvl30": -3907,
+        "value_atk2_lvl30": -1952
       }
     ],
     "image": [
@@ -16397,14 +16541,18 @@
       {
         "name": "ability_retaliate",
         "pct": -12,
-        "value_atk1_lvl1": -8184,
-        "value_atk1_lvl30": -83952
+        "value_atk1_lvl1": -82,
+        "value_atk1_lvl30": -840,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -23,
-        "value_atk1_lvl1": -15686,
-        "value_atk1_lvl30": -160908
+        "value_atk1_lvl1": -157,
+        "value_atk1_lvl30": -1609,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -16457,14 +16605,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -18240,
-        "value_atk1_lvl30": -106590
+        "value_atk1_lvl1": -182,
+        "value_atk1_lvl30": -1066,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -48640,
-        "value_atk1_lvl30": -284240
+        "value_atk1_lvl1": -486,
+        "value_atk1_lvl30": -2842,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -16517,14 +16669,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -20940,
-        "value_atk1_lvl30": -121680
+        "value_atk1_lvl1": -209,
+        "value_atk1_lvl30": -1217,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -34900,
-        "value_atk1_lvl30": -202800
+        "value_atk1_lvl1": -349,
+        "value_atk1_lvl30": -2028,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -16577,18 +16733,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -26920,
-        "value_atk2_lvl1": -26920,
-        "value_atk1_lvl30": -157560,
-        "value_atk2_lvl30": -157560
+        "value_atk1_lvl1": -269,
+        "value_atk2_lvl1": -269,
+        "value_atk1_lvl30": -1576,
+        "value_atk2_lvl30": -1576
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -53840,
-        "value_atk2_lvl1": -53840,
-        "value_atk1_lvl30": -315120,
-        "value_atk2_lvl30": -315120
+        "value_atk1_lvl1": -538,
+        "value_atk2_lvl1": -538,
+        "value_atk1_lvl30": -3151,
+        "value_atk2_lvl30": -3151
       }
     ],
     "image": [
@@ -16641,18 +16797,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -10760,
-        "value_atk2_lvl1": -10760,
-        "value_atk1_lvl30": -63320,
-        "value_atk2_lvl30": -63320
+        "value_atk1_lvl1": -108,
+        "value_atk2_lvl1": -108,
+        "value_atk1_lvl30": -633,
+        "value_atk2_lvl30": -633
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -21520,
-        "value_atk2_lvl1": -21520,
-        "value_atk1_lvl30": -126640,
-        "value_atk2_lvl30": -126640
+        "value_atk1_lvl1": -215,
+        "value_atk2_lvl1": -215,
+        "value_atk1_lvl30": -1266,
+        "value_atk2_lvl30": -1266
       }
     ],
     "image": [
@@ -16705,18 +16861,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -13160,
-        "value_atk2_lvl1": -7800,
-        "value_atk1_lvl30": -76920,
-        "value_atk2_lvl30": -46160
+        "value_atk1_lvl1": -132,
+        "value_atk2_lvl1": -78,
+        "value_atk1_lvl30": -769,
+        "value_atk2_lvl30": -462
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -26320,
-        "value_atk2_lvl1": -15600,
-        "value_atk1_lvl30": -153840,
-        "value_atk2_lvl30": -92320
+        "value_atk1_lvl1": -263,
+        "value_atk2_lvl1": -156,
+        "value_atk1_lvl30": -1538,
+        "value_atk2_lvl30": -923
       }
     ],
     "image": [
@@ -16769,18 +16925,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -8760,
-        "value_atk2_lvl1": -8760,
-        "value_atk1_lvl30": -51320,
-        "value_atk2_lvl30": -51320
+        "value_atk1_lvl1": -88,
+        "value_atk2_lvl1": -88,
+        "value_atk1_lvl30": -513,
+        "value_atk2_lvl30": -513
       },
       {
         "name": "ability_slash_plus",
         "pct": -55,
-        "value_atk1_lvl1": -24090,
-        "value_atk2_lvl1": -24090,
-        "value_atk1_lvl30": -141130,
-        "value_atk2_lvl30": -141130
+        "value_atk1_lvl1": -241,
+        "value_atk2_lvl1": -241,
+        "value_atk1_lvl30": -1411,
+        "value_atk2_lvl30": -1411
       }
     ],
     "image": [
@@ -16833,18 +16989,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -17480,
-        "value_atk2_lvl1": -17480,
-        "value_atk1_lvl30": -102480,
-        "value_atk2_lvl30": -102480
+        "value_atk1_lvl1": -175,
+        "value_atk2_lvl1": -175,
+        "value_atk1_lvl30": -1025,
+        "value_atk2_lvl30": -1025
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -43700,
-        "value_atk2_lvl1": -43700,
-        "value_atk1_lvl30": -256200,
-        "value_atk2_lvl30": -256200
+        "value_atk1_lvl1": -437,
+        "value_atk2_lvl1": -437,
+        "value_atk1_lvl30": -2562,
+        "value_atk2_lvl30": -2562
       }
     ],
     "image": [
@@ -16897,18 +17053,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -16000,
-        "value_atk2_lvl1": -16000,
-        "value_atk1_lvl30": -93600,
-        "value_atk2_lvl30": -93600
+        "value_atk1_lvl1": -160,
+        "value_atk2_lvl1": -160,
+        "value_atk1_lvl30": -936,
+        "value_atk2_lvl30": -936
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -40000,
-        "value_atk2_lvl1": -40000,
-        "value_atk1_lvl30": -234000,
-        "value_atk2_lvl30": -234000
+        "value_atk1_lvl1": -400,
+        "value_atk2_lvl1": -400,
+        "value_atk1_lvl30": -2340,
+        "value_atk2_lvl30": -2340
       }
     ],
     "image": [
@@ -17025,14 +17181,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -15570,
-        "value_atk1_lvl30": -91260
+        "value_atk1_lvl1": -156,
+        "value_atk1_lvl30": -913,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -41520,
-        "value_atk1_lvl30": -243360
+        "value_atk1_lvl1": -415,
+        "value_atk1_lvl30": -2434,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -17277,18 +17437,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -14520,
-        "value_atk2_lvl1": -14520,
-        "value_atk1_lvl30": -85050,
-        "value_atk2_lvl30": -85050
+        "value_atk1_lvl1": -145,
+        "value_atk2_lvl1": -145,
+        "value_atk1_lvl30": -850,
+        "value_atk2_lvl30": -850
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -24200,
-        "value_atk2_lvl1": -24200,
-        "value_atk1_lvl30": -141750,
-        "value_atk2_lvl30": -141750
+        "value_atk1_lvl1": -242,
+        "value_atk2_lvl1": -242,
+        "value_atk1_lvl30": -1418,
+        "value_atk2_lvl30": -1418
       }
     ],
     "image": [
@@ -17341,18 +17501,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -27560,
-        "value_atk2_lvl1": -27560,
-        "value_atk1_lvl30": -161440,
-        "value_atk2_lvl30": -161440
+        "value_atk1_lvl1": -276,
+        "value_atk2_lvl1": -276,
+        "value_atk1_lvl30": -1614,
+        "value_atk2_lvl30": -1614
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -55120,
-        "value_atk2_lvl1": -55120,
-        "value_atk1_lvl30": -322880,
-        "value_atk2_lvl30": -322880
+        "value_atk1_lvl1": -551,
+        "value_atk2_lvl1": -551,
+        "value_atk1_lvl30": -3229,
+        "value_atk2_lvl30": -3229
       }
     ],
     "image": [
@@ -17405,18 +17565,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -17370,
-        "value_atk2_lvl1": -17370,
-        "value_atk1_lvl30": -101790,
-        "value_atk2_lvl30": -101790
+        "value_atk1_lvl1": -174,
+        "value_atk2_lvl1": -174,
+        "value_atk1_lvl30": -1018,
+        "value_atk2_lvl30": -1018
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -28950,
-        "value_atk2_lvl1": -28950,
-        "value_atk1_lvl30": -169650,
-        "value_atk2_lvl30": -169650
+        "value_atk1_lvl1": -290,
+        "value_atk2_lvl1": -290,
+        "value_atk1_lvl30": -1696,
+        "value_atk2_lvl30": -1696
       }
     ],
     "image": [
@@ -17469,18 +17629,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -23070,
-        "value_atk2_lvl1": -23070,
-        "value_atk1_lvl30": -134910,
-        "value_atk2_lvl30": -134910
+        "value_atk1_lvl1": -231,
+        "value_atk2_lvl1": -231,
+        "value_atk1_lvl30": -1349,
+        "value_atk2_lvl30": -1349
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -38450,
-        "value_atk2_lvl1": -38450,
-        "value_atk1_lvl30": -224850,
-        "value_atk2_lvl30": -224850
+        "value_atk1_lvl1": -384,
+        "value_atk2_lvl1": -384,
+        "value_atk1_lvl30": -2248,
+        "value_atk2_lvl30": -2248
       }
     ],
     "image": [
@@ -17533,18 +17693,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -20070,
-        "value_atk2_lvl1": -11520,
-        "value_atk1_lvl30": -131400,
-        "value_atk2_lvl30": -67260
+        "value_atk1_lvl1": -201,
+        "value_atk2_lvl1": -115,
+        "value_atk1_lvl30": -1314,
+        "value_atk2_lvl30": -673
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -33450,
-        "value_atk2_lvl1": -19200,
-        "value_atk1_lvl30": -219000,
-        "value_atk2_lvl30": -112100
+        "value_atk1_lvl1": -334,
+        "value_atk2_lvl1": -192,
+        "value_atk1_lvl30": -2190,
+        "value_atk2_lvl30": -1121
       }
     ],
     "image": [
@@ -17725,14 +17885,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -19650,
-        "value_atk1_lvl30": -127170
+        "value_atk1_lvl1": -196,
+        "value_atk1_lvl30": -1272,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -35,
-        "value_atk1_lvl1": -45850,
-        "value_atk1_lvl30": -296730
+        "value_atk1_lvl1": -458,
+        "value_atk1_lvl30": -2967,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -17977,18 +18141,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -17600,
-        "value_atk2_lvl1": -10120,
-        "value_atk1_lvl30": -107800,
-        "value_atk2_lvl30": -63040
+        "value_atk1_lvl1": -176,
+        "value_atk2_lvl1": -101,
+        "value_atk1_lvl30": -1078,
+        "value_atk2_lvl30": -630
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -26400,
-        "value_atk2_lvl1": -15180,
-        "value_atk1_lvl30": -161700,
-        "value_atk2_lvl30": -94560
+        "value_atk1_lvl1": -264,
+        "value_atk2_lvl1": -152,
+        "value_atk1_lvl30": -1617,
+        "value_atk2_lvl30": -946
       }
     ],
     "image": [
@@ -18105,18 +18269,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -32240,
-        "value_atk2_lvl1": -32240,
-        "value_atk1_lvl30": -188760,
-        "value_atk2_lvl30": -188760
+        "value_atk1_lvl1": -322,
+        "value_atk2_lvl1": -322,
+        "value_atk1_lvl30": -1888,
+        "value_atk2_lvl30": -1888
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -64480,
-        "value_atk2_lvl1": -64480,
-        "value_atk1_lvl30": -377520,
-        "value_atk2_lvl30": -377520
+        "value_atk1_lvl1": -645,
+        "value_atk2_lvl1": -645,
+        "value_atk1_lvl30": -3775,
+        "value_atk2_lvl30": -3775
       }
     ],
     "image": [
@@ -18297,18 +18461,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -28800,
-        "value_atk2_lvl1": -28800,
-        "value_atk1_lvl30": -168480,
-        "value_atk2_lvl30": -168480
+        "value_atk1_lvl1": -288,
+        "value_atk2_lvl1": -288,
+        "value_atk1_lvl30": -1685,
+        "value_atk2_lvl30": -1685
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -57600,
-        "value_atk2_lvl1": -57600,
-        "value_atk1_lvl30": -336960,
-        "value_atk2_lvl30": -336960
+        "value_atk1_lvl1": -576,
+        "value_atk2_lvl1": -576,
+        "value_atk1_lvl30": -3370,
+        "value_atk2_lvl30": -3370
       }
     ],
     "image": [
@@ -18361,14 +18525,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -33780,
-        "value_atk1_lvl30": -187080
+        "value_atk1_lvl1": -338,
+        "value_atk1_lvl30": -1871,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -20,
-        "value_atk1_lvl1": -45040,
-        "value_atk1_lvl30": -249440
+        "value_atk1_lvl1": -450,
+        "value_atk1_lvl30": -2494,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -18421,18 +18589,18 @@
       {
         "name": "ability_slash",
         "pct": -25,
-        "value_atk1_lvl1": -20250,
-        "value_atk2_lvl1": -20250,
-        "value_atk1_lvl30": -118350,
-        "value_atk2_lvl30": -118350
+        "value_atk1_lvl1": -202,
+        "value_atk2_lvl1": -202,
+        "value_atk1_lvl30": -1184,
+        "value_atk2_lvl30": -1184
       },
       {
         "name": "ability_slash_plus",
         "pct": -60,
-        "value_atk1_lvl1": -48600,
-        "value_atk2_lvl1": -48600,
-        "value_atk1_lvl30": -284040,
-        "value_atk2_lvl30": -284040
+        "value_atk1_lvl1": -486,
+        "value_atk2_lvl1": -486,
+        "value_atk1_lvl30": -2840,
+        "value_atk2_lvl30": -2840
       }
     ],
     "image": [
@@ -18485,14 +18653,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -9150,
-        "value_atk1_lvl30": -53340
+        "value_atk1_lvl1": -92,
+        "value_atk1_lvl30": -533,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -30,
-        "value_atk1_lvl1": -18300,
-        "value_atk1_lvl30": -106680
+        "value_atk1_lvl1": -183,
+        "value_atk1_lvl30": -1067,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -18545,18 +18717,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -13360,
-        "value_atk2_lvl1": -13360,
-        "value_atk1_lvl30": -100320,
-        "value_atk2_lvl30": -100320
+        "value_atk1_lvl1": -134,
+        "value_atk2_lvl1": -134,
+        "value_atk1_lvl30": -1003,
+        "value_atk2_lvl30": -1003
       },
       {
         "name": "ability_slash_plus",
         "pct": -45,
-        "value_atk1_lvl1": -30060,
-        "value_atk2_lvl1": -30060,
-        "value_atk1_lvl30": -225720,
-        "value_atk2_lvl30": -225720
+        "value_atk1_lvl1": -301,
+        "value_atk2_lvl1": -301,
+        "value_atk1_lvl30": -2257,
+        "value_atk2_lvl30": -2257
       }
     ],
     "image": [
@@ -18609,18 +18781,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -36920,
-        "value_atk2_lvl1": -36920,
-        "value_atk1_lvl30": -221040,
-        "value_atk2_lvl30": -221040
+        "value_atk1_lvl1": -369,
+        "value_atk2_lvl1": -369,
+        "value_atk1_lvl30": -2210,
+        "value_atk2_lvl30": -2210
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -73840,
-        "value_atk2_lvl1": -73840,
-        "value_atk1_lvl30": -442080,
-        "value_atk2_lvl30": -442080
+        "value_atk1_lvl1": -738,
+        "value_atk2_lvl1": -738,
+        "value_atk1_lvl30": -4421,
+        "value_atk2_lvl30": -4421
       }
     ],
     "image": [
@@ -18673,14 +18845,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -18720,
-        "value_atk1_lvl30": -109380
+        "value_atk1_lvl1": -187,
+        "value_atk1_lvl30": -1094,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -49920,
-        "value_atk1_lvl30": -291680
+        "value_atk1_lvl1": -499,
+        "value_atk1_lvl30": -2917,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -18733,18 +18909,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -16640,
-        "value_atk2_lvl1": -9800,
-        "value_atk1_lvl30": -97960,
-        "value_atk2_lvl30": -58360
+        "value_atk1_lvl1": -166,
+        "value_atk2_lvl1": -98,
+        "value_atk1_lvl30": -980,
+        "value_atk2_lvl30": -584
       },
       {
         "name": "ability_slash_plus",
         "pct": -45,
-        "value_atk1_lvl1": -37440,
-        "value_atk2_lvl1": -22050,
-        "value_atk1_lvl30": -220410,
-        "value_atk2_lvl30": -131310
+        "value_atk1_lvl1": -374,
+        "value_atk2_lvl1": -220,
+        "value_atk1_lvl30": -2204,
+        "value_atk2_lvl30": -1313
       }
     ],
     "image": [
@@ -18797,18 +18973,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -24440,
-        "value_atk2_lvl1": -24440,
-        "value_atk1_lvl30": -143040,
-        "value_atk2_lvl30": -143040
+        "value_atk1_lvl1": -244,
+        "value_atk2_lvl1": -244,
+        "value_atk1_lvl30": -1430,
+        "value_atk2_lvl30": -1430
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -61100,
-        "value_atk2_lvl1": -61100,
-        "value_atk1_lvl30": -357600,
-        "value_atk2_lvl30": -357600
+        "value_atk1_lvl1": -611,
+        "value_atk2_lvl1": -611,
+        "value_atk1_lvl30": -3576,
+        "value_atk2_lvl30": -3576
       }
     ],
     "image": [
@@ -19117,18 +19293,18 @@
       {
         "name": "ability_weaken",
         "pct": -28,
-        "value_atk1_lvl1": -26264,
-        "value_atk2_lvl1": -15120,
-        "value_atk1_lvl30": -153552,
-        "value_atk2_lvl30": -88256
+        "value_atk1_lvl1": -263,
+        "value_atk2_lvl1": -151,
+        "value_atk1_lvl30": -1536,
+        "value_atk2_lvl30": -883
       },
       {
         "name": "ability_weaken_plus",
         "pct": -42,
-        "value_atk1_lvl1": -39396,
-        "value_atk2_lvl1": -22680,
-        "value_atk1_lvl30": -230328,
-        "value_atk2_lvl30": -132384
+        "value_atk1_lvl1": -394,
+        "value_atk2_lvl1": -227,
+        "value_atk1_lvl30": -2303,
+        "value_atk2_lvl30": -1324
       }
     ],
     "image": [
@@ -19181,18 +19357,18 @@
       {
         "name": "ability_weaken",
         "pct": -30,
-        "value_atk1_lvl1": -20160,
-        "value_atk2_lvl1": -20160,
-        "value_atk1_lvl30": -121680,
-        "value_atk2_lvl30": -121680
+        "value_atk1_lvl1": -202,
+        "value_atk2_lvl1": -202,
+        "value_atk1_lvl30": -1217,
+        "value_atk2_lvl30": -1217
       },
       {
         "name": "ability_weaken_plus",
         "pct": -50,
-        "value_atk1_lvl1": -33600,
-        "value_atk2_lvl1": -33600,
-        "value_atk1_lvl30": -202800,
-        "value_atk2_lvl30": -202800
+        "value_atk1_lvl1": -336,
+        "value_atk2_lvl1": -336,
+        "value_atk1_lvl30": -2028,
+        "value_atk2_lvl30": -2028
       }
     ],
     "image": [
@@ -19245,18 +19421,18 @@
       {
         "name": "ability_weaken",
         "pct": -10,
-        "value_atk1_lvl1": -7960,
-        "value_atk2_lvl1": -7960,
-        "value_atk1_lvl30": -42660,
-        "value_atk2_lvl30": -42660
+        "value_atk1_lvl1": -80,
+        "value_atk2_lvl1": -80,
+        "value_atk1_lvl30": -427,
+        "value_atk2_lvl30": -427
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -15920,
-        "value_atk2_lvl1": -15920,
-        "value_atk1_lvl30": -85320,
-        "value_atk2_lvl30": -85320
+        "value_atk1_lvl1": -159,
+        "value_atk2_lvl1": -159,
+        "value_atk1_lvl30": -853,
+        "value_atk2_lvl30": -853
       }
     ],
     "image": [
@@ -19309,14 +19485,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -22380,
-        "value_atk1_lvl30": -131040
+        "value_atk1_lvl1": -224,
+        "value_atk1_lvl30": -1310,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -20,
-        "value_atk1_lvl1": -29840,
-        "value_atk1_lvl30": -174720
+        "value_atk1_lvl1": -298,
+        "value_atk1_lvl30": -1747,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -19369,14 +19549,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -20940,
-        "value_atk1_lvl30": -122730
+        "value_atk1_lvl1": -209,
+        "value_atk1_lvl30": -1227,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -34900,
-        "value_atk1_lvl30": -204550
+        "value_atk1_lvl1": -349,
+        "value_atk1_lvl30": -2046,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -19429,18 +19613,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -40260,
-        "value_atk2_lvl1": -40260,
-        "value_atk1_lvl30": -235860,
-        "value_atk2_lvl30": -235860
+        "value_atk1_lvl1": -403,
+        "value_atk2_lvl1": -403,
+        "value_atk1_lvl30": -2359,
+        "value_atk2_lvl30": -2359
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -67100,
-        "value_atk2_lvl1": -67100,
-        "value_atk1_lvl30": -393100,
-        "value_atk2_lvl30": -393100
+        "value_atk1_lvl1": -671,
+        "value_atk2_lvl1": -671,
+        "value_atk1_lvl30": -3931,
+        "value_atk2_lvl30": -3931
       }
     ],
     "image": [
@@ -19557,18 +19741,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -34170,
-        "value_atk2_lvl1": -17250,
-        "value_atk1_lvl30": -199830,
-        "value_atk2_lvl30": -100980
+        "value_atk1_lvl1": -342,
+        "value_atk2_lvl1": -172,
+        "value_atk1_lvl30": -1998,
+        "value_atk2_lvl30": -1010
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -56950,
-        "value_atk2_lvl1": -28750,
-        "value_atk1_lvl30": -333050,
-        "value_atk2_lvl30": -168300
+        "value_atk1_lvl1": -570,
+        "value_atk2_lvl1": -288,
+        "value_atk1_lvl30": -3330,
+        "value_atk2_lvl30": -1683
       }
     ],
     "image": [
@@ -19685,18 +19869,18 @@
       {
         "name": "ability_weaken",
         "pct": -25,
-        "value_atk1_lvl1": -25800,
-        "value_atk2_lvl1": -16950,
-        "value_atk1_lvl30": -150950,
-        "value_atk2_lvl30": -97100
+        "value_atk1_lvl1": -258,
+        "value_atk2_lvl1": -170,
+        "value_atk1_lvl30": -1510,
+        "value_atk2_lvl30": -971
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -25800,
-        "value_atk2_lvl1": -16950,
-        "value_atk1_lvl30": -150950,
-        "value_atk2_lvl30": -97100
+        "value_atk1_lvl1": -258,
+        "value_atk2_lvl1": -170,
+        "value_atk1_lvl30": -1510,
+        "value_atk2_lvl30": -971
       }
     ],
     "image": [
@@ -19877,18 +20061,18 @@
       {
         "name": "ability_weaken",
         "pct": -10,
-        "value_atk1_lvl1": -4500,
-        "value_atk2_lvl1": -7840,
-        "value_atk1_lvl30": -35720,
-        "value_atk2_lvl30": -61460
+        "value_atk1_lvl1": -45,
+        "value_atk2_lvl1": -78,
+        "value_atk1_lvl30": -357,
+        "value_atk2_lvl30": -615
       },
       {
         "name": "ability_weaken_plus",
         "pct": -22,
-        "value_atk1_lvl1": -9900,
-        "value_atk2_lvl1": -17248,
-        "value_atk1_lvl30": -78584,
-        "value_atk2_lvl30": -135212
+        "value_atk1_lvl1": -99,
+        "value_atk2_lvl1": -172,
+        "value_atk1_lvl30": -786,
+        "value_atk2_lvl30": -1352
       }
     ],
     "image": [
@@ -19941,18 +20125,18 @@
       {
         "name": "ability_slash",
         "pct": -5,
-        "value_atk1_lvl1": -2020,
-        "value_atk2_lvl1": -2020,
-        "value_atk1_lvl30": -11820,
-        "value_atk2_lvl30": -11820
+        "value_atk1_lvl1": -20,
+        "value_atk2_lvl1": -20,
+        "value_atk1_lvl30": -118,
+        "value_atk2_lvl30": -118
       },
       {
         "name": "ability_slash_plus",
         "pct": -10,
-        "value_atk1_lvl1": -4040,
-        "value_atk2_lvl1": -4040,
-        "value_atk1_lvl30": -23640,
-        "value_atk2_lvl30": -23640
+        "value_atk1_lvl1": -40,
+        "value_atk2_lvl1": -40,
+        "value_atk1_lvl30": -236,
+        "value_atk2_lvl30": -236
       }
     ],
     "image": [
@@ -20005,18 +20189,18 @@
       {
         "name": "ability_slash",
         "pct": -24,
-        "value_atk1_lvl1": -34560,
-        "value_atk2_lvl1": -34560,
-        "value_atk1_lvl30": -202176,
-        "value_atk2_lvl30": -202176
+        "value_atk1_lvl1": -346,
+        "value_atk2_lvl1": -346,
+        "value_atk1_lvl30": -2022,
+        "value_atk2_lvl30": -2022
       },
       {
         "name": "ability_slash_plus",
         "pct": -41,
-        "value_atk1_lvl1": -59040,
-        "value_atk2_lvl1": -59040,
-        "value_atk1_lvl30": -345384,
-        "value_atk2_lvl30": -345384
+        "value_atk1_lvl1": -590,
+        "value_atk2_lvl1": -590,
+        "value_atk1_lvl30": -3454,
+        "value_atk2_lvl30": -3454
       }
     ],
     "image": [
@@ -20069,18 +20253,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -33390,
-        "value_atk2_lvl1": -33390,
-        "value_atk1_lvl30": -195270,
-        "value_atk2_lvl30": -195270
+        "value_atk1_lvl1": -334,
+        "value_atk2_lvl1": -334,
+        "value_atk1_lvl30": -1953,
+        "value_atk2_lvl30": -1953
       },
       {
         "name": "ability_weaken_plus",
         "pct": -35,
-        "value_atk1_lvl1": -77910,
-        "value_atk2_lvl1": -77910,
-        "value_atk1_lvl30": -455630,
-        "value_atk2_lvl30": -455630
+        "value_atk1_lvl1": -779,
+        "value_atk2_lvl1": -779,
+        "value_atk1_lvl30": -4556,
+        "value_atk2_lvl30": -4556
       }
     ],
     "image": [
@@ -20197,18 +20381,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -40740,
-        "value_atk2_lvl1": -40740,
-        "value_atk1_lvl30": -238200,
-        "value_atk2_lvl30": -238200
+        "value_atk1_lvl1": -407,
+        "value_atk2_lvl1": -407,
+        "value_atk1_lvl30": -2382,
+        "value_atk2_lvl30": -2382
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -67900,
-        "value_atk2_lvl1": -67900,
-        "value_atk1_lvl30": -397000,
-        "value_atk2_lvl30": -397000
+        "value_atk1_lvl1": -679,
+        "value_atk2_lvl1": -679,
+        "value_atk1_lvl30": -3970,
+        "value_atk2_lvl30": -3970
       }
     ],
     "image": [
@@ -20389,18 +20573,18 @@
       {
         "name": "ability_slash",
         "pct": -22,
-        "value_atk1_lvl1": -18568,
-        "value_atk2_lvl1": -18568,
-        "value_atk1_lvl30": -108636,
-        "value_atk2_lvl30": -108636
+        "value_atk1_lvl1": -186,
+        "value_atk2_lvl1": -186,
+        "value_atk1_lvl30": -1086,
+        "value_atk2_lvl30": -1086
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -33760,
-        "value_atk2_lvl1": -33760,
-        "value_atk1_lvl30": -197520,
-        "value_atk2_lvl30": -197520
+        "value_atk1_lvl1": -338,
+        "value_atk2_lvl1": -338,
+        "value_atk1_lvl30": -1975,
+        "value_atk2_lvl30": -1975
       }
     ],
     "image": [
@@ -20453,18 +20637,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -33660,
-        "value_atk2_lvl1": -19380,
-        "value_atk1_lvl30": -243600,
-        "value_atk2_lvl30": -183240
+        "value_atk1_lvl1": -337,
+        "value_atk2_lvl1": -194,
+        "value_atk1_lvl30": -2436,
+        "value_atk2_lvl30": -1832
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -56100,
-        "value_atk2_lvl1": -32300,
-        "value_atk1_lvl30": -406000,
-        "value_atk2_lvl30": -305400
+        "value_atk1_lvl1": -561,
+        "value_atk2_lvl1": -323,
+        "value_atk1_lvl30": -4060,
+        "value_atk2_lvl30": -3054
       }
     ],
     "image": [
@@ -20517,18 +20701,18 @@
       {
         "name": "ability_slash",
         "pct": -12,
-        "value_atk1_lvl1": -14016,
-        "value_atk2_lvl1": -14016,
-        "value_atk1_lvl30": -100344,
-        "value_atk2_lvl30": -100344
+        "value_atk1_lvl1": -140,
+        "value_atk2_lvl1": -140,
+        "value_atk1_lvl30": -1003,
+        "value_atk2_lvl30": -1003
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -46720,
-        "value_atk2_lvl1": -46720,
-        "value_atk1_lvl30": -334480,
-        "value_atk2_lvl30": -334480
+        "value_atk1_lvl1": -467,
+        "value_atk2_lvl1": -467,
+        "value_atk1_lvl30": -3345,
+        "value_atk2_lvl30": -3345
       }
     ],
     "image": [
@@ -20645,14 +20829,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -24900,
-        "value_atk1_lvl30": -163560
+        "value_atk1_lvl1": -249,
+        "value_atk1_lvl30": -1636,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -30,
-        "value_atk1_lvl1": -49800,
-        "value_atk1_lvl30": -327120
+        "value_atk1_lvl1": -498,
+        "value_atk1_lvl30": -3271,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -20769,14 +20957,18 @@
       {
         "name": "ability_retaliate",
         "pct": -10,
-        "value_atk1_lvl1": -7060,
-        "value_atk1_lvl30": -86660
+        "value_atk1_lvl1": -71,
+        "value_atk1_lvl30": -867,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -23,
-        "value_atk1_lvl1": -16238,
-        "value_atk1_lvl30": -199318
+        "value_atk1_lvl1": -162,
+        "value_atk1_lvl30": -1993,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -20829,18 +21021,18 @@
       {
         "name": "ability_weaken",
         "pct": -8,
-        "value_atk1_lvl1": -10656,
-        "value_atk2_lvl1": -10656,
-        "value_atk1_lvl30": -62336,
-        "value_atk2_lvl30": -62336
+        "value_atk1_lvl1": -107,
+        "value_atk2_lvl1": -107,
+        "value_atk1_lvl30": -623,
+        "value_atk2_lvl30": -623
       },
       {
         "name": "ability_weaken_plus",
         "pct": -10,
-        "value_atk1_lvl1": -13320,
-        "value_atk2_lvl1": -13320,
-        "value_atk1_lvl30": -77920,
-        "value_atk2_lvl30": -77920
+        "value_atk1_lvl1": -133,
+        "value_atk2_lvl1": -133,
+        "value_atk1_lvl30": -779,
+        "value_atk2_lvl30": -779
       }
     ],
     "image": [
@@ -20893,18 +21085,18 @@
       {
         "name": "ability_weaken",
         "pct": -17,
-        "value_atk1_lvl1": -5712,
-        "value_atk2_lvl1": -10880,
-        "value_atk1_lvl30": -33422,
-        "value_atk2_lvl30": -62594
+        "value_atk1_lvl1": -57,
+        "value_atk2_lvl1": -109,
+        "value_atk1_lvl30": -334,
+        "value_atk2_lvl30": -626
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -8400,
-        "value_atk2_lvl1": -16000,
-        "value_atk1_lvl30": -49150,
-        "value_atk2_lvl30": -92050
+        "value_atk1_lvl1": -84,
+        "value_atk2_lvl1": -160,
+        "value_atk1_lvl30": -492,
+        "value_atk2_lvl30": -920
       }
     ],
     "image": [
@@ -21021,18 +21213,18 @@
       {
         "name": "ability_slash",
         "pct": -15,
-        "value_atk1_lvl1": -9900,
-        "value_atk2_lvl1": -9900,
-        "value_atk1_lvl30": -91500,
-        "value_atk2_lvl30": -91500
+        "value_atk1_lvl1": -99,
+        "value_atk2_lvl1": -99,
+        "value_atk1_lvl30": -915,
+        "value_atk2_lvl30": -915
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -26400,
-        "value_atk2_lvl1": -26400,
-        "value_atk1_lvl30": -244000,
-        "value_atk2_lvl30": -244000
+        "value_atk1_lvl1": -264,
+        "value_atk2_lvl1": -264,
+        "value_atk1_lvl30": -2440,
+        "value_atk2_lvl30": -2440
       }
     ],
     "image": [
@@ -21213,14 +21405,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -26100,
-        "value_atk1_lvl30": -142860
+        "value_atk1_lvl1": -261,
+        "value_atk1_lvl30": -1429,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -43500,
-        "value_atk1_lvl30": -238100
+        "value_atk1_lvl1": -435,
+        "value_atk1_lvl30": -2381,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -21273,14 +21469,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -25320,
-        "value_atk1_lvl30": -148110
+        "value_atk1_lvl1": -253,
+        "value_atk1_lvl30": -1481,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -42200,
-        "value_atk1_lvl30": -246850
+        "value_atk1_lvl1": -422,
+        "value_atk1_lvl30": -2468,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -21333,18 +21533,18 @@
       {
         "name": "ability_slash",
         "pct": -5,
-        "value_atk1_lvl1": -8810,
-        "value_atk2_lvl1": -8810,
-        "value_atk1_lvl30": -51520,
-        "value_atk2_lvl30": -51520
+        "value_atk1_lvl1": -88,
+        "value_atk2_lvl1": -88,
+        "value_atk1_lvl30": -515,
+        "value_atk2_lvl30": -515
       },
       {
         "name": "ability_slash_plus",
         "pct": -35,
-        "value_atk1_lvl1": -61670,
-        "value_atk2_lvl1": -61670,
-        "value_atk1_lvl30": -360640,
-        "value_atk2_lvl30": -360640
+        "value_atk1_lvl1": -617,
+        "value_atk2_lvl1": -617,
+        "value_atk1_lvl30": -3606,
+        "value_atk2_lvl30": -3606
       }
     ],
     "image": [
@@ -21397,18 +21597,18 @@
       {
         "name": "ability_weaken",
         "pct": -5,
-        "value_atk1_lvl1": -6640,
-        "value_atk2_lvl1": -6640,
-        "value_atk1_lvl30": -39230,
-        "value_atk2_lvl30": -39230
+        "value_atk1_lvl1": -66,
+        "value_atk2_lvl1": -66,
+        "value_atk1_lvl30": -392,
+        "value_atk2_lvl30": -392
       },
       {
         "name": "ability_weaken_plus",
         "pct": -15,
-        "value_atk1_lvl1": -19920,
-        "value_atk2_lvl1": -19920,
-        "value_atk1_lvl30": -117690,
-        "value_atk2_lvl30": -117690
+        "value_atk1_lvl1": -199,
+        "value_atk2_lvl1": -199,
+        "value_atk1_lvl30": -1177,
+        "value_atk2_lvl30": -1177
       }
     ],
     "image": [
@@ -21525,18 +21725,18 @@
       {
         "name": "ability_weaken",
         "pct": -25,
-        "value_atk1_lvl1": -30350,
-        "value_atk2_lvl1": -53850,
-        "value_atk1_lvl30": -255650,
-        "value_atk2_lvl30": -347500
+        "value_atk1_lvl1": -304,
+        "value_atk2_lvl1": -538,
+        "value_atk1_lvl30": -2556,
+        "value_atk2_lvl30": -3475
       },
       {
         "name": "ability_weaken_plus",
         "pct": -40,
-        "value_atk1_lvl1": -48560,
-        "value_atk2_lvl1": -86160,
-        "value_atk1_lvl30": -409040,
-        "value_atk2_lvl30": -556000
+        "value_atk1_lvl1": -486,
+        "value_atk2_lvl1": -862,
+        "value_atk1_lvl30": -4090,
+        "value_atk2_lvl30": -5560
       }
     ],
     "image": [
@@ -21589,18 +21789,18 @@
       {
         "name": "ability_weaken",
         "pct": -28,
-        "value_atk1_lvl1": -47096,
-        "value_atk2_lvl1": -47096,
-        "value_atk1_lvl30": -297248,
-        "value_atk2_lvl30": -297248
+        "value_atk1_lvl1": -471,
+        "value_atk2_lvl1": -471,
+        "value_atk1_lvl30": -2972,
+        "value_atk2_lvl30": -2972
       },
       {
         "name": "ability_weaken_plus",
         "pct": -40,
-        "value_atk1_lvl1": -67280,
-        "value_atk2_lvl1": -67280,
-        "value_atk1_lvl30": -424640,
-        "value_atk2_lvl30": -424640
+        "value_atk1_lvl1": -673,
+        "value_atk2_lvl1": -673,
+        "value_atk1_lvl30": -4246,
+        "value_atk2_lvl30": -4246
       }
     ],
     "image": [
@@ -21717,18 +21917,18 @@
       {
         "name": "ability_slash",
         "pct": -25,
-        "value_atk1_lvl1": -34250,
-        "value_atk2_lvl1": -19100,
-        "value_atk1_lvl30": -200250,
-        "value_atk2_lvl30": -112300
+        "value_atk1_lvl1": -342,
+        "value_atk2_lvl1": -191,
+        "value_atk1_lvl30": -2002,
+        "value_atk2_lvl30": -1123
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -68500,
-        "value_atk2_lvl1": -38200,
-        "value_atk1_lvl30": -400500,
-        "value_atk2_lvl30": -224600
+        "value_atk1_lvl1": -685,
+        "value_atk2_lvl1": -382,
+        "value_atk1_lvl30": -4005,
+        "value_atk2_lvl30": -2246
       }
     ],
     "image": [
@@ -21845,18 +22045,18 @@
       {
         "name": "ability_weaken",
         "pct": -18,
-        "value_atk1_lvl1": -29736,
-        "value_atk2_lvl1": -29736,
-        "value_atk1_lvl30": -202032,
-        "value_atk2_lvl30": -173952
+        "value_atk1_lvl1": -297,
+        "value_atk2_lvl1": -297,
+        "value_atk1_lvl30": -2020,
+        "value_atk2_lvl30": -1740
       },
       {
         "name": "ability_weaken_plus",
         "pct": -33,
-        "value_atk1_lvl1": -54516,
-        "value_atk2_lvl1": -54516,
-        "value_atk1_lvl30": -370392,
-        "value_atk2_lvl30": -318912
+        "value_atk1_lvl1": -545,
+        "value_atk2_lvl1": -545,
+        "value_atk1_lvl30": -3704,
+        "value_atk2_lvl30": -3189
       }
     ],
     "image": [
@@ -22101,14 +22301,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -28650,
-        "value_atk1_lvl30": -167670
+        "value_atk1_lvl1": -286,
+        "value_atk1_lvl30": -1677,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -47750,
-        "value_atk1_lvl30": -279450
+        "value_atk1_lvl1": -478,
+        "value_atk1_lvl30": -2794,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -22161,18 +22365,18 @@
       {
         "name": "ability_slash",
         "pct": -20,
-        "value_atk1_lvl1": -29080,
-        "value_atk2_lvl1": -29080,
-        "value_atk1_lvl30": -177040,
-        "value_atk2_lvl30": -177040
+        "value_atk1_lvl1": -291,
+        "value_atk2_lvl1": -291,
+        "value_atk1_lvl30": -1770,
+        "value_atk2_lvl30": -1770
       },
       {
         "name": "ability_slash_plus",
         "pct": -35,
-        "value_atk1_lvl1": -50890,
-        "value_atk2_lvl1": -50890,
-        "value_atk1_lvl30": -309820,
-        "value_atk2_lvl30": -309820
+        "value_atk1_lvl1": -509,
+        "value_atk2_lvl1": -509,
+        "value_atk1_lvl30": -3098,
+        "value_atk2_lvl30": -3098
       }
     ],
     "image": [
@@ -22289,18 +22493,18 @@
       {
         "name": "ability_weaken",
         "pct": -10,
-        "value_atk1_lvl1": -19180,
-        "value_atk2_lvl1": -19180,
-        "value_atk1_lvl30": -119960,
-        "value_atk2_lvl30": -119960
+        "value_atk1_lvl1": -192,
+        "value_atk2_lvl1": -192,
+        "value_atk1_lvl30": -1200,
+        "value_atk2_lvl30": -1200
       },
       {
         "name": "ability_weaken_plus",
         "pct": -15,
-        "value_atk1_lvl1": -28770,
-        "value_atk2_lvl1": -28770,
-        "value_atk1_lvl30": -179940,
-        "value_atk2_lvl30": -179940
+        "value_atk1_lvl1": -288,
+        "value_atk2_lvl1": -288,
+        "value_atk1_lvl30": -1799,
+        "value_atk2_lvl30": -1799
       }
     ],
     "image": [
@@ -22417,18 +22621,18 @@
       {
         "name": "ability_slash",
         "pct": -35,
-        "value_atk1_lvl1": -61110,
-        "value_atk2_lvl1": -61110,
-        "value_atk1_lvl30": -343700,
-        "value_atk2_lvl30": -343700
+        "value_atk1_lvl1": -611,
+        "value_atk2_lvl1": -611,
+        "value_atk1_lvl30": -3437,
+        "value_atk2_lvl30": -3437
       },
       {
         "name": "ability_slash_plus",
         "pct": -70,
-        "value_atk1_lvl1": -122220,
-        "value_atk2_lvl1": -122220,
-        "value_atk1_lvl30": -687400,
-        "value_atk2_lvl30": -687400
+        "value_atk1_lvl1": -1222,
+        "value_atk2_lvl1": -1222,
+        "value_atk1_lvl30": -6874,
+        "value_atk2_lvl30": -6874
       }
     ],
     "image": [
@@ -22609,18 +22813,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -20610,
-        "value_atk2_lvl1": -15450,
-        "value_atk1_lvl30": -120510,
-        "value_atk2_lvl30": -60240
+        "value_atk1_lvl1": -206,
+        "value_atk2_lvl1": -154,
+        "value_atk1_lvl30": -1205,
+        "value_atk2_lvl30": -602
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -27480,
-        "value_atk2_lvl1": -20600,
-        "value_atk1_lvl30": -160680,
-        "value_atk2_lvl30": -80320
+        "value_atk1_lvl1": -275,
+        "value_atk2_lvl1": -206,
+        "value_atk1_lvl30": -1607,
+        "value_atk2_lvl30": -803
       }
     ],
     "image": [
@@ -22801,18 +23005,18 @@
       {
         "name": "ability_slash",
         "pct": -22,
-        "value_atk1_lvl1": -21340,
-        "value_atk2_lvl1": -37136,
-        "value_atk1_lvl30": -142076,
-        "value_atk2_lvl30": -233376
+        "value_atk1_lvl1": -213,
+        "value_atk2_lvl1": -371,
+        "value_atk1_lvl30": -1421,
+        "value_atk2_lvl30": -2334
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -38800,
-        "value_atk2_lvl1": -67520,
-        "value_atk1_lvl30": -258320,
-        "value_atk2_lvl30": -424320
+        "value_atk1_lvl1": -388,
+        "value_atk2_lvl1": -675,
+        "value_atk1_lvl30": -2583,
+        "value_atk2_lvl30": -4243
       }
     ],
     "image": [
@@ -22929,18 +23133,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -14310,
-        "value_atk2_lvl1": -14640,
-        "value_atk1_lvl30": -84480,
-        "value_atk2_lvl30": -86340
+        "value_atk1_lvl1": -143,
+        "value_atk2_lvl1": -146,
+        "value_atk1_lvl30": -845,
+        "value_atk2_lvl30": -863
       },
       {
         "name": "ability_weaken_plus",
         "pct": -25,
-        "value_atk1_lvl1": -23850,
-        "value_atk2_lvl1": -24400,
-        "value_atk1_lvl30": -140800,
-        "value_atk2_lvl30": -143900
+        "value_atk1_lvl1": -238,
+        "value_atk2_lvl1": -244,
+        "value_atk1_lvl30": -1408,
+        "value_atk2_lvl30": -1439
       }
     ],
     "image": [
@@ -22993,18 +23197,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -30200,
-        "value_atk2_lvl1": -21760,
-        "value_atk1_lvl30": -175040,
-        "value_atk2_lvl30": -131840
+        "value_atk1_lvl1": -302,
+        "value_atk2_lvl1": -218,
+        "value_atk1_lvl30": -1750,
+        "value_atk2_lvl30": -1318
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -45300,
-        "value_atk2_lvl1": -32640,
-        "value_atk1_lvl30": -262560,
-        "value_atk2_lvl30": -197760
+        "value_atk1_lvl1": -453,
+        "value_atk2_lvl1": -326,
+        "value_atk1_lvl30": -2626,
+        "value_atk2_lvl30": -1978
       }
     ],
     "image": [
@@ -23057,18 +23261,18 @@
       {
         "name": "ability_weaken",
         "pct": -25,
-        "value_atk1_lvl1": -56600,
-        "value_atk2_lvl1": -56600,
-        "value_atk1_lvl30": -372650,
-        "value_atk2_lvl30": -372650
+        "value_atk1_lvl1": -566,
+        "value_atk2_lvl1": -566,
+        "value_atk1_lvl30": -3726,
+        "value_atk2_lvl30": -3726
       },
       {
         "name": "ability_weaken_plus",
         "pct": -35,
-        "value_atk1_lvl1": -79240,
-        "value_atk2_lvl1": -79240,
-        "value_atk1_lvl30": -521710,
-        "value_atk2_lvl30": -521710
+        "value_atk1_lvl1": -792,
+        "value_atk2_lvl1": -792,
+        "value_atk1_lvl30": -5217,
+        "value_atk2_lvl30": -5217
       }
     ],
     "image": [
@@ -23185,18 +23389,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -17550,
-        "value_atk2_lvl1": -15330,
-        "value_atk1_lvl30": -85170,
-        "value_atk2_lvl30": -59790
+        "value_atk1_lvl1": -176,
+        "value_atk2_lvl1": -153,
+        "value_atk1_lvl30": -852,
+        "value_atk2_lvl30": -598
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -23400,
-        "value_atk2_lvl1": -20440,
-        "value_atk1_lvl30": -113560,
-        "value_atk2_lvl30": -79720
+        "value_atk1_lvl1": -234,
+        "value_atk2_lvl1": -204,
+        "value_atk1_lvl30": -1136,
+        "value_atk2_lvl30": -797
       }
     ],
     "image": [
@@ -23249,14 +23453,18 @@
       {
         "name": "ability_retaliate",
         "pct": -23,
-        "value_atk1_lvl1": -38778,
-        "value_atk1_lvl30": -199686
+        "value_atk1_lvl1": -388,
+        "value_atk1_lvl30": -1997,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -35,
-        "value_atk1_lvl1": -59010,
-        "value_atk1_lvl30": -303870
+        "value_atk1_lvl1": -590,
+        "value_atk1_lvl30": -3039,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -23373,14 +23581,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -30330,
-        "value_atk1_lvl30": -181710
+        "value_atk1_lvl1": -303,
+        "value_atk1_lvl30": -1817,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -80880,
-        "value_atk1_lvl30": -484560
+        "value_atk1_lvl1": -809,
+        "value_atk1_lvl30": -4846,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -23433,18 +23645,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -43800,
-        "value_atk2_lvl1": -43800,
-        "value_atk1_lvl30": -383280,
-        "value_atk2_lvl30": -399660
+        "value_atk1_lvl1": -438,
+        "value_atk2_lvl1": -438,
+        "value_atk1_lvl30": -3833,
+        "value_atk2_lvl30": -3997
       },
       {
         "name": "ability_slash_plus",
         "pct": -49,
-        "value_atk1_lvl1": -71540,
-        "value_atk2_lvl1": -71540,
-        "value_atk1_lvl30": -626024,
-        "value_atk2_lvl30": -652778
+        "value_atk1_lvl1": -715,
+        "value_atk2_lvl1": -715,
+        "value_atk1_lvl30": -6260,
+        "value_atk2_lvl30": -6528
       }
     ],
     "image": [
@@ -23753,14 +23965,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -23910,
-        "value_atk1_lvl30": -144600
+        "value_atk1_lvl1": -239,
+        "value_atk1_lvl30": -1446,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -39850,
-        "value_atk1_lvl30": -241000
+        "value_atk1_lvl1": -398,
+        "value_atk1_lvl30": -2410,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -23877,14 +24093,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -30990,
-        "value_atk1_lvl30": -181470
+        "value_atk1_lvl1": -310,
+        "value_atk1_lvl30": -1815,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -35,
-        "value_atk1_lvl1": -72310,
-        "value_atk1_lvl30": -423430
+        "value_atk1_lvl1": -723,
+        "value_atk1_lvl30": -4234,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -23937,18 +24157,18 @@
       {
         "name": "ability_slash",
         "pct": -25,
-        "value_atk1_lvl1": -58100,
-        "value_atk2_lvl1": -58100,
-        "value_atk1_lvl30": -359600,
-        "value_atk2_lvl30": -359600
+        "value_atk1_lvl1": -581,
+        "value_atk2_lvl1": -581,
+        "value_atk1_lvl30": -3596,
+        "value_atk2_lvl30": -3596
       },
       {
         "name": "ability_slash_plus",
         "pct": -42,
-        "value_atk1_lvl1": -97608,
-        "value_atk2_lvl1": -97608,
-        "value_atk1_lvl30": -604128,
-        "value_atk2_lvl30": -604128
+        "value_atk1_lvl1": -976,
+        "value_atk2_lvl1": -976,
+        "value_atk1_lvl30": -6041,
+        "value_atk2_lvl30": -6041
       }
     ],
     "image": [
@@ -24195,14 +24415,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -43120,
-        "value_atk1_lvl30": -271760
+        "value_atk1_lvl1": -431,
+        "value_atk1_lvl30": -2718,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -35,
-        "value_atk1_lvl1": -75460,
-        "value_atk1_lvl30": -475580
+        "value_atk1_lvl1": -755,
+        "value_atk1_lvl30": -4756,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -24255,18 +24479,18 @@
       {
         "name": "ability_slash",
         "pct": -15,
-        "value_atk1_lvl1": -30690,
-        "value_atk2_lvl1": -30690,
-        "value_atk1_lvl30": -176790,
-        "value_atk2_lvl30": -176790
+        "value_atk1_lvl1": -307,
+        "value_atk2_lvl1": -307,
+        "value_atk1_lvl30": -1768,
+        "value_atk2_lvl30": -1768
       },
       {
         "name": "ability_slash_plus",
         "pct": -30,
-        "value_atk1_lvl1": -61380,
-        "value_atk2_lvl1": -61380,
-        "value_atk1_lvl30": -353580,
-        "value_atk2_lvl30": -353580
+        "value_atk1_lvl1": -614,
+        "value_atk2_lvl1": -614,
+        "value_atk1_lvl30": -3536,
+        "value_atk2_lvl30": -3536
       }
     ],
     "image": [
@@ -24575,18 +24799,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -32560,
-        "value_atk2_lvl1": -23240,
-        "value_atk1_lvl30": -221680,
-        "value_atk2_lvl30": -176920
+        "value_atk1_lvl1": -326,
+        "value_atk2_lvl1": -232,
+        "value_atk1_lvl30": -2217,
+        "value_atk2_lvl30": -1769
       },
       {
         "name": "ability_weaken_plus",
         "pct": -40,
-        "value_atk1_lvl1": -65120,
-        "value_atk2_lvl1": -46480,
-        "value_atk1_lvl30": -443360,
-        "value_atk2_lvl30": -353840
+        "value_atk1_lvl1": -651,
+        "value_atk2_lvl1": -465,
+        "value_atk1_lvl30": -4434,
+        "value_atk2_lvl30": -3538
       }
     ],
     "image": [
@@ -24767,18 +24991,18 @@
       {
         "name": "ability_weaken",
         "pct": -15,
-        "value_atk1_lvl1": -22560,
-        "value_atk2_lvl1": -25080,
-        "value_atk1_lvl30": -146730,
-        "value_atk2_lvl30": -97800
+        "value_atk1_lvl1": -226,
+        "value_atk2_lvl1": -251,
+        "value_atk1_lvl30": -1467,
+        "value_atk2_lvl30": -978
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -30080,
-        "value_atk2_lvl1": -33440,
-        "value_atk1_lvl30": -195640,
-        "value_atk2_lvl30": -130400
+        "value_atk1_lvl1": -301,
+        "value_atk2_lvl1": -334,
+        "value_atk1_lvl30": -1956,
+        "value_atk2_lvl30": -1304
       }
     ],
     "image": [
@@ -24831,18 +25055,18 @@
       {
         "name": "ability_slash",
         "pct": -25,
-        "value_atk1_lvl1": -49650,
-        "value_atk2_lvl1": -31650,
-        "value_atk1_lvl30": -291150,
-        "value_atk2_lvl30": -174700
+        "value_atk1_lvl1": -496,
+        "value_atk2_lvl1": -316,
+        "value_atk1_lvl30": -2912,
+        "value_atk2_lvl30": -1747
       },
       {
         "name": "ability_slash_plus",
         "pct": -50,
-        "value_atk1_lvl1": -99300,
-        "value_atk2_lvl1": -63300,
-        "value_atk1_lvl30": -582300,
-        "value_atk2_lvl30": -349400
+        "value_atk1_lvl1": -993,
+        "value_atk2_lvl1": -633,
+        "value_atk1_lvl30": -5823,
+        "value_atk2_lvl30": -3494
       }
     ],
     "image": [
@@ -24895,18 +25119,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -33320,
-        "value_atk2_lvl1": -21640,
-        "value_atk1_lvl30": -226840,
-        "value_atk2_lvl30": -129960
+        "value_atk1_lvl1": -333,
+        "value_atk2_lvl1": -216,
+        "value_atk1_lvl30": -2268,
+        "value_atk2_lvl30": -1300
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -49980,
-        "value_atk2_lvl1": -32460,
-        "value_atk1_lvl30": -340260,
-        "value_atk2_lvl30": -194940
+        "value_atk1_lvl1": -500,
+        "value_atk2_lvl1": -325,
+        "value_atk1_lvl30": -3403,
+        "value_atk2_lvl30": -1949
       }
     ],
     "image": [
@@ -24959,18 +25183,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -31980,
-        "value_atk2_lvl1": -15960,
-        "value_atk1_lvl30": -186960,
-        "value_atk2_lvl30": -93360
+        "value_atk1_lvl1": -320,
+        "value_atk2_lvl1": -160,
+        "value_atk1_lvl30": -1870,
+        "value_atk2_lvl30": -934
       },
       {
         "name": "ability_slash_plus",
         "pct": -60,
-        "value_atk1_lvl1": -63960,
-        "value_atk2_lvl1": -31920,
-        "value_atk1_lvl30": -373920,
-        "value_atk2_lvl30": -186720
+        "value_atk1_lvl1": -640,
+        "value_atk2_lvl1": -319,
+        "value_atk1_lvl30": -3739,
+        "value_atk2_lvl30": -1867
       }
     ],
     "image": [
@@ -25087,17 +25311,22 @@
       {
         "name": "ability_retaliate",
         "pct": -40,
-        "value_atk1_lvl1": -39280,
-        "value_atk1_lvl30": -229920
+        "value_atk1_lvl1": -393,
+        "value_atk1_lvl30": -2299,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -60,
-        "value_atk1_lvl1": -58920,
-        "value_atk1_lvl30": -344880
+        "value_atk1_lvl1": -589,
+        "value_atk1_lvl30": -3449,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
+      "textures_by_mutant/bd_99/BD_99_platinum.png",
       "textures_by_mutant/bd_99/larva_bd_99.png"
     ],
     "type": "LEGEND",
@@ -25145,18 +25374,18 @@
       {
         "name": "ability_weaken",
         "pct": -24,
-        "value_atk1_lvl1": -41472,
-        "value_atk2_lvl1": -41472,
-        "value_atk1_lvl30": -242592,
-        "value_atk2_lvl30": -242592
+        "value_atk1_lvl1": -415,
+        "value_atk2_lvl1": -415,
+        "value_atk1_lvl30": -2426,
+        "value_atk2_lvl30": -2426
       },
       {
         "name": "ability_weaken_plus",
         "pct": -35,
-        "value_atk1_lvl1": -60480,
-        "value_atk2_lvl1": -60480,
-        "value_atk1_lvl30": -353780,
-        "value_atk2_lvl30": -353780
+        "value_atk1_lvl1": -605,
+        "value_atk2_lvl1": -605,
+        "value_atk1_lvl30": -3538,
+        "value_atk2_lvl30": -3538
       }
     ],
     "image": [
@@ -25209,14 +25438,18 @@
       {
         "name": "ability_retaliate",
         "pct": -15,
-        "value_atk1_lvl1": -21540,
-        "value_atk1_lvl30": -126000
+        "value_atk1_lvl1": -215,
+        "value_atk1_lvl30": -1260,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -25,
-        "value_atk1_lvl1": -35900,
-        "value_atk1_lvl30": -210000
+        "value_atk1_lvl1": -359,
+        "value_atk1_lvl30": -2100,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -25269,18 +25502,18 @@
       {
         "name": "ability_weaken",
         "pct": -10,
-        "value_atk1_lvl1": -20820,
-        "value_atk2_lvl1": -20820,
-        "value_atk1_lvl30": -128620,
-        "value_atk2_lvl30": -128620
+        "value_atk1_lvl1": -208,
+        "value_atk2_lvl1": -208,
+        "value_atk1_lvl30": -1286,
+        "value_atk2_lvl30": -1286
       },
       {
         "name": "ability_weaken_plus",
         "pct": -20,
-        "value_atk1_lvl1": -41640,
-        "value_atk2_lvl1": -41640,
-        "value_atk1_lvl30": -257240,
-        "value_atk2_lvl30": -257240
+        "value_atk1_lvl1": -416,
+        "value_atk2_lvl1": -416,
+        "value_atk1_lvl30": -2572,
+        "value_atk2_lvl30": -2572
       }
     ],
     "image": [
@@ -25333,14 +25566,18 @@
       {
         "name": "ability_retaliate",
         "pct": -10,
-        "value_atk1_lvl1": -13740,
-        "value_atk1_lvl30": -76040
+        "value_atk1_lvl1": -137,
+        "value_atk1_lvl30": -760,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -50,
-        "value_atk1_lvl1": -68700,
-        "value_atk1_lvl30": -380200
+        "value_atk1_lvl1": -687,
+        "value_atk1_lvl30": -3802,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -25393,14 +25630,18 @@
       {
         "name": "ability_retaliate",
         "pct": -30,
-        "value_atk1_lvl1": -41040,
-        "value_atk1_lvl30": -254100
+        "value_atk1_lvl1": -410,
+        "value_atk1_lvl30": -2541,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -50,
-        "value_atk1_lvl1": -68400,
-        "value_atk1_lvl30": -423500
+        "value_atk1_lvl1": -684,
+        "value_atk1_lvl30": -4235,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -25453,14 +25694,18 @@
       {
         "name": "ability_retaliate",
         "pct": -25,
-        "value_atk1_lvl1": -37400,
-        "value_atk1_lvl30": -337550
+        "value_atk1_lvl1": -374,
+        "value_atk1_lvl30": -3376,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -59840,
-        "value_atk1_lvl30": -540080
+        "value_atk1_lvl1": -598,
+        "value_atk1_lvl30": -5401,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -25513,14 +25758,18 @@
       {
         "name": "ability_retaliate",
         "pct": -20,
-        "value_atk1_lvl1": -39080,
-        "value_atk1_lvl30": -232120
+        "value_atk1_lvl1": -391,
+        "value_atk1_lvl30": -2321,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       },
       {
         "name": "ability_retaliate_plus",
         "pct": -40,
-        "value_atk1_lvl1": -78160,
-        "value_atk1_lvl30": -464240
+        "value_atk1_lvl1": -782,
+        "value_atk1_lvl30": -4642,
+        "value_atk2_lvl1": 0,
+        "value_atk2_lvl30": 0
       }
     ],
     "image": [
@@ -25637,18 +25886,18 @@
       {
         "name": "ability_weaken",
         "pct": -20,
-        "value_atk1_lvl1": -12480,
-        "value_atk2_lvl1": -12480,
-        "value_atk1_lvl30": -73000,
-        "value_atk2_lvl30": -73000
+        "value_atk1_lvl1": -125,
+        "value_atk2_lvl1": -125,
+        "value_atk1_lvl30": -730,
+        "value_atk2_lvl30": -730
       },
       {
         "name": "ability_weaken_plus",
         "pct": -30,
-        "value_atk1_lvl1": -18720,
-        "value_atk2_lvl1": -18720,
-        "value_atk1_lvl30": -109500,
-        "value_atk2_lvl30": -109500
+        "value_atk1_lvl1": -187,
+        "value_atk2_lvl1": -187,
+        "value_atk1_lvl30": -1095,
+        "value_atk2_lvl30": -1095
       }
     ],
     "image": [
@@ -25765,18 +26014,18 @@
       {
         "name": "ability_slash",
         "pct": -30,
-        "value_atk1_lvl1": -44640,
-        "value_atk2_lvl1": -31860,
-        "value_atk1_lvl30": -259980,
-        "value_atk2_lvl30": -192120
+        "value_atk1_lvl1": -446,
+        "value_atk2_lvl1": -319,
+        "value_atk1_lvl30": -2600,
+        "value_atk2_lvl30": -1921
       },
       {
         "name": "ability_slash_plus",
         "pct": -40,
-        "value_atk1_lvl1": -59520,
-        "value_atk2_lvl1": -42480,
-        "value_atk1_lvl30": -346640,
-        "value_atk2_lvl30": -256160
+        "value_atk1_lvl1": -595,
+        "value_atk2_lvl1": -425,
+        "value_atk1_lvl30": -3466,
+        "value_atk2_lvl30": -2562
       }
     ],
     "image": [

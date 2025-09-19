@@ -1,0 +1,5 @@
+normal.json: заполнено attack1=156, attack2=156, attack3=0; без данных: 4 -> normal_enriched.json
+bronze.json: заполнено attack1=0, attack2=0, attack3=0; без данных: 408 -> bronze_enriched.json
+silver.json: заполнено attack1=0, attack2=0, attack3=0; без данных: 421 -> silver_enriched.json
+gold.json: заполнено attack1=0, attack2=0, attack3=0; без данных: 408 -> gold_enriched.json
+platinum.json: заполнено attack1=0, attack2=0, attack3=0; без данных: 408 -> platinum_enriched.json
