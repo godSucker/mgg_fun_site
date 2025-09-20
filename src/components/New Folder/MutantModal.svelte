@@ -370,7 +370,6 @@
   onDestroy(() => window.removeEventListener('keydown', escHandler));
 
   $: if (open) {
-    // отложить, чтобы DOM смонтировался
     (async () => { await tick(); focusFirst(); })();
   }
 </script>
@@ -439,7 +438,7 @@
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.spd)}</dd>
         </dl>
 
-        <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] gap-x-2 gap-y-[2px] text-sm min-w-0">
+        <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
           {#each rowsLvl1 as r}
             <div class="contents group">
               <div class="flex items-center">
@@ -456,7 +455,7 @@
               <div class="mut-dd whitespace-nowrap pl-1">{fmt(r.dmg)}</div>
               <div class="mut-dt break-words flex items-center gap-1.5">
                 {#if abilityIcon(r.abCode) || abilityIcon(r.abName)}
-                  <img class="ability-icon" src={abilityIcon(r.abCode) || abilityIcon(r.abName)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <img class="ability-icon align-middle" src={abilityIcon(r.abCode) || abilityIcon(r.abName)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                 {/if}
                 {r.abName}
               </div>
@@ -479,7 +478,7 @@
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.spd)}</dd>
         </dl>
 
-        <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] gap-x-2 gap-y-[2px] text-sm min-w-0">
+        <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
           {#each rowsLvl30 as r}
             <div class="contents group">
               <div class="flex items-center">
@@ -496,7 +495,7 @@
               <div class="mut-dd whitespace-nowrap pl-1">{fmt(r.dmg)}</div>
               <div class="mut-dt break-words flex items-center gap-1.5">
                 {#if abilityIcon(r.abCode) || abilityIcon(r.abName)}
-                  <img class="ability-icon" src={abilityIcon(r.abCode) || abilityIcon(r.abName)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <img class="ability-icon align-middle" src={abilityIcon(r.abCode) || abilityIcon(r.abName)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                 {/if}
                 {r.abName}
               </div>
@@ -572,7 +571,7 @@
 <style>
   .stat-icon { width: 24px; height: 24px; display:inline-block; }
   .type-icon { width: 26px; height: 26px; display:inline-block; }
-  .ability-icon { width: 24px; height: 24px; display:inline-block; }
+  .ability-icon { width: 24px; height: 24px; display:inline-block; vertical-align: middle; }
   .row-icon { display: inline-flex; align-items: center; gap: .45rem; }
   .mut-dt { color: rgba(255,255,255,.6); }
   .mut-dd { color: rgba(255,255,255,.9); }
