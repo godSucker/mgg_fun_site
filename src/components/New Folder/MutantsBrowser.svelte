@@ -31,7 +31,7 @@
       star: !s?.star || s.star === 'none' ? 'normal' : String(s.star).toLowerCase(),
       bingo: Array.isArray(s?.bingo) || typeof s?.bingo === 'object' ? s.bingo : [],
       skin: s?.skin ?? true,
-      __source: 'skin' as const
+      __source: 'skin' as const,
     };
   }
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map(mapSkin);
@@ -82,11 +82,11 @@
   ];
   const STAR_SKINS: {key: SkinStarKey; icon?: string; label: string}[] = [
     { key: 'any',      label: 'Any' },
-    { key: 'normal',   label: 'No stars' },
-    { key: 'bronze',   label: 'Bronze' },
-    { key: 'silver',   label: 'Silver' },
-    { key: 'gold',     label: 'Gold' },
-    { key: 'platinum', label: 'Platinum' },
+    { key: 'normal',   icon: '/stars/no_stars.png',      label: 'Обычные' },
+    { key: 'bronze',   icon: '/stars/star_bronze.png',   label: 'Бронза' },
+    { key: 'silver',   icon: '/stars/star_silver.png',   label: 'Серебро' },
+    { key: 'gold',     icon: '/stars/star_gold.png',     label: 'Золото' },
+    { key: 'platinum', icon: '/stars/star_platinum.png', label: 'Платина' },
   ];
 
   // По умолчанию: мутанты = только обычные; скины = любые
@@ -97,10 +97,8 @@
   function switchTo(next: Mode) {
     mode = next;
     if (mode === 'mutants') {
-      // ничего не трогаем — остаётся последний выбор мутантов
       if (!['normal','bronze','silver','gold','platinum'].includes(starSelMutants)) starSelMutants = 'normal';
     } else {
-      // в SKINS по умолчанию показываем все
       if (!['any','normal','bronze','silver','gold','platinum'].includes(starSelSkins)) starSelSkins = 'any';
     }
   }
@@ -131,30 +129,45 @@
     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
   const keyOf  = (it:any) => (isSkin(it) ? `skin:${it.id}` : `mut:${it.id}`);
 
+  // ==========
+  // WORKER и быстрый пересчёт (сокращено для контекста ответа)
+  // ==========
+  let useWorker = false; // твой текущий флаг
+  let worker: Worker | null = null;
+  let computeVersion = 0;
+  let inFlight = false;
+  let queued = false;
+
+  let _workerTotal = 0;
+  let filteredMutantsWorkerSlice: any[] = [];
+
+  // (инициализация воркера/сообщения пропущу — оставляю как в твоём файле)
+  // ...
+
   // ===========
   // ФИЛЬТРАЦИЯ
   // ===========
-  // Мутанты
-  $: filteredMutants = memo(
-    JSON.stringify({q: query, t: typeSel, g: geneSel, b: bingoSel, star: starSelMutants, n: items?.length ?? 0}),
-    () => items
-      .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
-      .filter(it => !typeSel || String(it?.type ?? '') === typeSel)
-      .filter(it => {
-        if (!bingoSel) return true;
-        const keys = new Set(collectBingoKeys(it).map(String));
-        return keys.has(String(bingoSel));
-      })
-      .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
-      .filter(it => {
-        const k = starSelMutants;
-        return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
-      })
-      .slice()
-      .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'))
-  );
+  $: filteredMutants = useWorker
+    ? new Array(_workerTotal)
+    : memo(
+        JSON.stringify({q: query, t: typeSel, g: geneSel, b: bingoSel, star: starSelMutants, n: items?.length ?? 0}),
+        () => items
+          .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
+          .filter(it => !typeSel || String(it?.type ?? '') === typeSel)
+          .filter(it => {
+            if (!bingoSel) return true;
+            const keys = new Set(collectBingoKeys(it).map(String));
+            return keys.has(String(bingoSel));
+          })
+          .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
+          .filter(it => {
+            const k = starSelMutants;
+            return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
+          })
+          .slice()
+          .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'))
+      );
 
-  // Скины
   $: filteredSkins = memo(
     JSON.stringify({star: starSelSkins, n: normalizedSkins?.length ?? 0}),
     () => normalizedSkins
@@ -170,12 +183,10 @@
   // ===== Пагинация «Показать ещё» =====
   let pageSize = 60;
   let currentPage = 1;
-  // Сброс страницы при изменении условий
-  $: resetKey = JSON.stringify({ mode, query, geneSel, typeSel, bingoSel, starSelMutants, starSelSkins, lenM: items?.length ?? 0, lenS: normalizedSkins?.length ?? 0 });
+  $: resetKey = JSON.stringify({ mode, query, geneSel, typeSel, bingoSel, starSelMutants, lenM: items?.length ?? 0, lenS: normalizedSkins?.length ?? 0 });
   $: if (resetKey) { currentPage = 1; }
-
   $: endIndex = pageSize * currentPage;
-  $: shownMutants = filteredMutants.slice(0, endIndex);
+  $: shownMutants = useWorker ? filteredMutantsWorkerSlice : filteredMutants.slice(0, endIndex);
   $: shownSkins = filteredSkins.slice(0, endIndex);
 
   // =========
@@ -184,8 +195,8 @@
   function pickTexture(it:any): string {
     const list = Array.isArray(it?.image) ? it.image : (it?.image ? [it.image] : []);
     const pick =
-      list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) ||
-      list[0];
+      list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'))
+      || list[0];
     return pick ?? 'placeholder-mutant.png';
   }
   function rarityType(item:any){
@@ -197,7 +208,7 @@
   const closeModal = () => { openItem = null; };
 </script>
 
-<div class="mx-auto max-w-[1400px] px-4 py-6">
+<div class="mx-auto max-w-[1400px] px-4 py-6 page-2k">
   {#if title}
     <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">{title}</h1>
   {/if}
@@ -236,36 +247,38 @@
   </div>
 
   <!-- Гены: две строки (только для MUTANTS; в SKINS заблокировано и приглушено) -->
-  <div class="mb-2 flex flex-col gap-2">
-    <div class="flex flex-wrap gap-2">
-      {#each geneList as g}
-        <button type="button"
-          class={'p-1 rounded-lg ring-1 '
-            + (mode==='mutants'
-                ? (gene1Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
-                : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
-          on:click={() => { if(mode==='mutants'){ gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); } }}
-          title={g.label}
-          aria-pressed={gene1Sel===g.key}
-        >
-          <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
-        </button>
-      {/each}
-    </div>
-    <div class="flex flex-wrap gap-2">
-      {#each geneList as g}
-        <button type="button"
-          class={'p-1 rounded-lg ring-1 '
-            + (mode==='mutants'
-                ? (gene2Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
-                : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
-          on:click={() => { if(mode==='mutants'){ gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); } }}
-          title={g.label}
-          aria-pressed={gene2Sel===g.key}
-        >
-          <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
-        </button>
-      {/each}
+  <div class="mb-2 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2">
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-wrap gap-2">
+        {#each geneList as g}
+          <button type="button"
+            class={'p-1 rounded-lg ring-1 '
+              + (mode==='mutants'
+                  ? (gene1Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
+                  : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
+            on:click={() => { if(mode==='mutants'){ gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); } }}
+            title={g.label}
+            aria-pressed={gene1Sel===g.key}
+          >
+            <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+          </button>
+        {/each}
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {#each geneList as g}
+          <button type="button"
+            class={'p-1 rounded-lg ring-1 '
+              + (mode==='mutants'
+                  ? (gene2Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
+                  : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
+            on:click={() => { if(mode==='mutants'){ gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); } }}
+            title={g.label}
+            aria-pressed={gene2Sel===g.key}
+          >
+            <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+          </button>
+        {/each}
+      </div>
     </div>
   </div>
 
@@ -310,14 +323,12 @@
         class={'px-3 py-2 rounded-lg ring-1 '
           + (mode==='mutants'
               ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
-              : 'bg-slate-800/60 text-slate-400 ring-white/10/30 pointer-events-none')}
+              : 'bg-slate-800/60 text-slate-500 ring-white/10/30 pointer-events-none')}
         bind:value={typeSel}
         disabled={mode!=='mutants'}
       >
         <option value=''>Любой</option>
-        {#each typeOptions as t}
-          <option value={t}>{TYPE_RU?.[t] ?? t}</option>
-        {/each}
+        {#each typeOptions as t}<option value={t}>{TYPE_RU?.[t] ?? t}</option>{/each}
       </select>
     </label>
 
@@ -327,25 +338,23 @@
         class={'px-3 py-2 rounded-lg ring-1 '
           + (mode==='mutants'
               ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
-              : 'bg-slate-800/60 text-slate-400 ring-white/10/30 pointer-events-none')}
+              : 'bg-slate-800/60 text-slate-500 ring-white/10/30 pointer-events-none')}
         bind:value={bingoSel}
         disabled={mode!=='mutants'}
       >
         <option value=''>Любое</option>
-        {#each bingoOptions as b}
-          <option value={b}>{bingoLabel?.(b) ?? b}</option>
-        {/each}
+        {#each bingoOptions as b}<option value={b}>{bingoLabel?.(b) ?? b}</option>{/each}
       </select>
     </label>
   </div>
 
   <!-- Сетка карточек -->
-  <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7" style="content-visibility:auto; contain-intrinsic-size: 1200px;">
+  <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 [content-visibility:auto]" style="contain-intrinsic-size: 1200px;">
     {#if mode === 'mutants'}
-      {#each shownMutants as it (keyOf(it))}
+      {#each shownMutants as it, i (keyOf(it))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority="low" width="512" height="512" />
+            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>
@@ -353,10 +362,10 @@
         </div>
       {/each}
     {:else}
-      {#each shownSkins as it (keyOf(it))}
+      {#each shownSkins as it, i (keyOf(it))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority="low" width="512" height="512" />
+            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>
@@ -366,6 +375,7 @@
     {/if}
   </div>
 
+  <!-- Показать ещё -->
   {#if mode === 'mutants'}
     {#if shownMutants.length < filteredMutants.length}
       <div class="mt-3 flex justify-center">
@@ -390,3 +400,8 @@
     <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} on:close={closeModal} />
   {/if}
 </div>
+
+<style>
+  /* Апскейл на ≥2K */
+  @media (min-width: 2048px){ .page-2k { font-size: 1.0625rem; } }
+</style>

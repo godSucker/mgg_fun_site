@@ -14,38 +14,90 @@
   let discount = '70'; // 0 | 60 | 70 | 80
 
   let errorMsg = '';
-  let hitCap = false;
   let busy = false;
 
+  // Результаты
   let endLevel = '—';
   let upgrades = '—';
   let spentSilver = '—';
   let spentGold = '—';
   let leftSilver = '—';
   let leftGold = '—';
+  let hitCap = false;
 
-  // ---------- helpers ----------
+  // =======================
+  // Утилиты чисел/строк
+  // =======================
   const toBig = (v) => {
     if (typeof v === 'bigint') return v;
     if (typeof v === 'number') return BigInt(Math.max(0, Math.floor(v || 0)));
     const s = String(v ?? '').trim().replace(/[^\d]/g, '');
     return s ? BigInt(s) : 0n;
-  };
-  const fmt = (big) => big.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  const roundUpPct = (amountBig, pctBig) => {
-    const hundred = 100n;
-    // amount * (100 - pct), округление вверх
-    const num = amountBig * (hundred - pctBig) + (hundred - 1n);
-    return num / hundred;
-  };
+  }
 
-  // Достаём строку из твоего массива с fallback на последнюю ненулевую
+  // Группировка тысяч — запятыми
+  const fmt = (big) => big.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Автоформат ввода с сохранением позиции курсора
+  const addCommasFromDigits = (digits) => digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  function formatWithCaret(e, setter) {
+    const el = e.currentTarget;
+    const raw = el.value ?? '';
+    const selEnd = typeof el.selectionEnd === 'number' ? el.selectionEnd : raw.length;
+
+    // Сколько ЦИФР было слева от курсора в исходной строке
+    let digitsBefore = 0;
+    for (let i = 0; i < selEnd; i++) {
+      const code = raw.charCodeAt(i);
+      if (code >= 48 && code <= 57) digitsBefore++;
+    }
+
+    const digitsAll = raw.replace(/[^\d]/g, '');
+    const formatted = addCommasFromDigits(digitsAll);
+    setter(formatted);
+
+    // Восстановить каретку: ставим её после тех же digitsBefore цифр
+    let pos = 0, count = 0;
+    while (pos < formatted.length) {
+      const code = formatted.charCodeAt(pos);
+      if (code >= 48 && code <= 57) {
+        count++;
+        if (count === digitsBefore) { pos++; break; }
+      }
+      pos++;
+    }
+    const newPos = pos;
+
+    // Отложить, чтобы значение успело обновиться
+    requestAnimationFrame(() => {
+      try { el.setSelectionRange(newPos, newPos); } catch {}
+    });
+  }
+
+  const onInputStartLevel = (e) => formatWithCaret(e, (v) => { startLevel = v; });
+  const onInputSilver     = (e) => formatWithCaret(e, (v) => { silver     = v; });
+  const onInputGold       = (e) => formatWithCaret(e, (v) => { gold       = v; });
+
+  // =======================
+  // Расчёты
+  // =======================
+  function roundUpPct(x, pct) {
+    // применяем скидку: price - pct%
+    // итог округляем вверх до целого
+    const mul = (100n - BigInt(Math.max(0, Math.min(100, Number(pct || 0))))) ;
+    const num = x * mul;
+    const den = 100n;
+    return num % den === 0n ? (num / den) : (num / den + 1n);
+  }
+
   function getRow(level) {
-    const rows = Array.isArray(EvoRows) ? EvoRows : null;
-    if (!rows) return null;
-    // твой массив обычно с null на [0], дальше 1..400 по индексу
-    let row = rows[level] || null;
-    if (row && typeof row.gold === 'number' && typeof row.silver === 'number') return row;
+    const rows = EvoRows;
+    if (!Array.isArray(rows) || rows.length < 2) return null;
+    // прямой доступ
+    if (rows[level] && typeof rows[level].gold === 'number' && typeof rows[level].silver === 'number') {
+      return rows[level];
+    }
 
     // fallback: найти последнюю валидную строку ниже уровня
     for (let l = Math.min(level, rows.length - 1); l >= 1; l--) {
@@ -79,33 +131,34 @@
     return { s: 0n, g: 0n };
   }
 
-  function simulate({ startLevel, silver, gold, discountPct }) {
-    let lvl = Number(startLevel ?? MIN_LEVEL);
-    if (Number.isNaN(lvl)) lvl = MIN_LEVEL;
-    lvl = Math.min(Math.max(lvl, MIN_LEVEL), MAX_LEVEL);
+  function simulate(startLevelStr, silverStr, goldStr, discountStr) {
+    // Вход
+    const start = Number(String(startLevelStr).replace(/[^\d]/g, '') || '0');
+    const sIn   = toBig(silverStr);
+    const gIn   = toBig(goldStr);
+    const dIn   = Number(discountStr || 0);
 
-    let S = toBig(silver);
-    let G = toBig(gold);
-    const d = Number(discountPct || 0);
-
-    let ups = 0;
-    let spentS = 0n, spentG = 0n;
-
-    // Проверка, есть ли вообще данные
-    const constPair = safeConstPair(d);
-    if (constPair.s === 0n && constPair.g === 0n) {
-      return { error: 'Не найдены данные стоимости для калькулятора.', endLevel: lvl };
+    if (!Number.isFinite(start) || start < MIN_LEVEL) {
+      return { error: `Минимальный стартовый уровень — ${MIN_LEVEL}.`, endLevel: MIN_LEVEL };
     }
 
-    // --- До 328 уровня — поштучно ---
-    while (lvl < Math.min(PRICE_CONST_FROM_LEVEL, MAX_LEVEL)) {
-      const next = lvl + 1;
-      const { s, g } = costPairAt(next, d);
+    let lvl = Math.max(MIN_LEVEL, Math.floor(start));
+    let S = sIn;
+    let G = gIn;
+    let ups = 0;
 
-      // Если обе валюты 0 → ап бесплатный
+    const constPair = safeConstPair(dIn);
+
+    // --- До 328 — по строкам файла ---
+    while (lvl < PRICE_CONST_FROM_LEVEL) {
+      const next = lvl + 1;
+      const { s, g } = costPairAt(next, dIn);
+
+      // обе цены нулевые — данных нет; пытаемся двигаться дальше
       if (s === 0n && g === 0n) {
-        lvl = next; ups++;
-        if (lvl >= MAX_LEVEL) break;
+        lvl = next;
+        ups++;
+        if (lvl >= PRICE_CONST_FROM_LEVEL) break;
         continue;
       }
 
@@ -139,94 +192,85 @@
       const canBySilver = sConst > 0n ? (S / sConst) : 0n;
       const canByGold   = gConst > 0n ? (G / gConst) : 0n;
 
-      let buy = canBySilver + canByGold;
-      if (buy > remainLevels) buy = remainLevels;
+      let add = canBySilver + canByGold;
+      if (add > remainLevels) add = remainLevels;
 
-      if (buy > 0n) {
-        // приоритет — серебро
-        const useSilverLvls = sConst > 0n ? (buy <= canBySilver ? buy : canBySilver) : 0n;
-        const useGoldLvls   = buy - useSilverLvls;
-
-        const spendS = sConst * useSilverLvls;
-        const spendG = gConst * useGoldLvls;
-
-        S -= spendS; G -= spendG;
-        spentS += spendS; spentG += spendG;
-
-        const add = Number(buy > BigInt(Number.MAX_SAFE_INTEGER)
-          ? BigInt(Number.MAX_SAFE_INTEGER)
-          : buy);
-        lvl += add; ups += add;
+      // Оплатим приоритетно серебром, раз остался порядок — это не критично
+      let need = add;
+      if (sConst > 0n) {
+        const takeS = need;                 // заплатим серебром столько уровней, сколько сможем
+        const costS = takeS * sConst;
+        const payS  = costS <= S ? costS : (S - (S % sConst));
+        const levelsByS = sConst > 0n ? (payS / sConst) : 0n;
+        S -= payS; spentS += payS; lvl += Number(levelsByS); ups += Number(levelsByS);
+        need -= levelsByS;
+      }
+      if (need > 0n && gConst > 0n) {
+        const costG = need * gConst;
+        const payG  = costG <= G ? costG : (G - (G % gConst));
+        const levelsByG = gConst > 0n ? (payG / gConst) : 0n;
+        G -= payG; spentG += payG; lvl += Number(levelsByG); ups += Number(levelsByG);
+        need -= levelsByG;
       }
     }
+
+    const hitCap = lvl >= MAX_LEVEL;
 
     return {
       endLevel: lvl,
       upgrades: ups,
-      spentSilver: spentS,
-      spentGold: spentG,
       leftSilver: S,
       leftGold: G,
-      hitCap: lvl >= MAX_LEVEL
+      spentSilver: spentS,
+      spentGold: spentG,
+      hitCap,
     };
   }
 
-  function calculate() {
+  let spentS = 0n;
+  let spentG = 0n;
+
+  async function calculate() {
     errorMsg = '';
-    hitCap = false;
     busy = true;
+    spentS = 0n;
+    spentG = 0n;
 
-    let sLevel = Number(startLevel || MIN_LEVEL);
-    if (Number.isNaN(sLevel)) sLevel = MIN_LEVEL;
-    if (sLevel < MIN_LEVEL) sLevel = MIN_LEVEL;
-    if (sLevel > MAX_LEVEL) sLevel = MAX_LEVEL;
+    try {
+      const res = simulate(startLevel, silver, gold, discount);
+      if (res.error) {
+        errorMsg = res.error;
+        endLevel = '—';
+        upgrades = '—';
+        spentSilver = '—';
+        spentGold = '—';
+        leftSilver = '—';
+        leftGold = '—';
+        hitCap = false;
+        busy = false;
+        return;
+      }
 
-    const res = simulate({
-      startLevel: sLevel,
-      silver,
-      gold,
-      discountPct: Number(discount || 0),
-    });
+      endLevel     = res.endLevel.toLocaleString('ru-RU');
+      upgrades     = res.upgrades.toLocaleString('ru-RU');
+      spentSilver  = fmt(res.spentSilver);
+      spentGold    = fmt(res.spentGold);
+      leftSilver   = fmt(res.leftSilver);
+      leftGold     = fmt(res.leftGold);
+      hitCap       = res.hitCap;
 
-    if (res.error) {
-      errorMsg = res.error;
-      endLevel = upgrades = spentSilver = spentGold = leftSilver = leftGold = '—';
       busy = false;
-      return;
+    } catch (e) {
+      console.error(e);
+      errorMsg = 'Ошибка расчёта.';
+      busy = false;
     }
-
-    endLevel     = res.endLevel.toLocaleString('ru-RU');
-    upgrades     = res.upgrades.toLocaleString('ru-RU');
-    spentSilver  = fmt(res.spentSilver);
-    spentGold    = fmt(res.spentGold);
-    leftSilver   = fmt(res.leftSilver);
-    leftGold     = fmt(res.leftGold);
-    hitCap       = res.hitCap;
-
-    if (res.hitCap && (res.leftSilver > 0n || res.leftGold > 0n)) {
-      errorMsg = 'Достигнут максимум 1 000 000 уровня. Остаток ресурсов не израсходован.';
-    }
-
-    busy = false;
-  }
-
-  function resetForm() {
-    startLevel = '';
-    silver = '';
-    gold = '';
-    discount = '70';
-    errorMsg = '';
-    hitCap = false;
-    endLevel = upgrades = spentSilver = spentGold = leftSilver = leftGold = '—';
   }
 </script>
 
-<div class="max-w-5xl mx-auto px-4 py-8">
-  <h1 class="text-2xl sm:text-3xl font-extrabold text-sky-50">ЭвоТех — калькулятор</h1>
-  <p class="mt-1 text-sky-200/80">
-    Максимальный уровень — <b>1 000 000</b>.
-    Приоритет — серебро. Скидки: 0/60/70/80%.
-  </p>
+<div class="max-w-5xl mx-auto p-4">
+  <h1 class="text-2xl md:text-3xl font-bold text-sky-100">Эволюция уровня</h1>
+  <p class="text-sky-200/80 mt-1">Введите стартовый уровень и ресурсы — калькулятор посчитает финальный уровень.</p>
 
   <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
     <div class="rounded-2xl border border-slate-700/70 bg-slate-900/60 p-4 backdrop-blur">
@@ -234,26 +278,26 @@
       <div class="space-y-3">
         <label class="block">
           <span class="text-sky-300/80 text-sm">Стартовый уровень (≥ 5)</span>
-          <input bind:value={startLevel} inputmode="numeric" placeholder="например, 120"
-                 class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/50 px-3 py-2 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
+          <input type="text" bind:value={startLevel} on:input={onInputStartLevel} inputmode="numeric" placeholder="например, 120"
+                 class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Серебро</span>
-          <input bind:value={silver} inputmode="numeric" placeholder="можно пусто"
-                 class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/50 px-3 py-2 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
+          <input type="text" bind:value={silver} on:input={onInputSilver} inputmode="numeric" placeholder="можно пусто"
+                 class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Золото</span>
-          <input bind:value={gold} inputmode="numeric" placeholder="можно пусто"
-                 class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/50 px-3 py-2 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
+          <input type="text" bind:value={gold} on:input={onInputGold} inputmode="numeric" placeholder="можно пусто"
+                 class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Скидка</span>
           <select bind:value={discount}
-                  class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/50 px-3 py-2 text-sky-100 outline-none focus:ring-2 focus:ring-sky-500/60">
+                  class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 outline-none focus:ring-2 focus:ring-sky-500/60">
             <option value="0">0%</option>
             <option value="60">60%</option>
             <option value="70">70%</option>
@@ -261,45 +305,37 @@
           </select>
         </label>
 
-        <div class="flex items-center gap-3 pt-2">
-          <button type="button" on:click={calculate} disabled={busy}
-                  class="inline-flex items-center justify-center rounded-xl border border-sky-600/60 bg-sky-700/30 px-4 py-2 font-semibold text-sky-100 hover:bg-sky-700/50 disabled:opacity-60">
-            {#if busy} Считаю… {:else} Рассчитать {/if}
-          </button>
-          <button type="button" on:click={resetForm}
-                  class="inline-flex items-center justify-center rounded-xl border border-slate-600/60 bg-slate-800/40 px-4 py-2 font-semibold text-sky-100 hover:bg-slate-800/60">
-            Сброс
+        <div class="pt-2">
+          <button on:click={calculate}
+                  class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white ring-1 ring-white/10 disabled:opacity-60"
+                  disabled={busy}>
+            {busy ? 'Считаю…' : 'Рассчитать'}
           </button>
         </div>
-
-        {#if errorMsg}
-          <div class="mt-2 rounded-xl border border-rose-800/60 bg-rose-900/40 px-3 py-2 text-rose-100">
-            {errorMsg}
-          </div>
-        {/if}
-
-        {#if hitCap}
-          <div class="mt-2 inline-block rounded-full border border-emerald-700/60 bg-emerald-900/40 px-3 py-1 text-emerald-100 text-sm">
-            Достигнут предел: 1 000 000 уровня
-          </div>
-        {/if}
       </div>
     </div>
 
     <div class="rounded-2xl border border-slate-700/70 bg-slate-900/60 p-4 backdrop-blur">
       <h2 class="text-sky-100 font-bold mb-3">Результат</h2>
-      <div class="space-y-2 text-sky-100">
-        <div class="flex justify-between gap-2"><span class="text-sky-300/80">Финальный уровень:</span><strong>{endLevel}</strong></div>
-        <div class="flex justify-between gap-2"><span class="text-sky-300/80">Сделано апов:</span><strong>{upgrades}</strong></div>
-        <hr class="my-2 border-slate-700/70" />
-        <div class="flex justify-between gap-2"><span class="text-sky-300/80">Потрачено серебра:</span><strong>{spentSilver}</strong></div>
-        <div class="flex justify-between gap-2"><span class="text-sky-300/80">Потрачено золота:</span><strong>{spentGold}</strong></div>
-        <div class="flex justify-between gap-2"><span class="text-sky-300/80">Остаток серебра:</span><strong>{leftSilver}</strong></div>
-        <div class="flex justify-between gap-2"><span class="text-sky-300/80">Остаток золота:</span><strong>{leftGold}</strong></div>
-      </div>
-      <p class="mt-3 text-sky-200/70 text-sm">
-        Можно вводить только золото или только серебро — калькулятор сам поймёт.
-      </p>
+      {#if errorMsg}
+        <div class="text-rose-300/90">{errorMsg}</div>
+      {:else}
+        <div class="space-y-1.5">
+          <div class="flex justify-between gap-2"><span class="text-sky-300/80">Финальный уровень:</span><strong>{endLevel}</strong></div>
+          <div class="flex justify-between gap-2"><span class="text-sky-300/80">Поднятно уровней:</span><strong>{upgrades}</strong></div>
+          <hr class="my-2 border-slate-700/70" />
+          <div class="flex justify-between gap-2"><span class="text-sky-300/80">Потрачено серебра:</span><strong>{spentSilver}</strong></div>
+          <div class="flex justify-between gap-2"><span class="text-sky-300/80">Потрачено золота:</span><strong>{spentGold}</strong></div>
+          <div class="flex justify-between gap-2"><span class="text-sky-300/80">Остаток серебра:</span><strong>{leftSilver}</strong></div>
+          <div class="flex justify-between gap-2"><span class="text-sky-300/80">Остаток золота:</span><strong>{leftGold}</strong></div>
+        </div>
+        <p class="mt-3 text-sky-200/70 text-sm">
+          Можно вводить только золото или только серебро — калькулятор сам поймёт.
+        </p>
+        {#if hitCap}
+          <p class="mt-1 text-sky-300/80 text-sm">Достигнут верхний предел уровня.</p>
+        {/if}
+      {/if}
     </div>
   </div>
 </div>

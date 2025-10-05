@@ -19,14 +19,37 @@
 
   // ===== helpers / maps =====
   const baseId = (id?: string) =>
-    String(id ?? '')
-      .toLowerCase()
-      .replace(/_+(?:bronze|silver|gold|platinum|plat).*$/i, '');
+  String(id ?? '')
+    .toLowerCase()
+    // ⤵️ добавлен normal
+    .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
 
   const loreMap: Record<string, string> = {};
   const bingoMap: Record<string, string[]> = {};
   const abilitiesMap: Record<string, any[]> = {};
   const attackNamesMap: Record<string, { name1?: string; name2?: string }> = {};
+
+  // Нормализация бинго из мутанта (string[] | {key}[] | object) с фолбэком на normal.json
+$: displayBingo = (() => {
+  const raw = mutant?.bingo;
+  let arr: string[] = [];
+
+  if (Array.isArray(raw)) {
+    // поддержка string[] и массивов вида [{ key: "..." }]
+    arr = raw.map((x: any) =>
+      typeof x === 'string'
+        ? x
+        : (x && typeof x === 'object' && typeof x.key === 'string' ? x.key : '')
+    ).filter(Boolean);
+  } else if (raw && typeof raw === 'object') {
+    // объект → берём ключи
+    arr = Object.keys(raw);
+  }
+
+  if (arr.length) return arr;
+  return bingoMap[baseId(mutant?.id)] ?? [];
+})();
+
 
   for (const m of (normalData as any[])) {
     const key = String((m as any).id ?? '').toLowerCase();
@@ -369,9 +392,8 @@
   });
   onDestroy(() => window.removeEventListener('keydown', escHandler));
 
-  $: if (open) {
-    (async () => { await tick(); focusFirst(); })();
-  }
+ // Открывать верхом и давать фокус
+  $: if (open) { (async () => { await tick(); try{ modalRef?.scrollTo({ top: 0, behavior: 'auto' }); }catch{}; focusFirst(); })(); }
 </script>
 
 {#if open}
@@ -386,7 +408,7 @@
     aria-modal="true"
     aria-labelledby="mutant-title"
     on:keydown={onKeydownTrap}
-    class="relative w-full max-w-5xl grid md:grid-cols-[minmax(0,42%)_minmax(0,58%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
+    class="modal-2k relative w-full max-w-5xl grid md:grid-cols-[minmax(0,42%)_minmax(0,58%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
     <!-- Left -->
     <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex items-center justify-center ring-1 ring-white/10 overflow-hidden">
@@ -513,9 +535,9 @@
       <!-- Bingo -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
         <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Бинго</span></div>
-        {#if (mutant?.bingo ?? bingoMap[baseId(mutant?.id)] ?? []).length}
+        {#if displayBingo.length}
           <div class="flex flex-wrap gap-2">
-            {#each (mutant?.bingo ?? bingoMap[baseId(mutant?.id)] ?? []) as b}
+              {#each displayBingo as b}
               <span class="text-[11px] px-2 py-1 rounded-full bg-indigo-500/15 ring-1 ring-indigo-500/40 text-indigo-100 break-words">{bingoLabel(b)}</span>
             {/each}
           </div>
@@ -598,4 +620,6 @@
     transition: opacity .12s linear;
   }
   .group:hover .gene-aoe { opacity: .96; }
+  /* 2K апскейл */
+  @media (min-width: 2048px){ .modal-2k { font-size: 1.0625rem; } }
 </style>
