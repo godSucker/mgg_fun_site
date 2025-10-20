@@ -23,7 +23,11 @@
         "atk1_AOE": true,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 480,
+      "atk2_base": 961,
+      "atk1p_base": 722.821,
+      "atk2p_base": 1444.103
     },
     "abilities": [
       {
@@ -87,7 +91,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 604,
+      "atk2_base": 348,
+      "atk1p_base": 908.205,
+      "atk2p_base": 521.538
     },
     "abilities": [
       {
@@ -151,7 +159,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 444,
+      "atk2_base": 444,
+      "atk1p_base": 668.718,
+      "atk2p_base": 668.718
     },
     "abilities": [
       {
@@ -215,7 +227,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 684,
+      "atk2_base": 684,
+      "atk1p_base": 1027.179,
+      "atk2p_base": 1027.179
     },
     "abilities": [
       {
@@ -279,7 +295,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1150,
+      "atk2_base": 1150,
+      "atk1p_base": 1727.179,
+      "atk2p_base": 1727.179
     },
     "abilities": [
       {
@@ -343,7 +363,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 866,
+      "atk2_base": 866,
+      "atk1p_base": 1302.051,
+      "atk2p_base": 1302.051
     },
     "abilities": [
       {
@@ -407,7 +431,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 644,
+      "atk2_base": 644,
+      "atk1p_base": 966.154,
+      "atk2p_base": 966.154
     },
     "abilities": [
       {
@@ -471,7 +499,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 579,
+      "atk2_base": 579,
+      "atk1p_base": 867.692,
+      "atk2p_base": 867.692
     },
     "abilities": [
       {
@@ -535,7 +567,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 768,
+      "atk2_base": 768,
+      "atk1p_base": 1153.333,
+      "atk2p_base": 1153.333
     },
     "abilities": [
       {
@@ -599,7 +635,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1066,
+      "atk2_base": 611,
+      "atk1p_base": 1599.744,
+      "atk2p_base": 918.974
     },
     "abilities": [
       {
@@ -663,7 +703,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 978,
+      "atk2_base": 978,
+      "atk1p_base": 1470.0,
+      "atk2p_base": 1470.0
     },
     "abilities": [
       {
@@ -727,7 +771,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1022,
+      "atk2_base": 1022,
+      "atk1p_base": 1534.615,
+      "atk2p_base": 1534.615
     },
     "abilities": [
       {
@@ -791,7 +839,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1008,
+      "atk2_base": 1008,
+      "atk1p_base": 1512.308,
+      "atk2p_base": 1512.308
     },
     "abilities": [
       {
@@ -855,7 +907,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 733,
+      "atk2_base": 733,
+      "atk1p_base": 1100.769,
+      "atk2p_base": 1100.769
     },
     "abilities": [
       {
@@ -919,7 +975,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 665,
+      "atk2_base": 665,
+      "atk1p_base": 999.231,
+      "atk2p_base": 999.231
     },
     "abilities": [
       {
@@ -983,7 +1043,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 849,
+      "atk2_base": 849,
+      "atk1p_base": 1273.846,
+      "atk2p_base": 1273.846
     },
     "abilities": [
       {
@@ -1047,7 +1111,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 523,
+      "atk2_base": 523,
+      "atk1p_base": 787.436,
+      "atk2p_base": 787.436
     },
     "abilities": [
       {
@@ -1111,7 +1179,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 901,
+      "atk2_base": 518,
+      "atk1p_base": 1354.615,
+      "atk2p_base": 777.179
     },
     "abilities": [
       {
@@ -1175,7 +1247,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 317,
+      "atk2_base": 317,
+      "atk1p_base": 474.359,
+      "atk2p_base": 474.359
     },
     "abilities": [
       {
@@ -1239,7 +1315,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 368,
+      "atk2_base": 368,
+      "atk1p_base": 604.103,
+      "atk2p_base": 604.103
     },
     "abilities": [
       {
@@ -1303,7 +1383,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 730,
+      "atk2_base": 730,
+      "atk1p_base": 1093.846,
+      "atk2p_base": 1093.846
     },
     "abilities": [
       {
@@ -1367,7 +1451,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 746,
+      "atk2_base": 746,
+      "atk1p_base": 1120.0,
+      "atk2p_base": 1120.0
     },
     "abilities": [
       {
@@ -1431,7 +1519,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 522,
+      "atk2_base": 522,
+      "atk1p_base": 848.974,
+      "atk2p_base": 848.974
     },
     "abilities": [
       {
@@ -1495,7 +1587,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 560,
+      "atk2_base": 560,
+      "atk1p_base": 841.795,
+      "atk2p_base": 841.795
     },
     "abilities": [
       {
@@ -1559,7 +1655,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 481,
+      "atk2_base": 481,
+      "atk1p_base": 724.615,
+      "atk2p_base": 724.615
     },
     "abilities": [
       {
@@ -1623,7 +1723,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 754,
+      "atk2_base": 434,
+      "atk1p_base": 1130.256,
+      "atk2p_base": 652.821
     },
     "abilities": [
       {
@@ -1687,7 +1791,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 404,
+      "atk2_base": 404,
+      "atk1p_base": 607.179,
+      "atk2p_base": 607.179
     },
     "abilities": [
       {
@@ -1751,7 +1859,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1118,
+      "atk2_base": 1118,
+      "atk1p_base": 1680.0,
+      "atk2p_base": 1680.0
     },
     "abilities": [
       {
@@ -1815,7 +1927,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 289,
+      "atk2_base": 289,
+      "atk1p_base": 437.436,
+      "atk2p_base": 437.436
     },
     "abilities": [
       {
@@ -1879,7 +1995,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1106,
+      "atk2_base": 1106,
+      "atk1p_base": 1662.564,
+      "atk2p_base": 1662.564
     },
     "abilities": [
       {
@@ -1943,7 +2063,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 873,
+      "atk2_base": 873,
+      "atk1p_base": 1310.769,
+      "atk2p_base": 1310.769
     },
     "abilities": [
       {
@@ -2007,7 +2131,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 640,
+      "atk2_base": 640,
+      "atk1p_base": 960.769,
+      "atk2p_base": 960.769
     },
     "abilities": [
       {
@@ -2071,7 +2199,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 406,
+      "atk2_base": 406,
+      "atk1p_base": 612.564,
+      "atk2p_base": 612.564
     },
     "abilities": [
       {
@@ -2135,7 +2267,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1174,
+      "atk2_base": 674,
+      "atk1p_base": 1760.256,
+      "atk2p_base": 1013.333
     },
     "abilities": [
       {
@@ -2199,7 +2335,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 564,
+      "atk2_base": 564,
+      "atk1p_base": 847.179,
+      "atk2p_base": 847.179
     },
     "abilities": [
       {
@@ -2263,7 +2403,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 807,
+      "atk2_base": 807,
+      "atk1p_base": 1207.436,
+      "atk2p_base": 1207.436
     },
     "abilities": [
       {
@@ -2327,7 +2471,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 896,
+      "atk2_base": 896,
+      "atk1p_base": 1345.641,
+      "atk2p_base": 1345.641
     },
     "abilities": [
       {
@@ -2391,7 +2539,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1155,
+      "atk2_base": 1155,
+      "atk1p_base": 1736.154,
+      "atk2p_base": 1736.154
     },
     "abilities": [
       {
@@ -2455,7 +2607,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 357,
+      "atk2_base": 357,
+      "atk1p_base": 659.487,
+      "atk2p_base": 659.487
     },
     "abilities": [
       {
@@ -2519,7 +2675,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 763,
+      "atk2_base": 763,
+      "atk1p_base": 1144.615,
+      "atk2p_base": 1144.615
     },
     "abilities": [
       {
@@ -2583,7 +2743,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 985,
+      "atk2_base": 985,
+      "atk1p_base": 1477.179,
+      "atk2p_base": 1477.179
     },
     "abilities": [
       {
@@ -2647,7 +2811,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1661,
+      "atk2_base": 954,
+      "atk1p_base": 2492.308,
+      "atk2p_base": 1434.872
     },
     "abilities": [
       {
@@ -2711,7 +2879,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 105,
+      "atk2_base": 483,
+      "atk1p_base": 241.538,
+      "atk2p_base": 918.974
     },
     "abilities": [
       {
@@ -2774,7 +2946,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 262,
+      "atk2_base": 441,
+      "atk1p_base": 551.026,
+      "atk2p_base": 572.051
     },
     "abilities": [
       {
@@ -2837,7 +3013,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 262,
+      "atk2_base": 525,
+      "atk1p_base": 655.897,
+      "atk2p_base": 651.026
     },
     "abilities": [
       {
@@ -2901,7 +3081,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 858,
+      "atk2_base": 858,
+      "atk1p_base": 1286.154,
+      "atk2p_base": 1286.154
     },
     "abilities": [
       {
@@ -2965,7 +3149,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 830,
+      "atk2_base": 830,
+      "atk1p_base": 1419.231,
+      "atk2p_base": 1419.231
     },
     "abilities": [
       {
@@ -3029,7 +3217,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 735,
+      "atk2_base": 735,
+      "atk1p_base": 1104.359,
+      "atk2p_base": 1104.359
     },
     "abilities": [
       {
@@ -3093,7 +3285,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 413,
+      "atk2_base": 413,
+      "atk1p_base": 654.615,
+      "atk2p_base": 654.615
     },
     "abilities": [
       {
@@ -3157,7 +3353,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 593,
+      "atk2_base": 341,
+      "atk1p_base": 890.769,
+      "atk2p_base": 509.231
     },
     "abilities": [
       {
@@ -3221,7 +3421,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 607,
+      "atk2_base": 607,
+      "atk1p_base": 910.0,
+      "atk2p_base": 910.0
     },
     "abilities": [
       {
@@ -3285,7 +3489,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 385,
+      "atk2_base": 385,
+      "atk1p_base": 579.231,
+      "atk2p_base": 579.231
     },
     "abilities": [
       {
@@ -3349,7 +3557,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 450,
+      "atk2_base": 450,
+      "atk1p_base": 673.846,
+      "atk2p_base": 673.846
     },
     "abilities": [
       {
@@ -3413,7 +3625,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 945,
+      "atk2_base": 945,
+      "atk1p_base": 1419.231,
+      "atk2p_base": 1419.231
     },
     "abilities": [
       {
@@ -3477,7 +3693,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1743,
+      "atk2_base": 1038,
+      "atk1p_base": 2638.974,
+      "atk2p_base": 1555.641
     },
     "abilities": [
       {
@@ -3541,7 +3761,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1225,
+      "atk2_base": 1225,
+      "atk1p_base": 1837.436,
+      "atk2p_base": 1837.436
     },
     "abilities": [
       {
@@ -3605,7 +3829,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1122,
+      "atk2_base": 1122,
+      "atk1p_base": 1413.846,
+      "atk2p_base": 1413.846
     },
     "abilities": [
       {
@@ -3669,7 +3897,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 284,
+      "atk2_base": 284,
+      "atk1p_base": 425.385,
+      "atk2p_base": 425.385
     },
     "abilities": [
       {
@@ -3733,7 +3965,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1244,
+      "atk2_base": 716,
+      "atk1p_base": 1868.974,
+      "atk2p_base": 1074.615
     },
     "abilities": [
       {
@@ -3797,7 +4033,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 859,
+      "atk2_base": 859,
+      "atk1p_base": 1289.744,
+      "atk2p_base": 1289.744
     },
     "abilities": [
       {
@@ -3861,7 +4101,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 516,
+      "atk2_base": 516,
+      "atk1p_base": 777.179,
+      "atk2p_base": 777.179
     },
     "abilities": [
       {
@@ -3925,7 +4169,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 598,
+      "atk2_base": 598,
+      "atk1p_base": 901.026,
+      "atk2p_base": 901.026
     },
     "abilities": [
       {
@@ -3989,7 +4237,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 471,
+      "atk2_base": 471,
+      "atk1p_base": 827.949,
+      "atk2p_base": 827.949
     },
     "abilities": [
       {
@@ -4053,7 +4305,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1088,
+      "atk2_base": 1088,
+      "atk1p_base": 1634.615,
+      "atk2p_base": 1634.615
     },
     "abilities": [
       {
@@ -4117,7 +4373,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 814,
+      "atk2_base": 814,
+      "atk1p_base": 1223.077,
+      "atk2p_base": 1223.077
     },
     "abilities": [
       {
@@ -4181,7 +4441,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 854,
+      "atk2_base": 490,
+      "atk1p_base": 1282.821,
+      "atk2p_base": 734.872
     },
     "abilities": [
       {
@@ -4245,7 +4509,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 560,
+      "atk2_base": 560,
+      "atk1p_base": 841.795,
+      "atk2p_base": 841.795
     },
     "abilities": [
       {
@@ -4309,7 +4577,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 410,
+      "atk2_base": 410,
+      "atk1p_base": 987.179,
+      "atk2p_base": 987.179
     },
     "abilities": [
       {
@@ -4373,7 +4645,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 598,
+      "atk2_base": 598,
+      "atk1p_base": 897.949,
+      "atk2p_base": 897.949
     },
     "abilities": [
       {
@@ -4437,7 +4713,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 798,
+      "atk2_base": 460,
+      "atk1p_base": 1200.256,
+      "atk2p_base": 689.744
     },
     "abilities": [
       {
@@ -4501,7 +4781,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 906,
+      "atk2_base": 522,
+      "atk1p_base": 1361.538,
+      "atk2p_base": 783.846
     },
     "abilities": [
       {
@@ -4565,7 +4849,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 682,
+      "atk2_base": 682,
+      "atk1p_base": 1025.385,
+      "atk2p_base": 1025.385
     },
     "abilities": [
       {
@@ -4629,7 +4917,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1218,
+      "atk2_base": 1218,
+      "atk1p_base": 1792.308,
+      "atk2p_base": 1792.308
     },
     "abilities": [
       {
@@ -4693,7 +4985,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1172,
+      "atk2_base": 1172,
+      "atk1p_base": 1760.256,
+      "atk2p_base": 1760.256
     },
     "abilities": [
       {
@@ -4757,7 +5053,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1362,
+      "atk2_base": 1362,
+      "atk1p_base": 2042.051,
+      "atk2p_base": 2042.051
     },
     "abilities": [
       {
@@ -4821,7 +5121,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1118,
+      "atk2_base": 1118,
+      "atk1p_base": 1680.0,
+      "atk2p_base": 1680.0
     },
     "abilities": [
       {
@@ -4885,7 +5189,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 399,
+      "atk2_base": 233,
+      "atk1p_base": 558.205,
+      "atk2p_base": 346.41
     },
     "abilities": [
       {
@@ -4949,7 +5257,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 579,
+      "atk2_base": 579,
+      "atk1p_base": 869.744,
+      "atk2p_base": 869.744
     },
     "abilities": [
       {
@@ -5013,7 +5325,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 574,
+      "atk2_base": 574,
+      "atk1p_base": 864.615,
+      "atk2p_base": 864.615
     },
     "abilities": [
       {
@@ -5077,7 +5393,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 828,
+      "atk2_base": 828,
+      "atk1p_base": 1242.564,
+      "atk2p_base": 1242.564
     },
     "abilities": [
       {
@@ -5141,7 +5461,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 682,
+      "atk2_base": 682,
+      "atk1p_base": 1025.385,
+      "atk2p_base": 1025.385
     },
     "abilities": [
       {
@@ -5205,7 +5529,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 796,
+      "atk2_base": 796,
+      "atk1p_base": 1195.385,
+      "atk2p_base": 1195.385
     },
     "abilities": [
       {
@@ -5269,7 +5597,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 616,
+      "atk2_base": 310,
+      "atk1p_base": 876.923,
+      "atk2p_base": 612.564
     },
     "abilities": [
       {
@@ -5333,7 +5665,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1122,
+      "atk2_base": 1122,
+      "atk1p_base": 1681.795,
+      "atk2p_base": 1681.795
     },
     "abilities": [
       {
@@ -5397,7 +5733,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1138,
+      "atk2_base": 1138,
+      "atk1p_base": 1706.154,
+      "atk2p_base": 1706.154
     },
     "abilities": [
       {
@@ -5461,7 +5801,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 385,
+      "atk2_base": 385,
+      "atk1p_base": 1305.385,
+      "atk2p_base": 1305.385
     },
     "abilities": [
       {
@@ -5525,7 +5869,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 831,
+      "atk2_base": 831,
+      "atk1p_base": 1716.923,
+      "atk2p_base": 1716.923
     },
     "abilities": [
       {
@@ -5589,7 +5937,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 996,
+      "atk2_base": 996,
+      "atk1p_base": 1494.615,
+      "atk2p_base": 1494.615
     },
     "abilities": [
       {
@@ -5653,7 +6005,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 495,
+      "atk2_base": 287,
+      "atk1p_base": 744.103,
+      "atk2p_base": 428.974
     },
     "abilities": [
       {
@@ -5717,7 +6073,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 318,
+      "atk2_base": 318,
+      "atk1p_base": 481.026,
+      "atk2p_base": 481.026
     },
     "abilities": [
       {
@@ -5781,7 +6141,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 842,
+      "atk2_base": 842,
+      "atk1p_base": 1261.795,
+      "atk2p_base": 1261.795
     },
     "abilities": [
       {
@@ -5845,7 +6209,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1115,
+      "atk2_base": 1115,
+      "atk1p_base": 1897.179,
+      "atk2p_base": 1897.179
     },
     "abilities": [
       {
@@ -5909,7 +6277,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 408,
+      "atk2_base": 408,
+      "atk1p_base": 642.051,
+      "atk2p_base": 642.051
     },
     "abilities": [
       {
@@ -5973,7 +6345,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 975,
+      "atk2_base": 975,
+      "atk1p_base": 1462.821,
+      "atk2p_base": 1462.821
     },
     "abilities": [
       {
@@ -6037,7 +6413,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 593,
+      "atk2_base": 341,
+      "atk1p_base": 890.769,
+      "atk2p_base": 509.231
     },
     "abilities": [
       {
@@ -6101,7 +6481,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 724,
+      "atk2_base": 724,
+      "atk1p_base": 1088.718,
+      "atk2p_base": 1088.718
     },
     "abilities": [
       {
@@ -6165,7 +6549,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 926,
+      "atk2_base": 926,
+      "atk1p_base": 1389.744,
+      "atk2p_base": 1389.744
     },
     "abilities": [
       {
@@ -6229,7 +6617,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 859,
+      "atk2_base": 859,
+      "atk1p_base": 1289.744,
+      "atk2p_base": 1289.744
     },
     "abilities": [
       {
@@ -6293,7 +6685,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 548,
+      "atk2_base": 315,
+      "atk1p_base": 820.769,
+      "atk2p_base": 472.564
     },
     "abilities": [
       {
@@ -6357,7 +6753,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 271,
+      "atk2_base": 158,
+      "atk1p_base": 446.154,
+      "atk2p_base": 234.615
     },
     "abilities": [
       {
@@ -6421,7 +6821,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 495,
+      "atk2_base": 287,
+      "atk1p_base": 744.103,
+      "atk2p_base": 428.974
     },
     "abilities": [
       {
@@ -6485,7 +6889,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 996,
+      "atk2_base": 996,
+      "atk1p_base": 1494.615,
+      "atk2p_base": 1494.615
     },
     "abilities": [
       {
@@ -6549,7 +6957,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 588,
+      "atk2_base": 588,
+      "atk1p_base": 882.051,
+      "atk2p_base": 882.051
     },
     "abilities": [
       {
@@ -6613,7 +7025,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 284,
+      "atk2_base": 284,
+      "atk1p_base": 464.103,
+      "atk2p_base": 464.103
     },
     "abilities": [
       {
@@ -6677,7 +7093,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 639,
+      "atk2_base": 639,
+      "atk1p_base": 960.769,
+      "atk2p_base": 960.769
     },
     "abilities": [
       {
@@ -6741,7 +7161,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 446,
+      "atk2_base": 256,
+      "atk1p_base": 672.308,
+      "atk2p_base": 385.128
     },
     "abilities": [
       {
@@ -6805,7 +7229,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 396,
+      "atk2_base": 396,
+      "atk1p_base": 594.872,
+      "atk2p_base": 594.872
     },
     "abilities": [
       {
@@ -6869,7 +7297,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1544,
+      "atk2_base": 1544,
+      "atk1p_base": 2315.385,
+      "atk2p_base": 2315.385
     },
     "abilities": [
       {
@@ -6933,7 +7365,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 275,
+      "atk2_base": 275,
+      "atk1p_base": 570.256,
+      "atk2p_base": 570.256
     },
     "abilities": [
       {
@@ -6997,7 +7433,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 903,
+      "atk2_base": 903,
+      "atk1p_base": 1354.615,
+      "atk2p_base": 1354.615
     },
     "abilities": [
       {
@@ -7061,7 +7501,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 310,
+      "atk2_base": 310,
+      "atk1p_base": 468.974,
+      "atk2p_base": 468.974
     },
     "abilities": [
       {
@@ -7125,7 +7569,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 352,
+      "atk2_base": 352,
+      "atk1p_base": 551.026,
+      "atk2p_base": 551.026
     },
     "abilities": [
       {
@@ -7189,7 +7637,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1050,
+      "atk2_base": 1050,
+      "atk1p_base": 1574.872,
+      "atk2p_base": 1574.872
     },
     "abilities": [
       {
@@ -7253,7 +7705,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1024,
+      "atk2_base": 1024,
+      "atk1p_base": 1536.41,
+      "atk2p_base": 1536.41
     },
     "abilities": [
       {
@@ -7317,7 +7773,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1225,
+      "atk2_base": 1225,
+      "atk1p_base": 1837.436,
+      "atk2p_base": 1837.436
     },
     "abilities": [
       {
@@ -7381,7 +7841,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 961,
+      "atk2_base": 551,
+      "atk1p_base": 1442.051,
+      "atk2p_base": 831.026
     },
     "abilities": [
       {
@@ -7445,7 +7909,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1088,
+      "atk2_base": 1088,
+      "atk1p_base": 1634.615,
+      "atk2p_base": 1634.615
     },
     "abilities": [
       {
@@ -7509,7 +7977,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1041,
+      "atk2_base": 1041,
+      "atk1p_base": 1561.026,
+      "atk2p_base": 1561.026
     },
     "abilities": [
       {
@@ -7573,7 +8045,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 556,
+      "atk2_base": 556,
+      "atk1p_base": 836.41,
+      "atk2p_base": 836.41
     },
     "abilities": [
       {
@@ -7637,7 +8113,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 656,
+      "atk2_base": 656,
+      "atk1p_base": 985.385,
+      "atk2p_base": 985.385
     },
     "abilities": [
       {
@@ -7701,7 +8181,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1017,
+      "atk2_base": 586,
+      "atk1p_base": 1529.744,
+      "atk2p_base": 876.923
     },
     "abilities": [
       {
@@ -7765,7 +8249,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 469,
+      "atk2_base": 469,
+      "atk1p_base": 1165.385,
+      "atk2p_base": 1165.385
     },
     "abilities": [
       {
@@ -7829,7 +8317,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 973,
+      "atk2_base": 973,
+      "atk1p_base": 1459.744,
+      "atk2p_base": 1459.744
     },
     "abilities": [
       {
@@ -7893,7 +8385,11 @@
         "atk1_AOE": true,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 670,
+      "atk2_base": 670,
+      "atk1p_base": 1006.154,
+      "atk2p_base": 1006.154
     },
     "abilities": [
       {
@@ -7957,7 +8453,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 474,
+      "atk2_base": 474,
+      "atk1p_base": 712.051,
+      "atk2p_base": 712.051
     },
     "abilities": [
       {
@@ -8021,7 +8521,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1050,
+      "atk2_base": 606,
+      "atk1p_base": 1408.974,
+      "atk2p_base": 906.41
     },
     "abilities": [
       {
@@ -8085,7 +8589,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1297,
+      "atk2_base": 749,
+      "atk1p_base": 1952.821,
+      "atk2p_base": 1121.795
     },
     "abilities": [
       {
@@ -8149,7 +8657,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 438,
+      "atk2_base": 438,
+      "atk1p_base": 655.897,
+      "atk2p_base": 655.897
     },
     "abilities": [
       {
@@ -8213,7 +8725,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 956,
+      "atk2_base": 956,
+      "atk1p_base": 1436.923,
+      "atk2p_base": 1436.923
     },
     "abilities": [
       {
@@ -8277,7 +8793,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 740,
+      "atk2_base": 740,
+      "atk1p_base": 1193.59,
+      "atk2p_base": 1193.59
     },
     "abilities": [
       {
@@ -8341,7 +8861,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 948,
+      "atk2_base": 948,
+      "atk1p_base": 1422.821,
+      "atk2p_base": 1422.821
     },
     "abilities": [
       {
@@ -8405,7 +8929,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1423,
+      "atk2_base": 819,
+      "atk1p_base": 2133.333,
+      "atk2p_base": 1226.667
     },
     "abilities": [
       {
@@ -8469,7 +8997,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 814,
+      "atk2_base": 814,
+      "atk1p_base": 1223.077,
+      "atk2p_base": 1223.077
     },
     "abilities": [
       {
@@ -8533,7 +9065,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 903,
+      "atk2_base": 903,
+      "atk1p_base": 1354.615,
+      "atk2p_base": 1354.615
     },
     "abilities": [
       {
@@ -8597,7 +9133,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 735,
+      "atk2_base": 735,
+      "atk1p_base": 1104.359,
+      "atk2p_base": 1104.359
     },
     "abilities": [
       {
@@ -8661,7 +9201,11 @@
         "atk1_AOE": true,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1024,
+      "atk2_base": 1024,
+      "atk1p_base": 1534.615,
+      "atk2p_base": 1534.615
     },
     "abilities": [
       {
@@ -8725,7 +9269,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 516,
+      "atk2_base": 516,
+      "atk1p_base": 777.179,
+      "atk2p_base": 777.179
     },
     "abilities": [
       {
@@ -8789,7 +9337,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1302,
+      "atk2_base": 749,
+      "atk1p_base": 1951.026,
+      "atk2p_base": 1125.385
     },
     "abilities": [
       {
@@ -8853,7 +9405,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 511,
+      "atk2_base": 511,
+      "atk1p_base": 766.41,
+      "atk2p_base": 766.41
     },
     "abilities": [
       {
@@ -8917,7 +9473,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 644,
+      "atk2_base": 644,
+      "atk1p_base": 967.949,
+      "atk2p_base": 967.949
     },
     "abilities": [
       {
@@ -8981,7 +9541,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 598,
+      "atk2_base": 598,
+      "atk1p_base": 901.026,
+      "atk2p_base": 901.026
     },
     "abilities": [
       {
@@ -9045,7 +9609,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 495,
+      "atk2_base": 287,
+      "atk1p_base": 1127.179,
+      "atk2p_base": 563.59
     },
     "abilities": [
       {
@@ -9109,7 +9677,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1218,
+      "atk2_base": 1218,
+      "atk1p_base": 1830.256,
+      "atk2p_base": 1830.256
     },
     "abilities": [
       {
@@ -9173,7 +9745,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1022,
+      "atk2_base": 1022,
+      "atk1p_base": 1532.821,
+      "atk2p_base": 1532.821
     },
     "abilities": [
       {
@@ -9237,7 +9813,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 761,
+      "atk2_base": 761,
+      "atk1p_base": 1197.179,
+      "atk2p_base": 1197.179
     },
     "abilities": [
       {
@@ -9301,7 +9881,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1122,
+      "atk2_base": 1122,
+      "atk1p_base": 1681.795,
+      "atk2p_base": 1681.795
     },
     "abilities": [
       {
@@ -9365,7 +9949,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 859,
+      "atk2_base": 859,
+      "atk1p_base": 1289.744,
+      "atk2p_base": 1289.744
     },
     "abilities": [
       {
@@ -9429,7 +10017,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1088,
+      "atk2_base": 1088,
+      "atk1p_base": 1634.615,
+      "atk2p_base": 1634.615
     },
     "abilities": [
       {
@@ -9493,7 +10085,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 492,
+      "atk2_base": 282,
+      "atk1p_base": 964.359,
+      "atk2p_base": 481.026
     },
     "abilities": [
       {
@@ -9557,7 +10153,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1027,
+      "atk2_base": 1027,
+      "atk1p_base": 1541.795,
+      "atk2p_base": 1541.795
     },
     "abilities": [
       {
@@ -9621,7 +10221,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 682,
+      "atk2_base": 682,
+      "atk1p_base": 1025.385,
+      "atk2p_base": 1025.385
     },
     "abilities": [
       {
@@ -9685,7 +10289,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 780,
+      "atk2_base": 780,
+      "atk1p_base": 1215.897,
+      "atk2p_base": 1215.897
     },
     "abilities": [
       {
@@ -9749,7 +10357,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 516,
+      "atk2_base": 516,
+      "atk1p_base": 777.179,
+      "atk2p_base": 777.179
     },
     "abilities": [
       {
@@ -9813,7 +10425,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 994,
+      "atk2_base": 698,
+      "atk1p_base": 1505.128,
+      "atk2p_base": 1050.0
     },
     "abilities": [
       {
@@ -9877,7 +10493,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 901,
+      "atk2_base": 530,
+      "atk1p_base": 1354.615,
+      "atk2p_base": 794.615
     },
     "abilities": [
       {
@@ -9941,7 +10561,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 887,
+      "atk2_base": 887,
+      "atk1p_base": 1601.026,
+      "atk2p_base": 1601.026
     },
     "abilities": [
       {
@@ -10005,7 +10629,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1535,
+      "atk2_base": 1535,
+      "atk1p_base": 2301.026,
+      "atk2p_base": 2301.026
     },
     "abilities": [
       {
@@ -10069,7 +10697,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1479,
+      "atk2_base": 849,
+      "atk1p_base": 2220.769,
+      "atk2p_base": 1275.641
     },
     "abilities": [
       {
@@ -10133,7 +10765,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 462,
+      "atk2_base": 462,
+      "atk1p_base": 935.897,
+      "atk2p_base": 935.897
     },
     "abilities": [
       {
@@ -10197,7 +10833,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1104,
+      "atk2_base": 1104,
+      "atk1p_base": 1655.385,
+      "atk2p_base": 1655.385
     },
     "abilities": [
       {
@@ -10261,7 +10901,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1393,
+      "atk2_base": 1393,
+      "atk1p_base": 2078.974,
+      "atk2p_base": 2078.974
     },
     "abilities": [
       {
@@ -10325,7 +10969,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 474,
+      "atk2_base": 474,
+      "atk1p_base": 818.974,
+      "atk2p_base": 818.974
     },
     "abilities": [
       {
@@ -10389,7 +11037,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1307,
+      "atk2_base": 1307,
+      "atk1p_base": 1963.59,
+      "atk2p_base": 1963.59
     },
     "abilities": [
       {
@@ -10453,7 +11105,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1069,
+      "atk2_base": 614,
+      "atk1p_base": 1610.0,
+      "atk2p_base": 925.641
     },
     "abilities": [
       {
@@ -10517,7 +11173,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 950,
+      "atk2_base": 950,
+      "atk1p_base": 1426.154,
+      "atk2p_base": 1426.154
     },
     "abilities": [
       {
@@ -10581,7 +11241,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 749,
+      "atk2_base": 749,
+      "atk1p_base": 1127.179,
+      "atk2p_base": 1127.179
     },
     "abilities": [
       {
@@ -10645,7 +11309,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 462,
+      "atk2_base": 462,
+      "atk1p_base": 691.026,
+      "atk2p_base": 691.026
     },
     "abilities": [
       {
@@ -10709,7 +11377,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 892,
+      "atk2_base": 892,
+      "atk1p_base": 1340.256,
+      "atk2p_base": 1340.256
     },
     "abilities": [
       {
@@ -10773,7 +11445,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1102,
+      "atk2_base": 1102,
+      "atk1p_base": 2057.949,
+      "atk2p_base": 2057.949
     },
     "abilities": [
       {
@@ -10837,7 +11513,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 416,
+      "atk2_base": 234,
+      "atk1p_base": 794.615,
+      "atk2p_base": 355.385
     },
     "abilities": [
       {
@@ -10901,7 +11581,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1223,
+      "atk2_base": 1223,
+      "atk1p_base": 1835.641,
+      "atk2p_base": 1835.641
     },
     "abilities": [
       {
@@ -10965,7 +11649,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 574,
+      "atk2_base": 574,
+      "atk1p_base": 862.821,
+      "atk2p_base": 556.41
     },
     "abilities": [
       {
@@ -11029,7 +11717,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1326,
+      "atk2_base": 1326,
+      "atk1p_base": 1989.744,
+      "atk2p_base": 1989.744
     },
     "abilities": [
       {
@@ -11093,7 +11785,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 474,
+      "atk2_base": 474,
+      "atk1p_base": 712.051,
+      "atk2p_base": 712.051
     },
     "abilities": [
       {
@@ -11157,7 +11853,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1108,
+      "atk2_base": 1108,
+      "atk1p_base": 1664.359,
+      "atk2p_base": 1664.359
     },
     "abilities": [
       {
@@ -11221,7 +11921,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 593,
+      "atk2_base": 374,
+      "atk1p_base": 890.769,
+      "atk2p_base": 586.154
     },
     "abilities": [
       {
@@ -11285,7 +11989,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 994,
+      "atk2_base": 994,
+      "atk1p_base": 1492.821,
+      "atk2p_base": 1492.821
     },
     "abilities": [
       {
@@ -11349,7 +12057,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 544,
+      "atk2_base": 544,
+      "atk1p_base": 815.385,
+      "atk2p_base": 815.385
     },
     "abilities": [
       {
@@ -11413,7 +12125,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 892,
+      "atk2_base": 514,
+      "atk1p_base": 1338.974,
+      "atk2p_base": 770.0
     },
     "abilities": [
       {
@@ -11477,7 +12193,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 856,
+      "atk2_base": 856,
+      "atk1p_base": 1284.615,
+      "atk2p_base": 1284.615
     },
     "abilities": [
       {
@@ -11541,7 +12261,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 434,
+      "atk2_base": 434,
+      "atk1p_base": 913.59,
+      "atk2p_base": 913.59
     },
     "abilities": [
       {
@@ -11605,7 +12329,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 343,
+      "atk2_base": 343,
+      "atk1p_base": 460.513,
+      "atk2p_base": 460.513
     },
     "abilities": [
       {
@@ -11669,7 +12397,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 896,
+      "atk2_base": 896,
+      "atk1p_base": 1345.641,
+      "atk2p_base": 1345.641
     },
     "abilities": [
       {
@@ -11733,7 +12465,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 770,
+      "atk2_base": 770,
+      "atk1p_base": 1249.744,
+      "atk2p_base": 1249.744
     },
     "abilities": [
       {
@@ -11797,7 +12533,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 728,
+      "atk2_base": 497,
+      "atk1p_base": 1098.974,
+      "atk2p_base": 866.154
     },
     "abilities": [
       {
@@ -11861,7 +12601,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 480,
+      "atk2_base": 273,
+      "atk1p_base": 1251.026,
+      "atk2p_base": 719.231
     },
     "abilities": [
       {
@@ -11925,7 +12669,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 466,
+      "atk2_base": 466,
+      "atk1p_base": 700.0,
+      "atk2p_base": 700.0
     },
     "abilities": [
       {
@@ -11989,7 +12737,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1377,
+      "atk2_base": 1377,
+      "atk1p_base": 2070.256,
+      "atk2p_base": 2070.256
     },
     "abilities": [
       {
@@ -12053,7 +12805,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1442,
+      "atk2_base": 1442,
+      "atk1p_base": 2164.615,
+      "atk2p_base": 2164.615
     },
     "abilities": [
       {
@@ -12117,7 +12873,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 654,
+      "atk2_base": 654,
+      "atk1p_base": 1158.462,
+      "atk2p_base": 1158.462
     },
     "abilities": [
       {
@@ -12181,7 +12941,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 539,
+      "atk2_base": 306,
+      "atk1p_base": 806.667,
+      "atk2p_base": 464.103
     },
     "abilities": [
       {
@@ -12245,7 +13009,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1214,
+      "atk2_base": 1214,
+      "atk1p_base": 1772.821,
+      "atk2p_base": 1772.821
     },
     "abilities": [
       {
@@ -12309,7 +13077,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1032,
+      "atk2_base": 1032,
+      "atk1p_base": 1660.769,
+      "atk2p_base": 1660.769
     },
     "abilities": [
       {
@@ -12373,7 +13145,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1006,
+      "atk2_base": 1006,
+      "atk1p_base": 1671.026,
+      "atk2p_base": 1671.026
     },
     "abilities": [
       {
@@ -12437,7 +13213,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1281,
+      "atk2_base": 1281,
+      "atk1p_base": 1925.128,
+      "atk2p_base": 1925.128
     },
     "abilities": [
       {
@@ -12501,7 +13281,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 877,
+      "atk2_base": 877,
+      "atk1p_base": 1316.154,
+      "atk2p_base": 1316.154
     },
     "abilities": [
       {
@@ -12565,7 +13349,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1041,
+      "atk2_base": 1041,
+      "atk1p_base": 1564.615,
+      "atk2p_base": 1564.615
     },
     "abilities": [
       {
@@ -12629,7 +13417,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 324,
+      "atk2_base": 324,
+      "atk1p_base": 486.41,
+      "atk2p_base": 486.41
     },
     "abilities": [
       {
@@ -12693,7 +13485,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 362,
+      "atk2_base": 362,
+      "atk1p_base": 530.256,
+      "atk2p_base": 530.256
     },
     "abilities": [
       {
@@ -12757,7 +13553,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 794,
+      "atk2_base": 455,
+      "atk1p_base": 1197.179,
+      "atk2p_base": 684.359
     },
     "abilities": [
       {
@@ -12821,7 +13621,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 798,
+      "atk2_base": 798,
+      "atk1p_base": 1197.179,
+      "atk2p_base": 1197.179
     },
     "abilities": [
       {
@@ -12885,7 +13689,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1027,
+      "atk2_base": 1027,
+      "atk1p_base": 2320.256,
+      "atk2p_base": 2320.256
     },
     "abilities": [
       {
@@ -12949,7 +13757,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 838,
+      "atk2_base": 838,
+      "atk1p_base": 1359.487,
+      "atk2p_base": 1258.205
     },
     "abilities": [
       {
@@ -13013,7 +13825,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 679,
+      "atk2_base": 679,
+      "atk1p_base": 1107.949,
+      "atk2p_base": 1107.949
     },
     "abilities": [
       {
@@ -13077,7 +13893,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1015,
+      "atk2_base": 1015,
+      "atk1p_base": 1522.564,
+      "atk2p_base": 1522.564
     },
     "abilities": [
       {
@@ -13141,7 +13961,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 385,
+      "atk2_base": 385,
+      "atk1p_base": 581.026,
+      "atk2p_base": 581.026
     },
     "abilities": [
       {
@@ -13205,7 +14029,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 632,
+      "atk2_base": 364,
+      "atk1p_base": 950.256,
+      "atk2p_base": 542.564
     },
     "abilities": [
       {
@@ -13269,7 +14097,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 870,
+      "atk2_base": 870,
+      "atk1p_base": 1305.385,
+      "atk2p_base": 1305.385
     },
     "abilities": [
       {
@@ -13333,7 +14165,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 901,
+      "atk2_base": 901,
+      "atk1p_base": 1505.128,
+      "atk2p_base": 1505.128
     },
     "abilities": [
       {
@@ -13397,7 +14233,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 544,
+      "atk2_base": 544,
+      "atk1p_base": 992.051,
+      "atk2p_base": 992.051
     },
     "abilities": [
       {
@@ -13461,7 +14301,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 523,
+      "atk2_base": 523,
+      "atk1p_base": 787.436,
+      "atk2p_base": 787.436
     },
     "abilities": [
       {
@@ -13527,7 +14371,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 9,
+      "atk2_base": 9,
+      "atk1p_base": 2371.026,
+      "atk2p_base": 2371.026
     },
     "abilities": [
       {
@@ -13591,7 +14439,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 868,
+      "atk2_base": 868,
+      "atk1p_base": 1305.385,
+      "atk2p_base": 1305.385
     },
     "abilities": [
       {
@@ -13655,7 +14507,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1057,
+      "atk2_base": 716,
+      "atk1p_base": 2113.846,
+      "atk2p_base": 1086.667
     },
     "abilities": [
       {
@@ -13719,7 +14575,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 581,
+      "atk2_base": 581,
+      "atk1p_base": 1384.359,
+      "atk2p_base": 1384.359
     },
     "abilities": [
       {
@@ -13783,7 +14643,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 509,
+      "atk2_base": 509,
+      "atk1p_base": 764.615,
+      "atk2p_base": 764.615
     },
     "abilities": [
       {
@@ -13847,7 +14711,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 550,
+      "atk2_base": 550,
+      "atk1p_base": 826.154,
+      "atk2p_base": 826.154
     },
     "abilities": [
       {
@@ -13911,7 +14779,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 537,
+      "atk2_base": 537,
+      "atk1p_base": 806.667,
+      "atk2p_base": 806.667
     },
     "abilities": [
       {
@@ -13975,7 +14847,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 704,
+      "atk2_base": 704,
+      "atk1p_base": 1055.385,
+      "atk2p_base": 1055.385
     },
     "abilities": [
       {
@@ -14039,7 +14915,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 586,
+      "atk2_base": 586,
+      "atk1p_base": 950.256,
+      "atk2p_base": 950.256
     },
     "abilities": [
       {
@@ -14103,7 +14983,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 681,
+      "atk2_base": 399,
+      "atk1p_base": 1391.026,
+      "atk2p_base": 847.179
     },
     "abilities": [
       {
@@ -14167,7 +15051,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 943,
+      "atk2_base": 943,
+      "atk1p_base": 1683.59,
+      "atk2p_base": 1683.59
     },
     "abilities": [
       {
@@ -14231,7 +15119,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 824,
+      "atk2_base": 824,
+      "atk1p_base": 1237.179,
+      "atk2p_base": 1237.179
     },
     "abilities": [
       {
@@ -14295,7 +15187,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 875,
+      "atk2_base": 875,
+      "atk1p_base": 1314.359,
+      "atk2p_base": 1314.359
     },
     "abilities": [
       {
@@ -14359,7 +15255,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 908,
+      "atk2_base": 908,
+      "atk1p_base": 1417.436,
+      "atk2p_base": 1417.436
     },
     "abilities": [
       {
@@ -14423,7 +15323,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 425,
+      "atk2_base": 425,
+      "atk1p_base": 1375.385,
+      "atk2p_base": 1375.385
     },
     "abilities": [
       {
@@ -14487,7 +15391,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1785,
+      "atk2_base": 1785,
+      "atk1p_base": 2677.436,
+      "atk2p_base": 2677.436
     },
     "abilities": [
       {
@@ -14551,7 +15459,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 576,
+      "atk2_base": 331,
+      "atk1p_base": 862.821,
+      "atk2p_base": 491.795
     },
     "abilities": [
       {
@@ -14615,7 +15527,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1169,
+      "atk2_base": 1169,
+      "atk1p_base": 1753.59,
+      "atk2p_base": 1753.59
     },
     "abilities": [
       {
@@ -14679,7 +15595,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1088,
+      "atk2_base": 1088,
+      "atk1p_base": 1632.821,
+      "atk2p_base": 1632.821
     },
     "abilities": [
       {
@@ -14743,7 +15663,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1265,
+      "atk2_base": 1265,
+      "atk1p_base": 1898.974,
+      "atk2p_base": 1898.974
     },
     "abilities": [
       {
@@ -14807,7 +15731,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1409,
+      "atk2_base": 1409,
+      "atk1p_base": 2110.256,
+      "atk2p_base": 2110.256
     },
     "abilities": [
       {
@@ -14871,7 +15799,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1076,
+      "atk2_base": 1076,
+      "atk1p_base": 1615.385,
+      "atk2p_base": 1615.385
     },
     "abilities": [
       {
@@ -14935,7 +15867,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 642,
+      "atk2_base": 642,
+      "atk1p_base": 964.359,
+      "atk2p_base": 964.359
     },
     "abilities": [
       {
@@ -14999,7 +15935,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1169,
+      "atk2_base": 584,
+      "atk1p_base": 1842.821,
+      "atk2p_base": 1137.436
     },
     "abilities": [
       {
@@ -15063,7 +16003,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 348,
+      "atk2_base": 348,
+      "atk1p_base": 1024.103,
+      "atk2p_base": 1024.103
     },
     "abilities": [
       {
@@ -15127,7 +16071,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1552,
+      "atk2_base": 1552,
+      "atk1p_base": 2329.231,
+      "atk2p_base": 2329.231
     },
     "abilities": [
       {
@@ -15191,7 +16139,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 408,
+      "atk2_base": 408,
+      "atk1p_base": 616.154,
+      "atk2p_base": 616.154
     },
     "abilities": [
       {
@@ -15255,7 +16207,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 744,
+      "atk2_base": 744,
+      "atk1p_base": 1114.615,
+      "atk2p_base": 1114.615
     },
     "abilities": [
       {
@@ -15319,7 +16275,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1400,
+      "atk2_base": 803,
+      "atk1p_base": 2101.795,
+      "atk2p_base": 1207.436
     },
     "abilities": [
       {
@@ -15383,7 +16343,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 544,
+      "atk2_base": 544,
+      "atk1p_base": 820.769,
+      "atk2p_base": 820.769
     },
     "abilities": [
       {
@@ -15447,7 +16411,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 705,
+      "atk2_base": 705,
+      "atk1p_base": 1267.179,
+      "atk2p_base": 1267.179
     },
     "abilities": [
       {
@@ -15511,7 +16479,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 887,
+      "atk2_base": 887,
+      "atk1p_base": 1331.795,
+      "atk2p_base": 1331.795
     },
     "abilities": [
       {
@@ -15575,7 +16547,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 996,
+      "atk2_base": 996,
+      "atk1p_base": 1491.026,
+      "atk2p_base": 1491.026
     },
     "abilities": [
       {
@@ -15639,7 +16615,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1120,
+      "atk2_base": 1120,
+      "atk1p_base": 1681.795,
+      "atk2p_base": 1681.795
     },
     "abilities": [
       {
@@ -15703,7 +16683,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 744,
+      "atk2_base": 429,
+      "atk1p_base": 1120.0,
+      "atk2p_base": 643.846
     },
     "abilities": [
       {
@@ -15767,7 +16751,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 793,
+      "atk2_base": 455,
+      "atk1p_base": 1188.205,
+      "atk2p_base": 684.359
     },
     "abilities": [
       {
@@ -15831,7 +16819,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 542,
+      "atk2_base": 542,
+      "atk1p_base": 992.051,
+      "atk2p_base": 992.051
     },
     "abilities": [
       {
@@ -15895,7 +16887,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1020,
+      "atk2_base": 1020,
+      "atk1p_base": 1527.949,
+      "atk2p_base": 1527.949
     },
     "abilities": [
       {
@@ -15959,7 +16955,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 775,
+      "atk2_base": 775,
+      "atk1p_base": 1296.923,
+      "atk2p_base": 1296.923
     },
     "abilities": [
       {
@@ -16023,7 +17023,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 956,
+      "atk2_base": 956,
+      "atk1p_base": 1410.256,
+      "atk2p_base": 1410.256
     },
     "abilities": [
       {
@@ -16087,7 +17091,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1424,
+      "atk2_base": 1424,
+      "atk1p_base": 2136.923,
+      "atk2p_base": 2136.923
     },
     "abilities": [
       {
@@ -16151,7 +17159,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 602,
+      "atk2_base": 259,
+      "atk1p_base": 901.026,
+      "atk2p_base": 517.949
     },
     "abilities": [
       {
@@ -16215,7 +17227,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1181,
+      "atk2_base": 1181,
+      "atk1p_base": 1771.026,
+      "atk2p_base": 1771.026
     },
     "abilities": [
       {
@@ -16279,7 +17295,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 494,
+      "atk2_base": 494,
+      "atk1p_base": 792.821,
+      "atk2p_base": 792.821
     },
     "abilities": [
       {
@@ -16343,7 +17363,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 926,
+      "atk2_base": 926,
+      "atk1p_base": 1510.256,
+      "atk2p_base": 1510.256
     },
     "abilities": [
       {
@@ -16407,7 +17431,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1080,
+      "atk2_base": 1080,
+      "atk1p_base": 1620.256,
+      "atk2p_base": 1620.256
     },
     "abilities": [
       {
@@ -16471,7 +17499,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1670,
+      "atk2_base": 626,
+      "atk1p_base": 2504.359,
+      "atk2p_base": 1251.026
     },
     "abilities": [
       {
@@ -16535,7 +17567,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 597,
+      "atk2_base": 597,
+      "atk1p_base": 1569.744,
+      "atk2p_base": 1569.744
     },
     "abilities": [
       {
@@ -16599,7 +17635,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1064,
+      "atk2_base": 1064,
+      "atk1p_base": 1594.359,
+      "atk2p_base": 1594.359
     },
     "abilities": [
       {
@@ -16663,7 +17703,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1222,
+      "atk2_base": 1222,
+      "atk1p_base": 1820.0,
+      "atk2p_base": 1820.0
     },
     "abilities": [
       {
@@ -16727,7 +17771,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1178,
+      "atk2_base": 1178,
+      "atk1p_base": 1767.436,
+      "atk2p_base": 1767.436
     },
     "abilities": [
       {
@@ -16791,7 +17839,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 471,
+      "atk2_base": 471,
+      "atk1p_base": 710.256,
+      "atk2p_base": 710.256
     },
     "abilities": [
       {
@@ -16855,7 +17907,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 576,
+      "atk2_base": 341,
+      "atk1p_base": 862.821,
+      "atk2p_base": 517.949
     },
     "abilities": [
       {
@@ -16919,7 +17975,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 383,
+      "atk2_base": 383,
+      "atk1p_base": 575.641,
+      "atk2p_base": 575.641
     },
     "abilities": [
       {
@@ -16983,7 +18043,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 765,
+      "atk2_base": 765,
+      "atk1p_base": 1149.744,
+      "atk2p_base": 1149.744
     },
     "abilities": [
       {
@@ -17047,7 +18111,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 700,
+      "atk2_base": 700,
+      "atk1p_base": 1050.0,
+      "atk2p_base": 1050.0
     },
     "abilities": [
       {
@@ -17111,7 +18179,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1223,
+      "atk2_base": 1223,
+      "atk1p_base": 1833.846,
+      "atk2p_base": 1833.846
     },
     "abilities": [
       {
@@ -17175,7 +18247,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 908,
+      "atk2_base": 908,
+      "atk1p_base": 1365.128,
+      "atk2p_base": 1365.128
     },
     "abilities": [
       {
@@ -17239,7 +18315,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 462,
+      "atk2_base": 462,
+      "atk1p_base": 692.821,
+      "atk2p_base": 692.821
     },
     "abilities": [
       {
@@ -17303,7 +18383,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1575,
+      "atk2_base": 789,
+      "atk1p_base": 2364.359,
+      "atk2p_base": 1181.026
     },
     "abilities": [
       {
@@ -17367,7 +18451,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1032,
+      "atk2_base": 1032,
+      "atk1p_base": 1547.179,
+      "atk2p_base": 1547.179
     },
     "abilities": [
       {
@@ -17431,7 +18519,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 847,
+      "atk2_base": 847,
+      "atk1p_base": 1272.051,
+      "atk2p_base": 1272.051
     },
     "abilities": [
       {
@@ -17495,7 +18587,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1206,
+      "atk2_base": 1206,
+      "atk1p_base": 1811.026,
+      "atk2p_base": 1811.026
     },
     "abilities": [
       {
@@ -17559,7 +18655,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1013,
+      "atk2_base": 1013,
+      "atk1p_base": 1522.564,
+      "atk2p_base": 1522.564
     },
     "abilities": [
       {
@@ -17623,7 +18723,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1346,
+      "atk2_base": 1346,
+      "atk1p_base": 2017.949,
+      "atk2p_base": 2017.949
     },
     "abilities": [
       {
@@ -17687,7 +18791,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1171,
+      "atk2_base": 672,
+      "atk1p_base": 1965.385,
+      "atk2p_base": 1006.154
     },
     "abilities": [
       {
@@ -17751,7 +18859,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1662,
+      "atk2_base": 970,
+      "atk1p_base": 2493.846,
+      "atk2p_base": 1471.795
     },
     "abilities": [
       {
@@ -17815,7 +18927,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1558,
+      "atk2_base": 1558,
+      "atk1p_base": 2441.026,
+      "atk2p_base": 2441.026
     },
     "abilities": [
       {
@@ -17879,7 +18995,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1146,
+      "atk2_base": 1146,
+      "atk1p_base": 1902.051,
+      "atk2p_base": 1902.051
     },
     "abilities": [
       {
@@ -17943,7 +19063,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1435,
+      "atk2_base": 1435,
+      "atk1p_base": 2150.769,
+      "atk2p_base": 2150.769
     },
     "abilities": [
       {
@@ -18007,7 +19131,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 698,
+      "atk2_base": 698,
+      "atk1p_base": 1088.718,
+      "atk2p_base": 1088.718
     },
     "abilities": [
       {
@@ -18071,7 +19199,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1281,
+      "atk2_base": 1281,
+      "atk1p_base": 1921.538,
+      "atk2p_base": 1921.538
     },
     "abilities": [
       {
@@ -18135,7 +19267,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 770,
+      "atk2_base": 443,
+      "atk1p_base": 1209.231,
+      "atk2p_base": 707.179
     },
     "abilities": [
       {
@@ -18199,7 +19335,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1423,
+      "atk2_base": 1423,
+      "atk1p_base": 2177.179,
+      "atk2p_base": 2177.179
     },
     "abilities": [
       {
@@ -18263,7 +19403,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1410,
+      "atk2_base": 1410,
+      "atk1p_base": 2117.436,
+      "atk2p_base": 2117.436
     },
     "abilities": [
       {
@@ -18327,7 +19471,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1617,
+      "atk2_base": 1617,
+      "atk1p_base": 2425.385,
+      "atk2p_base": 2425.385
     },
     "abilities": [
       {
@@ -18391,7 +19539,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1642,
+      "atk2_base": 1642,
+      "atk1p_base": 2462.051,
+      "atk2p_base": 2462.051
     },
     "abilities": [
       {
@@ -18455,7 +19607,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1260,
+      "atk2_base": 1260,
+      "atk1p_base": 1890.0,
+      "atk2p_base": 1890.0
     },
     "abilities": [
       {
@@ -18519,7 +19675,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1970,
+      "atk2_base": 996,
+      "atk1p_base": 2798.205,
+      "atk2p_base": 1492.821
     },
     "abilities": [
       {
@@ -18583,7 +19743,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 709,
+      "atk2_base": 709,
+      "atk1p_base": 1062.051,
+      "atk2p_base": 1062.051
     },
     "abilities": [
       {
@@ -18647,7 +19811,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 534,
+      "atk2_base": 534,
+      "atk1p_base": 797.949,
+      "atk2p_base": 797.949
     },
     "abilities": [
       {
@@ -18711,7 +19879,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 584,
+      "atk2_base": 584,
+      "atk1p_base": 1125.385,
+      "atk2p_base": 1125.385
     },
     "abilities": [
       {
@@ -18775,7 +19947,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1615,
+      "atk2_base": 1615,
+      "atk1p_base": 2479.487,
+      "atk2p_base": 2479.487
     },
     "abilities": [
       {
@@ -18839,7 +20015,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1092,
+      "atk2_base": 1092,
+      "atk1p_base": 1635.897,
+      "atk2p_base": 1635.897
     },
     "abilities": [
       {
@@ -18903,7 +20083,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 728,
+      "atk2_base": 429,
+      "atk1p_base": 1098.974,
+      "atk2p_base": 654.615
     },
     "abilities": [
       {
@@ -18967,7 +20151,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1069,
+      "atk2_base": 1069,
+      "atk1p_base": 1604.615,
+      "atk2p_base": 1604.615
     },
     "abilities": [
       {
@@ -19031,7 +20219,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 618,
+      "atk2_base": 618,
+      "atk1p_base": 931.026,
+      "atk2p_base": 931.026
     },
     "abilities": [
       {
@@ -19095,7 +20287,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 802,
+      "atk2_base": 802,
+      "atk1p_base": 1254.615,
+      "atk2p_base": 1254.615
     },
     "abilities": [
       {
@@ -19159,7 +20355,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1155,
+      "atk2_base": 1155,
+      "atk1p_base": 1758.974,
+      "atk2p_base": 1758.974
     },
     "abilities": [
       {
@@ -19223,7 +20423,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 990,
+      "atk2_base": 990,
+      "atk1p_base": 1669.744,
+      "atk2p_base": 1669.744
     },
     "abilities": [
       {
@@ -19287,7 +20491,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 821,
+      "atk2_base": 472,
+      "atk1p_base": 1230.256,
+      "atk2p_base": 707.179
     },
     "abilities": [
       {
@@ -19351,7 +20559,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 588,
+      "atk2_base": 588,
+      "atk1p_base": 910.0,
+      "atk2p_base": 910.0
     },
     "abilities": [
       {
@@ -19415,7 +20627,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 696,
+      "atk2_base": 696,
+      "atk1p_base": 957.179,
+      "atk2p_base": 957.179
     },
     "abilities": [
       {
@@ -19479,7 +20695,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1306,
+      "atk2_base": 1306,
+      "atk1p_base": 1960.0,
+      "atk2p_base": 1960.0
     },
     "abilities": [
       {
@@ -19543,7 +20763,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1222,
+      "atk2_base": 1222,
+      "atk1p_base": 1835.641,
+      "atk2p_base": 1835.641
     },
     "abilities": [
       {
@@ -19607,7 +20831,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 2348,
+      "atk2_base": 2348,
+      "atk1p_base": 3527.692,
+      "atk2p_base": 3527.692
     },
     "abilities": [
       {
@@ -19671,7 +20899,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 632,
+      "atk2_base": 632,
+      "atk1p_base": 950.256,
+      "atk2p_base": 950.256
     },
     "abilities": [
       {
@@ -19735,7 +20967,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1993,
+      "atk2_base": 1006,
+      "atk1p_base": 2988.974,
+      "atk2p_base": 1510.256
     },
     "abilities": [
       {
@@ -19799,7 +21035,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 481,
+      "atk2_base": 254,
+      "atk1p_base": 696.41,
+      "atk2p_base": 621.026
     },
     "abilities": [
       {
@@ -19863,7 +21103,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 903,
+      "atk2_base": 593,
+      "atk1p_base": 1354.615,
+      "atk2p_base": 871.282
     },
     "abilities": [
       {
@@ -19927,7 +21171,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 662,
+      "atk2_base": 662,
+      "atk1p_base": 1022.051,
+      "atk2p_base": 1022.051
     },
     "abilities": [
       {
@@ -19991,7 +21239,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1286,
+      "atk2_base": 1286,
+      "atk1p_base": 2590.0,
+      "atk2p_base": 1286.154
     },
     "abilities": [
       {
@@ -20055,7 +21307,11 @@
         "atk1_AOE": true,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 394,
+      "atk2_base": 686,
+      "atk1p_base": 801.538,
+      "atk2p_base": 1378.974
     },
     "abilities": [
       {
@@ -20119,7 +21375,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 354,
+      "atk2_base": 354,
+      "atk1p_base": 530.256,
+      "atk2p_base": 530.256
     },
     "abilities": [
       {
@@ -20183,7 +21443,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1260,
+      "atk2_base": 1260,
+      "atk1p_base": 1890.0,
+      "atk2p_base": 1890.0
     },
     "abilities": [
       {
@@ -20247,7 +21511,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1948,
+      "atk2_base": 1948,
+      "atk1p_base": 2920.769,
+      "atk2p_base": 2920.769
     },
     "abilities": [
       {
@@ -20311,7 +21579,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1447,
+      "atk2_base": 1006,
+      "atk1p_base": 2142.051,
+      "atk2p_base": 1529.744
     },
     "abilities": [
       {
@@ -20375,7 +21647,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1188,
+      "atk2_base": 1188,
+      "atk1p_base": 1781.538,
+      "atk2p_base": 1781.538
     },
     "abilities": [
       {
@@ -20439,7 +21715,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 490,
+      "atk2_base": 490,
+      "atk1p_base": 935.897,
+      "atk2p_base": 935.897
     },
     "abilities": [
       {
@@ -20503,7 +21783,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 462,
+      "atk2_base": 569,
+      "atk1p_base": 1176.154,
+      "atk2p_base": 1251.026
     },
     "abilities": [
       {
@@ -20567,7 +21851,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 738,
+      "atk2_base": 738,
+      "atk1p_base": 1107.949,
+      "atk2p_base": 1107.949
     },
     "abilities": [
       {
@@ -20631,7 +21919,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 982,
+      "atk2_base": 565,
+      "atk1p_base": 1821.795,
+      "atk2p_base": 1370.256
     },
     "abilities": [
       {
@@ -20695,7 +21987,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1022,
+      "atk2_base": 1022,
+      "atk1p_base": 1876.154,
+      "atk2p_base": 1876.154
     },
     "abilities": [
       {
@@ -20759,7 +22055,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 924,
+      "atk2_base": 924,
+      "atk1p_base": 1561.026,
+      "atk2p_base": 1561.026
     },
     "abilities": [
       {
@@ -20823,7 +22123,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1452,
+      "atk2_base": 1452,
+      "atk1p_base": 2446.41,
+      "atk2p_base": 2446.41
     },
     "abilities": [
       {
@@ -20887,7 +22191,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1262,
+      "atk2_base": 1262,
+      "atk1p_base": 2525.385,
+      "atk2p_base": 1261.795
     },
     "abilities": [
       {
@@ -20951,7 +22259,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 618,
+      "atk2_base": 618,
+      "atk1p_base": 1944.359,
+      "atk2p_base": 1944.359
     },
     "abilities": [
       {
@@ -21015,7 +22327,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1166,
+      "atk2_base": 1166,
+      "atk1p_base": 1748.205,
+      "atk2p_base": 1748.205
     },
     "abilities": [
       {
@@ -21079,7 +22395,11 @@
         "atk1_AOE": true,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 294,
+      "atk2_base": 560,
+      "atk1p_base": 441.026,
+      "atk2p_base": 826.154
     },
     "abilities": [
       {
@@ -21143,7 +22463,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1225,
+      "atk2_base": 1225,
+      "atk1p_base": 2168.205,
+      "atk2p_base": 2168.205
     },
     "abilities": [
       {
@@ -21207,7 +22531,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 578,
+      "atk2_base": 578,
+      "atk1p_base": 1368.718,
+      "atk2p_base": 1368.718
     },
     "abilities": [
       {
@@ -21271,7 +22599,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1451,
+      "atk2_base": 726,
+      "atk1p_base": 2177.179,
+      "atk2p_base": 1088.718
     },
     "abilities": [
       {
@@ -21335,7 +22667,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1706,
+      "atk2_base": 854,
+      "atk1p_base": 2560.513,
+      "atk2p_base": 1279.231
     },
     "abilities": [
       {
@@ -21399,7 +22735,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1522,
+      "atk2_base": 761,
+      "atk1p_base": 2136.923,
+      "atk2p_base": 1142.821
     },
     "abilities": [
       {
@@ -21463,7 +22803,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1477,
+      "atk2_base": 738,
+      "atk1p_base": 2215.385,
+      "atk2p_base": 1107.949
     },
     "abilities": [
       {
@@ -21527,7 +22871,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1542,
+      "atk2_base": 1542,
+      "atk1p_base": 2311.795,
+      "atk2p_base": 2311.795
     },
     "abilities": [
       {
@@ -21591,7 +22939,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1162,
+      "atk2_base": 1162,
+      "atk1p_base": 1760.256,
+      "atk2p_base": 1760.256
     },
     "abilities": [
       {
@@ -21655,7 +23007,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1661,
+      "atk2_base": 1661,
+      "atk1p_base": 2492.308,
+      "atk2p_base": 2492.308
     },
     "abilities": [
       {
@@ -21719,7 +23075,11 @@
         "atk1_AOE": true,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1062,
+      "atk2_base": 1885,
+      "atk1p_base": 2294.359,
+      "atk2p_base": 3118.462
     },
     "abilities": [
       {
@@ -21783,7 +23143,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1472,
+      "atk2_base": 1472,
+      "atk1p_base": 2381.795,
+      "atk2p_base": 2381.795
     },
     "abilities": [
       {
@@ -21847,7 +23211,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1239,
+      "atk2_base": 1239,
+      "atk1p_base": 1946.154,
+      "atk2p_base": 1946.154
     },
     "abilities": [
       {
@@ -21911,7 +23279,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1199,
+      "atk2_base": 668,
+      "atk1p_base": 1797.179,
+      "atk2p_base": 1007.692
     },
     "abilities": [
       {
@@ -21975,7 +23347,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1479,
+      "atk2_base": 812,
+      "atk1p_base": 2567.179,
+      "atk2p_base": 1394.615
     },
     "abilities": [
       {
@@ -22039,7 +23415,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1446,
+      "atk2_base": 1446,
+      "atk1p_base": 2518.205,
+      "atk2p_base": 2168.205
     },
     "abilities": [
       {
@@ -22103,7 +23483,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1032,
+      "atk2_base": 676,
+      "atk1p_base": 1635.897,
+      "atk2p_base": 1247.949
     },
     "abilities": [
       {
@@ -22167,7 +23551,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1731,
+      "atk2_base": 1731,
+      "atk1p_base": 2595.385,
+      "atk2p_base": 2595.385
     },
     "abilities": [
       {
@@ -22231,7 +23619,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1549,
+      "atk2_base": 1549,
+      "atk1p_base": 2325.641,
+      "atk2p_base": 2325.641
     },
     "abilities": [
       {
@@ -22295,7 +23687,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1671,
+      "atk2_base": 961,
+      "atk1p_base": 2507.949,
+      "atk2p_base": 1440.513
     },
     "abilities": [
       {
@@ -22359,7 +23755,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1272,
+      "atk2_base": 1272,
+      "atk1p_base": 1986.154,
+      "atk2p_base": 1986.154
     },
     "abilities": [
       {
@@ -22423,7 +23823,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 782,
+      "atk2_base": 782,
+      "atk1p_base": 1775.897,
+      "atk2p_base": 1775.897
     },
     "abilities": [
       {
@@ -22487,7 +23891,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1678,
+      "atk2_base": 1678,
+      "atk1p_base": 2691.282,
+      "atk2p_base": 2691.282
     },
     "abilities": [
       {
@@ -22551,7 +23959,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1657,
+      "atk2_base": 1657,
+      "atk1p_base": 2427.179,
+      "atk2p_base": 2427.179
     },
     "abilities": [
       {
@@ -22615,7 +24027,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1528,
+      "atk2_base": 1528,
+      "atk1p_base": 2203.077,
+      "atk2p_base": 2203.077
     },
     "abilities": [
       {
@@ -22679,7 +24095,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1169,
+      "atk2_base": 1169,
+      "atk1p_base": 2250.256,
+      "atk2p_base": 2250.256
     },
     "abilities": [
       {
@@ -22743,7 +24163,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1802,
+      "atk2_base": 1802,
+      "atk1p_base": 2514.615,
+      "atk2p_base": 2514.615
     },
     "abilities": [
       {
@@ -22807,7 +24231,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1202,
+      "atk2_base": 901,
+      "atk1p_base": 1802.564,
+      "atk2p_base": 901.026
     },
     "abilities": [
       {
@@ -22871,7 +24299,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1507,
+      "atk2_base": 903,
+      "atk1p_base": 2113.846,
+      "atk2p_base": 1355.897
     },
     "abilities": [
       {
@@ -22935,7 +24367,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1258,
+      "atk2_base": 1258,
+      "atk1p_base": 1979.231,
+      "atk2p_base": 1979.231
     },
     "abilities": [
       {
@@ -22999,7 +24435,11 @@
         "atk1_AOE": true,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 849,
+      "atk2_base": 1477,
+      "atk1p_base": 1448.974,
+      "atk2p_base": 2380.0
     },
     "abilities": [
       {
@@ -23063,7 +24503,11 @@
         "atk1_AOE": true,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 922,
+      "atk2_base": 948,
+      "atk1p_base": 1384.359,
+      "atk2p_base": 1419.231
     },
     "abilities": [
       {
@@ -23127,7 +24571,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 835,
+      "atk2_base": 854,
+      "atk1p_base": 1263.59,
+      "atk2p_base": 1291.282
     },
     "abilities": [
       {
@@ -23191,7 +24639,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1321,
+      "atk2_base": 952,
+      "atk1p_base": 1963.59,
+      "atk2p_base": 1478.974
     },
     "abilities": [
       {
@@ -23255,7 +24707,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1981,
+      "atk2_base": 1981,
+      "atk1p_base": 3344.359,
+      "atk2p_base": 3344.359
     },
     "abilities": [
       {
@@ -23319,7 +24775,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1533,
+      "atk2_base": 1533,
+      "atk1p_base": 2136.923,
+      "atk2p_base": 2136.923
     },
     "abilities": [
       {
@@ -23383,7 +24843,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1024,
+      "atk2_base": 894,
+      "atk1p_base": 1273.846,
+      "atk2p_base": 894.359
     },
     "abilities": [
       {
@@ -23447,7 +24911,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1475,
+      "atk2_base": 1475,
+      "atk1p_base": 1947.949,
+      "atk2p_base": 1947.949
     },
     "abilities": [
       {
@@ -23511,7 +24979,11 @@
         "atk1_AOE": true,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 779,
+      "atk2_base": 779,
+      "atk1p_base": 1478.974,
+      "atk2p_base": 2142.051
     },
     "abilities": [
       {
@@ -23575,7 +25047,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1769,
+      "atk2_base": 1026,
+      "atk1p_base": 2717.949,
+      "atk2p_base": 1884.615
     },
     "abilities": [
       {
@@ -23639,7 +25115,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1278,
+      "atk2_base": 1278,
+      "atk1p_base": 2866.41,
+      "atk2p_base": 2988.974
     },
     "abilities": [
       {
@@ -23703,7 +25183,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1426,
+      "atk2_base": 1426,
+      "atk1p_base": 2195.897,
+      "atk2p_base": 1426.154
     },
     "abilities": [
       {
@@ -23767,7 +25251,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1570,
+      "atk2_base": 1185,
+      "atk1p_base": 2772.308,
+      "atk2p_base": 2100.0
     },
     "abilities": [
       {
@@ -23831,7 +25319,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1426,
+      "atk2_base": 1426,
+      "atk1p_base": 2798.205,
+      "atk2p_base": 2798.205
     },
     "abilities": [
       {
@@ -23895,7 +25387,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1808,
+      "atk2_base": 1808,
+      "atk1p_base": 2698.462,
+      "atk2p_base": 2698.462
     },
     "abilities": [
       {
@@ -23959,7 +25455,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1395,
+      "atk2_base": 1395,
+      "atk1p_base": 2162.821,
+      "atk2p_base": 2226.154
     },
     "abilities": [
       {
@@ -24023,7 +25523,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1110,
+      "atk2_base": 1110,
+      "atk1p_base": 1699.231,
+      "atk2p_base": 1699.231
     },
     "abilities": [
       {
@@ -24087,7 +25591,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1808,
+      "atk2_base": 1808,
+      "atk1p_base": 2714.359,
+      "atk2p_base": 2714.359
     },
     "abilities": [
       {
@@ -24151,7 +25659,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 2034,
+      "atk2_base": 2034,
+      "atk1p_base": 3227.179,
+      "atk2p_base": 3227.179
     },
     "abilities": [
       {
@@ -24217,7 +25729,11 @@
         "atk1_AOE": true,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 810,
+      "atk2_base": 1421,
+      "atk1p_base": 1438.462,
+      "atk2p_base": 2331.026
     },
     "abilities": [
       {
@@ -24281,7 +25797,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1348,
+      "atk2_base": 1348,
+      "atk1p_base": 2617.949,
+      "atk2p_base": 2021.026
     },
     "abilities": [
       {
@@ -24345,7 +25865,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1332,
+      "atk2_base": 1332,
+      "atk1p_base": 2177.179,
+      "atk2p_base": 1722.051
     },
     "abilities": [
       {
@@ -24409,7 +25933,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1886,
+      "atk2_base": 1886,
+      "atk1p_base": 3048.718,
+      "atk2p_base": 3048.718
     },
     "abilities": [
       {
@@ -24473,7 +26001,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1790,
+      "atk2_base": 1790,
+      "atk1p_base": 2644.359,
+      "atk2p_base": 2644.359
     },
     "abilities": [
       {
@@ -24537,7 +26069,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 2072,
+      "atk2_base": 1437,
+      "atk1p_base": 2906.667,
+      "atk2p_base": 2159.744
     },
     "abilities": [
       {
@@ -24601,7 +26137,11 @@
         "atk1_AOE": true,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 719,
+      "atk2_base": 1438,
+      "atk1p_base": 1340.256,
+      "atk2p_base": 2434.359
     },
     "abilities": [
       {
@@ -24665,7 +26205,11 @@
         "atk1_AOE": true,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1297,
+      "atk2_base": 1297,
+      "atk1p_base": 2004.103,
+      "atk2p_base": 2004.103
     },
     "abilities": [
       {
@@ -24729,7 +26273,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1549,
+      "atk2_base": 1549,
+      "atk1p_base": 3227.179,
+      "atk2p_base": 3227.179
     },
     "abilities": [
       {
@@ -24793,7 +26341,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1424,
+      "atk2_base": 1017,
+      "atk1p_base": 2486.667,
+      "atk2p_base": 1984.615
     },
     "abilities": [
       {
@@ -24857,7 +26409,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 892,
+      "atk2_base": 774,
+      "atk1p_base": 1338.974,
+      "atk2p_base": 1164.103
     },
     "abilities": [
       {
@@ -24921,7 +26477,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1412,
+      "atk2_base": 1004,
+      "atk1p_base": 2294.359,
+      "atk2p_base": 1550.256
     },
     "abilities": [
       {
@@ -24985,7 +26545,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1316,
+      "atk2_base": 1463,
+      "atk1p_base": 2194.615,
+      "atk2p_base": 1462.821
     },
     "abilities": [
       {
@@ -25049,7 +26613,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1738,
+      "atk2_base": 1108,
+      "atk1p_base": 2612.821,
+      "atk2p_base": 1567.692
     },
     "abilities": [
       {
@@ -25113,7 +26681,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1458,
+      "atk2_base": 947,
+      "atk1p_base": 2544.615,
+      "atk2p_base": 1457.949
     },
     "abilities": [
       {
@@ -25177,7 +26749,11 @@
         "atk1_AOE": false,
         "atk2_gene": "neutro",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 933,
+      "atk2_base": 466,
+      "atk1p_base": 1398.205,
+      "atk2p_base": 698.205
     },
     "abilities": [
       {
@@ -25241,7 +26817,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1365,
+      "atk2_base": 1365,
+      "atk1p_base": 2047.436,
+      "atk2p_base": 2047.436
     },
     "abilities": [
       {
@@ -25305,7 +26885,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 859,
+      "atk2_base": 859,
+      "atk1p_base": 1289.744,
+      "atk2p_base": 1289.744
     },
     "abilities": [
       {
@@ -25368,7 +26952,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1512,
+      "atk2_base": 1512,
+      "atk1p_base": 2267.692,
+      "atk2p_base": 2267.692
     },
     "abilities": [
       {
@@ -25432,7 +27020,11 @@
         "atk1_AOE": false,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1256,
+      "atk2_base": 1256,
+      "atk1p_base": 1884.615,
+      "atk2p_base": 1884.615
     },
     "abilities": [
       {
@@ -25496,7 +27088,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1822,
+      "atk2_base": 1822,
+      "atk1p_base": 2885.641,
+      "atk2p_base": 2885.641
     },
     "abilities": [
       {
@@ -25560,7 +27156,11 @@
         "atk1_AOE": false,
         "atk2_gene": "f",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1202,
+      "atk2_base": 1202,
+      "atk1p_base": 1706.154,
+      "atk2p_base": 1706.154
     },
     "abilities": [
       {
@@ -25624,7 +27224,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1197,
+      "atk2_base": 1197,
+      "atk1p_base": 1900.256,
+      "atk2p_base": 1900.256
     },
     "abilities": [
       {
@@ -25688,7 +27292,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1309,
+      "atk2_base": 1309,
+      "atk1p_base": 3029.231,
+      "atk2p_base": 2213.846
     },
     "abilities": [
       {
@@ -25752,7 +27360,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1710,
+      "atk2_base": 1216,
+      "atk1p_base": 2603.846,
+      "atk2p_base": 2068.718
     },
     "abilities": [
       {
@@ -25816,7 +27428,11 @@
         "atk1_AOE": false,
         "atk2_gene": "d",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 2585,
+      "atk2_base": 1690,
+      "atk1p_base": 3382.821,
+      "atk2p_base": 2584.615
     },
     "abilities": [
       {
@@ -25880,7 +27496,11 @@
         "atk1_AOE": false,
         "atk2_gene": "b",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 546,
+      "atk2_base": 546,
+      "atk1p_base": 818.974,
+      "atk2p_base": 818.974
     },
     "abilities": [
       {
@@ -25944,7 +27564,11 @@
         "atk1_AOE": true,
         "atk2_gene": "e",
         "atk2_AOE": false
-      }
+      },
+      "atk1_base": 1015,
+      "atk2_base": 1659,
+      "atk1p_base": 1652.308,
+      "atk2p_base": 2554.872
     },
     "abilities": [
       {
@@ -26008,7 +27632,11 @@
         "atk1_AOE": false,
         "atk2_gene": "a",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1302,
+      "atk2_base": 929,
+      "atk1p_base": 1944.359,
+      "atk2p_base": 1436.923
     },
     "abilities": [
       {
@@ -26072,7 +27700,11 @@
         "atk1_AOE": false,
         "atk2_gene": "c",
         "atk2_AOE": true
-      }
+      },
+      "atk1_base": 1967,
+      "atk2_base": 1458,
+      "atk1p_base": 2525.385,
+      "atk2p_base": 1967.179
     },
     "abilities": [
       {
