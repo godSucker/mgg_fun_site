@@ -1,0 +1,11 @@
+---
+// Импортируем общий лэйаут и ваш калькулятор статов
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import StatsCalculator from '@/components/StatsCalculator.svelte';
+---
+
+<BaseLayout title="Калькулятор статов">
+  <h1 class="text-2xl font-bold mb-4">Stats Calculator</h1>
+  <!-- Подключаем Svelte‑компонент на стороне клиента -->
+  <StatsCalculator client:load />
+</BaseLayout>

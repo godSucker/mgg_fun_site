@@ -2,37 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CardGrid from '../../components/CardGrid.astro';
 ---
-
 <BaseLayout title="Симуляторы">
   <h1>Симуляторы</h1>
-  <p>Выберите симулятор, чтобы протестировать его работу. Каждый симулятор рассчитывает награды и шансы в реальном времени.</p>
+  <p>Выберите симулятор, чтобы протестировать его работу. Каждый симулятор
+  рассчитывает награды и шансы в реальном времени.</p>
   <CardGrid
     cards={[
       {
-        title: 'Cash Roulette',
-        desc: 'Классический симулятор денежной рулетки',
-        href: './cash',
+        title: 'Breeding',
+        desc: 'Скрещивания мутантов',
+        href: 'simulators/breeding',
       },
       {
-        title: 'Mutants Madness',
-        desc: 'Тематическая рулетка с мутантами',
-        href: './mutants_madness',
+        title: 'Stats Calculator',
+        desc: 'Калькулятор статов мутантов',
+        href: 'simulators/stats',         // ← новая карточка
       },
-      {
-        title: 'Lucky Slots',
-        desc: 'Слоты с различными уровнями наград',
-        href: './lucky_slots',
-      },
-      {
-        title: 'Черная дыра',
-        desc: 'Симулятор крафта и поглощения ресурсов',
-        href: './craft',
-      },
-      {
-        title: 'Реактор',
-        desc: 'Гача-механика с мутантами',
-        href: './reactor',
-      },
+      // ... остальные карточки ...
     ]}
   />
 </BaseLayout>

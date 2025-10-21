@@ -1,5 +1,4 @@
 <script lang="ts">
-  import StatsCard from '@/components/StatsCard.svelte';
   import { createEventDispatcher, onMount, onDestroy, tick } from 'svelte';
   import {
     STAR_LABEL,
@@ -398,7 +397,6 @@ $: displayBingo = (() => {
 </script>
 
 {#if open}
-<StatsCard {mutant} {star} />
 <div
   class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-start md:items-center justify-center p-2 md:p-3 overflow-y-auto overscroll-contain"
   on:click|self={close}

@@ -7,17 +7,17 @@
   // and `atk2p_base` which are used to calculate attack values on
   // arbitrary levels.  If you add more star tiers in the future, append
   // them to this array in the same order.
-  import normalData from '../../normal_updated.json';
-  import bronzeData from '../../bronze_updated.json';
-  import silverData from '../../silver_updated.json';
-  import goldData from '../../gold_updated.json';
-  import platinumData from '../../platinum_updated.json';
+   import normalData from '@/data/mutants/normal.json';
+  import bronzeData from '@/data/mutants/bronze.json';
+  import silverData from '@/data/mutants/silver.json';
+  import goldData from '@/data/mutants/gold.json';
+  import platinumData from '@/data/mutants/platinum.json';
 
   // Import all orbs.  Each orb has `id`, `name`, `percent` and
   // `description` fields.  We use the `id` to build a path for its
   // image (e.g. `/orbs/${id}.png`).  Basic orbs can be attached to
   // normal slots and special orbs attach to the special slot.
-  import allOrbs from '../../orbs.json';
+  import allOrbs from '@/data/materials/orbs.json';
 
   /**
    * The list of datasets grouped by star level.  Index 0 is the
@@ -75,7 +75,7 @@
     let list = normalData;
     if (selectedGene !== 'all') {
       const g = selectedGene.toUpperCase();
-      list = list.filter(m => Array.isArray(m.genes) && m.genes.some((v: string) => v.toUpperCase().startsWith(g)));
+      list = list.filter(m => Array.isArray(m.genes) && m.genes.some((v: string) => v.toUpperCase().includes(g)));
     }
     if (searchTerm.trim()) {
       const lc = searchTerm.trim().toLowerCase();
@@ -90,7 +90,7 @@
    * selection.  Star and level remain unchanged so you can quickly
    * compare different variants.
    */
-  function selectMutant(mutant) {
+      function selectMutant(mutant) {
     selectedMutant = mutant;
     // Reset orbs when changing mutant
     basicSlots = [null, null, null, null];
@@ -126,12 +126,21 @@
     const lvl = levelValue;
     // HP calculation
     let hp = baseEntry.base_stats.lvl1.hp * (lvl / 10 + 0.9);
-    // Attack1 base selection
-    let a1base = lvl < 10 ? baseEntry.base_stats.atk1_base : baseEntry.base_stats.atk1p_base;
-    let atk1 = a1base * (lvl / 10 + 0.9);
-    // Attack2 base selection
-    let a2base = lvl < 15 ? baseEntry.base_stats.atk2_base : baseEntry.base_stats.atk2p_base;
-    let atk2 = a2base * (lvl / 10 + 0.9);
+        // Attack1 base selection. If custom base fields are missing (e.g. in legacy JSON), derive them from level 1/30 stats.
+        const atk1BaseLvl1 = baseEntry.base_stats.atk1_base ?? baseEntry.base_stats.lvl1?.atk1 ?? 0;
+        // atk1p_base corresponds to the boosted attack at level 10+, derived from level 30 stats when missing
+        const atk1pBase = baseEntry.base_stats.atk1p_base ?? (baseEntry.base_stats?.lvl30?.atk1
+          ? baseEntry.base_stats.lvl30.atk1 / 3.9
+          : atk1BaseLvl1);
+        const a1base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
+        let atk1 = a1base * (lvl / 10 + 0.9);
+        // Attack2 base selection. If custom base fields are missing (e.g. in legacy JSON), derive them from level 1/30 stats.
+        const atk2BaseLvl1 = baseEntry.base_stats.atk2_base ?? baseEntry.base_stats.lvl1?.atk2 ?? 0;
+        const atk2pBase = baseEntry.base_stats.atk2p_base ?? (baseEntry.base_stats?.lvl30?.atk2
+          ? baseEntry.base_stats.lvl30.atk2 / 3.9
+          : atk2BaseLvl1);
+        const a2base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
+        let atk2 = a2base * (lvl / 10 + 0.9);
     // Speed is constant
     let spd = baseEntry.base_stats.lvl1.spd;
     // Apply orb bonuses
@@ -147,6 +156,16 @@
         hp *= (1 + pct / 100);
       } else if (nameLower.includes('speed') || nameLower.includes('скорость')) {
         spd += pct;
+      }
+
+      /**
+       * Normalize an image path to ensure it is served from the site root.
+       * Mutant image paths in the data are relative (e.g. `textures_by_mutant/a_01/A_01_normal.png`).
+       * Prepending a leading slash ensures Astro serves them from the `/public` folder.
+       */
+      function normalizeImage(path: string) {
+        if (!path) return '';
+        return path.startsWith('/') ? path : `/${path}`;
       }
     };
     // Apply basic orbs
@@ -251,19 +270,27 @@
       bind:value={searchTerm}
       class="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
     />
-    <!-- Mutant selection dropdown -->
+    <!-- Mutant selection grid -->
     {#if searchTerm.trim().length > 0 && candidateMutants.length > 0}
-      <div class="bg-gray-800 border border-gray-700 mt-2 rounded max-h-60 overflow-y-auto">
-        {#each candidateMutants.slice(0, 12) as m}
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 mt-2 max-h-80 overflow-y-auto p-1">
+        {#each candidateMutants.slice(0, 40) as m}
           <div
-            class="flex items-center p-2 hover:bg-gray-700 cursor-pointer"
+            class="cursor-pointer bg-gray-800 hover:bg-gray-700 p-2 rounded text-center"
             on:click={() => { selectMutant(m); searchTerm = m.name; }}
           >
-            <img src={m.image[1] || m.image[0]} alt={m.name} class="w-8 h-8 mr-2" />
-            <span class="flex-1 text-sm text-white">{m.name}</span>
-            <div class="flex space-x-1">
+            <img
+              src={normalizeImage(m.image[1] || m.image[0])}
+              alt={m.name}
+              class="w-10 h-10 mx-auto mb-1"
+            />
+            <div class="text-xs text-white truncate">{m.name}</div>
+            <div class="flex justify-center space-x-0.5 mt-1">
               {#each m.genes as g}
-                <img src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-4 h-4" />
+                <img
+                  src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'}
+                  alt={g}
+                  class="w-3 h-3"
+                />
               {/each}
             </div>
           </div>
@@ -351,8 +378,12 @@
   {#if selectedMutant && currentStats}
     <div class="mx-auto max-w-xs bg-gray-800 rounded-lg p-4 text-white">
       <h3 class="text-xl font-bold mb-2 text-center">{currentStats.name}</h3>
-      <div class="relative w-32 h-32 mx-auto mb-2">
-        <img src={selectedMutant.image[0]} alt={currentStats.name} class="w-full h-full object-cover rounded" />
+          <div class="relative w-32 h-32 mx-auto mb-2">
+            <img
+              src={normalizeImage(selectedMutant.image[0])}
+              alt={currentStats.name}
+              class="w-full h-full object-cover rounded"
+            />
         <!-- Genes overlay -->
         <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-1 mb-1">
           {#each currentStats.genes as g}
