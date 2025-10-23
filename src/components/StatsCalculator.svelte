@@ -7,21 +7,52 @@
   import goldData from '@/data/mutants/gold.json';
   import platinumData from '@/data/mutants/platinum.json';
   import allOrbs from '@/data/materials/orbs.json';
+  import { ABILITY_RU } from '@/lib/mutant-dicts';
 
   const starDatasets = [normalData, bronzeData, silverData, goldData, platinumData];
 
+  function canonicalId(id: string | undefined) {
+    if (!id) return '';
+    return id.replace(/_(bronze|silver|gold|platinum)$/i, '');
+  }
+
+  const starMaps = starDatasets.map(dataset => {
+    const map = new Map<string, any>();
+    dataset.forEach((entry: any) => {
+      const key = canonicalId(entry.id);
+      const hasStarSuffix = /_(bronze|silver|gold|platinum)$/i.test(entry.id ?? '');
+      const existing = map.get(key);
+      if (!existing) {
+        map.set(key, entry);
+        return;
+      }
+      const existingHasSuffix = /_(bronze|silver|gold|platinum)$/i.test(existing.id ?? '');
+      if (!hasStarSuffix || (hasStarSuffix && existingHasSuffix)) {
+        if (!hasStarSuffix || existingHasSuffix) {
+          map.set(key, entry);
+        }
+      }
+    });
+    return map;
+  });
+
   const geneFilters: { key: string; icon: string; title: string }[] = [
     { key: 'all', icon: '/genes/gene_all.png', title: 'Все' },
-    { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Galactic' },
-    { key: 'B', icon: '/genes/icon_gene_b.png', title: 'Zoomorph' },
-    { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Cyber' },
-    { key: 'D', icon: '/genes/icon_gene_d.png', title: 'Saber' },
-    { key: 'E', icon: '/genes/icon_gene_e.png', title: 'Necro' },
-    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Mythic' }
+    { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Рубака' },
+    { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Кибер' },
+    { key: 'E', icon: '/genes/icon_gene_e.png', title: 'Галактик' },
+    { key: 'B', icon: '/genes/icon_gene_b.png', title: 'Зомби' },
+    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Мифик' },
+    { key: 'D', icon: '/genes/icon_gene_d.png', title: 'Зверь' }
   ];
 
-  const starLabels = ['Normal', 'Bronze', 'Silver', 'Gold', 'Platinum'];
-  const starIcons = ['/stars/no_stars.png', '/stars/star_bronze.png', '/stars/star_silver.png', '/stars/star_gold.png', '/stars/star_platinum.png'];
+  const starOptions = [
+    { level: 0, label: 'Обычный', icon: '/stars/no_stars.png' },
+    { level: 1, label: 'Бронза', icon: '/stars/star_bronze.png' },
+    { level: 2, label: 'Серебро', icon: '/stars/star_silver.png' },
+    { level: 3, label: 'Золото', icon: '/stars/star_gold.png' },
+    { level: 4, label: 'Платина', icon: '/stars/star_platinum.png' }
+  ];
 
   const sortOptions = [
     { value: 'name', label: 'Имя (А-Я)' },
@@ -38,9 +69,6 @@
 
   const basicSlotImage = '/orbs/basic/orb_slot.png';
   const specialSlotImage = '/orbs/special/orb_slot_spe.png';
-
-  const levelSliderId = 'mutant-level-slider';
-  const starSliderId = 'mutant-star-slider';
 
   function filterByKeywords(orbs: typeof allOrbs, keywords: string[]) {
     const lowered = keywords.map(k => k.toLowerCase());
@@ -97,8 +125,15 @@
   let searchTerm = '';
   let selectedSort = 'name';
   let selectedMutant: any = null;
+  let selectedMutantKey = '';
   let starLevel = 0;
   let levelValue = 30;
+  let levelText = '30';
+  const levelInputId = 'mutant-level-input';
+
+  let currentBase: any = null;
+  let currentStats: any = null;
+  let displayMutant: any = null;
 
   let basicSlots: (any | null)[] = [null, null, null, null];
   let specialSlot: any | null = null;
@@ -110,11 +145,89 @@
     return path.startsWith('/') ? path : `/${path}`;
   }
 
+  function clampLevelNumber(value: number) {
+    if (Number.isNaN(value)) return 1;
+    return Math.min(Math.max(Math.round(value), 1), 100);
+  }
+
+  function clampStarNumber(value: number) {
+    if (Number.isNaN(value)) return 0;
+    return Math.min(Math.max(Math.round(value), 0), starOptions.length - 1);
+  }
+
+  function handleLevelInput(event: Event) {
+    const input = event.currentTarget as HTMLInputElement;
+    const numericText = input.value.replace(/[^0-9]/g, '');
+    levelText = numericText;
+    if (numericText === '') {
+      return;
+    }
+    const parsed = Number(numericText);
+    const clamped = clampLevelNumber(parsed);
+    levelValue = clamped;
+    if (String(clamped) !== numericText) {
+      levelText = String(clamped);
+    }
+  }
+
+  function handleLevelBlur() {
+    if (levelText === '') {
+      levelValue = 1;
+      levelText = '1';
+      return;
+    }
+    const parsed = Number(levelText);
+    const clamped = clampLevelNumber(parsed);
+    levelValue = clamped;
+    levelText = String(clamped);
+  }
+
+  function getOrbImageCandidates(orb: any) {
+    const id = orb?.id?.toLowerCase?.();
+    if (!id) return [];
+    const candidates = new Set<string>();
+    const base = id.replace(/\.png$/i, '');
+    candidates.add(base);
+    if (base.includes('_ephemeral')) {
+      candidates.add(base.replace(/_ephemeral_.+$/, ''));
+    }
+    if (/_\d+$/.test(base)) {
+      candidates.add(base.replace(/_\d+$/, ''));
+    }
+    if (base.includes('_add') && base.includes('_special_')) {
+      candidates.add(base.replace('_add', '_'));
+    }
+    return Array.from(candidates);
+  }
+
+  const orbImageCandidatesCache = new Map<string, string[]>();
+
   function orbImagePath(orb: any) {
     if (!orb?.id) return '';
     const isSpecial = orb.id.toLowerCase().includes('special');
     const folder = isSpecial ? 'special' : 'basic';
-    return `/orbs/${folder}/${orb.id}.png`;
+    const candidates = getOrbImageCandidates(orb);
+    if (!candidates.length) return '';
+    orbImageCandidatesCache.set(orb.id, candidates);
+    return `/orbs/${folder}/${candidates[0]}.png`;
+  }
+
+  function handleOrbImageError(event: Event, orb: any) {
+    const img = event.currentTarget as HTMLImageElement;
+    const id = orb?.id;
+    if (!id) return;
+    const isSpecial = id.toLowerCase().includes('special');
+    const folder = isSpecial ? 'special' : 'basic';
+    const candidates = orbImageCandidatesCache.get(id) ?? getOrbImageCandidates(orb);
+    const currentIndex = Number(img.dataset.fallbackIndex ?? '0');
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < candidates.length) {
+      img.dataset.fallbackIndex = String(nextIndex);
+      img.src = `/orbs/${folder}/${candidates[nextIndex]}.png`;
+    } else {
+      img.dataset.fallbackIndex = String(nextIndex);
+      img.src = isSpecial ? specialSlotImage : basicSlotImage;
+    }
   }
 
   function typeLabel(type: string) {
@@ -150,15 +263,34 @@
     return '';
   }
 
-  function formatAbilityName(ability: any) {
-    if (!ability) return '';
-    if (typeof ability === 'string') {
-      return ability.replace(/_/g, ' ');
+  function fallbackAbilityName(value: string) {
+    return value.replace(/_/g, ' ');
+  }
+
+  function abilityLabel(name: string) {
+    if (!name) return 'Неизвестная способность';
+    const normalized = name.replace(/_plus$/i, '');
+    return (
+      ABILITY_RU[name] ||
+      ABILITY_RU[normalized] ||
+      fallbackAbilityName(name)
+    );
+  }
+
+  function formatPercent(value: number) {
+    if (!Number.isFinite(value)) return '0';
+    if (Math.abs(value - Math.round(value)) < 0.001) {
+      return Math.round(value).toString();
     }
-    if (typeof ability.name === 'string') {
-      return ability.name.replace(/_/g, ' ');
+    return value.toFixed(1);
+  }
+
+  function formatMultiplier(value: number) {
+    if (!Number.isFinite(value)) return '1';
+    if (Math.abs(value - Math.round(value)) < 0.001) {
+      return Math.round(value).toString();
     }
-    return '';
+    return value.toFixed(2);
   }
 
   function getSortValue(mutant: any, key: string) {
@@ -208,7 +340,11 @@
   }
 
   function selectMutant(mutant: any) {
-    selectedMutant = mutant;
+    if (!mutant) return;
+    selectedMutantKey = canonicalId(mutant.id);
+    selectedMutant = starMaps[0].get(selectedMutantKey) ?? mutant;
+    levelValue = clampLevelNumber(levelValue);
+    levelText = String(levelValue);
     basicSlots = [null, null, null, null];
     specialSlot = null;
     openOrbMenu = null;
@@ -216,72 +352,161 @@
   }
 
   function getCurrentBase() {
-    if (!selectedMutant) return undefined;
-    const dataset = starDatasets[starLevel] || normalData;
-    return dataset.find((m: any) => m.id === selectedMutant.id);
+    if (!selectedMutantKey) return undefined;
+    const datasetMap = starMaps[starLevel] || starMaps[0];
+    return datasetMap.get(selectedMutantKey) || starMaps[0].get(selectedMutantKey) || null;
   }
 
-  function applyOrb(orb: any, stats: { hp: number; atk1: number; atk2: number; spd: number }) {
-    if (!orb) return;
-    const pct = parseFloat(orb.percent);
-    const name = orb.name.toLowerCase();
-    if (name.includes('атака') || name.includes('attack') || name.includes('усилен') || name.includes('strength')) {
-      stats.atk1 *= 1 + pct / 100;
-      stats.atk2 *= 1 + pct / 100;
-    } else if (name.includes('hp') || name.includes('жизн') || name.includes('здоров') || name.includes('life')) {
-      stats.hp *= 1 + pct / 100;
-    } else if (name.includes('speed') || name.includes('скорост')) {
-      stats.spd += pct;
-    } else if (name.includes('щит') || name.includes('shield')) {
-      stats.hp *= 1 + pct / 100;
+  const abilityPatterns = [
+    { key: 'shield', tokens: ['shield'] },
+    { key: 'strengthen', tokens: ['strengthen'] },
+    { key: 'weaken', tokens: ['weaken'] },
+    { key: 'slash', tokens: ['slash'] },
+    { key: 'retaliate', tokens: ['retaliate'] },
+    { key: 'regen', tokens: ['regen', 'regenerate'] }
+  ];
+
+  function boostAbility(abilities: any[], key: string, amount: number, addIfMissing: boolean) {
+    const lowerKey = key.toLowerCase();
+    const matches = abilities.filter(ab => ab.name?.toLowerCase()?.includes(lowerKey));
+    if (matches.length) {
+      matches.forEach(ab => {
+        const bonus = Number.isFinite(ab.orbBonus) ? Number(ab.orbBonus) : 0;
+        ab.orbBonus = bonus + amount;
+        const current = Number.isFinite(ab.pct) ? Number(ab.pct) : 0;
+        ab.pct = current + amount;
+      });
+      return;
+    }
+    if (addIfMissing) {
+      abilities.push({
+        name: `ability_${key}`,
+        pct: amount,
+        basePct: 0,
+        orbBonus: amount,
+        addedByOrb: true
+      });
     }
   }
 
-  function computeStats() {
-    const baseEntry: any = getCurrentBase();
+  function applyOrbEffects(orb: any, modifiers: { attack: number; hp: number; speed: number }, abilities: any[]) {
+    if (!orb) return;
+    const id = orb.id?.toLowerCase?.();
+    const percentValue = Number(orb.percent ?? 0);
+    if (!id || Number.isNaN(percentValue)) return;
+    if (id.includes('attack')) {
+      modifiers.attack += percentValue;
+    }
+    if (id.includes('life') || id.includes('health')) {
+      modifiers.hp += percentValue;
+    }
+    if (id.includes('speed')) {
+      modifiers.speed += percentValue;
+    }
+    const amount = Math.abs(percentValue);
+    for (const pattern of abilityPatterns) {
+      if (pattern.tokens.some(token => id.includes(`add${token}`))) {
+        boostAbility(abilities, pattern.key, amount, true);
+        return;
+      }
+    }
+    for (const pattern of abilityPatterns) {
+      if (pattern.tokens.some(token => id.includes(`_${token}`))) {
+        boostAbility(abilities, pattern.key, amount, true);
+        return;
+      }
+    }
+  }
+
+  function prepareAbilities(baseAbilities: any[]) {
+    return baseAbilities
+      .map(ab => ({
+        ...ab,
+        pct: Number(ab.pct ?? 0),
+        basePct: Number(ab.basePct ?? ab.pct ?? 0),
+        orbBonus: Number(ab.orbBonus ?? 0),
+        addedByOrb: Boolean(ab.addedByOrb)
+      }))
+      .filter(ab => ab.pct > 0 || ab.basePct > 0 || ab.addedByOrb || ab.orbBonus > 0)
+      .map(ab => ({
+        ...ab,
+        label: abilityLabel(ab.name),
+        isPlus: /_plus$/i.test(ab.name ?? '')
+      }));
+  }
+
+  function computeStats(baseEntry: any) {
     if (!baseEntry) return null;
-    const lvl = levelValue;
-    const hpBase = baseEntry.base_stats?.lvl1?.hp ?? 0;
-    let hp = hpBase * (lvl / 10 + 0.9);
+    const lvl = clampLevelNumber(levelValue);
+    if (lvl !== levelValue) {
+      levelValue = lvl;
+      levelText = String(lvl);
+    }
+    const hpBase = Number(baseEntry.base_stats?.lvl1?.hp ?? 0);
+    const hp = hpBase * (lvl / 10 + 0.9);
 
-    const atk1BaseLvl1 = baseEntry.base_stats?.atk1_base ?? baseEntry.base_stats?.lvl1?.atk1 ?? 0;
-    const atk1pBase = baseEntry.base_stats?.atk1p_base ?? (baseEntry.base_stats?.lvl30?.atk1 ? baseEntry.base_stats.lvl30.atk1 / 3.9 : atk1BaseLvl1);
-    const a1base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
-    let atk1 = a1base * (lvl / 10 + 0.9);
+    const atk1BaseLvl1 = Number(baseEntry.base_stats?.atk1_base ?? baseEntry.base_stats?.lvl1?.atk1 ?? 0);
+    const atk1pBase = Number(
+      baseEntry.base_stats?.atk1p_base ??
+        (baseEntry.base_stats?.lvl30?.atk1 ? baseEntry.base_stats.lvl30.atk1 / 3.9 : atk1BaseLvl1)
+    );
+    const atk1Base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
+    const atk1 = atk1Base * (lvl / 10 + 0.9);
 
-    const atk2BaseLvl1 = baseEntry.base_stats?.atk2_base ?? baseEntry.base_stats?.lvl1?.atk2 ?? 0;
-    const atk2pBase = baseEntry.base_stats?.atk2p_base ?? (baseEntry.base_stats?.lvl30?.atk2 ? baseEntry.base_stats.lvl30.atk2 / 3.9 : atk2BaseLvl1);
-    const a2base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
-    let atk2 = a2base * (lvl / 10 + 0.9);
+    const atk2BaseLvl1 = Number(baseEntry.base_stats?.atk2_base ?? baseEntry.base_stats?.lvl1?.atk2 ?? 0);
+    const atk2pBase = Number(
+      baseEntry.base_stats?.atk2p_base ??
+        (baseEntry.base_stats?.lvl30?.atk2 ? baseEntry.base_stats.lvl30.atk2 / 3.9 : atk2BaseLvl1)
+    );
+    const atk2Base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
+    const atk2 = atk2Base * (lvl / 10 + 0.9);
 
-    let spd = baseEntry.base_stats?.lvl1?.spd ?? 0;
+    const spdBase = Number(baseEntry.base_stats?.lvl1?.spd ?? 0);
 
-    const stats = { hp, atk1, atk2, spd };
-    basicSlots.forEach(orb => applyOrb(orb, stats));
-    applyOrb(specialSlot, stats);
+    const modifiers = { attack: 0, hp: 0, speed: 0 };
+    const abilities = (baseEntry.abilities ? baseEntry.abilities.map((ab: any) => ({
+      ...ab,
+      pct: Number(ab.pct ?? 0),
+      basePct: Number(ab.pct ?? 0),
+      orbBonus: 0,
+      addedByOrb: false
+    })) : []) as any[];
+
+    basicSlots.forEach(orb => applyOrbEffects(orb, modifiers, abilities));
+    applyOrbEffects(specialSlot, modifiers, abilities);
+
+    const attackMultiplier = 1 + modifiers.attack / 100;
+    const hpMultiplier = 1 + modifiers.hp / 100;
+    const speedMultiplier = 1 + modifiers.speed / 100;
 
     return {
-      hp: Math.round(stats.hp),
-      atk1: Math.round(stats.atk1),
-      atk2: Math.round(stats.atk2),
-      spd: Number(stats.spd.toFixed(2)),
+      hp: Math.round(hp * hpMultiplier),
+      atk1: Math.round(atk1 * attackMultiplier),
+      atk2: Math.round(atk2 * attackMultiplier),
+      spd: Number((spdBase * speedMultiplier).toFixed(2)),
       name: baseEntry.name,
       image: baseEntry.image,
       genes: baseEntry.genes,
       type: baseEntry.type,
-      bingo: baseEntry.bingo,
-      abilities: baseEntry.abilities,
+      abilities: prepareAbilities(abilities),
       name_attack1: baseEntry.name_attack1,
       name_attack2: baseEntry.name_attack2,
-      name_attack3: baseEntry.name_attack3
+      name_attack3: baseEntry.name_attack3,
+      multiplier: Number(baseEntry.multiplier ?? 1)
     };
   }
 
-  $: currentStats = computeStats();
+  $: if (starLevel !== clampStarNumber(starLevel)) {
+    starLevel = clampStarNumber(starLevel);
+  }
+
+  $: currentBase = getCurrentBase();
+  $: currentStats = computeStats(currentBase);
+  $: displayMutant = currentBase ?? selectedMutant;
 
   $: basicSlotCount = (() => {
-    if (!selectedMutant) return 0;
-    return selectedMutant.type && selectedMutant.type.toUpperCase() === 'HEROIC' ? 4 : 3;
+    if (!currentBase) return 0;
+    return currentBase.type && currentBase.type.toUpperCase() === 'HEROIC' ? 4 : 3;
   })();
 
   function applyRecommendedSet(setId: string) {
@@ -442,11 +667,11 @@
     </aside>
 
     <section class="mutant-card p-6 lg:p-8">
-      {#if selectedMutant && currentStats}
+      {#if displayMutant && currentStats}
         <div class="flex flex-col gap-6">
           <header class="bg-black/30 border border-white/10 rounded-2xl px-5 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p class="text-xs uppercase tracking-[0.3em] text-gray-400">Recommended Orbs</p>
+              <p class="text-xs uppercase tracking-[0.3em] text-gray-400">Рекомендуемые сферы</p>
               <h1 class="text-2xl font-semibold mt-1 text-gray-100">{currentStats.name}</h1>
             </div>
             <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -471,10 +696,10 @@
             <div class="lg:w-1/2 flex flex-col items-center text-center gap-4">
               <div class="relative">
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-violet-500/30 border border-violet-400/60 rounded-full px-4 py-1 text-xs uppercase tracking-[0.3em] text-violet-100">
-                  {starLabels[starLevel]}
+                  {starOptions[starLevel]?.label || 'Обычный'}
                 </div>
                 <img
-                  src={normalizeImage(currentStats.image?.[0] || selectedMutant.image?.[0])}
+                  src={normalizeImage(currentStats.image?.[0] || displayMutant.image?.[0])}
                   alt={currentStats.name}
                   class="w-44 h-44 rounded-3xl object-cover border border-white/10 shadow-lg"
                 />
@@ -487,7 +712,13 @@
                     >
                       <img src={basicSlotImage} alt="orb slot" class="w-full h-full" />
                       {#if basicSlots[i]}
-                        <img src={orbImagePath(basicSlots[i])} alt={basicSlots[i].name} class="absolute inset-0 object-contain" />
+                        <img
+                          src={orbImagePath(basicSlots[i])}
+                          alt={basicSlots[i].name}
+                          class="absolute inset-0 object-contain"
+                          data-fallback-index="0"
+                          on:error={(event) => handleOrbImageError(event, basicSlots[i])}
+                        />
                       {/if}
                     </button>
                     {#if openOrbMenu === i}
@@ -520,7 +751,13 @@
                   >
                     <img src={specialSlotImage} alt="special slot" class="w-full h-full" />
                     {#if specialSlot}
-                      <img src={orbImagePath(specialSlot)} alt={specialSlot.name} class="absolute inset-0 object-contain" />
+                      <img
+                        src={orbImagePath(specialSlot)}
+                        alt={specialSlot.name}
+                        class="absolute inset-0 object-contain"
+                        data-fallback-index="0"
+                        on:error={(event) => handleOrbImageError(event, specialSlot)}
+                      />
                     {/if}
                   </button>
                   {#if openOrbMenu === 'special'}
@@ -536,7 +773,13 @@
                             openOrbMenu = null;
                           }}
                         >
-                          <img src={orbImagePath(orb)} alt={orb.name} class="w-8 h-8" />
+                          <img
+                            src={orbImagePath(orb)}
+                            alt={orb.name}
+                            class="w-8 h-8"
+                            data-fallback-index="0"
+                            on:error={(event) => handleOrbImageError(event, orb)}
+                          />
                           <div class="text-left">
                             <div class="text-sm text-gray-100">{orb.name}</div>
                             <div class="text-xs text-gray-500">{orb.description}</div>
@@ -549,28 +792,53 @@
               </div>
 
               <div class="flex items-center gap-3 mt-10">
-                {#if typeIcon(selectedMutant.type)}
-                  <img src={typeIcon(selectedMutant.type)} alt={typeLabel(selectedMutant.type)} class="w-10 h-10" />
+                {#if typeIcon(displayMutant.type)}
+                  <img src={typeIcon(displayMutant.type)} alt={typeLabel(displayMutant.type)} class="w-10 h-10" />
                 {/if}
                 <div class="text-left">
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.3em]">{typeLabel(selectedMutant.type)}</div>
-                  <div class="text-2xl font-semibold text-gray-100">Level {levelValue}</div>
+                  <div class="text-sm text-gray-400 uppercase tracking-[0.3em]">{typeLabel(displayMutant.type)}</div>
+                  <div class="text-2xl font-semibold text-gray-100">Уровень {levelValue}</div>
                 </div>
               </div>
 
-              <div class="w-full bg-black/30 border border-white/10 rounded-2xl px-4 py-4 space-y-3">
+              <div class="w-full bg-black/30 border border-white/10 rounded-2xl px-4 py-4 space-y-4">
                 <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={levelSliderId}>Уровень мутанта</label>
+                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={levelInputId}>Уровень мутанта</label>
                   <div class="flex items-center gap-3 mt-2">
-                    <input id={levelSliderId} type="range" min="1" max="100" step="1" bind:value={levelValue} class="flex-1 accent-violet-400" />
-                    <span class="w-12 text-right text-sm text-gray-200">{levelValue}</span>
+                    <input
+                      id={levelInputId}
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      value={levelText}
+                      on:input={handleLevelInput}
+                      on:blur={handleLevelBlur}
+                      class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-center text-sm text-gray-100 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-400"
+                    />
+                    <span class="px-3 py-2 text-xs uppercase tracking-[0.3em] text-gray-400 border border-white/10 rounded-lg bg-black/40">
+                      lvl
+                    </span>
                   </div>
                 </div>
                 <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={starSliderId}>Звёздность</label>
-                  <div class="flex items-center gap-3 mt-2">
-                    <input id={starSliderId} type="range" min="0" max="4" step="1" bind:value={starLevel} class="flex-1 accent-violet-400" />
-                    <img src={starIcons[starLevel]} alt={starLabels[starLevel]} class="w-10 h-10" />
+                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400">Звёздность</label>
+                  <div class="mt-3 flex flex-col gap-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                      {#each starOptions as option}
+                        <button
+                          type="button"
+                          class={`p-1.5 rounded-full border transition ${starLevel === option.level ? 'border-violet-400 bg-violet-500/20 shadow-lg shadow-violet-500/20' : 'border-white/10 hover:border-violet-300/60 bg-black/40'}`}
+                          on:click={() => starLevel = option.level}
+                          aria-label={`Звезда ${option.label}`}
+                        >
+                          <img src={option.icon} alt={option.label} class="w-9 h-9" />
+                        </button>
+                      {/each}
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-gray-400">
+                      <span>{starOptions[starLevel]?.label || 'Обычный'}</span>
+                      <span>Множитель: ×{formatMultiplier(currentStats.multiplier)}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -598,22 +866,24 @@
                   <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">Speed</div>
                   <div class="text-lg font-semibold text-[#ffd76d]">{currentStats.spd}</div>
                 </div>
-                <div class="stat-row">
-                  <img src="/etc/icon_bingo.png" alt="Bingo" class="w-6 h-6" />
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">Bingo</div>
-                  <div class="text-lg font-semibold text-[#c2ff6d]">{currentStats.bingo?.[0] ?? '-'}</div>
-                </div>
               </div>
 
               <div class="mt-6 bg-black/25 border border-white/10 rounded-2xl px-5 py-4 space-y-3">
-                <div class="text-xs uppercase tracking-[0.3em] text-gray-400">Abilities</div>
+                <div class="text-xs uppercase tracking-[0.3em] text-gray-400">Способности</div>
                 {#if currentStats.abilities?.length}
-                  <div class="text-sm text-gray-200">
-                    {formatAbilityName(currentStats.abilities[0])}
-                    {#if currentStats.abilities[0]?.value_atk1_lvl1}
-                      <span class="text-gray-500"> · {currentStats.abilities[0].value_atk1_lvl1}%</span>
-                    {/if}
-                  </div>
+                  <ul class="space-y-2">
+                    {#each currentStats.abilities as ability}
+                      <li class="flex items-center justify-between text-sm text-gray-200">
+                        <span>{ability.label}{ability.isPlus ? ' +' : ''}</span>
+                        <span class="text-gray-300">
+                          {formatPercent(ability.pct)}%
+                          {#if ability.orbBonus > 0}
+                            <span class="text-violet-200">(+{formatPercent(ability.orbBonus)}%)</span>
+                          {/if}
+                        </span>
+                      </li>
+                    {/each}
+                  </ul>
                 {:else}
                   <div class="text-sm text-gray-500">Нет дополнительных способностей.</div>
                 {/if}
