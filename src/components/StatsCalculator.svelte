@@ -36,7 +36,7 @@
     return map;
   });
 
-  const geneFilters: { key: string; icon: string; title: string }[] = [
+  const geneOptions: { key: string; icon: string; title: string }[] = [
     { key: 'all', icon: '/genes/gene_all.png', title: 'Все' },
     { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Рубака' },
     { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Кибер' },
@@ -598,7 +598,7 @@
       </div>
 
       <div class="flex flex-wrap gap-3">
-        {#each geneFilters as gf}
+        {#each geneOptions as gf}
           <button
             type="button"
             class="gene-chip flex items-center gap-2 rounded-full px-3 py-1.5 border transition {selectedGene === gf.key ? 'border-violet-400 bg-violet-500/20' : 'border-transparent bg-black/30'}"
@@ -646,7 +646,7 @@
               <img src={normalizeImage(mutant.image?.[1] || mutant.image?.[0])} alt={mutant.name} class="w-14 h-14 rounded-xl object-cover border border-white/10" />
               <div class="absolute -bottom-1 right-1 flex -space-x-1">
                 {#each mutant.genes?.slice(0, 2) as g}
-                  <img src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-4 h-4 border border-black rounded-full" />
+                  <img src={geneOptions.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-4 h-4 border border-black rounded-full" />
                 {/each}
               </div>
             </div>
