@@ -23,7 +23,12 @@ export default defineConfig({
     },
     server: {
       host: true,
-      allowedHosts: ['.ru.tuna.am','.nl.tuna.am'],
+      allowedHosts: ['.ru.tuna.am', '.nl.tuna.am'],
+      watch: {
+        usePolling: true,
+        interval: 1000,
+        ignored: ['**/.venv_orb/**', '**/.venv/**'],
+      },
     },
   },
 })
