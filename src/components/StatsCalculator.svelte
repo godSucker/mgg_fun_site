@@ -14,16 +14,21 @@
 
   const geneFilters: { key: string; icon: string; title: string }[] = [
     { key: 'all', icon: '/genes/gene_all.png', title: 'Все' },
-    { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Galactic' },
-    { key: 'B', icon: '/genes/icon_gene_b.png', title: 'Zoomorph' },
-    { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Cyber' },
-    { key: 'D', icon: '/genes/icon_gene_d.png', title: 'Saber' },
-    { key: 'E', icon: '/genes/icon_gene_e.png', title: 'Necro' },
-    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Mythic' }
+    { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Рубака' },
+    { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Кибер' },
+    { key: 'E', icon: '/genes/icon_gene_e.png', title: 'Галактик' },
+    { key: 'B', icon: '/genes/icon_gene_b.png', title: 'Зомби' },
+    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Мифик' },
+    { key: 'D', icon: '/genes/icon_gene_d.png', title: 'Зверь' }
   ];
 
-  const starLabels = ['Normal', 'Bronze', 'Silver', 'Gold', 'Platinum'];
-  const starIcons = ['/stars/no_stars.png', '/stars/star_bronze.png', '/stars/star_silver.png', '/stars/star_gold.png', '/stars/star_platinum.png'];
+  const starOptions = [
+    { level: 0, label: 'Обычный', icon: '/stars/no_stars.png' },
+    { level: 1, label: 'Бронза', icon: '/stars/star_bronze.png' },
+    { level: 2, label: 'Серебро', icon: '/stars/star_silver.png' },
+    { level: 3, label: 'Золото', icon: '/stars/star_gold.png' },
+    { level: 4, label: 'Платина', icon: '/stars/star_platinum.png' }
+  ];
 
   function canonicalId(id: string | undefined) {
     if (!id) return '';
@@ -147,6 +152,12 @@
 
   let starLevel = 0;
   let levelValue = 30;
+  let levelText = '30';
+  const levelInputId = 'mutant-level-input';
+
+  let currentBase: any = null;
+  let currentStats: any = null;
+  let displayMutant: any = null;
 
   let selectedMutantKey = '';
   let starLevel = 0;
@@ -170,11 +181,89 @@
 
   }
 
+  function clampLevelNumber(value: number) {
+    if (Number.isNaN(value)) return 1;
+    return Math.min(Math.max(Math.round(value), 1), 100);
+  }
+
+  function clampStarNumber(value: number) {
+    if (Number.isNaN(value)) return 0;
+    return Math.min(Math.max(Math.round(value), 0), starOptions.length - 1);
+  }
+
+  function handleLevelInput(event: Event) {
+    const input = event.currentTarget as HTMLInputElement;
+    const numericText = input.value.replace(/[^0-9]/g, '');
+    levelText = numericText;
+    if (numericText === '') {
+      return;
+    }
+    const parsed = Number(numericText);
+    const clamped = clampLevelNumber(parsed);
+    levelValue = clamped;
+    if (String(clamped) !== numericText) {
+      levelText = String(clamped);
+    }
+  }
+
+  function handleLevelBlur() {
+    if (levelText === '') {
+      levelValue = 1;
+      levelText = '1';
+      return;
+    }
+    const parsed = Number(levelText);
+    const clamped = clampLevelNumber(parsed);
+    levelValue = clamped;
+    levelText = String(clamped);
+  }
+
+  function getOrbImageCandidates(orb: any) {
+    const id = orb?.id?.toLowerCase?.();
+    if (!id) return [];
+    const candidates = new Set<string>();
+    const base = id.replace(/\.png$/i, '');
+    candidates.add(base);
+    if (base.includes('_ephemeral')) {
+      candidates.add(base.replace(/_ephemeral_.+$/, ''));
+    }
+    if (/_\d+$/.test(base)) {
+      candidates.add(base.replace(/_\d+$/, ''));
+    }
+    if (base.includes('_add') && base.includes('_special_')) {
+      candidates.add(base.replace('_add', '_'));
+    }
+    return Array.from(candidates);
+  }
+
+  const orbImageCandidatesCache = new Map<string, string[]>();
+
   function orbImagePath(orb: any) {
     if (!orb?.id) return '';
     const isSpecial = orb.id.toLowerCase().includes('special');
     const folder = isSpecial ? 'special' : 'basic';
-    return `/orbs/${folder}/${orb.id}.png`;
+    const candidates = getOrbImageCandidates(orb);
+    if (!candidates.length) return '';
+    orbImageCandidatesCache.set(orb.id, candidates);
+    return `/orbs/${folder}/${candidates[0]}.png`;
+  }
+
+  function handleOrbImageError(event: Event, orb: any) {
+    const img = event.currentTarget as HTMLImageElement;
+    const id = orb?.id;
+    if (!id) return;
+    const isSpecial = id.toLowerCase().includes('special');
+    const folder = isSpecial ? 'special' : 'basic';
+    const candidates = orbImageCandidatesCache.get(id) ?? getOrbImageCandidates(orb);
+    const currentIndex = Number(img.dataset.fallbackIndex ?? '0');
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < candidates.length) {
+      img.dataset.fallbackIndex = String(nextIndex);
+      img.src = `/orbs/${folder}/${candidates[nextIndex]}.png`;
+    } else {
+      img.dataset.fallbackIndex = String(nextIndex);
+      img.src = isSpecial ? specialSlotImage : basicSlotImage;
+    }
   }
 
 
@@ -305,8 +394,13 @@
     if (typeof ability === 'string') {
       return ability.replace(/_/g, ' ');
     }
-    if (typeof ability.name === 'string') {
-      return ability.name.replace(/_/g, ' ');
+    return value.toFixed(1);
+  }
+
+  function formatMultiplier(value: number) {
+    if (!Number.isFinite(value)) return '1';
+    if (Math.abs(value - Math.round(value)) < 0.001) {
+      return Math.round(value).toString();
     }
     return '';
 
@@ -410,44 +504,127 @@
     return dataset.find((m: any) => m.id === selectedMutant.id);
   }
 
-  function applyOrb(orb: any, stats: { hp: number; atk1: number; atk2: number; spd: number }) {
-    if (!orb) return;
-    const pct = parseFloat(orb.percent);
-    const name = orb.name.toLowerCase();
-    if (name.includes('атака') || name.includes('attack') || name.includes('усилен') || name.includes('strength')) {
-      stats.atk1 *= 1 + pct / 100;
-      stats.atk2 *= 1 + pct / 100;
-    } else if (name.includes('hp') || name.includes('жизн') || name.includes('здоров') || name.includes('life')) {
-      stats.hp *= 1 + pct / 100;
-    } else if (name.includes('speed') || name.includes('скорост')) {
-      stats.spd += pct;
-    } else if (name.includes('щит') || name.includes('shield')) {
-      stats.hp *= 1 + pct / 100;
+  const abilityPatterns = [
+    { key: 'shield', tokens: ['shield'] },
+    { key: 'strengthen', tokens: ['strengthen'] },
+    { key: 'weaken', tokens: ['weaken'] },
+    { key: 'slash', tokens: ['slash'] },
+    { key: 'retaliate', tokens: ['retaliate'] },
+    { key: 'regen', tokens: ['regen', 'regenerate'] }
+  ];
+
+  function boostAbility(abilities: any[], key: string, amount: number, addIfMissing: boolean) {
+    const lowerKey = key.toLowerCase();
+    const matches = abilities.filter(ab => ab.name?.toLowerCase()?.includes(lowerKey));
+    if (matches.length) {
+      matches.forEach(ab => {
+        const bonus = Number.isFinite(ab.orbBonus) ? Number(ab.orbBonus) : 0;
+        ab.orbBonus = bonus + amount;
+        const current = Number.isFinite(ab.pct) ? Number(ab.pct) : 0;
+        ab.pct = current + amount;
+      });
+      return;
+    }
+    if (addIfMissing) {
+      abilities.push({
+        name: `ability_${key}`,
+        pct: amount,
+        basePct: 0,
+        orbBonus: amount,
+        addedByOrb: true
+      });
     }
   }
 
-  function computeStats() {
-    const baseEntry: any = getCurrentBase();
+  function applyOrbEffects(orb: any, modifiers: { attack: number; hp: number; speed: number }, abilities: any[]) {
+    if (!orb) return;
+    const id = orb.id?.toLowerCase?.();
+    const percentValue = Number(orb.percent ?? 0);
+    if (!id || Number.isNaN(percentValue)) return;
+    if (id.includes('attack')) {
+      modifiers.attack += percentValue;
+    }
+    if (id.includes('life') || id.includes('health')) {
+      modifiers.hp += percentValue;
+    }
+    if (id.includes('speed')) {
+      modifiers.speed += percentValue;
+    }
+    const amount = Math.abs(percentValue);
+    for (const pattern of abilityPatterns) {
+      if (pattern.tokens.some(token => id.includes(`add${token}`))) {
+        boostAbility(abilities, pattern.key, amount, true);
+        return;
+      }
+    }
+    for (const pattern of abilityPatterns) {
+      if (pattern.tokens.some(token => id.includes(`_${token}`))) {
+        boostAbility(abilities, pattern.key, amount, true);
+        return;
+      }
+    }
+  }
+
+  function prepareAbilities(baseAbilities: any[]) {
+    return baseAbilities
+      .map(ab => ({
+        ...ab,
+        pct: Number(ab.pct ?? 0),
+        basePct: Number(ab.basePct ?? ab.pct ?? 0),
+        orbBonus: Number(ab.orbBonus ?? 0),
+        addedByOrb: Boolean(ab.addedByOrb)
+      }))
+      .filter(ab => ab.pct > 0 || ab.basePct > 0 || ab.addedByOrb || ab.orbBonus > 0)
+      .map(ab => ({
+        ...ab,
+        label: abilityLabel(ab.name),
+        isPlus: /_plus$/i.test(ab.name ?? '')
+      }));
+  }
+
+  function computeStats(baseEntry: any) {
     if (!baseEntry) return null;
-    const lvl = levelValue;
-    const hpBase = baseEntry.base_stats?.lvl1?.hp ?? 0;
-    let hp = hpBase * (lvl / 10 + 0.9);
+    const lvl = clampLevelNumber(levelValue);
+    if (lvl !== levelValue) {
+      levelValue = lvl;
+      levelText = String(lvl);
+    }
+    const hpBase = Number(baseEntry.base_stats?.lvl1?.hp ?? 0);
+    const hp = hpBase * (lvl / 10 + 0.9);
 
-    const atk1BaseLvl1 = baseEntry.base_stats?.atk1_base ?? baseEntry.base_stats?.lvl1?.atk1 ?? 0;
-    const atk1pBase = baseEntry.base_stats?.atk1p_base ?? (baseEntry.base_stats?.lvl30?.atk1 ? baseEntry.base_stats.lvl30.atk1 / 3.9 : atk1BaseLvl1);
-    const a1base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
-    let atk1 = a1base * (lvl / 10 + 0.9);
+    const atk1BaseLvl1 = Number(baseEntry.base_stats?.atk1_base ?? baseEntry.base_stats?.lvl1?.atk1 ?? 0);
+    const atk1pBase = Number(
+      baseEntry.base_stats?.atk1p_base ??
+        (baseEntry.base_stats?.lvl30?.atk1 ? baseEntry.base_stats.lvl30.atk1 / 3.9 : atk1BaseLvl1)
+    );
+    const atk1Base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
+    const atk1 = atk1Base * (lvl / 10 + 0.9);
 
-    const atk2BaseLvl1 = baseEntry.base_stats?.atk2_base ?? baseEntry.base_stats?.lvl1?.atk2 ?? 0;
-    const atk2pBase = baseEntry.base_stats?.atk2p_base ?? (baseEntry.base_stats?.lvl30?.atk2 ? baseEntry.base_stats.lvl30.atk2 / 3.9 : atk2BaseLvl1);
-    const a2base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
-    let atk2 = a2base * (lvl / 10 + 0.9);
+    const atk2BaseLvl1 = Number(baseEntry.base_stats?.atk2_base ?? baseEntry.base_stats?.lvl1?.atk2 ?? 0);
+    const atk2pBase = Number(
+      baseEntry.base_stats?.atk2p_base ??
+        (baseEntry.base_stats?.lvl30?.atk2 ? baseEntry.base_stats.lvl30.atk2 / 3.9 : atk2BaseLvl1)
+    );
+    const atk2Base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
+    const atk2 = atk2Base * (lvl / 10 + 0.9);
 
-    let spd = baseEntry.base_stats?.lvl1?.spd ?? 0;
+    const spdBase = Number(baseEntry.base_stats?.lvl1?.spd ?? 0);
 
-    const stats = { hp, atk1, atk2, spd };
-    basicSlots.forEach(orb => applyOrb(orb, stats));
-    applyOrb(specialSlot, stats);
+    const modifiers = { attack: 0, hp: 0, speed: 0 };
+    const abilities = (baseEntry.abilities ? baseEntry.abilities.map((ab: any) => ({
+      ...ab,
+      pct: Number(ab.pct ?? 0),
+      basePct: Number(ab.pct ?? 0),
+      orbBonus: 0,
+      addedByOrb: false
+    })) : []) as any[];
+
+    basicSlots.forEach(orb => applyOrbEffects(orb, modifiers, abilities));
+    applyOrbEffects(specialSlot, modifiers, abilities);
+
+    const attackMultiplier = 1 + modifiers.attack / 100;
+    const hpMultiplier = 1 + modifiers.hp / 100;
+    const speedMultiplier = 1 + modifiers.speed / 100;
 
     return {
       hp: Math.round(stats.hp),
@@ -597,11 +774,18 @@
       abilities: baseEntry.abilities,
       name_attack1: baseEntry.name_attack1,
       name_attack2: baseEntry.name_attack2,
-      name_attack3: baseEntry.name_attack3
+      name_attack3: baseEntry.name_attack3,
+      multiplier: Number(baseEntry.multiplier ?? 1)
     };
   }
 
-  $: currentStats = computeStats();
+  $: if (starLevel !== clampStarNumber(starLevel)) {
+    starLevel = clampStarNumber(starLevel);
+  }
+
+  $: currentBase = getCurrentBase();
+  $: currentStats = computeStats(currentBase);
+  $: displayMutant = currentBase ?? selectedMutant;
 
   $: basicSlotCount = (() => {
     if (!selectedMutant) return 0;
@@ -718,7 +902,7 @@
       </div>
 
       <div class="flex flex-wrap gap-3">
-        {#each geneFilters as gf}
+        {#each geneOptions as gf}
           <button
             type="button"
             class="gene-chip flex items-center gap-2 rounded-full px-3 py-1.5 border transition {selectedGene === gf.key ? 'border-violet-400 bg-violet-500/20' : 'border-transparent bg-black/30'}"
@@ -766,7 +950,7 @@
               <img src={normalizeImage(mutant.image?.[1] || mutant.image?.[0])} alt={mutant.name} class="w-14 h-14 rounded-xl object-cover border border-white/10" />
               <div class="absolute -bottom-1 right-1 flex -space-x-1">
                 {#each mutant.genes?.slice(0, 2) as g}
-                  <img src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-4 h-4 border border-black rounded-full" />
+                  <img src={geneOptions.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-4 h-4 border border-black rounded-full" />
                 {/each}
               </div>
             </div>
@@ -944,17 +1128,28 @@
                   <img src={typeIcon(selectedMutant.type)} alt={typeLabel(selectedMutant.type)} class="w-10 h-10" />
                 {/if}
                 <div class="text-left">
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.3em]">{typeLabel(selectedMutant.type)}</div>
-                  <div class="text-2xl font-semibold text-gray-100">Level {levelValue}</div>
+                  <div class="text-sm text-gray-400 uppercase tracking-[0.3em]">{typeLabel(displayMutant.type)}</div>
+                  <div class="text-2xl font-semibold text-gray-100">Уровень {levelValue}</div>
                 </div>
               </div>
 
-              <div class="w-full bg-black/30 border border-white/10 rounded-2xl px-4 py-4 space-y-3">
+              <div class="w-full bg-black/30 border border-white/10 rounded-2xl px-4 py-4 space-y-4">
                 <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={levelSliderId}>Уровень мутанта</label>
+                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={levelInputId}>Уровень мутанта</label>
                   <div class="flex items-center gap-3 mt-2">
-                    <input id={levelSliderId} type="range" min="1" max="100" step="1" bind:value={levelValue} class="flex-1 accent-violet-400" />
-                    <span class="w-12 text-right text-sm text-gray-200">{levelValue}</span>
+                    <input
+                      id={levelInputId}
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      value={levelText}
+                      on:input={handleLevelInput}
+                      on:blur={handleLevelBlur}
+                      class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-center text-sm text-gray-100 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-400"
+                    />
+                    <span class="px-3 py-2 text-xs uppercase tracking-[0.3em] text-gray-400 border border-white/10 rounded-lg bg-black/40">
+                      lvl
+                    </span>
                   </div>
                 </div>
                 <div>
@@ -1047,7 +1242,7 @@
               </div>
 
               <div class="mt-6 bg-black/25 border border-white/10 rounded-2xl px-5 py-4 space-y-3">
-                <div class="text-xs uppercase tracking-[0.3em] text-gray-400">Abilities</div>
+                <div class="text-xs uppercase tracking-[0.3em] text-gray-400">Способности</div>
                 {#if currentStats.abilities?.length}
                   <div class="text-sm text-gray-200">
                     {formatAbilityName(currentStats.abilities[0])}
