@@ -1,6 +1,10 @@
 <script>
   // ДАННЫЕ
   import mutantsRaw from '@/data/mutants/normal.json';
+  import bronzeRaw from '@/data/mutants/bronze.json';
+  import silverRaw from '@/data/mutants/silver.json';
+  import goldRaw from '@/data/mutants/gold.json';
+  import platinumRaw from '@/data/mutants/platinum.json';
   import orbsRaw from '@/data/materials/orbs.json';
 
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
@@ -12,7 +16,24 @@
     E: 'Мифик',     // purple
     F: 'Рубака',    // red
   };
-  const GENE_ICON = (g) => `/genes/icon_gene_${(g || '').toLowerCase()}.png`;
+  const GENE_ICON = {
+    '': '/genes/icon_gene_all.png',
+    A: '/genes/icon_gene_a.png',
+    B: '/genes/icon_gene_b.png',
+    C: '/genes/icon_gene_c.png',
+    D: '/genes/icon_gene_d.png',
+    E: '/genes/icon_gene_e.png',
+    F: '/genes/icon_gene_f.png',
+  };
+  const STAR_KEYS = ['normal','bronze','silver','gold','platinum'];
+  const STAR_ICON = {
+    0: '/stars/no_stars.png',
+    1: '/stars/star_bronze.png',
+    2: '/stars/star_silver.png',
+    3: '/stars/star_gold.png',
+    4: '/stars/star_platinum.png'
+  };
+  const starAux = buildStarAuxiliary();
 
   const byNameAsc  = (a, b) => a.name.localeCompare(b.name, 'ru');
   const byNameDesc = (a, b) => b.name.localeCompare(a.name, 'ru');
@@ -21,38 +42,97 @@
   // Нормализуем мутантов из normal.json
   function normalizeMutants(raw) {
     return raw.map((m) => {
-      // предполагаем: m.genes — массив букв ['A','D'] или строка 'AD'
-      const genes = Array.isArray(m.genes) ? m.genes : String(m.genes||'').split('');
+      const baseId = baseIdOf(m);
+      const genesRaw = Array.isArray(m.genes) ? m.genes : [m.genes];
+      const genes = genesRaw
+        .filter(Boolean)
+        .flatMap((g) => String(g || '').toUpperCase().split(''))
+        .filter(Boolean);
       const geneKey = genes.join('');
-      // изображение: массив путей, где 0 — normal, 1..4 — bronze..platinum
-      const images = Array.isArray(m.image) ? m.image : [m.image].filter(Boolean);
-      // звёздные множители, если есть (bronze/silver/gold/platinum)
-      const starMul = m.stars || m.starMultipliers || {};
+      const images = normalizeImages(m.image);
+      const baseStats = m.base_stats || {};
+      const lvl1 = baseStats.lvl1 || {};
+      const lvl30 = baseStats.lvl30 || {};
+      const hpBase = numberOr(baseStats.hp_base, numberOr(lvl1.hp, 0));
+      const atk1Base = numberOr(baseStats.atk1_base, numberOr(lvl1.atk1, 0));
+      const atk1pBase = numberOr(baseStats.atk1p_base, numberOr(lvl30.atk1, atk1Base));
+      const atk2Base = numberOr(baseStats.atk2_base, numberOr(lvl1.atk2, 0));
+      const atk2pBase = numberOr(baseStats.atk2p_base, numberOr(lvl30.atk2, atk2Base));
+      const speed = numberOr(baseStats.speed_base, numberOr(lvl30.spd, numberOr(lvl1.spd, m.speed)));
+      const rarity = readableRarity(m);
+      const starMultipliers = {
+        0: 1,
+        1: starAux.bronze?.get(baseId)?.multiplier ?? 1,
+        2: starAux.silver?.get(baseId)?.multiplier ?? 1,
+        3: starAux.gold?.get(baseId)?.multiplier ?? 1,
+        4: starAux.platinum?.get(baseId)?.multiplier ?? 1,
+      };
       return {
-        id: m.id ?? m.slug ?? m.name,
+        id: baseId,
+        baseId,
         name: m.name,
-        rarity: m.rarity || m.type || 'Default',
+        rarity,
         genes,
         geneKey,
         images,
-        hp1: Number(m.hp) || Number(m.lifePoint) || 0,
-        atk1: numTag(m,'atk1') ?? 0,
-        atk1p: numTag(m,'atk1p') ?? numTag(m,'atk1P') ?? numTag(m,'atk1_plus') ?? 0,
-        atk2: numTag(m,'atk2') ?? 0,
-        atk2p: numTag(m,'atk2p') ?? numTag(m,'atk2P') ?? numTag(m,'atk2_plus') ?? 0,
-        speed: Number(m.speed) || Number(tag(m,'speed')) || 0,
+        hpBase,
+        atk1Base,
+        atk1PlusBase: atk1pBase,
+        atk2Base,
+        atk2PlusBase: atk2pBase,
+        speed,
         abilities: normalizeAbilities(m),
-        starMultipliers: {
-          0: 1.0,
-          1: starMul.bronze ?? starMul['1'] ?? 1.0,
-          2: starMul.silver ?? starMul['2'] ?? 1.0,
-          3: starMul.gold ??   starMul['3'] ?? 1.0,
-          4: starMul.platinum ?? starMul['4'] ?? 1.0,
-        },
+        starMultipliers,
         // heroic: 4 базовых + 1 спец, иначе 3 + 1
         slots: (m.category || m.rarity || '').toLowerCase() === 'heroic' ? 4 : 3,
       };
     });
+  }
+  function buildStarAuxiliary(){
+    const datasets = {
+      bronze: bronzeRaw,
+      silver: silverRaw,
+      gold: goldRaw,
+      platinum: platinumRaw,
+    };
+    const result = {};
+    for (const [key, list] of Object.entries(datasets)) {
+      const map = new Map();
+      (Array.isArray(list) ? list : []).forEach((entry) => {
+        const baseId = baseIdOf(entry);
+        if (!baseId) return;
+        map.set(baseId, {
+          multiplier: numberOr(entry?.multiplier ?? entry?.star_multiplier, 1),
+          images: normalizeImages(entry?.image),
+        });
+      });
+      result[key] = map;
+    }
+    return result;
+  }
+  function baseIdOf(m){
+    const raw = String(m?.id ?? m?.slug ?? m?.specimen ?? m?.name ?? '').trim();
+    return raw.replace(/_(bronze|silver|gold|platinum)$/i, '');
+  }
+  function readableRarity(m){
+    const raw = m?.tier ?? m?.rarity ?? m?.type ?? '';
+    if (!raw) return 'Default';
+    return String(raw).replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+  function normalizeImages(img){
+    const arr = Array.isArray(img) ? img : [img];
+    return arr
+      .map((p) => {
+        const s = String(p || '').trim();
+        if (!s) return '';
+        const clean = s.replace(/^\/+/, '');
+        return `/${clean}`;
+      })
+      .filter(Boolean);
+  }
+  function numberOr(val, fallback){
+    const num = Number(val);
+    return Number.isFinite(num) ? num : (fallback ?? 0);
   }
   function tag(m, key) {
     // поддержка формата с m.tags: [{key,value}] или m[key]
@@ -62,15 +142,24 @@
     }
     return m[key] ?? null;
   }
-  function numTag(m, key) {
-    const v = tag(m, key);
-    const n = Number(String(v||'').replace(/[^\d.-]/g, ''));
-    return Number.isFinite(n) ? n : null;
-  }
   function normalizeAbilities(m){
     // abilities могут храниться как строка "a;b" или массив
     const ab = m.abilities ?? tag(m,'abilities') ?? [];
-    if (Array.isArray(ab)) return ab;
+    if (Array.isArray(ab)) {
+      return ab
+        .map((item) => {
+          if (!item) return null;
+          if (typeof item === 'string') return item.trim();
+          if (typeof item === 'object') {
+            const name = String(item.name ?? item.id ?? '').trim();
+            const pct = Number(item.pct);
+            const pctStr = Number.isFinite(pct) && pct !== 0 ? ` (${pct > 0 ? '+' : ''}${pct}%)` : '';
+            return name ? `${name}${pctStr}` : null;
+          }
+          return null;
+        })
+        .filter(Boolean);
+    }
     if (typeof ab === 'string') return ab.split(/[;,]/).map(s=>s.trim()).filter(Boolean);
     return [];
   }
@@ -124,9 +213,23 @@
   }
 
   function pickImage(m, stars){
-    // если в m.images есть варианты по звёздам — берём по индексу
-    // 0: normal, 1: bronze, 2: silver, 3: gold, 4: platinum
-    return (m.images && m.images[stars] ? m.images[stars] : (m.images?.[0] || ''));
+    if (!m) return '';
+    const key = STAR_KEYS[stars] ?? 'normal';
+    if (key === 'normal') {
+      return pickImageFromList(m.images, 'normal');
+    }
+    const info = starAux[key]?.get(m.baseId);
+    const candidate = pickImageFromList(info?.images, key) || pickImageFromList(m.images, 'normal');
+    return candidate || '';
+  }
+  function pickImageFromList(list, starKey){
+    const arr = Array.isArray(list) ? list : [];
+    if (!arr.length) return '';
+    const want = String(starKey || 'normal').toLowerCase();
+    return (
+      arr.find((p) => p.toLowerCase().includes(want)) ||
+      arr[0]
+    );
   }
 
   // Применение модификаторов сфер (проценты)
@@ -155,9 +258,9 @@
     const mulLvl = (Number(lvl)/10 + 0.9);
 
     // БАЗА
-    let hp  = (m.hp1 || 0) * mulLvl;
-    let a1b = (Number(lvl) < 10 ? m.atk1 : (m.atk1p || m.atk1));
-    let a2b = (Number(lvl) < 15 ? m.atk2 : (m.atk2p || m.atk2));
+    let hp  = (m.hpBase || 0) * mulLvl;
+    let a1b = (Number(lvl) < 10 ? m.atk1Base : (m.atk1PlusBase || m.atk1Base));
+    let a2b = (Number(lvl) < 15 ? m.atk2Base : (m.atk2PlusBase || m.atk2Base));
     let atk1 = (a1b || 0) * mulLvl;
     let atk2 = (a2b || 0) * mulLvl;
 
@@ -228,7 +331,7 @@
           class="gene-chip"
           on:click={() => toggleGene(g)}
           title={GENE_NAME[g]}>
-          <img src={GENE_ICON(g)} alt={g} />
+          <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
         </button>
       {/each}
 
@@ -250,12 +353,12 @@
     <div class="list">
       {#each filtered as m (m.id)}
         <button class="mut-row {selected?.id===m.id ? 'active' : ''}" on:click={() => selectMutant(m)}>
-          <img class="mut-icon" src={"/textures_by_mutant/" + (m.images?.[0] || '')} alt={m.name} />
+          <img class="mut-icon" src={m.images?.[0] || ''} alt={m.name} />
           <div class="mut-meta">
             <div class="name">{m.name}</div>
             <div class="genes">
               {#each m.genes as g}
-                <img src={GENE_ICON(g)} alt={g} title={GENE_NAME[g]} />
+                <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} title={GENE_NAME[g]} />
               {/each}
             </div>
           </div>
@@ -271,7 +374,7 @@
       <header class="title">{selected.name}</header>
 
       <div class="mut-figure">
-        <img class="texture" src={"/textures_by_mutant/" + pickImage(selected, stars)} alt={selected.name} />
+        <img class="texture" src={pickImage(selected, stars)} alt={selected.name} />
       </div>
 
       <!-- слоты сфер — единственные интерактивные -->
@@ -332,7 +435,7 @@
               <button class={"star "+(stars>=s?'on':'')}
                 on:click={() => stars = s}
                 title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
-                <img src={"/stars/"+(s===0?'star_none.png': s===1?'star_bronze.png': s===2?'star_silver.png': s===3?'star_gold.png':'star_platinum.png')} alt="*" />
+                <img src={STAR_ICON[s]} alt="*" />
               </button>
             {/each}
           </div>
