@@ -1,340 +1,412 @@
-<script lang="ts">
+<script>
   // ДАННЫЕ
-  import mutantsRaw from "@/data/mutants/normal.json";
-  import orbsRaw from "@/data/materials/orbs.json";
+  import mutantsRaw from '@/data/mutants/normal.json';
+  import orbsRaw from '@/data/materials/orbs.json';
 
-  // ──────────────────────────────────────────────────────────────────────────────
-  // УТИЛИТЫ
-
-  type GeneLetter = "a" | "b" | "c" | "d" | "e" | "f";
-  const GENE_LABEL: Record<GeneLetter, string> = {
-    a: "Кибер",
-    b: "Зомби",
-    c: "Зверь",
-    d: "Рубака",
-    e: "Галактик",
-    f: "Мифик"
+  // --- УТИЛИТЫ И КОНСТАНТЫ ---
+  const GENE_NAME = {
+    A: 'Кибер',     // yellow
+    B: 'Зверь',     // brown
+    C: 'Галактик',  // blue
+    D: 'Зомби',     // green
+    E: 'Мифик',     // purple
+    F: 'Рубака',    // red
   };
+  const GENE_ICON = (g) => `/genes/icon_gene_${(g || '').toLowerCase()}.png`;
 
-  const geneOrder: GeneLetter[] = ["a", "b", "c", "d", "e", "f"];
-  const geneIcon = (g: GeneLetter) => `/genes/icon_gene_${g}.png`;
+  const byNameAsc  = (a, b) => a.name.localeCompare(b.name, 'ru');
+  const byNameDesc = (a, b) => b.name.localeCompare(a.name, 'ru');
+  const byGene     = (a, b) => (a.geneKey||'').localeCompare(b.geneKey||'');
 
-  // вытащим удобный вид мутантов
-  type Ability = {
-    name: string; // ability_* ключ из JSON
-    pct: number;  // ±%
-    value_atk1_lvl1: number;
-    value_atk2_lvl1: number;
-    value_atk1_lvl30: number;
-    value_atk2_lvl30: number;
-  };
-
-  type Mutant = {
-    id: string;
-    name: string;
-    genes: string[]; // e.g. ["DD"]
-    type: string;
-    image: string[];
-    base_stats: {
-      lvl1: { hp: number; atk1: number; atk2: number; spd: number; atk1_gene: GeneLetter; atk1_AOE: boolean };
-      lvl30: { hp: number; atk1: number; atk2: number; spd: number; atk1_gene: GeneLetter; atk1_AOE: boolean; atk2_gene: GeneLetter; atk2_AOE: boolean };
-    };
-    abilities: Ability[];
-    orbs: { normal: number; special: number };
-  };
-
-  // безопасная выборка "иконки" мутанта
-  function specimenIcon(m: Mutant): string {
-    const s = m.image?.find(p => p.toLowerCase().includes("specimen_")) ?? m.image?.[0] ?? "";
-    return s ? "/" + s : "";
+  // Нормализуем мутантов из normal.json
+  function normalizeMutants(raw) {
+    return raw.map((m) => {
+      // предполагаем: m.genes — массив букв ['A','D'] или строка 'AD'
+      const genes = Array.isArray(m.genes) ? m.genes : String(m.genes||'').split('');
+      const geneKey = genes.join('');
+      // изображение: массив путей, где 0 — normal, 1..4 — bronze..platinum
+      const images = Array.isArray(m.image) ? m.image : [m.image].filter(Boolean);
+      // звёздные множители, если есть (bronze/silver/gold/platinum)
+      const starMul = m.stars || m.starMultipliers || {};
+      return {
+        id: m.id ?? m.slug ?? m.name,
+        name: m.name,
+        rarity: m.rarity || m.type || 'Default',
+        genes,
+        geneKey,
+        images,
+        hp1: Number(m.hp) || Number(m.lifePoint) || 0,
+        atk1: numTag(m,'atk1') ?? 0,
+        atk1p: numTag(m,'atk1p') ?? numTag(m,'atk1P') ?? numTag(m,'atk1_plus') ?? 0,
+        atk2: numTag(m,'atk2') ?? 0,
+        atk2p: numTag(m,'atk2p') ?? numTag(m,'atk2P') ?? numTag(m,'atk2_plus') ?? 0,
+        speed: Number(m.speed) || Number(tag(m,'speed')) || 0,
+        abilities: normalizeAbilities(m),
+        starMultipliers: {
+          0: 1.0,
+          1: starMul.bronze ?? starMul['1'] ?? 1.0,
+          2: starMul.silver ?? starMul['2'] ?? 1.0,
+          3: starMul.gold ??   starMul['3'] ?? 1.0,
+          4: starMul.platinum ?? starMul['4'] ?? 1.0,
+        },
+        // heroic: 4 базовых + 1 спец, иначе 3 + 1
+        slots: (m.category || m.rarity || '').toLowerCase() === 'heroic' ? 4 : 3,
+      };
+    });
   }
-
-  // звёздность — отображаем как 0..3 (бронза/серебро/золото/платина)
-  const STAR_LIST = [
-    { key: "bronze",    mult: 1.0,  icon: "/stars/star_bronze.png",    label: "Bronze"    },
-    { key: "silver",    mult: 1.3,  icon: "/stars/star_silver.png",    label: "Silver"    },
-    { key: "gold",      mult: 1.6,  icon: "/stars/star_gold.png",      label: "Gold"      },
-    { key: "platinum",  mult: 2.0,  icon: "/stars/star_platinum.png",  label: "Platinum"  },
-  ];
-  // Примечание: если в твоих звёздных JSON есть свои мультипликаторы — можно подставить их тут вместо дефолтов.
-
-  // Орбы: сгруппируем по типу, а эффекты читаем «по ключевым словам»
-  type Orb = { id: string; name: string; type: "basic" | "special"; effects?: Record<string, number> };
-  const allOrbs: Orb[] = (orbsRaw as any[]).map(o => ({
-    id: o.id ?? o.name ?? "",
-    name: o.name ?? o.id ?? "",
-    type: (o.type === "special" ? "special" : "basic") as "basic" | "special",
-    effects: o.effects ?? o // часто эффекты лежат прямо в объекте
-  }));
-
-  function extractPct(effects: Record<string, number> | undefined, what: "hp" | "atk" | "ability"): number {
-    if (!effects) return 0;
-    // собираем любые поля, где встречается ключевое слово
-    let sum = 0;
-    for (const [k, v] of Object.entries(effects)) {
-      const kk = k.toLowerCase();
-      if (what === "hp"      && kk.includes("hp"))      sum += Number(v) || 0;
-      if (what === "atk"     && (kk.includes("atk") || kk.includes("attack"))) sum += Number(v) || 0;
-      if (what === "ability" && kk.includes("ability")) sum += Number(v) || 0;
+  function tag(m, key) {
+    // поддержка формата с m.tags: [{key,value}] или m[key]
+    if (m.tags && Array.isArray(m.tags)) {
+      const t = m.tags.find(t => t.key === key);
+      return t?.value ?? null;
     }
-    return sum; // это ПРоценты, их будем делить на 100
+    return m[key] ?? null;
+  }
+  function numTag(m, key) {
+    const v = tag(m, key);
+    const n = Number(String(v||'').replace(/[^\d.-]/g, ''));
+    return Number.isFinite(n) ? n : null;
+  }
+  function normalizeAbilities(m){
+    // abilities могут храниться как строка "a;b" или массив
+    const ab = m.abilities ?? tag(m,'abilities') ?? [];
+    if (Array.isArray(ab)) return ab;
+    if (typeof ab === 'string') return ab.split(/[;,]/).map(s=>s.trim()).filter(Boolean);
+    return [];
   }
 
-  // Формулы из ТЗ:
-  // Атака: x * (y/10 + 0.9), где x — на 1-м уровне (обычная/усиленная по порогам)
-  function attackAtLevel(level: number, atk1: number, atk1p: number): number {
-    const x = level < 10 ? atk1 : (atk1p || atk1);
-    return x * (level / 10 + 0.9);
-  }
-  function attack2AtLevel(level: number, atk2: number, atk2p: number): number {
-    const x = level < 15 ? atk2 : (atk2p || atk2);
-    return x * (level / 10 + 0.9);
-  }
-  // HP: x * (level/10 + 0.9)
-  const hpAtLevel = (level: number, hp1: number) => hp1 * (level / 10 + 0.9);
+  // Списки сфер
+  const ORBS = {
+    basic: (orbsRaw.basic || []).map(o => ({...o, type:'basic', icon: `/orbs/basic/${o.id}.png`})),
+    special: (orbsRaw.special || []).map(o => ({...o, type:'special', icon: `/orbs/special/${o.id}.png`}))
+  };
 
-  // Применение орбов (суммарные %)
-  function applyOrbs(stat: number, hpPct: number, atkPct: number, what: "hp" | "atk") {
-    const addPct = what === "hp" ? hpPct : atkPct;
-    return stat * (1 + addPct / 100);
-  }
+  // Приводим мутантов
+  const ALL_MUTANTS = normalizeMutants(mutantsRaw);
 
-  // ──────────────────────────────────────────────────────────────────────────────
-  // СОСТОЯНИЕ UI
+  // --- РЕАКТИВНОЕ СОСТОЯНИЕ UI ---
+  let query = '';                      // строка поиска
+  let geneFilter = new Set();          // активные фильтры генов (A..F)
+  let sortMode = 'nameAsc';            // nameAsc | nameDesc | gene
+  let selected = ALL_MUTANTS[0];       // текущий мутант
+  let level = 30;                      // уровень из инпута
+  let stars = 0;                       // 0..4
+  // выбранные сферы: массив из N базовых и 1 спец
+  let basicSlots = [];                 // длина = selected.slots
+  let specialSlot = null;
 
-  const mutants: Mutant[] = (mutantsRaw as any[]).map(m => m as Mutant);
-  let search = "";
-  let geneFilters: Set<GeneLetter> = new Set(); // пусто = показывать все
-  let sortBy: "name" | "gene" = "name";
+  // контейнер дропдауна сфер (для клика вне)
+  let dropdownHost = null;
+  let openDropdown = null; // 'basic-i' | 'special' | null
 
-  let selected: Mutant | null = mutants[0] ?? null;
+  // --- РАСЧЕТЫ ---
+  // фильтрация + сортировка + поиск
+  $: filtered = ALL_MUTANTS
+      .filter(m => {
+        if (geneFilter.size) {
+          // mutant имеет хотя бы один из выбранных генов
+          if (!m.genes.some(g => geneFilter.has(g))) return false;
+        }
+        if (query.trim()) {
+          const q = query.trim().toLowerCase();
+          if (!m.name.toLowerCase().includes(q)) return false;
+        }
+        return true;
+      })
+      .sort(sortMode==='nameAsc' ? byNameAsc
+            : sortMode==='nameDesc' ? byNameDesc
+            : byGene);
 
-  // управление карточкой
-  let levelInput = 30;              // уровень вводом
-  let starIndex = 3;                // 0..3
-  // слоты сфер
-  type Slot = { type: "basic" | "special"; orbId: string | null };
-  let slots: Slot[] = [];
-
+  // смена выбранного мутанта — сбрасываем слоты по его типу
   $: if (selected) {
-    // наполнить слоты под текущего мутанта
-    const arr: Slot[] = [];
-    for (let i = 0; i < (selected.orbs?.normal ?? 0); i++) arr.push({ type: "basic",   orbId: null });
-    for (let i = 0; i < (selected.orbs?.special ?? 0); i++) arr.push({ type: "special", orbId: null });
-    slots = arr;
+    basicSlots = Array(selected.slots).fill(null);
+    specialSlot = null;
   }
 
-  // каталог с фильтрами и поиском
-  function fitsGeneFilter(m: Mutant) {
-    if (geneFilters.size === 0) return true;
-    // проверим обе буквы гена
-    const letters = (m.genes?.[0] ?? "").toLowerCase().split("") as GeneLetter[];
-    return letters.some(l => geneFilters.has(l));
+  function pickImage(m, stars){
+    // если в m.images есть варианты по звёздам — берём по индексу
+    // 0: normal, 1: bronze, 2: silver, 3: gold, 4: platinum
+    return (m.images && m.images[stars] ? m.images[stars] : (m.images?.[0] || ''));
   }
 
-  function visibleList() {
-    const q = search.trim().toLowerCase();
-    let list = mutants.filter(m => fitsGeneFilter(m) && (q === "" || m.name.toLowerCase().includes(q)));
-    if (sortBy === "name") {
-      list = list.sort((a, b) => a.name.localeCompare(b.name, "ru"));
-    } else {
-      list = list.sort((a, b) => {
-        const ga = (a.genes?.[0] ?? ""), gb = (b.genes?.[0] ?? "");
-        return ga.localeCompare(gb) || a.name.localeCompare(b.name, "ru");
-      });
+  // Применение модификаторов сфер (проценты)
+  function orbMods() {
+    // собираем проценты в одну кучу
+    const mods = { hp:0, atk1:0, atk2:0, ability:0 };
+    const all = [...basicSlots.filter(Boolean), specialSlot].filter(Boolean);
+    for (const o of all) {
+      // ожидаем поля: o.hpPct, o.atkPct, o.abilityPct и т.п. (в orbs.json имена могут отличаться)
+      const hp  = Number(o.hpPct ?? o.hp ?? 0);
+      const atk = Number(o.atkPct ?? o.atk ?? 0);
+      const ab  = Number(o.abilityPct ?? o.ability ?? 0);
+      if (hp)  mods.hp  += hp;
+      if (atk) { mods.atk1 += atk; mods.atk2 += atk; }
+      if (ab)  mods.ability += ab;
     }
-    return list;
+    return mods;
   }
 
-  function pick(m: Mutant) {
+  function starMulOf(m, s){
+    return m?.starMultipliers?.[s] ?? 1.0;
+  }
+
+  function calcStats(m, lvl, s){
+    const mulStar = starMulOf(m, s);
+    const mulLvl = (Number(lvl)/10 + 0.9);
+
+    // БАЗА
+    let hp  = (m.hp1 || 0) * mulLvl;
+    let a1b = (Number(lvl) < 10 ? m.atk1 : (m.atk1p || m.atk1));
+    let a2b = (Number(lvl) < 15 ? m.atk2 : (m.atk2p || m.atk2));
+    let atk1 = (a1b || 0) * mulLvl;
+    let atk2 = (a2b || 0) * mulLvl;
+
+    // ЗВЕЗДНОСТЬ
+    hp   *= mulStar;
+    atk1 *= mulStar;
+    atk2 *= mulStar;
+
+    // СФЕРЫ (проценты)
+    const mods = orbMods();
+    if (mods.hp)   hp   *= (1 + mods.hp/100);
+    if (mods.atk1) atk1 *= (1 + mods.atk1/100);
+    if (mods.atk2) atk2 *= (1 + mods.atk2/100);
+
+    // ОКРУГЛЕНИЕ
+    return {
+      hp:   Math.round(hp),
+      atk1: Math.round(atk1),
+      atk2: Math.round(atk2),
+      speed: m.speed || 0
+    };
+  }
+
+  $: stats = selected ? calcStats(selected, level, stars) : {hp:0, atk1:0, atk2:0, speed:0};
+
+  // --- ХЭНДЛЕРЫ UI ---
+  function toggleGene(letter){
+    if (geneFilter.has(letter)) geneFilter.delete(letter);
+    else geneFilter.add(letter);
+    // триггерим реактив
+    geneFilter = new Set(geneFilter);
+  }
+  function selectMutant(m){
     selected = m;
-    levelInput = 30;
-    starIndex = 3;
+  }
+  function pickBasic(slotIndex, orb){
+    basicSlots = basicSlots.map((v,i)=> i===slotIndex ? orb : v);
+    openDropdown = null;
+  }
+  function pickSpecial(orb){
+    specialSlot = orb;
+    openDropdown = null;
+  }
+  function clearSlot(kind, i=null){
+    if (kind==='basic') basicSlots = basicSlots.map((v,idx)=> idx===i ? null : v);
+    else specialSlot = null;
   }
 
-  // соберём суммарные бонусы сфер
-  function sumOrbPcts() {
-    let hp = 0, atk = 0, ab = 0;
-    for (const s of slots) {
-      if (!s.orbId) continue;
-      const orb = allOrbs.find(o => o.id === s.orbId);
-      if (!orb) continue;
-      hp += extractPct(orb.effects, "hp");
-      atk += extractPct(orb.effects, "atk");
-      ab += extractPct(orb.effects, "ability");
-    }
-    return { hp, atk, ab };
-  }
-
-  // вычисление отображаемых статов
-  function derivedStats() {
-    if (!selected) return null;
-    const lvl1 = selected.base_stats.lvl1;
-    const lvl30 = selected.base_stats.lvl30;
-
-    const starMult = STAR_LIST[starIndex]?.mult ?? 1;
-
-    const { hp: orbHpPct, atk: orbAtkPct } = sumOrbPcts();
-
-    const hpRaw = hpAtLevel(levelInput, lvl1.hp);
-    const atk1Raw = attackAtLevel(levelInput, lvl1.atk1, lvl30.atk1);
-    const atk2Raw = attack2AtLevel(levelInput, lvl1.atk2, lvl30.atk2);
-
-    const hp = Math.round(applyOrbs(hpRaw * starMult, orbHpPct, 0, "hp"));
-    const atk1 = Math.round(applyOrbs(atk1Raw * starMult, 0, orbAtkPct, "atk"));
-    const atk2 = Math.round(applyOrbs(atk2Raw * starMult, 0, orbAtkPct, "atk"));
-
-    return { hp, atk1, atk2, spd: lvl30.spd }; // скорость не масштабируем
-  }
-
-  function abilityLabel(key: string): string {
-    // показываем как в JSON — без «кривых» синонимов
-    // при желании сюда можно добавить карту перевода в «красиво по-русски»
-    return key.replace(/^ability_/, "").replace(/_/g, " ");
-  }
-
-  // красивый текст типа мутанта
-  function typeLabel(t: string) {
-    const m = t?.toUpperCase?.() ?? "";
-    if (m === "LEGEND") return "Legendary";
-    if (m === "HEROIC") return "Heroic";
-    if (m === "DEFAULT") return "Default";
-    return t;
+  // Закрытие открытых выпадашек по клику вне
+  function windowClick(e){
+    if (!openDropdown) return;
+    if (!dropdownHost) return;
+    if (!dropdownHost.contains(e.target)) openDropdown = null;
   }
 </script>
 
-<style>
-  /* лёгкие стили без привязки к tailwind, чтобы не ломать твою тему */
-  .wrap { display: grid; grid-template-columns: 360px 1fr; gap: 24px; }
-  .panel { background: #2b2f3a; border-radius: 12px; padding: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset; }
-  .catalog { height: calc(100vh - 220px); display: grid; grid-template-rows: auto auto auto 1fr; gap: 12px; }
-  .list { overflow: auto; border-radius: 8px; }
-  .item { display:flex; gap:12px; align-items:center; padding:8px 10px; cursor:pointer; border-bottom:1px solid rgba(255,255,255,.05); }
-  .item:hover { background: rgba(255,255,255,.06); }
-  .item.active { outline:2px solid #7c5cff; background: rgba(124,92,255,.08); }
-  .mutthumb { width:42px; height:42px; object-fit:cover; border-radius:8px; background:#111; }
-  .genes { display:flex; gap:6px; }
-  .genes img { width:18px; height:18px; }
-  .sort { display:flex; gap:8px; align-items:center; }
-  .sort button { background:#3a3f4b; padding:6px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.06); }
-  .sort button.active { background:#7c5cff; }
-  .orbsRow { display:flex; gap:10px; justify-content:center; margin-top:6px; }
-  .orbslot { width:36px; height:36px; position:relative; cursor:pointer; }
-  .orbslot > img { width:100%; height:100%; object-fit:contain; }
-  .orbBadge { position:absolute; inset:0; display:grid; place-items:center; font-size:10px; }
-  .stars { display:flex; gap:10px; justify-content:center; align-items:center; }
-  .stars img { width:22px; height:22px; cursor:pointer; filter: drop-shadow(0 0 1px black); }
-  .card { display:grid; gap:12px; }
-  .bigname { font-size:22px; font-weight:800; text-align:center; }
-  .kv { display:grid; grid-template-columns: 1fr auto; gap:8px; align-items:center; padding:10px; border-radius:8px; background:#1f232c; }
-  .kv .val { font-weight:700; }
-  .levelRow { display:flex; gap:8px; align-items:center; justify-content:center; }
-  input[type="number"] { width:78px; background:#1e212a; border:1px solid rgba(255,255,255,.08); color:#fff; border-radius:6px; padding:6px 8px; }
-  select { width:100%; background:#1e212a; border:1px solid rgba(255,255,255,.08); color:#fff; border-radius:6px; padding:6px 8px; }
-</style>
+<!-- глобальный клик — безопасно для SSR -->
+<svelte:window on:click={windowClick} />
 
-<div class="wrap">
-  <!-- КАТАЛОГ -->
-  <div class="panel catalog">
-    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between">
-      <div class="genes">
-        {#each geneOrder as g}
-          <img alt={GENE_LABEL[g]} title={GENE_LABEL[g]} src={geneIcon(g)}
-               class:activeGene={geneFilters.has(g)}
-               on:click={() => {
-                 const s = new Set(geneFilters);
-                 s.has(g) ? s.delete(g) : s.add(g);
-                 geneFilters = s;
-               }} />
-        {/each}
-      </div>
+<div class="stats-page">
+  <!-- ЛЕВАЯ КОЛОНКА: КАТАЛОГ -->
+  <aside class="catalog">
+    <div class="filters-row">
+      <!-- фильтры по генам -->
+      {#each ['A','B','C','D','E','F'] as g}
+        <button
+          class:active={geneFilter.has(g)}
+          class="gene-chip"
+          on:click={() => toggleGene(g)}
+          title={GENE_NAME[g]}>
+          <img src={GENE_ICON(g)} alt={g} />
+        </button>
+      {/each}
 
-      <div class="sort">
-        <button class:active={sortBy==='name'} on:click={() => sortBy='name'}>Имя [A–Я]</button>
-        <button class:active={sortBy==='gene'} on:click={() => sortBy='gene'}>Ген</button>
+      <!-- сортировки -->
+      <div class="sort-switch">
+        <button class:active={sortMode==='nameAsc'}  on:click={() => sortMode='nameAsc'}>Имя [А–Я]</button>
+        <button class:active={sortMode==='nameDesc'} on:click={() => sortMode='nameDesc'}>Имя [Я–А]</button>
+        <button class:active={sortMode==='gene'}     on:click={() => sortMode='gene'}>Ген</button>
       </div>
     </div>
 
-    <input placeholder="Введите имя мутанта" bind:value={search} />
+    <input
+      class="search"
+      type="text"
+      placeholder="Введите имя мутанта"
+      bind:value={query}
+    />
 
-    <div class="list panel" style="padding:0">
-      {#each visibleList() as m (m.id)}
-        <div class="item {selected?.id===m.id?'active':''}" on:click={() => pick(m)}>
-          <img class="mutthumb" src={specimenIcon(m)} alt={m.name} />
-          <div style="min-width:0; flex:1">
-            <div style="font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{m.name}</div>
+    <div class="list">
+      {#each filtered as m (m.id)}
+        <button class="mut-row {selected?.id===m.id ? 'active' : ''}" on:click={() => selectMutant(m)}>
+          <img class="mut-icon" src={"/textures_by_mutant/" + (m.images?.[0] || '')} alt={m.name} />
+          <div class="mut-meta">
+            <div class="name">{m.name}</div>
             <div class="genes">
-              {#each (m.genes?.[0]?.toLowerCase().split("") ?? []) as gl}
-                <img src={geneIcon(gl)} alt={GENE_LABEL[gl]} title={GENE_LABEL[gl]} />
+              {#each m.genes as g}
+                <img src={GENE_ICON(g)} alt={g} title={GENE_NAME[g]} />
               {/each}
             </div>
           </div>
-          <small style="opacity:.7">{typeLabel(m.type)}</small>
-        </div>
+          <div class="rar">{m.rarity}</div>
+        </button>
       {/each}
     </div>
-  </div>
+  </aside>
 
-  <!-- КАРТОЧКА -->
-  <div class="panel card">
+  <!-- ПРАВАЯ КОЛОНКА: КАРТОЧКА -->
+  <section class="panel" >
     {#if selected}
-      <div style="display:grid; gap:8px; justify-items:center">
-        <div class="bigname">{selected.name}</div>
-        <img src={specimenIcon(selected)} alt={selected.name} style="width:126px; height:126px; object-fit:cover; border-radius:12px; background:#111" />
+      <header class="title">{selected.name}</header>
 
-        <div class="orbsRow">
-          {#each slots as s, i}
-            <div class="orbslot" title="Выбрать сферу">
-              <img src={s.type === 'basic' ? '/orbs/basic/orb_slot.png' : '/orbs/special/orb_slot_spe.png'} alt="slot" />
-              {#if s.orbId}
-                <div class="orbBadge">
-                  <img src={`/orbs/${s.type}/${s.orbId}.png`} alt={s.orbId} style="width:80%; height:80%; object-fit:contain" />
-                </div>
-              {/if}
-              <select on:change={(e: any) => { slots[i].orbId = e.target.value || null; }}>
-                <option value="">— нет —</option>
-                {#each allOrbs.filter(o => o.type === s.type) as o}
-                  <option value={o.id} selected={o.id===s.orbId}>{o.name}</option>
+      <div class="mut-figure">
+        <img class="texture" src={"/textures_by_mutant/" + pickImage(selected, stars)} alt={selected.name} />
+      </div>
+
+      <!-- слоты сфер — единственные интерактивные -->
+      <div class="slots" bind:this={dropdownHost}>
+        <!-- базовые -->
+        {#each basicSlots as orb, i}
+          <div class="slot">
+            <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
+              <img class="slot-bg" src="/orbs/basic/orb_slot.png" alt="slot" />
+              {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
+            </button>
+            {#if orb}
+              <button class="x" title="убрать" on:click={() => clearSlot('basic', i)}>×</button>
+            {/if}
+            {#if openDropdown === `basic-${i}`}
+              <div class="dropdown">
+                {#each ORBS.basic as o}
+                  <button class="orb-row" on:click={() => pickBasic(i, o)}>
+                    <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
+                  </button>
                 {/each}
-              </select>
-            </div>
-          {/each}
-        </div>
+              </div>
+            {/if}
+          </div>
+        {/each}
 
-        <div class="levelRow">
-          <span>Уровень:</span>
-          <input type="number" min="1" max="100" bind:value={levelInput} />
-          <span>Звёздность:</span>
+        <!-- спец-слот -->
+        <div class="slot">
+          <button class="slot-btn" on:click={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
+            <img class="slot-bg" src="/orbs/special/orb_slot_spe.png" alt="special" />
+            {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
+          </button>
+          {#if specialSlot}
+            <button class="x" title="убрать" on:click={() => clearSlot('special')}>×</button>
+          {/if}
+          {#if openDropdown === 'special'}
+            <div class="dropdown">
+              {#each ORBS.special as o}
+                <button class="orb-row" on:click={() => pickSpecial(o)}>
+                  <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
+                </button>
+              {/each}
+            </div>
+          {/if}
+        </div>
+      </div>
+
+      <!-- уровень + звёзды -->
+      <div class="controls">
+        <div class="control">
+          <label>Уровень:</label>
+          <input class="lvl" type="number" min="1" max="300" bind:value={level} />
+        </div>
+        <div class="control">
+          <label>Звёздность:</label>
           <div class="stars">
-            {#each STAR_LIST as st, idx}
-              <img src={st.icon} alt={st.label} title={st.label}
-                   on:click={() => starIndex = idx}
-                   style="opacity:{idx<=starIndex?1:.35}" />
+            {#each [0,1,2,3,4] as s}
+              <button class={"star "+(stars>=s?'on':'')}
+                on:click={() => stars = s}
+                title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
+                <img src={"/stars/"+(s===0?'star_none.png': s===1?'star_bronze.png': s===2?'star_silver.png': s===3?'star_gold.png':'star_platinum.png')} alt="*" />
+              </button>
             {/each}
           </div>
         </div>
       </div>
 
-      <div class="kv"><div>Редкость</div><div class="val">{typeLabel(selected.type)}</div></div>
-
-      {#await Promise.resolve(derivedStats()) then S}
-        <div class="kv"><div>HP</div><div class="val">{S.hp.toLocaleString("ru-RU")}</div></div>
-        <div class="kv"><div>Атака 1</div><div class="val">{S.atk1.toLocaleString("ru-RU")}</div></div>
-        <div class="kv"><div>Атака 2</div><div class="val">{S.atk2.toLocaleString("ru-RU")}</div></div>
-        <div class="kv"><div>Скорость</div><div class="val">{S.spd}</div></div>
-      {/await}
-
-      <div class="panel" style="padding:12px">
-        <div style="font-weight:800; margin-bottom:8px">Способности</div>
-        <div style="display:grid; gap:6px">
-          {#each selected.abilities as ab}
-            <div class="kv">
-              <div>{abilityLabel(ab.name)}</div>
-              <div class="val">{ab.pct > 0 ? "+" : ""}{ab.pct}%</div>
-            </div>
-          {/each}
+      <!-- СТАТЫ -->
+      <div class="stats">
+        <div class="row"><span>Редкость</span><b>{selected.rarity}</b></div>
+        <div class="row"><span>HP</span><b>{stats.hp.toLocaleString('ru-RU')}</b></div>
+        <div class="row"><span>Атака 1</span><b>{stats.atk1.toLocaleString('ru-RU')}</b></div>
+        <div class="row"><span>Атака 2</span><b>{stats.atk2.toLocaleString('ru-RU')}</b></div>
+        <div class="row"><span>Скорость</span><b>{stats.speed}</b></div>
+        <div class="row abils">
+          <span>Abilities</span>
+          <div class="abilities">
+            {#each selected.abilities as ab}
+              <div class="ability">{ab}</div>
+            {/each}
+          </div>
         </div>
       </div>
     {/if}
-  </div>
+  </section>
 </div>
+
+<style>
+  .stats-page{ display:grid; grid-template-columns: 360px 1fr; gap:24px; }
+  .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
+  .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+  .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
+  .gene-chip.active{ outline:2px solid #90f36b; }
+  .gene-chip img{ width:100%; height:100%; object-fit:contain; }
+  .sort-switch{ margin-left:auto; display:flex; gap:6px; }
+  .sort-switch button{ background:#2b3442; border:1px solid #3a475a; border-radius:8px; padding:6px 10px; font-size:12px; }
+  .sort-switch .active{ background:#7a56ff; border-color:#7a56ff; color:white; }
+  .search{ width:100%; margin:8px 0 12px; padding:8px 10px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#dfe7f3; }
+  .list{ overflow:auto; max-height:70vh; display:flex; flex-direction:column; gap:6px; }
+  .mut-row{ display:flex; align-items:center; gap:10px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:8px; width:100%; }
+  .mut-row.active{ border-color:#90f36b; }
+  .mut-icon{ width:38px; height:38px; border-radius:6px; background:#0f1319; object-fit:cover; }
+  .mut-meta{ flex:1; display:flex; flex-direction:column; }
+  .mut-meta .name{ font-size:13px; color:#e9eef6; }
+  .mut-meta .genes{ display:flex; gap:4px; }
+  .mut-meta .genes img{ width:16px; height:16px; }
+  .rar{ font-size:11px; color:#aab6c8; }
+
+  .panel{ background:#2a313c; border-radius:12px; padding:18px; }
+  .title{ font-size:22px; font-weight:700; color:#e9eef6; margin-bottom:12px; }
+  .mut-figure{ display:flex; justify-content:center; margin-bottom:10px; }
+  .mut-figure .texture{ width:280px; height:280px; object-fit:contain; image-rendering: auto; }
+
+  .slots{ display:flex; gap:18px; justify-content:center; margin:10px 0 6px; position:relative; }
+  .slot{ position:relative; }
+  .slot-btn{ position:relative; width:64px; height:64px; border-radius:12px; background:transparent; border:none; padding:0; }
+  .slot-bg{ width:100%; height:100%; object-fit:contain; }
+  .orb{ position:absolute; inset:8px; width:auto; height:auto; object-fit:contain; }
+  .x{ position:absolute; right:-6px; top:-6px; width:18px; height:18px; border-radius:50%; border:none; background:#ff6464; color:white; }
+  .dropdown{ position:absolute; top:74px; left:0; width:240px; max-height:240px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:10px; padding:6px; z-index:10; }
+  .orb-row{ display:flex; align-items:center; gap:8px; width:100%; padding:6px; border-radius:8px; background:#242b36; margin:4px 0; }
+  .orb-row img{ width:28px; height:28px; object-fit:contain; }
+
+  .controls{ display:flex; gap:24px; justify-content:center; margin:10px 0 12px; }
+  .control{ display:flex; align-items:center; gap:10px; color:#aab6c8; }
+  .lvl{ width:90px; padding:6px 8px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; }
+
+  .stars{ display:flex; gap:6px; }
+  .star{ width:28px; height:28px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.6; }
+  .star.on{ opacity:1; }
+  .star img{ width:100%; height:100%; object-fit:contain; }
+
+  .stats{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
+  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:10px 12px; color:#dfe7f3; }
+  .row span{ color:#aab6c8; }
+  .abilities{ display:flex; gap:8px; flex-wrap:wrap; }
+  .ability{ background:#2b3442; padding:4px 8px; border-radius:8px; font-size:12px; }
+</style>
