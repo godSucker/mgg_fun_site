@@ -1,272 +1,186 @@
-<script lang="ts">
+<script>
   import { onMount } from 'svelte';
-
+  // Import the mutant data for each star tier. These JSON files are placed
+  // at the repository root and contain additional fields (atk1_base, atk2_base,
+  // atk1p_base, atk2p_base) used to calculate attacks on arbitrary levels.
   import normalData from '@/data/mutants/normal.json';
   import bronzeData from '@/data/mutants/bronze.json';
   import silverData from '@/data/mutants/silver.json';
   import goldData from '@/data/mutants/gold.json';
   import platinumData from '@/data/mutants/platinum.json';
-  import allOrbs from '@/data/materials/orbs.json';
-  import { ABILITY_RU } from '@/lib/mutant-dicts';
 
+  // Import all orbs. Each orb object has `id`, `name`, `percent` and
+  // `description`. The `id` helps build the path to its image (e.g. `/orbs/${id}.png`).
+  import allOrbs from '@/data/materials/orbs.json';
+
+  // Group the datasets by star level for easy lookup (0=normal, 1=bronze, etc).
   const starDatasets = [normalData, bronzeData, silverData, goldData, platinumData];
 
-
-  const geneFilters: { key: string; icon: string; title: string }[] = [
-    { key: 'all', icon: '/genes/gene_all.png', title: 'Все' },
+  // Gene filter options and corresponding icons. `all` resets the filter.
+  const geneFilters = [
+    { key: 'all', icon: '/genes/gene_all.png', title: 'All Genes' },
     { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Galactic' },
     { key: 'B', icon: '/genes/icon_gene_b.png', title: 'Zoomorph' },
     { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Cyber' },
     { key: 'D', icon: '/genes/icon_gene_d.png', title: 'Saber' },
     { key: 'E', icon: '/genes/icon_gene_e.png', title: 'Necro' },
-    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Mythic' }
+    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Mythic' },
   ];
 
-  const starLabels = ['Normal', 'Bronze', 'Silver', 'Gold', 'Platinum'];
-  const starIcons = ['/stars/no_stars.png', '/stars/star_bronze.png', '/stars/star_silver.png', '/stars/star_gold.png', '/stars/star_platinum.png'];
+  // Separate orbs into basic and special categories. We inspect the ID
+  // to determine the category. Adjust these rules if naming changes.
+  const basicOrbs = allOrbs.filter((o) => o.id.toLowerCase().includes('basic'));
+  const specialOrbs = allOrbs.filter((o) => o.id.toLowerCase().includes('special'));
 
-  function canonicalId(id: string | undefined) {
-    if (!id) return '';
-    return id.replace(/_(bronze|silver|gold|platinum)$/i, '');
-  }
-
-  const starMaps = starDatasets.map(dataset => {
-    const map = new Map<string, any>();
-    dataset.forEach((entry: any) => {
-      const key = canonicalId(entry.id);
-      const hasStarSuffix = /_(bronze|silver|gold|platinum)$/i.test(entry.id ?? '');
-      const existing = map.get(key);
-      if (!existing) {
-        map.set(key, entry);
-        return;
-      }
-      const existingHasSuffix = /_(bronze|silver|gold|platinum)$/i.test(existing.id ?? '');
-      if (!hasStarSuffix || (hasStarSuffix && existingHasSuffix)) {
-        if (!hasStarSuffix || existingHasSuffix) {
-          map.set(key, entry);
-        }
-      }
-    });
-    return map;
-  });
-
-  const geneFilters: { key: string; icon: string; title: string }[] = [
-    { key: 'all', icon: '/genes/gene_all.png', title: 'Все' },
-    { key: 'C', icon: '/genes/icon_gene_c.png', title: 'Рубака' },
-    { key: 'A', icon: '/genes/icon_gene_a.png', title: 'Кибер' },
-    { key: 'E', icon: '/genes/icon_gene_e.png', title: 'Галактик' },
-    { key: 'B', icon: '/genes/icon_gene_b.png', title: 'Зомби' },
-    { key: 'F', icon: '/genes/icon_gene_f.png', title: 'Мифик' },
-    { key: 'D', icon: '/genes/icon_gene_d.png', title: 'Зверь' }
-  ];
-
-  const starOptions = [
-    { level: 0, label: 'Обычный', icon: '/stars/no_stars.png' },
-    { level: 1, label: 'Бронза', icon: '/stars/star_bronze.png' },
-    { level: 2, label: 'Серебро', icon: '/stars/star_silver.png' },
-    { level: 3, label: 'Золото', icon: '/stars/star_gold.png' },
-    { level: 4, label: 'Платина', icon: '/stars/star_platinum.png' }
-  ];
-
-
-  const sortOptions = [
-    { value: 'name', label: 'Имя (А-Я)' },
-    { value: 'hp', label: 'Здоровье' },
-    { value: 'atk1', label: 'Атака 1' },
-    { value: 'atk2', label: 'Атака 2' },
-    { value: 'spd', label: 'Скорость' }
-  ];
-
-  const orbMap = new Map(allOrbs.map(orb => [orb.id, orb]));
-
-  const basicOrbs = allOrbs.filter(orb => !orb.id.toLowerCase().includes('special'));
-  const specialOrbs = allOrbs.filter(orb => orb.id.toLowerCase().includes('special'));
-
-  const basicSlotImage = '/orbs/basic/orb_slot.png';
-  const specialSlotImage = '/orbs/special/orb_slot_spe.png';
-
-
-  const levelSliderId = 'mutant-level-slider';
-  const starSliderId = 'mutant-star-slider';
-
-  function filterByKeywords(orbs: typeof allOrbs, keywords: string[]) {
-    const lowered = keywords.map(k => k.toLowerCase());
-    return orbs.filter(orb => {
-      const name = orb.name.toLowerCase();
-      return lowered.some(k => name.includes(k));
-    });
-  }
-
-  function sortByStrength(list: typeof allOrbs) {
-    return [...list].sort((a, b) => Math.abs(parseFloat(b.percent)) - Math.abs(parseFloat(a.percent)));
-  }
-
-  const attackBasics = sortByStrength(filterByKeywords(basicOrbs, ['атака', 'attack']));
-  const hpBasics = sortByStrength(filterByKeywords(basicOrbs, ['здоров', 'life', 'hp']));
-  const boostBasics = sortByStrength(filterByKeywords(basicOrbs, ['усилен', 'boost']));
-
-  const strengthenSpecial = sortByStrength(filterByKeywords(specialOrbs, ['усилен', 'strength']));
-  const shieldSpecial = sortByStrength(filterByKeywords(specialOrbs, ['щит', 'shield']));
-  const speedSpecial = sortByStrength(filterByKeywords(specialOrbs, ['скорост', 'speed']));
-
-  const recommendedOrbSets = [
-    {
-      id: 'custom',
-      label: 'Выбрать вручную',
-      description: 'Настройте сферы самостоятельно',
-      basic: [] as string[],
-      special: null as string | null
-    },
-    {
-      id: 'attack',
-      label: 'Агрессивная сборка',
-      description: 'Максимальный урон за счёт атакующих сфер',
-      basic: attackBasics.slice(0, 3).map(o => o.id),
-      special: strengthenSpecial[0]?.id ?? null
-    },
-    {
-      id: 'defense',
-      label: 'Железная оборона',
-      description: 'Повышение живучести и защита',
-      basic: hpBasics.slice(0, 3).map(o => o.id),
-      special: shieldSpecial[0]?.id ?? null
-    },
-    {
-      id: 'speed',
-      label: 'Молниеносный удар',
-      description: 'Баланс атаки и скорости',
-      basic: [attackBasics[0]?.id, attackBasics[1]?.id, boostBasics[0]?.id].filter(Boolean) as string[],
-      special: speedSpecial[0]?.id ?? null
-    }
-  ].filter(set => set.id === 'custom' || set.basic.length > 0 || set.special);
-
+  // State variables for the UI.
   let selectedGene = 'all';
   let searchTerm = '';
-  let selectedSort = 'name';
-  let selectedMutant: any = null;
-
+  let selectedMutant = null;
   let starLevel = 0;
-  let levelValue = 30;
+  let levelValue = 1;
+  // Basic orb slots: heroics use four, others use three. All start empty (null).
+  let basicSlots = [null, null, null, null];
+  // Special orb slot starts empty.
+  let specialSlot = null;
+  // Track which orb menu is open (index of slot or 'special'), null if none.
+  let openOrbMenu = null;
 
-  let selectedMutantKey = '';
-  let starLevel = 0;
-  let levelValue = 30;
-  let levelText = '30';
-  const levelInputId = 'mutant-level-input';
+  /**
+   * Compute the list of candidate mutants based on the current gene
+   * filter and search term.  We search within the normal dataset so we
+   * always show the same names independent of star level.  The filter
+   * is case-insensitive and matches any gene among the mutant's genes.
+   */
+  $: candidateMutants = (() => {
+    let list = normalData;
+    if (selectedGene !== 'all') {
+      const g = selectedGene.toUpperCase();
+      list = list.filter((m) => Array.isArray(m.genes) && m.genes.some((v) => v.toUpperCase().includes(g)));
+    }
+    if (searchTerm.trim()) {
+      const lc = searchTerm.trim().toLowerCase();
+      list = list.filter(m => m.name.toLowerCase().includes(lc));
+    }
+    // sort by name for convenience
+    return list.sort((a, b) => a.name.localeCompare(b.name));
+  })();
 
-  let currentBase: any = null;
-  let currentStats: any = null;
-  let displayMutant: any = null;
+  /**
+   * When the user selects a mutant, we reset orbs and set the
+   * selection.  Star and level remain unchanged so you can quickly
+   * compare different variants.
+   */
+      function selectMutant(mutant) {
+    selectedMutant = mutant;
+    // Reset orbs when changing mutant
+    basicSlots = [null, null, null, null];
+    specialSlot = null;
+    openOrbMenu = null;
+  }
 
+  /**
+   * Helper to get the dataset entry for the currently selected mutant
+   * at the chosen star level.  Returns undefined if the mutant
+   * doesn't exist in that dataset (which should never happen).
+   */
+  function getCurrentBase() {
+    if (!selectedMutant) return undefined;
+    const dataset = starDatasets[starLevel] || normalData;
+    return dataset.find((m) => m.id === selectedMutant.id);
+  }
 
-  let basicSlots: (any | null)[] = [null, null, null, null];
-  let specialSlot: any | null = null;
-  let openOrbMenu: number | 'special' | null = null;
-  let selectedOrbSet = 'custom';
-
-  function normalizeImage(path: string) {
+  /**
+   * Compute the final stats for the currently selected mutant.  This
+   * uses the level slider and applies any orb bonuses.  The rules for
+   * attacks follow the instructions: attack1 uses `atk1_base` until
+   * level 10, then switches to `atk1p_base`.  Attack2 uses
+   * `atk2_base` until level 15, then switches to `atk2p_base`.  Both
+   * are scaled by (level/10 + 0.9).  HP always scales from the base
+   * level1 value.  Speed is constant.  Orb percent bonuses are
+   * applied afterwards: HP orbs modify HP, Attack orbs modify both
+   * attacks, and Speed orbs increase the speed by the percent.
+   */
+  // Normalize an image path to ensure it is served from the site root.
+  // Mutant image paths in the data are relative (e.g. `textures_by_mutant/a_01/A_01_normal.png`).
+  // Prepending a leading slash ensures Astro serves them from the `/public` folder.
+  function normalizeImage(path) {
     if (!path) return '';
     return path.startsWith('/') ? path : `/${path}`;
-
   }
 
-  function orbImagePath(orb: any) {
-    if (!orb?.id) return '';
-    const isSpecial = orb.id.toLowerCase().includes('special');
-    const folder = isSpecial ? 'special' : 'basic';
-    return `/orbs/${folder}/${orb.id}.png`;
+  function computeStats() {
+    const baseEntry = getCurrentBase();
+    if (!baseEntry) return null;
+    const lvl = levelValue;
+    // HP calculation
+    let hp = baseEntry.base_stats.lvl1.hp * (lvl / 10 + 0.9);
+        // Attack1 base selection. If custom base fields are missing (e.g. in legacy JSON), derive them from level 1/30 stats.
+        const atk1BaseLvl1 = baseEntry.base_stats.atk1_base ?? baseEntry.base_stats.lvl1?.atk1 ?? 0;
+        // atk1p_base corresponds to the boosted attack at level 10+, derived from level 30 stats when missing
+        const atk1pBase = baseEntry.base_stats.atk1p_base ?? (baseEntry.base_stats?.lvl30?.atk1
+          ? baseEntry.base_stats.lvl30.atk1 / 3.9
+          : atk1BaseLvl1);
+        const a1base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
+        let atk1 = a1base * (lvl / 10 + 0.9);
+        // Attack2 base selection. If custom base fields are missing (e.g. in legacy JSON), derive them from level 1/30 stats.
+        const atk2BaseLvl1 = baseEntry.base_stats.atk2_base ?? baseEntry.base_stats.lvl1?.atk2 ?? 0;
+        const atk2pBase = baseEntry.base_stats.atk2p_base ?? (baseEntry.base_stats?.lvl30?.atk2
+          ? baseEntry.base_stats.lvl30.atk2 / 3.9
+          : atk2BaseLvl1);
+        const a2base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
+        let atk2 = a2base * (lvl / 10 + 0.9);
+    // Speed is constant
+    let spd = baseEntry.base_stats.lvl1.spd;
+    // Apply orb bonuses
+    const applyOrb = (orb) => {
+      if (!orb) return;
+      const pct = parseFloat(orb.percent);
+      const nameLower = orb.name.toLowerCase();
+      // Attack orbs
+      if (nameLower.includes('атака') || nameLower.includes('attack')) {
+        atk1 *= 1 + pct / 100;
+        atk2 *= 1 + pct / 100;
+      } else if (nameLower.includes('hp') || nameLower.includes('здоров')) {
+        hp *= 1 + pct / 100;
+      } else if (nameLower.includes('speed') || nameLower.includes('скорость')) {
+        spd += pct;
+      }
+    };
+    // Apply basic orbs
+    basicSlots.forEach(o => applyOrb(o));
+    // Apply special orb
+    applyOrb(specialSlot);
+    return {
+      hp: Math.round(hp),
+      atk1: Math.round(atk1),
+      atk2: Math.round(atk2),
+      spd: spd,
+      name: baseEntry.name,
+      image: baseEntry.image,
+      genes: baseEntry.genes,
+      type: baseEntry.type,
+      bingo: baseEntry.bingo,
+      abilities: baseEntry.abilities,
+      name_attack1: baseEntry.name_attack1,
+      name_attack2: baseEntry.name_attack2,
+      name_attack3: baseEntry.name_attack3
+    };
   }
 
+  $: currentStats = computeStats();
 
-  }
+  // Determine how many basic slots to show based on mutant type.
+  $: basicSlotCount = (() => {
+    if (!selectedMutant) return 0;
+    // HEROIC mutants get 4 basic slots, all others 3
+    return selectedMutant.type && selectedMutant.type.toUpperCase() === 'HEROIC' ? 4 : 3;
+  })();
 
-  function clampLevelNumber(value: number) {
-    if (Number.isNaN(value)) return 1;
-    return Math.min(Math.max(Math.round(value), 1), 100);
-  }
+  // Provide a human-readable label for the star level
+  const starLabels = ['Normal', 'Bronze', 'Silver', 'Gold', 'Platinum'];
 
-  function clampStarNumber(value: number) {
-    if (Number.isNaN(value)) return 0;
-    return Math.min(Math.max(Math.round(value), 0), starOptions.length - 1);
-  }
-
-  function handleLevelInput(event: Event) {
-    const input = event.currentTarget as HTMLInputElement;
-    const numericText = input.value.replace(/[^0-9]/g, '');
-    levelText = numericText;
-    if (numericText === '') {
-      return;
-    }
-    const parsed = Number(numericText);
-    const clamped = clampLevelNumber(parsed);
-    levelValue = clamped;
-    if (String(clamped) !== numericText) {
-      levelText = String(clamped);
-    }
-  }
-
-  function handleLevelBlur() {
-    if (levelText === '') {
-      levelValue = 1;
-      levelText = '1';
-      return;
-    }
-    const parsed = Number(levelText);
-    const clamped = clampLevelNumber(parsed);
-    levelValue = clamped;
-    levelText = String(clamped);
-  }
-
-  function getOrbImageCandidates(orb: any) {
-    const id = orb?.id?.toLowerCase?.();
-    if (!id) return [];
-    const candidates = new Set<string>();
-    const base = id.replace(/\.png$/i, '');
-    candidates.add(base);
-    if (base.includes('_ephemeral')) {
-      candidates.add(base.replace(/_ephemeral_.+$/, ''));
-    }
-    if (/_\d+$/.test(base)) {
-      candidates.add(base.replace(/_\d+$/, ''));
-    }
-    if (base.includes('_add') && base.includes('_special_')) {
-      candidates.add(base.replace('_add', '_'));
-    }
-    return Array.from(candidates);
-  }
-
-  const orbImageCandidatesCache = new Map<string, string[]>();
-
-  function orbImagePath(orb: any) {
-    if (!orb?.id) return '';
-    const isSpecial = orb.id.toLowerCase().includes('special');
-    const folder = isSpecial ? 'special' : 'basic';
-    const candidates = getOrbImageCandidates(orb);
-    if (!candidates.length) return '';
-    orbImageCandidatesCache.set(orb.id, candidates);
-    return `/orbs/${folder}/${candidates[0]}.png`;
-  }
-
-  function handleOrbImageError(event: Event, orb: any) {
-    const img = event.currentTarget as HTMLImageElement;
-    const id = orb?.id;
-    if (!id) return;
-    const isSpecial = id.toLowerCase().includes('special');
-    const folder = isSpecial ? 'special' : 'basic';
-    const candidates = orbImageCandidatesCache.get(id) ?? getOrbImageCandidates(orb);
-    const currentIndex = Number(img.dataset.fallbackIndex ?? '0');
-    const nextIndex = currentIndex + 1;
-    if (nextIndex < candidates.length) {
-      img.dataset.fallbackIndex = String(nextIndex);
-      img.src = `/orbs/${folder}/${candidates[nextIndex]}.png`;
-    } else {
-      img.dataset.fallbackIndex = String(nextIndex);
-      img.src = isSpecial ? specialSlotImage : basicSlotImage;
-    }
-  }
-
-
-  function typeLabel(type: string) {
+  // Provide a label for mutant type
+  function typeLabel(type) {
     if (!type) return '';
     const t = type.toUpperCase();
     if (t === 'DEFAULT') return 'Common';
@@ -283,380 +197,15 @@
     return type;
   }
 
-  function typeIcon(type: string) {
-    if (!type) return '';
-    const t = type.toUpperCase();
-    if (t === 'LEGEND') return '/mut_icons/icon_legendary.png';
-    if (t === 'HEROIC') return '/mut_icons/icon_heroic.png';
-    if (t === 'ZODIAC') return '/mut_icons/icon_zodiac.png';
-    if (t === 'SPECIAL' || t === 'EXCLUSIVE') return '/mut_icons/icon_special.png';
-    if (t === 'SEASONAL') return '/mut_icons/icon_seasonal.png';
-    if (t === 'VIDEOGAME') return '/mut_icons/icon_videogame.png';
-    if (t === 'GACHA') return '/mut_icons/icon_gacha.png';
-    if (t === 'COMMUNITY') return '/mut_icons/icon_recipe.png';
-    if (t === 'PVP') return '/mut_icons/icon_pvp.png';
-    if (t === 'RECIPE') return '/mut_icons/icon_recipe.png';
-    return '';
-  }
-
-
-  function formatAbilityName(ability: any) {
-    if (!ability) return '';
-    if (typeof ability === 'string') {
-      return ability.replace(/_/g, ' ');
-    }
-    if (typeof ability.name === 'string') {
-      return ability.name.replace(/_/g, ' ');
-    }
-    return '';
-
-  function fallbackAbilityName(value: string) {
-    return value.replace(/_/g, ' ');
-  }
-
-  function abilityLabel(name: string) {
-    if (!name) return 'Неизвестная способность';
-    const normalized = name.replace(/_plus$/i, '');
-    return (
-      ABILITY_RU[name] ||
-      ABILITY_RU[normalized] ||
-      fallbackAbilityName(name)
-    );
-  }
-
-  function formatPercent(value: number) {
-    if (!Number.isFinite(value)) return '0';
-    if (Math.abs(value - Math.round(value)) < 0.001) {
-      return Math.round(value).toString();
-    }
-    return value.toFixed(1);
-  }
-
-  function formatMultiplier(value: number) {
-    if (!Number.isFinite(value)) return '1';
-    if (Math.abs(value - Math.round(value)) < 0.001) {
-      return Math.round(value).toString();
-    }
-    return value.toFixed(2);
-
-  }
-
-  function getSortValue(mutant: any, key: string) {
-    const lvl1 = mutant.base_stats?.lvl1 ?? {};
-    const lvl30 = mutant.base_stats?.lvl30 ?? {};
-    switch (key) {
-      case 'hp':
-        return lvl30.hp ?? lvl1.hp ?? 0;
-      case 'atk1':
-        return lvl30.atk1 ?? lvl1.atk1 ?? 0;
-      case 'atk2':
-        return lvl30.atk2 ?? lvl1.atk2 ?? 0;
-      case 'spd':
-        return lvl1.spd ?? 0;
-      default:
-        return mutant.name ?? '';
-    }
-  }
-
-  $: candidateMutants = (() => {
-    let list = normalData;
-    if (selectedGene !== 'all') {
-      const g = selectedGene.toUpperCase();
-      list = list.filter(m => Array.isArray(m.genes) && m.genes.some((v: string) => v.toUpperCase().includes(g)));
-    }
-    if (searchTerm.trim()) {
-      const lc = searchTerm.trim().toLowerCase();
-      list = list.filter(m => m.name.toLowerCase().includes(lc));
-    }
-    const sorted = [...list];
-    sorted.sort((a, b) => {
-      if (selectedSort === 'name') {
-        return a.name.localeCompare(b.name, 'ru');
-      }
-      const av = getSortValue(a, selectedSort);
-      const bv = getSortValue(b, selectedSort);
-      if (bv === av) {
-        return a.name.localeCompare(b.name, 'ru');
-      }
-      return bv - av;
-    });
-    return sorted;
-  })();
-
-  $: if (!selectedMutant && candidateMutants.length) {
-    selectMutant(candidateMutants[0]);
-  }
-
-  function selectMutant(mutant: any) {
-
-    selectedMutant = mutant;
-
-    if (!mutant) return;
-    selectedMutantKey = canonicalId(mutant.id);
-    selectedMutant = starMaps[0].get(selectedMutantKey) ?? mutant;
-    levelValue = clampLevelNumber(levelValue);
-    levelText = String(levelValue);
-
-    basicSlots = [null, null, null, null];
-    specialSlot = null;
-    openOrbMenu = null;
-    selectedOrbSet = 'custom';
-  }
-
-  function getCurrentBase() {
-
-    if (!selectedMutant) return undefined;
-    const dataset = starDatasets[starLevel] || normalData;
-    return dataset.find((m: any) => m.id === selectedMutant.id);
-  }
-
-  function applyOrb(orb: any, stats: { hp: number; atk1: number; atk2: number; spd: number }) {
-    if (!orb) return;
-    const pct = parseFloat(orb.percent);
-    const name = orb.name.toLowerCase();
-    if (name.includes('атака') || name.includes('attack') || name.includes('усилен') || name.includes('strength')) {
-      stats.atk1 *= 1 + pct / 100;
-      stats.atk2 *= 1 + pct / 100;
-    } else if (name.includes('hp') || name.includes('жизн') || name.includes('здоров') || name.includes('life')) {
-      stats.hp *= 1 + pct / 100;
-    } else if (name.includes('speed') || name.includes('скорост')) {
-      stats.spd += pct;
-    } else if (name.includes('щит') || name.includes('shield')) {
-      stats.hp *= 1 + pct / 100;
-    }
-  }
-
-  function computeStats() {
-    const baseEntry: any = getCurrentBase();
-    if (!baseEntry) return null;
-    const lvl = levelValue;
-    const hpBase = baseEntry.base_stats?.lvl1?.hp ?? 0;
-    let hp = hpBase * (lvl / 10 + 0.9);
-
-    const atk1BaseLvl1 = baseEntry.base_stats?.atk1_base ?? baseEntry.base_stats?.lvl1?.atk1 ?? 0;
-    const atk1pBase = baseEntry.base_stats?.atk1p_base ?? (baseEntry.base_stats?.lvl30?.atk1 ? baseEntry.base_stats.lvl30.atk1 / 3.9 : atk1BaseLvl1);
-    const a1base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
-    let atk1 = a1base * (lvl / 10 + 0.9);
-
-    const atk2BaseLvl1 = baseEntry.base_stats?.atk2_base ?? baseEntry.base_stats?.lvl1?.atk2 ?? 0;
-    const atk2pBase = baseEntry.base_stats?.atk2p_base ?? (baseEntry.base_stats?.lvl30?.atk2 ? baseEntry.base_stats.lvl30.atk2 / 3.9 : atk2BaseLvl1);
-    const a2base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
-    let atk2 = a2base * (lvl / 10 + 0.9);
-
-    let spd = baseEntry.base_stats?.lvl1?.spd ?? 0;
-
-    const stats = { hp, atk1, atk2, spd };
-    basicSlots.forEach(orb => applyOrb(orb, stats));
-    applyOrb(specialSlot, stats);
-
-    return {
-      hp: Math.round(stats.hp),
-      atk1: Math.round(stats.atk1),
-      atk2: Math.round(stats.atk2),
-      spd: Number(stats.spd.toFixed(2)),
-
-    if (!selectedMutantKey) return undefined;
-    const datasetMap = starMaps[starLevel] || starMaps[0];
-    return datasetMap.get(selectedMutantKey) || starMaps[0].get(selectedMutantKey) || null;
-  }
-
-  const abilityPatterns = [
-    { key: 'shield', tokens: ['shield'] },
-    { key: 'strengthen', tokens: ['strengthen'] },
-    { key: 'weaken', tokens: ['weaken'] },
-    { key: 'slash', tokens: ['slash'] },
-    { key: 'retaliate', tokens: ['retaliate'] },
-    { key: 'regen', tokens: ['regen', 'regenerate'] }
-  ];
-
-  function boostAbility(abilities: any[], key: string, amount: number, addIfMissing: boolean) {
-    const lowerKey = key.toLowerCase();
-    const matches = abilities.filter(ab => ab.name?.toLowerCase()?.includes(lowerKey));
-    if (matches.length) {
-      matches.forEach(ab => {
-        const bonus = Number.isFinite(ab.orbBonus) ? Number(ab.orbBonus) : 0;
-        ab.orbBonus = bonus + amount;
-        const current = Number.isFinite(ab.pct) ? Number(ab.pct) : 0;
-        ab.pct = current + amount;
-      });
-      return;
-    }
-    if (addIfMissing) {
-      abilities.push({
-        name: `ability_${key}`,
-        pct: amount,
-        basePct: 0,
-        orbBonus: amount,
-        addedByOrb: true
-      });
-    }
-  }
-
-  function applyOrbEffects(orb: any, modifiers: { attack: number; hp: number; speed: number }, abilities: any[]) {
-    if (!orb) return;
-    const id = orb.id?.toLowerCase?.();
-    const percentValue = Number(orb.percent ?? 0);
-    if (!id || Number.isNaN(percentValue)) return;
-    if (id.includes('attack')) {
-      modifiers.attack += percentValue;
-    }
-    if (id.includes('life') || id.includes('health')) {
-      modifiers.hp += percentValue;
-    }
-    if (id.includes('speed')) {
-      modifiers.speed += percentValue;
-    }
-    const amount = Math.abs(percentValue);
-    for (const pattern of abilityPatterns) {
-      if (pattern.tokens.some(token => id.includes(`add${token}`))) {
-        boostAbility(abilities, pattern.key, amount, true);
-        return;
-      }
-    }
-    for (const pattern of abilityPatterns) {
-      if (pattern.tokens.some(token => id.includes(`_${token}`))) {
-        boostAbility(abilities, pattern.key, amount, true);
-        return;
-      }
-    }
-  }
-
-  function prepareAbilities(baseAbilities: any[]) {
-    return baseAbilities
-      .map(ab => ({
-        ...ab,
-        pct: Number(ab.pct ?? 0),
-        basePct: Number(ab.basePct ?? ab.pct ?? 0),
-        orbBonus: Number(ab.orbBonus ?? 0),
-        addedByOrb: Boolean(ab.addedByOrb)
-      }))
-      .filter(ab => ab.pct > 0 || ab.basePct > 0 || ab.addedByOrb || ab.orbBonus > 0)
-      .map(ab => ({
-        ...ab,
-        label: abilityLabel(ab.name),
-        isPlus: /_plus$/i.test(ab.name ?? '')
-      }));
-  }
-
-  function computeStats(baseEntry: any) {
-    if (!baseEntry) return null;
-    const lvl = clampLevelNumber(levelValue);
-    if (lvl !== levelValue) {
-      levelValue = lvl;
-      levelText = String(lvl);
-    }
-    const hpBase = Number(baseEntry.base_stats?.lvl1?.hp ?? 0);
-    const hp = hpBase * (lvl / 10 + 0.9);
-
-    const atk1BaseLvl1 = Number(baseEntry.base_stats?.atk1_base ?? baseEntry.base_stats?.lvl1?.atk1 ?? 0);
-    const atk1pBase = Number(
-      baseEntry.base_stats?.atk1p_base ??
-        (baseEntry.base_stats?.lvl30?.atk1 ? baseEntry.base_stats.lvl30.atk1 / 3.9 : atk1BaseLvl1)
-    );
-    const atk1Base = lvl < 10 ? atk1BaseLvl1 : atk1pBase;
-    const atk1 = atk1Base * (lvl / 10 + 0.9);
-
-    const atk2BaseLvl1 = Number(baseEntry.base_stats?.atk2_base ?? baseEntry.base_stats?.lvl1?.atk2 ?? 0);
-    const atk2pBase = Number(
-      baseEntry.base_stats?.atk2p_base ??
-        (baseEntry.base_stats?.lvl30?.atk2 ? baseEntry.base_stats.lvl30.atk2 / 3.9 : atk2BaseLvl1)
-    );
-    const atk2Base = lvl < 15 ? atk2BaseLvl1 : atk2pBase;
-    const atk2 = atk2Base * (lvl / 10 + 0.9);
-
-    const spdBase = Number(baseEntry.base_stats?.lvl1?.spd ?? 0);
-
-    const modifiers = { attack: 0, hp: 0, speed: 0 };
-    const abilities = (baseEntry.abilities ? baseEntry.abilities.map((ab: any) => ({
-      ...ab,
-      pct: Number(ab.pct ?? 0),
-      basePct: Number(ab.pct ?? 0),
-      orbBonus: 0,
-      addedByOrb: false
-    })) : []) as any[];
-
-    basicSlots.forEach(orb => applyOrbEffects(orb, modifiers, abilities));
-    applyOrbEffects(specialSlot, modifiers, abilities);
-
-    const attackMultiplier = 1 + modifiers.attack / 100;
-    const hpMultiplier = 1 + modifiers.hp / 100;
-    const speedMultiplier = 1 + modifiers.speed / 100;
-
-    return {
-      hp: Math.round(hp * hpMultiplier),
-      atk1: Math.round(atk1 * attackMultiplier),
-      atk2: Math.round(atk2 * attackMultiplier),
-      spd: Number((spdBase * speedMultiplier).toFixed(2)),
-
-      name: baseEntry.name,
-      image: baseEntry.image,
-      genes: baseEntry.genes,
-      type: baseEntry.type,
-
-      bingo: baseEntry.bingo,
-      abilities: baseEntry.abilities,
-      name_attack1: baseEntry.name_attack1,
-      name_attack2: baseEntry.name_attack2,
-      name_attack3: baseEntry.name_attack3
-    };
-  }
-
-  $: currentStats = computeStats();
-
-  $: basicSlotCount = (() => {
-    if (!selectedMutant) return 0;
-    return selectedMutant.type && selectedMutant.type.toUpperCase() === 'HEROIC' ? 4 : 3;
-
-      abilities: prepareAbilities(abilities),
-      name_attack1: baseEntry.name_attack1,
-      name_attack2: baseEntry.name_attack2,
-      name_attack3: baseEntry.name_attack3,
-      multiplier: Number(baseEntry.multiplier ?? 1)
-    };
-  }
-
-  $: if (starLevel !== clampStarNumber(starLevel)) {
-    starLevel = clampStarNumber(starLevel);
-  }
-
-  $: currentBase = getCurrentBase();
-  $: currentStats = computeStats(currentBase);
-  $: displayMutant = currentBase ?? selectedMutant;
-
-  $: basicSlotCount = (() => {
-    if (!currentBase) return 0;
-    return currentBase.type && currentBase.type.toUpperCase() === 'HEROIC' ? 4 : 3;
-
-  })();
-
-  function applyRecommendedSet(setId: string) {
-    selectedOrbSet = setId;
-    const set = recommendedOrbSets.find(s => s.id === setId);
-    if (!set || setId === 'custom') {
-      return;
-    }
-    const nextBasic = [null, null, null, null];
-    for (let i = 0; i < basicSlotCount; i += 1) {
-      const orbId = set.basic[i] ?? set.basic[set.basic.length - 1];
-      nextBasic[i] = orbId ? orbMap.get(orbId) ?? null : null;
-    }
-    for (let i = basicSlotCount; i < 4; i += 1) {
-      nextBasic[i] = null;
-    }
-    basicSlots = nextBasic;
-    specialSlot = set.special ? orbMap.get(set.special) ?? null : null;
-    openOrbMenu = null;
-  }
-
-  function handleDocumentClick(e: MouseEvent) {
-    const path = e.composedPath() as HTMLElement[];
-    const clickedInsideMenu = path.some(el => (el as HTMLElement).classList?.contains('orb-menu'));
-    const clickedSlotButton = path.some(el => (el as HTMLElement).classList?.contains('orb-slot-button'));
+  // Close open orb menus when clicking outside
+  function handleDocumentClick(e) {
+    const path = e.composedPath();
+    const clickedInsideMenu = path.some((el) => el.classList && el.classList.contains('orb-menu'));
+    const clickedSlotButton = path.some((el) => el.classList && el.classList.contains('orb-slot-button'));
     if (!clickedInsideMenu && !clickedSlotButton) {
       openOrbMenu = null;
     }
   }
-
   onMount(() => {
     window.addEventListener('click', handleDocumentClick);
     return () => window.removeEventListener('click', handleDocumentClick);
@@ -664,429 +213,203 @@
 </script>
 
 <style>
-  :global(body) {
-    background-color: #2f3140;
-  }
   .scroll-container {
-    max-height: 32rem;
+    max-height: 30rem;
     overflow-y: auto;
   }
   .orb-menu {
-    z-index: 60;
-    max-height: 14rem;
-    overflow-y: auto;
-  }
-  .stat-row {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 0.85rem;
-    border-radius: 0.75rem;
-    background: linear-gradient(120deg, rgba(87, 92, 121, 0.4), rgba(59, 63, 84, 0.8));
-  }
-  .stat-row + .stat-row {
-    margin-top: 0.6rem;
-  }
-  .mutant-card {
-    background: radial-gradient(circle at top, rgba(86, 93, 126, 0.6), rgba(38, 41, 56, 0.9));
-    border: 1px solid rgba(126, 137, 189, 0.25);
-    border-radius: 1.5rem;
-    box-shadow: 0 30px 50px rgba(8, 10, 25, 0.45);
-  }
-  .selector-panel {
-    background: rgba(32, 34, 45, 0.85);
-    border: 1px solid rgba(88, 95, 135, 0.35);
-    border-radius: 1.25rem;
-    box-shadow: 0 20px 40px rgba(6, 8, 20, 0.35);
-  }
-  .gene-chip {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .gene-chip:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 18px rgba(21, 24, 38, 0.4);
+    z-index: 50;
   }
 </style>
 
-<div class="min-h-screen py-10 px-3 sm:px-6 lg:px-12 bg-gradient-to-b from-[#232530] via-[#20222c] to-[#1a1b23] text-white">
-  <div class="max-w-6xl mx-auto grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
-    <aside class="selector-panel p-6 space-y-6">
-      <div>
-        <h2 class="text-lg font-semibold tracking-wide text-gray-200 uppercase">Каталог мутантов</h2>
-        <p class="text-sm text-gray-400 mt-1">Фильтруйте по генам, находите мутантов и выбирайте нужного бойца.</p>
-      </div>
+<!-- Main Stats Calculator Layout -->
+<div class="space-y-6 p-4">
+  <h2 class="text-2xl font-bold text-center text-white flex items-center justify-center space-x-2">
+    <img src="/placeholder_light_gray_block.png" alt="logo" class="w-6 h-6" />
+    <span>Stats Calculator</span>
+  </h2>
 
-      <div class="flex flex-wrap gap-3">
-        {#each geneFilters as gf}
-          <button
-            type="button"
-            class="gene-chip flex items-center gap-2 rounded-full px-3 py-1.5 border transition {selectedGene === gf.key ? 'border-violet-400 bg-violet-500/20' : 'border-transparent bg-black/30'}"
-            on:click={() => selectedGene = gf.key}
+  <!-- Gene filter and search bar -->
+  <div class="bg-gray-800 rounded-lg p-4">
+    <div class="flex items-center space-x-3 mb-4">
+      {#each geneFilters as gf}
+        <img
+          src={gf.icon}
+          alt={gf.title}
+          title={gf.title}
+          class="w-6 h-6 cursor-pointer rounded-full border-2 {selectedGene === gf.key ? 'border-green-500' : 'border-transparent'}"
+          on:click={() => selectedGene = gf.key}
+        />
+      {/each}
+    </div>
+    <input
+      type="text"
+      placeholder="Start typing mutant name..."
+      bind:value={searchTerm}
+      class="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+    />
+    <!-- Mutant selection grid -->
+    {#if searchTerm.trim().length > 0 && candidateMutants.length > 0}
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 mt-2 max-h-80 overflow-y-auto p-1">
+        {#each candidateMutants.slice(0, 40) as m}
+          <div
+            class="cursor-pointer bg-gray-800 hover:bg-gray-700 p-2 rounded text-center"
+            on:click={() => { selectMutant(m); searchTerm = m.name; }}
           >
-            <img src={gf.icon} alt={gf.title} class="w-5 h-5" />
-            <span class="text-xs tracking-wide uppercase text-gray-200">{gf.title}</span>
-          </button>
+            <img
+              src={normalizeImage(m.image[1] || m.image[0])}
+              alt={m.name}
+              class="w-10 h-10 mx-auto mb-1"
+            />
+            <div class="text-xs text-white truncate">{m.name}</div>
+            <div class="flex justify-center space-x-0.5 mt-1">
+              {#each m.genes as g}
+                <img
+                  src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'}
+                  alt={g}
+                  class="w-3 h-3"
+                />
+              {/each}
+            </div>
+          </div>
         {/each}
       </div>
+    {/if}
+  </div>
 
-      <div class="space-y-4">
-        <div class="bg-black/30 border border-white/5 rounded-xl flex items-center px-3 py-2">
-          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M18.65 10.83a7.83 7.83 0 11-15.66 0 7.83 7.83 0 0115.66 0z" />
-          </svg>
-          <input
-            type="text"
-            placeholder="Введите имя мутанта"
-            bind:value={searchTerm}
-            class="flex-1 bg-transparent px-3 py-1 text-sm focus:outline-none placeholder:text-gray-500"
-          />
+  <!-- Configuration panel -->
+  {#if selectedMutant}
+    <div class="space-y-4">
+      <!-- Level and star sliders -->
+      <div class="bg-gray-800 rounded-lg p-4">
+        <div class="mb-4">
+          <label class="block text-gray-300 text-sm mb-1">Mutant Level: {levelValue}</label>
+          <input type="range" min="1" max="100" step="1" bind:value={levelValue} class="w-full" />
         </div>
-        <div class="flex items-center gap-3 text-sm text-gray-300">
-          <span class="text-gray-400">Сортировка:</span>
-          <select
-            class="flex-1 bg-black/30 border border-white/10 rounded-lg px-3 py-2 focus:outline-none focus:border-violet-400"
-            bind:value={selectedSort}
-          >
-            {#each sortOptions as opt}
-              <option value={opt.value} class="bg-[#1f2130]">{opt.label}</option>
-            {/each}
-          </select>
+        <div class="mb-4">
+          <label class="block text-gray-300 text-sm mb-1">Star Level: {starLabels[starLevel]}</label>
+          <input type="range" min="0" max="4" step="1" bind:value={starLevel} class="w-full" />
         </div>
       </div>
-
-      <div class="scroll-container pr-2 space-y-2">
-        {#each candidateMutants.slice(0, 120) as mutant}
-          <button
-            type="button"
-            class="w-full text-left group rounded-2xl border transition flex items-center gap-3 px-3 py-3 {selectedMutant?.id === mutant.id ? 'bg-violet-500/15 border-violet-400/60' : 'bg-black/25 border-white/5 hover:border-violet-300/40 hover:bg-violet-400/10'}"
-            on:click={() => selectMutant(mutant)}
-          >
+      <!-- Orb selection panel -->
+      <div class="bg-gray-800 rounded-lg p-4">
+        <label class="block text-gray-300 text-sm mb-2">Select Orbs</label>
+        <div class="flex items-center space-x-4">
+          {#each Array(basicSlotCount) as _, i}
             <div class="relative">
-              <img src={normalizeImage(mutant.image?.[1] || mutant.image?.[0])} alt={mutant.name} class="w-14 h-14 rounded-xl object-cover border border-white/10" />
-              <div class="absolute -bottom-1 right-1 flex -space-x-1">
-                {#each mutant.genes?.slice(0, 2) as g}
-                  <img src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-4 h-4 border border-black rounded-full" />
-                {/each}
-              </div>
-            </div>
-            <div class="flex-1">
-              <div class="font-semibold text-sm text-gray-100 group-hover:text-white">{mutant.name}</div>
-              <div class="text-xs text-gray-400 mt-1">{typeLabel(mutant.type)}</div>
-            </div>
-            <div class="text-right text-xs text-gray-500 leading-5">
-              <div>HP {getSortValue(mutant, 'hp')}</div>
-              <div>SPD {getSortValue(mutant, 'spd')}</div>
-            </div>
-          </button>
-        {/each}
-        {#if candidateMutants.length === 0}
-          <div class="text-center text-sm text-gray-400 py-6">Не найдено мутантов с такими условиями.</div>
-        {/if}
-      </div>
-    </aside>
-
-    <section class="mutant-card p-6 lg:p-8">
-
-      {#if selectedMutant && currentStats}
-        <div class="flex flex-col gap-6">
-          <header class="bg-black/30 border border-white/10 rounded-2xl px-5 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p class="text-xs uppercase tracking-[0.3em] text-gray-400">Recommended Orbs</p>
-
-      {#if displayMutant && currentStats}
-        <div class="flex flex-col gap-6">
-          <header class="bg-black/30 border border-white/10 rounded-2xl px-5 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p class="text-xs uppercase tracking-[0.3em] text-gray-400">Рекомендуемые сферы</p>
-
-              <h1 class="text-2xl font-semibold mt-1 text-gray-100">{currentStats.name}</h1>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
-              <select
-                class="bg-[#1f2130] border border-violet-400/40 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400"
-                bind:value={selectedOrbSet}
-                on:change={(e) => applyRecommendedSet((e.target as HTMLSelectElement).value)}
+              <!-- Slot button -->
+              <button
+                class="orb-slot-button w-10 h-10 rounded-full overflow-hidden focus:outline-none"
+                on:click={() => openOrbMenu = openOrbMenu === i ? null : i}
               >
-                {#each recommendedOrbSets as set}
-                  <option value={set.id} class="bg-[#1f2130]">{set.id === 'custom' ? 'Выберите набор сфер' : set.label}</option>
-                {/each}
-              </select>
-              {#if selectedOrbSet !== 'custom'}
-                <div class="text-xs text-gray-400 max-w-xs sm:max-w-[220px]">
-                  {recommendedOrbSets.find(s => s.id === selectedOrbSet)?.description}
+                <img src="/orbs/orb_slot.png" alt="slot" class="w-full h-full" />
+                {#if basicSlots[i]}
+                  <img src={`/orbs/${basicSlots[i].id}.png`} alt={basicSlots[i].name} class="absolute inset-0 w-full h-full object-contain" />
+                {/if}
+              </button>
+              {#if openOrbMenu === i}
+                <div class="orb-menu absolute left-0 mt-1 bg-gray-900 border border-gray-700 rounded shadow-lg max-h-56 overflow-y-auto p-2 w-52">
+                  {#each basicOrbs as orb}
+                    <div
+                      class="flex items-center p-1 hover:bg-gray-700 cursor-pointer text-sm text-white"
+                      on:click={() => { basicSlots[i] = orb; openOrbMenu = null; }}
+                    >
+                      <img src={`/orbs/${orb.id}.png`} alt={orb.name} class="w-6 h-6 mr-2" />
+                      <span>{orb.name}</span>
+                    </div>
+                  {/each}
                 </div>
               {/if}
             </div>
-          </header>
-
-          <div class="flex flex-col lg:flex-row gap-6">
-            <div class="lg:w-1/2 flex flex-col items-center text-center gap-4">
-              <div class="relative">
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-violet-500/30 border border-violet-400/60 rounded-full px-4 py-1 text-xs uppercase tracking-[0.3em] text-violet-100">
-
-                  {starLabels[starLevel]}
-                </div>
-                <img
-                  src={normalizeImage(currentStats.image?.[0] || selectedMutant.image?.[0])}
-
-                  {starOptions[starLevel]?.label || 'Обычный'}
-                </div>
-                <img
-                  src={normalizeImage(currentStats.image?.[0] || displayMutant.image?.[0])}
-
-                  alt={currentStats.name}
-                  class="w-44 h-44 rounded-3xl object-cover border border-white/10 shadow-lg"
-                />
-                <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
-                  {#each Array(basicSlotCount) as _, i}
-                    <button
-                      type="button"
-                      class="orb-slot-button relative w-12 h-12"
-                      on:click={() => openOrbMenu = openOrbMenu === i ? null : i}
-                    >
-                      <img src={basicSlotImage} alt="orb slot" class="w-full h-full" />
-                      {#if basicSlots[i]}
-
-                        <img src={orbImagePath(basicSlots[i])} alt={basicSlots[i].name} class="absolute inset-0 object-contain" />
-
-                        <img
-                          src={orbImagePath(basicSlots[i])}
-                          alt={basicSlots[i].name}
-                          class="absolute inset-0 object-contain"
-                          data-fallback-index="0"
-                          on:error={(event) => handleOrbImageError(event, basicSlots[i])}
-                        />
-
-                      {/if}
-                    </button>
-                    {#if openOrbMenu === i}
-                      <div class="orb-menu absolute mt-2 left-1/2 -translate-x-1/2 bg-[#151622] border border-white/10 rounded-2xl shadow-xl p-2 w-56">
-                        <p class="text-xs text-gray-400 px-2 pb-2">Базовые сферы</p>
-                        {#each basicOrbs as orb}
-                          <button
-                            type="button"
-                            class="w-full flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-violet-500/15"
-                            on:click={() => {
-                              basicSlots[i] = orb;
-                              selectedOrbSet = 'custom';
-                              openOrbMenu = null;
-                            }}
-                          >
-                            <img src={orbImagePath(orb)} alt={orb.name} class="w-8 h-8" />
-                            <div class="text-left">
-                              <div class="text-sm text-gray-100">{orb.name}</div>
-                              <div class="text-xs text-gray-500">{orb.description}</div>
-                            </div>
-                          </button>
-                        {/each}
-                      </div>
-                    {/if}
-                  {/each}
-                  <button
-                    type="button"
-                    class="orb-slot-button relative w-12 h-12"
-                    on:click={() => openOrbMenu = openOrbMenu === 'special' ? null : 'special'}
+          {/each}
+          <!-- Special orb slot -->
+          <div class="relative">
+            <button
+              class="orb-slot-button w-10 h-10 rounded-full overflow-hidden focus:outline-none"
+              on:click={() => openOrbMenu = openOrbMenu === 'special' ? null : 'special'}
+            >
+              <img src="/orbs/orb_slot_spe.png" alt="special slot" class="w-full h-full" />
+              {#if specialSlot}
+                <img src={`/orbs/${specialSlot.id}.png`} alt={specialSlot.name} class="absolute inset-0 w-full h-full object-contain" />
+              {/if}
+            </button>
+            {#if openOrbMenu === 'special'}
+              <div class="orb-menu absolute left-0 mt-1 bg-gray-900 border border-gray-700 rounded shadow-lg max-h-56 overflow-y-auto p-2 w-52">
+                {#each specialOrbs as orb}
+                  <div
+                    class="flex items-center p-1 hover:bg-gray-700 cursor-pointer text-sm text-white"
+                    on:click={() => { specialSlot = orb; openOrbMenu = null; }}
                   >
-                    <img src={specialSlotImage} alt="special slot" class="w-full h-full" />
-                    {#if specialSlot}
-
-                      <img src={orbImagePath(specialSlot)} alt={specialSlot.name} class="absolute inset-0 object-contain" />
-
-                      <img
-                        src={orbImagePath(specialSlot)}
-                        alt={specialSlot.name}
-                        class="absolute inset-0 object-contain"
-                        data-fallback-index="0"
-                        on:error={(event) => handleOrbImageError(event, specialSlot)}
-                      />
-
-                    {/if}
-                  </button>
-                  {#if openOrbMenu === 'special'}
-                    <div class="orb-menu absolute mt-2 left-1/2 -translate-x-1/2 bg-[#151622] border border-white/10 rounded-2xl shadow-xl p-2 w-56">
-                      <p class="text-xs text-gray-400 px-2 pb-2">Специальные сферы</p>
-                      {#each specialOrbs as orb}
-                        <button
-                          type="button"
-                          class="w-full flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-violet-500/15"
-                          on:click={() => {
-                            specialSlot = orb;
-                            selectedOrbSet = 'custom';
-                            openOrbMenu = null;
-                          }}
-                        >
-
-                          <img src={orbImagePath(orb)} alt={orb.name} class="w-8 h-8" />
-
-                          <img
-                            src={orbImagePath(orb)}
-                            alt={orb.name}
-                            class="w-8 h-8"
-                            data-fallback-index="0"
-                            on:error={(event) => handleOrbImageError(event, orb)}
-                          />
-
-                          <div class="text-left">
-                            <div class="text-sm text-gray-100">{orb.name}</div>
-                            <div class="text-xs text-gray-500">{orb.description}</div>
-                          </div>
-                        </button>
-                      {/each}
-                    </div>
-                  {/if}
-                </div>
-              </div>
-
-              <div class="flex items-center gap-3 mt-10">
-
-                {#if typeIcon(selectedMutant.type)}
-                  <img src={typeIcon(selectedMutant.type)} alt={typeLabel(selectedMutant.type)} class="w-10 h-10" />
-                {/if}
-                <div class="text-left">
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.3em]">{typeLabel(selectedMutant.type)}</div>
-                  <div class="text-2xl font-semibold text-gray-100">Level {levelValue}</div>
-                </div>
-              </div>
-
-              <div class="w-full bg-black/30 border border-white/10 rounded-2xl px-4 py-4 space-y-3">
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={levelSliderId}>Уровень мутанта</label>
-                  <div class="flex items-center gap-3 mt-2">
-                    <input id={levelSliderId} type="range" min="1" max="100" step="1" bind:value={levelValue} class="flex-1 accent-violet-400" />
-                    <span class="w-12 text-right text-sm text-gray-200">{levelValue}</span>
+                    <img src={`/orbs/${orb.id}.png`} alt={orb.name} class="w-6 h-6 mr-2" />
+                    <span>{orb.name}</span>
                   </div>
-                </div>
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={starSliderId}>Звёздность</label>
-                  <div class="flex items-center gap-3 mt-2">
-                    <input id={starSliderId} type="range" min="0" max="4" step="1" bind:value={starLevel} class="flex-1 accent-violet-400" />
-                    <img src={starIcons[starLevel]} alt={starLabels[starLevel]} class="w-10 h-10" />
-
-                {#if typeIcon(displayMutant.type)}
-                  <img src={typeIcon(displayMutant.type)} alt={typeLabel(displayMutant.type)} class="w-10 h-10" />
-                {/if}
-                <div class="text-left">
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.3em]">{typeLabel(displayMutant.type)}</div>
-                  <div class="text-2xl font-semibold text-gray-100">Уровень {levelValue}</div>
-                </div>
+                {/each}
               </div>
-
-              <div class="w-full bg-black/30 border border-white/10 rounded-2xl px-4 py-4 space-y-4">
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400" for={levelInputId}>Уровень мутанта</label>
-                  <div class="flex items-center gap-3 mt-2">
-                    <input
-                      id={levelInputId}
-                      type="text"
-                      inputmode="numeric"
-                      pattern="[0-9]*"
-                      value={levelText}
-                      on:input={handleLevelInput}
-                      on:blur={handleLevelBlur}
-                      class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-center text-sm text-gray-100 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-400"
-                    />
-                    <span class="px-3 py-2 text-xs uppercase tracking-[0.3em] text-gray-400 border border-white/10 rounded-lg bg-black/40">
-                      lvl
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <label class="text-xs uppercase tracking-[0.3em] text-gray-400">Звёздность</label>
-                  <div class="mt-3 flex flex-col gap-3">
-                    <div class="flex flex-wrap items-center gap-2">
-                      {#each starOptions as option}
-                        <button
-                          type="button"
-                          class={`p-1.5 rounded-full border transition ${starLevel === option.level ? 'border-violet-400 bg-violet-500/20 shadow-lg shadow-violet-500/20' : 'border-white/10 hover:border-violet-300/60 bg-black/40'}`}
-                          on:click={() => starLevel = option.level}
-                          aria-label={`Звезда ${option.label}`}
-                        >
-                          <img src={option.icon} alt={option.label} class="w-9 h-9" />
-                        </button>
-                      {/each}
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-400">
-                      <span>{starOptions[starLevel]?.label || 'Обычный'}</span>
-                      <span>Множитель: ×{formatMultiplier(currentStats.multiplier)}</span>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="lg:w-1/2 flex flex-col justify-between">
-              <div>
-                <div class="stat-row">
-                  <img src="/etc/icon_hp.png" alt="HP" class="w-6 h-6" />
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">HP</div>
-                  <div class="text-lg font-semibold text-[#75d6ff]">{currentStats.hp.toLocaleString('ru-RU')}</div>
-                </div>
-                <div class="stat-row">
-                  <img src="/etc/icon_atk.png" alt="Attack" class="w-6 h-6" />
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">{currentStats.name_attack1 || 'Attack 1'}</div>
-                  <div class="text-lg font-semibold text-[#f7a6ff]">{currentStats.atk1.toLocaleString('ru-RU')}</div>
-                </div>
-                <div class="stat-row">
-                  <img src="/etc/icon_atk.png" alt="Attack" class="w-6 h-6" />
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">{currentStats.name_attack2 || 'Attack 2'}</div>
-                  <div class="text-lg font-semibold text-[#ffa76d]">{currentStats.atk2.toLocaleString('ru-RU')}</div>
-                </div>
-                <div class="stat-row">
-                  <img src="/etc/icon_speed.png" alt="Speed" class="w-6 h-6" />
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">Speed</div>
-                  <div class="text-lg font-semibold text-[#ffd76d]">{currentStats.spd}</div>
-                </div>
-
-                <div class="stat-row">
-                  <img src="/etc/icon_bingo.png" alt="Bingo" class="w-6 h-6" />
-                  <div class="text-sm text-gray-400 uppercase tracking-[0.2em]">Bingo</div>
-                  <div class="text-lg font-semibold text-[#c2ff6d]">{currentStats.bingo?.[0] ?? '-'}</div>
-                </div>
-              </div>
-
-              <div class="mt-6 bg-black/25 border border-white/10 rounded-2xl px-5 py-4 space-y-3">
-                <div class="text-xs uppercase tracking-[0.3em] text-gray-400">Abilities</div>
-                {#if currentStats.abilities?.length}
-                  <div class="text-sm text-gray-200">
-                    {formatAbilityName(currentStats.abilities[0])}
-                    {#if currentStats.abilities[0]?.value_atk1_lvl1}
-                      <span class="text-gray-500"> · {currentStats.abilities[0].value_atk1_lvl1}%</span>
-                    {/if}
-                  </div>
-
-              </div>
-
-              <div class="mt-6 bg-black/25 border border-white/10 rounded-2xl px-5 py-4 space-y-3">
-                <div class="text-xs uppercase tracking-[0.3em] text-gray-400">Способности</div>
-                {#if currentStats.abilities?.length}
-                  <ul class="space-y-2">
-                    {#each currentStats.abilities as ability}
-                      <li class="flex items-center justify-between text-sm text-gray-200">
-                        <span>{ability.label}{ability.isPlus ? ' +' : ''}</span>
-                        <span class="text-gray-300">
-                          {formatPercent(ability.pct)}%
-                          {#if ability.orbBonus > 0}
-                            <span class="text-violet-200">(+{formatPercent(ability.orbBonus)}%)</span>
-                          {/if}
-                        </span>
-                      </li>
-                    {/each}
-                  </ul>
-
-                {:else}
-                  <div class="text-sm text-gray-500">Нет дополнительных способностей.</div>
-                {/if}
-              </div>
-            </div>
+            {/if}
           </div>
         </div>
-      {:else}
-        <div class="h-full flex items-center justify-center text-gray-400 text-sm">
-          Выберите мутанта слева, чтобы увидеть подробную карточку.
+      </div>
+    </div>
+  {/if}
+
+  <!-- Display the calculated stats -->
+  {#if selectedMutant && currentStats}
+    <div class="mx-auto max-w-xs bg-gray-800 rounded-lg p-4 text-white">
+      <h3 class="text-xl font-bold mb-2 text-center">{currentStats.name}</h3>
+          <div class="relative w-32 h-32 mx-auto mb-2">
+            <img
+              src={normalizeImage(selectedMutant.image[0])}
+              alt={currentStats.name}
+              class="w-full h-full object-cover rounded"
+            />
+        <!-- Genes overlay -->
+        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex space-x-1 mb-1">
+          {#each currentStats.genes as g}
+            <img src={geneFilters.find(f => f.key === g?.[0]?.toUpperCase())?.icon || '/genes/gene_all.png'} alt={g} class="w-5 h-5" />
+          {/each}
         </div>
-      {/if}
-    </section>
-  </div>
+      </div>
+      <!-- Orbs row underneath image -->
+      <div class="flex justify-center space-x-2 mb-2">
+        {#each Array(basicSlotCount) as _, i}
+          <img src={basicSlots[i] ? `/orbs/${basicSlots[i].id}.png` : '/orbs/orb_slot.png'} alt="orb" class="w-6 h-6" />
+        {/each}
+        <img src={specialSlot ? `/orbs/${specialSlot.id}.png` : '/orbs/orb_slot_spe.png'} alt="special orb" class="w-6 h-6" />
+      </div>
+      <!-- Level and type -->
+      <div class="text-center mb-2">
+        <div class="text-sm">Level {levelValue}</div>
+        <div class="text-xs bg-purple-700 px-2 py-0.5 rounded inline-block mt-1">{typeLabel(selectedMutant.type)}</div>
+      </div>
+      <!-- Stats list -->
+      <ul class="space-y-1 text-sm">
+        <li class="flex justify-between items-center">
+          <span>HP</span>
+          <span>{currentStats.hp.toLocaleString()}</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>{currentStats.name_attack1 || 'Attack 1'}</span>
+          <span>{currentStats.atk1.toLocaleString()}</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>{currentStats.name_attack2 || 'Attack 2'}</span>
+          <span>{currentStats.atk2.toLocaleString()}</span>
+        </li>
+        {#if currentStats.abilities && currentStats.abilities.length > 0}
+          <li class="flex justify-between items-center">
+            <span>{currentStats.abilities[0]?.name?.replace(/_/g, ' ') || currentStats.abilities[0]?.replace(/_/g, ' ') || 'Ability'}</span>
+            <span></span>
+          </li>
+        {/if}
+        <li class="flex justify-between items-center">
+          <span>Speed</span>
+          <span>{currentStats.spd}</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>Bingo</span>
+          <span>{currentStats.bingo && currentStats.bingo.length > 0 ? currentStats.bingo[0] : '-'}</span>
+        </li>
+      </ul>
+    </div>
+  {/if}
 </div>
