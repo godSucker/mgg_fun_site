@@ -6,6 +6,7 @@
   import goldRaw from '@/data/mutants/gold.json';
   import platinumRaw from '@/data/mutants/platinum.json';
   import orbsRaw from '@/data/materials/orbs.json';
+  import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
 
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
   const GENE_NAME = {
@@ -59,7 +60,10 @@
       const atk2Base = numberOr(baseStats.atk2_base, numberOr(lvl1.atk2, 0));
       const atk2pBase = numberOr(baseStats.atk2p_base, numberOr(lvl30.atk2, atk2Base));
       const speed = numberOr(baseStats.speed_base, numberOr(lvl30.spd, numberOr(lvl1.spd, m.speed)));
-      const rarity = readableRarity(m);
+      const typeRaw = tag(m, 'type') ?? m.type ?? '';
+      const tierRaw = tag(m, 'tier') ?? m.tier ?? '';
+      const typeLabel = readableType(typeRaw);
+      const tierLabel = readableTier(tierRaw);
       const starMultipliers = {
         0: 1,
         1: starAux.bronze?.get(baseId)?.multiplier ?? 1,
@@ -71,7 +75,10 @@
         id: baseId,
         baseId,
         name: m.name,
-        rarity,
+        type: typeRaw,
+        typeLabel,
+        tier: tierRaw,
+        tierLabel,
         genes,
         geneKey,
         images,
@@ -114,10 +121,15 @@
     const raw = String(m?.id ?? m?.slug ?? m?.specimen ?? m?.name ?? '').trim();
     return raw.replace(/_(bronze|silver|gold|platinum)$/i, '');
   }
-  function readableRarity(m){
-    const raw = m?.tier ?? m?.rarity ?? m?.type ?? '';
-    if (!raw) return 'Default';
-    return String(raw).replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+  function readableType(raw){
+    const val = String(raw || '').trim();
+    if (!val) return '—';
+    return TYPE_RU[val] || niceLabel(val);
+  }
+  function readableTier(raw){
+    const val = String(raw || '').trim();
+    if (!val) return '—';
+    return niceLabel(val);
   }
   function normalizeImages(img){
     const arr = Array.isArray(img) ? img : [img];
@@ -149,26 +161,96 @@
       return ab
         .map((item) => {
           if (!item) return null;
-          if (typeof item === 'string') return item.trim();
+          if (typeof item === 'string') return abilityDisplay(item);
           if (typeof item === 'object') {
             const name = String(item.name ?? item.id ?? '').trim();
             const pct = Number(item.pct);
-            const pctStr = Number.isFinite(pct) && pct !== 0 ? ` (${pct > 0 ? '+' : ''}${pct}%)` : '';
-            return name ? `${name}${pctStr}` : null;
+            return abilityDisplay(name, Number.isFinite(pct) ? pct : null);
           }
           return null;
         })
         .filter(Boolean);
     }
-    if (typeof ab === 'string') return ab.split(/[;,]/).map(s=>s.trim()).filter(Boolean);
+    if (typeof ab === 'string') return ab.split(/[;,]/).map(s=>abilityDisplay(s)).filter(Boolean);
     return [];
   }
 
+  function abilityDisplay(raw, pct = null){
+    const trimmed = String(raw || '').trim();
+    if (!trimmed) return null;
+    const baseMatch = trimmed.match(/^([a-zA-Z0-9_]+)/);
+    const base = baseMatch ? baseMatch[1] : trimmed;
+    const suffix = baseMatch ? trimmed.slice(base.length) : '';
+    const ru = abilityRu(base);
+    if (pct !== null && pct !== 0) {
+      return `${ru} (${pct > 0 ? '+' : ''}${pct}%)`;
+    }
+    if (suffix.trim()) return `${ru}${suffix}`;
+    return ru;
+  }
+
+  function abilityRu(code){
+    const key = String(code || '').trim();
+    if (!key) return '';
+    const lower = key.toLowerCase();
+    return ABILITY_RU[key] || ABILITY_RU[lower] || key;
+  }
+
+  function niceLabel(value){
+    const s = String(value || '').trim();
+    if (!s) return '—';
+    return s
+      .replace(/[_-]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
   // Списки сфер
-  const ORBS = {
-    basic: (orbsRaw.basic || []).map(o => ({...o, type:'basic', icon: `/orbs/basic/${o.id}.png`})),
-    special: (orbsRaw.special || []).map(o => ({...o, type:'special', icon: `/orbs/special/${o.id}.png`}))
-  };
+  const ORBS = buildOrbCatalog(orbsRaw);
+
+  function buildOrbCatalog(raw){
+    const list = Array.isArray(raw) ? raw : [];
+    const basic = [];
+    const special = [];
+    for (const orb of list) {
+      const item = enrichOrb(orb);
+      if (!item) continue;
+      if (item.category === 'special') special.push(item);
+      else basic.push(item);
+    }
+    return { basic, special };
+  }
+
+  function enrichOrb(orb){
+    if (!orb) return null;
+    const id = String(orb.id || '').trim();
+    if (!id) return null;
+    const category = id.startsWith('orb_special') ? 'special' : 'basic';
+    const percent = Number(orb.percent ?? orb.pct ?? orb.percentage ?? 0);
+    const effects = orbEffectsFromId(id, percent);
+    return {
+      ...orb,
+      ...effects,
+      percent,
+      category,
+      icon: `/orbs/${category}/${id}.png`,
+      type: category,
+    };
+  }
+
+  function orbEffectsFromId(id, percent){
+    const pct = Number.isFinite(percent) ? percent : 0;
+    const abs = Math.abs(pct);
+    const key = id.toLowerCase();
+    if (key.includes('attack')) return { atkPct: pct };
+    if (key.includes('health') || key.includes('_hp') || key.includes('life')) return { hpPct: pct };
+    if (key.includes('speed')) return { speedPct: pct };
+    if (key.includes('regenerate') || key.includes('retaliate') || key.includes('shield') || key.includes('slash') || key.includes('strengthen') || key.includes('weaken')) {
+      return { abilityPct: abs };
+    }
+    return {};
+  }
 
   // Приводим мутантов
   const ALL_MUTANTS = normalizeMutants(mutantsRaw);
@@ -362,7 +444,7 @@
               {/each}
             </div>
           </div>
-          <div class="rar">{m.rarity}</div>
+          <div class="rar">{m.typeLabel}</div>
         </button>
       {/each}
     </div>
@@ -444,13 +526,14 @@
 
       <!-- СТАТЫ -->
       <div class="stats">
-        <div class="row"><span>Редкость</span><b>{selected.rarity}</b></div>
+        <div class="row"><span>Тип</span><b>{selected.typeLabel || selected.type || '—'}</b></div>
+        <div class="row"><span>Тир</span><b>{selected.tierLabel || selected.tier || '—'}</b></div>
         <div class="row"><span>HP</span><b>{stats.hp.toLocaleString('ru-RU')}</b></div>
         <div class="row"><span>Атака 1</span><b>{stats.atk1.toLocaleString('ru-RU')}</b></div>
         <div class="row"><span>Атака 2</span><b>{stats.atk2.toLocaleString('ru-RU')}</b></div>
         <div class="row"><span>Скорость</span><b>{stats.speed}</b></div>
         <div class="row abils">
-          <span>Abilities</span>
+          <span>Способности</span>
           <div class="abilities">
             {#each selected.abilities as ab}
               <div class="ability">{ab}</div>
