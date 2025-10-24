@@ -468,6 +468,7 @@
   let specialSlot = null;
   let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
   let abilityRows = [];
+  let attackRows = [];
   let typeIconCurrent = '';
 
   // контейнер дропдауна сфер (для клика вне)
@@ -659,7 +660,44 @@
   $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
   $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0};
   $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers, level) : [];
+  $: attackRows = buildAttackRows(selected, stats, abilityRows);
   $: typeIconCurrent = selected ? typeIconPath(selected.typeKey || selected.type) : '';
+
+  function buildAttackRows(mutant, statLine, abilityList){
+    if (!mutant) return [];
+    const rows = [1, 2].map((idx) => {
+      const meta = mutant?.attackMeta?.[idx] ?? {};
+      const damage = Number(statLine?.[`atk${idx}`] ?? 0);
+      const effects = [];
+      if (Array.isArray(abilityList)) {
+        abilityList.forEach((ability) => {
+          if (!ability) return;
+          const hit = Array.isArray(ability.values)
+            ? ability.values.find((val) => val?.attack === idx)
+            : null;
+          if (!hit) return;
+          effects.push({
+            label: ability.label,
+            percent: ability.percent,
+            value: hit.value,
+            icon: ability.icon || '',
+          });
+        });
+      }
+      const geneIcon = meta.geneIcon || '';
+      const isAoe = Boolean(meta.isAoe);
+      const label = meta.label || `Атака ${idx}`;
+      return {
+        attack: idx,
+        label,
+        geneIcon,
+        isAoe,
+        damage,
+        effects,
+      };
+    });
+    return rows.filter((row) => row.label || row.damage || row.effects.length);
+  }
 
   function calcAbilityRows(mutant, statLine, mods, lvl){
     const list = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
@@ -832,57 +870,72 @@
           <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
         </div>
 
-        <div class="abilities-block">
-          <div class="block-head">
-            <span class="block-title">Способности</span>
+        <div class="stats">
+          <div class="row">
+            <span class="label">
+              {#if typeIconCurrent}
+                <img class="label-icon" src={typeIconCurrent} alt="Тип" />
+              {/if}
+              Тип
+            </span>
+            <b>{selected.typeLabel || selected.type || '—'}</b>
           </div>
-          {#if abilityRows.length}
-            <div class="abilities">
-              {#each abilityRows as ab (ab.code + ab.label)}
-                <div class="ability">
-                  <div class="ability-values">
-                    {#each ab.values as val (val.attack)}
-                      <div class="ability-value">
-                      <div class="attack-side">
-                        <span class="attack-gene" class:empty={!val.geneIcon}>
-                          {#if val.geneIcon}
-                            <img class="gene-icon" src={val.geneIcon} alt="" aria-hidden="true" />
-                          {/if}
-                          {#if val.isAoe}
-                            <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
-                          {/if}
-                        </span>
-                        <div class="attack-info">
-                          <span class="attack-label">{val.label}</span>
-                          <span class="attack-damage">{val.attackPower?.toLocaleString('ru-RU') ?? '—'}</span>
-                        </div>
-                      </div>
-                      <span class="ability-divider" aria-hidden="true"></span>
-                      <div class="effect-side">
-                        <div class="effect-head">
-                          {#if ab.icon}
-                            <img class="ability-icon" src={ab.icon} alt={ab.label} />
-                          {/if}
-                          <span class="effect-name">
-                            {ab.label}
-                            {#if ab.percent != null}
-                              <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
-                            {/if}
-                          </span>
-                        </div>
-                        <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
-                      </div>
-                      </div>
-                    {/each}
-                  </div>
+          <div class="row"><span class="label">Тир</span><b>{selected.tierLabel || selected.tier || '—'}</b></div>
+          <div class="row">
+            <span class="label">
+              <img class="label-icon" src={STAT_ICON.hp} alt="HP" />
+              HP
+            </span>
+            <b>{stats.hp.toLocaleString('ru-RU')}</b>
+          </div>
+
+          {#each attackRows as attack (attack.attack)}
+            <div class="row attack-row">
+              <div class="attack-side">
+                <span class="attack-gene" class:empty={!attack.geneIcon}>
+                  {#if attack.geneIcon}
+                    <img class="gene-icon" src={attack.geneIcon} alt="" aria-hidden="true" />
+                  {/if}
+                  {#if attack.isAoe}
+                    <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                  {/if}
+                </span>
+                <div class="attack-info">
+                  <span class="attack-label">{attack.label}</span>
+                  <span class="attack-damage">{attack.damage ? attack.damage.toLocaleString('ru-RU') : '—'}</span>
                 </div>
-              {/each}
+              </div>
+              <span class="ability-divider" class:empty={!attack.effects.length} aria-hidden="true"></span>
+              <div class="effect-side">
+                {#if attack.effects.length}
+                  {#each attack.effects as effect, i (effect.label + effect.value + effect.percent + i)}
+                    <div class="effect-row">
+                      {#if effect.icon}
+                        <img class="ability-icon" src={effect.icon} alt={effect.label} />
+                      {/if}
+                      <span class="effect-name">
+                        {effect.label}
+                        {#if effect.percent != null}
+                          <span class="effect-percent">{effect.percent.toLocaleString('ru-RU')}%</span>
+                        {/if}
+                      </span>
+                      <span class="effect-value">{effect.value.toLocaleString('ru-RU')}</span>
+                    </div>
+                  {/each}
+                {:else}
+                  <span class="effect-empty">—</span>
+                {/if}
+              </div>
             </div>
-          {:else}
-            <div class="abilities">
-              <div class="ability empty">—</div>
-            </div>
-          {/if}
+          {/each}
+
+          <div class="row">
+            <span class="label">
+              <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
+              Скорость
+            </span>
+            <b>{formatSpeed(stats.speed)}</b>
+          </div>
         </div>
       </div>
 
@@ -954,35 +1007,6 @@
         </div>
       </div>
 
-      <!-- СТАТЫ -->
-      <div class="stats">
-        <div class="row">
-          <span class="label">
-            {#if typeIconCurrent}
-              <img class="label-icon" src={typeIconCurrent} alt="Тип" />
-            {/if}
-            Тип
-          </span>
-          <b>{selected.typeLabel || selected.type || '—'}</b>
-        </div>
-        <div class="row"><span class="label">Тир</span><b>{selected.tierLabel || selected.tier || '—'}</b></div>
-        <div class="row">
-          <span class="label">
-            <img class="label-icon" src={STAT_ICON.hp} alt="HP" />
-            HP
-          </span>
-          <b>{stats.hp.toLocaleString('ru-RU')}</b>
-        </div>
-        <div class="row">
-          <span class="label">
-            <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
-            Скорость
-          </span>
-          <b>{formatSpeed(stats.speed)}</b>
-        </div>
-      </div>
-
-      
     {/if}
   </section>
 </div>
@@ -1010,9 +1034,8 @@
 
   .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:16px; }
   .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
-  .hero-section{ display:grid; grid-template-columns: 250px minmax(0,1fr); gap:20px; align-items:stretch; }
-  .hero-section > .abilities-block{ min-height:0; min-width:0; max-height:none; }
-  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; }
+  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:18px; }
+  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; width:100%; }
   .mut-figure::after{ content:""; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
   .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(44px); }
 
@@ -1038,17 +1061,11 @@
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
   .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
-  .stats{ margin-top:0; display:flex; flex-direction:column; gap:8px; }
+  .stats{ margin-top:0; display:flex; flex-direction:column; gap:10px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:11px 13px; color:#dfe7f3; font-size:14px; }
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
   .row .label-icon{ width:22px; height:22px; object-fit:contain; }
-  .abilities-block{ background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:14px; max-height:none; overflow:auto; }
-  .block-head{ display:flex; align-items:center; justify-content:space-between; }
-  .block-title{ font-size:16px; font-weight:600; color:#f0f6ff; }
-  .abilities{ display:flex; flex-direction:column; gap:12px; width:100%; }
-  .ability{ background:#2b3442; padding:14px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:12px; }
-  .ability-values{ display:flex; flex-direction:column; gap:12px; color:#d4deeb; }
-  .ability-value{ display:flex; align-items:center; gap:18px; background:rgba(15,19,25,0.35); padding:16px 18px; border-radius:12px; }
+  .row.attack-row{ align-items:stretch; gap:18px; padding:16px 18px; }
   .attack-side{ display:flex; align-items:center; gap:14px; flex:1 1 0; min-width:0; }
   .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:72px; height:72px; flex-shrink:0; }
   .attack-gene .gene-icon{ width:100%; height:100%; object-fit:contain; display:block; }
@@ -1058,11 +1075,12 @@
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; }
   .attack-damage{ font-size:18px; font-weight:700; color:#ffffff; }
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); }
-  .effect-side{ display:flex; flex-direction:column; gap:10px; min-width:0; flex:1 1 0; }
-  .effect-head{ display:flex; align-items:center; gap:10px; }
+  .ability-divider.empty{ display:none; }
+  .effect-side{ display:flex; flex-direction:column; gap:10px; min-width:0; flex:1 1 0; align-items:stretch; }
+  .effect-row{ display:flex; align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:12px 14px; border-radius:10px; width:100%; }
   .ability-icon{ width:32px; height:32px; object-fit:contain; }
-  .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; }
+  .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; flex:1 1 auto; }
   .effect-percent{ font-size:14px; color:#90f36b; font-weight:600; }
   .effect-value{ font-size:18px; color:#90f36b; font-weight:700; }
-  .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
+  .effect-empty{ color:#94a2b9; font-size:14px; text-align:center; }
 </style>
