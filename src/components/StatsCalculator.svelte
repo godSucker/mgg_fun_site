@@ -34,6 +34,37 @@
     3: '/stars/star_gold.png',
     4: '/stars/star_platinum.png'
   };
+  const STAR_IMAGE_KEYWORDS = {
+    normal: ['_normal', 'normal'],
+    bronze: ['_bronze', 'bronze'],
+    silver: ['_silver', 'silver'],
+    gold: ['_gold', 'gold'],
+    platinum: ['_platinum', '_plat', 'platinum', 'plat']
+  };
+
+  const STAT_ICON = {
+    hp: '/etc/icon_hp.png',
+    atk: '/etc/icon_atk.png',
+    speed: '/etc/icon_speed.png',
+  };
+
+  const TYPE_ICON = {
+    default: '/mut_icons/icon_special.png',
+    special: '/mut_icons/icon_special.png',
+    heroic: '/mut_icons/icon_heroic.png',
+    legend: '/mut_icons/icon_legendary.png',
+    legendary: '/mut_icons/icon_legendary.png',
+    gacha: '/mut_icons/icon_gacha.png',
+    pvp: '/mut_icons/icon_pvp.png',
+    seasonal: '/mut_icons/icon_seasonal.png',
+    recipe: '/mut_icons/icon_recipe.png',
+    videogame: '/mut_icons/icon_videogame.png',
+    video_game: '/mut_icons/icon_videogame.png',
+    morphology: '/mut_icons/icon_morphology.png',
+    zodiac: '/mut_icons/icon_zodiac.png',
+    limited: '/mut_icons/limited.png',
+    community: '/mut_icons/icon_special.png',
+  };
   const starAux = buildStarAuxiliary();
 
   const SPECIAL_SLOT_COUNT = 1;
@@ -271,12 +302,19 @@
     const basic = [];
     const special = [];
     for (const orb of list) {
+      if (isTemporaryOrb(orb)) continue;
       const item = enrichOrb(orb);
       if (!item) continue;
       if (item.category === 'special') special.push(item);
       else basic.push(item);
     }
     return { basic, special };
+  }
+
+  function isTemporaryOrb(orb){
+    const id = String(orb?.id || '').toLowerCase();
+    if (!id) return false;
+    return id.includes('ephemeral') || id.includes('temporary');
   }
 
   function enrichOrb(orb){
@@ -324,6 +362,7 @@
   let specialSlot = null;
   let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
   let abilityRows = [];
+  let typeIconCurrent = '';
 
   // контейнер дропдауна сфер (для клика вне)
   let dropdownHost = null;
@@ -356,9 +395,7 @@
 
   function figureImage(m, stars){
     if (!m) return '';
-    const portrait = portraitImage(m);
-    if (portrait) return portrait;
-    return starTexture(m, stars);
+    return starTexture(m, stars) || portraitImage(m);
   }
 
   function portraitImage(m){
@@ -374,18 +411,36 @@
     if (!m) return '';
     const key = STAR_KEYS[stars] ?? 'normal';
     if (key === 'normal') {
-      return firstTexture(m.images, 'normal');
+      return baseTexture(m);
     }
+    const keywords = STAR_IMAGE_KEYWORDS[key] || [key];
     const info = starAux[key]?.get(m.baseId);
-    return firstTexture(info?.images, key) || firstTexture(m.images, key) || firstTexture(m.images);
+    return (
+      findImageByKeywords(info?.images, keywords)
+      || findImageByKeywords(m.images, keywords)
+      || baseTexture(m)
+    );
+  }
+
+  function baseTexture(m){
+    if (!m) return '';
+    return (
+      findImageByKeywords(m.images, STAR_IMAGE_KEYWORDS.normal)
+      || findImageByKeywords(m.images, ['normal', 'default', 'full'])
+      || firstTexture(m.images)
+    );
   }
 
   function firstTexture(list, keyword = null){
     const arr = Array.isArray(list) ? list : [];
     if (!arr.length) return '';
     if (keyword) {
-      const match = arr.find((p) => p && p.toLowerCase().includes(String(keyword).toLowerCase()));
-      if (match) return match;
+      const keywords = Array.isArray(keyword) ? keyword : [keyword];
+      for (const key of keywords) {
+        const lower = String(key || '').toLowerCase();
+        const match = arr.find((p) => p && p.toLowerCase().includes(lower));
+        if (match) return match;
+      }
     }
     return arr[0];
   }
@@ -399,6 +454,27 @@
       if (found) return found;
     }
     return '';
+  }
+
+  function typeIconPath(typeKey){
+    const raw = String(typeKey || '').trim();
+    if (!raw) return '';
+    const lower = raw.toLowerCase();
+    if (TYPE_ICON[lower]) return TYPE_ICON[lower];
+    const prefixed = `/mut_icons/icon_${lower}.png`;
+    return prefixed;
+  }
+
+  function abilityIconPath(code){
+    const raw = String(code || '').trim().toLowerCase();
+    if (!raw) return '';
+    const stripped = raw
+      .replace(/_plus_plus$/i, '')
+      .replace(/_plus$/i, '');
+    if (stripped === 'ability_regen') {
+      return '/ability/ability_regenerate.png';
+    }
+    return `/ability/${stripped}.png`;
   }
 
   // Применение модификаторов сфер (проценты)
@@ -476,6 +552,7 @@
   $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
   $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0};
   $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers) : [];
+  $: typeIconCurrent = selected ? typeIconPath(selected.typeKey || selected.type) : '';
 
   function calcAbilityRows(mutant, statLine, mods){
     const list = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
@@ -514,6 +591,7 @@
         code: ability.code,
         label: ability.label,
         values,
+        icon: abilityIconPath(ability.code),
       });
     }
     return result;
@@ -680,19 +758,56 @@
 
       <!-- СТАТЫ -->
       <div class="stats">
-        <div class="row"><span>Тип</span><b>{selected.typeLabel || selected.type || '—'}</b></div>
-        <div class="row"><span>Тир</span><b>{selected.tierLabel || selected.tier || '—'}</b></div>
-        <div class="row"><span>HP</span><b>{stats.hp.toLocaleString('ru-RU')}</b></div>
-        <div class="row"><span>Атака 1</span><b>{stats.atk1.toLocaleString('ru-RU')}</b></div>
-        <div class="row"><span>Атака 2</span><b>{stats.atk2.toLocaleString('ru-RU')}</b></div>
-        <div class="row"><span>Скорость</span><b>{stats.speed}</b></div>
+        <div class="row">
+          <span class="label">
+            {#if typeIconCurrent}
+              <img class="label-icon" src={typeIconCurrent} alt="Тип" />
+            {/if}
+            Тип
+          </span>
+          <b>{selected.typeLabel || selected.type || '—'}</b>
+        </div>
+        <div class="row"><span class="label">Тир</span><b>{selected.tierLabel || selected.tier || '—'}</b></div>
+        <div class="row">
+          <span class="label">
+            <img class="label-icon" src={STAT_ICON.hp} alt="HP" />
+            HP
+          </span>
+          <b>{stats.hp.toLocaleString('ru-RU')}</b>
+        </div>
+        <div class="row">
+          <span class="label">
+            <img class="label-icon" src={STAT_ICON.atk} alt="Атака" />
+            Атака 1
+          </span>
+          <b>{stats.atk1.toLocaleString('ru-RU')}</b>
+        </div>
+        <div class="row">
+          <span class="label">
+            <img class="label-icon" src={STAT_ICON.atk} alt="Атака" />
+            Атака 2
+          </span>
+          <b>{stats.atk2.toLocaleString('ru-RU')}</b>
+        </div>
+        <div class="row">
+          <span class="label">
+            <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
+            Скорость
+          </span>
+          <b>{stats.speed}</b>
+        </div>
         <div class="row abils">
           <span>Способности</span>
           <div class="abilities">
             {#if abilityRows.length}
               {#each abilityRows as ab (ab.code + ab.label)}
                 <div class="ability">
-                  <div class="ability-name">{ab.label}</div>
+                  <div class="ability-name">
+                    {#if ab.icon}
+                      <img class="ability-icon" src={ab.icon} alt={ab.label} />
+                    {/if}
+                    <span>{ab.label}</span>
+                  </div>
                   <div class="ability-values">
                     {#each ab.values as val (val.attack)}
                       <span>Атака {val.attack}: {val.value.toLocaleString('ru-RU')}</span>
@@ -754,14 +869,17 @@
   .star{ width:34px; height:34px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
   .star.selected{ opacity:1; transform:scale(1.05); filter:drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
+  .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
   .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
   .stats{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:10px 12px; color:#dfe7f3; }
-  .row span{ color:#aab6c8; }
+  .row .label{ display:flex; align-items:center; gap:8px; color:#aab6c8; }
+  .row .label-icon{ width:20px; height:20px; object-fit:contain; }
   .abilities{ display:flex; flex-direction:column; gap:8px; width:100%; }
   .ability{ background:#2b3442; padding:6px 10px; border-radius:8px; font-size:12px; display:flex; flex-direction:column; gap:4px; }
-  .ability-name{ font-weight:600; color:#f0f6ff; }
+  .ability-name{ display:flex; align-items:center; gap:8px; font-weight:600; color:#f0f6ff; }
+  .ability-icon{ width:22px; height:22px; object-fit:contain; }
   .ability-values{ display:flex; flex-wrap:wrap; gap:10px; color:#d4deeb; }
   .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
