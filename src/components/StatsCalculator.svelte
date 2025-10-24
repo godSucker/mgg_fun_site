@@ -26,7 +26,7 @@
     E: '/genes/icon_gene_e.png',
     F: '/genes/icon_gene_f.png',
   };
-  const STAR_KEYS = ['normal','bronze','silver','gold','platinum'];
+  const STAR_KEYS = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
   const STAR_ICON = {
     0: '/stars/no_stars.png',
     1: '/stars/star_bronze.png',
@@ -35,6 +35,8 @@
     4: '/stars/star_platinum.png'
   };
   const starAux = buildStarAuxiliary();
+
+  const SPECIAL_SLOT_COUNT = 1;
 
   const byNameAsc  = (a, b) => a.name.localeCompare(b.name, 'ru');
   const byNameDesc = (a, b) => b.name.localeCompare(a.name, 'ru');
@@ -62,8 +64,11 @@
       const speed = numberOr(baseStats.speed_base, numberOr(lvl30.spd, numberOr(lvl1.spd, m.speed)));
       const typeRaw = tag(m, 'type') ?? m.type ?? '';
       const tierRaw = tag(m, 'tier') ?? m.tier ?? '';
+      const typeKey = String(typeRaw || '').trim();
+      const typeKind = typeKey.toLowerCase();
       const typeLabel = readableType(typeRaw);
       const tierLabel = readableTier(tierRaw);
+      const basicSlotCount = slotsForType(typeKind);
       const starMultipliers = {
         0: 1,
         1: starAux.bronze?.get(baseId)?.multiplier ?? 1,
@@ -76,6 +81,7 @@
         baseId,
         name: m.name,
         type: typeRaw,
+        typeKey,
         typeLabel,
         tier: tierRaw,
         tierLabel,
@@ -90,8 +96,8 @@
         speed,
         abilities: normalizeAbilities(m),
         starMultipliers,
-        // heroic: 4 базовых + 1 спец, иначе 3 + 1
-        slots: (m.category || m.rarity || '').toLowerCase() === 'heroic' ? 4 : 3,
+        basicSlotCount,
+        specialSlotCount: SPECIAL_SLOT_COUNT,
       };
     });
   }
@@ -116,6 +122,13 @@
       result[key] = map;
     }
     return result;
+  }
+
+  function slotsForType(type){
+    const key = String(type || '').trim().toLowerCase();
+    if (key === 'default') return 2;
+    if (key === 'heroic') return 4;
+    return 3;
   }
   function baseIdOf(m){
     const raw = String(m?.id ?? m?.slug ?? m?.specimen ?? m?.name ?? '').trim();
@@ -154,46 +167,90 @@
     }
     return m[key] ?? null;
   }
-  function normalizeAbilities(m){
-    // abilities могут храниться как строка "a;b" или массив
-    const ab = m.abilities ?? tag(m,'abilities') ?? [];
-    if (Array.isArray(ab)) {
-      return ab
-        .map((item) => {
-          if (!item) return null;
-          if (typeof item === 'string') return abilityDisplay(item);
-          if (typeof item === 'object') {
-            const name = String(item.name ?? item.id ?? '').trim();
-            const pct = Number(item.pct);
-            return abilityDisplay(name, Number.isFinite(pct) ? pct : null);
-          }
-          return null;
-        })
-        .filter(Boolean);
-    }
-    if (typeof ab === 'string') return ab.split(/[;,]/).map(s=>abilityDisplay(s)).filter(Boolean);
+  function abilitySource(m){
+    const raw = m?.abilities ?? tag(m, 'abilities') ?? [];
+    if (Array.isArray(raw)) return raw;
+    if (typeof raw === 'string') return raw.split(/[;,]/);
     return [];
   }
 
-  function abilityDisplay(raw, pct = null){
-    const trimmed = String(raw || '').trim();
-    if (!trimmed) return null;
-    const baseMatch = trimmed.match(/^([a-zA-Z0-9_]+)/);
-    const base = baseMatch ? baseMatch[1] : trimmed;
-    const suffix = baseMatch ? trimmed.slice(base.length) : '';
-    const ru = abilityRu(base);
-    if (pct !== null && pct !== 0) {
-      return `${ru} (${pct > 0 ? '+' : ''}${pct}%)`;
+  function normalizeAbilities(m){
+    return abilitySource(m)
+      .map((entry) => normalizeAbilityEntry(entry))
+      .filter(Boolean);
+  }
+
+  function normalizeAbilityEntry(entry){
+    if (!entry) return null;
+    if (typeof entry === 'string') {
+      const code = cleanAbilityCode(entry);
+      if (!code) return null;
+      return {
+        code,
+        label: abilityLabel(code),
+        pct: null,
+        hasAtk1: true,
+        hasAtk2: true,
+        raw: null,
+      };
     }
-    if (suffix.trim()) return `${ru}${suffix}`;
+    if (typeof entry === 'object') {
+      const code = cleanAbilityCode(entry.name ?? entry.id ?? entry.code ?? '');
+      if (!code) return null;
+      const pct = toNumber(entry.pct ?? entry.percent ?? entry.percentage ?? entry.value);
+      let hasAtk1 = abilityAppliesTo(entry, 'atk1');
+      let hasAtk2 = abilityAppliesTo(entry, 'atk2');
+      if (code.includes('retaliate')) {
+        hasAtk2 = false;
+      }
+      return {
+        code,
+        label: abilityLabel(code),
+        pct,
+        hasAtk1,
+        hasAtk2,
+        raw: entry,
+      };
+    }
+    return null;
+  }
+
+  function cleanAbilityCode(raw){
+    const name = String(raw || '').trim();
+    if (!name) return '';
+    const match = name.match(/^([a-zA-Z0-9_]+)/);
+    return (match ? match[1] : name).toLowerCase();
+  }
+
+  function abilityLabel(code){
+    if (!code) return '—';
+    const ru = ABILITY_RU[code] || ABILITY_RU[code.toLowerCase()] || niceLabel(code);
+    const lower = code.toLowerCase();
+    if (lower.endsWith('_plus_plus')) return `${ru} ++`;
+    if (lower.endsWith('_plus')) return `${ru} +`;
     return ru;
   }
 
-  function abilityRu(code){
-    const key = String(code || '').trim();
-    if (!key) return '';
-    const lower = key.toLowerCase();
-    return ABILITY_RU[key] || ABILITY_RU[lower] || key;
+  function abilityAppliesTo(entry, key){
+    const lowerKey = String(key || '').toLowerCase();
+    if (lowerKey === 'atk1') {
+      return hasAbilityValue(entry, 'value_atk1') || hasAbilityValue(entry, 'atk1');
+    }
+    if (lowerKey === 'atk2') {
+      return hasAbilityValue(entry, 'value_atk2') || hasAbilityValue(entry, 'atk2');
+    }
+    return true;
+  }
+
+  function hasAbilityValue(entry, prefix){
+    if (!entry || typeof entry !== 'object') return false;
+    const keys = Object.keys(entry);
+    return keys.some((k) => k.toLowerCase().startsWith(String(prefix).toLowerCase()) && entry[k] != null && entry[k] !== '');
+  }
+
+  function toNumber(value){
+    const num = Number(value);
+    return Number.isFinite(num) ? num : null;
   }
 
   function niceLabel(value){
@@ -258,13 +315,15 @@
   // --- РЕАКТИВНОЕ СОСТОЯНИЕ UI ---
   let query = '';                      // строка поиска
   let geneFilter = new Set();          // активные фильтры генов (A..F)
-  let sortMode = 'nameAsc';            // nameAsc | nameDesc | gene
+  let sortMode = 'gene';               // nameAsc | nameDesc | gene
   let selected = ALL_MUTANTS[0];       // текущий мутант
   let level = 30;                      // уровень из инпута
   let stars = 0;                       // 0..4
   // выбранные сферы: массив из N базовых и 1 спец
-  let basicSlots = [];                 // длина = selected.slots
+  let basicSlots = [];                 // длина = selected.basicSlotCount
   let specialSlot = null;
+  let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
+  let abilityRows = [];
 
   // контейнер дропдауна сфер (для клика вне)
   let dropdownHost = null;
@@ -290,43 +349,85 @@
 
   // смена выбранного мутанта — сбрасываем слоты по его типу
   $: if (selected) {
-    basicSlots = Array(selected.slots).fill(null);
+    const count = Number.isFinite(selected.basicSlotCount) ? selected.basicSlotCount : 3;
+    basicSlots = Array(count).fill(null);
     specialSlot = null;
   }
 
-  function pickImage(m, stars){
+  function figureImage(m, stars){
+    if (!m) return '';
+    const portrait = portraitImage(m);
+    if (portrait) return portrait;
+    return starTexture(m, stars);
+  }
+
+  function portraitImage(m){
+    if (!m) return '';
+    return findImageByKeywords(m.images, ['specimen', 'icon', 'portrait', 'head']);
+  }
+
+  function listThumbnail(m){
+    return portraitImage(m) || firstTexture(m.images);
+  }
+
+  function starTexture(m, stars){
     if (!m) return '';
     const key = STAR_KEYS[stars] ?? 'normal';
     if (key === 'normal') {
-      return pickImageFromList(m.images, 'normal');
+      return firstTexture(m.images, 'normal');
     }
     const info = starAux[key]?.get(m.baseId);
-    const candidate = pickImageFromList(info?.images, key) || pickImageFromList(m.images, 'normal');
-    return candidate || '';
+    return firstTexture(info?.images, key) || firstTexture(m.images, key) || firstTexture(m.images);
   }
-  function pickImageFromList(list, starKey){
+
+  function firstTexture(list, keyword = null){
     const arr = Array.isArray(list) ? list : [];
     if (!arr.length) return '';
-    const want = String(starKey || 'normal').toLowerCase();
-    return (
-      arr.find((p) => p.toLowerCase().includes(want)) ||
-      arr[0]
-    );
+    if (keyword) {
+      const match = arr.find((p) => p && p.toLowerCase().includes(String(keyword).toLowerCase()));
+      if (match) return match;
+    }
+    return arr[0];
+  }
+
+  function findImageByKeywords(list, keywords){
+    const arr = Array.isArray(list) ? list : [];
+    const keys = Array.isArray(keywords) ? keywords : [];
+    for (const key of keys) {
+      const lower = String(key || '').toLowerCase();
+      const found = arr.find((p) => p && p.toLowerCase().includes(lower));
+      if (found) return found;
+    }
+    return '';
   }
 
   // Применение модификаторов сфер (проценты)
-  function orbMods() {
-    // собираем проценты в одну кучу
-    const mods = { hp:0, atk1:0, atk2:0, ability:0 };
-    const all = [...basicSlots.filter(Boolean), specialSlot].filter(Boolean);
-    for (const o of all) {
-      // ожидаем поля: o.hpPct, o.atkPct, o.abilityPct и т.п. (в orbs.json имена могут отличаться)
-      const hp  = Number(o.hpPct ?? o.hp ?? 0);
-      const atk = Number(o.atkPct ?? o.atk ?? 0);
-      const ab  = Number(o.abilityPct ?? o.ability ?? 0);
-      if (hp)  mods.hp  += hp;
-      if (atk) { mods.atk1 += atk; mods.atk2 += atk; }
-      if (ab)  mods.ability += ab;
+  function calcOrbModifiers(basic, special) {
+    const mods = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
+    const basicList = Array.isArray(basic) ? basic.filter(Boolean) : [];
+    const all = special ? [...basicList, special] : [...basicList];
+    for (const orb of all) {
+      if (!orb) continue;
+      const hp = toNumber(orb.hpPct ?? orb.hp_percent ?? orb.hp ?? orb.healthPct ?? orb.health);
+      if (hp) mods.hpPct += hp;
+
+      const atkCommon = toNumber(orb.atkPct ?? orb.attackPct ?? orb.atk ?? orb.attack);
+      if (atkCommon) {
+        mods.atk1Pct += atkCommon;
+        mods.atk2Pct += atkCommon;
+      }
+
+      const atk1 = toNumber(orb.atk1Pct ?? orb.attack1Pct ?? orb.attack_1);
+      if (atk1) mods.atk1Pct += atk1;
+
+      const atk2 = toNumber(orb.atk2Pct ?? orb.attack2Pct ?? orb.attack_2);
+      if (atk2) mods.atk2Pct += atk2;
+
+      const speed = toNumber(orb.speedPct ?? orb.spdPct ?? orb.speed ?? orb.spd);
+      if (speed) mods.speedPct += speed;
+
+      const ability = toNumber(orb.abilityPct ?? orb.ability ?? orb.skillPct ?? orb.skills);
+      if (ability) mods.abilityPct += ability;
     }
     return mods;
   }
@@ -335,7 +436,7 @@
     return m?.starMultipliers?.[s] ?? 1.0;
   }
 
-  function calcStats(m, lvl, s){
+  function calcStats(m, lvl, s, mods){
     const mulStar = starMulOf(m, s);
     const mulLvl = (Number(lvl)/10 + 0.9);
 
@@ -352,21 +453,71 @@
     atk2 *= mulStar;
 
     // СФЕРЫ (проценты)
-    const mods = orbMods();
-    if (mods.hp)   hp   *= (1 + mods.hp/100);
-    if (mods.atk1) atk1 *= (1 + mods.atk1/100);
-    if (mods.atk2) atk2 *= (1 + mods.atk2/100);
+    const hpPct = mods?.hpPct ?? 0;
+    const atk1Pct = mods?.atk1Pct ?? 0;
+    const atk2Pct = mods?.atk2Pct ?? 0;
+    if (hpPct)   hp   *= (1 + hpPct/100);
+    if (atk1Pct) atk1 *= (1 + atk1Pct/100);
+    if (atk2Pct) atk2 *= (1 + atk2Pct/100);
 
     // ОКРУГЛЕНИЕ
+    let speed = m.speed || 0;
+    const speedPct = mods?.speedPct ?? 0;
+    if (speedPct) speed = Math.round(speed * (1 + speedPct/100));
+
     return {
       hp:   Math.round(hp),
       atk1: Math.round(atk1),
       atk2: Math.round(atk2),
-      speed: m.speed || 0
+      speed
     };
   }
 
-  $: stats = selected ? calcStats(selected, level, stars) : {hp:0, atk1:0, atk2:0, speed:0};
+  $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
+  $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0};
+  $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers) : [];
+
+  function calcAbilityRows(mutant, statLine, mods){
+    const list = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
+    if (!list.length) return [];
+    const result = [];
+    const abilityBoost = Math.abs(mods?.abilityPct ?? 0);
+    const atkValues = {
+      1: statLine?.atk1 ?? 0,
+      2: statLine?.atk2 ?? 0,
+    };
+    for (const ability of list) {
+      if (!ability) continue;
+      const basePctRaw = ability.pct ?? ability.raw?.pct ?? ability.raw?.percent ?? ability.raw?.percentage;
+      const basePct = toNumber(basePctRaw);
+      if (!Number.isFinite(basePct)) continue;
+      const signedPct = basePct >= 0
+        ? basePct + abilityBoost
+        : -(Math.abs(basePct) + abilityBoost);
+
+      const values = [];
+      if (ability.hasAtk1) {
+        const value = Math.round(Math.abs((atkValues[1] || 0) * signedPct / 100));
+        values.push({ attack: 1, value });
+      }
+      if (ability.hasAtk2) {
+        const value = Math.round(Math.abs((atkValues[2] || 0) * signedPct / 100));
+        if (value || ability.hasAtk1 === false) {
+          values.push({ attack: 2, value });
+        } else if (!values.length) {
+          values.push({ attack: 2, value });
+        }
+      }
+
+      if (!values.length) continue;
+      result.push({
+        code: ability.code,
+        label: ability.label,
+        values,
+      });
+    }
+    return result;
+  }
 
   // --- ХЭНДЛЕРЫ UI ---
   function toggleGene(letter){
@@ -435,7 +586,7 @@
     <div class="list">
       {#each filtered as m (m.id)}
         <button class="mut-row {selected?.id===m.id ? 'active' : ''}" on:click={() => selectMutant(m)}>
-          <img class="mut-icon" src={m.images?.[0] || ''} alt={m.name} />
+          <img class="mut-icon" src={listThumbnail(m) || ''} alt={m.name} />
           <div class="mut-meta">
             <div class="name">{m.name}</div>
             <div class="genes">
@@ -456,7 +607,7 @@
       <header class="title">{selected.name}</header>
 
       <div class="mut-figure">
-        <img class="texture" src={pickImage(selected, stars)} alt={selected.name} />
+        <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
       </div>
 
       <!-- слоты сфер — единственные интерактивные -->
@@ -514,8 +665,11 @@
           <label>Звёздность:</label>
           <div class="stars">
             {#each [0,1,2,3,4] as s}
-              <button class={"star "+(stars>=s?'on':'')}
+              <button
+                class="star"
+                class:selected={stars === s}
                 on:click={() => stars = s}
+                aria-pressed={stars === s}
                 title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
                 <img src={STAR_ICON[s]} alt="*" />
               </button>
@@ -535,9 +689,20 @@
         <div class="row abils">
           <span>Способности</span>
           <div class="abilities">
-            {#each selected.abilities as ab}
-              <div class="ability">{ab}</div>
-            {/each}
+            {#if abilityRows.length}
+              {#each abilityRows as ab (ab.code + ab.label)}
+                <div class="ability">
+                  <div class="ability-name">{ab.label}</div>
+                  <div class="ability-values">
+                    {#each ab.values as val (val.attack)}
+                      <span>Атака {val.attack}: {val.value.toLocaleString('ru-RU')}</span>
+                    {/each}
+                  </div>
+                </div>
+              {/each}
+            {:else}
+              <div class="ability empty">—</div>
+            {/if}
           </div>
         </div>
       </div>
@@ -575,7 +740,7 @@
   .slot{ position:relative; }
   .slot-btn{ position:relative; width:64px; height:64px; border-radius:12px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
-  .orb{ position:absolute; inset:8px; width:auto; height:auto; object-fit:contain; }
+  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:4px; object-fit:contain; }
   .x{ position:absolute; right:-6px; top:-6px; width:18px; height:18px; border-radius:50%; border:none; background:#ff6464; color:white; }
   .dropdown{ position:absolute; top:74px; left:0; width:240px; max-height:240px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:10px; padding:6px; z-index:10; }
   .orb-row{ display:flex; align-items:center; gap:8px; width:100%; padding:6px; border-radius:8px; background:#242b36; margin:4px 0; }
@@ -585,14 +750,18 @@
   .control{ display:flex; align-items:center; gap:10px; color:#aab6c8; }
   .lvl{ width:90px; padding:6px 8px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; }
 
-  .stars{ display:flex; gap:6px; }
-  .star{ width:28px; height:28px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.6; }
-  .star.on{ opacity:1; }
+  .stars{ display:flex; gap:10px; }
+  .star{ width:34px; height:34px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
+  .star.selected{ opacity:1; transform:scale(1.05); filter:drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
+  .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
   .stats{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:10px 12px; color:#dfe7f3; }
   .row span{ color:#aab6c8; }
-  .abilities{ display:flex; gap:8px; flex-wrap:wrap; }
-  .ability{ background:#2b3442; padding:4px 8px; border-radius:8px; font-size:12px; }
+  .abilities{ display:flex; flex-direction:column; gap:8px; width:100%; }
+  .ability{ background:#2b3442; padding:6px 10px; border-radius:8px; font-size:12px; display:flex; flex-direction:column; gap:4px; }
+  .ability-name{ font-weight:600; color:#f0f6ff; }
+  .ability-values{ display:flex; flex-wrap:wrap; gap:10px; color:#d4deeb; }
+  .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
