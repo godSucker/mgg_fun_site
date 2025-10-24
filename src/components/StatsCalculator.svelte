@@ -905,11 +905,11 @@
       <!-- уровень + звёзды -->
       <div class="controls">
         <div class="control">
-          <label>Уровень:</label>
+          <span class="control-label">Уровень:</span>
           <input class="lvl" type="number" min="1" max="300" bind:value={level} />
         </div>
         <div class="control">
-          <label>Звёздность:</label>
+          <span class="control-label">Звёздность:</span>
           <div class="stars">
             {#each [0,1,2,3,4] as s}
               <button
@@ -959,7 +959,7 @@
 </div>
 
 <style>
-  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,400px); gap:18px; }
+  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,620px); gap:18px; }
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
@@ -979,30 +979,31 @@
   .mut-meta .genes img{ width:20px; height:20px; }
   .rar{ font-size:11px; color:#aab6c8; }
 
-  .panel{ background:#2a313c; border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; }
+  .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:16px; }
   .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
-  .hero-section{ display:grid; grid-template-columns: 210px 1fr; gap:14px; align-items:flex-start; }
-  .hero-section > .abilities-block{ min-height:0; min-width:0; }
-  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding-bottom:18px; }
-  .mut-figure::after{ content:""; position:absolute; bottom:6px; left:50%; transform:translateX(-50%); width:210px; height:52px; background:radial-gradient(60% 65% at 50% 60%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 80%); opacity:0.95; pointer-events:none; }
-  .mut-figure .texture{ width:210px; height:210px; object-fit:contain; image-rendering:auto; }
+  .hero-section{ display:grid; grid-template-columns: 240px minmax(0,1fr); gap:18px; align-items:flex-start; }
+  .hero-section > .abilities-block{ min-height:0; min-width:0; max-height:none; }
+  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 22px; }
+  .mut-figure::after{ content:""; position:absolute; bottom:4px; left:50%; transform:translateX(-50%); width:248px; height:66px; background:radial-gradient(58% 70% at 50% 60%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0) 78%); opacity:0.98; pointer-events:none; }
+  .mut-figure .texture{ width:240px; height:240px; object-fit:contain; image-rendering:auto; }
 
-  .slots{ display:flex; gap:16px; justify-content:center; margin:4px 0 2px; position:relative; }
+  .slots{ display:flex; gap:18px; justify-content:center; margin:2px 0 0; position:relative; }
   .slot{ position:relative; }
-  .slot-btn{ position:relative; width:76px; height:76px; border-radius:12px; background:transparent; border:none; padding:0; }
+  .slot-btn{ position:relative; width:84px; height:84px; border-radius:12px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
-  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:6px; object-fit:contain; }
+  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:7px; object-fit:contain; }
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; }
   .dropdown{ position:absolute; top:104px; left:0; width:250px; max-height:260px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
   .orb-row img{ width:36px; height:36px; object-fit:contain; }
 
-  .controls{ display:flex; gap:18px; justify-content:center; margin:4px 0 8px; }
-  .control{ display:flex; align-items:center; gap:8px; color:#aab6c8; font-size:13px; }
-  .lvl{ width:78px; padding:6px 8px; border-radius:9px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:14px; }
+  .controls{ display:flex; gap:14px; justify-content:center; margin:0 0 4px; flex-wrap:wrap; }
+  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; }
+  .control .control-label{ white-space:nowrap; }
+  .lvl{ width:68px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:13px; }
 
-  .stars{ display:flex; gap:8px; }
-  .star{ width:36px; height:36px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.4; transition:transform .15s ease, opacity .15s ease; }
+  .stars{ display:flex; gap:6px; }
+  .star{ width:32px; height:32px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
   .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
@@ -1012,21 +1013,21 @@
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:11px 13px; color:#dfe7f3; font-size:14px; }
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
   .row .label-icon{ width:22px; height:22px; object-fit:contain; }
-  .abilities-block{ background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:12px; display:flex; flex-direction:column; gap:10px; max-height:260px; overflow:auto; }
+  .abilities-block{ background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:12px; max-height:none; overflow:auto; }
   .block-head{ display:flex; align-items:center; justify-content:space-between; }
-  .block-title{ font-size:15px; font-weight:600; color:#f0f6ff; }
-  .abilities{ display:flex; flex-direction:column; gap:8px; width:100%; }
-  .ability{ background:#2b3442; padding:10px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:8px; }
+  .block-title{ font-size:16px; font-weight:600; color:#f0f6ff; }
+  .abilities{ display:flex; flex-direction:column; gap:10px; width:100%; }
+  .ability{ background:#2b3442; padding:12px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:10px; }
   .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
   .ability-name{ display:flex; align-items:center; gap:8px; font-weight:600; color:#f0f6ff; }
-  .ability-icon{ width:26px; height:26px; object-fit:contain; }
+  .ability-icon{ width:28px; height:28px; object-fit:contain; }
   .ability-pct{ font-weight:600; color:#90f36b; font-size:14px; }
-  .ability-values{ display:flex; flex-direction:column; gap:7px; color:#d4deeb; }
-  .ability-value{ display:grid; grid-template-columns: minmax(0,1.25fr) 80px minmax(0,1fr); align-items:center; gap:10px; background:rgba(15,19,25,0.35); padding:9px 10px; border-radius:10px; }
+  .ability-values{ display:flex; flex-direction:column; gap:9px; color:#d4deeb; }
+  .ability-value{ display:grid; grid-template-columns: minmax(0,1.25fr) 84px minmax(0,1fr); align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:10px 12px; border-radius:10px; }
   .attack-side{ display:flex; align-items:center; gap:8px; min-width:0; }
   .attack-gene{ display:grid; grid-auto-flow:column; align-items:center; gap:0; }
-  .attack-gene .gene-icon{ width:32px; height:32px; object-fit:contain; }
-  .attack-aoe{ width:32px; height:32px; object-fit:contain; }
+  .attack-gene .gene-icon{ width:34px; height:34px; object-fit:contain; }
+  .attack-aoe{ width:34px; height:34px; object-fit:contain; margin-left:4px; }
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; }
   .attack-damage{ font-size:14px; font-weight:600; color:#ffffff; text-align:center; }
   .ability-effect{ display:flex; justify-content:flex-end; align-items:baseline; gap:8px; font-weight:600; color:#9fc8ff; flex-wrap:wrap; text-align:right; }
