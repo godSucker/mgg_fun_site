@@ -797,8 +797,64 @@
     {#if selected}
       <header class="title">{selected.name}</header>
 
-      <div class="mut-figure">
-        <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
+      <div class="hero-section">
+        <div class="mut-figure">
+          <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
+        </div>
+
+        <div class="abilities-block">
+          <div class="block-head">
+            <span class="block-title">Способности</span>
+          </div>
+          {#if abilityRows.length}
+            <div class="abilities">
+              {#each abilityRows as ab (ab.code + ab.label)}
+                <div class="ability">
+                  <div class="ability-header">
+                    <div class="ability-name">
+                      {#if ab.icon}
+                        <img class="ability-icon" src={ab.icon} alt={ab.label} />
+                      {/if}
+                      <span>{ab.label}</span>
+                    </div>
+                    {#if ab.percent != null}
+                      <span class="ability-pct">{ab.percent.toLocaleString('ru-RU')}%</span>
+                    {/if}
+                  </div>
+                  <div class="ability-values">
+                    {#each ab.values as val (val.attack)}
+                      <div class="ability-value">
+                        <div class="attack-side">
+                          {#if val.geneIcon}
+                            <span class="attack-gene">
+                              <img class="gene-icon" src={val.geneIcon} alt="" aria-hidden="true" />
+                              {#if val.isAoe}
+                                <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                              {/if}
+                            </span>
+                          {/if}
+                          <span class="attack-label">{val.label}</span>
+                        </div>
+                        <div class="attack-damage">{val.attackPower?.toLocaleString('ru-RU') ?? '—'}</div>
+                        <div class="ability-effect">
+                          <span class="effect-label">{ab.label}</span>
+                          <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
+                          {#if ab.percent != null}
+                            <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
+                          {/if}
+                        </div>
+                      </div>
+                    {/each}
+                  </div>
+                </div>
+              {/each}
+            </div>
+          {:else}
+            <div class="abilities">
+              <div class="ability empty">—</div>
+            </div>
+          {/if}
+        </div>
       </div>
 
       <!-- слоты сфер — единственные интерактивные -->
@@ -897,65 +953,13 @@
         </div>
       </div>
 
-      <div class="abilities-block">
-        <div class="block-head">
-          <span class="block-title">Способности</span>
-        </div>
-        {#if abilityRows.length}
-          <div class="abilities">
-            {#each abilityRows as ab (ab.code + ab.label)}
-              <div class="ability">
-                <div class="ability-header">
-                  <div class="ability-name">
-                    {#if ab.icon}
-                      <img class="ability-icon" src={ab.icon} alt={ab.label} />
-                    {/if}
-                    <span>{ab.label}</span>
-                  </div>
-                  {#if ab.percent != null}
-                    <span class="ability-pct">{ab.percent.toLocaleString('ru-RU')}%</span>
-                  {/if}
-                </div>
-                <div class="ability-values">
-                  {#each ab.values as val (val.attack)}
-                    <div class="ability-value">
-                      <div class="attack-side">
-                        {#if val.geneIcon}
-                          <span class="attack-gene">
-                            <img src={val.geneIcon} alt="" aria-hidden="true" />
-                            {#if val.isAoe}
-                              <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
-                            {/if}
-                          </span>
-                        {/if}
-                        <span class="attack-label">{val.label}</span>
-                      </div>
-                      <div class="attack-damage">{val.attackPower?.toLocaleString('ru-RU') ?? '—'}</div>
-                      <div class="ability-effect">
-                        <span class="effect-label">{ab.label}</span>
-                        <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
-                        {#if ab.percent != null}
-                          <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
-                        {/if}
-                      </div>
-                    </div>
-                  {/each}
-                </div>
-              </div>
-            {/each}
-          </div>
-        {:else}
-          <div class="abilities">
-            <div class="ability empty">—</div>
-          </div>
-        {/if}
-      </div>
+      
     {/if}
   </section>
 </div>
 
 <style>
-  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,440px); gap:20px; }
+  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,400px); gap:18px; }
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
@@ -975,57 +979,59 @@
   .mut-meta .genes img{ width:20px; height:20px; }
   .rar{ font-size:11px; color:#aab6c8; }
 
-  .panel{ background:#2a313c; border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:14px; }
-  .title{ font-size:24px; font-weight:700; color:#e9eef6; text-align:center; }
-  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:2px; padding-bottom:12px; }
-  .mut-figure::after{ content:""; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:220px; height:42px; background:radial-gradient(55% 60% at 50% 55%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 75%); opacity:0.82; pointer-events:none; }
-  .mut-figure .texture{ width:260px; height:260px; object-fit:contain; image-rendering:auto; }
+  .panel{ background:#2a313c; border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; }
+  .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
+  .hero-section{ display:grid; grid-template-columns: 210px 1fr; gap:14px; align-items:flex-start; }
+  .hero-section > .abilities-block{ min-height:0; min-width:0; }
+  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding-bottom:18px; }
+  .mut-figure::after{ content:""; position:absolute; bottom:6px; left:50%; transform:translateX(-50%); width:210px; height:52px; background:radial-gradient(60% 65% at 50% 60%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 80%); opacity:0.95; pointer-events:none; }
+  .mut-figure .texture{ width:210px; height:210px; object-fit:contain; image-rendering:auto; }
 
-  .slots{ display:flex; gap:18px; justify-content:center; margin:6px 0 4px; position:relative; }
+  .slots{ display:flex; gap:16px; justify-content:center; margin:4px 0 2px; position:relative; }
   .slot{ position:relative; }
-  .slot-btn{ position:relative; width:82px; height:82px; border-radius:12px; background:transparent; border:none; padding:0; }
+  .slot-btn{ position:relative; width:76px; height:76px; border-radius:12px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
   .orb{ position:absolute; inset:0; width:100%; height:100%; padding:6px; object-fit:contain; }
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; }
-  .dropdown{ position:absolute; top:112px; left:0; width:260px; max-height:280px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
+  .dropdown{ position:absolute; top:104px; left:0; width:250px; max-height:260px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
-  .orb-row img{ width:40px; height:40px; object-fit:contain; }
+  .orb-row img{ width:36px; height:36px; object-fit:contain; }
 
-  .controls{ display:flex; gap:24px; justify-content:center; margin:6px 0 10px; }
-  .control{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:14px; }
-  .lvl{ width:92px; padding:7px 9px; border-radius:10px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:15px; }
+  .controls{ display:flex; gap:18px; justify-content:center; margin:4px 0 8px; }
+  .control{ display:flex; align-items:center; gap:8px; color:#aab6c8; font-size:13px; }
+  .lvl{ width:78px; padding:6px 8px; border-radius:9px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:14px; }
 
-  .stars{ display:flex; gap:10px; }
-  .star{ width:42px; height:42px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.4; transition:transform .15s ease, opacity .15s ease; }
-  .star.selected{ opacity:1; transform:scale(1.08); filter:drop-shadow(0 0 10px rgba(255,255,255,0.45)); }
+  .stars{ display:flex; gap:8px; }
+  .star{ width:36px; height:36px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.4; transition:transform .15s ease, opacity .15s ease; }
+  .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
   .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
-  .stats{ margin-top:2px; display:flex; flex-direction:column; gap:9px; }
+  .stats{ margin-top:0; display:flex; flex-direction:column; gap:8px; }
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:11px 13px; color:#dfe7f3; font-size:14px; }
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
   .row .label-icon{ width:22px; height:22px; object-fit:contain; }
-  .abilities-block{ margin-top:6px; background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:12px; }
+  .abilities-block{ background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:12px; display:flex; flex-direction:column; gap:10px; max-height:260px; overflow:auto; }
   .block-head{ display:flex; align-items:center; justify-content:space-between; }
-  .block-title{ font-size:16px; font-weight:600; color:#f0f6ff; }
-  .abilities{ display:flex; flex-direction:column; gap:10px; width:100%; }
-  .ability{ background:#2b3442; padding:12px; border-radius:12px; font-size:14px; display:flex; flex-direction:column; gap:10px; }
-  .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .ability-name{ display:flex; align-items:center; gap:10px; font-weight:600; color:#f0f6ff; }
-  .ability-icon{ width:30px; height:30px; object-fit:contain; }
-  .ability-pct{ font-weight:600; color:#90f36b; font-size:15px; }
-  .ability-values{ display:flex; flex-direction:column; gap:9px; color:#d4deeb; }
-  .ability-value{ display:grid; grid-template-columns: minmax(0,1.35fr) 92px minmax(0,1.1fr); align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:11px 12px; border-radius:10px; }
-  .attack-side{ display:flex; align-items:center; gap:10px; min-width:0; }
-  .attack-gene{ position:relative; width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; }
-  .attack-gene img{ width:100%; height:100%; object-fit:contain; }
-  .attack-aoe{ position:absolute; right:-4px; bottom:-4px; width:18px; height:18px; object-fit:contain; }
+  .block-title{ font-size:15px; font-weight:600; color:#f0f6ff; }
+  .abilities{ display:flex; flex-direction:column; gap:8px; width:100%; }
+  .ability{ background:#2b3442; padding:10px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:8px; }
+  .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .ability-name{ display:flex; align-items:center; gap:8px; font-weight:600; color:#f0f6ff; }
+  .ability-icon{ width:26px; height:26px; object-fit:contain; }
+  .ability-pct{ font-weight:600; color:#90f36b; font-size:14px; }
+  .ability-values{ display:flex; flex-direction:column; gap:7px; color:#d4deeb; }
+  .ability-value{ display:grid; grid-template-columns: minmax(0,1.25fr) 80px minmax(0,1fr); align-items:center; gap:10px; background:rgba(15,19,25,0.35); padding:9px 10px; border-radius:10px; }
+  .attack-side{ display:flex; align-items:center; gap:8px; min-width:0; }
+  .attack-gene{ display:grid; grid-auto-flow:column; align-items:center; gap:0; }
+  .attack-gene .gene-icon{ width:32px; height:32px; object-fit:contain; }
+  .attack-aoe{ width:32px; height:32px; object-fit:contain; }
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; }
-  .attack-damage{ font-size:15px; font-weight:600; color:#ffffff; text-align:center; }
-  .ability-effect{ display:flex; justify-content:flex-end; align-items:baseline; gap:10px; font-weight:600; color:#9fc8ff; flex-wrap:wrap; text-align:right; }
-  .effect-label{ font-size:13px; color:#7daaff; flex:1 1 100%; text-align:right; }
-  .effect-value{ font-size:16px; color:#ffffff; }
-  .effect-percent{ font-size:13px; color:#90f36b; }
+  .attack-damage{ font-size:14px; font-weight:600; color:#ffffff; text-align:center; }
+  .ability-effect{ display:flex; justify-content:flex-end; align-items:baseline; gap:8px; font-weight:600; color:#9fc8ff; flex-wrap:wrap; text-align:right; }
+  .effect-label{ font-size:12px; color:#7daaff; flex:1 1 100%; text-align:right; }
+  .effect-value{ font-size:15px; color:#ffffff; }
+  .effect-percent{ font-size:12px; color:#90f36b; }
   .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
