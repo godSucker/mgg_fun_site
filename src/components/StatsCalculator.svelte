@@ -840,41 +840,38 @@
             <div class="abilities">
               {#each abilityRows as ab (ab.code + ab.label)}
                 <div class="ability">
-                  <div class="ability-header">
-                    <div class="ability-name">
-                      {#if ab.icon}
-                        <img class="ability-icon" src={ab.icon} alt={ab.label} />
-                      {/if}
-                      <span>{ab.label}</span>
-                    </div>
-                    {#if ab.percent != null}
-                      <span class="ability-pct">{ab.percent.toLocaleString('ru-RU')}%</span>
-                    {/if}
-                  </div>
                   <div class="ability-values">
                     {#each ab.values as val (val.attack)}
                       <div class="ability-value">
-                        <div class="attack-line">
-                          <span class="attack-gene" class:empty={!val.geneIcon}>
-                            {#if val.geneIcon}
-                              <img class="gene-icon" src={val.geneIcon} alt="" aria-hidden="true" />
-                            {/if}
-                            {#if val.isAoe}
-                              <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                      <div class="attack-side">
+                        <span class="attack-gene" class:empty={!val.geneIcon}>
+                          {#if val.geneIcon}
+                            <img class="gene-icon" src={val.geneIcon} alt="" aria-hidden="true" />
+                          {/if}
+                          {#if val.isAoe}
+                            <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                          {/if}
+                        </span>
+                        <div class="attack-info">
+                          <span class="attack-label">{val.label}</span>
+                          <span class="attack-damage">{val.attackPower?.toLocaleString('ru-RU') ?? '—'}</span>
+                        </div>
+                      </div>
+                      <span class="ability-divider" aria-hidden="true"></span>
+                      <div class="effect-side">
+                        <div class="effect-head">
+                          {#if ab.icon}
+                            <img class="ability-icon" src={ab.icon} alt={ab.label} />
+                          {/if}
+                          <span class="effect-name">
+                            {ab.label}
+                            {#if ab.percent != null}
+                              <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
                             {/if}
                           </span>
-                          <div class="attack-info">
-                            <span class="attack-label">{val.label}</span>
-                            <span class="attack-damage">АТК {val.attackPower?.toLocaleString('ru-RU') ?? '—'}</span>
-                          </div>
-                          {#if ab.percent != null}
-                            <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
-                          {/if}
                         </div>
-                        <div class="effect-line">
-                          <span class="effect-caption">Эффект</span>
-                          <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
-                        </div>
+                        <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
+                      </div>
                       </div>
                     {/each}
                   </div>
@@ -1050,23 +1047,22 @@
   .block-title{ font-size:16px; font-weight:600; color:#f0f6ff; }
   .abilities{ display:flex; flex-direction:column; gap:12px; width:100%; }
   .ability{ background:#2b3442; padding:14px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:12px; }
-  .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
-  .ability-name{ display:flex; align-items:center; gap:8px; font-weight:600; color:#f0f6ff; }
-  .ability-icon{ width:28px; height:28px; object-fit:contain; }
-  .ability-pct{ font-weight:600; color:#90f36b; font-size:14px; }
   .ability-values{ display:flex; flex-direction:column; gap:12px; color:#d4deeb; }
-  .ability-value{ display:flex; flex-direction:column; gap:10px; background:rgba(15,19,25,0.35); padding:12px 14px; border-radius:12px; }
-  .attack-line{ display:grid; grid-template-columns:72px 1fr auto; column-gap:14px; align-items:center; min-width:0; }
+  .ability-value{ display:flex; align-items:center; gap:18px; background:rgba(15,19,25,0.35); padding:16px 18px; border-radius:12px; }
+  .attack-side{ display:flex; align-items:center; gap:14px; flex:1 1 0; min-width:0; }
   .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:72px; height:72px; flex-shrink:0; }
   .attack-gene .gene-icon{ width:100%; height:100%; object-fit:contain; display:block; }
   .attack-gene .attack-aoe{ position:absolute; top:0; right:0; width:72px; height:72px; object-fit:contain; pointer-events:none; }
   .attack-gene.empty{ opacity:0; }
-  .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; }
-  .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; }
-  .attack-damage{ font-size:12px; font-weight:600; color:#9fc8ff; }
-  .effect-percent{ font-size:13px; color:#90f36b; font-weight:600; margin-left:auto; }
-  .effect-line{ display:flex; justify-content:flex-end; align-items:center; gap:8px; }
-  .effect-caption{ font-size:12px; color:#9fc8ff; text-transform:uppercase; letter-spacing:0.04em; }
-  .effect-value{ font-size:16px; color:#ffffff; font-weight:600; }
+  .attack-info{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; }
+  .attack-damage{ font-size:18px; font-weight:700; color:#ffffff; }
+  .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); }
+  .effect-side{ display:flex; flex-direction:column; gap:10px; min-width:0; flex:1 1 0; }
+  .effect-head{ display:flex; align-items:center; gap:10px; }
+  .ability-icon{ width:32px; height:32px; object-fit:contain; }
+  .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; }
+  .effect-percent{ font-size:14px; color:#90f36b; font-weight:600; }
+  .effect-value{ font-size:18px; color:#90f36b; font-weight:700; }
   .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
