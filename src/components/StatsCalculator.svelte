@@ -306,6 +306,8 @@
       return {
         code,
         label: abilityLabel(code),
+        baseCode: abilityBaseCode(code),
+        tier: abilityUpgradeTier(code),
         pct: null,
         hasAtk1: true,
         hasAtk2: true,
@@ -324,6 +326,8 @@
       return {
         code,
         label: abilityLabel(code),
+        baseCode: abilityBaseCode(code),
+        tier: abilityUpgradeTier(code),
         pct,
         hasAtk1,
         hasAtk2,
@@ -331,6 +335,21 @@
       };
     }
     return null;
+  }
+
+  function abilityUpgradeTier(code){
+    const lower = String(code || '').toLowerCase();
+    if (!lower) return 0;
+    if (lower.endsWith('_plus_plus')) return 2;
+    if (lower.endsWith('_plus')) return 1;
+    return 0;
+  }
+
+  function abilityBaseCode(code){
+    return String(code || '')
+      .toLowerCase()
+      .replace(/_plus_plus$/i, '')
+      .replace(/_plus$/i, '');
   }
 
   function cleanAbilityCode(raw){
@@ -639,20 +658,31 @@
 
   $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
   $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0};
-  $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers) : [];
+  $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers, level) : [];
   $: typeIconCurrent = selected ? typeIconPath(selected.typeKey || selected.type) : '';
 
-  function calcAbilityRows(mutant, statLine, mods){
+  function calcAbilityRows(mutant, statLine, mods, lvl){
     const list = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
     if (!list.length) return [];
+    const level = Number(lvl) || 1;
     const result = [];
     const abilityBoost = Math.abs(mods?.abilityPct ?? 0);
     const atkValues = {
       1: statLine?.atk1 ?? 0,
       2: statLine?.atk2 ?? 0,
     };
+    const grouped = new Map();
     for (const ability of list) {
       if (!ability) continue;
+      const base = ability.baseCode || ability.code;
+      if (!grouped.has(base)) grouped.set(base, []);
+      grouped.get(base).push(ability);
+    }
+
+    for (const [, entries] of grouped) {
+      if (!entries.length) continue;
+      const sorted = [...entries].sort((a, b) => (a.tier ?? 0) - (b.tier ?? 0));
+      const ability = level >= 25 ? sorted[sorted.length - 1] : sorted[0];
       const basePctRaw = ability.pct ?? ability.raw?.pct ?? ability.raw?.percent ?? ability.raw?.percentage;
       const basePct = toNumber(basePctRaw);
       if (!Number.isFinite(basePct)) continue;
@@ -824,7 +854,7 @@
                   <div class="ability-values">
                     {#each ab.values as val (val.attack)}
                       <div class="ability-value">
-                        <div class="attack-side">
+                        <div class="attack-line">
                           {#if val.geneIcon}
                             <span class="attack-gene">
                               <img class="gene-icon" src={val.geneIcon} alt="" aria-hidden="true" />
@@ -833,15 +863,17 @@
                               {/if}
                             </span>
                           {/if}
-                          <span class="attack-label">{val.label}</span>
-                        </div>
-                        <div class="attack-damage">{val.attackPower?.toLocaleString('ru-RU') ?? '—'}</div>
-                        <div class="ability-effect">
-                          <span class="effect-label">{ab.label}</span>
-                          <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
+                          <div class="attack-info">
+                            <span class="attack-label">{val.label}</span>
+                            <span class="attack-damage">АТК {val.attackPower?.toLocaleString('ru-RU') ?? '—'}</span>
+                          </div>
                           {#if ab.percent != null}
                             <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
                           {/if}
+                        </div>
+                        <div class="effect-line">
+                          <span class="effect-caption">Эффект</span>
+                          <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
                         </div>
                       </div>
                     {/each}
@@ -959,7 +991,7 @@
 </div>
 
 <style>
-  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,620px); gap:18px; }
+  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,660px); gap:18px; }
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
@@ -981,11 +1013,11 @@
 
   .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:16px; }
   .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
-  .hero-section{ display:grid; grid-template-columns: 240px minmax(0,1fr); gap:18px; align-items:flex-start; }
+  .hero-section{ display:grid; grid-template-columns: 250px minmax(0,1fr); gap:20px; align-items:stretch; }
   .hero-section > .abilities-block{ min-height:0; min-width:0; max-height:none; }
-  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 22px; }
-  .mut-figure::after{ content:""; position:absolute; bottom:4px; left:50%; transform:translateX(-50%); width:248px; height:66px; background:radial-gradient(58% 70% at 50% 60%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0) 78%); opacity:0.98; pointer-events:none; }
-  .mut-figure .texture{ width:240px; height:240px; object-fit:contain; image-rendering:auto; }
+  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; }
+  .mut-figure::after{ content:""; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
+  .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; }
 
   .slots{ display:flex; gap:18px; justify-content:center; margin:2px 0 0; position:relative; }
   .slot{ position:relative; }
@@ -1013,26 +1045,27 @@
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:11px 13px; color:#dfe7f3; font-size:14px; }
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
   .row .label-icon{ width:22px; height:22px; object-fit:contain; }
-  .abilities-block{ background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:12px; max-height:none; overflow:auto; }
+  .abilities-block{ background:#1b212a; border:1px solid #2e3948; border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:14px; max-height:none; overflow:auto; }
   .block-head{ display:flex; align-items:center; justify-content:space-between; }
   .block-title{ font-size:16px; font-weight:600; color:#f0f6ff; }
-  .abilities{ display:flex; flex-direction:column; gap:10px; width:100%; }
-  .ability{ background:#2b3442; padding:12px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:10px; }
+  .abilities{ display:flex; flex-direction:column; gap:12px; width:100%; }
+  .ability{ background:#2b3442; padding:14px; border-radius:12px; font-size:13px; display:flex; flex-direction:column; gap:12px; }
   .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
   .ability-name{ display:flex; align-items:center; gap:8px; font-weight:600; color:#f0f6ff; }
   .ability-icon{ width:28px; height:28px; object-fit:contain; }
   .ability-pct{ font-weight:600; color:#90f36b; font-size:14px; }
-  .ability-values{ display:flex; flex-direction:column; gap:9px; color:#d4deeb; }
-  .ability-value{ display:grid; grid-template-columns: minmax(0,1.25fr) 84px minmax(0,1fr); align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:10px 12px; border-radius:10px; }
-  .attack-side{ display:flex; align-items:center; gap:8px; min-width:0; }
-  .attack-gene{ display:grid; grid-auto-flow:column; align-items:center; gap:0; }
-  .attack-gene .gene-icon{ width:34px; height:34px; object-fit:contain; }
-  .attack-aoe{ width:34px; height:34px; object-fit:contain; margin-left:4px; }
-  .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; }
-  .attack-damage{ font-size:14px; font-weight:600; color:#ffffff; text-align:center; }
-  .ability-effect{ display:flex; justify-content:flex-end; align-items:baseline; gap:8px; font-weight:600; color:#9fc8ff; flex-wrap:wrap; text-align:right; }
-  .effect-label{ font-size:12px; color:#7daaff; flex:1 1 100%; text-align:right; }
-  .effect-value{ font-size:15px; color:#ffffff; }
-  .effect-percent{ font-size:12px; color:#90f36b; }
+  .ability-values{ display:flex; flex-direction:column; gap:12px; color:#d4deeb; }
+  .ability-value{ display:flex; flex-direction:column; gap:10px; background:rgba(15,19,25,0.35); padding:12px 14px; border-radius:12px; }
+  .attack-line{ display:flex; align-items:center; gap:12px; min-width:0; }
+  .attack-gene{ display:flex; align-items:center; gap:0; flex-shrink:0; }
+  .attack-gene .gene-icon{ width:52px; height:52px; object-fit:contain; }
+  .attack-aoe{ width:52px; height:52px; object-fit:contain; margin-left:0; }
+  .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; flex:1; }
+  .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; }
+  .attack-damage{ font-size:12px; font-weight:600; color:#9fc8ff; }
+  .effect-percent{ font-size:13px; color:#90f36b; font-weight:600; margin-left:auto; }
+  .effect-line{ display:flex; justify-content:flex-end; align-items:center; gap:8px; }
+  .effect-caption{ font-size:12px; color:#9fc8ff; text-transform:uppercase; letter-spacing:0.04em; }
+  .effect-value{ font-size:16px; color:#ffffff; font-weight:600; }
   .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
