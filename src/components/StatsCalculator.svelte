@@ -670,6 +670,7 @@
           label: meta.label ?? `Атака 1`,
           geneIcon: meta.geneIcon || '',
           isAoe: Boolean(meta.isAoe),
+          attackPower: Math.round(Math.abs(atkValues[1] || 0)),
         });
       }
       if (ability.hasAtk2) {
@@ -682,6 +683,7 @@
             label: meta.label ?? `Атака 2`,
             geneIcon: meta.geneIcon || '',
             isAoe: Boolean(meta.isAoe),
+            attackPower: Math.round(Math.abs(atkValues[2] || 0)),
           });
         }
       }
@@ -920,21 +922,32 @@
                       {/if}
                       <span>{ab.label}</span>
                     </div>
-                    <span class="ability-pct">{ab.percent?.toLocaleString('ru-RU')}%</span>
+                    {#if ab.percent != null}
+                      <span class="ability-pct">{ab.percent.toLocaleString('ru-RU')}%</span>
+                    {/if}
                   </div>
                   <div class="ability-values">
                     {#each ab.values as val (val.attack)}
                       <div class="ability-value">
-                        {#if val.geneIcon}
-                          <span class="attack-gene">
-                            <img src={val.geneIcon} alt="" aria-hidden="true" />
-                            {#if val.isAoe}
-                              <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
-                            {/if}
-                          </span>
-                        {/if}
-                        <span class="attack-label">{val.label}</span>
-                        <span class="attack-value">{val.value.toLocaleString('ru-RU')}</span>
+                        <div class="attack-side">
+                          {#if val.geneIcon}
+                            <span class="attack-gene">
+                              <img src={val.geneIcon} alt="" aria-hidden="true" />
+                              {#if val.isAoe}
+                                <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                              {/if}
+                            </span>
+                          {/if}
+                          <span class="attack-label">{val.label}</span>
+                        </div>
+                        <div class="attack-damage">{val.attackPower?.toLocaleString('ru-RU') ?? '—'}</div>
+                        <div class="ability-effect">
+                          <span class="effect-label">{ab.label}</span>
+                          <span class="effect-value">{val.value.toLocaleString('ru-RU')}</span>
+                          {#if ab.percent != null}
+                            <span class="effect-percent">{ab.percent.toLocaleString('ru-RU')}%</span>
+                          {/if}
+                        </div>
                       </div>
                     {/each}
                   </div>
@@ -951,7 +964,7 @@
 </div>
 
 <style>
-  .stats-page{ display:grid; grid-template-columns: 340px minmax(0,1fr); gap:28px; }
+  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,520px); gap:24px; }
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
@@ -971,48 +984,54 @@
   .mut-meta .genes img{ width:20px; height:20px; }
   .rar{ font-size:11px; color:#aab6c8; }
 
-  .panel{ background:#2a313c; border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:18px; }
-  .title{ font-size:26px; font-weight:700; color:#e9eef6; }
-  .mut-figure{ display:flex; justify-content:center; margin-bottom:6px; }
-  .mut-figure .texture{ width:360px; height:360px; object-fit:contain; image-rendering: auto; }
+  .panel{ background:#2a313c; border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:16px; }
+  .title{ font-size:24px; font-weight:700; color:#e9eef6; text-align:center; }
+  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:4px; padding-bottom:14px; }
+  .mut-figure::after{ content:""; position:absolute; bottom:4px; left:50%; transform:translateX(-50%); width:180px; height:36px; background:radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 70%); opacity:0.7; pointer-events:none; }
+  .mut-figure .texture{ width:300px; height:300px; object-fit:contain; image-rendering:auto; }
 
-  .slots{ display:flex; gap:24px; justify-content:center; margin:12px 0 10px; position:relative; }
+  .slots{ display:flex; gap:20px; justify-content:center; margin:8px 0 6px; position:relative; }
   .slot{ position:relative; }
-  .slot-btn{ position:relative; width:96px; height:96px; border-radius:16px; background:transparent; border:none; padding:0; }
+  .slot-btn{ position:relative; width:88px; height:88px; border-radius:14px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
-  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:8px; object-fit:contain; }
+  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:6px; object-fit:contain; }
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; }
   .dropdown{ position:absolute; top:112px; left:0; width:260px; max-height:280px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
   .orb-row img{ width:40px; height:40px; object-fit:contain; }
 
-  .controls{ display:flex; gap:32px; justify-content:center; margin:8px 0 14px; }
-  .control{ display:flex; align-items:center; gap:12px; color:#aab6c8; font-size:15px; }
-  .lvl{ width:110px; padding:8px 10px; border-radius:10px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:16px; }
+  .controls{ display:flex; gap:28px; justify-content:center; margin:6px 0 12px; }
+  .control{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:14px; }
+  .lvl{ width:100px; padding:7px 9px; border-radius:10px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:15px; }
 
-  .stars{ display:flex; gap:14px; }
-  .star{ width:48px; height:48px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.4; transition:transform .15s ease, opacity .15s ease; }
+  .stars{ display:flex; gap:12px; }
+  .star{ width:44px; height:44px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.4; transition:transform .15s ease, opacity .15s ease; }
   .star.selected{ opacity:1; transform:scale(1.08); filter:drop-shadow(0 0 10px rgba(255,255,255,0.45)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
   .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
-  .stats{ margin-top:4px; display:flex; flex-direction:column; gap:12px; }
-  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:14px 16px; color:#dfe7f3; font-size:15px; }
-  .row .label{ display:flex; align-items:center; gap:12px; color:#aab6c8; font-size:14px; }
-  .row .label-icon{ width:28px; height:28px; object-fit:contain; }
-  .abilities{ display:flex; flex-direction:column; gap:12px; width:100%; }
-  .ability{ background:#2b3442; padding:12px 14px; border-radius:12px; font-size:14px; display:flex; flex-direction:column; gap:12px; }
+  .stats{ margin-top:4px; display:flex; flex-direction:column; gap:10px; }
+  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:12px 14px; color:#dfe7f3; font-size:14px; }
+  .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
+  .row .label-icon{ width:24px; height:24px; object-fit:contain; }
+  .abilities{ display:flex; flex-direction:column; gap:10px; width:100%; }
+  .ability{ background:#2b3442; padding:12px; border-radius:12px; font-size:14px; display:flex; flex-direction:column; gap:10px; }
   .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .ability-name{ display:flex; align-items:center; gap:12px; font-weight:600; color:#f0f6ff; }
-  .ability-icon{ width:36px; height:36px; object-fit:contain; }
-  .ability-pct{ font-weight:600; color:#90f36b; font-size:16px; }
-  .ability-values{ display:flex; flex-direction:column; gap:10px; color:#d4deeb; }
-  .ability-value{ display:flex; align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:10px 12px; border-radius:10px; }
-  .attack-gene{ position:relative; width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; }
+  .ability-name{ display:flex; align-items:center; gap:10px; font-weight:600; color:#f0f6ff; }
+  .ability-icon{ width:32px; height:32px; object-fit:contain; }
+  .ability-pct{ font-weight:600; color:#90f36b; font-size:15px; }
+  .ability-values{ display:flex; flex-direction:column; gap:8px; color:#d4deeb; }
+  .ability-value{ display:grid; grid-template-columns: minmax(0,1fr) 100px minmax(0,1fr); align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:10px 12px; border-radius:10px; }
+  .attack-side{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .attack-gene{ position:relative; width:38px; height:38px; display:inline-flex; align-items:center; justify-content:center; }
   .attack-gene img{ width:100%; height:100%; object-fit:contain; }
-  .attack-aoe{ position:absolute; right:-4px; bottom:-4px; width:20px; height:20px; object-fit:contain; }
-  .attack-label{ font-weight:600; color:#f3f7ff; flex:0 0 auto; }
-  .attack-value{ margin-left:auto; font-size:16px; font-weight:600; color:#ffffff; }
+  .attack-aoe{ position:absolute; right:-4px; bottom:-4px; width:18px; height:18px; object-fit:contain; }
+  .attack-label{ font-weight:600; color:#f3f7ff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .attack-damage{ font-size:15px; font-weight:600; color:#ffffff; text-align:center; }
+  .ability-effect{ display:flex; justify-content:flex-end; align-items:baseline; gap:10px; font-weight:600; color:#9fc8ff; }
+  .effect-label{ font-size:13px; color:#7daaff; }
+  .effect-value{ font-size:16px; color:#ffffff; }
+  .effect-percent{ font-size:13px; color:#90f36b; }
   .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
