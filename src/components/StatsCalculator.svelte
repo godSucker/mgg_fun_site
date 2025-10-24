@@ -26,6 +26,18 @@
     E: '/genes/icon_gene_e.png',
     F: '/genes/icon_gene_f.png',
   };
+  const ATTACK_GENE_ICON = {
+    a: '/genes/gene_a.png',
+    b: '/genes/gene_b.png',
+    c: '/genes/gene_c.png',
+    d: '/genes/gene_d.png',
+    e: '/genes/gene_e.png',
+    f: '/genes/gene_f.png',
+    neutro: '/genes/gene_all.png',
+    neutral: '/genes/gene_all.png',
+    none: '/genes/gene_all.png',
+    all: '/genes/gene_all.png',
+  };
   const STAR_KEYS = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
   const STAR_ICON = {
     0: '/stars/no_stars.png',
@@ -129,6 +141,7 @@
         starMultipliers,
         basicSlotCount,
         specialSlotCount: SPECIAL_SLOT_COUNT,
+        attackMeta: buildAttackMeta(m),
       };
     });
   }
@@ -157,13 +170,15 @@
 
   function slotsForType(type){
     const key = String(type || '').trim().toLowerCase();
-    if (key === 'default') return 2;
-    if (key === 'heroic') return 4;
-    return 3;
+    if (key === 'default') return 1;
+    if (key === 'heroic') return 3;
+    return 2;
   }
   function baseIdOf(m){
     const raw = String(m?.id ?? m?.slug ?? m?.specimen ?? m?.name ?? '').trim();
-    return raw.replace(/_(bronze|silver|gold|platinum)$/i, '');
+    return raw
+      .replace(/_(bronze|silver|gold|platinum)$/i, '')
+      .replace(/_plat$/i, '');
   }
   function readableType(raw){
     const val = String(raw || '').trim();
@@ -197,6 +212,78 @@
       return t?.value ?? null;
     }
     return m[key] ?? null;
+  }
+
+  function buildAttackMeta(mutant){
+    const base = mutant?.base_stats ?? {};
+    const lvl1 = base?.lvl1 ?? {};
+    const lvl30 = base?.lvl30 ?? {};
+    const meta = {};
+    for (const idx of [1, 2]) {
+      const geneRaw = firstDefined(
+        base?.[`atk${idx}_gene`],
+        lvl30?.[`atk${idx}_gene`],
+        lvl1?.[`atk${idx}_gene`]
+      );
+      const aoeRaw = firstDefined(
+        base?.[`atk${idx}_AOE`],
+        lvl30?.[`atk${idx}_AOE`],
+        lvl1?.[`atk${idx}_AOE`]
+      );
+      const nameRaw = firstDefined(
+        mutant?.[`name_attack${idx}`],
+        base?.[`atk${idx}_name`],
+        lvl30?.[`atk${idx}_name`],
+        lvl1?.[`atk${idx}_name`]
+      );
+      const gene = normalizeAttackGene(geneRaw);
+      meta[idx] = {
+        gene,
+        geneIcon: attackGeneIconPath(gene),
+        isAoe: toBoolean(aoeRaw),
+        label: niceAttackLabel(idx, nameRaw),
+      };
+    }
+    return meta;
+  }
+
+  function firstDefined(...values){
+    for (const val of values) {
+      if (val === undefined || val === null) continue;
+      if (typeof val === 'string' && val.trim() === '') continue;
+      return val;
+    }
+    return null;
+  }
+
+  function normalizeAttackGene(raw){
+    const val = String(raw ?? '').trim();
+    if (!val) return '';
+    const lower = val.toLowerCase();
+    if (lower === 'neutral' || lower === 'none' || lower === 'all') return 'neutro';
+    return lower;
+  }
+
+  function attackGeneIconPath(code){
+    const key = normalizeAttackGene(code);
+    if (!key) return '';
+    return ATTACK_GENE_ICON[key] || '';
+  }
+
+  function niceAttackLabel(index, rawName){
+    const label = String(rawName ?? '').trim();
+    if (label) return label;
+    return `Атака ${index}`;
+  }
+
+  function toBoolean(value){
+    if (typeof value === 'string') {
+      const lower = value.trim().toLowerCase();
+      if (!lower) return false;
+      if (['false', 'no', '0'].includes(lower)) return false;
+      return true;
+    }
+    return Boolean(value);
   }
   function abilitySource(m){
     const raw = m?.abilities ?? tag(m, 'abilities') ?? [];
@@ -539,13 +626,14 @@
     // ОКРУГЛЕНИЕ
     let speed = m.speed || 0;
     const speedPct = mods?.speedPct ?? 0;
-    if (speedPct) speed = Math.round(speed * (1 + speedPct/100));
+    if (speedPct) speed = speed * (1 + speedPct/100);
+    const speedRounded = Math.round(speed * 100) / 100;
 
     return {
       hp:   Math.round(hp),
       atk1: Math.round(atk1),
       atk2: Math.round(atk2),
-      speed
+      speed: speedRounded
     };
   }
 
@@ -574,15 +662,27 @@
 
       const values = [];
       if (ability.hasAtk1) {
+        const meta = mutant?.attackMeta?.[1] ?? {};
         const value = Math.round(Math.abs((atkValues[1] || 0) * signedPct / 100));
-        values.push({ attack: 1, value });
+        values.push({
+          attack: 1,
+          value,
+          label: meta.label ?? `Атака 1`,
+          geneIcon: meta.geneIcon || '',
+          isAoe: Boolean(meta.isAoe),
+        });
       }
       if (ability.hasAtk2) {
+        const meta = mutant?.attackMeta?.[2] ?? {};
         const value = Math.round(Math.abs((atkValues[2] || 0) * signedPct / 100));
-        if (value || ability.hasAtk1 === false) {
-          values.push({ attack: 2, value });
-        } else if (!values.length) {
-          values.push({ attack: 2, value });
+        if (value || ability.hasAtk1 === false || !values.length) {
+          values.push({
+            attack: 2,
+            value,
+            label: meta.label ?? `Атака 2`,
+            geneIcon: meta.geneIcon || '',
+            isAoe: Boolean(meta.isAoe),
+          });
         }
       }
 
@@ -592,9 +692,20 @@
         label: ability.label,
         values,
         icon: abilityIconPath(ability.code),
+        percent: Math.abs(signedPct),
       });
     }
     return result;
+  }
+
+  function formatSpeed(value){
+    if (!Number.isFinite(value)) return '—';
+    const abs = Math.abs(value);
+    const hasFraction = Math.round(abs * 100) !== Math.round(abs) * 100;
+    return Number(value).toLocaleString('ru-RU', {
+      minimumFractionDigits: hasFraction ? 2 : 0,
+      maximumFractionDigits: 2,
+    });
   }
 
   // --- ХЭНДЛЕРЫ UI ---
@@ -794,7 +905,7 @@
             <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
             Скорость
           </span>
-          <b>{stats.speed}</b>
+          <b>{formatSpeed(stats.speed)}</b>
         </div>
         <div class="row abils">
           <span>Способности</span>
@@ -802,15 +913,29 @@
             {#if abilityRows.length}
               {#each abilityRows as ab (ab.code + ab.label)}
                 <div class="ability">
-                  <div class="ability-name">
-                    {#if ab.icon}
-                      <img class="ability-icon" src={ab.icon} alt={ab.label} />
-                    {/if}
-                    <span>{ab.label}</span>
+                  <div class="ability-header">
+                    <div class="ability-name">
+                      {#if ab.icon}
+                        <img class="ability-icon" src={ab.icon} alt={ab.label} />
+                      {/if}
+                      <span>{ab.label}</span>
+                    </div>
+                    <span class="ability-pct">{ab.percent?.toLocaleString('ru-RU')}%</span>
                   </div>
                   <div class="ability-values">
                     {#each ab.values as val (val.attack)}
-                      <span>Атака {val.attack}: {val.value.toLocaleString('ru-RU')}</span>
+                      <div class="ability-value">
+                        {#if val.geneIcon}
+                          <span class="attack-gene">
+                            <img src={val.geneIcon} alt="" aria-hidden="true" />
+                            {#if val.isAoe}
+                              <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                            {/if}
+                          </span>
+                        {/if}
+                        <span class="attack-label">{val.label}</span>
+                        <span class="attack-value">{val.value.toLocaleString('ru-RU')}</span>
+                      </div>
                     {/each}
                   </div>
                 </div>
@@ -826,7 +951,7 @@
 </div>
 
 <style>
-  .stats-page{ display:grid; grid-template-columns: 360px 1fr; gap:24px; }
+  .stats-page{ display:grid; grid-template-columns: 340px minmax(0,1fr); gap:28px; }
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
@@ -837,49 +962,57 @@
   .sort-switch .active{ background:#7a56ff; border-color:#7a56ff; color:white; }
   .search{ width:100%; margin:8px 0 12px; padding:8px 10px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#dfe7f3; }
   .list{ overflow:auto; max-height:70vh; display:flex; flex-direction:column; gap:6px; }
-  .mut-row{ display:flex; align-items:center; gap:10px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:8px; width:100%; }
+  .mut-row{ display:flex; align-items:center; gap:12px; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:10px; width:100%; }
   .mut-row.active{ border-color:#90f36b; }
-  .mut-icon{ width:38px; height:38px; border-radius:6px; background:#0f1319; object-fit:cover; }
+  .mut-icon{ width:44px; height:44px; border-radius:8px; background:#0f1319; object-fit:cover; }
   .mut-meta{ flex:1; display:flex; flex-direction:column; }
   .mut-meta .name{ font-size:13px; color:#e9eef6; }
   .mut-meta .genes{ display:flex; gap:4px; }
-  .mut-meta .genes img{ width:16px; height:16px; }
+  .mut-meta .genes img{ width:20px; height:20px; }
   .rar{ font-size:11px; color:#aab6c8; }
 
-  .panel{ background:#2a313c; border-radius:12px; padding:18px; }
-  .title{ font-size:22px; font-weight:700; color:#e9eef6; margin-bottom:12px; }
-  .mut-figure{ display:flex; justify-content:center; margin-bottom:10px; }
-  .mut-figure .texture{ width:280px; height:280px; object-fit:contain; image-rendering: auto; }
+  .panel{ background:#2a313c; border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:18px; }
+  .title{ font-size:26px; font-weight:700; color:#e9eef6; }
+  .mut-figure{ display:flex; justify-content:center; margin-bottom:6px; }
+  .mut-figure .texture{ width:360px; height:360px; object-fit:contain; image-rendering: auto; }
 
-  .slots{ display:flex; gap:18px; justify-content:center; margin:10px 0 6px; position:relative; }
+  .slots{ display:flex; gap:24px; justify-content:center; margin:12px 0 10px; position:relative; }
   .slot{ position:relative; }
-  .slot-btn{ position:relative; width:64px; height:64px; border-radius:12px; background:transparent; border:none; padding:0; }
+  .slot-btn{ position:relative; width:96px; height:96px; border-radius:16px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
-  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:4px; object-fit:contain; }
-  .x{ position:absolute; right:-6px; top:-6px; width:18px; height:18px; border-radius:50%; border:none; background:#ff6464; color:white; }
-  .dropdown{ position:absolute; top:74px; left:0; width:240px; max-height:240px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:10px; padding:6px; z-index:10; }
-  .orb-row{ display:flex; align-items:center; gap:8px; width:100%; padding:6px; border-radius:8px; background:#242b36; margin:4px 0; }
-  .orb-row img{ width:28px; height:28px; object-fit:contain; }
+  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:8px; object-fit:contain; }
+  .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; }
+  .dropdown{ position:absolute; top:112px; left:0; width:260px; max-height:280px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
+  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
+  .orb-row img{ width:40px; height:40px; object-fit:contain; }
 
-  .controls{ display:flex; gap:24px; justify-content:center; margin:10px 0 12px; }
-  .control{ display:flex; align-items:center; gap:10px; color:#aab6c8; }
-  .lvl{ width:90px; padding:6px 8px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; }
+  .controls{ display:flex; gap:32px; justify-content:center; margin:8px 0 14px; }
+  .control{ display:flex; align-items:center; gap:12px; color:#aab6c8; font-size:15px; }
+  .lvl{ width:110px; padding:8px 10px; border-radius:10px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:16px; }
 
-  .stars{ display:flex; gap:10px; }
-  .star{ width:34px; height:34px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
-  .star.selected{ opacity:1; transform:scale(1.05); filter:drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
+  .stars{ display:flex; gap:14px; }
+  .star{ width:48px; height:48px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.4; transition:transform .15s ease, opacity .15s ease; }
+  .star.selected{ opacity:1; transform:scale(1.08); filter:drop-shadow(0 0 10px rgba(255,255,255,0.45)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
   .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
-  .stats{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
-  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:10px 12px; color:#dfe7f3; }
-  .row .label{ display:flex; align-items:center; gap:8px; color:#aab6c8; }
-  .row .label-icon{ width:20px; height:20px; object-fit:contain; }
-  .abilities{ display:flex; flex-direction:column; gap:8px; width:100%; }
-  .ability{ background:#2b3442; padding:6px 10px; border-radius:8px; font-size:12px; display:flex; flex-direction:column; gap:4px; }
-  .ability-name{ display:flex; align-items:center; gap:8px; font-weight:600; color:#f0f6ff; }
-  .ability-icon{ width:22px; height:22px; object-fit:contain; }
-  .ability-values{ display:flex; flex-wrap:wrap; gap:10px; color:#d4deeb; }
+  .stats{ margin-top:4px; display:flex; flex-direction:column; gap:12px; }
+  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:14px 16px; color:#dfe7f3; font-size:15px; }
+  .row .label{ display:flex; align-items:center; gap:12px; color:#aab6c8; font-size:14px; }
+  .row .label-icon{ width:28px; height:28px; object-fit:contain; }
+  .abilities{ display:flex; flex-direction:column; gap:12px; width:100%; }
+  .ability{ background:#2b3442; padding:12px 14px; border-radius:12px; font-size:14px; display:flex; flex-direction:column; gap:12px; }
+  .ability-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .ability-name{ display:flex; align-items:center; gap:12px; font-weight:600; color:#f0f6ff; }
+  .ability-icon{ width:36px; height:36px; object-fit:contain; }
+  .ability-pct{ font-weight:600; color:#90f36b; font-size:16px; }
+  .ability-values{ display:flex; flex-direction:column; gap:10px; color:#d4deeb; }
+  .ability-value{ display:flex; align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:10px 12px; border-radius:10px; }
+  .attack-gene{ position:relative; width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; }
+  .attack-gene img{ width:100%; height:100%; object-fit:contain; }
+  .attack-aoe{ position:absolute; right:-4px; bottom:-4px; width:20px; height:20px; object-fit:contain; }
+  .attack-label{ font-weight:600; color:#f3f7ff; flex:0 0 auto; }
+  .attack-value{ margin-left:auto; font-size:16px; font-weight:600; color:#ffffff; }
   .ability.empty{ align-items:center; justify-content:center; color:#94a2b9; }
 </style>
