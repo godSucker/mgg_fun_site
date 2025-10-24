@@ -855,14 +855,14 @@
                     {#each ab.values as val (val.attack)}
                       <div class="ability-value">
                         <div class="attack-line">
-                          {#if val.geneIcon}
-                            <span class="attack-gene" class:has-aoe={val.isAoe}>
+                          <span class="attack-gene" class:empty={!val.geneIcon}>
+                            {#if val.geneIcon}
                               <img class="gene-icon" src={val.geneIcon} alt="" aria-hidden="true" />
-                              {#if val.isAoe}
-                                <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
-                              {/if}
-                            </span>
-                          {/if}
+                            {/if}
+                            {#if val.isAoe}
+                              <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                            {/if}
+                          </span>
                           <div class="attack-info">
                             <span class="attack-label">{val.label}</span>
                             <span class="attack-damage">АТК {val.attackPower?.toLocaleString('ru-RU') ?? '—'}</span>
@@ -1017,7 +1017,7 @@
   .hero-section > .abilities-block{ min-height:0; min-width:0; max-height:none; }
   .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; }
   .mut-figure::after{ content:""; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
-  .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(18px); }
+  .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(44px); }
 
   .slots{ display:flex; gap:18px; justify-content:center; margin:2px 0 0; position:relative; }
   .slot{ position:relative; }
@@ -1056,14 +1056,12 @@
   .ability-pct{ font-weight:600; color:#90f36b; font-size:14px; }
   .ability-values{ display:flex; flex-direction:column; gap:12px; color:#d4deeb; }
   .ability-value{ display:flex; flex-direction:column; gap:10px; background:rgba(15,19,25,0.35); padding:12px 14px; border-radius:12px; }
-  .attack-line{ display:flex; align-items:center; gap:12px; min-width:0; }
-  .attack-gene{ position:relative; display:block; width:52px; height:52px; flex-shrink:0; }
+  .attack-line{ display:grid; grid-template-columns:72px 1fr auto; column-gap:14px; align-items:center; min-width:0; }
+  .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:72px; height:72px; flex-shrink:0; }
   .attack-gene .gene-icon{ width:100%; height:100%; object-fit:contain; display:block; }
-  .attack-gene.has-aoe{ width:104px; }
-  .attack-gene.has-aoe .gene-icon{ position:absolute; top:0; left:0; }
-  .attack-gene.has-aoe .attack-aoe{ position:absolute; top:0; right:0; width:52px; height:52px; object-fit:contain; }
-  .attack-aoe{ width:52px; height:52px; object-fit:contain; }
-  .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; flex:1; }
+  .attack-gene .attack-aoe{ position:absolute; top:0; right:0; width:72px; height:72px; object-fit:contain; pointer-events:none; }
+  .attack-gene.empty{ opacity:0; }
+  .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; }
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; }
   .attack-damage{ font-size:12px; font-weight:600; color:#9fc8ff; }
   .effect-percent{ font-size:13px; color:#90f36b; font-weight:600; margin-left:auto; }
