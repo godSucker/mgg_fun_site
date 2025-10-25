@@ -429,7 +429,8 @@
     if (!id) return null;
     const category = id.startsWith('orb_special') ? 'special' : 'basic';
     const percent = Number(orb.percent ?? orb.pct ?? orb.percentage ?? 0);
-    const effects = orbEffectsFromId(id, percent);
+    const specialAbility = specialAbilityFromOrb(id, percent);
+    const effects = orbEffectsFromId(id, percent, specialAbility);
     return {
       ...orb,
       ...effects,
@@ -437,20 +438,61 @@
       category,
       icon: `/orbs/${category}/${id}.png`,
       type: category,
+      specialAbility,
     };
   }
 
-  function orbEffectsFromId(id, percent){
+  function orbEffectsFromId(id, percent, specialAbility = null){
     const pct = Number.isFinite(percent) ? percent : 0;
     const abs = Math.abs(pct);
     const key = id.toLowerCase();
     if (key.includes('attack')) return { atkPct: pct };
     if (key.includes('health') || key.includes('_hp') || key.includes('life')) return { hpPct: pct };
     if (key.includes('speed')) return { speedPct: pct };
-    if (key.includes('regenerate') || key.includes('retaliate') || key.includes('shield') || key.includes('slash') || key.includes('strengthen') || key.includes('weaken')) {
+    if (!specialAbility && (key.includes('regenerate') || key.includes('retaliate') || key.includes('shield') || key.includes('slash') || key.includes('strengthen') || key.includes('weaken'))) {
       return { abilityPct: abs };
     }
     return {};
+  }
+
+  function specialAbilityFromOrb(id, percent){
+    const match = String(id || '')
+      .toLowerCase()
+      .match(/^orb_special_add([a-z_]+)/);
+    if (!match) return null;
+    const abilityKey = match[1];
+    const code = specialAbilityCode(abilityKey);
+    if (!code) return null;
+    const pct = toNumber(percent);
+    if (!Number.isFinite(pct)) return null;
+    const base = abilityBaseCode(code);
+    const label = abilityLabel(code);
+    const hasAtk1 = true;
+    const hasAtk2 = !base.includes('retaliate');
+    return {
+      code,
+      label,
+      baseCode: `${base}#orb`,
+      tier: 0,
+      pct,
+      hasAtk1,
+      hasAtk2,
+      raw: { source: 'special-orb', id },
+    };
+  }
+
+  function specialAbilityCode(key){
+    const normalized = String(key || '')
+      .trim()
+      .toLowerCase();
+    if (!normalized) return '';
+    if (normalized.startsWith('regenerate')) return 'ability_regen';
+    if (normalized.startsWith('retaliate')) return 'ability_retaliate';
+    if (normalized.startsWith('shield')) return 'ability_shield';
+    if (normalized.startsWith('slash')) return 'ability_slash';
+    if (normalized.startsWith('strengthen')) return 'ability_strengthen';
+    if (normalized.startsWith('weaken')) return 'ability_weaken';
+    return '';
   }
 
   // Приводим мутантов
@@ -659,7 +701,7 @@
 
   $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
   $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0};
-  $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers, level) : [];
+  $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers, level, specialSlot) : [];
   $: attackRows = buildAttackRows(selected, stats, abilityRows);
   $: typeIconCurrent = selected ? typeIconPath(selected.typeKey || selected.type) : '';
 
@@ -699,9 +741,12 @@
     return rows.filter((row) => row.label || row.damage || row.effects.length);
   }
 
-  function calcAbilityRows(mutant, statLine, mods, lvl){
-    const list = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
-    if (!list.length) return [];
+  function calcAbilityRows(mutant, statLine, mods, lvl, specialOrb){
+    const baseList = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
+    const combined = [...baseList];
+    const orbAbility = specialOrbAbilityEntry(specialOrb);
+    if (orbAbility) combined.push(orbAbility);
+    if (!combined.length) return [];
     const level = Number(lvl) || 1;
     const result = [];
     const abilityBoost = Math.abs(mods?.abilityPct ?? 0);
@@ -710,7 +755,7 @@
       2: statLine?.atk2 ?? 0,
     };
     const grouped = new Map();
-    for (const ability of list) {
+    for (const ability of combined) {
       if (!ability) continue;
       const base = ability.baseCode || ability.code;
       if (!grouped.has(base)) grouped.set(base, []);
@@ -766,6 +811,22 @@
       });
     }
     return result;
+  }
+
+  function specialOrbAbilityEntry(orb){
+    if (!orb || !orb.specialAbility) return null;
+    const ability = orb.specialAbility;
+    return {
+      ...ability,
+      code: ability.code,
+      label: ability.label,
+      baseCode: ability.baseCode,
+      tier: ability.tier ?? 0,
+      pct: ability.pct,
+      hasAtk1: ability.hasAtk1 !== false,
+      hasAtk2: ability.hasAtk2 !== false,
+      raw: ability.raw ?? { source: 'special-orb', id: orb.id },
+    };
   }
 
   function formatSpeed(value){
@@ -870,6 +931,74 @@
           <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
         </div>
 
+        <div class="hero-controls" bind:this={dropdownHost}>
+          <div class="slots">
+            <!-- базовые -->
+            {#each basicSlots as orb, i}
+              <div class="slot">
+                <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
+                  <img class="slot-bg" src="/orbs/basic/orb_slot.png" alt="slot" />
+                  {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
+                </button>
+                {#if orb}
+                  <button class="x" title="убрать" on:click={() => clearSlot('basic', i)}>×</button>
+                {/if}
+                {#if openDropdown === `basic-${i}`}
+                  <div class="dropdown">
+                    {#each ORBS.basic as o}
+                      <button class="orb-row" on:click={() => pickBasic(i, o)}>
+                        <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
+                      </button>
+                    {/each}
+                  </div>
+                {/if}
+              </div>
+            {/each}
+
+            <!-- спец-слот -->
+            <div class="slot">
+              <button class="slot-btn" on:click={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
+                <img class="slot-bg" src="/orbs/special/orb_slot_spe.png" alt="special" />
+                {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
+              </button>
+              {#if specialSlot}
+                <button class="x" title="убрать" on:click={() => clearSlot('special')}>×</button>
+              {/if}
+              {#if openDropdown === 'special'}
+                <div class="dropdown">
+                  {#each ORBS.special as o}
+                    <button class="orb-row" on:click={() => pickSpecial(o)}>
+                      <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
+                    </button>
+                  {/each}
+                </div>
+              {/if}
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="control">
+              <span class="control-label">Уровень:</span>
+              <input class="lvl" type="number" min="1" max="300" bind:value={level} />
+            </div>
+            <div class="control">
+              <span class="control-label">Звёздность:</span>
+              <div class="stars">
+                {#each [0,1,2,3,4] as s}
+                  <button
+                    class="star"
+                    class:selected={stars === s}
+                    on:click={() => stars = s}
+                    aria-pressed={stars === s}
+                    title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
+                    <img src={STAR_ICON[s]} alt="*" />
+                  </button>
+                {/each}
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="stats">
           <div class="row">
             <span class="label">
@@ -939,74 +1068,6 @@
         </div>
       </div>
 
-      <!-- слоты сфер — единственные интерактивные -->
-      <div class="slots" bind:this={dropdownHost}>
-        <!-- базовые -->
-        {#each basicSlots as orb, i}
-          <div class="slot">
-            <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
-              <img class="slot-bg" src="/orbs/basic/orb_slot.png" alt="slot" />
-              {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
-            </button>
-            {#if orb}
-              <button class="x" title="убрать" on:click={() => clearSlot('basic', i)}>×</button>
-            {/if}
-            {#if openDropdown === `basic-${i}`}
-              <div class="dropdown">
-                {#each ORBS.basic as o}
-                  <button class="orb-row" on:click={() => pickBasic(i, o)}>
-                    <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
-                  </button>
-                {/each}
-              </div>
-            {/if}
-          </div>
-        {/each}
-
-        <!-- спец-слот -->
-        <div class="slot">
-          <button class="slot-btn" on:click={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
-            <img class="slot-bg" src="/orbs/special/orb_slot_spe.png" alt="special" />
-            {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
-          </button>
-          {#if specialSlot}
-            <button class="x" title="убрать" on:click={() => clearSlot('special')}>×</button>
-          {/if}
-          {#if openDropdown === 'special'}
-            <div class="dropdown">
-              {#each ORBS.special as o}
-                <button class="orb-row" on:click={() => pickSpecial(o)}>
-                  <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
-                </button>
-              {/each}
-            </div>
-          {/if}
-        </div>
-      </div>
-
-      <!-- уровень + звёзды -->
-      <div class="controls">
-        <div class="control">
-          <span class="control-label">Уровень:</span>
-          <input class="lvl" type="number" min="1" max="300" bind:value={level} />
-        </div>
-        <div class="control">
-          <span class="control-label">Звёздность:</span>
-          <div class="stars">
-            {#each [0,1,2,3,4] as s}
-              <button
-                class="star"
-                class:selected={stars === s}
-                on:click={() => stars = s}
-                aria-pressed={stars === s}
-                title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
-                <img src={STAR_ICON[s]} alt="*" />
-              </button>
-            {/each}
-          </div>
-        </div>
-      </div>
-
     {/if}
   </section>
 </div>
@@ -1034,12 +1095,13 @@
 
   .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:16px; }
   .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
-  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:18px; }
+  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:16px; }
   .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; width:100%; }
   .mut-figure::after{ content:""; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
   .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(44px); }
 
-  .slots{ display:flex; gap:18px; justify-content:center; margin:2px 0 0; position:relative; }
+  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .slots{ display:flex; gap:16px; justify-content:center; margin:4px 0 0; position:relative; flex-wrap:wrap; }
   .slot{ position:relative; }
   .slot-btn{ position:relative; width:84px; height:84px; border-radius:12px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
@@ -1049,36 +1111,36 @@
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
   .orb-row img{ width:36px; height:36px; object-fit:contain; }
 
-  .controls{ display:flex; gap:14px; justify-content:center; margin:0 0 4px; flex-wrap:wrap; }
-  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; }
+  .controls{ display:flex; gap:12px; justify-content:center; margin:0; flex-wrap:wrap; }
+  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:8px 12px; }
   .control .control-label{ white-space:nowrap; }
-  .lvl{ width:68px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#e9eef6; font-size:13px; }
+  .lvl{ width:64px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
 
   .stars{ display:flex; gap:6px; }
-  .star{ width:32px; height:32px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
+  .star{ width:30px; height:30px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
   .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
   .star img{ width:100%; height:100%; object-fit:contain; }
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
   .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
 
-  .stats{ margin-top:0; display:flex; flex-direction:column; gap:10px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
-  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:11px 13px; color:#dfe7f3; font-size:14px; }
+  .stats{ margin-top:0; display:flex; flex-direction:column; gap:12px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
+  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:12px 16px; color:#dfe7f3; font-size:14px; min-height:64px; }
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
-  .row .label-icon{ width:22px; height:22px; object-fit:contain; }
-  .row.attack-row{ align-items:stretch; gap:18px; padding:16px 18px; }
-  .attack-side{ display:flex; align-items:center; gap:14px; flex:1 1 0; min-width:0; }
-  .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:72px; height:72px; flex-shrink:0; }
+  .row .label-icon{ width:20px; height:20px; object-fit:contain; }
+  .row.attack-row{ align-items:stretch; gap:16px; padding:14px 16px; }
+  .attack-side{ display:flex; align-items:center; gap:12px; flex:1 1 0; min-width:0; }
+  .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex-shrink:0; }
   .attack-gene .gene-icon{ width:100%; height:100%; object-fit:contain; display:block; }
-  .attack-gene .attack-aoe{ position:absolute; top:0; right:0; width:72px; height:72px; object-fit:contain; pointer-events:none; }
+  .attack-gene .attack-aoe{ position:absolute; top:0; right:0; width:64px; height:64px; object-fit:contain; pointer-events:none; }
   .attack-gene.empty{ opacity:0; }
-  .attack-info{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; }
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; }
-  .attack-damage{ font-size:18px; font-weight:700; color:#ffffff; }
+  .attack-damage{ font-size:17px; font-weight:700; color:#ffffff; }
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); }
   .ability-divider.empty{ display:none; }
   .effect-side{ display:flex; flex-direction:column; gap:10px; min-width:0; flex:1 1 0; align-items:stretch; }
-  .effect-row{ display:flex; align-items:center; gap:12px; background:rgba(15,19,25,0.35); padding:12px 14px; border-radius:10px; width:100%; }
-  .ability-icon{ width:32px; height:32px; object-fit:contain; }
+  .effect-row{ display:flex; align-items:center; gap:10px; background:rgba(15,19,25,0.35); padding:11px 14px; border-radius:10px; width:100%; }
+  .ability-icon{ width:30px; height:30px; object-fit:contain; }
   .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; flex:1 1 auto; }
   .effect-percent{ font-size:14px; color:#90f36b; font-weight:600; }
   .effect-value{ font-size:18px; color:#90f36b; font-weight:700; }
