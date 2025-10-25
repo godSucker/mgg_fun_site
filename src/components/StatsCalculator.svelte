@@ -368,6 +368,29 @@
     return ru;
   }
 
+  function abilityBaseKey(raw){
+    const base = String(raw || '')
+      .trim()
+      .toLowerCase()
+      .split('#')[0];
+    if (!base) return '';
+    return abilityBaseCode(base);
+  }
+
+  function abilityCodeFromOrbId(id){
+    const normalized = String(id || '')
+      .trim()
+      .toLowerCase();
+    if (!normalized) return '';
+    if (normalized.includes('regenerate')) return 'ability_regen';
+    if (normalized.includes('retaliate')) return 'ability_retaliate';
+    if (normalized.includes('shield')) return 'ability_shield';
+    if (normalized.includes('slash')) return 'ability_slash';
+    if (normalized.includes('strengthen')) return 'ability_strengthen';
+    if (normalized.includes('weaken')) return 'ability_weaken';
+    return '';
+  }
+
   function abilityAppliesTo(entry, key){
     const lowerKey = String(key || '').toLowerCase();
     if (lowerKey === 'atk1') {
@@ -449,8 +472,17 @@
     if (key.includes('attack')) return { atkPct: pct };
     if (key.includes('health') || key.includes('_hp') || key.includes('life')) return { hpPct: pct };
     if (key.includes('speed')) return { speedPct: pct };
-    if (!specialAbility && (key.includes('regenerate') || key.includes('retaliate') || key.includes('shield') || key.includes('slash') || key.includes('strengthen') || key.includes('weaken'))) {
-      return { abilityPct: abs };
+    if (!specialAbility) {
+      const abilityCode = abilityCodeFromOrbId(id);
+      if (abilityCode) {
+        const baseCode = abilityBaseCode(abilityCode);
+        return {
+          abilityPct: abs,
+          abilityCode,
+          abilityBaseCode: baseCode,
+          abilityLabel: abilityLabel(abilityCode),
+        };
+      }
     }
     return {};
   }
@@ -472,7 +504,7 @@
     return {
       code,
       label,
-      baseCode: `${base}#orb`,
+      baseCode: base,
       tier: 0,
       pct,
       hasAtk1,
@@ -508,10 +540,12 @@
   // выбранные сферы: массив из N базовых и 1 спец
   let basicSlots = [];                 // длина = selected.basicSlotCount
   let specialSlot = null;
-  let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
+  let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityBonus: {} };
   let abilityRows = [];
   let attackRows = [];
   let typeIconCurrent = '';
+  let allowedAbilityBases = new Set();
+  let basicOrbOptions = ORBS.basic;
 
   // контейнер дропдауна сфер (для клика вне)
   let dropdownHost = null;
@@ -540,6 +574,15 @@
     const count = Number.isFinite(selected.basicSlotCount) ? selected.basicSlotCount : 3;
     basicSlots = Array(count).fill(null);
     specialSlot = null;
+  }
+
+  $: allowedAbilityBases = buildAllowedAbilityBases(selected, specialSlot);
+  $: basicOrbOptions = filterBasicOrbs(ORBS.basic, allowedAbilityBases);
+  $: if (Array.isArray(basicSlots)) {
+    const sanitized = basicSlots.map((orb) => allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null);
+    if (!arraysEqual(sanitized, basicSlots)) {
+      basicSlots = sanitized;
+    }
   }
 
   function figureImage(m, stars){
@@ -628,7 +671,7 @@
 
   // Применение модификаторов сфер (проценты)
   function calcOrbModifiers(basic, special) {
-    const mods = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
+    const mods = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityBonus: {} };
     const basicList = Array.isArray(basic) ? basic.filter(Boolean) : [];
     const all = special ? [...basicList, special] : [...basicList];
     for (const orb of all) {
@@ -652,7 +695,14 @@
       if (speed) mods.speedPct += speed;
 
       const ability = toNumber(orb.abilityPct ?? orb.ability ?? orb.skillPct ?? orb.skills);
-      if (ability) mods.abilityPct += ability;
+      if (ability) {
+        const abilityBase = abilityBaseKey(orb.abilityBaseCode || orb.abilityCode);
+        if (abilityBase) {
+          mods.abilityBonus[abilityBase] = (mods.abilityBonus[abilityBase] || 0) + ability;
+        } else {
+          mods.abilityBonus.__all = (mods.abilityBonus.__all || 0) + ability;
+        }
+      }
     }
     return mods;
   }
@@ -749,7 +799,7 @@
     if (!combined.length) return [];
     const level = Number(lvl) || 1;
     const result = [];
-    const abilityBoost = Math.abs(mods?.abilityPct ?? 0);
+    const abilityBoosts = mods?.abilityBonus ?? {};
     const atkValues = {
       1: statLine?.atk1 ?? 0,
       2: statLine?.atk2 ?? 0,
@@ -769,6 +819,8 @@
       const basePctRaw = ability.pct ?? ability.raw?.pct ?? ability.raw?.percent ?? ability.raw?.percentage;
       const basePct = toNumber(basePctRaw);
       if (!Number.isFinite(basePct)) continue;
+      const baseKey = abilityBaseKey(ability.baseCode || ability.code);
+      const abilityBoost = Math.abs(abilityBoosts[baseKey] ?? abilityBoosts.__all ?? 0);
       const signedPct = basePct >= 0
         ? basePct + abilityBoost
         : -(Math.abs(basePct) + abilityBoost);
@@ -829,6 +881,44 @@
     };
   }
 
+  function buildAllowedAbilityBases(mutant, specialOrb){
+    const set = new Set();
+    const baseList = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
+    for (const ability of baseList) {
+      const base = abilityBaseKey(ability?.baseCode || ability?.code);
+      if (base) set.add(base);
+    }
+    const extra = specialOrb?.specialAbility;
+    if (extra) {
+      const base = abilityBaseKey(extra.baseCode || extra.code);
+      if (base) set.add(base);
+    }
+    return set;
+  }
+
+  function allowOrbForAbilities(orb, allowed){
+    if (!orb) return true;
+    const base = abilityBaseKey(orb.abilityBaseCode || orb.abilityCode);
+    if (!base) return true;
+    if (!(allowed instanceof Set) || !allowed.size) return false;
+    return allowed.has(base);
+  }
+
+  function filterBasicOrbs(list, allowed){
+    const arr = Array.isArray(list) ? list : [];
+    return arr.filter((orb) => allowOrbForAbilities(orb, allowed));
+  }
+
+  function arraysEqual(a, b){
+    if (a === b) return true;
+    if (!Array.isArray(a) || !Array.isArray(b)) return false;
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i += 1) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+
   function formatSpeed(value){
     if (!Number.isFinite(value)) return '—';
     const abs = Math.abs(value);
@@ -850,7 +940,8 @@
     selected = m;
   }
   function pickBasic(slotIndex, orb){
-    basicSlots = basicSlots.map((v,i)=> i===slotIndex ? orb : v);
+    const choice = allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null;
+    basicSlots = basicSlots.map((v,i)=> i===slotIndex ? choice : v);
     openDropdown = null;
   }
   function pickSpecial(orb){
@@ -945,7 +1036,7 @@
                 {/if}
                 {#if openDropdown === `basic-${i}`}
                   <div class="dropdown">
-                    {#each ORBS.basic as o}
+                    {#each basicOrbOptions as o}
                       <button class="orb-row" on:click={() => pickBasic(i, o)}>
                         <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
                       </button>
