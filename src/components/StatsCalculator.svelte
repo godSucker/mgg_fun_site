@@ -1003,7 +1003,7 @@
           <div class="row">
             <span class="label">
               {#if typeIconCurrent}
-                <img class="label-icon" src={typeIconCurrent} alt="Тип" />
+                <img class="label-icon type-icon" src={typeIconCurrent} alt="Тип" />
               {/if}
               Тип
             </span>
@@ -1097,7 +1097,7 @@
   .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
   .hero-section{ display:flex; flex-direction:column; align-items:center; gap:16px; }
   .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; width:100%; }
-  .mut-figure::after{ content:""; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); width:200px; height:76px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
+  .mut-figure::after{ content:""; position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
   .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(44px); }
 
   .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:12px; }
@@ -1126,12 +1126,13 @@
   .stats{ margin-top:0; display:flex; flex-direction:column; gap:12px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
   .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:12px 16px; color:#dfe7f3; font-size:14px; min-height:64px; }
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
-  .row .label-icon{ width:20px; height:20px; object-fit:contain; }
+.row .label-icon{ width:20px; height:20px; object-fit:contain; }
+.row .type-icon{ width:26px; height:26px; }
   .row.attack-row{ align-items:stretch; gap:16px; padding:14px 16px; }
   .attack-side{ display:flex; align-items:center; gap:12px; flex:1 1 0; min-width:0; }
   .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex-shrink:0; }
-  .attack-gene .gene-icon{ width:80%; height:80%; object-fit:contain; display:block; }
-  .attack-gene .attack-aoe{ position:absolute; top:0; right:-23px; width:66px; height:63px; object-fit:contain; pointer-events:none; }
+  .attack-gene .gene-icon{ width:100%; height:100%; object-fit:contain; display:block; }
+  .attack-gene .attack-aoe{ position:absolute; top:0; right:0; width:64px; height:64px; object-fit:contain; pointer-events:none; }
   .attack-gene.empty{ opacity:0; }
   .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; }
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; }
