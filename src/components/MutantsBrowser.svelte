@@ -70,15 +70,8 @@
     return fallback ?? [];
   }
 
-<<<<<<< ours
-<<<<<<< ours
-  function mapSkin(s: any, lookup: BaseMap) {
-=======
   function mapSkin(s: any, lookup: BaseMap, index: number) {
->>>>>>> theirs
-=======
-  function mapSkin(s: any, lookup: BaseMap, index: number) {
->>>>>>> theirs
+
     const key = baseId(s?.id);
     const base = key ? lookup.get(key) : undefined;
 
@@ -123,15 +116,8 @@
 
   let baseMap: BaseMap = new Map();
   $: baseMap = buildBaseMap(items ?? []);
-<<<<<<< ours
-<<<<<<< ours
-  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin) => mapSkin(skin, baseMap));
-=======
+
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
->>>>>>> theirs
-=======
-  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
->>>>>>> theirs
 
   // ===========
   // КОНТРОЛЫ UI
