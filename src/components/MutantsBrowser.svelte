@@ -20,21 +20,100 @@
   // =========================
   // НОРМАЛИЗАЦИЯ ДАННЫХ SKINS
   // =========================
-  function mapSkin(s: any) {
-    return {
-      id: s?.id,
-      name: s?.name,
-      genes: s?.genes,
-      base_stats: s?.base_stats,
-      image: s?.image,
-      type: s?.type ?? 'default',
+  const baseId = (id: any) =>
+    String(id ?? '')
+      .toLowerCase()
+      .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
+
+  type BaseMap = Map<string, any>;
+  function buildBaseMap(list: any[]): BaseMap {
+    const map: BaseMap = new Map();
+    for (const item of Array.isArray(list) ? list : []) {
+      const key = baseId(item?.id);
+      if (!key) continue;
+      const id = String(item?.id ?? '').toLowerCase();
+      const isNormal = !/_+(?:bronze|silver|gold|platinum|plat)\b/.test(id);
+      if (!map.has(key) || isNormal) {
+        map.set(key, item);
+      }
+    }
+    return map;
+  }
+
+  function hasBingo(val: any): boolean {
+    if (!val) return false;
+    if (Array.isArray(val)) return val.length > 0;
+    if (typeof val === 'object') return Object.keys(val).length > 0;
+    return false;
+  }
+
+  function mergeBaseStats(baseStats: any, override: any) {
+    if (!baseStats && !override) return undefined;
+    const result = { ...(baseStats ?? {}) };
+    if (baseStats?.lvl1 || override?.lvl1) {
+      result.lvl1 = { ...(baseStats?.lvl1 ?? {}), ...(override?.lvl1 ?? {}) };
+    }
+    if (baseStats?.lvl30 || override?.lvl30) {
+      result.lvl30 = { ...(baseStats?.lvl30 ?? {}), ...(override?.lvl30 ?? {}) };
+    }
+    for (const key of Object.keys(override ?? {})) {
+      if (key === 'lvl1' || key === 'lvl30') continue;
+      result[key] = override[key];
+    }
+    return result;
+  }
+
+  function pickImage(preferred: any, fallback: any) {
+    if (Array.isArray(preferred)) return preferred.slice();
+    if (preferred != null) return preferred;
+    if (Array.isArray(fallback)) return fallback.slice();
+    return fallback ?? [];
+  }
+
+  function mapSkin(s: any, lookup: BaseMap) {
+    const key = baseId(s?.id);
+    const base = key ? lookup.get(key) : undefined;
+
+    const merged: any = {
+      ...(base ?? {}),
+      ...(s ?? {}),
+      id: s?.id ?? base?.id,
+      name: s?.name ?? base?.name,
+      genes: Array.isArray(s?.genes) && s.genes.length ? s.genes : base?.genes,
+      base_stats: mergeBaseStats(base?.base_stats, s?.base_stats),
+      image: pickImage(s?.image, base?.image),
+      type: s?.type ?? base?.type ?? 'default',
       star: !s?.star || s.star === 'none' ? 'normal' : String(s.star).toLowerCase(),
-      bingo: Array.isArray(s?.bingo) || typeof s?.bingo === 'object' ? s.bingo : [],
-      skin: s?.skin ?? true,
+      bingo: hasBingo(s?.bingo) ? s.bingo : base?.bingo,
+      abilities: Array.isArray(s?.abilities) && s.abilities.length ? s.abilities : base?.abilities,
+      name_attack1: s?.name_attack1 ?? base?.name_attack1,
+      name_attack2: s?.name_attack2 ?? base?.name_attack2,
+      name_lore: s?.name_lore ?? base?.name_lore,
+      incub_time:
+        s?.incub_time ??
+        s?.incubation ??
+        s?.incubation_time ??
+        s?.incubationTime ??
+        s?.incubation_hours ??
+        s?.hatch_time ??
+        base?.incub_time ??
+        base?.incubation ??
+        base?.incubation_time ??
+        base?.incubationTime ??
+        base?.incubation_hours ??
+        base?.hatch_time,
+      chance: s?.chance ?? s?.chance_percent ?? base?.chance ?? base?.chance_percent,
+      tier: s?.tier ?? base?.tier,
+      skin: s?.skin ?? base?.skin ?? true,
       __source: 'skin' as const,
     };
+
+    return merged;
   }
-  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map(mapSkin);
+
+  let baseMap: BaseMap = new Map();
+  $: baseMap = buildBaseMap(items ?? []);
+  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin) => mapSkin(skin, baseMap));
 
   // ===========
   // КОНТРОЛЫ UI
