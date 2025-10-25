@@ -1073,7 +1073,15 @@
 </div>
 
 <style>
-  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,660px); gap:18px; }
+  .stats-page{
+    display:grid;
+    grid-template-columns: 320px minmax(0,660px);
+    gap:18px;
+    font-family:"TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system,
+                "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+                "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight:700;
+  }
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
