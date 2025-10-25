@@ -70,7 +70,11 @@
     return fallback ?? [];
   }
 
+<<<<<<< ours
   function mapSkin(s: any, lookup: BaseMap) {
+=======
+  function mapSkin(s: any, lookup: BaseMap, index: number) {
+>>>>>>> theirs
     const key = baseId(s?.id);
     const base = key ? lookup.get(key) : undefined;
 
@@ -106,6 +110,8 @@
       tier: s?.tier ?? base?.tier,
       skin: s?.skin ?? base?.skin ?? true,
       __source: 'skin' as const,
+      __skinIndex: index,
+      __skinKey: `${key || 'skin'}::${String(s?.skin ?? '')}::${index}`,
     };
 
     return merged;
@@ -113,7 +119,11 @@
 
   let baseMap: BaseMap = new Map();
   $: baseMap = buildBaseMap(items ?? []);
+<<<<<<< ours
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin) => mapSkin(skin, baseMap));
+=======
+  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
+>>>>>>> theirs
 
   // ===========
   // КОНТРОЛЫ UI
@@ -206,7 +216,15 @@
   }
   const isSkin = (it:any) =>
     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
-  const keyOf  = (it:any) => (isSkin(it) ? `skin:${it.id}` : `mut:${it.id}`);
+  const keyOf  = (it:any, index?: number) => {
+    if (isSkin(it)) {
+      if (typeof it?.__skinKey === 'string') return `skin:${it.__skinKey}`;
+      const key = baseId(it?.id);
+      const variant = it?.skin ?? index ?? '';
+      return `skin:${key}:${variant}:${index ?? 0}`;
+    }
+    return `mut:${it?.id ?? index}`;
+  };
 
   // ==========
   // WORKER и быстрый пересчёт (сокращено для контекста ответа)
@@ -430,7 +448,7 @@
   <!-- Сетка карточек -->
   <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 [content-visibility:auto]" style="contain-intrinsic-size: 1200px;">
     {#if mode === 'mutants'}
-      {#each shownMutants as it, i (keyOf(it))}
+      {#each shownMutants as it, i (keyOf(it, i))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
             <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
@@ -441,7 +459,7 @@
         </div>
       {/each}
     {:else}
-      {#each shownSkins as it, i (keyOf(it))}
+      {#each shownSkins as it, i (keyOf(it, i))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
             <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
