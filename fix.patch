@@ -1,8 +1,8 @@
 diff --git a/src/components/StatsCalculator.svelte b/src/components/StatsCalculator.svelte
-index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954bba288cd9 100644
+index 97cd7a4e450619c464859aea020b5719241be374..6ec6ddf549c518d400c6bef27757c28da0af75d4 100644
 --- a/src/components/StatsCalculator.svelte
 +++ b/src/components/StatsCalculator.svelte
-@@ -1,412 +1,1148 @@
+@@ -1,412 +1,1248 @@
  <script>
    // ДАННЫЕ
    import mutantsRaw from '@/data/mutants/normal.json';
@@ -406,6 +406,29 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +    return ru;
 +  }
 +
++  function abilityBaseKey(raw){
++    const base = String(raw || '')
++      .trim()
++      .toLowerCase()
++      .split('#')[0];
++    if (!base) return '';
++    return abilityBaseCode(base);
++  }
++
++  function abilityCodeFromOrbId(id){
++    const normalized = String(id || '')
++      .trim()
++      .toLowerCase();
++    if (!normalized) return '';
++    if (normalized.includes('regenerate')) return 'ability_regen';
++    if (normalized.includes('retaliate')) return 'ability_retaliate';
++    if (normalized.includes('shield')) return 'ability_shield';
++    if (normalized.includes('slash')) return 'ability_slash';
++    if (normalized.includes('strengthen')) return 'ability_strengthen';
++    if (normalized.includes('weaken')) return 'ability_weaken';
++    return '';
++  }
++
 +  function abilityAppliesTo(entry, key){
 +    const lowerKey = String(key || '').toLowerCase();
 +    if (lowerKey === 'atk1') {
@@ -491,8 +514,17 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +    if (key.includes('attack')) return { atkPct: pct };
 +    if (key.includes('health') || key.includes('_hp') || key.includes('life')) return { hpPct: pct };
 +    if (key.includes('speed')) return { speedPct: pct };
-+    if (!specialAbility && (key.includes('regenerate') || key.includes('retaliate') || key.includes('shield') || key.includes('slash') || key.includes('strengthen') || key.includes('weaken'))) {
-+      return { abilityPct: abs };
++    if (!specialAbility) {
++      const abilityCode = abilityCodeFromOrbId(id);
++      if (abilityCode) {
++        const baseCode = abilityBaseCode(abilityCode);
++        return {
++          abilityPct: abs,
++          abilityCode,
++          abilityBaseCode: baseCode,
++          abilityLabel: abilityLabel(abilityCode),
++        };
++      }
 +    }
 +    return {};
 +  }
@@ -514,7 +546,7 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +    return {
 +      code,
 +      label,
-+      baseCode: `${base}#orb`,
++      baseCode: base,
 +      tier: 0,
 +      pct,
 +      hasAtk1,
@@ -552,10 +584,12 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 -  let basicSlots = [];                 // длина = selected.slots
 +  let basicSlots = [];                 // длина = selected.basicSlotCount
    let specialSlot = null;
-+  let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
++  let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityBonus: {} };
 +  let abilityRows = [];
 +  let attackRows = [];
 +  let typeIconCurrent = '';
++  let allowedAbilityBases = new Set();
++  let basicOrbOptions = ORBS.basic;
  
    // контейнер дропдауна сфер (для клика вне)
    let dropdownHost = null;
@@ -591,6 +625,15 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 -    // если в m.images есть варианты по звёздам — берём по индексу
 -    // 0: normal, 1: bronze, 2: silver, 3: gold, 4: platinum
 -    return (m.images && m.images[stars] ? m.images[stars] : (m.images?.[0] || ''));
++  $: allowedAbilityBases = buildAllowedAbilityBases(selected, specialSlot);
++  $: basicOrbOptions = filterBasicOrbs(ORBS.basic, allowedAbilityBases);
++  $: if (Array.isArray(basicSlots)) {
++    const sanitized = basicSlots.map((orb) => allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null);
++    if (!arraysEqual(sanitized, basicSlots)) {
++      basicSlots = sanitized;
++    }
++  }
++
 +  function figureImage(m, stars){
 +    if (!m) return '';
 +    return starTexture(m, stars) || portraitImage(m);
@@ -689,7 +732,7 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 -      if (atk) { mods.atk1 += atk; mods.atk2 += atk; }
 -      if (ab)  mods.ability += ab;
 +  function calcOrbModifiers(basic, special) {
-+    const mods = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityPct: 0 };
++    const mods = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityBonus: {} };
 +    const basicList = Array.isArray(basic) ? basic.filter(Boolean) : [];
 +    const all = special ? [...basicList, special] : [...basicList];
 +    for (const orb of all) {
@@ -713,7 +756,14 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +      if (speed) mods.speedPct += speed;
 +
 +      const ability = toNumber(orb.abilityPct ?? orb.ability ?? orb.skillPct ?? orb.skills);
-+      if (ability) mods.abilityPct += ability;
++      if (ability) {
++        const abilityBase = abilityBaseKey(orb.abilityBaseCode || orb.abilityCode);
++        if (abilityBase) {
++          mods.abilityBonus[abilityBase] = (mods.abilityBonus[abilityBase] || 0) + ability;
++        } else {
++          mods.abilityBonus.__all = (mods.abilityBonus.__all || 0) + ability;
++        }
++      }
      }
      return mods;
    }
@@ -819,7 +869,7 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +    if (!combined.length) return [];
 +    const level = Number(lvl) || 1;
 +    const result = [];
-+    const abilityBoost = Math.abs(mods?.abilityPct ?? 0);
++    const abilityBoosts = mods?.abilityBonus ?? {};
 +    const atkValues = {
 +      1: statLine?.atk1 ?? 0,
 +      2: statLine?.atk2 ?? 0,
@@ -839,6 +889,8 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +      const basePctRaw = ability.pct ?? ability.raw?.pct ?? ability.raw?.percent ?? ability.raw?.percentage;
 +      const basePct = toNumber(basePctRaw);
 +      if (!Number.isFinite(basePct)) continue;
++      const baseKey = abilityBaseKey(ability.baseCode || ability.code);
++      const abilityBoost = Math.abs(abilityBoosts[baseKey] ?? abilityBoosts.__all ?? 0);
 +      const signedPct = basePct >= 0
 +        ? basePct + abilityBoost
 +        : -(Math.abs(basePct) + abilityBoost);
@@ -900,6 +952,44 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
    }
  
 -  $: stats = selected ? calcStats(selected, level, stars) : {hp:0, atk1:0, atk2:0, speed:0};
++  function buildAllowedAbilityBases(mutant, specialOrb){
++    const set = new Set();
++    const baseList = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
++    for (const ability of baseList) {
++      const base = abilityBaseKey(ability?.baseCode || ability?.code);
++      if (base) set.add(base);
++    }
++    const extra = specialOrb?.specialAbility;
++    if (extra) {
++      const base = abilityBaseKey(extra.baseCode || extra.code);
++      if (base) set.add(base);
++    }
++    return set;
++  }
++
++  function allowOrbForAbilities(orb, allowed){
++    if (!orb) return true;
++    const base = abilityBaseKey(orb.abilityBaseCode || orb.abilityCode);
++    if (!base) return true;
++    if (!(allowed instanceof Set) || !allowed.size) return false;
++    return allowed.has(base);
++  }
++
++  function filterBasicOrbs(list, allowed){
++    const arr = Array.isArray(list) ? list : [];
++    return arr.filter((orb) => allowOrbForAbilities(orb, allowed));
++  }
++
++  function arraysEqual(a, b){
++    if (a === b) return true;
++    if (!Array.isArray(a) || !Array.isArray(b)) return false;
++    if (a.length !== b.length) return false;
++    for (let i = 0; i < a.length; i += 1) {
++      if (a[i] !== b[i]) return false;
++    }
++    return true;
++  }
++
 +  function formatSpeed(value){
 +    if (!Number.isFinite(value)) return '—';
 +    const abs = Math.abs(value);
@@ -921,7 +1011,9 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
      selected = m;
    }
    function pickBasic(slotIndex, orb){
-     basicSlots = basicSlots.map((v,i)=> i===slotIndex ? orb : v);
+-    basicSlots = basicSlots.map((v,i)=> i===slotIndex ? orb : v);
++    const choice = allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null;
++    basicSlots = basicSlots.map((v,i)=> i===slotIndex ? choice : v);
      openDropdown = null;
    }
    function pickSpecial(orb){
@@ -1008,7 +1100,24 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +        <div class="mut-figure">
 +          <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
 +        </div>
-+
+ 
+-      <!-- слоты сфер — единственные интерактивные -->
+-      <div class="slots" bind:this={dropdownHost}>
+-        <!-- базовые -->
+-        {#each basicSlots as orb, i}
+-          <div class="slot">
+-            <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
+-              <img class="slot-bg" src="/orbs/basic/orb_slot.png" alt="slot" />
+-              {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
+-            </button>
+-            {#if orb}
+-              <button class="x" title="убрать" on:click={() => clearSlot('basic', i)}>×</button>
+-            {/if}
+-            {#if openDropdown === `basic-${i}`}
+-              <div class="dropdown">
+-                {#each ORBS.basic as o}
+-                  <button class="orb-row" on:click={() => pickBasic(i, o)}>
+-                    <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
 +        <div class="hero-controls" bind:this={dropdownHost}>
 +          <div class="slots">
 +            <!-- базовые -->
@@ -1023,7 +1132,7 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +                {/if}
 +                {#if openDropdown === `basic-${i}`}
 +                  <div class="dropdown">
-+                    {#each ORBS.basic as o}
++                    {#each basicOrbOptions as o}
 +                      <button class="orb-row" on:click={() => pickBasic(i, o)}>
 +                        <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
 +                      </button>
@@ -1053,24 +1162,7 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +              {/if}
 +            </div>
 +          </div>
- 
--      <!-- слоты сфер — единственные интерактивные -->
--      <div class="slots" bind:this={dropdownHost}>
--        <!-- базовые -->
--        {#each basicSlots as orb, i}
--          <div class="slot">
--            <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
--              <img class="slot-bg" src="/orbs/basic/orb_slot.png" alt="slot" />
--              {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
--            </button>
--            {#if orb}
--              <button class="x" title="убрать" on:click={() => clearSlot('basic', i)}>×</button>
--            {/if}
--            {#if openDropdown === `basic-${i}`}
--              <div class="dropdown">
--                {#each ORBS.basic as o}
--                  <button class="orb-row" on:click={() => pickBasic(i, o)}>
--                    <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
++
 +          <div class="controls">
 +            <div class="control">
 +              <span class="control-label">Уровень:</span>
@@ -1136,7 +1228,7 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +          <div class="row">
 +            <span class="label">
 +              {#if typeIconCurrent}
-+                <img class="label-icon" src={typeIconCurrent} alt="Тип" />
++                <img class="label-icon type-icon" src={typeIconCurrent} alt="Тип" />
 +              {/if}
 +              Тип
 +            </span>
@@ -1222,7 +1314,15 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
  
  <style>
 -  .stats-page{ display:grid; grid-template-columns: 360px 1fr; gap:24px; }
-+  .stats-page{ display:grid; grid-template-columns: 320px minmax(0,660px); gap:18px; }
++  .stats-page{
++    display:grid;
++    grid-template-columns: 320px minmax(0,660px);
++    gap:18px;
++    font-family:"TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system,
++                "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
++                "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
++    font-weight:700;
++  }
    .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
    .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
    .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
@@ -1299,7 +1399,8 @@ index 97cd7a4e450619c464859aea020b5719241be374..e992a559567a8f5f8eca5f91c940954b
 +  .stats{ margin-top:0; display:flex; flex-direction:column; gap:12px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
 +  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:12px 16px; color:#dfe7f3; font-size:14px; min-height:64px; }
 +  .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
-+  .row .label-icon{ width:20px; height:20px; object-fit:contain; }
++.row .label-icon{ width:20px; height:20px; object-fit:contain; }
++.row .type-icon{ width:26px; height:26px; }
 +  .row.attack-row{ align-items:stretch; gap:16px; padding:14px 16px; }
 +  .attack-side{ display:flex; align-items:center; gap:12px; flex:1 1 0; min-width:0; }
 +  .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:64px; height:64px; flex-shrink:0; }
