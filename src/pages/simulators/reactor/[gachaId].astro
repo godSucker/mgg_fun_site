@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ReactorSimulator from '../../../components/simulators/reactor/ReactorSimulator.svelte';
+import { getGachaMeta, listGachas } from '../../../lib/reactor-gacha';
+
+interface Props {
+  gacha: ReturnType<typeof getGachaMeta> extends infer T ? Exclude<T, null> : never;
+}
+
+export function getStaticPaths() {
+  return listGachas().map((gacha) => ({
+    params: { gachaId: gacha.id },
+    props: { gacha },
+  }));
+}
+
+const { gacha } = Astro.props as Props;
+---
+<BaseLayout title={`Реактор — ${gacha.name}`}>
+  <a class="back-link" href="/simulators/reactor">← Назад к выбору генератора</a>
+  <ReactorSimulator client:load gachaId={gacha.id} />
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
