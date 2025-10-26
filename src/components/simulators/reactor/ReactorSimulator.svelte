@@ -26,17 +26,34 @@
 
   const gachaName = GACHA_NAME_RU[gachaId] ?? gachaId;
 
-  let unlocked = new Set<string>();
-  let completed = false;
-  let completionTrigger: string | null = null;
-  let lastResult: SpinResult | null = null;
-  let history: SpinResult[] = [];
-
   const baseRewards: DecoratedReward[] = gacha.basic_elements.map((item) => ({
     ...item,
     name: getMutantName(item.specimen),
     texture: textures[item.specimen] ?? null,
   }));
+
+  const baseSpecimenIds = new Set(baseRewards.map((reward) => reward.specimen));
+
+  let unlocked = new Set<string>();
+  let unlockedBaseCount = 0;
+  let completed = false;
+  let completionTrigger: string | null = null;
+  let lastResult: SpinResult | null = null;
+  let history: SpinResult[] = [];
+
+  const totalBaseRewards = baseRewards.length;
+
+  $: progressPercent = totalBaseRewards
+    ? Math.round((unlockedBaseCount / totalBaseRewards) * 100)
+    : 0;
+  $: progressSummary = totalBaseRewards
+    ? `${unlockedBaseCount} / ${totalBaseRewards}`
+    : '0 / 0';
+  $: generatorStatus = completed
+    ? 'Завершён'
+    : unlockedBaseCount > 0
+      ? 'В процессе'
+      : 'Не начат';
 
   const completionReward: DecoratedReward | null = gacha.completion_reward
     ? {
@@ -62,11 +79,6 @@
     return `${((item.odds / total) * 100).toFixed(2)}%`;
   };
 
-  const progress = () => {
-    if (!baseRewards.length) return 0;
-    return Math.round((unlocked.size / baseRewards.length) * 100);
-  };
-
   const getRewardName = (specimenId: string) => rewardDisplay.get(specimenId)?.name ?? getMutantName(specimenId);
   const getRewardTexture = (specimenId: string) => rewardDisplay.get(specimenId)?.texture ?? null;
 
@@ -75,9 +87,12 @@
       const next = new Set(unlocked);
       next.add(specimenId);
       unlocked = next;
-      if (!completed && unlocked.size === baseRewards.length) {
-        completed = true;
-        completionTrigger = getMutantName(specimenId);
+      if (baseSpecimenIds.has(specimenId)) {
+        unlockedBaseCount += 1;
+        if (!completed && unlockedBaseCount === totalBaseRewards) {
+          completed = true;
+          completionTrigger = getMutantName(specimenId);
+        }
       }
     }
   }
@@ -178,9 +193,9 @@
         <p>Соберите коллекцию из {baseRewards.length} мутантов и получите награду.</p>
       </div>
       <div class="header-progress">
-        <span>Прогресс {unlocked.size}/{baseRewards.length}</span>
+        <span>Прогресс {progressSummary}</span>
         <div class="header-meter">
-          <div class="header-fill" style={`width: ${progress()}%`}></div>
+          <div class="header-fill" style={`width: ${progressPercent}%`}></div>
         </div>
       </div>
     </div>
@@ -282,12 +297,13 @@
     <div class="info-card progress-card">
       <header>
         <h2>Состояние генератора</h2>
-        <span>{progress()}%</span>
+        <span>{progressPercent}%</span>
       </header>
       <div class="progress-meter">
-        <div class="progress-fill" style={`width: ${progress()}%`}></div>
+        <div class="progress-fill" style={`width: ${progressPercent}%`}></div>
       </div>
-      <p class="info-text">{unlocked.size} / {baseRewards.length} мутантов открыто.</p>
+      <p class="info-text">Открыто {progressSummary} мутантов.</p>
+      <p class="info-text status-text">Статус: {generatorStatus}</p>
       {#if completed}
         <div class="completion-banner">
           Генератор завершён{completionTrigger ? `: ${completionTrigger}` : ''}!
@@ -464,17 +480,13 @@
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     scroll-snap-type: x mandatory;
   }
 
   .slot-track::-webkit-scrollbar {
-    height: 10px;
-  }
-
-  .slot-track::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.35);
-    border-radius: 999px;
+    display: none;
   }
 
   .slot-card {
@@ -760,6 +772,11 @@
     margin: 0.75rem 0 0;
     color: #cbd5f5;
     font-size: 0.9rem;
+  }
+
+  .status-text {
+    color: #93c5fd;
+    margin-top: 0.35rem;
   }
 
   .completion-banner {
