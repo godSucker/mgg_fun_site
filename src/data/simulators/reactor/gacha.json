@@ -1,0 +1,819 @@
+{
+  "girl": {
+    "token_cost": 1,
+    "hc_cost": 1125,
+    "filter": "gacha_pack_girl",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_AA_01",
+        "stars": 0,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CD_01",
+        "stars": 0,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CB_01",
+        "stars": 0,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_F_01",
+        "stars": 1,
+        "odds": 11,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_FB_01",
+        "stars": 1,
+        "odds": 18,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_CF_01",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "gothic": {
+    "token_cost": 1,
+    "hc_cost": 1150,
+    "filter": "gacha_pack_gothic",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_CE_01",
+        "stars": 0,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BF_01",
+        "stars": 0,
+        "odds": 22,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_DC_01",
+        "stars": 0,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_E_01",
+        "stars": 1,
+        "odds": 11,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_FD_01",
+        "stars": 2,
+        "odds": 18,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_DC_03",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "steampunk": {
+    "token_cost": 1,
+    "hc_cost": 1150,
+    "filter": "gacha_pack_steampunk",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_BF_02",
+        "stars": 0,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_EC_01",
+        "stars": 0,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AB_01",
+        "stars": 1,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_C_01",
+        "stars": 2,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AC_02",
+        "stars": 3,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_AD_01",
+      "stars": 3,
+      "odds": 11,
+      "bonus": -10
+    }
+  },
+  "heroes": {
+    "token_cost": 2,
+    "hc_cost": 1850,
+    "filter": "gacha_pack_heroes",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_FC_02",
+        "stars": 0,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_AE_01",
+        "stars": 1,
+        "odds": 22,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_BB_01",
+        "stars": 2,
+        "odds": 20,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_CA_01",
+        "stars": 3,
+        "odds": 18,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_FA_01",
+        "stars": 3,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_EF_02",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "japan": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_japan",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_CC_01",
+        "stars": 1,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_A_01",
+        "stars": 2,
+        "odds": 22,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_DF_01",
+        "stars": 3,
+        "odds": 20,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_BA_02",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CB_02",
+        "stars": 3,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_FD_03",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "starwars": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_starwars",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_AF_04",
+        "stars": 1,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_CC_03",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CD_01",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_EC_01",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BC_01",
+        "stars": 3,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_BF_04",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "music": {
+    "token_cost": 4,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_music",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_AA_03",
+        "stars": 2,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BF_06",
+        "stars": 2,
+        "odds": 22,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_EE_04",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_FB_05",
+        "stars": 4,
+        "odds": 18,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_DE_05",
+        "stars": 4,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_DA_09",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "western": {
+    "token_cost": 4,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_western",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_FF_06",
+        "stars": 3,
+        "odds": 29,
+        "bonus": 15
+      },
+      {
+        "specimen": "Specimen_FC_07",
+        "stars": 3,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AA_06",
+        "stars": 4,
+        "odds": 20,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_DB_04",
+        "stars": 0,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CF_06",
+        "stars": 0,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_BF_10",
+      "stars": 4,
+      "odds": 11,
+      "bonus": -10
+    }
+  },
+  "beach": {
+    "token_cost": 4,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_beach",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_FE_08",
+        "stars": 3,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_EE_07",
+        "stars": 4,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BB_08",
+        "stars": 2,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AB_07",
+        "stars": 0,
+        "odds": 18,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_AF_08",
+        "stars": 3,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_CA_11",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 0
+    }
+  },
+  "vegetal": {
+    "token_cost": 5,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_vegetal",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_BB_02",
+        "stars": 3,
+        "odds": 32,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_DC_08",
+        "stars": 2,
+        "odds": 23,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_AF_01",
+        "stars": 4,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_DE_09",
+        "stars": 3,
+        "odds": 15,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_CA_06",
+        "stars": 3,
+        "odds": 10,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_DF_12",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 0
+    }
+  },
+  "olympics": {
+    "token_cost": 5,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_olympics",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_FA_08",
+        "stars": 2,
+        "odds": 32,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_CA_02",
+        "stars": 4,
+        "odds": 23,
+        "bonus": 20
+      },
+      {
+        "specimen": "Specimen_FD_06",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CA_07",
+        "stars": 2,
+        "odds": 15,
+        "bonus": 15
+      },
+      {
+        "specimen": "Specimen_CA_08",
+        "stars": 3,
+        "odds": 10,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_CA_14",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 0
+    }
+  },
+  "gachaboss": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_gachaboss",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_FF_01",
+        "stars": 1,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_D_01",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_FB_03",
+        "stars": 3,
+        "odds": 20,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_DB_01",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_EA_01",
+        "stars": 3,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_AB_05",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "villains": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_villains",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_DA_01",
+        "stars": 1,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_B_01",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AB_02",
+        "stars": 3,
+        "odds": 20,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_EC_03",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BA_03",
+        "stars": 3,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_CE_05",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "olympians": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_olympians",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_CC_04",
+        "stars": 0,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AC_01",
+        "stars": 1,
+        "odds": 22,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_BC_02",
+        "stars": 2,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BB_03",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CE_03",
+        "stars": 3,
+        "odds": 11,
+        "bonus": -10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_EC_06",
+      "stars": 3,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "movies": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_movies",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_ED_03",
+        "stars": 1,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_EB_04",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CB_03",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BD_03",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CC_02",
+        "stars": 3,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_FA_06",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "elements": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_elements",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_EF_01",
+        "stars": 1,
+        "odds": 30,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_EB_02",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BD_04",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_EB_05",
+        "stars": 3,
+        "odds": 21,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_DF_04",
+        "stars": 3,
+        "odds": 9,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_EB_06",
+      "stars": 4,
+      "odds": 7,
+      "bonus": 10
+    }
+  },
+  "soldiers": {
+    "token_cost": 3,
+    "hc_cost": 2300,
+    "filter": "gacha_pack_soldiers",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_AB_04",
+        "stars": 2,
+        "odds": 29,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CF_02",
+        "stars": 3,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BC_04",
+        "stars": 0,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AD_05",
+        "stars": 3,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_CD_06",
+        "stars": 4,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_BD_07",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "lucha": {
+    "token_cost": 4,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_lucha",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_CF_03",
+        "stars": 3,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_DE_04",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_DC_05",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_FE_04",
+        "stars": 4,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BE_05",
+        "stars": 4,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_AC_07",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 10
+    }
+  },
+  "fantasy": {
+    "token_cost": 4,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_fantasy",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_FC_04",
+        "stars": 2,
+        "odds": 29,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_FC_05",
+        "stars": 2,
+        "odds": 22,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_DB_06",
+        "stars": 3,
+        "odds": 20,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_AC_03",
+        "stars": 4,
+        "odds": 18,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BD_05",
+        "stars": 4,
+        "odds": 11,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_FC_09",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 10
+    }
+  }
+}
