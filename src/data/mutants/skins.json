@@ -2071,9 +2071,7 @@
       "star": "platinum",
       "skin": "britani_buranka",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.png",
         "textures_by_skins/textures_by_skin/full-char/BF_05_confrontation.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.png",
         "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_confrontation.png"
       ]
     },
