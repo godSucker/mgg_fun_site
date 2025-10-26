@@ -71,7 +71,10 @@
   }
 
   function mapSkin(s: any, lookup: BaseMap, index: number) {
+<<<<<<< ours
 
+=======
+>>>>>>> theirs
     const key = baseId(s?.id);
     const base = key ? lookup.get(key) : undefined;
 
@@ -116,7 +119,10 @@
 
   let baseMap: BaseMap = new Map();
   $: baseMap = buildBaseMap(items ?? []);
+<<<<<<< ours
 
+=======
+>>>>>>> theirs
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
 
   // ===========
@@ -196,6 +202,8 @@
     { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.png' },
     { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.png' },
   ];
+  const geneButtonClass = (selected: boolean) =>
+    'p-1 rounded-lg ring-1 ' + (selected ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10');
 
   // =================
   // ПОМОЩНИКИ ФИЛЬТРОВ
@@ -207,6 +215,27 @@
     if (typeof it?.gene === 'string') return it.gene;
     if (typeof it?.gene_code === 'string') return it.gene_code;
     return '';
+  }
+  const geneOrder = new Map<string, number>([
+    ['A', 0],
+    ['B', 1],
+    ['C', 2],
+    ['D', 3],
+    ['E', 4],
+    ['F', 5],
+  ]);
+  function geneSortTuple(it: any) {
+    const code = normalizeGene(readGeneCode(it));
+    const first = code?.[0] ?? '';
+    const rank = first ? geneOrder.get(first) ?? 99 : 199;
+    return { rank, code, name: String(it?.name ?? '') };
+  }
+  function compareByGene(a: any, b: any) {
+    const ga = geneSortTuple(a);
+    const gb = geneSortTuple(b);
+    if (ga.rank !== gb.rank) return ga.rank - gb.rank;
+    if (ga.code !== gb.code) return ga.code.localeCompare(gb.code, 'ru');
+    return ga.name.localeCompare(gb.name, 'ru');
   }
   const isSkin = (it:any) =>
     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
@@ -256,19 +285,21 @@
             return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
           })
           .slice()
-          .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'))
+          .sort(compareByGene)
       );
 
   $: filteredSkins = memo(
-    JSON.stringify({star: starSelSkins, n: normalizedSkins?.length ?? 0}),
+    JSON.stringify({q: query, gene: geneSel, star: starSelSkins, n: normalizedSkins?.length ?? 0}),
     () => normalizedSkins
+      .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
+      .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
       .filter(it => {
         const k = starSelSkins;
         if (k === 'any') return true;
         return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
       })
       .slice()
-      .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'))
+      .sort(compareByGene)
   );
 
   // ===== Пагинация «Показать ещё» =====
@@ -327,27 +358,20 @@
   <!-- Поиск -->
   <div class="mb-3">
     <input
-      class={'w-full px-4 py-3 rounded-lg ring-1 transition outline-none '
-        + (mode==='mutants'
-            ? 'bg-slate-900 text-slate-100 placeholder-slate-400 ring-white/10 focus:ring-2 focus:ring-cyan-400'
-            : 'bg-slate-800/60 text-slate-400 placeholder-slate-500 ring-white/10/30 pointer-events-none')}
-      placeholder={mode==='mutants' ? 'Введите имя мутанта…' : 'Поиск отключён для SKINS'}
+      class="w-full px-4 py-3 rounded-lg ring-1 transition outline-none bg-slate-900 text-slate-100 placeholder-slate-400 ring-white/10 focus:ring-2 focus:ring-cyan-400"
+      placeholder="Введите имя мутанта…"
       bind:value={query}
-      disabled={mode!=='mutants'}
     />
   </div>
 
-  <!-- Гены: две строки (только для MUTANTS; в SKINS заблокировано и приглушено) -->
- <div class="mb-2 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
+  <!-- Гены: две строки -->
+  <div class="mb-2 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
     <div class="flex flex-col gap-2">
       <div class="flex flex-wrap gap-2">
         {#each geneList as g}
           <button type="button"
-            class={'p-1 rounded-lg ring-1 '
-              + (mode==='mutants'
-                  ? (gene1Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
-                  : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
-            on:click={() => { if(mode==='mutants'){ gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); } }}
+            class={geneButtonClass(gene1Sel===g.key)}
+            on:click={() => { gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); }}
             title={g.label}
             aria-pressed={gene1Sel===g.key}
           >
@@ -358,11 +382,8 @@
       <div class="flex flex-wrap gap-2">
         {#each geneList as g}
           <button type="button"
-            class={'p-1 rounded-lg ring-1 '
-              + (mode==='mutants'
-                  ? (gene2Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
-                  : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
-            on:click={() => { if(mode==='mutants'){ gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); } }}
+            class={geneButtonClass(gene2Sel===g.key)}
+            on:click={() => { gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); }}
             title={g.label}
             aria-pressed={gene2Sel===g.key}
           >
@@ -374,10 +395,10 @@
   </div>
 
   <!-- Редкость (иконки) -->
- <div class="mb-4 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
-  {#if mode === 'mutants'}
-    <div class="flex flex-wrap gap-2">
-      {#each STAR_MUTANTS as s}
+  <div class="mb-4 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
+    {#if mode === 'mutants'}
+      <div class="flex flex-wrap gap-2">
+        {#each STAR_MUTANTS as s}
           <button type="button"
             class={'px-2 h-8 rounded-lg ring-1 flex items-center gap-2 '
               + (starSelMutants===s.key ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
