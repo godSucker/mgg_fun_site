@@ -1,24 +1,51 @@
 import skins from '@/data/mutants/skins.json';
+import normal from '@/data/mutants/normal.json';
 
 const CDN_BASE = 'https://static.kobojo.com/mutants/v4/';
 
 type SkinEntry = (typeof skins)['specimens'][number];
+type NormalEntry = (typeof normal)[number];
 
-const textureMap: Record<string, string | null> = Object.create(null);
+const textureMap = new Map<string, string>();
+
+const toCdnUrl = (path: string) => {
+  const cleaned = path.startsWith('/') ? path.slice(1) : path;
+  return `${CDN_BASE}${cleaned}`;
+};
+
+const canonicalizeId = (id: string): string => {
+  const trimmed = id?.trim();
+  if (!trimmed) return '';
+  const withoutPrefix = trimmed.replace(/^Specimen_/i, '').replace(/^specimen_/i, '');
+  return `Specimen_${withoutPrefix.toUpperCase()}`;
+};
+
+const registerTexture = (rawId: string, image?: string[] | null) => {
+  if (!rawId || !image?.length) return;
+  const preferred = image.find((entry) => typeof entry === 'string' && /specimen/i.test(entry));
+  const [first, second] = image;
+  const path = preferred ?? second ?? first;
+  if (!path) return;
+  const canonical = canonicalizeId(rawId);
+  if (!canonical || textureMap.has(canonical)) return;
+  textureMap.set(canonical, toCdnUrl(path));
+};
 
 for (const specimen of skins.specimens as SkinEntry[]) {
-  const [full, semi] = specimen.image ?? [];
-  const path = semi ?? full;
-  if (path) {
-    const cleaned = path.startsWith('/') ? path.slice(1) : path;
-    textureMap[specimen.id] = `${CDN_BASE}${cleaned}`;
-  } else {
-    textureMap[specimen.id] = null;
+  registerTexture(specimen.id, specimen.image ?? null);
+}
+
+for (const specimen of normal as NormalEntry[]) {
+  if (specimen.type === 'GACHA') {
+    registerTexture(specimen.id, specimen.image ?? null);
   }
 }
 
 export function getSpecimenTexture(specimenId: string): string | null {
-  return textureMap[specimenId] ?? null;
+  if (!specimenId) return null;
+  const canonical = canonicalizeId(specimenId);
+  if (!canonical) return null;
+  return textureMap.get(canonical) ?? null;
 }
 
 export function getSpecimenTextures(ids: Iterable<string>): Record<string, string | null> {

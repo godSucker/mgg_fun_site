@@ -13,30 +13,32 @@ const gachas = listGachas();
     </p>
   </section>
 
-  <section class="gacha-grid">
-    {gachas.map((gacha) => (
-      <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
-        <div class="card-header">
-          <h2>{gacha.name}</h2>
-          <span class="tag">{gacha.filter}</span>
-        </div>
-        <div class="card-body">
-          <div class="stat">
-            <span class="label">Мутантов</span>
-            <strong>{gacha.basic_elements.length}</strong>
+  <section class="gacha-rail" aria-label="Генераторы реактора">
+    <div class="rail-track">
+      {gachas.map((gacha) => (
+        <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
+          <div class="card-header">
+            <span class="tag">{gacha.filter}</span>
+            <h2>{gacha.name}</h2>
           </div>
-          <div class="stat">
-            <span class="label">Жетоны</span>
-            <strong>{gacha.token_cost}</strong>
+          <div class="card-body">
+            <div class="stat">
+              <span class="label">Мутантов</span>
+              <strong>{gacha.basic_elements.length}</strong>
+            </div>
+            <div class="stat">
+              <span class="label">Жетоны</span>
+              <strong>{gacha.token_cost}</strong>
+            </div>
+            <div class="stat">
+              <span class="label">Золото</span>
+              <strong>{gacha.hc_cost}</strong>
+            </div>
           </div>
-          <div class="stat">
-            <span class="label">Золото</span>
-            <strong>{gacha.hc_cost}</strong>
-          </div>
-        </div>
-        <span class="cta">Открыть генератор →</span>
-      </a>
-    ))}
+          <span class="cta">Открыть генератор →</span>
+        </a>
+      ))}
+    </div>
   </section>
 </BaseLayout>
 
@@ -59,35 +61,53 @@ const gachas = listGachas();
     line-height: 1.7;
   }
 
-  .gacha-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+  .gacha-rail {
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .rail-track {
+    display: flex;
+    gap: 1.25rem;
+    padding-bottom: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .rail-track::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .rail-track::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 999px;
   }
 
   .gacha-card {
+    flex: 0 0 clamp(260px, 32vw, 360px);
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1.5rem;
     border-radius: 18px;
     border: 1px solid rgba(148, 163, 184, 0.18);
-    background: radial-gradient(circle at top, rgba(59, 130, 246, 0.25), rgba(15, 23, 42, 0.85));
+    background: radial-gradient(circle at top, rgba(59, 130, 246, 0.28), rgba(15, 23, 42, 0.88));
     color: #e2e8f0;
     text-decoration: none;
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    scroll-snap-align: start;
   }
 
   .gacha-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(96, 165, 250, 0.6);
-    box-shadow: 0 18px 32px rgba(37, 99, 235, 0.25);
+    transform: translateY(-6px);
+    border-color: rgba(96, 165, 250, 0.65);
+    box-shadow: 0 18px 36px rgba(37, 99, 235, 0.25);
   }
 
   .card-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
     gap: 0.5rem;
   }
 
@@ -99,7 +119,8 @@ const gachas = listGachas();
   }
 
   .tag {
-    background: rgba(15, 23, 42, 0.6);
+    align-self: flex-start;
+    background: rgba(15, 23, 42, 0.65);
     border: 1px solid rgba(148, 163, 184, 0.25);
     border-radius: 999px;
     padding: 0.25rem 0.75rem;
@@ -110,12 +131,12 @@ const gachas = listGachas();
   }
 
   .card-body {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
     gap: 0.75rem;
   }
 
   .stat {
+    flex: 1;
     background: rgba(15, 23, 42, 0.55);
     border-radius: 12px;
     padding: 0.75rem;
@@ -141,5 +162,16 @@ const gachas = listGachas();
     color: #93c5fd;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 640px) {
+    .gacha-rail {
+      margin: 0 -1rem;
+      padding: 0 1rem;
+    }
+
+    .gacha-card {
+      flex-basis: calc(100% - 2rem);
+    }
   }
 </style>
