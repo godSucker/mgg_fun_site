@@ -220,15 +220,13 @@ import mutantsData from '@/data/mutants/normal.json';
    * hours; larger values are converted to days. Units use Russian letters to
    * match the screenshot (м — minutes, ч — hours, д — days).
    */
-  function formatIncubationTime(time: any): string {
-    const n = Number(time);
-    if (!isFinite(n) || n <= 0) return '';
-    if (n < 10) return `${n}м`;
-    // Treat values less than 48 as hours. Some dataset values like 25 should be read as 25 hours.
-    if (n < 48) return `${n}ч`;
-    const days = Math.floor(n / 24);
-    return `${days}д`;
-  }
+ function formatIncubationTime(input: any): string {
+  const m = Math.round(Number(input));
+  if (!isFinite(m) || m <= 0) return '';
+  if (m <= 60) return `${m}м`;
+  const h = Math.round(m / 60);
+  return `${h}ч`;
+}
 
   /**
    * Derive a user-friendly category label and associated color class from a

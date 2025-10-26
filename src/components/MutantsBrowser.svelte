@@ -71,10 +71,7 @@
   }
 
   function mapSkin(s: any, lookup: BaseMap, index: number) {
-<<<<<<< ours
 
-=======
->>>>>>> theirs
     const key = baseId(s?.id);
     const base = key ? lookup.get(key) : undefined;
 
@@ -119,10 +116,7 @@
 
   let baseMap: BaseMap = new Map();
   $: baseMap = buildBaseMap(items ?? []);
-<<<<<<< ours
 
-=======
->>>>>>> theirs
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
 
   // ===========
