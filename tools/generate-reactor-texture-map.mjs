@@ -79,9 +79,12 @@ async function collectSkinTextures() {
   const textureFiles = await findFiles(skinsDir, (name) => /\.(png|jpg|jpeg|webp)$/i.test(name));
   for (const absPath of textureFiles) {
     const fileName = path.basename(absPath);
-    const match = fileName.match(/^specimen_([a-z0-9]+_[0-9]+)(.*)\.(png|jpg|jpeg|webp)$/i);
+    const specimenMatch = fileName.match(/^specimen_([a-z0-9]+_[0-9]+)(.*)\.(png|jpg|jpeg|webp)$/i);
+    const bareMatch = fileName.match(/^([a-z]{1,3}_[0-9]{2,})(.*)\.(png|jpg|jpeg|webp)$/i);
+    const match = specimenMatch ?? bareMatch;
     if (!match) continue;
-    const baseId = toBaseId(match[1]);
+    const idSegment = specimenMatch ? match[1] : `Specimen_${match[1]}`;
+    const baseId = toBaseId(idSegment);
     if (!baseId) continue;
     const variant = match[2] ?? '';
     const relPath = path.relative(publicDir, absPath).replace(/\\/g, '/');

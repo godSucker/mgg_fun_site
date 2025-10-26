@@ -38,6 +38,7 @@
   let unlocked = new Set<string>();
   let unlockedBaseCount = 0;
   let completed = false;
+  let completionGranted = false;
   let completionTrigger: string | null = null;
   let lastResult: SpinResult | null = null;
   let history: SpinResult[] = [];
@@ -113,7 +114,7 @@
     const options: BasicReward[] = [...gacha.basic_elements];
     const weights: number[] = options.map((item) => item.odds);
 
-    if (completed && completionReward) {
+    if (completionGranted && completionReward) {
       options.push(completionReward);
       weights.push(completionReward.odds);
     }
@@ -148,12 +149,35 @@
       completed = true;
     }
 
-    if (completionReward) {
+    if (completionReward && !completionGranted) {
       return { reward: completionReward };
     }
 
     const randomIndex = Math.floor(Math.random() * baseRewards.length);
     return { reward: baseRewards[randomIndex] };
+  }
+
+  function grantCompletionReward(costType: 'token' | 'hc', trigger?: string) {
+    if (!completionReward || completionGranted) {
+      return;
+    }
+
+    completionGranted = true;
+    updateUnlocked(completionReward.specimen);
+
+    const completionResult: SpinResult = {
+      item: completionReward,
+      costType,
+      isCompletionReward: true,
+      completedNow: true,
+      completionTrigger: trigger ?? completionReward.specimen,
+    };
+
+    registerResult(completionResult);
+
+    if (!completionTrigger) {
+      completionTrigger = getMutantName(trigger ?? completionReward.specimen);
+    }
   }
 
   function spin(costType: 'token' | 'hc') {
@@ -172,6 +196,9 @@
       if (completionJustNow && !completionTrigger) {
         completionTrigger = getMutantName(reward.specimen);
       }
+      if (completionJustNow) {
+        grantCompletionReward('token', reward.specimen);
+      }
     } else {
       const { reward, trigger } = rollSequential();
       const wasCompleted = completed;
@@ -186,6 +213,9 @@
       });
       if (completionJustNow && !completionTrigger) {
         completionTrigger = getMutantName(trigger ?? reward.specimen);
+      }
+      if (completionJustNow) {
+        grantCompletionReward('hc', trigger ?? reward.specimen);
       }
     }
   }
@@ -585,22 +615,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .slot-stars {
-    height: 42px;
-    filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.45));
+    height: 34px;
+    filter: drop-shadow(0 3px 4px rgba(15, 23, 42, 0.45));
   }
 
   .slot-odds {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: rgba(15, 23, 42, 0.7);
-    background: rgba(255, 255, 255, 0.65);
-    padding: 0.25rem 0.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.2rem 0.45rem;
     border-radius: 999px;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
   }
 
   .completion-label {
@@ -875,8 +906,8 @@
   }
 
   .result-star {
-    height: 46px;
-    margin-bottom: 0.35rem;
+    height: 38px;
+    margin-bottom: 0.3rem;
   }
 
   .result-complete {
