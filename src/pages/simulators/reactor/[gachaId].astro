@@ -2,37 +2,40 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ReactorSimulator from '../../../components/simulators/reactor/ReactorSimulator.svelte';
 import { getGachaMeta, listGachas } from '../../../lib/reactor-gacha';
-import { getSpecimenTexture } from '../../../lib/mutant-textures';
+import { getMutantTexture, getSkinTextures } from '../../../lib/mutant-textures';
 
 interface Props {
   gacha: ReturnType<typeof getGachaMeta> extends infer T ? Exclude<T, null> : never;
-  textures: Record<string, string | null>;
+  baseTextures: Record<string, string | null>;
+  completionTexture: string | null;
 }
 
 export function getStaticPaths() {
   return listGachas().map((gacha) => {
-    const textures: Record<string, string | null> = {};
-    for (const reward of gacha.basic_elements) {
-      textures[reward.specimen] = getSpecimenTexture(reward.specimen);
-    }
-    if (gacha.completion_reward) {
-      textures[gacha.completion_reward.specimen] = getSpecimenTexture(
-        gacha.completion_reward.specimen,
-      );
-    }
+    const baseIds = gacha.basic_elements.map((reward) => reward.specimen);
+    const baseTextures = getSkinTextures(baseIds);
+    const completionTexture = gacha.completion_reward
+      ? getMutantTexture(gacha.completion_reward.specimen)
+      : null;
 
     return {
       params: { gachaId: gacha.id },
-      props: { gacha, textures },
+      props: { gacha, baseTextures, completionTexture },
     };
   });
 }
 
-const { gacha, textures } = Astro.props as Props;
+const { gacha, baseTextures, completionTexture } = Astro.props as Props;
 ---
 <BaseLayout title={`Реактор — ${gacha.name}`} fullWidth>
   <a class="back-link" href="/simulators/reactor">← Назад к выбору генератора</a>
-  <ReactorSimulator client:load gachaId={gacha.id} gacha={gacha} textures={textures} />
+  <ReactorSimulator
+    client:load
+    gachaId={gacha.id}
+    gacha={gacha}
+    baseTextures={baseTextures}
+    completionTexture={completionTexture}
+  />
 </BaseLayout>
 
 <style>

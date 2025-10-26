@@ -22,14 +22,15 @@
 
   export let gachaId: string;
   export let gacha: GachaDefinition;
-  export let textures: Record<string, string | null>;
+  export let baseTextures: Record<string, string | null>;
+  export let completionTexture: string | null;
 
   const gachaName = GACHA_NAME_RU[gachaId] ?? gachaId;
 
   const baseRewards: DecoratedReward[] = gacha.basic_elements.map((item) => ({
     ...item,
     name: getMutantName(item.specimen),
-    texture: textures[item.specimen] ?? null,
+    texture: baseTextures[item.specimen] ?? null,
   }));
 
   const baseSpecimenIds = new Set(baseRewards.map((reward) => reward.specimen));
@@ -41,13 +42,13 @@
   let lastResult: SpinResult | null = null;
   let history: SpinResult[] = [];
 
-  const totalBaseRewards = baseRewards.length;
+  const totalUniqueBaseRewards = baseSpecimenIds.size || baseRewards.length;
 
-  $: progressPercent = totalBaseRewards
-    ? Math.round((unlockedBaseCount / totalBaseRewards) * 100)
+  $: progressPercent = totalUniqueBaseRewards
+    ? Math.round((unlockedBaseCount / totalUniqueBaseRewards) * 100)
     : 0;
-  $: progressSummary = totalBaseRewards
-    ? `${unlockedBaseCount} / ${totalBaseRewards}`
+  $: progressSummary = totalUniqueBaseRewards
+    ? `${unlockedBaseCount} / ${totalUniqueBaseRewards}`
     : '0 / 0';
   $: generatorStatus = completed
     ? 'Завершён'
@@ -59,7 +60,7 @@
     ? {
         ...gacha.completion_reward,
         name: getMutantName(gacha.completion_reward.specimen),
-        texture: textures[gacha.completion_reward.specimen] ?? null,
+        texture: completionTexture ?? null,
       }
     : null;
 
@@ -82,19 +83,25 @@
   const getRewardName = (specimenId: string) => rewardDisplay.get(specimenId)?.name ?? getMutantName(specimenId);
   const getRewardTexture = (specimenId: string) => rewardDisplay.get(specimenId)?.texture ?? null;
 
-  function updateUnlocked(specimenId: string) {
-    if (!unlocked.has(specimenId)) {
-      const next = new Set(unlocked);
-      next.add(specimenId);
-      unlocked = next;
-      if (baseSpecimenIds.has(specimenId)) {
-        unlockedBaseCount += 1;
-        if (!completed && unlockedBaseCount === totalBaseRewards) {
-          completed = true;
-          completionTrigger = getMutantName(specimenId);
-        }
+  function updateUnlocked(specimenId: string): boolean {
+    if (unlocked.has(specimenId)) {
+      return false;
+    }
+    const next = new Set(unlocked);
+    next.add(specimenId);
+    unlocked = next;
+
+    let completedNow = false;
+    if (baseSpecimenIds.has(specimenId)) {
+      unlockedBaseCount += 1;
+      if (!completed && unlockedBaseCount >= totalUniqueBaseRewards) {
+        completed = true;
+        completedNow = true;
+        completionTrigger = getMutantName(specimenId);
       }
     }
+
+    return completedNow;
   }
 
   function registerResult(result: SpinResult) {
@@ -127,12 +134,11 @@
     return options[options.length - 1];
   }
 
-  function rollSequential(): { reward: BasicReward; completedNow: boolean; trigger?: string } {
+  function rollSequential(): { reward: BasicReward; trigger?: string } {
     for (const item of gacha.basic_elements) {
       if (!unlocked.has(item.specimen)) {
         return {
           reward: item,
-          completedNow: unlocked.size + 1 === baseRewards.length,
           trigger: item.specimen,
         };
       }
@@ -143,33 +149,33 @@
     }
 
     if (completionReward) {
-      return { reward: completionReward, completedNow: false };
+      return { reward: completionReward };
     }
 
     const randomIndex = Math.floor(Math.random() * baseRewards.length);
-    return { reward: baseRewards[randomIndex], completedNow: false };
+    return { reward: baseRewards[randomIndex] };
   }
 
   function spin(costType: 'token' | 'hc') {
     if (costType === 'token') {
       const reward = rollToken();
       const wasCompleted = completed;
-      updateUnlocked(reward.specimen);
-      const completedNow = !wasCompleted && completed && unlocked.size === baseRewards.length;
+      const completedNow = updateUnlocked(reward.specimen);
+      const completionJustNow = completedNow || (!wasCompleted && completed);
       registerResult({
         item: reward,
         costType: 'token',
         isCompletionReward: completionReward ? reward.specimen === completionReward.specimen : false,
-        completedNow,
-        completionTrigger: completedNow ? reward.specimen : undefined,
+        completedNow: completionJustNow,
+        completionTrigger: completionJustNow ? reward.specimen : undefined,
       });
-      if (completedNow && !completionTrigger) {
+      if (completionJustNow && !completionTrigger) {
         completionTrigger = getMutantName(reward.specimen);
       }
     } else {
-      const { reward, completedNow, trigger } = rollSequential();
+      const { reward, trigger } = rollSequential();
       const wasCompleted = completed;
-      updateUnlocked(reward.specimen);
+      const completedNow = updateUnlocked(reward.specimen);
       const completionJustNow = completedNow || (!wasCompleted && completed);
       registerResult({
         item: reward,
@@ -200,7 +206,10 @@
       </div>
     </div>
 
-    <div class="slot-track">
+    <div
+      class="slot-track"
+      style={`--slot-count: ${baseRewards.length + (completionReward ? 1 : 0)}`}
+    >
       {#each baseRewards as reward (reward.specimen)}
         <div
           class={`slot-card ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${
@@ -475,30 +484,25 @@
   }
 
   .slot-track {
-    margin: 2.5rem -1.5rem 2rem;
-    padding: 0 1.5rem 1rem;
+    --slot-gap: 1.4rem;
+    margin: 2.5rem 0 2rem;
+    padding-bottom: 0.75rem;
     display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-snap-type: x mandatory;
-  }
-
-  .slot-track::-webkit-scrollbar {
-    display: none;
+    gap: var(--slot-gap);
+    overflow: visible;
   }
 
   .slot-card {
     position: relative;
-    flex: 0 0 clamp(220px, 24vw, 260px);
+    flex: 0 0 calc((100% - (var(--slot-count, 1) - 1) * var(--slot-gap)) / var(--slot-count, 1));
+    max-width: calc((100% - (var(--slot-count, 1) - 1) * var(--slot-gap)) / var(--slot-count, 1));
+    min-width: 0;
     border-radius: 18px;
     background: linear-gradient(175deg, rgba(74, 222, 128, 0.75), rgba(59, 130, 246, 0.15));
     border: 1px solid rgba(148, 163, 184, 0.35);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
     overflow: hidden;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-    scroll-snap-align: start;
   }
 
   .slot-card::before {
@@ -532,15 +536,38 @@
     box-shadow: 0 20px 35px rgba(253, 224, 71, 0.35);
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 1280px) {
     .slot-track {
-      margin: 2rem -1rem 1.5rem;
-      padding: 0 1rem 0.75rem;
-      gap: 1.1rem;
+      margin: 2rem -1.5rem 1.75rem;
+      padding: 0 1.5rem 1rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+      gap: 1.5rem;
+    }
+
+    .slot-track::-webkit-scrollbar {
+      display: none;
     }
 
     .slot-card {
-      flex-basis: clamp(200px, 75vw, 260px);
+      flex: 0 0 clamp(200px, 65vw, 240px);
+      max-width: clamp(200px, 65vw, 240px);
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .slot-track {
+      margin: 1.75rem -1rem 1.5rem;
+      padding: 0 1rem 0.75rem;
+      gap: 1.2rem;
+    }
+
+    .slot-card {
+      flex: 0 0 clamp(200px, 75vw, 240px);
+      max-width: clamp(200px, 75vw, 240px);
     }
   }
 
