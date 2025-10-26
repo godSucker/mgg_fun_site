@@ -4,18 +4,13 @@
     GACHA_NAME_RU,
     STAR_ICON,
     STAR_LABEL,
-    gachaMap,
     getMutantName,
   } from '@/lib/reactor-gacha';
 
-  export let gachaId: string;
-
-  const gacha: GachaDefinition | undefined = gachaMap[gachaId];
-  if (!gacha) {
-    throw new Error(`Не найден генератор с id "${gachaId}"`);
+  export interface DecoratedReward extends BasicReward {
+    name: string;
+    texture: string | null;
   }
-
-  const gachaName = GACHA_NAME_RU[gachaId] ?? gachaId;
 
   interface SpinResult {
     item: BasicReward;
@@ -25,27 +20,44 @@
     completionTrigger?: string;
   }
 
+  export let gachaId: string;
+  export let gacha: GachaDefinition;
+  export let textures: Record<string, string | null>;
+
+  const gachaName = GACHA_NAME_RU[gachaId] ?? gachaId;
+
   let unlocked = new Set<string>();
   let completed = false;
   let completionTrigger: string | null = null;
   let lastResult: SpinResult | null = null;
   let history: SpinResult[] = [];
 
-  const baseRewards = gacha.basic_elements.map((item) => ({
+  const baseRewards: DecoratedReward[] = gacha.basic_elements.map((item) => ({
     ...item,
     name: getMutantName(item.specimen),
+    texture: textures[item.specimen] ?? null,
   }));
 
-  const completionReward = gacha.completion_reward
-    ? { ...gacha.completion_reward, name: getMutantName(gacha.completion_reward.specimen) }
+  const completionReward: DecoratedReward | null = gacha.completion_reward
+    ? {
+        ...gacha.completion_reward,
+        name: getMutantName(gacha.completion_reward.specimen),
+        texture: textures[gacha.completion_reward.specimen] ?? null,
+      }
     : null;
+
+  const rewardDisplay = new Map<string, DecoratedReward>();
+  for (const reward of baseRewards) {
+    rewardDisplay.set(reward.specimen, reward);
+  }
+  if (completionReward) {
+    rewardDisplay.set(completionReward.specimen, completionReward);
+  }
 
   const totalBasicOdds = gacha.basic_elements.reduce((sum, item) => sum + item.odds, 0);
 
   const formatPercent = (item: BasicReward) => {
-    const total = completed && completionReward
-      ? totalBasicOdds + completionReward.odds
-      : totalBasicOdds;
+    const total = completed && completionReward ? totalBasicOdds + completionReward.odds : totalBasicOdds;
     if (!total) return '—';
     return `${((item.odds / total) * 100).toFixed(2)}%`;
   };
@@ -54,6 +66,9 @@
     if (!baseRewards.length) return 0;
     return Math.round((unlocked.size / baseRewards.length) * 100);
   };
+
+  const getRewardName = (specimenId: string) => rewardDisplay.get(specimenId)?.name ?? getMutantName(specimenId);
+  const getRewardTexture = (specimenId: string) => rewardDisplay.get(specimenId)?.texture ?? null;
 
   function updateUnlocked(specimenId: string) {
     if (!unlocked.has(specimenId)) {
@@ -69,7 +84,7 @@
 
   function registerResult(result: SpinResult) {
     lastResult = result;
-    history = [result, ...history].slice(0, 12);
+    history = [result, ...history].slice(0, 10);
   }
 
   function rollToken(): BasicReward {
@@ -146,206 +161,511 @@
         costType: 'hc',
         isCompletionReward: completionReward ? reward.specimen === completionReward.specimen : false,
         completedNow: completionJustNow,
-        completionTrigger: completionJustNow ? (trigger ?? reward.specimen) : undefined,
+        completionTrigger: completionJustNow ? trigger ?? reward.specimen : undefined,
       });
       if (completionJustNow && !completionTrigger) {
-        completionTrigger = getMutantName((trigger ?? reward.specimen));
+        completionTrigger = getMutantName(trigger ?? reward.specimen);
       }
     }
   }
 </script>
 
-<div class="reactor-wrapper">
-  <section class="reactor-panel">
-    <header class="panel-header">
+<div class="reactor-layout">
+  <div class="reactor-stage">
+    <div class="stage-header">
       <div>
         <h1>{gachaName}</h1>
-        <p class="subtitle">Симулятор реактора • {baseRewards.length} мутантов</p>
+        <p>Соберите коллекцию из {baseRewards.length} мутантов и получите награду.</p>
       </div>
-      <div class="cost-block">
-        <div class="cost-item">
-          <span class="cost-label">Жетоны</span>
-          <strong>{gacha.token_cost}</strong>
+      <div class="header-progress">
+        <span>Прогресс {unlocked.size}/{baseRewards.length}</span>
+        <div class="header-meter">
+          <div class="header-fill" style={`width: ${progress()}%`}></div>
         </div>
-        <div class="cost-item">
-          <span class="cost-label">Золото</span>
-          <strong>{gacha.hc_cost}</strong>
-        </div>
-      </div>
-    </header>
-
-    <div class="actions">
-      <button class="spin token" on:click={() => spin('token')}>
-        🎲 Крутить за жетоны
-      </button>
-      <button class="spin hc" on:click={() => spin('hc')}>
-        💰 Крутить за золото
-      </button>
-    </div>
-
-    <div class="status">
-      <div class="progress">
-        <span>Прогресс коллекции</span>
-        <div class="progress-bar">
-          <div class="progress-fill" style={`width: ${progress()}%`}></div>
-        </div>
-        <small>{unlocked.size} / {baseRewards.length} мутантов ({progress()}%)</small>
-        {#if completed}
-          <div class="completion">Генератор завершён{completionTrigger ? `: ${completionTrigger}` : ''}!</div>
-        {/if}
       </div>
     </div>
 
-    {#if lastResult}
-      <div class="result-card">
-        <div class="result-header">
-          <span class={`badge ${lastResult.costType === 'token' ? 'token' : 'hc'}`}>
-            {lastResult.costType === 'token' ? 'Жетоны' : 'Золото'}
-          </span>
-          {#if lastResult.isCompletionReward}
-            <span class="badge completion">🏆 Награда за завершение</span>
+    <div class="slot-track">
+      {#each baseRewards as reward (reward.specimen)}
+        <div
+          class={`slot-card ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${
+            lastResult?.item.specimen === reward.specimen ? 'active' : ''
+          }`}
+        >
+          <div class="slot-inner">
+            <div class="slot-top">
+              {#if STAR_ICON[reward.stars]}
+                <img
+                  class="slot-stars"
+                  src={STAR_ICON[reward.stars]}
+                  alt={STAR_LABEL[reward.stars]}
+                  title={STAR_LABEL[reward.stars]}
+                />
+              {/if}
+              <span class="slot-odds">{formatPercent(reward)}</span>
+            </div>
+            <div class="slot-art">
+              {#if reward.texture}
+                <img src={reward.texture} alt={reward.name} loading="lazy" />
+              {:else}
+                <span class="slot-placeholder">Нет иллюстрации</span>
+              {/if}
+            </div>
+            <div class="slot-name">{reward.name}</div>
+            <div class="slot-footer">
+              <button type="button" class="profile-btn">Профиль</button>
+              <span class={`slot-status ${unlocked.has(reward.specimen) ? 'is-unlocked' : ''}`}>
+                {unlocked.has(reward.specimen) ? 'Получен' : 'В пуле'}
+              </span>
+            </div>
+          </div>
+          {#if unlocked.has(reward.specimen)}
+            <span class="slot-check">✔</span>
           {/if}
         </div>
-        <h2>{getMutantName(lastResult.item.specimen)}</h2>
-        {#if STAR_ICON[lastResult.item.stars]}
-          <img class="star" src={STAR_ICON[lastResult.item.stars]} alt={STAR_LABEL[lastResult.item.stars]} />
-        {/if}
-        <p class="odds">Шанс: {formatPercent(lastResult.item)}</p>
-        {#if lastResult.completedNow}
-          <p class="completion-message">Генератор завершён!</p>
-        {/if}
-      </div>
-    {/if}
-  </section>
-
-  <section class="mutants-panel">
-    <h3>Список наград</h3>
-    <div class="mutant-grid">
-      {#each baseRewards as reward}
-        <div class={`mutant-card ${unlocked.has(reward.specimen) ? 'unlocked' : ''}`}>
-          <div class="mutant-name">{reward.name}</div>
-          <div class="mutant-meta">
-            {#if STAR_ICON[reward.stars]}
-              <img src={STAR_ICON[reward.stars]} alt={STAR_LABEL[reward.stars]} title={STAR_LABEL[reward.stars]} />
-            {/if}
-            <span class="chance">{formatPercent(reward)}</span>
-          </div>
-          <div class="status-line">
-            {unlocked.has(reward.specimen) ? 'Открыт' : 'Не получен'}
-          </div>
-        </div>
       {/each}
+
       {#if completionReward}
-        <div class={`mutant-card completion ${completed ? 'unlocked' : ''}`}>
-          <div class="mutant-name">🏆 {completionReward.name}</div>
-          <div class="mutant-meta">
-            {#if STAR_ICON[completionReward.stars]}
-              <img src={STAR_ICON[completionReward.stars]} alt={STAR_LABEL[completionReward.stars]} />
-            {/if}
-            <span class="chance">
-              {completed ? formatPercent(completionReward) : '—'}
-            </span>
+        <div
+          class={`slot-card completion ${completed ? 'unlocked' : ''} ${
+            lastResult?.item.specimen === completionReward.specimen ? 'active' : ''
+          }`}
+        >
+          <div class="slot-inner">
+            <div class="slot-top">
+              <span class="completion-label">🏆 Финальная награда</span>
+              <span class="slot-odds">{completed ? formatPercent(completionReward) : '—'}</span>
+            </div>
+            <div class="slot-art">
+              {#if completionReward.texture}
+                <img src={completionReward.texture} alt={completionReward.name} loading="lazy" />
+              {:else}
+                <span class="slot-placeholder">Нет иллюстрации</span>
+              {/if}
+            </div>
+            <div class="slot-name">{completionReward.name}</div>
+            <div class="slot-footer">
+              <button type="button" class="profile-btn">Профиль</button>
+              <span class={`slot-status ${completed ? 'is-unlocked' : ''}`}>
+                {completed ? 'Теперь в пуле' : 'Соберите коллекцию'}
+              </span>
+            </div>
           </div>
-          <div class="status-line">
-            {completed ? 'Доступна в пуле' : 'Откроется после сбора коллекции'}
-          </div>
+          {#if completed}
+            <span class="slot-check">★</span>
+          {/if}
         </div>
       {/if}
     </div>
 
+    <div class="stage-controls">
+      <div class="cost-line">
+        <div class="cost-pill">
+          <span class="pill-label">Стоимость жетона</span>
+          <strong>{gacha.token_cost}</strong>
+        </div>
+        <div class="cost-pill">
+          <span class="pill-label">Стоимость золота</span>
+          <strong>{gacha.hc_cost}</strong>
+        </div>
+      </div>
+      <div class="spin-buttons">
+        <button class="spin token" on:click={() => spin('token')}>
+          🎲 Крутить за жетоны
+        </button>
+        <button class="spin hc" on:click={() => spin('hc')}>
+          💰 Крутить за золото
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <aside class="info-panel">
+    <div class="info-card progress-card">
+      <header>
+        <h2>Состояние генератора</h2>
+        <span>{progress()}%</span>
+      </header>
+      <div class="progress-meter">
+        <div class="progress-fill" style={`width: ${progress()}%`}></div>
+      </div>
+      <p class="info-text">{unlocked.size} / {baseRewards.length} мутантов открыто.</p>
+      {#if completed}
+        <div class="completion-banner">
+          Генератор завершён{completionTrigger ? `: ${completionTrigger}` : ''}!
+        </div>
+      {/if}
+    </div>
+
+    {#if lastResult}
+      <div class="info-card result-card">
+        <header>
+          <span class={`badge ${lastResult.costType === 'token' ? 'token' : 'hc'}`}>
+            {lastResult.costType === 'token' ? 'Жетоны' : 'Золото'}
+          </span>
+          {#if lastResult.isCompletionReward}
+            <span class="badge completion">🏆</span>
+          {/if}
+        </header>
+        <div class="result-body">
+          {#if getRewardTexture(lastResult.item.specimen)}
+            <img
+              class="result-art"
+              src={getRewardTexture(lastResult.item.specimen) ?? ''}
+              alt={getRewardName(lastResult.item.specimen)}
+            />
+          {/if}
+          <div class="result-info">
+            <h3>{getRewardName(lastResult.item.specimen)}</h3>
+            {#if STAR_ICON[lastResult.item.stars]}
+              <img
+                class="result-star"
+                src={STAR_ICON[lastResult.item.stars]}
+                alt={STAR_LABEL[lastResult.item.stars]}
+              />
+            {/if}
+            <p>Шанс: {formatPercent(lastResult.item)}</p>
+            {#if lastResult.completedNow}
+              <p class="result-complete">Коллекция собрана!</p>
+            {/if}
+          </div>
+        </div>
+      </div>
+    {/if}
+
     {#if history.length}
-      <div class="history">
+      <div class="info-card history-card">
         <h3>Последние прокрутки</h3>
         <ul>
-          {#each history as entry, index}
+          {#each history as entry}
             <li>
-              <span class={`badge ${entry.costType === 'token' ? 'token' : 'hc'}`}>
-                {entry.costType === 'token' ? 'Жетоны' : 'Золото'}
-              </span>
-              <strong>{getMutantName(entry.item.specimen)}</strong>
-              {#if entry.isCompletionReward}
-                <span class="small">🏆</span>
+              {#if getRewardTexture(entry.item.specimen)}
+                <img
+                  class="history-art"
+                  src={getRewardTexture(entry.item.specimen) ?? ''}
+                  alt={getRewardName(entry.item.specimen)}
+                />
               {/if}
-              {#if entry.completedNow}
-                <span class="small">(коллекция собрана)</span>
-              {/if}
+              <div class="history-main">
+                <strong>{getRewardName(entry.item.specimen)}</strong>
+                <div class="history-meta">
+                  <span class={`badge ${entry.costType === 'token' ? 'token' : 'hc'}`}>
+                    {entry.costType === 'token' ? 'Жетоны' : 'Золото'}
+                  </span>
+                  {#if entry.isCompletionReward}
+                    <span class="history-flag">🏆</span>
+                  {/if}
+                  {#if entry.completedNow}
+                    <span class="history-flag">Коллекция</span>
+                  {/if}
+                </div>
+              </div>
             </li>
           {/each}
         </ul>
       </div>
     {/if}
-  </section>
+  </aside>
 </div>
 
 <style>
-  .reactor-wrapper {
+  .reactor-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2.2fr) minmax(320px, 1fr);
     gap: 2rem;
   }
 
-  @media (max-width: 980px) {
-    .reactor-wrapper {
+  @media (max-width: 1100px) {
+    .reactor-layout {
       grid-template-columns: 1fr;
+    }
+
+    .info-panel {
+      order: -1;
     }
   }
 
-  .reactor-panel {
-    background: linear-gradient(160deg, rgba(44,62,80,0.85), rgba(20,24,32,0.9));
-    border: 1px solid #2f3846;
-    border-radius: 18px;
-    padding: 2rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .reactor-stage {
+    position: relative;
+    padding: 2.25rem 2rem 2rem;
+    border-radius: 28px;
+    background: radial-gradient(circle at top, rgba(62, 84, 122, 0.35), transparent 60%),
+      linear-gradient(145deg, rgba(14, 23, 42, 0.95), rgba(7, 11, 22, 0.95));
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    box-shadow: 0 35px 70px rgba(5, 10, 20, 0.55);
+    overflow: hidden;
   }
 
-  .panel-header {
+  .reactor-stage::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 26px;
+    pointer-events: none;
+    background: linear-gradient(160deg, rgba(148, 163, 184, 0.08), rgba(15, 23, 42, 0.6));
+    mix-blend-mode: screen;
+    opacity: 0.3;
+  }
+
+  .reactor-stage > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stage-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
+    align-items: flex-start;
+    color: #e2e8f0;
   }
 
-  .panel-header h1 {
+  .stage-header h1 {
     margin: 0;
-    font-size: 2rem;
-    color: #f1f5f9;
+    font-size: 2.1rem;
+    letter-spacing: 0.04em;
   }
 
-  .panel-header .subtitle {
-    margin: 0.25rem 0 0;
-    color: #94a3b8;
+  .stage-header p {
+    margin: 0.35rem 0 0;
+    color: #9fb7d3;
     font-size: 0.95rem;
   }
 
-  .cost-block {
+  .header-progress {
+    min-width: 200px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .header-progress span {
+    font-size: 0.9rem;
+    color: #cbd5f5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .header-meter {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.2);
+    overflow: hidden;
+  }
+
+  .header-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #6366f1);
+    transition: width 0.3s ease;
+  }
+
+  .slot-track {
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .slot-card {
+    position: relative;
+    border-radius: 18px;
+    background: linear-gradient(175deg, rgba(74, 222, 128, 0.75), rgba(59, 130, 246, 0.15));
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  }
+
+  .slot-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.25), transparent 60%);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .slot-card.unlocked {
+    border-color: rgba(34, 197, 94, 0.9);
+    box-shadow: 0 20px 35px rgba(34, 197, 94, 0.25);
+  }
+
+  .slot-card.active {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(250, 204, 21, 0.9);
+    box-shadow: 0 22px 40px rgba(250, 204, 21, 0.25);
+    filter: saturate(1.1);
+  }
+
+  .slot-card.completion {
+    background: linear-gradient(175deg, rgba(251, 191, 36, 0.85), rgba(253, 186, 116, 0.2));
+    border-color: rgba(253, 224, 71, 0.6);
+  }
+
+  .slot-card.completion.unlocked {
+    border-color: rgba(253, 224, 71, 0.95);
+    box-shadow: 0 20px 35px rgba(253, 224, 71, 0.35);
+  }
+
+  .slot-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.1rem 1rem 1.2rem;
+    color: #0f172a;
+  }
+
+  .slot-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .slot-stars {
+    height: 42px;
+    filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.45));
+  }
+
+  .slot-odds {
+    font-size: 0.85rem;
+    color: rgba(15, 23, 42, 0.7);
+    background: rgba(255, 255, 255, 0.65);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .completion-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(15, 23, 42, 0.8);
+  }
+
+  .slot-art {
+    position: relative;
+    height: 200px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.45);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 12px rgba(15, 23, 42, 0.25);
+  }
+
+  .slot-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: translateY(6px);
+  }
+
+  .slot-placeholder {
+    color: rgba(15, 23, 42, 0.45);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .slot-name {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .slot-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .profile-btn {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(15, 23, 42, 0.85);
+    color: #f8fafc;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .profile-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
+
+  .slot-status {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(15, 23, 42, 0.55);
+  }
+
+  .slot-status.is-unlocked {
+    color: rgba(15, 118, 110, 0.95);
+  }
+
+  .slot-card.completion .slot-status.is-unlocked {
+    color: rgba(217, 119, 6, 0.95);
+  }
+
+  .slot-check {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 1.4rem;
+    color: rgba(15, 23, 42, 0.75);
+    text-shadow: 0 4px 6px rgba(255, 255, 255, 0.3);
+  }
+
+  .stage-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .cost-line {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
   }
 
-  .cost-item {
-    background: rgba(15,23,42,0.7);
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    text-align: center;
-    border: 1px solid rgba(148,163,184,0.15);
+  .cost-pill {
+    background: linear-gradient(120deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.8));
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    color: #e2e8f0;
   }
 
-  .cost-label {
-    display: block;
-    font-size: 0.8rem;
-    color: #94a3b8;
-    margin-bottom: 0.25rem;
+  .pill-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.9);
   }
 
-  .cost-item strong {
-    font-size: 1.25rem;
-    color: #f8fafc;
+  .cost-pill strong {
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
   }
 
-  .actions {
+  .spin-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -353,231 +673,212 @@
 
   .spin {
     flex: 1 1 220px;
-    padding: 1rem 1.5rem;
-    border-radius: 14px;
+    padding: 1.1rem 1.4rem;
+    border-radius: 18px;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    color: #0f172a;
   }
 
   .spin.token {
-    background: linear-gradient(135deg, #22d3ee, #3b82f6);
-    color: #0f172a;
-    box-shadow: 0 14px 25px rgba(34,211,238,0.3);
+    background: linear-gradient(130deg, #34d399, #22d3ee);
+    box-shadow: 0 18px 30px rgba(45, 212, 191, 0.35);
   }
 
   .spin.hc {
-    background: linear-gradient(135deg, #f97316, #ef4444);
-    color: #0f172a;
-    box-shadow: 0 14px 25px rgba(249,115,22,0.3);
+    background: linear-gradient(130deg, #facc15, #fb7185);
+    box-shadow: 0 18px 30px rgba(248, 113, 113, 0.35);
   }
 
   .spin:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.05);
+    transform: translateY(-4px);
+    filter: brightness(1.06);
   }
 
-  .status {
-    background: rgba(15,23,42,0.7);
-    border-radius: 14px;
+  .info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    background: linear-gradient(150deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85));
+    border-radius: 22px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
     padding: 1.5rem;
-    border: 1px solid rgba(148,163,184,0.15);
-  }
-
-  .progress > span {
-    font-size: 0.95rem;
     color: #e2e8f0;
-    display: block;
-    margin-bottom: 0.5rem;
+    box-shadow: 0 25px 40px rgba(5, 12, 25, 0.4);
   }
 
-  .progress-bar {
-    background: rgba(148,163,184,0.2);
-    border-radius: 999px;
-    overflow: hidden;
+  .progress-card header,
+  .result-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-card header h2,
+  .result-card h3,
+  .history-card h3 {
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: #bfdbfe;
+  }
+
+  .progress-card header span {
+    font-size: 1rem;
+    color: #facc15;
+  }
+
+  .progress-meter {
     height: 12px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.2);
+    overflow: hidden;
+    margin-top: 1rem;
   }
 
   .progress-fill {
-    background: linear-gradient(135deg, #34d399, #10b981);
     height: 100%;
+    background: linear-gradient(90deg, #22d3ee, #38bdf8, #6366f1);
     transition: width 0.3s ease;
   }
 
-  .progress small {
-    display: block;
-    margin-top: 0.5rem;
-    color: #94a3b8;
-    font-size: 0.85rem;
+  .info-text {
+    margin: 0.75rem 0 0;
+    color: #cbd5f5;
+    font-size: 0.9rem;
   }
 
-  .completion {
-    margin-top: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    background: rgba(16,185,129,0.15);
-    border: 1px solid rgba(16,185,129,0.4);
-    border-radius: 10px;
-    color: #6ee7b7;
-    font-size: 0.95rem;
-  }
-
-  .result-card {
-    background: linear-gradient(140deg, rgba(148,163,184,0.08), rgba(59,130,246,0.12));
-    border-radius: 16px;
-    padding: 1.5rem;
-    border: 1px solid rgba(59,130,246,0.2);
-  }
-
-  .result-header {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+  .completion-banner {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    background: linear-gradient(120deg, rgba(253, 224, 71, 0.25), rgba(250, 204, 21, 0.15));
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    color: #fde68a;
+    font-weight: 700;
+    letter-spacing: 0.05em;
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.35rem 0.75rem;
     border-radius: 999px;
+    padding: 0.25rem 0.6rem;
     font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     font-weight: 700;
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
   }
 
   .badge.token {
-    background: rgba(34,211,238,0.2);
-    color: #22d3ee;
-    border: 1px solid rgba(34,211,238,0.5);
+    background: rgba(45, 212, 191, 0.2);
+    color: #5eead4;
   }
 
   .badge.hc {
-    background: rgba(249,115,22,0.2);
-    color: #fb923c;
-    border: 1px solid rgba(249,115,22,0.45);
+    background: rgba(248, 113, 113, 0.2);
+    color: #fca5a5;
   }
 
   .badge.completion {
-    background: rgba(250,204,21,0.2);
-    color: #facc15;
-    border: 1px solid rgba(250,204,21,0.45);
+    background: rgba(250, 204, 21, 0.25);
+    color: #fde68a;
   }
 
-  .result-card h2 {
-    margin: 0 0 0.5rem;
-    color: #f8fafc;
-  }
-
-  .result-card .star {
-    height: 48px;
-    margin-bottom: 0.75rem;
-  }
-
-  .result-card .odds {
-    margin: 0;
-    color: #94a3b8;
-  }
-
-  .completion-message {
-    margin-top: 0.75rem;
-    color: #facc15;
-    font-weight: 700;
-  }
-
-  .mutants-panel {
-    background: rgba(15,23,42,0.65);
-    border-radius: 18px;
-    border: 1px solid rgba(30,41,59,0.8);
-    padding: 2rem;
+  .result-body {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .mutants-panel h3 {
-    margin: 0;
-    color: #e2e8f0;
-    font-size: 1.3rem;
-  }
-
-  .mutant-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
-  }
-
-  .mutant-card {
-    background: rgba(30,41,59,0.75);
-    border-radius: 12px;
-    padding: 1rem;
-    border: 1px solid rgba(148,163,184,0.12);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-
-  .mutant-card.unlocked {
-    border-color: rgba(16,185,129,0.5);
-    transform: translateY(-2px);
-  }
-
-  .mutant-card.completion {
-    background: linear-gradient(140deg, rgba(250,204,21,0.12), rgba(30,41,59,0.85));
-  }
-
-  .mutant-name {
-    font-size: 1rem;
-    color: #f1f5f9;
-  }
-
-  .mutant-meta {
-    display: flex;
+    margin-top: 1rem;
     align-items: center;
-    gap: 0.5rem;
   }
 
-  .mutant-meta img {
-    height: 28px;
-    width: 28px;
+  .result-art {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 0.4rem;
   }
 
-  .chance {
-    color: #94a3b8;
+  .result-info h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+
+  .result-info p {
+    margin: 0.3rem 0 0;
+    color: #cbd5f5;
     font-size: 0.9rem;
   }
 
-  .status-line {
-    margin-top: auto;
-    font-size: 0.85rem;
-    color: #64748b;
+  .result-star {
+    height: 46px;
+    margin-bottom: 0.35rem;
   }
 
-  .mutant-card.unlocked .status-line {
-    color: #34d399;
+  .result-complete {
+    color: #facc15;
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
 
-  .history ul {
-    list-style: none;
+  .history-card ul {
+    margin: 1rem 0 0;
     padding: 0;
-    margin: 0;
+    list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
-  .history li {
+  .history-card li {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    color: #e2e8f0;
+    gap: 0.9rem;
   }
 
-  .history .small {
-    font-size: 0.8rem;
-    color: #facc15;
+  .history-art {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    border-radius: 14px;
+    background: rgba(30, 41, 59, 0.7);
+    padding: 0.3rem;
+  }
+
+  .history-main strong {
+    display: block;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+  }
+
+  .history-meta {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.25rem;
+  }
+
+  .history-flag {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c4b5fd;
   }
 </style>
