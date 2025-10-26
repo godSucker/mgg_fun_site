@@ -1,783 +1,2136 @@
-diff --git a/src/components/MutantsBrowser.svelte b/src/components/MutantsBrowser.svelte
-index a4ec82a9d1e69c5535ad16707aafcfd7b46c0581..579371f28c63d2ba41a0f9e7c8fba7b14cdf27cc 100644
---- a/src/components/MutantsBrowser.svelte
-+++ b/src/components/MutantsBrowser.svelte
-@@ -1,62 +1,143 @@
- <script lang="ts">
-   import MutantModal from './MutantModal.svelte';
-   import { TYPE_RU, geneLabel, bingoLabel } from '@/lib/mutant-dicts';
- 
-   // Пропсы
-   export let items: any[] = [];     // normal + bronze + silver + gold + platinum
-   export let skins: any[] = [];     // skins.json -> specimens[]
-   export let title = '';
-   export let bingoIndex: string[] = [];
-   // Мемо-кэш для фильтрации/сортировки (не влияет на UI)
-   const _cache = new Map<string, any[]>();
-   function memo<T>(key: string, calc: () => T): T {
-     if (_cache.has(key)) return _cache.get(key) as T;
-     const v = calc();
-     _cache.set(key, v as any);
-     return v;
-   }
- 
- 
-   // =========================
-   // НОРМАЛИЗАЦИЯ ДАННЫХ SKINS
-   // =========================
--  function mapSkin(s: any) {
--    return {
--      id: s?.id,
--      name: s?.name,
--      genes: s?.genes,
--      base_stats: s?.base_stats,
--      image: s?.image,
--      type: s?.type ?? 'default',
-+  const baseId = (id: any) =>
-+    String(id ?? '')
-+      .toLowerCase()
-+      .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/src/components/simulators/reactor/ReactorSimulator.svelte b/src/components/simulators/reactor/ReactorSimulator.svelte
+new file mode 100644
+index 0000000000000000000000000000000000000000..ef4dddf13087a0b9429aca45d920dedc1bc0d687
+--- /dev/null
++++ b/src/components/simulators/reactor/ReactorSimulator.svelte
+@@ -0,0 +1,884 @@
++<script lang="ts">
++  import type { BasicReward, GachaDefinition } from '@/lib/reactor-gacha';
++  import {
++    GACHA_NAME_RU,
++    STAR_ICON,
++    STAR_LABEL,
++    getMutantName,
++  } from '@/lib/reactor-gacha';
 +
-+  type BaseMap = Map<string, any>;
-+  function buildBaseMap(list: any[]): BaseMap {
-+    const map: BaseMap = new Map();
-+    for (const item of Array.isArray(list) ? list : []) {
-+      const key = baseId(item?.id);
-+      if (!key) continue;
-+      const id = String(item?.id ?? '').toLowerCase();
-+      const isNormal = !/_+(?:bronze|silver|gold|platinum|plat)\b/.test(id);
-+      if (!map.has(key) || isNormal) {
-+        map.set(key, item);
++  export interface DecoratedReward extends BasicReward {
++    name: string;
++    texture: string | null;
++  }
++
++  interface SpinResult {
++    item: BasicReward;
++    costType: 'token' | 'hc';
++    isCompletionReward: boolean;
++    completedNow: boolean;
++    completionTrigger?: string;
++  }
++
++  export let gachaId: string;
++  export let gacha: GachaDefinition;
++  export let textures: Record<string, string | null>;
++
++  const gachaName = GACHA_NAME_RU[gachaId] ?? gachaId;
++
++  let unlocked = new Set<string>();
++  let completed = false;
++  let completionTrigger: string | null = null;
++  let lastResult: SpinResult | null = null;
++  let history: SpinResult[] = [];
++
++  const baseRewards: DecoratedReward[] = gacha.basic_elements.map((item) => ({
++    ...item,
++    name: getMutantName(item.specimen),
++    texture: textures[item.specimen] ?? null,
++  }));
++
++  const completionReward: DecoratedReward | null = gacha.completion_reward
++    ? {
++        ...gacha.completion_reward,
++        name: getMutantName(gacha.completion_reward.specimen),
++        texture: textures[gacha.completion_reward.specimen] ?? null,
 +      }
-+    }
-+    return map;
++    : null;
++
++  const rewardDisplay = new Map<string, DecoratedReward>();
++  for (const reward of baseRewards) {
++    rewardDisplay.set(reward.specimen, reward);
++  }
++  if (completionReward) {
++    rewardDisplay.set(completionReward.specimen, completionReward);
 +  }
 +
-+  function hasBingo(val: any): boolean {
-+    if (!val) return false;
-+    if (Array.isArray(val)) return val.length > 0;
-+    if (typeof val === 'object') return Object.keys(val).length > 0;
-+    return false;
-+  }
++  const totalBasicOdds = gacha.basic_elements.reduce((sum, item) => sum + item.odds, 0);
 +
-+  function mergeBaseStats(baseStats: any, override: any) {
-+    if (!baseStats && !override) return undefined;
-+    const result = { ...(baseStats ?? {}) };
-+    if (baseStats?.lvl1 || override?.lvl1) {
-+      result.lvl1 = { ...(baseStats?.lvl1 ?? {}), ...(override?.lvl1 ?? {}) };
-+    }
-+    if (baseStats?.lvl30 || override?.lvl30) {
-+      result.lvl30 = { ...(baseStats?.lvl30 ?? {}), ...(override?.lvl30 ?? {}) };
-+    }
-+    for (const key of Object.keys(override ?? {})) {
-+      if (key === 'lvl1' || key === 'lvl30') continue;
-+      result[key] = override[key];
-+    }
-+    return result;
-+  }
-+
-+  function pickImage(preferred: any, fallback: any) {
-+    if (Array.isArray(preferred)) return preferred.slice();
-+    if (preferred != null) return preferred;
-+    if (Array.isArray(fallback)) return fallback.slice();
-+    return fallback ?? [];
-+  }
-+
-+  function mapSkin(s: any, lookup: BaseMap, index: number) {
-+    const key = baseId(s?.id);
-+    const base = key ? lookup.get(key) : undefined;
-+
-+    const merged: any = {
-+      ...(base ?? {}),
-+      ...(s ?? {}),
-+      id: s?.id ?? base?.id,
-+      name: s?.name ?? base?.name,
-+      genes: Array.isArray(s?.genes) && s.genes.length ? s.genes : base?.genes,
-+      base_stats: mergeBaseStats(base?.base_stats, s?.base_stats),
-+      image: pickImage(s?.image, base?.image),
-+      type: s?.type ?? base?.type ?? 'default',
-       star: !s?.star || s.star === 'none' ? 'normal' : String(s.star).toLowerCase(),
--      bingo: Array.isArray(s?.bingo) || typeof s?.bingo === 'object' ? s.bingo : [],
--      skin: s?.skin ?? true,
-+      bingo: hasBingo(s?.bingo) ? s.bingo : base?.bingo,
-+      abilities: Array.isArray(s?.abilities) && s.abilities.length ? s.abilities : base?.abilities,
-+      name_attack1: s?.name_attack1 ?? base?.name_attack1,
-+      name_attack2: s?.name_attack2 ?? base?.name_attack2,
-+      name_lore: s?.name_lore ?? base?.name_lore,
-+      incub_time:
-+        s?.incub_time ??
-+        s?.incubation ??
-+        s?.incubation_time ??
-+        s?.incubationTime ??
-+        s?.incubation_hours ??
-+        s?.hatch_time ??
-+        base?.incub_time ??
-+        base?.incubation ??
-+        base?.incubation_time ??
-+        base?.incubationTime ??
-+        base?.incubation_hours ??
-+        base?.hatch_time,
-+      chance: s?.chance ?? s?.chance_percent ?? base?.chance ?? base?.chance_percent,
-+      tier: s?.tier ?? base?.tier,
-+      skin: s?.skin ?? base?.skin ?? true,
-       __source: 'skin' as const,
-+      __skinIndex: index,
-+      __skinKey: `${key || 'skin'}::${String(s?.skin ?? '')}::${index}`,
-     };
-+
-+    return merged;
-   }
--  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map(mapSkin);
-+
-+  let baseMap: BaseMap = new Map();
-+  $: baseMap = buildBaseMap(items ?? []);
-+  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
- 
-   // ===========
-   // КОНТРОЛЫ UI
-   // ===========
-   // Режимы отображения
-   type Mode = 'mutants' | 'skins';
-   let mode: Mode = 'mutants';
- 
-   // Поиск/фильтры МУТАНТОВ
-   let query = '';
-   let gene1Sel = '';
-   let gene2Sel = '';
-   $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join(''); // 'AB' | 'A' | ''
- 
-   // Типы/бинго считаем по items (мустантам)
-   function uniq<T>(arr: T[]) { return Array.from(new Set(arr)); }
-   $: typeOptions = uniq(items.map(it => it?.type).filter(Boolean))
-       .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru'));
-   let typeSel = '';
- 
-   function collectBingoKeys(it:any): string[] {
-     const b = it?.bingo;
-     if (!b) return [];
-     if (Array.isArray(b)) return b.map((x:any) => typeof x === 'string' ? x : (x?.key ?? '')).filter(Boolean);
-     if (typeof b === 'object') return Object.keys(b);
-@@ -91,115 +172,148 @@
- 
-   // По умолчанию: мутанты = только обычные; скины = любые
-   let starSelMutants: StarKey = 'normal';
-   let starSelSkins: SkinStarKey = 'any';
- 
-   // Переход режимов: подстраиваем дефолты
-   function switchTo(next: Mode) {
-     mode = next;
-     if (mode === 'mutants') {
-       if (!['normal','bronze','silver','gold','platinum'].includes(starSelMutants)) starSelMutants = 'normal';
-     } else {
-       if (!['any','normal','bronze','silver','gold','platinum'].includes(starSelSkins)) starSelSkins = 'any';
-     }
-   }
- 
-   // Гены — иконки (public/genes)
-   const geneList = [
-     { key: '',  label: 'Все',                   icon: '/genes/icon_gene_all.png' },
-     { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.png' },
-     { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/icon_gene_b.png' },
-     { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/icon_gene_c.png' },
-     { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/icon_gene_d.png' },
-     { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.png' },
-     { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.png' },
-   ];
-+  const geneButtonClass = (selected: boolean) =>
-+    'p-1 rounded-lg ring-1 ' + (selected ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10');
- 
-   // =================
-   // ПОМОЩНИКИ ФИЛЬТРОВ
-   // =================
-   const normalizeGene = (s:string) => (s ?? '').toUpperCase().split('').sort().join('');
-   const starOf = (it:any) => String(it?.star ?? 'normal').toLowerCase();
-   function readGeneCode(it:any): string {
-     if (Array.isArray(it?.genes) && typeof it.genes[0] === 'string') return it.genes[0];
-     if (typeof it?.gene === 'string') return it.gene;
-     if (typeof it?.gene_code === 'string') return it.gene_code;
-     return '';
-   }
-+  const geneOrder = new Map<string, number>([
-+    ['A', 0],
-+    ['B', 1],
-+    ['C', 2],
-+    ['D', 3],
-+    ['E', 4],
-+    ['F', 5],
-+  ]);
-+  function geneSortTuple(it: any) {
-+    const code = normalizeGene(readGeneCode(it));
-+    const first = code?.[0] ?? '';
-+    const rank = first ? geneOrder.get(first) ?? 99 : 199;
-+    return { rank, code, name: String(it?.name ?? '') };
-+  }
-+  function compareByGene(a: any, b: any) {
-+    const ga = geneSortTuple(a);
-+    const gb = geneSortTuple(b);
-+    if (ga.rank !== gb.rank) return ga.rank - gb.rank;
-+    if (ga.code !== gb.code) return ga.code.localeCompare(gb.code, 'ru');
-+    return ga.name.localeCompare(gb.name, 'ru');
-+  }
-   const isSkin = (it:any) =>
-     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
--  const keyOf  = (it:any) => (isSkin(it) ? `skin:${it.id}` : `mut:${it.id}`);
-+  const keyOf  = (it:any, index?: number) => {
-+    if (isSkin(it)) {
-+      if (typeof it?.__skinKey === 'string') return `skin:${it.__skinKey}`;
-+      const key = baseId(it?.id);
-+      const variant = it?.skin ?? index ?? '';
-+      return `skin:${key}:${variant}:${index ?? 0}`;
-+    }
-+    return `mut:${it?.id ?? index}`;
++  const formatPercent = (item: BasicReward) => {
++    const total = completed && completionReward ? totalBasicOdds + completionReward.odds : totalBasicOdds;
++    if (!total) return '—';
++    return `${((item.odds / total) * 100).toFixed(2)}%`;
 +  };
- 
-   // ==========
-   // WORKER и быстрый пересчёт (сокращено для контекста ответа)
-   // ==========
-   let useWorker = false; // твой текущий флаг
-   let worker: Worker | null = null;
-   let computeVersion = 0;
-   let inFlight = false;
-   let queued = false;
- 
-   let _workerTotal = 0;
-   let filteredMutantsWorkerSlice: any[] = [];
- 
-   // (инициализация воркера/сообщения пропущу — оставляю как в твоём файле)
-   // ...
- 
-   // ===========
-   // ФИЛЬТРАЦИЯ
-   // ===========
-   $: filteredMutants = useWorker
-     ? new Array(_workerTotal)
-     : memo(
-         JSON.stringify({q: query, t: typeSel, g: geneSel, b: bingoSel, star: starSelMutants, n: items?.length ?? 0}),
-         () => items
-           .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
-           .filter(it => !typeSel || String(it?.type ?? '') === typeSel)
-           .filter(it => {
-             if (!bingoSel) return true;
-             const keys = new Set(collectBingoKeys(it).map(String));
-             return keys.has(String(bingoSel));
-           })
-           .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
-           .filter(it => {
-             const k = starSelMutants;
-             return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
-           })
-           .slice()
--          .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'))
-+          .sort(compareByGene)
-       );
- 
-   $: filteredSkins = memo(
--    JSON.stringify({star: starSelSkins, n: normalizedSkins?.length ?? 0}),
-+    JSON.stringify({q: query, gene: geneSel, star: starSelSkins, n: normalizedSkins?.length ?? 0}),
-     () => normalizedSkins
-+      .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
-+      .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
-       .filter(it => {
-         const k = starSelSkins;
-         if (k === 'any') return true;
-         return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
-       })
-       .slice()
--      .sort((a:any,b:any) => String(a?.name ?? '').localeCompare(String(b?.name ?? ''), 'ru'))
-+      .sort(compareByGene)
-   );
- 
-   // ===== Пагинация «Показать ещё» =====
-   let pageSize = 60;
-   let currentPage = 1;
-   $: resetKey = JSON.stringify({ mode, query, geneSel, typeSel, bingoSel, starSelMutants, lenM: items?.length ?? 0, lenS: normalizedSkins?.length ?? 0 });
-   $: if (resetKey) { currentPage = 1; }
-   $: endIndex = pageSize * currentPage;
-   $: shownMutants = useWorker ? filteredMutantsWorkerSlice : filteredMutants.slice(0, endIndex);
-   $: shownSkins = filteredSkins.slice(0, endIndex);
- 
-   // =========
-   // ПРОЧЕЕ
-   // =========
-   function pickTexture(it:any): string {
-     const list = Array.isArray(it?.image) ? it.image : (it?.image ? [it.image] : []);
-     const pick =
-       list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'))
-       || list[0];
-     return pick ?? 'placeholder-mutant.png';
-   }
-   function rarityType(item:any){
-     const s = (item?.star ?? 'normal').toLowerCase();
-     return ['bronze','silver','gold','platinum'].includes(s) ? s : 'normal';
-   }
-@@ -214,101 +328,91 @@
-   {/if}
- 
-   <!-- Переключатель режимов -->
-   <div class="mb-4 flex flex-wrap gap-2">
-     <button type="button"
-       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
-         + (mode==='mutants' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-       on:click={() => switchTo('mutants')}
-       aria-pressed={mode==='mutants'}
-     >
-       MUTANTS
-     </button>
-     <button type="button"
-       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
-         + (mode==='skins' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-       on:click={() => switchTo('skins')}
-       aria-pressed={mode==='skins'}
-     >
-       SKINS
-     </button>
-   </div>
- 
-   <!-- Поиск -->
-   <div class="mb-3">
-     <input
--      class={'w-full px-4 py-3 rounded-lg ring-1 transition outline-none '
--        + (mode==='mutants'
--            ? 'bg-slate-900 text-slate-100 placeholder-slate-400 ring-white/10 focus:ring-2 focus:ring-cyan-400'
--            : 'bg-slate-800/60 text-slate-400 placeholder-slate-500 ring-white/10/30 pointer-events-none')}
--      placeholder={mode==='mutants' ? 'Введите имя мутанта…' : 'Поиск отключён для SKINS'}
-+      class="w-full px-4 py-3 rounded-lg ring-1 transition outline-none bg-slate-900 text-slate-100 placeholder-slate-400 ring-white/10 focus:ring-2 focus:ring-cyan-400"
-+      placeholder="Введите имя мутанта…"
-       bind:value={query}
--      disabled={mode!=='mutants'}
-     />
-   </div>
- 
--  <!-- Гены: две строки (только для MUTANTS; в SKINS заблокировано и приглушено) -->
-- <div class="mb-2 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
-+  <!-- Гены: две строки -->
-+  <div class="mb-2 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
-     <div class="flex flex-col gap-2">
-       <div class="flex flex-wrap gap-2">
-         {#each geneList as g}
-           <button type="button"
--            class={'p-1 rounded-lg ring-1 '
--              + (mode==='mutants'
--                  ? (gene1Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
--                  : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
--            on:click={() => { if(mode==='mutants'){ gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); } }}
-+            class={geneButtonClass(gene1Sel===g.key)}
-+            on:click={() => { gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); }}
-             title={g.label}
-             aria-pressed={gene1Sel===g.key}
-           >
-             <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
-           </button>
-         {/each}
-       </div>
-       <div class="flex flex-wrap gap-2">
-         {#each geneList as g}
-           <button type="button"
--            class={'p-1 rounded-lg ring-1 '
--              + (mode==='mutants'
--                  ? (gene2Sel===g.key ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10')
--                  : 'bg-slate-800/60 ring-white/10/30 pointer-events-none')}
--            on:click={() => { if(mode==='mutants'){ gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); } }}
-+            class={geneButtonClass(gene2Sel===g.key)}
-+            on:click={() => { gene2Sel = (g.key==='' ? '' : (gene2Sel===g.key ? '' : g.key)); }}
-             title={g.label}
-             aria-pressed={gene2Sel===g.key}
-           >
-             <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
-           </button>
-         {/each}
-       </div>
-     </div>
-   </div>
- 
-   <!-- Редкость (иконки) -->
-- <div class="mb-4 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
--  {#if mode === 'mutants'}
--    <div class="flex flex-wrap gap-2">
--      {#each STAR_MUTANTS as s}
-+  <div class="mb-4 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
-+    {#if mode === 'mutants'}
-+      <div class="flex flex-wrap gap-2">
-+        {#each STAR_MUTANTS as s}
-           <button type="button"
-             class={'px-2 h-8 rounded-lg ring-1 flex items-center gap-2 '
-               + (starSelMutants===s.key ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-             on:click={() => (starSelMutants = s.key)}
-             aria-pressed={starSelMutants===s.key}
-           >
-             <img src={s.icon} alt={s.label} class="h-5 w-5 object-contain" />
-             <span class="text-xs">{s.label}</span>
-           </button>
-         {/each}
-       </div>
-     {:else}
-       <div class="flex flex-wrap gap-2">
-         {#each STAR_SKINS as s}
-           <button type="button"
-             class={'px-2 h-8 rounded-lg ring-1 flex items-center gap-2 '
-               + (starSelSkins===s.key ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-             on:click={() => (starSelSkins = s.key)}
-             aria-pressed={starSelSkins===s.key}
-           >
-             {#if s.icon}<img src={s.icon} alt={s.label} class="h-5 w-5 object-contain" />{/if}
-             <span class="text-xs">{s.label}</span>
-           </button>
-         {/each}
-       </div>
-@@ -329,62 +433,62 @@
-       >
-         <option value=''>Любой</option>
-         {#each typeOptions as t}<option value={t}>{TYPE_RU?.[t] ?? t}</option>{/each}
-       </select>
-     </label>
- 
-     <label class="flex flex-col gap-1">
-       <span class="text-xs text-slate-300">Бинго</span>
-       <select
-         class={'px-3 py-2 rounded-lg ring-1 '
-           + (mode==='mutants'
-               ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
-               : 'bg-slate-800/60 text-slate-500 ring-white/10/30 pointer-events-none')}
-         bind:value={bingoSel}
-         disabled={mode!=='mutants'}
-       >
-         <option value=''>Любое</option>
-         {#each bingoOptions as b}<option value={b}>{bingoLabel?.(b) ?? b}</option>{/each}
-       </select>
-     </label>
-   </div>
- 
-   <!-- Сетка карточек -->
-   <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 [content-visibility:auto]" style="contain-intrinsic-size: 1200px;">
-     {#if mode === 'mutants'}
--      {#each shownMutants as it, i (keyOf(it))}
-+      {#each shownMutants as it, i (keyOf(it, i))}
-         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
-           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-             <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
-             <div class="px-3 pt-2 pb-3">
-               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
-             </div>
-           </div>
-         </div>
-       {/each}
-     {:else}
--      {#each shownSkins as it, i (keyOf(it))}
-+      {#each shownSkins as it, i (keyOf(it, i))}
-         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
-           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-             <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
-             <div class="px-3 pt-2 pb-3">
-               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
-             </div>
-           </div>
-         </div>
-       {/each}
-     {/if}
-   </div>
- 
-   <!-- Показать ещё -->
-   {#if mode === 'mutants'}
-     {#if shownMutants.length < filteredMutants.length}
-       <div class="mt-3 flex justify-center">
-         <button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10 text-white"
-                 on:click={() => { currentPage = currentPage + 1; }}>
-           Показать ещё
-         </button>
-       </div>
-     {/if}
-   {:else}
-     {#if shownSkins.length < filteredSkins.length}
-       <div class="mt-3 flex justify-center">
-diff --git a/src/components/breeding/BreedingUI.svelte b/src/components/breeding/BreedingUI.svelte
-index dce6cf314d97b7fc5ce65856715c78e80d860d96..ac23e4030a5af083809fc06d3253a54b30790d61 100644
---- a/src/components/breeding/BreedingUI.svelte
-+++ b/src/components/breeding/BreedingUI.svelte
-@@ -193,63 +193,122 @@ import mutantsData from '@/data/mutants/normal.json';
-       if (excluded.includes(type)) return false;
-       // Default types and explicitly named legends are always breedable
-       if (type === 'default' || alwaysBreedableLegends.includes(name)) return true;
-       // All other types require the mutant itself to be one of the parents
-       if (selectedA && selectedA.id === m.id) return true;
-       if (selectedB && selectedB.id === m.id) return true;
-       return false;
-     });
-   }
- 
-   /**
-    * Mapping of gene letters to tailwind background color classes. These
-    * approximate the colored gene icons seen in the m3guide reference. If a
-    * gene character isn't found in this map, a neutral gray will be used.
-    */
-   const geneColors: Record<string, string> = {
-     a: 'bg-yellow-500',
-     b: 'bg-red-500',
-     c: 'bg-purple-600',
-     d: 'bg-blue-500',
-     e: 'bg-green-500',
-     f: 'bg-pink-500',
-   };
- 
-   /**
--   * Convert an incubation time value from the dataset into a human-readable
--   * string. Times less than 10 are treated as minutes; times up to 24 as
--   * hours; larger values are converted to days. Units use Russian letters to
--   * match the screenshot (м — minutes, ч — hours, д — days).
-+   * Fields that may contain incubation information in the mutants dataset.
-+   * Skins and legacy entries occasionally store the value under an alternate
-+   * property, so we mirror the precedence used in the main mutants browser.
-    */
--  function formatIncubationTime(time: any): string {
--    const n = Number(time);
--    if (!isFinite(n) || n <= 0) return '';
--    if (n < 10) return `${n}м`;
--    // Treat values less than 48 as hours. Some dataset values like 25 should be read as 25 hours.
--    if (n < 48) return `${n}ч`;
--    const days = Math.floor(n / 24);
--    return `${days}д`;
-+  const incubationFields = [
-+    'incub_time',
-+    'incubation',
-+    'incubation_time',
-+    'incubationTime',
-+    'incubation_hours',
-+    'hatch_time',
-+  ];
 +
-+  /**
-+   * Extract the raw incubation value from a mutant or direct value. When an
-+   * object is supplied we probe the known property names, otherwise the
-+   * argument itself is treated as the incubation value.
-+   */
-+  function resolveIncubationValue(source: any): any {
-+    if (source == null) return null;
-+    if (typeof source === 'object' && !Array.isArray(source)) {
-+      for (const field of incubationFields) {
-+        const value = source?.[field];
-+        if (value != null && value !== '') return value;
++  const progress = () => {
++    if (!baseRewards.length) return 0;
++    return Math.round((unlocked.size / baseRewards.length) * 100);
++  };
++
++  const getRewardName = (specimenId: string) => rewardDisplay.get(specimenId)?.name ?? getMutantName(specimenId);
++  const getRewardTexture = (specimenId: string) => rewardDisplay.get(specimenId)?.texture ?? null;
++
++  function updateUnlocked(specimenId: string) {
++    if (!unlocked.has(specimenId)) {
++      const next = new Set(unlocked);
++      next.add(specimenId);
++      unlocked = next;
++      if (!completed && unlocked.size === baseRewards.length) {
++        completed = true;
++        completionTrigger = getMutantName(specimenId);
 +      }
-+      return null;
 +    }
-+    return source;
 +  }
 +
-+  /**
-+   * Convert a raw incubation value to minutes. Most datasets already provide
-+   * minutes, but we also handle string values that may include units or use
-+   * commas as decimal separators. Hours or days are converted to minutes.
-+   */
-+  function coerceMinutes(value: any): number | null {
-+    if (value == null || value === '') return null;
-+    if (typeof value === 'number') {
-+      return Number.isFinite(value) ? value : null;
++  function registerResult(result: SpinResult) {
++    lastResult = result;
++    history = [result, ...history].slice(0, 10);
++  }
++
++  function rollToken(): BasicReward {
++    const options: BasicReward[] = [...gacha.basic_elements];
++    const weights: number[] = options.map((item) => item.odds);
++
++    if (completed && completionReward) {
++      options.push(completionReward);
++      weights.push(completionReward.odds);
 +    }
-+    if (typeof value === 'string') {
-+      const trimmed = value.trim();
-+      if (!trimmed) return null;
-+      const normalized = trimmed.replace(',', '.');
-+      const match = normalized.match(/[-+]?[0-9]*\.?[0-9]+/);
-+      if (!match) return null;
-+      const numeric = Number(match[0]);
-+      if (!Number.isFinite(numeric)) return null;
-+      if (/дн/i.test(normalized)) return numeric * 24 * 60;
-+      if (/час/i.test(normalized) && !/мин/i.test(normalized)) return numeric * 60;
-+      return numeric;
++
++    const totalWeight = weights.reduce((sum, value) => sum + value, 0);
++    if (!totalWeight) {
++      return options[0];
 +    }
++
++    let threshold = Math.random() * totalWeight;
++    for (let i = 0; i < options.length; i += 1) {
++      threshold -= weights[i];
++      if (threshold <= 0) {
++        return options[i];
++      }
++    }
++
++    return options[options.length - 1];
++  }
++
++  function rollSequential(): { reward: BasicReward; completedNow: boolean; trigger?: string } {
++    for (const item of gacha.basic_elements) {
++      if (!unlocked.has(item.specimen)) {
++        return {
++          reward: item,
++          completedNow: unlocked.size + 1 === baseRewards.length,
++          trigger: item.specimen,
++        };
++      }
++    }
++
++    if (!completed) {
++      completed = true;
++    }
++
++    if (completionReward) {
++      return { reward: completionReward, completedNow: false };
++    }
++
++    const randomIndex = Math.floor(Math.random() * baseRewards.length);
++    return { reward: baseRewards[randomIndex], completedNow: false };
++  }
++
++  function spin(costType: 'token' | 'hc') {
++    if (costType === 'token') {
++      const reward = rollToken();
++      const wasCompleted = completed;
++      updateUnlocked(reward.specimen);
++      const completedNow = !wasCompleted && completed && unlocked.size === baseRewards.length;
++      registerResult({
++        item: reward,
++        costType: 'token',
++        isCompletionReward: completionReward ? reward.specimen === completionReward.specimen : false,
++        completedNow,
++        completionTrigger: completedNow ? reward.specimen : undefined,
++      });
++      if (completedNow && !completionTrigger) {
++        completionTrigger = getMutantName(reward.specimen);
++      }
++    } else {
++      const { reward, completedNow, trigger } = rollSequential();
++      const wasCompleted = completed;
++      updateUnlocked(reward.specimen);
++      const completionJustNow = completedNow || (!wasCompleted && completed);
++      registerResult({
++        item: reward,
++        costType: 'hc',
++        isCompletionReward: completionReward ? reward.specimen === completionReward.specimen : false,
++        completedNow: completionJustNow,
++        completionTrigger: completionJustNow ? trigger ?? reward.specimen : undefined,
++      });
++      if (completionJustNow && !completionTrigger) {
++        completionTrigger = getMutantName(trigger ?? reward.specimen);
++      }
++    }
++  }
++</script>
++
++<div class="reactor-layout">
++  <div class="reactor-stage">
++    <div class="stage-header">
++      <div>
++        <h1>{gachaName}</h1>
++        <p>Соберите коллекцию из {baseRewards.length} мутантов и получите награду.</p>
++      </div>
++      <div class="header-progress">
++        <span>Прогресс {unlocked.size}/{baseRewards.length}</span>
++        <div class="header-meter">
++          <div class="header-fill" style={`width: ${progress()}%`}></div>
++        </div>
++      </div>
++    </div>
++
++    <div class="slot-track">
++      {#each baseRewards as reward (reward.specimen)}
++        <div
++          class={`slot-card ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${
++            lastResult?.item.specimen === reward.specimen ? 'active' : ''
++          }`}
++        >
++          <div class="slot-inner">
++            <div class="slot-top">
++              {#if STAR_ICON[reward.stars]}
++                <img
++                  class="slot-stars"
++                  src={STAR_ICON[reward.stars]}
++                  alt={STAR_LABEL[reward.stars]}
++                  title={STAR_LABEL[reward.stars]}
++                />
++              {/if}
++              <span class="slot-odds">{formatPercent(reward)}</span>
++            </div>
++            <div class="slot-art">
++              {#if reward.texture}
++                <img src={reward.texture} alt={reward.name} loading="lazy" />
++              {:else}
++                <span class="slot-placeholder">Нет иллюстрации</span>
++              {/if}
++            </div>
++            <div class="slot-name">{reward.name}</div>
++            <div class="slot-footer">
++              <button type="button" class="profile-btn">Профиль</button>
++              <span class={`slot-status ${unlocked.has(reward.specimen) ? 'is-unlocked' : ''}`}>
++                {unlocked.has(reward.specimen) ? 'Получен' : 'В пуле'}
++              </span>
++            </div>
++          </div>
++          {#if unlocked.has(reward.specimen)}
++            <span class="slot-check">✔</span>
++          {/if}
++        </div>
++      {/each}
++
++      {#if completionReward}
++        <div
++          class={`slot-card completion ${completed ? 'unlocked' : ''} ${
++            lastResult?.item.specimen === completionReward.specimen ? 'active' : ''
++          }`}
++        >
++          <div class="slot-inner">
++            <div class="slot-top">
++              <span class="completion-label">🏆 Финальная награда</span>
++              <span class="slot-odds">{completed ? formatPercent(completionReward) : '—'}</span>
++            </div>
++            <div class="slot-art">
++              {#if completionReward.texture}
++                <img src={completionReward.texture} alt={completionReward.name} loading="lazy" />
++              {:else}
++                <span class="slot-placeholder">Нет иллюстрации</span>
++              {/if}
++            </div>
++            <div class="slot-name">{completionReward.name}</div>
++            <div class="slot-footer">
++              <button type="button" class="profile-btn">Профиль</button>
++              <span class={`slot-status ${completed ? 'is-unlocked' : ''}`}>
++                {completed ? 'Теперь в пуле' : 'Соберите коллекцию'}
++              </span>
++            </div>
++          </div>
++          {#if completed}
++            <span class="slot-check">★</span>
++          {/if}
++        </div>
++      {/if}
++    </div>
++
++    <div class="stage-controls">
++      <div class="cost-line">
++        <div class="cost-pill">
++          <span class="pill-label">Стоимость жетона</span>
++          <strong>{gacha.token_cost}</strong>
++        </div>
++        <div class="cost-pill">
++          <span class="pill-label">Стоимость золота</span>
++          <strong>{gacha.hc_cost}</strong>
++        </div>
++      </div>
++      <div class="spin-buttons">
++        <button class="spin token" on:click={() => spin('token')}>
++          🎲 Крутить за жетоны
++        </button>
++        <button class="spin hc" on:click={() => spin('hc')}>
++          💰 Крутить за золото
++        </button>
++      </div>
++    </div>
++  </div>
++
++  <aside class="info-panel">
++    <div class="info-card progress-card">
++      <header>
++        <h2>Состояние генератора</h2>
++        <span>{progress()}%</span>
++      </header>
++      <div class="progress-meter">
++        <div class="progress-fill" style={`width: ${progress()}%`}></div>
++      </div>
++      <p class="info-text">{unlocked.size} / {baseRewards.length} мутантов открыто.</p>
++      {#if completed}
++        <div class="completion-banner">
++          Генератор завершён{completionTrigger ? `: ${completionTrigger}` : ''}!
++        </div>
++      {/if}
++    </div>
++
++    {#if lastResult}
++      <div class="info-card result-card">
++        <header>
++          <span class={`badge ${lastResult.costType === 'token' ? 'token' : 'hc'}`}>
++            {lastResult.costType === 'token' ? 'Жетоны' : 'Золото'}
++          </span>
++          {#if lastResult.isCompletionReward}
++            <span class="badge completion">🏆</span>
++          {/if}
++        </header>
++        <div class="result-body">
++          {#if getRewardTexture(lastResult.item.specimen)}
++            <img
++              class="result-art"
++              src={getRewardTexture(lastResult.item.specimen) ?? ''}
++              alt={getRewardName(lastResult.item.specimen)}
++            />
++          {/if}
++          <div class="result-info">
++            <h3>{getRewardName(lastResult.item.specimen)}</h3>
++            {#if STAR_ICON[lastResult.item.stars]}
++              <img
++                class="result-star"
++                src={STAR_ICON[lastResult.item.stars]}
++                alt={STAR_LABEL[lastResult.item.stars]}
++              />
++            {/if}
++            <p>Шанс: {formatPercent(lastResult.item)}</p>
++            {#if lastResult.completedNow}
++              <p class="result-complete">Коллекция собрана!</p>
++            {/if}
++          </div>
++        </div>
++      </div>
++    {/if}
++
++    {#if history.length}
++      <div class="info-card history-card">
++        <h3>Последние прокрутки</h3>
++        <ul>
++          {#each history as entry}
++            <li>
++              {#if getRewardTexture(entry.item.specimen)}
++                <img
++                  class="history-art"
++                  src={getRewardTexture(entry.item.specimen) ?? ''}
++                  alt={getRewardName(entry.item.specimen)}
++                />
++              {/if}
++              <div class="history-main">
++                <strong>{getRewardName(entry.item.specimen)}</strong>
++                <div class="history-meta">
++                  <span class={`badge ${entry.costType === 'token' ? 'token' : 'hc'}`}>
++                    {entry.costType === 'token' ? 'Жетоны' : 'Золото'}
++                  </span>
++                  {#if entry.isCompletionReward}
++                    <span class="history-flag">🏆</span>
++                  {/if}
++                  {#if entry.completedNow}
++                    <span class="history-flag">Коллекция</span>
++                  {/if}
++                </div>
++              </div>
++            </li>
++          {/each}
++        </ul>
++      </div>
++    {/if}
++  </aside>
++</div>
++
++<style>
++  .reactor-layout {
++    display: grid;
++    grid-template-columns: minmax(0, 2.2fr) minmax(320px, 1fr);
++    gap: 2rem;
++  }
++
++  @media (max-width: 1100px) {
++    .reactor-layout {
++      grid-template-columns: 1fr;
++    }
++
++    .info-panel {
++      order: -1;
++    }
++  }
++
++  .reactor-stage {
++    position: relative;
++    padding: 2.25rem 2rem 2rem;
++    border-radius: 28px;
++    background: radial-gradient(circle at top, rgba(62, 84, 122, 0.35), transparent 60%),
++      linear-gradient(145deg, rgba(14, 23, 42, 0.95), rgba(7, 11, 22, 0.95));
++    border: 1px solid rgba(59, 130, 246, 0.25);
++    box-shadow: 0 35px 70px rgba(5, 10, 20, 0.55);
++    overflow: hidden;
++  }
++
++  .reactor-stage::after {
++    content: '';
++    position: absolute;
++    inset: 1px;
++    border-radius: 26px;
++    pointer-events: none;
++    background: linear-gradient(160deg, rgba(148, 163, 184, 0.08), rgba(15, 23, 42, 0.6));
++    mix-blend-mode: screen;
++    opacity: 0.3;
++  }
++
++  .reactor-stage > * {
++    position: relative;
++    z-index: 1;
++  }
++
++  .stage-header {
++    display: flex;
++    justify-content: space-between;
++    gap: 1.5rem;
++    align-items: flex-start;
++    color: #e2e8f0;
++  }
++
++  .stage-header h1 {
++    margin: 0;
++    font-size: 2.1rem;
++    letter-spacing: 0.04em;
++  }
++
++  .stage-header p {
++    margin: 0.35rem 0 0;
++    color: #9fb7d3;
++    font-size: 0.95rem;
++  }
++
++  .header-progress {
++    min-width: 200px;
++    text-align: right;
++    display: flex;
++    flex-direction: column;
++    gap: 0.4rem;
++  }
++
++  .header-progress span {
++    font-size: 0.9rem;
++    color: #cbd5f5;
++    letter-spacing: 0.08em;
++    text-transform: uppercase;
++  }
++
++  .header-meter {
++    height: 10px;
++    border-radius: 999px;
++    background: rgba(148, 163, 184, 0.2);
++    overflow: hidden;
++  }
++
++  .header-fill {
++    height: 100%;
++    background: linear-gradient(90deg, #38bdf8, #6366f1);
++    transition: width 0.3s ease;
++  }
++
++  .slot-track {
++    margin: 2.5rem 0;
++    display: grid;
++    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
++    gap: 1.5rem;
++  }
++
++  .slot-card {
++    position: relative;
++    border-radius: 18px;
++    background: linear-gradient(175deg, rgba(74, 222, 128, 0.75), rgba(59, 130, 246, 0.15));
++    border: 1px solid rgba(148, 163, 184, 0.35);
++    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
++    overflow: hidden;
++    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
++  }
++
++  .slot-card::before {
++    content: '';
++    position: absolute;
++    inset: 0;
++    background: linear-gradient(160deg, rgba(255, 255, 255, 0.25), transparent 60%);
++    opacity: 0.45;
++    pointer-events: none;
++  }
++
++  .slot-card.unlocked {
++    border-color: rgba(34, 197, 94, 0.9);
++    box-shadow: 0 20px 35px rgba(34, 197, 94, 0.25);
++  }
++
++  .slot-card.active {
++    transform: translateY(-6px) scale(1.02);
++    border-color: rgba(250, 204, 21, 0.9);
++    box-shadow: 0 22px 40px rgba(250, 204, 21, 0.25);
++    filter: saturate(1.1);
++  }
++
++  .slot-card.completion {
++    background: linear-gradient(175deg, rgba(251, 191, 36, 0.85), rgba(253, 186, 116, 0.2));
++    border-color: rgba(253, 224, 71, 0.6);
++  }
++
++  .slot-card.completion.unlocked {
++    border-color: rgba(253, 224, 71, 0.95);
++    box-shadow: 0 20px 35px rgba(253, 224, 71, 0.35);
++  }
++
++  .slot-inner {
++    position: relative;
++    z-index: 1;
++    display: flex;
++    flex-direction: column;
++    gap: 0.75rem;
++    padding: 1.1rem 1rem 1.2rem;
++    color: #0f172a;
++  }
++
++  .slot-top {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    gap: 0.75rem;
++  }
++
++  .slot-stars {
++    height: 42px;
++    filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.45));
++  }
++
++  .slot-odds {
++    font-size: 0.85rem;
++    color: rgba(15, 23, 42, 0.7);
++    background: rgba(255, 255, 255, 0.65);
++    padding: 0.25rem 0.5rem;
++    border-radius: 999px;
++    font-weight: 600;
++    letter-spacing: 0.05em;
++  }
++
++  .completion-label {
++    font-size: 0.78rem;
++    font-weight: 700;
++    letter-spacing: 0.1em;
++    text-transform: uppercase;
++    color: rgba(15, 23, 42, 0.8);
++  }
++
++  .slot-art {
++    position: relative;
++    height: 200px;
++    border-radius: 16px;
++    background: rgba(255, 255, 255, 0.45);
++    display: flex;
++    align-items: flex-end;
++    justify-content: center;
++    overflow: hidden;
++    box-shadow: inset 0 0 12px rgba(15, 23, 42, 0.25);
++  }
++
++  .slot-art img {
++    width: 100%;
++    height: 100%;
++    object-fit: contain;
++    transform: translateY(6px);
++  }
++
++  .slot-placeholder {
++    color: rgba(15, 23, 42, 0.45);
++    font-size: 0.85rem;
++    letter-spacing: 0.05em;
++  }
++
++  .slot-name {
++    font-size: 1rem;
++    font-weight: 700;
++    letter-spacing: 0.04em;
++  }
++
++  .slot-footer {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    gap: 0.75rem;
++    margin-top: auto;
++  }
++
++  .profile-btn {
++    flex: 0 0 auto;
++    padding: 0.45rem 0.9rem;
++    border-radius: 999px;
++    border: none;
++    background: rgba(15, 23, 42, 0.85);
++    color: #f8fafc;
++    font-weight: 700;
++    letter-spacing: 0.05em;
++    text-transform: uppercase;
++    cursor: pointer;
++    transition: transform 0.2s ease, filter 0.2s ease;
++  }
++
++  .profile-btn:hover {
++    transform: translateY(-2px);
++    filter: brightness(1.05);
++  }
++
++  .slot-status {
++    font-size: 0.78rem;
++    text-transform: uppercase;
++    letter-spacing: 0.1em;
++    color: rgba(15, 23, 42, 0.55);
++  }
++
++  .slot-status.is-unlocked {
++    color: rgba(15, 118, 110, 0.95);
++  }
++
++  .slot-card.completion .slot-status.is-unlocked {
++    color: rgba(217, 119, 6, 0.95);
++  }
++
++  .slot-check {
++    position: absolute;
++    top: 10px;
++    right: 12px;
++    font-size: 1.4rem;
++    color: rgba(15, 23, 42, 0.75);
++    text-shadow: 0 4px 6px rgba(255, 255, 255, 0.3);
++  }
++
++  .stage-controls {
++    display: flex;
++    flex-direction: column;
++    gap: 1.25rem;
++  }
++
++  .cost-line {
++    display: flex;
++    gap: 1rem;
++    flex-wrap: wrap;
++  }
++
++  .cost-pill {
++    background: linear-gradient(120deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.8));
++    border: 1px solid rgba(148, 163, 184, 0.35);
++    padding: 0.75rem 1.25rem;
++    border-radius: 999px;
++    display: flex;
++    flex-direction: column;
++    gap: 0.2rem;
++    color: #e2e8f0;
++  }
++
++  .pill-label {
++    font-size: 0.75rem;
++    letter-spacing: 0.1em;
++    text-transform: uppercase;
++    color: rgba(148, 163, 184, 0.9);
++  }
++
++  .cost-pill strong {
++    font-size: 1.2rem;
++    letter-spacing: 0.08em;
++  }
++
++  .spin-buttons {
++    display: flex;
++    gap: 1rem;
++    flex-wrap: wrap;
++  }
++
++  .spin {
++    flex: 1 1 220px;
++    padding: 1.1rem 1.4rem;
++    border-radius: 18px;
++    border: none;
++    cursor: pointer;
++    font-size: 1.05rem;
++    font-weight: 700;
++    letter-spacing: 0.03em;
++    text-transform: uppercase;
++    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
++    color: #0f172a;
++  }
++
++  .spin.token {
++    background: linear-gradient(130deg, #34d399, #22d3ee);
++    box-shadow: 0 18px 30px rgba(45, 212, 191, 0.35);
++  }
++
++  .spin.hc {
++    background: linear-gradient(130deg, #facc15, #fb7185);
++    box-shadow: 0 18px 30px rgba(248, 113, 113, 0.35);
++  }
++
++  .spin:hover {
++    transform: translateY(-4px);
++    filter: brightness(1.06);
++  }
++
++  .info-panel {
++    display: flex;
++    flex-direction: column;
++    gap: 1.5rem;
++  }
++
++  .info-card {
++    background: linear-gradient(150deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85));
++    border-radius: 22px;
++    border: 1px solid rgba(59, 130, 246, 0.2);
++    padding: 1.5rem;
++    color: #e2e8f0;
++    box-shadow: 0 25px 40px rgba(5, 12, 25, 0.4);
++  }
++
++  .progress-card header,
++  .result-card header {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    gap: 1rem;
++  }
++
++  .progress-card header h2,
++  .result-card h3,
++  .history-card h3 {
++    margin: 0;
++    letter-spacing: 0.05em;
++    text-transform: uppercase;
++    font-size: 0.95rem;
++    color: #bfdbfe;
++  }
++
++  .progress-card header span {
++    font-size: 1rem;
++    color: #facc15;
++  }
++
++  .progress-meter {
++    height: 12px;
++    border-radius: 999px;
++    background: rgba(148, 163, 184, 0.2);
++    overflow: hidden;
++    margin-top: 1rem;
++  }
++
++  .progress-fill {
++    height: 100%;
++    background: linear-gradient(90deg, #22d3ee, #38bdf8, #6366f1);
++    transition: width 0.3s ease;
++  }
++
++  .info-text {
++    margin: 0.75rem 0 0;
++    color: #cbd5f5;
++    font-size: 0.9rem;
++  }
++
++  .completion-banner {
++    margin-top: 1rem;
++    padding: 0.75rem 1rem;
++    border-radius: 14px;
++    background: linear-gradient(120deg, rgba(253, 224, 71, 0.25), rgba(250, 204, 21, 0.15));
++    border: 1px solid rgba(250, 204, 21, 0.4);
++    color: #fde68a;
++    font-weight: 700;
++    letter-spacing: 0.05em;
++  }
++
++  .badge {
++    display: inline-flex;
++    align-items: center;
++    justify-content: center;
++    border-radius: 999px;
++    padding: 0.25rem 0.6rem;
++    font-size: 0.8rem;
++    letter-spacing: 0.08em;
++    text-transform: uppercase;
++    font-weight: 700;
++    background: rgba(59, 130, 246, 0.15);
++    color: #93c5fd;
++  }
++
++  .badge.token {
++    background: rgba(45, 212, 191, 0.2);
++    color: #5eead4;
++  }
++
++  .badge.hc {
++    background: rgba(248, 113, 113, 0.2);
++    color: #fca5a5;
++  }
++
++  .badge.completion {
++    background: rgba(250, 204, 21, 0.25);
++    color: #fde68a;
++  }
++
++  .result-body {
++    display: flex;
++    gap: 1rem;
++    margin-top: 1rem;
++    align-items: center;
++  }
++
++  .result-art {
++    width: 84px;
++    height: 84px;
++    object-fit: contain;
++    border-radius: 18px;
++    background: rgba(15, 23, 42, 0.6);
++    padding: 0.4rem;
++  }
++
++  .result-info h3 {
++    margin: 0 0 0.35rem;
++    font-size: 1.05rem;
++    letter-spacing: 0.04em;
++  }
++
++  .result-info p {
++    margin: 0.3rem 0 0;
++    color: #cbd5f5;
++    font-size: 0.9rem;
++  }
++
++  .result-star {
++    height: 46px;
++    margin-bottom: 0.35rem;
++  }
++
++  .result-complete {
++    color: #facc15;
++    font-weight: 700;
++    letter-spacing: 0.04em;
++  }
++
++  .history-card ul {
++    margin: 1rem 0 0;
++    padding: 0;
++    list-style: none;
++    display: flex;
++    flex-direction: column;
++    gap: 0.85rem;
++  }
++
++  .history-card li {
++    display: flex;
++    align-items: center;
++    gap: 0.9rem;
++  }
++
++  .history-art {
++    width: 54px;
++    height: 54px;
++    object-fit: contain;
++    border-radius: 14px;
++    background: rgba(30, 41, 59, 0.7);
++    padding: 0.3rem;
++  }
++
++  .history-main strong {
++    display: block;
++    font-size: 0.95rem;
++    letter-spacing: 0.04em;
++  }
++
++  .history-meta {
++    display: flex;
++    gap: 0.4rem;
++    flex-wrap: wrap;
++    align-items: center;
++    margin-top: 0.25rem;
++  }
++
++  .history-flag {
++    font-size: 0.75rem;
++    letter-spacing: 0.08em;
++    text-transform: uppercase;
++    color: #c4b5fd;
++  }
++</style>
+diff --git a/src/data/simulators/reactor/gacha.json b/src/data/simulators/reactor/gacha.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..e4c9f41967b1ad2f6b433c6bdfea0d589744f558
+--- /dev/null
++++ b/src/data/simulators/reactor/gacha.json
+@@ -0,0 +1,819 @@
++{
++  "girl": {
++    "token_cost": 1,
++    "hc_cost": 1125,
++    "filter": "gacha_pack_girl",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_AA_01",
++        "stars": 0,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CD_01",
++        "stars": 0,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CB_01",
++        "stars": 0,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_F_01",
++        "stars": 1,
++        "odds": 11,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_FB_01",
++        "stars": 1,
++        "odds": 18,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_CF_01",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "gothic": {
++    "token_cost": 1,
++    "hc_cost": 1150,
++    "filter": "gacha_pack_gothic",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_CE_01",
++        "stars": 0,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BF_01",
++        "stars": 0,
++        "odds": 22,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_DC_01",
++        "stars": 0,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_E_01",
++        "stars": 1,
++        "odds": 11,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_FD_01",
++        "stars": 2,
++        "odds": 18,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_DC_03",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "steampunk": {
++    "token_cost": 1,
++    "hc_cost": 1150,
++    "filter": "gacha_pack_steampunk",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_BF_02",
++        "stars": 0,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_EC_01",
++        "stars": 0,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AB_01",
++        "stars": 1,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_C_01",
++        "stars": 2,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AC_02",
++        "stars": 3,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_AD_01",
++      "stars": 3,
++      "odds": 11,
++      "bonus": -10
++    }
++  },
++  "heroes": {
++    "token_cost": 2,
++    "hc_cost": 1850,
++    "filter": "gacha_pack_heroes",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_FC_02",
++        "stars": 0,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_AE_01",
++        "stars": 1,
++        "odds": 22,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_BB_01",
++        "stars": 2,
++        "odds": 20,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_CA_01",
++        "stars": 3,
++        "odds": 18,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_FA_01",
++        "stars": 3,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_EF_02",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "japan": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_japan",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_CC_01",
++        "stars": 1,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_A_01",
++        "stars": 2,
++        "odds": 22,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_DF_01",
++        "stars": 3,
++        "odds": 20,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_BA_02",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CB_02",
++        "stars": 3,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_FD_03",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "starwars": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_starwars",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_AF_04",
++        "stars": 1,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_CC_03",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CD_01",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_EC_01",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BC_01",
++        "stars": 3,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_BF_04",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "music": {
++    "token_cost": 4,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_music",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_AA_03",
++        "stars": 2,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BF_06",
++        "stars": 2,
++        "odds": 22,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_EE_04",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_FB_05",
++        "stars": 4,
++        "odds": 18,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_DE_05",
++        "stars": 4,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_DA_09",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "western": {
++    "token_cost": 4,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_western",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_FF_06",
++        "stars": 3,
++        "odds": 29,
++        "bonus": 15
++      },
++      {
++        "specimen": "Specimen_FC_07",
++        "stars": 3,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AA_06",
++        "stars": 4,
++        "odds": 20,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_DB_04",
++        "stars": 0,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CF_06",
++        "stars": 0,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_BF_10",
++      "stars": 4,
++      "odds": 11,
++      "bonus": -10
++    }
++  },
++  "beach": {
++    "token_cost": 4,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_beach",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_FE_08",
++        "stars": 3,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_EE_07",
++        "stars": 4,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BB_08",
++        "stars": 2,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AB_07",
++        "stars": 0,
++        "odds": 18,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_AF_08",
++        "stars": 3,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_CA_11",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 0
++    }
++  },
++  "vegetal": {
++    "token_cost": 5,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_vegetal",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_BB_02",
++        "stars": 3,
++        "odds": 32,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_DC_08",
++        "stars": 2,
++        "odds": 23,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_AF_01",
++        "stars": 4,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_DE_09",
++        "stars": 3,
++        "odds": 15,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_CA_06",
++        "stars": 3,
++        "odds": 10,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_DF_12",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 0
++    }
++  },
++  "olympics": {
++    "token_cost": 5,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_olympics",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_FA_08",
++        "stars": 2,
++        "odds": 32,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_CA_02",
++        "stars": 4,
++        "odds": 23,
++        "bonus": 20
++      },
++      {
++        "specimen": "Specimen_FD_06",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CA_07",
++        "stars": 2,
++        "odds": 15,
++        "bonus": 15
++      },
++      {
++        "specimen": "Specimen_CA_08",
++        "stars": 3,
++        "odds": 10,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_CA_14",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 0
++    }
++  },
++  "gachaboss": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_gachaboss",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_FF_01",
++        "stars": 1,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_D_01",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_FB_03",
++        "stars": 3,
++        "odds": 20,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_DB_01",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_EA_01",
++        "stars": 3,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_AB_05",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "villains": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_villains",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_DA_01",
++        "stars": 1,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_B_01",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AB_02",
++        "stars": 3,
++        "odds": 20,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_EC_03",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BA_03",
++        "stars": 3,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_CE_05",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "olympians": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_olympians",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_CC_04",
++        "stars": 0,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AC_01",
++        "stars": 1,
++        "odds": 22,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_BC_02",
++        "stars": 2,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BB_03",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CE_03",
++        "stars": 3,
++        "odds": 11,
++        "bonus": -10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_EC_06",
++      "stars": 3,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "movies": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_movies",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_ED_03",
++        "stars": 1,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_EB_04",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CB_03",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BD_03",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CC_02",
++        "stars": 3,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_FA_06",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "elements": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_elements",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_EF_01",
++        "stars": 1,
++        "odds": 30,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_EB_02",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BD_04",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_EB_05",
++        "stars": 3,
++        "odds": 21,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_DF_04",
++        "stars": 3,
++        "odds": 9,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_EB_06",
++      "stars": 4,
++      "odds": 7,
++      "bonus": 10
++    }
++  },
++  "soldiers": {
++    "token_cost": 3,
++    "hc_cost": 2300,
++    "filter": "gacha_pack_soldiers",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_AB_04",
++        "stars": 2,
++        "odds": 29,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CF_02",
++        "stars": 3,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BC_04",
++        "stars": 0,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AD_05",
++        "stars": 3,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_CD_06",
++        "stars": 4,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_BD_07",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "lucha": {
++    "token_cost": 4,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_lucha",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_CF_03",
++        "stars": 3,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_DE_04",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_DC_05",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_FE_04",
++        "stars": 4,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BE_05",
++        "stars": 4,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_AC_07",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 10
++    }
++  },
++  "fantasy": {
++    "token_cost": 4,
++    "hc_cost": 2500,
++    "filter": "gacha_pack_fantasy",
++    "basic_elements": [
++      {
++        "specimen": "Specimen_FC_04",
++        "stars": 2,
++        "odds": 29,
++        "bonus": -10
++      },
++      {
++        "specimen": "Specimen_FC_05",
++        "stars": 2,
++        "odds": 22,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_DB_06",
++        "stars": 3,
++        "odds": 20,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_AC_03",
++        "stars": 4,
++        "odds": 18,
++        "bonus": 10
++      },
++      {
++        "specimen": "Specimen_BD_05",
++        "stars": 4,
++        "odds": 11,
++        "bonus": 10
++      }
++    ],
++    "completion_reward": {
++      "specimen": "Specimen_FC_09",
++      "stars": 4,
++      "odds": 11,
++      "bonus": 10
++    }
++  }
++}
+\ No newline at end of file
+diff --git a/src/data/simulators/reactor/mutant_names (2).json b/src/data/simulators/reactor/mutant_names.json
+similarity index 99%
+rename from src/data/simulators/reactor/mutant_names (2).json
+rename to src/data/simulators/reactor/mutant_names.json
+index e6eca61594a06043b00b235af212b1d2b0da2b4e..2e66917743f190c71db3da370b39189e3d117f42 100644
+--- a/src/data/simulators/reactor/mutant_names (2).json	
++++ b/src/data/simulators/reactor/mutant_names.json
+@@ -2624,26 +2624,26 @@
+   "Specimen_FF_09_Bronze_sc": "Бронзовый Мокрушник",
+   "Specimen_FF_09_Gold": "Золотой Мокрушник",
+   "Specimen_FF_09_rc": "Мокрушник",
+   "Specimen_FF_09_rc_payment_text": "Мокрушник",
+   "Specimen_FF_09_sc": "Мокрушник",
+   "Specimen_FF_10": "Брегбим",
+   "Specimen_FF_10_attack_1": "Дикий луч",
+   "Specimen_FF_10_attack_1p": "Дикий луч",
+   "Specimen_FF_10_attack_2": "Зов природы",
+   "Specimen_FF_10_attack_2p": "Зов природы",
+   "Specimen_FF_10_Gold": "Золотая Брегбим",
+   "Specimen_FF_10_rc": "Брегбим",
+   "Specimen_FF_10_rc_payment_text": "Брегбим",
+   "Specimen_FF_11": "Жерар Стилгарден",
+   "Specimen_FF_11_Gold": "Золотой Жерар Стилгарден",
+   "Specimen_FF_11_rc": "Жерар Стилгарден",
+   "Specimen_FF_11_rc_payment_text": "Жерар Стилгарден",
+   "Specimen_FF_11_Silver": "Серебряный Жерар Стилгарден",
+   "Specimen_FF_12": "Вечный архивариус",
+   "Specimen_FF_13": "Сакурабоши",
+   "Specimen_FF_13_Gold": "Золотой Сакурабоши",
+   "Specimen_FF_13_rc": "Сакурабоши",
+   "Specimen_FF_13_rc_payment_text": "Сакурабоши",
+   "Specimen_FF_14": "Сумеречный пророк",
+   "Specimen_FF_99": "Эмоциональная маскарада"
+-}
++}
+\ No newline at end of file
+diff --git a/src/lib/mutant-textures.ts b/src/lib/mutant-textures.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..435c45a35e277c95fa69deb5979697a2eaf4c2a4
+--- /dev/null
++++ b/src/lib/mutant-textures.ts
+@@ -0,0 +1,30 @@
++import skins from '@/data/mutants/skins.json';
++
++const CDN_BASE = 'https://static.kobojo.com/mutants/v4/';
++
++type SkinEntry = (typeof skins)['specimens'][number];
++
++const textureMap: Record<string, string | null> = Object.create(null);
++
++for (const specimen of skins.specimens as SkinEntry[]) {
++  const [full, semi] = specimen.image ?? [];
++  const path = semi ?? full;
++  if (path) {
++    const cleaned = path.startsWith('/') ? path.slice(1) : path;
++    textureMap[specimen.id] = `${CDN_BASE}${cleaned}`;
++  } else {
++    textureMap[specimen.id] = null;
++  }
++}
++
++export function getSpecimenTexture(specimenId: string): string | null {
++  return textureMap[specimenId] ?? null;
++}
++
++export function getSpecimenTextures(ids: Iterable<string>): Record<string, string | null> {
++  const result: Record<string, string | null> = {};
++  for (const id of ids) {
++    result[id] = getSpecimenTexture(id);
++  }
++  return result;
++}
+diff --git a/src/lib/reactor-gacha.ts b/src/lib/reactor-gacha.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..507db064b40c765de09be931ccf8472c65c274b7
+--- /dev/null
++++ b/src/lib/reactor-gacha.ts
+@@ -0,0 +1,93 @@
++import gachaRaw from '@/data/simulators/reactor/gacha.json';
++import mutantNamesRaw from '@/data/simulators/reactor/mutant_names.json';
++
++export type GachaId = keyof typeof gachaRaw;
++
++export interface BasicReward {
++  specimen: string;
++  stars: number;
++  odds: number;
++  bonus: number;
++}
++
++export interface GachaDefinition {
++  token_cost: number;
++  hc_cost: number;
++  filter: string;
++  basic_elements: BasicReward[];
++  completion_reward: BasicReward | null;
++}
++
++export interface GachaMeta extends GachaDefinition {
++  id: string;
++  name: string;
++  totalOdds: number;
++}
++
++export const STAR_LABEL: Record<number, string> = {
++  0: '',
++  1: 'Бронзовая звезда',
++  2: 'Серебряная звезда',
++  3: 'Золотая звезда',
++  4: 'Платиновая звезда',
++};
++
++export const STAR_ICON: Record<number, string> = {
++  0: '/stars/no_stars.png',
++  1: '/stars/star_bronze.png',
++  2: '/stars/star_silver.png',
++  3: '/stars/star_gold.png',
++  4: '/stars/star_platinum.png',
++};
++
++export const GACHA_NAME_RU: Record<string, string> = {
++  western: 'Western',
++  gachaboss: 'Большой босс',
++  japan: 'Япония',
++  fantasy: 'Темное фентези',
++  lucha: "Мучачо's",
++  olympians: 'Боги арены',
++  music: 'Диско',
++  villains: 'Супер злодеи',
++  starwars: 'Космические войны',
++  beach: 'Тропическое лето',
++  heroes: 'Супергерои',
++  soldiers: 'Патруль времени',
++  gothic: 'Готика',
++  movies: 'Кино',
++  elements: 'Команда элементалей',
++  steampunk: 'Стимпанк',
++  vegetal: 'Фотосинтез',
++  girl: 'Хищницы',
++  olympics: 'Кровавые игры',
++};
++
++export const mutantNames: Record<string, string> = mutantNamesRaw;
++
++export const gachaMap: Record<string, GachaDefinition> = gachaRaw;
++
++export function getGachaMeta(id: string): GachaMeta | null {
++  const definition = gachaMap[id];
++  if (!definition) {
 +    return null;
 +  }
++  const totalOdds = definition.basic_elements.reduce((sum, item) => sum + item.odds, 0);
++  const name = GACHA_NAME_RU[id] ?? id;
++  return {
++    id,
++    name,
++    totalOdds,
++    ...definition,
++  };
++}
 +
-+  /**
-+   * Resolve the incubation duration (in minutes) from a mutant entry or value.
-+   */
-+  function getIncubationMinutes(source: any): number | null {
-+    const raw = resolveIncubationValue(source);
-+    return coerceMinutes(raw);
++export function listGachas(): GachaMeta[] {
++  return Object.keys(gachaMap)
++    .map((id) => getGachaMeta(id)!)
++    .filter(Boolean)
++    .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
++}
++
++export function getMutantName(specimenId: string): string {
++  return mutantNames[specimenId] ?? specimenId;
++}
+diff --git a/src/pages/simulators/index.astro b/src/pages/simulators/index.astro
+index ef018debf280a52e72298c1679b418c378c87c83..f0fc4ee73d4738df7acdca5df20352c2ebb1e8af 100644
+--- a/src/pages/simulators/index.astro
++++ b/src/pages/simulators/index.astro
+@@ -1,24 +1,29 @@
+ ---
+ import BaseLayout from '../../layouts/BaseLayout.astro';
+ import CardGrid from '../../components/CardGrid.astro';
+ ---
+ <BaseLayout title="Симуляторы">
+   <h1>Симуляторы</h1>
+   <p>Выберите симулятор, чтобы протестировать его работу. Каждый симулятор
+   рассчитывает награды и шансы в реальном времени.</p>
+   <CardGrid
+     cards={[
+       {
+         title: 'Breeding',
+         desc: 'Скрещивания мутантов',
+         href: 'simulators/breeding',
+       },
+       {
+         title: 'Stats Calculator',
+         desc: 'Калькулятор статов мутантов',
+         href: 'simulators/stats',         // ← новая карточка
+       },
++      {
++        title: 'Reactor Simulator',
++        desc: 'Все генераторы реактора и шансы выпадения мутантов',
++        href: 'simulators/reactor',
++      },
+       // ... остальные карточки ...
+     ]}
+   />
+ </BaseLayout>
+diff --git a/src/pages/simulators/reactor/[gachaId].astro b/src/pages/simulators/reactor/[gachaId].astro
+new file mode 100644
+index 0000000000000000000000000000000000000000..6c5be49f00cc5ae6720ad4dba29288561ca0f942
+--- /dev/null
++++ b/src/pages/simulators/reactor/[gachaId].astro
+@@ -0,0 +1,54 @@
++---
++import BaseLayout from '../../../layouts/BaseLayout.astro';
++import ReactorSimulator from '../../../components/simulators/reactor/ReactorSimulator.svelte';
++import { getGachaMeta, listGachas } from '../../../lib/reactor-gacha';
++import { getSpecimenTexture } from '../../../lib/mutant-textures';
++
++interface Props {
++  gacha: ReturnType<typeof getGachaMeta> extends infer T ? Exclude<T, null> : never;
++  textures: Record<string, string | null>;
++}
++
++export function getStaticPaths() {
++  return listGachas().map((gacha) => {
++    const textures: Record<string, string | null> = {};
++    for (const reward of gacha.basic_elements) {
++      textures[reward.specimen] = getSpecimenTexture(reward.specimen);
++    }
++    if (gacha.completion_reward) {
++      textures[gacha.completion_reward.specimen] = getSpecimenTexture(
++        gacha.completion_reward.specimen,
++      );
++    }
++
++    return {
++      params: { gachaId: gacha.id },
++      props: { gacha, textures },
++    };
++  });
++}
++
++const { gacha, textures } = Astro.props as Props;
++---
++<BaseLayout title={`Реактор — ${gacha.name}`}>
++  <a class="back-link" href="/simulators/reactor">← Назад к выбору генератора</a>
++  <ReactorSimulator client:load gachaId={gacha.id} gacha={gacha} textures={textures} />
++</BaseLayout>
++
++<style>
++  .back-link {
++    display: inline-flex;
++    align-items: center;
++    gap: 0.25rem;
++    margin-bottom: 1.5rem;
++    color: #93c5fd;
++    text-decoration: none;
++    font-size: 0.95rem;
++    text-transform: uppercase;
++    letter-spacing: 0.08em;
 +  }
 +
-+  /**
-+   * Format an incubation value to the "мин." representation used across the
-+   * site. Accepts either a mutant object or a direct value.
-+   */
-+  function formatIncubationTime(source: any): string {
-+    const minutes = typeof source === 'object' ? getIncubationMinutes(source) : coerceMinutes(source);
-+    if (minutes == null) return '';
-+    if (!Number.isFinite(minutes) || minutes <= 0) return '';
-+    return `${Math.round(minutes)} мин.`;
-   }
++  .back-link:hover {
++    text-decoration: underline;
++  }
++</style>
+diff --git a/src/pages/simulators/reactor/index.astro b/src/pages/simulators/reactor/index.astro
+new file mode 100644
+index 0000000000000000000000000000000000000000..b1758e29ce2e9fd39b706e012a4907bfe36e7e4e
+--- /dev/null
++++ b/src/pages/simulators/reactor/index.astro
+@@ -0,0 +1,145 @@
++---
++import BaseLayout from '../../../layouts/BaseLayout.astro';
++import { listGachas } from '../../../lib/reactor-gacha';
++
++const gachas = listGachas();
++---
++<BaseLayout title="Реактор — выбор генератора">
++  <section class="intro">
++    <h1>Реактор: выберите генератор</h1>
++    <p>
++      Здесь собраны все тематические генераторы реактора Mutants: Genetic Gladiators.
++      Выберите нужную коллекцию, чтобы перейти к симулятору и прокрутить барабан.
++    </p>
++  </section>
++
++  <section class="gacha-grid">
++    {gachas.map((gacha) => (
++      <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
++        <div class="card-header">
++          <h2>{gacha.name}</h2>
++          <span class="tag">{gacha.filter}</span>
++        </div>
++        <div class="card-body">
++          <div class="stat">
++            <span class="label">Мутантов</span>
++            <strong>{gacha.basic_elements.length}</strong>
++          </div>
++          <div class="stat">
++            <span class="label">Жетоны</span>
++            <strong>{gacha.token_cost}</strong>
++          </div>
++          <div class="stat">
++            <span class="label">Золото</span>
++            <strong>{gacha.hc_cost}</strong>
++          </div>
++        </div>
++        <span class="cta">Открыть генератор →</span>
++      </a>
++    ))}
++  </section>
++</BaseLayout>
++
++<style>
++  .intro {
++    margin-bottom: 2.5rem;
++  }
++
++  .intro h1 {
++    margin: 0 0 1rem;
++    font-size: 2.4rem;
++    color: #f8fafc;
++  }
++
++  .intro p {
++    margin: 0;
++    color: #94a3b8;
++    max-width: 720px;
++    font-size: 1rem;
++    line-height: 1.7;
++  }
++
++  .gacha-grid {
++    display: grid;
++    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
++    gap: 1.5rem;
++  }
++
++  .gacha-card {
++    display: flex;
++    flex-direction: column;
++    gap: 1rem;
++    padding: 1.5rem;
++    border-radius: 18px;
++    border: 1px solid rgba(148, 163, 184, 0.18);
++    background: radial-gradient(circle at top, rgba(59, 130, 246, 0.25), rgba(15, 23, 42, 0.85));
++    color: #e2e8f0;
++    text-decoration: none;
++    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
++  }
++
++  .gacha-card:hover {
++    transform: translateY(-4px);
++    border-color: rgba(96, 165, 250, 0.6);
++    box-shadow: 0 18px 32px rgba(37, 99, 235, 0.25);
++  }
++
++  .card-header {
++    display: flex;
++    justify-content: space-between;
++    align-items: flex-start;
++    gap: 0.5rem;
++  }
++
++  .card-header h2 {
++    margin: 0;
++    font-size: 1.4rem;
++    line-height: 1.25;
++    color: #f8fafc;
++  }
++
++  .tag {
++    background: rgba(15, 23, 42, 0.6);
++    border: 1px solid rgba(148, 163, 184, 0.25);
++    border-radius: 999px;
++    padding: 0.25rem 0.75rem;
++    font-size: 0.75rem;
++    text-transform: uppercase;
++    letter-spacing: 0.08em;
++    color: #cbd5f5;
++  }
++
++  .card-body {
++    display: grid;
++    grid-template-columns: repeat(3, minmax(0, 1fr));
++    gap: 0.75rem;
++  }
++
++  .stat {
++    background: rgba(15, 23, 42, 0.55);
++    border-radius: 12px;
++    padding: 0.75rem;
++    text-align: center;
++    border: 1px solid rgba(148, 163, 184, 0.18);
++  }
++
++  .stat .label {
++    display: block;
++    font-size: 0.75rem;
++    color: #94a3b8;
++    margin-bottom: 0.25rem;
++  }
++
++  .stat strong {
++    font-size: 1.15rem;
++    color: #f8fafc;
++  }
++
++  .cta {
++    margin-top: auto;
++    font-size: 0.95rem;
++    color: #93c5fd;
++    text-transform: uppercase;
++    letter-spacing: 0.08em;
++  }
++</style>
  
-   /**
-    * Derive a user-friendly category label and associated color class from a
-    * mutant's type. Categories loosely follow the naming conventions found in
-    * m3guide. Unknown types fall back to a neutral gray.
-    */
-   function getCategory(m: any): { label: string; color: string } {
-     const type = (m.type ?? '').toLowerCase();
-     switch (type) {
-       case 'default':
-         return { label: 'Обычный', color: 'bg-gray-400' };
-       case 'legend':
-         return { label: 'Легенда', color: 'bg-yellow-600' };
-       case 'special':
-         return { label: 'Особый', color: 'bg-teal-600' };
-       case 'heroic':
-         return { label: 'Герой', color: 'bg-red-600' };
-       case 'seasonal':
-         return { label: 'Сезон', color: 'bg-blue-600' };
-       case 'pvp':
-         return { label: 'PVP', color: 'bg-purple-600' };
-       default:
-         return { label: m.type ?? '—', color: 'bg-gray-600' };
-     }
-@@ -262,52 +321,52 @@ import mutantsData from '@/data/mutants/normal.json';
-    * mutants into `childResults`. Otherwise the array is empty. This array
-    * drives the results table in the markup.
-    */
-   let childResults: any[] = [];
-   $: if (mode === 'calc' && selectedA && selectedB) {
-     const codes = getChildGeneCodes(selectedA.genes, selectedB.genes);
-     const map = new Map<string, any>();
-     codes.forEach((code) => {
-       const list = lookupChildren(code, selectedA, selectedB);
-       list.forEach((m) => {
-         if (!map.has(m.id)) map.set(m.id, m);
-       });
-     });
-     childResults = Array.from(map.values());
-   } else {
-     childResults = [];
-   }
- 
-   /**
-    * Derived breeding time estimate. When both parents are selected and there
-    * are children, choose the minimum incubation time among children for display.
-    */
-   let breedingTime: string = '';
-   $: if (selectedA && selectedB && childResults.length > 0) {
-     const times = childResults
--      .map((m) => Number(m.incub_time))
--      .filter((n) => isFinite(n) && n > 0)
-+      .map((m) => getIncubationMinutes(m))
-+      .filter((n): n is number => n != null && Number.isFinite(n) && n > 0)
-       .sort((a, b) => a - b);
-     if (times.length > 0) {
-       breedingTime = formatIncubationTime(times[0]);
-     } else {
-       breedingTime = '';
-     }
-   } else {
-     breedingTime = '';
-   }
- 
-   // ---------------------------------------------------------------------------
-   // UI state variables
-   // ---------------------------------------------------------------------------
- 
-   /**
-    * The calculator has two modes: 'calc' for forward breeding (parent → child)
-    * and 'reverse' for breeding guide (child → parent combos). Switching
-    * modes will reset selections and search state accordingly.
-    */
-   let mode: 'calc' | 'reverse' = 'calc';
- 
-   /** Selected parent mutants for calculation mode. When both parents are
-    * assigned, results are computed automatically. */
-   let selectedA: any = null;
-   let selectedB: any = null;
-@@ -605,51 +664,51 @@ import mutantsData from '@/data/mutants/normal.json';
-                     <td class="px-3 py-1">
-                       <img src={getImageSrc(child)} alt={getName(child)} class="w-8 h-8 rounded object-cover" />
-                     </td>
-                     <td class="px-3 py-1 whitespace-nowrap">{getName(child)}</td>
-                     <td class="px-3 py-1">
-                       <div class="flex space-x-1">
-                         {#each ((Array.isArray(child.genes) ? child.genes[0] : child.genes) || '').split('') as ch}
-                           <img src={getGeneIconSrc(ch)} alt={ch} class="w-6 h-6" />
-                         {/each}
-                       </div>
-                     </td>
-                     <td class="px-3 py-1">
-                       {#if Array.isArray(child.bingo) && child.bingo.length > 0}
-                         <!-- Use the morphology icon for all bingo groups for simplicity -->
-                         <img src="/mut_icons/icon_morphology.png" alt="bingo" class="w-6 h-6" />
-                       {:else}
-                         —
-                       {/if}
-                     </td>
-                     <td class="px-3 py-1">
-                       <img src={getTypeIcon(child)} alt={child.type} class="w-6 h-6" />
-                     </td>
-                     <td class="px-3 py-1">
-                       <span class={`inline-block px-2 py-1 rounded-full text-xs font-semibold text-gray-900 ${getCategory(child).color}`}>{getCategory(child).label}</span>
-                     </td>
--                    <td class="px-3 py-1 whitespace-nowrap">{formatIncubationTime(child.incub_time)}</td>
-+                    <td class="px-3 py-1 whitespace-nowrap">{formatIncubationTime(child)}</td>
-                   </tr>
-                 {/each}
-               </tbody>
-             </table>
-           {:else}
-             <div class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-400">
-               Нет возможных детей для выбранных родителей.
-             </div>
-           {/if}
-         </div>
-       {/if}
-     {:else}
-       <!-- Reverse search mode -->
-       <div class="mb-8">
-         <label class="block font-bold mb-2">Выберите целевого мутанта</label>
-         {#if selectedTarget}
-           <div
-             class="border border-gray-600 rounded-lg bg-gray-800 p-4 flex items-center space-x-3 relative cursor-pointer"
-             on:click={() => { clearTarget(); }}
-           >
-             <img src={getImageSrc(selectedTarget)} alt={getName(selectedTarget)} class="w-16 h-16 rounded object-cover" />
-             <span class="text-sm font-semibold">{getName(selectedTarget)}</span>
-             <button class="absolute top-2 right-2 text-gray-400 hover:text-white">
-               ×
-             </button>
-diff --git a/src/pages/miniapp/mutants.html b/src/pages/miniapp/mutants.html
-index cd06fd0a62d2db8cad1a0f406ac9dc583a82a1b5..0cfbb1c5398c8ce57ba9f9a40fcc42772babdf51 100644
---- a/src/pages/miniapp/mutants.html
-+++ b/src/pages/miniapp/mutants.html
-@@ -252,39 +252,39 @@
-       } catch (err) {
-         return false;
-       }
-     }
- 
-     /**
-      * Отрисовать список мутантов, соответствующих фильтру.
-      */
-     function renderMutants(mutants, filterParams) {
-       const content = document.getElementById('content');
-       content.innerHTML = '';
-       const matching = mutants.filter((m) => matchesFilter(m, filterParams.filter, filterParams.value, filterParams.tol));
-       if (!matching.length) {
-           content.textContent = 'Нет мутантов, подходящих под выбранный фильтр.';
-           return;
-       }
-       for (const m of matching) {
-         const div = document.createElement('div');
-         div.className = 'mutant';
-         div.innerHTML = `
-           <h2>${m.name}</h2>
-           <p><strong>ID:</strong> ${m.id}</p>
-           <p><strong>Гены:</strong> ${Array.isArray(m.genes) ? m.genes.join(', ') : m.genes || '-'}</p>
-           <p><strong>Скорость:</strong> ${m.base_stats?.lvl1?.spd ?? '-'}</p>
-           <p><strong>HP:</strong> ${m.base_stats?.lvl1?.hp ?? '-'}, <strong>Атака 1:</strong> ${m.base_stats?.lvl1?.atk1 ?? '-'}, <strong>Атака 2:</strong> ${m.base_stats?.lvl1?.atk2 ?? '-'}</p>
--          <p><small>Тиер: ${m.tier || '-'}; Инкубация: ${m.incub_time || '-'} дн.; Звезда: ${m.star || '-'}</small></p>
-+          <p><small>Тиер: ${m.tier || '-'}; Инкубация: ${m.incub_time || '-'} мин.; Звезда: ${m.star || '-'}</small></p>
-         `;
-         content.appendChild(div);
-       }
-     }
- 
-     (async () => {
-       const filterParams = getFilterParams();
-       const mutants = await loadMutants();
-       renderMutants(mutants, filterParams);
-     })();
-   </script>
- </body>
- </html>
+EOF
+)
