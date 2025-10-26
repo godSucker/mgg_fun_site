@@ -213,7 +213,6 @@
             </div>
             <div class="slot-name">{reward.name}</div>
             <div class="slot-footer">
-              <button type="button" class="profile-btn">Профиль</button>
               <span class={`slot-status ${unlocked.has(reward.specimen) ? 'is-unlocked' : ''}`}>
                 {unlocked.has(reward.specimen) ? 'Получен' : 'В пуле'}
               </span>
@@ -245,7 +244,6 @@
             </div>
             <div class="slot-name">{completionReward.name}</div>
             <div class="slot-footer">
-              <button type="button" class="profile-btn">Профиль</button>
               <span class={`slot-status ${completed ? 'is-unlocked' : ''}`}>
                 {completed ? 'Теперь в пуле' : 'Соберите коллекцию'}
               </span>
@@ -461,20 +459,34 @@
   }
 
   .slot-track {
-    margin: 2.5rem 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    margin: 2.5rem -1.5rem 2rem;
+    padding: 0 1.5rem 1rem;
+    display: flex;
     gap: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+  }
+
+  .slot-track::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .slot-track::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 999px;
   }
 
   .slot-card {
     position: relative;
+    flex: 0 0 clamp(220px, 24vw, 260px);
     border-radius: 18px;
     background: linear-gradient(175deg, rgba(74, 222, 128, 0.75), rgba(59, 130, 246, 0.15));
     border: 1px solid rgba(148, 163, 184, 0.35);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
     overflow: hidden;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    scroll-snap-align: start;
   }
 
   .slot-card::before {
@@ -506,6 +518,18 @@
   .slot-card.completion.unlocked {
     border-color: rgba(253, 224, 71, 0.95);
     box-shadow: 0 20px 35px rgba(253, 224, 71, 0.35);
+  }
+
+  @media (max-width: 720px) {
+    .slot-track {
+      margin: 2rem -1rem 1.5rem;
+      padding: 0 1rem 0.75rem;
+      gap: 1.1rem;
+    }
+
+    .slot-card {
+      flex-basis: clamp(200px, 75vw, 260px);
+    }
   }
 
   .slot-inner {
@@ -581,29 +605,9 @@
 
   .slot-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 0.75rem;
     margin-top: auto;
-  }
-
-  .profile-btn {
-    flex: 0 0 auto;
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    border: none;
-    background: rgba(15, 23, 42, 0.85);
-    color: #f8fafc;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 0.2s ease, filter 0.2s ease;
-  }
-
-  .profile-btn:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.05);
   }
 
   .slot-status {
