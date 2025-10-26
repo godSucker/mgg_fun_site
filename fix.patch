@@ -490,10 +490,10 @@ index a4ec82a9d1e69c5535ad16707aafcfd7b46c0581..579371f28c63d2ba41a0f9e7c8fba7b1
      {#if shownSkins.length < filteredSkins.length}
        <div class="mt-3 flex justify-center">
 diff --git a/src/components/breeding/BreedingUI.svelte b/src/components/breeding/BreedingUI.svelte
-index dce6cf314d97b7fc5ce65856715c78e80d860d96..247680f6a9efc8745195680735eb6fabf1482271 100644
+index dce6cf314d97b7fc5ce65856715c78e80d860d96..ac23e4030a5af083809fc06d3253a54b30790d61 100644
 --- a/src/components/breeding/BreedingUI.svelte
 +++ b/src/components/breeding/BreedingUI.svelte
-@@ -193,63 +193,59 @@ import mutantsData from '@/data/mutants/normal.json';
+@@ -193,63 +193,122 @@ import mutantsData from '@/data/mutants/normal.json';
        if (excluded.includes(type)) return false;
        // Default types and explicitly named legends are always breedable
        if (type === 'default' || alwaysBreedableLegends.includes(name)) return true;
@@ -523,11 +523,11 @@ index dce6cf314d97b7fc5ce65856715c78e80d860d96..247680f6a9efc8745195680735eb6fab
 -   * string. Times less than 10 are treated as minutes; times up to 24 as
 -   * hours; larger values are converted to days. Units use Russian letters to
 -   * match the screenshot (м — minutes, ч — hours, д — days).
-+   * Convert an incubation time value from the dataset into a minutes string.
-+   * All incubation values are stored in minutes, so we simply present the
-+   * rounded minute count with the "мин." suffix for consistency across the UI.
++   * Fields that may contain incubation information in the mutants dataset.
++   * Skins and legacy entries occasionally store the value under an alternate
++   * property, so we mirror the precedence used in the main mutants browser.
     */
-   function formatIncubationTime(time: any): string {
+-  function formatIncubationTime(time: any): string {
 -    const n = Number(time);
 -    if (!isFinite(n) || n <= 0) return '';
 -    if (n < 10) return `${n}м`;
@@ -535,10 +535,74 @@ index dce6cf314d97b7fc5ce65856715c78e80d860d96..247680f6a9efc8745195680735eb6fab
 -    if (n < 48) return `${n}ч`;
 -    const days = Math.floor(n / 24);
 -    return `${days}д`;
-+    const minutes = Number(time);
++  const incubationFields = [
++    'incub_time',
++    'incubation',
++    'incubation_time',
++    'incubationTime',
++    'incubation_hours',
++    'hatch_time',
++  ];
++
++  /**
++   * Extract the raw incubation value from a mutant or direct value. When an
++   * object is supplied we probe the known property names, otherwise the
++   * argument itself is treated as the incubation value.
++   */
++  function resolveIncubationValue(source: any): any {
++    if (source == null) return null;
++    if (typeof source === 'object' && !Array.isArray(source)) {
++      for (const field of incubationFields) {
++        const value = source?.[field];
++        if (value != null && value !== '') return value;
++      }
++      return null;
++    }
++    return source;
++  }
++
++  /**
++   * Convert a raw incubation value to minutes. Most datasets already provide
++   * minutes, but we also handle string values that may include units or use
++   * commas as decimal separators. Hours or days are converted to minutes.
++   */
++  function coerceMinutes(value: any): number | null {
++    if (value == null || value === '') return null;
++    if (typeof value === 'number') {
++      return Number.isFinite(value) ? value : null;
++    }
++    if (typeof value === 'string') {
++      const trimmed = value.trim();
++      if (!trimmed) return null;
++      const normalized = trimmed.replace(',', '.');
++      const match = normalized.match(/[-+]?[0-9]*\.?[0-9]+/);
++      if (!match) return null;
++      const numeric = Number(match[0]);
++      if (!Number.isFinite(numeric)) return null;
++      if (/дн/i.test(normalized)) return numeric * 24 * 60;
++      if (/час/i.test(normalized) && !/мин/i.test(normalized)) return numeric * 60;
++      return numeric;
++    }
++    return null;
++  }
++
++  /**
++   * Resolve the incubation duration (in minutes) from a mutant entry or value.
++   */
++  function getIncubationMinutes(source: any): number | null {
++    const raw = resolveIncubationValue(source);
++    return coerceMinutes(raw);
++  }
++
++  /**
++   * Format an incubation value to the "мин." representation used across the
++   * site. Accepts either a mutant object or a direct value.
++   */
++  function formatIncubationTime(source: any): string {
++    const minutes = typeof source === 'object' ? getIncubationMinutes(source) : coerceMinutes(source);
++    if (minutes == null) return '';
 +    if (!Number.isFinite(minutes) || minutes <= 0) return '';
-+    const rounded = Math.round(minutes);
-+    return `${rounded} мин.`;
++    return `${Math.round(minutes)} мин.`;
    }
  
    /**
@@ -564,6 +628,114 @@ index dce6cf314d97b7fc5ce65856715c78e80d860d96..247680f6a9efc8745195680735eb6fab
        default:
          return { label: m.type ?? '—', color: 'bg-gray-600' };
      }
+@@ -262,52 +321,52 @@ import mutantsData from '@/data/mutants/normal.json';
+    * mutants into `childResults`. Otherwise the array is empty. This array
+    * drives the results table in the markup.
+    */
+   let childResults: any[] = [];
+   $: if (mode === 'calc' && selectedA && selectedB) {
+     const codes = getChildGeneCodes(selectedA.genes, selectedB.genes);
+     const map = new Map<string, any>();
+     codes.forEach((code) => {
+       const list = lookupChildren(code, selectedA, selectedB);
+       list.forEach((m) => {
+         if (!map.has(m.id)) map.set(m.id, m);
+       });
+     });
+     childResults = Array.from(map.values());
+   } else {
+     childResults = [];
+   }
+ 
+   /**
+    * Derived breeding time estimate. When both parents are selected and there
+    * are children, choose the minimum incubation time among children for display.
+    */
+   let breedingTime: string = '';
+   $: if (selectedA && selectedB && childResults.length > 0) {
+     const times = childResults
+-      .map((m) => Number(m.incub_time))
+-      .filter((n) => isFinite(n) && n > 0)
++      .map((m) => getIncubationMinutes(m))
++      .filter((n): n is number => n != null && Number.isFinite(n) && n > 0)
+       .sort((a, b) => a - b);
+     if (times.length > 0) {
+       breedingTime = formatIncubationTime(times[0]);
+     } else {
+       breedingTime = '';
+     }
+   } else {
+     breedingTime = '';
+   }
+ 
+   // ---------------------------------------------------------------------------
+   // UI state variables
+   // ---------------------------------------------------------------------------
+ 
+   /**
+    * The calculator has two modes: 'calc' for forward breeding (parent → child)
+    * and 'reverse' for breeding guide (child → parent combos). Switching
+    * modes will reset selections and search state accordingly.
+    */
+   let mode: 'calc' | 'reverse' = 'calc';
+ 
+   /** Selected parent mutants for calculation mode. When both parents are
+    * assigned, results are computed automatically. */
+   let selectedA: any = null;
+   let selectedB: any = null;
+@@ -605,51 +664,51 @@ import mutantsData from '@/data/mutants/normal.json';
+                     <td class="px-3 py-1">
+                       <img src={getImageSrc(child)} alt={getName(child)} class="w-8 h-8 rounded object-cover" />
+                     </td>
+                     <td class="px-3 py-1 whitespace-nowrap">{getName(child)}</td>
+                     <td class="px-3 py-1">
+                       <div class="flex space-x-1">
+                         {#each ((Array.isArray(child.genes) ? child.genes[0] : child.genes) || '').split('') as ch}
+                           <img src={getGeneIconSrc(ch)} alt={ch} class="w-6 h-6" />
+                         {/each}
+                       </div>
+                     </td>
+                     <td class="px-3 py-1">
+                       {#if Array.isArray(child.bingo) && child.bingo.length > 0}
+                         <!-- Use the morphology icon for all bingo groups for simplicity -->
+                         <img src="/mut_icons/icon_morphology.png" alt="bingo" class="w-6 h-6" />
+                       {:else}
+                         —
+                       {/if}
+                     </td>
+                     <td class="px-3 py-1">
+                       <img src={getTypeIcon(child)} alt={child.type} class="w-6 h-6" />
+                     </td>
+                     <td class="px-3 py-1">
+                       <span class={`inline-block px-2 py-1 rounded-full text-xs font-semibold text-gray-900 ${getCategory(child).color}`}>{getCategory(child).label}</span>
+                     </td>
+-                    <td class="px-3 py-1 whitespace-nowrap">{formatIncubationTime(child.incub_time)}</td>
++                    <td class="px-3 py-1 whitespace-nowrap">{formatIncubationTime(child)}</td>
+                   </tr>
+                 {/each}
+               </tbody>
+             </table>
+           {:else}
+             <div class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-400">
+               Нет возможных детей для выбранных родителей.
+             </div>
+           {/if}
+         </div>
+       {/if}
+     {:else}
+       <!-- Reverse search mode -->
+       <div class="mb-8">
+         <label class="block font-bold mb-2">Выберите целевого мутанта</label>
+         {#if selectedTarget}
+           <div
+             class="border border-gray-600 rounded-lg bg-gray-800 p-4 flex items-center space-x-3 relative cursor-pointer"
+             on:click={() => { clearTarget(); }}
+           >
+             <img src={getImageSrc(selectedTarget)} alt={getName(selectedTarget)} class="w-16 h-16 rounded object-cover" />
+             <span class="text-sm font-semibold">{getName(selectedTarget)}</span>
+             <button class="absolute top-2 right-2 text-gray-400 hover:text-white">
+               ×
+             </button>
 diff --git a/src/pages/miniapp/mutants.html b/src/pages/miniapp/mutants.html
 index cd06fd0a62d2db8cad1a0f406ac9dc583a82a1b5..0cfbb1c5398c8ce57ba9f9a40fcc42772babdf51 100644
 --- a/src/pages/miniapp/mutants.html
