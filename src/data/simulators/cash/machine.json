@@ -1,0 +1,128 @@
+{
+  "id": "cash",
+  "title": "Cash Frenzy",
+  "cost": 20,
+  "tokenCost": 0,
+  "rewards": [
+    {
+      "rewardId": 1,
+      "amount": 1,
+      "odds": 1,
+      "type": "entity",
+      "id": null,
+      "picture": "thumbnails/jackpot.png",
+      "isBigwin": true,
+      "isSuperJackpot": true
+    },
+    {
+      "rewardId": 2,
+      "amount": 30,
+      "odds": 42000,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x30.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 3,
+      "amount": 40,
+      "odds": 22000,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x40.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 4,
+      "amount": 50,
+      "odds": 10400,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x50.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 5,
+      "amount": 80,
+      "odds": 3900,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x80.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 6,
+      "amount": 100,
+      "odds": 1300,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x100.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 7,
+      "amount": 200,
+      "odds": 500,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x200.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 8,
+      "amount": 500,
+      "odds": 170,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x500.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 9,
+      "amount": 1000,
+      "odds": 75,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x1000.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 10,
+      "amount": 2000,
+      "odds": 40,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x2000.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 11,
+      "amount": 5000,
+      "odds": 10,
+      "type": "hardcurrency",
+      "id": null,
+      "picture": "thumbnails/jackpot_gold_x5000.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    },
+    {
+      "rewardId": 12,
+      "amount": 50000,
+      "odds": 270000,
+      "type": "softcurrency",
+      "id": null,
+      "picture": "thumbnails/sc10000.png",
+      "isBigwin": false,
+      "isSuperJackpot": false
+    }
+  ]
+}
