@@ -21,13 +21,8 @@ import orbsPreview from '../data/materials/orbs.json';
     cards={[
       {
         title: 'Мутанты',
-        desc: 'Просмотрите список мутантов всех уровней',
+        desc: 'Просмотрите список мутантов и скинов',
         href: '/mutants',
-      },
-      {
-        title: 'Скины',
-        desc: 'Каталог скинов',
-        href: '/skins',
       },
       {
         title: 'Калькулятор статов мутанта',
@@ -51,45 +46,6 @@ import orbsPreview from '../data/materials/orbs.json';
       },
     ]}
   />
-
-  <section class="materials-preview">
-    <h2>Материалы и ресурсы</h2>
-    <p>Небольшой предварительный просмотр: первые элементы из каждого типа. Перейдите в раздел «Материалы», чтобы увидеть полный список.</p>
-    <div class="preview-lists">
-      <div class="preview-group">
-        <h3>Материалы</h3>
-        <ul>
-          {materialPreview.slice(0, 2).map((item) => (
-            <li>{item.name}</li>
-          ))}
-        </ul>
-        <a href="/materials/material">Смотреть все</a>
-      </div>
-      <div class="preview-group">
-        <h3>Чары</h3>
-        <ul>
-          {charmsPreview.slice(0, 2).map((item) => (
-            <li>{item.name}</li>
-          ))}
-        </ul>
-        <a href="/materials/charms">Смотреть все</a>
-      </div>
-      <div class="preview-group">
-        <h3>Сферы</h3>
-        <ul>
-          {orbsPreview.slice(0, 2).map((item) => (
-            <li>{item.name}</li>
-          ))}
-        </ul>
-        <a href="/materials/orbs">Смотреть все</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="simulators-preview">
-    <h2>Симуляторы</h2>
-    <p>Запускайте виртуальные рулетки и реактор прямо на сайте. Выберите симулятор, настройте параметры и получите статистику.</p>
-  </section>
 
 </BaseLayout>
 

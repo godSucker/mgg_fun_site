@@ -164,7 +164,7 @@
     { key: 'platinum', icon: '/stars/star_platinum.png', label: 'Платина' },
   ];
   const STAR_SKINS: {key: SkinStarKey; icon?: string; label: string}[] = [
-    { key: 'any',      label: 'Any' },
+    { key: 'any',      label: 'Все' },
     { key: 'normal',   icon: '/stars/no_stars.png',      label: 'Обычные' },
     { key: 'bronze',   icon: '/stars/star_bronze.png',   label: 'Бронза' },
     { key: 'silver',   icon: '/stars/star_silver.png',   label: 'Серебро' },
