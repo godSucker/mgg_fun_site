@@ -24,10 +24,7 @@ export interface CashMachineDefinition {
 export interface RewardChance extends CashReward {
   chance: number;
   label: string;
-<<<<<<< ours
-=======
   icon: string;
->>>>>>> theirs
 }
 
 export const cashMachine: CashMachineDefinition = rawMachine as CashMachineDefinition;
@@ -57,8 +54,6 @@ export function getRewardLabel(reward: CashReward): string {
   return 'Неизвестная награда';
 }
 
-<<<<<<< ours
-=======
 const GOLD_REWARD_AMOUNTS = new Set([
   30,
   40,
@@ -116,7 +111,6 @@ export function getRewardIcon(reward: CashReward): string {
   return '/cash/unknown.png';
 }
 
->>>>>>> theirs
 export function getRewardChance(
   reward: CashReward,
   machine: CashMachineDefinition = cashMachine,
@@ -134,10 +128,7 @@ export function getRewardWithChance(
     ...reward,
     label: getRewardLabel(reward),
     chance: getRewardChance(reward, machine),
-<<<<<<< ours
-=======
     icon: getRewardIcon(reward),
->>>>>>> theirs
   };
 }
 
@@ -168,8 +159,6 @@ export interface SpinSummary {
   reward: CashReward;
   label: string;
   timestamp: number;
-<<<<<<< ours
-=======
   icon: string;
 }
 
@@ -342,7 +331,6 @@ export function simulateMachine(
   }
 
   return finalizeSimulation(ctx, spins);
->>>>>>> theirs
 }
 
 export function simulateSpins(
@@ -351,29 +339,21 @@ export function simulateSpins(
   randomFn: () => number = Math.random,
 ): SpinSummary[] {
   const results: SpinSummary[] = [];
-<<<<<<< ours
-=======
   const baseTimestamp = Date.now();
->>>>>>> theirs
 
   for (let i = 0; i < spins; i += 1) {
     const reward = spinOnce(machine, randomFn);
     results.push({
       reward,
       label: getRewardLabel(reward),
-<<<<<<< ours
       timestamp: Date.now() + i,
-=======
       timestamp: baseTimestamp + i,
       icon: getRewardIcon(reward),
->>>>>>> theirs
     });
   }
 
   return results;
 }
-<<<<<<< ours
-=======
 
 export async function simulateMachineAsync(
   spins: number,
@@ -405,4 +385,3 @@ export async function simulateMachineAsync(
 
   return finalizeSimulation(ctx, spins);
 }
->>>>>>> theirs

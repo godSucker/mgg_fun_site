@@ -1,35 +1,17 @@
 <script lang="ts">
   import type {
     CashMachineDefinition,
-<<<<<<< ours
-    CashReward,
-=======
     RewardAggregate,
->>>>>>> theirs
     RewardChance,
     SpinSummary,
   } from '@/lib/cash-machine';
   import {
     formatNumber,
-<<<<<<< ours
-    getRewardLabel,
-    getRewardWithChance,
-    simulateSpins,
-  } from '@/lib/cash-machine';
-
-  export interface RewardBreakdown {
-    reward: CashReward;
-    label: string;
-    count: number;
-    totalAmount: number;
-  }
-=======
     getCurrencyIcon,
     getRewardWithChance,
     simulateMachineAsync,
   } from '@/lib/cash-machine';
   import { onDestroy, tick } from 'svelte';
->>>>>>> theirs
 
   export interface SimulationResult {
     spins: number;
@@ -52,19 +34,6 @@
   let isSimulating = false;
   let error: string | null = null;
   let result: SimulationResult | null = null;
-<<<<<<< ours
-  let breakdown: RewardBreakdown[] = [];
-  let history: SpinSummary[] = [];
-
-  function resetSimulation() {
-    result = null;
-    breakdown = [];
-    history = [];
-    error = null;
-  }
-
-  function handleSimulate() {
-=======
   const goldIcon = getCurrencyIcon('hardcurrency');
   const silverIcon = getCurrencyIcon('softcurrency');
 
@@ -108,7 +77,6 @@
   }
 
   async function handleSimulate() {
->>>>>>> theirs
     error = null;
     const spins = Math.floor(budget / costPerSpin);
 
@@ -122,51 +90,6 @@
       return;
     }
 
-<<<<<<< ours
-    isSimulating = true;
-
-    const spinResults = simulateSpins(spins, machine);
-
-    const rewardMap = new Map<number, RewardBreakdown>();
-    let totalGoldWon = 0;
-    let totalSilverWon = 0;
-
-    for (const spin of spinResults) {
-      const { reward } = spin;
-      const label = getRewardLabel(reward);
-      const entry = rewardMap.get(reward.rewardId) ?? {
-        reward,
-        label,
-        count: 0,
-        totalAmount: 0,
-      };
-      entry.count += 1;
-      entry.totalAmount += reward.amount;
-      rewardMap.set(reward.rewardId, entry);
-
-      if (reward.type === 'hardcurrency') {
-        totalGoldWon += reward.amount;
-      } else if (reward.type === 'softcurrency') {
-        totalSilverWon += reward.amount;
-      }
-    }
-
-    breakdown = Array.from(rewardMap.values()).sort((a, b) => b.count - a.count);
-
-    result = {
-      spins,
-      budget,
-      goldSpent: spins * costPerSpin,
-      goldWon: totalGoldWon,
-      silverWon: totalSilverWon,
-      netGold: totalGoldWon - spins * costPerSpin,
-    };
-
-    history = spinResults.slice(-12).reverse();
-
-    isSimulating = false;
-  }
-=======
     result = null;
     breakdown = [];
     history = [];
@@ -220,7 +143,6 @@
   onDestroy(() => {
     stopSimulation();
   });
->>>>>>> theirs
 </script>
 
 <div class="machine-shell">
@@ -251,12 +173,6 @@
         <button type="submit" class="primary" disabled={isSimulating}>
           {isSimulating ? 'Считаем…' : 'Запустить симуляцию'}
         </button>
-<<<<<<< ours
-        <button type="button" class="ghost" on:click={resetSimulation} disabled={isSimulating}>
-          Очистить
-        </button>
-      </div>
-=======
         <button
           type="button"
           class={`ghost ${isSimulating ? 'danger' : ''}`}
@@ -274,7 +190,6 @@
           </div>
         </div>
       {/if}
->>>>>>> theirs
       {#if error}
         <p class="error">{error}</p>
       {/if}
@@ -286,23 +201,6 @@
           <span class="label">Прокрутов</span>
           <strong>{formatNumber(result.spins)}</strong>
         </div>
-<<<<<<< ours
-        <div class="stat-card">
-          <span class="label">Потрачено золота</span>
-          <strong>{formatNumber(result.goldSpent)}</strong>
-        </div>
-        <div class="stat-card">
-          <span class="label">Выиграно золота</span>
-          <strong>{formatNumber(result.goldWon)}</strong>
-        </div>
-        <div class="stat-card">
-          <span class="label">Выиграно серебра</span>
-          <strong>{formatNumber(result.silverWon)}</strong>
-        </div>
-        <div class={`stat-card net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
-          <span class="label">Чистый результат</span>
-          <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>
-=======
         <div class="stat-card currency">
           <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
@@ -332,7 +230,6 @@
             <span class="label">Чистый результат</span>
             <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>
           </div>
->>>>>>> theirs
         </div>
       </section>
 
@@ -347,18 +244,12 @@
             </div>
             {#each breakdown as entry}
               <div class="table-row">
-<<<<<<< ours
-                <span>{entry.label}</span>
-                <span>x{formatNumber(entry.count)}</span>
-                <span>{formatNumber(entry.totalAmount)}</span>
-=======
                 <span class="reward-label">
                   <img class="reward-icon" src={entry.icon} alt={entry.label} loading="lazy" />
                   <span>{entry.label}</span>
                 </span>
                 <span>x{formatNumber(entry.count)}</span>
                 <span>{formatAmountWithUnit(entry.totalAmount, entry.reward.type)}</span>
->>>>>>> theirs
               </div>
             {/each}
           </div>
@@ -371,16 +262,11 @@
             <ul class="history">
               {#each history as spin (spin.timestamp)}
                 <li>
-<<<<<<< ours
-                  <span class="title">{spin.label}</span>
-                  <span class="odds">×{formatNumber(spin.reward.amount)}</span>
-=======
                   <div class="history-info">
                     <img class="history-icon" src={spin.icon} alt={spin.label} loading="lazy" />
                     <span class="title">{spin.label}</span>
                   </div>
                   <span class="odds">+{formatAmountWithUnit(spin.reward.amount, spin.reward.type)}</span>
->>>>>>> theirs
                 </li>
               {/each}
             </ul>
@@ -396,14 +282,10 @@
     <ul class="odds-list">
       {#each rewardChances as reward}
         <li>
-<<<<<<< ours
-          <span class="name">{reward.label}</span>
-=======
           <span class="odds-name">
             <img class="odds-icon" src={reward.icon} alt={reward.label} loading="lazy" />
             <span class="name">{reward.label}</span>
           </span>
->>>>>>> theirs
           <span class="chance">{(reward.chance * 100).toFixed(4)}%</span>
         </li>
       {/each}
@@ -548,8 +430,6 @@
     border-color: rgba(255, 255, 255, 0.25);
   }
 
-<<<<<<< ours
-=======
   button.ghost.danger {
     border-color: rgba(255, 138, 101, 0.35);
     color: #ffab91;
@@ -561,7 +441,6 @@
     color: #ffcdd2;
   }
 
->>>>>>> theirs
   .error {
     margin: 0;
     padding: 0.75rem 1rem;
@@ -571,8 +450,6 @@
     color: #ffab91;
   }
 
-<<<<<<< ours
-=======
   .progress {
     display: grid;
     gap: 0.35rem;
@@ -603,7 +480,6 @@
     letter-spacing: 0.02em;
   }
 
->>>>>>> theirs
   .stats {
     display: grid;
     gap: 1rem;
@@ -615,8 +491,6 @@
     border-radius: 18px;
     border: 1px solid rgba(255, 213, 79, 0.25);
     padding: 1rem 1.25rem;
-<<<<<<< ours
-=======
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
@@ -626,7 +500,6 @@
     flex-direction: row;
     align-items: center;
     gap: 0.9rem;
->>>>>>> theirs
   }
 
   .stat-card .label {
@@ -638,20 +511,15 @@
     margin-bottom: 0.45rem;
   }
 
-<<<<<<< ours
-=======
   .stat-card.currency .label {
     margin-bottom: 0.2rem;
   }
 
->>>>>>> theirs
   .stat-card strong {
     font-size: 1.5rem;
     color: #fceabb;
   }
 
-<<<<<<< ours
-=======
   .stat-body {
     display: flex;
     flex-direction: column;
@@ -672,7 +540,6 @@
     display: block;
   }
 
->>>>>>> theirs
   .stat-card.net.positive strong {
     color: #c6ff00;
   }
@@ -709,19 +576,13 @@
 
   .table-row {
     display: grid;
-<<<<<<< ours
-    grid-template-columns: 1.6fr 0.7fr 1fr;
-=======
     grid-template-columns: 1.8fr 0.7fr 1fr;
->>>>>>> theirs
     gap: 0.75rem;
     align-items: center;
     font-size: 0.95rem;
     color: #f8fafc;
   }
 
-<<<<<<< ours
-=======
   .reward-label {
     display: flex;
     align-items: center;
@@ -733,7 +594,6 @@
     height: 48px;
   }
 
->>>>>>> theirs
   .table-row.head {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -752,17 +612,12 @@
   .history li {
     display: flex;
     justify-content: space-between;
-<<<<<<< ours
-=======
     align-items: center;
->>>>>>> theirs
     padding: 0.75rem 1rem;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.06);
   }
 
-<<<<<<< ours
-=======
   .history-info {
     display: flex;
     align-items: center;
@@ -775,7 +630,6 @@
     flex-shrink: 0;
   }
 
->>>>>>> theirs
   .history .title {
     color: #fceabb;
   }
@@ -822,17 +676,11 @@
   .odds-list li {
     display: flex;
     justify-content: space-between;
-<<<<<<< ours
-    align-items: baseline;
-=======
     align-items: center;
->>>>>>> theirs
     padding-bottom: 0.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-<<<<<<< ours
-=======
   .odds-name {
     display: flex;
     align-items: center;
@@ -845,7 +693,6 @@
     flex-shrink: 0;
   }
 
->>>>>>> theirs
   .odds-list .name {
     color: #fceabb;
   }
