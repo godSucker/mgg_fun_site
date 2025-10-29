@@ -502,6 +502,17 @@
     gap: 0.9rem;
   }
 
+  .stat-card.currency .stat-icon {
+    flex-shrink: 0;
+  }
+
+  .stat-card.currency .stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
   .stat-card .label {
     display: block;
     font-size: 0.8rem;
@@ -518,6 +529,12 @@
   .stat-card strong {
     font-size: 1.5rem;
     color: #fceabb;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .stat-card.currency strong {
+    text-align: right;
   }
 
   .stat-body {
