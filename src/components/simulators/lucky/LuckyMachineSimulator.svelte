@@ -500,11 +500,16 @@
     flex-direction: column;
     gap: 0.35rem;
     color: rgba(226, 232, 240, 0.85);
+    min-width: 0;
   }
 
   .stat-card strong {
-    font-size: 1.4rem;
+    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.3rem);
     color: #f1f5f9;
+    line-height: 1.15;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    max-width: 100%;
   }
 
   .stat-card.small {
@@ -524,6 +529,7 @@
     flex-direction: row;
     align-items: center;
     gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
   .stat-icon {
@@ -535,6 +541,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+    align-items: flex-start;
+    min-width: 0;
+    flex: 1 1 140px;
   }
 
   .label {

@@ -140,6 +140,21 @@
       "icon": "/materials/big_muto.png"
     },
     {
+      "rewardId": 10,
+      "amount": 5000,
+      "odds": 10,
+      "type": "softcurrency",
+      "id": "5000sc",
+      "picture": "thumbnails/sc100.png",
+      "isBigwin": false,
+      "isSuperJackpot": false,
+      "isFreeTry": false,
+      "name": "5000 монет",
+      "description": "Игровая валюта",
+      "category": "currency",
+      "icon": "/cash/softcurrency.png"
+    },
+    {
       "rewardId": 11,
       "amount": 10000,
       "odds": 110000,

@@ -346,7 +346,6 @@ export function simulateSpins(
     results.push({
       reward,
       label: getRewardLabel(reward),
-      timestamp: Date.now() + i,
       timestamp: baseTimestamp + i,
       icon: getRewardIcon(reward),
     });
