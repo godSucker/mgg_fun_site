@@ -32,7 +32,7 @@
       "name": "Бесплатный прокрут",
       "description": "Возможность крутить рулетку еще раз без оплаты",
       "category": "free-spin",
-      "icon": "/etc/icon_chance.png"
+      "icon": "/etc/freespin.png"
     },
     {
       "rewardId": 3,
@@ -92,7 +92,7 @@
       "name": "25 пропусков",
       "description": "Энергия для прохождения уровней",
       "category": "material",
-      "icon": "/etc/icon_timer.png"
+      "icon": "/materials/ticket_25.png"
     },
     {
       "rewardId": 7,
@@ -107,7 +107,7 @@
       "name": "Аптечка",
       "description": "15 аптечек для лечения мутантов",
       "category": "material",
-      "icon": "/etc/icon_hp.png"
+      "icon": "/med/normal_med.png"
     },
     {
       "rewardId": 8,
@@ -122,7 +122,7 @@
       "name": "Большая аптечка",
       "description": "10 больших аптечек",
       "category": "material",
-      "icon": "/etc/icon_hp.png"
+      "icon": "/med/big_med.png"
     },
     {
       "rewardId": 9,
@@ -137,22 +137,7 @@
       "name": "Большая доза мутостерона",
       "description": "2 большие дозы для улучшений",
       "category": "material",
-      "icon": "/ability/ability_strengthen.png"
-    },
-    {
-      "rewardId": 10,
-      "amount": 5000,
-      "odds": 10,
-      "type": "softcurrency",
-      "id": "5000sc",
-      "picture": "thumbnails/sc100.png",
-      "isBigwin": false,
-      "isSuperJackpot": false,
-      "isFreeTry": false,
-      "name": "5000 монет",
-      "description": "Игровая валюта",
-      "category": "currency",
-      "icon": "/cash/softcurrency.png"
+      "icon": "/materials/big_muto.png"
     },
     {
       "rewardId": 11,
@@ -347,7 +332,7 @@
       "name": "Баночка опыта",
       "description": "Опыт для прокачки мутантов",
       "category": "material",
-      "icon": "/orbs/basic/orb_basic_xp_02.png"
+      "icon": "/materials/mini_xp.png"
     },
     {
       "rewardId": 24,
@@ -362,7 +347,7 @@
       "name": "Банка опыта",
       "description": "Много опыта для прокачки мутантов",
       "category": "material",
-      "icon": "/orbs/basic/orb_basic_xp_04.png"
+      "icon": "/materials/big_xp.png"
     },
     {
       "rewardId": 25,
@@ -377,7 +362,7 @@
       "name": "Бустер критов (7 дней)",
       "description": "Повышение шанса критического удара",
       "category": "booster",
-      "icon": "/etc/icon_chance.png"
+      "icon": "/boosters/charm_critical_7.png"
     },
     {
       "rewardId": 26,
@@ -392,7 +377,7 @@
       "name": "Бустер щита (7 дней)",
       "description": "Защита от критических ударов",
       "category": "booster",
-      "icon": "/ability/ability_shield.png"
+      "icon": "/boosters/charm_anticritical_7.png"
     },
     {
       "rewardId": 27,
@@ -407,7 +392,7 @@
       "name": "Бустер опыта +100% (7 дней)",
       "description": "Удвоение получаемого опыта",
       "category": "booster",
-      "icon": "/orbs/basic/orb_basic_xp.png"
+      "icon": "/boosters/charm_xpx2_7.png"
     },
     {
       "rewardId": 28,
@@ -422,7 +407,7 @@
       "name": "Бустер опыта +200% (7 дней)",
       "description": "Утроение получаемого опыта",
       "category": "booster",
-      "icon": "/orbs/basic/orb_basic_xp_01.png"
+      "icon": "/boosters/charm_xpx3_7.png"
     },
     {
       "rewardId": 29,
@@ -437,7 +422,7 @@
       "name": "Бустер критов (1 день)",
       "description": "Повышение шанса критического удара",
       "category": "booster",
-      "icon": "/etc/icon_chance.png"
+      "icon": "/boosters/charm_critical_1.png"
     },
     {
       "rewardId": 30,
@@ -452,7 +437,7 @@
       "name": "Бустер щита (1 день)",
       "description": "Защита от критических ударов",
       "category": "booster",
-      "icon": "/ability/ability_shield.png"
+      "icon": "/boosters/charm_anticritical_1.png"
     },
     {
       "rewardId": 31,
@@ -467,7 +452,7 @@
       "name": "Бустер опыта +100% (1 день)",
       "description": "Удвоение получаемого опыта",
       "category": "booster",
-      "icon": "/orbs/basic/orb_basic_xp.png"
+      "icon": "/boosters/charm_xpx2_1.png"
     },
     {
       "rewardId": 32,
@@ -482,7 +467,7 @@
       "name": "Бустер опыта +200% (1 день)",
       "description": "Утроение получаемого опыта",
       "category": "booster",
-      "icon": "/orbs/basic/orb_basic_xp_01.png"
+      "icon": "/boosters/charm_xpx3_1.png"
     },
     {
       "rewardId": 33,
@@ -497,7 +482,7 @@
       "name": "Бустер регенерации +100% (1 день)",
       "description": "Удвоение скорости восстановления HP",
       "category": "booster",
-      "icon": "/ability/ability_regenerate.png"
+      "icon": "/boosters/charm_regenx2_1.png"
     },
     {
       "rewardId": 34,
@@ -512,7 +497,7 @@
       "name": "Бустер регенерации +300% (1 день)",
       "description": "Учетверение скорости восстановления HP",
       "category": "booster",
-      "icon": "/ability/ability_regenerate.png"
+      "icon": "/boosters/charm_regenx4_1.png"
     },
     {
       "rewardId": 35,

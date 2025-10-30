@@ -251,17 +251,17 @@
           <div class="table">
             <div class="table-row head">
               <span>Награда</span>
-              <span>Выпало</span>
-              <span>Всего</span>
+              <span class="reward-count">Выпало</span>
+              <span class="reward-total">Всего</span>
             </div>
             {#each breakdown as entry}
               <div class="table-row">
                 <span class="reward-label">
                   <img class="reward-icon" src={entry.icon} alt={entry.label} loading="lazy" />
-                  <span>{entry.label}</span>
+                  <span class="name">{entry.label}</span>
                 </span>
-                <span>x{formatNumber(entry.count)}</span>
-                <span>{formatRewardAmount(entry)}</span>
+                <span class="reward-count">x{formatNumber(entry.count)}</span>
+                <span class="reward-total">{formatRewardAmount(entry)}</span>
               </div>
             {/each}
           </div>
@@ -616,7 +616,7 @@
 
   .table-row {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) 0.8fr 1fr;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.75fr) minmax(0, 1fr);
     align-items: center;
     gap: 0.75rem;
     font-size: 0.95rem;
@@ -634,6 +634,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
+    min-width: 0;
   }
 
   .reward-icon {
@@ -642,6 +643,28 @@
     border-radius: 12px;
     background: rgba(129, 140, 248, 0.2);
     padding: 0.25rem;
+  }
+
+  .reward-label .name {
+    overflow-wrap: anywhere;
+  }
+
+  .reward-count,
+  .reward-total {
+    justify-self: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .reward-total {
+    text-align: right;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+
+  .table-row.head .reward-count,
+  .table-row.head .reward-total {
+    justify-self: start;
+    text-align: left;
   }
 
   .history {
@@ -725,20 +748,22 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem 1.25rem;
   }
 
   .odds-list li {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 
   .odds-name {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
+    min-width: 0;
   }
 
   .odds-icon {
@@ -749,9 +774,15 @@
     padding: 0.3rem;
   }
 
+  .odds-name .name {
+    overflow-wrap: anywhere;
+  }
+
   .chance {
     font-variant-numeric: tabular-nums;
     color: #c7d2fe;
+    text-align: right;
+    min-width: 72px;
   }
 
   @media (max-width: 1100px) {

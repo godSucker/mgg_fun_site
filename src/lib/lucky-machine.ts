@@ -116,10 +116,10 @@ const CATEGORY_INFO: Record<
   { label: string; icon: string }
 > = {
   'jackpot': { label: 'Джекпоты', icon: '/cash/jackpot.png' },
-  'free-spin': { label: 'Бесплатные прокруты', icon: '/etc/icon_chance.png' },
+  'free-spin': { label: 'Бесплатные прокруты', icon: '/etc/freespin.png' },
   star: { label: 'Звёзды', icon: '/stars/star_gold.png' },
-  material: { label: 'Материалы', icon: '/etc/icon_hp.png' },
-  booster: { label: 'Бустеры', icon: '/ability/ability_strengthen.png' },
+  material: { label: 'Материалы', icon: '/materials/mini_xp.png' },
+  booster: { label: 'Бустеры', icon: '/boosters/charm_xpx2_7.png' },
   mutant: { label: 'Мутанты', icon: '/mut_icons/icon_gacha.png' },
   currency: { label: 'Валюта', icon: '/cash/hardcurrency.png' },
   token: { label: 'Жетоны', icon: '/tokens/material_gacha_token.png' },
