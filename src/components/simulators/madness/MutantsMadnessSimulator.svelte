@@ -159,40 +159,11 @@
 </script>
 
 <div class="madness-shell">
-  <header class="hero">
-    <div class="hero-content">
-      <span class="badge">Sim • Mutants Madness</span>
-      <h2>{machine.title}</h2>
-      <p>
-        Рулетка с эксклюзивными мутантами в стиле казино. Симулятор повторяет официальные веса
-        наград и учитывает открытые исследования в зависимости от уровня игрока.
-      </p>
-      <dl class="hero-stats">
-        <div>
-          <dt>Стоимость золота</dt>
-          <dd>{formatNumber(machine.cost)} за спин</dd>
-        </div>
-        <div>
-          <dt>Стоимость жетонов</dt>
-          <dd>{formatNumber(machine.tokenCost)} за спин</dd>
-        </div>
-        <div>
-          <dt>Доступно наград</dt>
-          <dd>{rewardChances.length}</dd>
-        </div>
-        <div>
-          <dt>Шанс джекпота</dt>
-          <dd>{formatPercent(jackpotChance, 4)}</dd>
-        </div>
-      </dl>
-    </div>
-  </header>
-
   <form class="control-panel" on:submit|preventDefault={handleSimulate}>
     <div class="inputs">
       <label class="field">
         <span class="label">Уровень игрока</span>
-        <input type="number" min={1} max={200} bind:value={level} />
+        <input type="number" min={1} bind:value={level} />
         <small>Максимальное исследование: {maxResearch > 0 ? maxResearch : 'не доступно'}</small>
       </label>
       <label class="field">
@@ -231,6 +202,11 @@
         <span class="title">Всего прокрутов</span>
         <strong>{formatNumber(totalSpins)}</strong>
         <span class="meta">Открыто исследований: {maxResearch}</span>
+      </div>
+      <div class="summary-card highlight">
+        <span class="title">Шанс джекпота</span>
+        <strong>{formatPercent(jackpotChance, 4)}</strong>
+        <span class="meta">Для уровня {level}</span>
       </div>
     </div>
 
@@ -305,18 +281,25 @@
         <section class="result-column">
           <h4>По наградам</h4>
           {#if result.rewardBreakdown.length}
-            <ul class="reward-list">
-              {#each result.rewardBreakdown.slice(0, 30) as entry}
-                <li>
+            <ul class="reward-board">
+              {#each result.rewardBreakdown.slice(0, 30) as entry, index}
+                {@const currencyLabel = getCurrencyLabel(entry)}
+                <li class:index-top={index < 3}>
                   <div class="icon">
                     <img src={entry.icon ?? '/mutants/icon_gacha.png'} alt="" loading="lazy" />
                   </div>
                   <div class="details">
-                    <span class="name">{entry.label}</span>
-                    <span class="meta">
-                      {formatNumber(entry.count)}× — факт: {getActualShare(entry)} · теор: {formatPercent(entry.chance, 4)}
-                    </span>
-                    <span class="meta">{getCurrencyLabel(entry)}</span>
+                    <div class="row">
+                      <span class="name">{entry.label}</span>
+                      <span class="count-badge">{formatNumber(entry.count)}×</span>
+                    </div>
+                    <div class="pills">
+                      <span class="pill actual">Факт: {getActualShare(entry)}</span>
+                      <span class="pill expected">Теор: {formatPercent(entry.chance, 4)}</span>
+                    </div>
+                    {#if currencyLabel !== '—'}
+                      <span class="currency">{currencyLabel}</span>
+                    {/if}
                   </div>
                 </li>
               {/each}
@@ -385,80 +368,6 @@
     gap: 2.5rem;
   }
 
-  .hero {
-    position: relative;
-    padding: 2.8rem;
-    border-radius: 38px;
-    background: radial-gradient(circle at 15% 15%, rgba(244, 63, 94, 0.18), rgba(15, 23, 42, 0.92));
-    border: 1px solid rgba(244, 114, 182, 0.28);
-    box-shadow: 0 28px 48px rgba(244, 63, 94, 0.16);
-    overflow: hidden;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.12), transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-    color: #fdf4ff;
-  }
-
-  .badge {
-    align-self: flex-start;
-    padding: 0.48rem 1.2rem;
-    border-radius: 999px;
-    border: 1px solid rgba(244, 114, 182, 0.45);
-    background: rgba(244, 63, 94, 0.22);
-    color: #fbcfe8;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.82rem;
-  }
-
-  h2 {
-    margin: 0;
-    font-size: 3rem;
-    color: #fdf2f8;
-  }
-
-  .hero p {
-    margin: 0;
-    max-width: 720px;
-    color: rgba(252, 231, 243, 0.82);
-    line-height: 1.75;
-    font-size: 1.08rem;
-  }
-
-  .hero-stats {
-    display: grid;
-    gap: 1.3rem;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    margin: 0;
-  }
-
-  .hero-stats dt {
-    margin: 0;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(244, 215, 255, 0.7);
-  }
-
-  .hero-stats dd {
-    margin: 0.35rem 0 0;
-    font-size: 1.3rem;
-    color: #fdf4ff;
-    font-weight: 600;
-  }
-
   .control-panel {
     display: flex;
     flex-direction: column;
@@ -525,6 +434,12 @@
     gap: 0.4rem;
   }
 
+  .summary-card.highlight {
+    background: linear-gradient(140deg, rgba(59, 7, 100, 0.85), rgba(76, 29, 149, 0.7));
+    border-color: rgba(196, 181, 253, 0.45);
+    box-shadow: 0 18px 40px rgba(168, 85, 247, 0.25);
+  }
+
   .summary-card .title {
     font-size: 0.82rem;
     letter-spacing: 0.08em;
@@ -532,14 +447,27 @@
     color: rgba(148, 163, 184, 0.75);
   }
 
+  .summary-card.highlight .title {
+    color: rgba(221, 214, 254, 0.85);
+  }
+
   .summary-card strong {
     font-size: 1.7rem;
     color: #fce7f3;
   }
 
+  .summary-card.highlight strong {
+    color: #fef3c7;
+    text-shadow: 0 0 18px rgba(253, 224, 71, 0.45);
+  }
+
   .summary-card .meta {
     font-size: 0.82rem;
     color: rgba(203, 213, 225, 0.72);
+  }
+
+  .summary-card.highlight .meta {
+    color: rgba(221, 214, 254, 0.75);
   }
 
   .actions {
@@ -741,7 +669,7 @@
     color: #fce7f3;
   }
 
-  .reward-list,
+  .reward-board,
   .history-list,
   .research-list {
     list-style: none;
@@ -754,12 +682,30 @@
     overflow-y: auto;
   }
 
-  .reward-list li,
+  .reward-board li,
   .history-list li {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.85rem;
     align-items: center;
+  }
+
+  .reward-board {
+    gap: 1rem;
+  }
+
+  .reward-board li {
+    padding: 0.75rem 0.85rem;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .reward-board li.index-top {
+    border-color: rgba(236, 72, 153, 0.45);
+    box-shadow: 0 16px 32px rgba(236, 72, 153, 0.2);
+    transform: translateY(-2px);
   }
 
   .icon {
@@ -797,6 +743,61 @@
     color: rgba(203, 213, 225, 0.7);
   }
 
+  .details .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(254, 202, 202, 0.18);
+    border: 1px solid rgba(254, 202, 202, 0.35);
+    color: #fecaca;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(148, 163, 184, 0.16);
+    color: rgba(226, 232, 240, 0.75);
+  }
+
+  .pill.actual {
+    background: rgba(248, 113, 113, 0.16);
+    color: rgba(248, 113, 113, 0.95);
+  }
+
+  .pill.expected {
+    background: rgba(165, 180, 252, 0.16);
+    color: rgba(165, 180, 252, 0.9);
+  }
+
+  .currency {
+    font-size: 0.82rem;
+    color: rgba(203, 213, 225, 0.75);
+  }
+
   .muted {
     margin: 0;
     color: rgba(148, 163, 184, 0.65);
@@ -815,15 +816,6 @@
   }
 
   @media (max-width: 720px) {
-    .hero {
-      padding: 2.2rem;
-      border-radius: 28px;
-    }
-
-    .hero-stats {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
     .control-panel {
       padding: 1.8rem;
     }
