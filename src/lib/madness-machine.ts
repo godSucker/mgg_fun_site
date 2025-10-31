@@ -108,6 +108,7 @@ interface WeightedReward {
 interface MadnessSimulationContext {
   weightedRewards: WeightedReward[];
   totalWeight: number;
+  entityTotalWeight: number;
   level: number;
   tokenSpins: number;
   goldSpins: number;
@@ -213,9 +214,11 @@ export function getRewardChances(
   level: number,
   machine: MadnessMachineDefinition = madnessMachine,
 ): MadnessRewardChance[] {
-  const available = getAvailableRewards(level, machine);
-  const total = available.reduce((sum, reward) => sum + reward.odds, 0);
-  return available
+  const rewards = getAvailableRewards(level, machine).filter(
+    (reward) => reward.type === 'entity',
+  );
+  const total = rewards.reduce((sum, reward) => sum + reward.odds, 0);
+  return rewards
     .map((reward) => ({
       ...reward,
       chance: total > 0 ? reward.odds / total : 0,
@@ -283,9 +286,13 @@ function buildSimulationContext(
   const researchChanceMap = new Map<MadnessResearchKey, number>();
 
   let cumulative = 0;
+  let entityTotalWeight = 0;
   for (const reward of available) {
     cumulative += reward.odds;
     weightedRewards.push({ reward, cumulative });
+    if (reward.type === 'entity') {
+      entityTotalWeight += reward.odds;
+    }
   }
 
   const totalWeight = cumulative;
@@ -294,8 +301,13 @@ function buildSimulationContext(
     const chance = totalWeight > 0 ? reward.odds / totalWeight : 0;
     chanceMap.set(reward.rewardId, chance);
 
-    const researchKey = getResearchKey(reward);
-    researchChanceMap.set(researchKey, (researchChanceMap.get(researchKey) ?? 0) + reward.odds);
+    if (reward.type === 'entity') {
+      const researchKey = getResearchKey(reward);
+      researchChanceMap.set(
+        researchKey,
+        (researchChanceMap.get(researchKey) ?? 0) + reward.odds,
+      );
+    }
   }
 
   const historySize = options.historySize ?? 20;
@@ -304,6 +316,7 @@ function buildSimulationContext(
   return {
     weightedRewards,
     totalWeight,
+    entityTotalWeight,
     level,
     tokenSpins,
     goldSpins,
@@ -388,7 +401,7 @@ function ensureResearchAggregate(
   let aggregate = ctx.researchMap.get(key);
   if (!aggregate) {
     const totalOdds = ctx.researchChanceMap.get(key) ?? 0;
-    const totalWeight = ctx.totalWeight;
+    const totalWeight = ctx.entityTotalWeight;
     aggregate = {
       key,
       label: getResearchLabel(key),
