@@ -428,15 +428,6 @@
     gap: 2rem;
   }
 
-  @media (max-width: 1100px) {
-    .reactor-layout {
-      grid-template-columns: 1fr;
-    }
-
-    .info-panel {
-      order: -1;
-    }
-  }
 
   .reactor-stage {
     position: relative;
@@ -566,89 +557,7 @@
     box-shadow: 0 20px 35px rgba(253, 224, 71, 0.35);
   }
 
-  @media (max-width: 1280px) {
-    .slot-track {
-      margin: 2rem -1.5rem 1.75rem;
-      padding: 0 1.5rem 1rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      scroll-snap-type: x mandatory;
-      gap: 1.5rem;
-    }
-
-    .slot-track::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slot-card {
-      flex: 0 0 clamp(200px, 65vw, 240px);
-      max-width: clamp(200px, 65vw, 240px);
-      scroll-snap-align: start;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .slot-track {
-      margin: 1.75rem -1rem 1.5rem;
-      padding: 0 1rem 0.75rem;
-      gap: 1.2rem;
-    }
-
-    .slot-card {
-      flex: 0 0 clamp(200px, 75vw, 240px);
-      max-width: clamp(200px, 75vw, 240px);
-    }
-
-    .reactor-stage {
-      padding: 1.75rem 1.5rem 1.5rem;
-    }
-
-    .stage-header {
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      gap: 1rem;
-    }
-
-    .header-progress {
-      width: 100%;
-      text-align: left;
-      align-items: flex-start;
-    }
-
-    .stage-controls {
-      gap: 1rem;
-    }
-
-    .cost-line {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.75rem;
-    }
-
-    .spin-buttons {
-      width: 100%;
-    }
-
-    .spin {
-      flex: 1 1 100%;
-    }
-
-    .info-panel {
-      gap: 1.25rem;
-    }
-
-    .result-body {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .history-card li {
-      align-items: flex-start;
-    }
-  }
+  /* Responsive overrides removed to keep desktop layout across devices */
 
   .slot-inner {
     position: relative;
