@@ -467,9 +467,9 @@ import mutantsData from '@/data/mutants/normal.json';
   }
 </script>
 
-<div class="flex flex-row w-full">
+<div class="flex flex-col xl:flex-row w-full gap-6 xl:gap-10">
   <!-- Main panel: title, selectors and results -->
-  <div class="flex-1 pr-4">
+  <div class="flex-1 w-full xl:pr-4">
     <!-- Header -->
     <div class="flex flex-col items-start space-y-2 mb-4">
       <h1 class="text-lime-400 text-2xl font-bold">Breeding Calculator</h1>
@@ -520,11 +520,9 @@ import mutantsData from '@/data/mutants/normal.json';
 
     {#if mode === 'calc'}
       <!-- Parent selection area (two slots) -->
-      <div class="flex items-end justify-center space-x-6 mb-6">
+      <div class="flex flex-col items-stretch gap-4 sm:flex-row sm:items-end sm:justify-center mb-6">
         <!-- Parent A card -->
-        <div
-          class="flex-1 max-w-xs border border-gray-600 rounded-xl bg-gray-800 p-4 flex flex-col items-center relative"
-        >
+        <div class="w-full sm:flex-1 sm:max-w-xs border border-gray-600 rounded-xl bg-gray-800 p-4 flex flex-col items-center relative">
           {#if selectedA}
             <button
               class="absolute top-2 right-2 text-gray-400 hover:text-white"
@@ -545,13 +543,11 @@ import mutantsData from '@/data/mutants/normal.json';
             </div>
           {/if}
         </div>
-        <div class="flex items-center justify-center text-lime-400 text-4xl font-bold select-none">
+        <div class="flex items-center justify-center text-lime-400 text-3xl sm:text-4xl font-bold select-none">
           +
         </div>
         <!-- Parent B card -->
-        <div
-          class="flex-1 max-w-xs border border-gray-600 rounded-xl bg-gray-800 p-4 flex flex-col items-center relative"
-        >
+        <div class="w-full sm:flex-1 sm:max-w-xs border border-gray-600 rounded-xl bg-gray-800 p-4 flex flex-col items-center relative">
           {#if selectedB}
             <button
               class="absolute top-2 right-2 text-gray-400 hover:text-white"
@@ -577,7 +573,7 @@ import mutantsData from '@/data/mutants/normal.json';
       {#if selectedA && selectedB}
         <div class="mb-8">
           {#if childResults.length > 0}
-            <div class="flex items-center justify-between bg-gray-800 border border-gray-700 rounded-t-lg px-4 py-2 text-sm text-gray-300">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between bg-gray-800 border border-gray-700 rounded-t-lg px-4 py-2 text-sm text-gray-300">
               <div>
                 Время выведения: <span class="text-lime-400 font-semibold">{breedingTime}</span>
               </div>
@@ -585,51 +581,53 @@ import mutantsData from '@/data/mutants/normal.json';
                 Возможных детей: <span class="text-lime-400 font-semibold">{childResults.length}</span>
               </div>
             </div>
-            <table class="min-w-full text-sm border border-gray-700 rounded-b-lg overflow-hidden">
-              <thead class="bg-gray-700 text-gray-200">
-                <tr>
-                  <th class="px-3 py-2 text-left">Иконка</th>
-                  <th class="px-3 py-2 text-left">Имя</th>
-                  <th class="px-3 py-2 text-left">Гены</th>
-                  <th class="px-3 py-2 text-left">Бинго</th>
-                  <th class="px-3 py-2 text-left">Тип</th>
-                  <th class="px-3 py-2 text-left">Категория</th>
-                  <th class="px-3 py-2 text-left">Инкубация</th>
-                </tr>
-              </thead>
-              <tbody class="bg-gray-800 divide-y divide-gray-700">
-                {#each childResults as child (child.id)}
-                  <tr class="hover:bg-gray-700 cursor-pointer" on:click={() => handleOpenMutant({ detail: { mutant: child }})}>
-                    <td class="px-3 py-1">
-                      <img src={getImageSrc(child)} alt={getName(child)} class="w-8 h-8 rounded object-cover" />
-                    </td>
-                    <td class="px-3 py-1 whitespace-nowrap">{getName(child)}</td>
-                    <td class="px-3 py-1">
-                      <div class="flex space-x-1">
-                        {#each ((Array.isArray(child.genes) ? child.genes[0] : child.genes) || '').split('') as ch}
-                          <img src={getGeneIconSrc(ch)} alt={ch} class="w-6 h-6" />
-                        {/each}
-                      </div>
-                    </td>
-                    <td class="px-3 py-1">
-                      {#if Array.isArray(child.bingo) && child.bingo.length > 0}
-                        <!-- Use the morphology icon for all bingo groups for simplicity -->
-                        <img src="/mut_icons/icon_morphology.png" alt="bingo" class="w-6 h-6" />
-                      {:else}
-                        —
-                      {/if}
-                    </td>
-                    <td class="px-3 py-1">
-                      <img src={getTypeIcon(child)} alt={child.type} class="w-6 h-6" />
-                    </td>
-                    <td class="px-3 py-1">
-                      <span class={`inline-block px-2 py-1 rounded-full text-xs font-semibold text-gray-900 ${getCategory(child).color}`}>{getCategory(child).label}</span>
-                    </td>
-                    <td class="px-3 py-1 whitespace-nowrap">{formatIncubationTime(child.incub_time)}</td>
+            <div class="overflow-x-auto">
+              <table class="min-w-full text-sm border border-gray-700 rounded-b-lg overflow-hidden">
+                <thead class="bg-gray-700 text-gray-200">
+                  <tr>
+                    <th class="px-3 py-2 text-left">Иконка</th>
+                    <th class="px-3 py-2 text-left">Имя</th>
+                    <th class="px-3 py-2 text-left">Гены</th>
+                    <th class="px-3 py-2 text-left">Бинго</th>
+                    <th class="px-3 py-2 text-left">Тип</th>
+                    <th class="px-3 py-2 text-left">Категория</th>
+                    <th class="px-3 py-2 text-left">Инкубация</th>
                   </tr>
-                {/each}
-              </tbody>
-            </table>
+                </thead>
+                <tbody class="bg-gray-800 divide-y divide-gray-700">
+                  {#each childResults as child (child.id)}
+                    <tr class="hover:bg-gray-700 cursor-pointer" on:click={() => handleOpenMutant({ detail: { mutant: child }})}>
+                      <td class="px-3 py-1">
+                        <img src={getImageSrc(child)} alt={getName(child)} class="w-8 h-8 rounded object-cover" />
+                      </td>
+                      <td class="px-3 py-1 whitespace-nowrap">{getName(child)}</td>
+                      <td class="px-3 py-1">
+                        <div class="flex space-x-1">
+                          {#each ((Array.isArray(child.genes) ? child.genes[0] : child.genes) || '').split('') as ch}
+                            <img src={getGeneIconSrc(ch)} alt={ch} class="w-6 h-6" />
+                          {/each}
+                        </div>
+                      </td>
+                      <td class="px-3 py-1">
+                        {#if Array.isArray(child.bingo) && child.bingo.length > 0}
+                          <!-- Use the morphology icon for all bingo groups for simplicity -->
+                          <img src="/mut_icons/icon_morphology.png" alt="bingo" class="w-6 h-6" />
+                        {:else}
+                          —
+                        {/if}
+                      </td>
+                      <td class="px-3 py-1">
+                        <img src={getTypeIcon(child)} alt={child.type} class="w-6 h-6" />
+                      </td>
+                      <td class="px-3 py-1">
+                        <span class={`inline-block px-2 py-1 rounded-full text-xs font-semibold text-gray-900 ${getCategory(child).color}`}>{getCategory(child).label}</span>
+                      </td>
+                      <td class="px-3 py-1 whitespace-nowrap">{formatIncubationTime(child.incub_time)}</td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+            </div>
           {:else}
             <div class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-400">
               Нет возможных детей для выбранных родителей.
@@ -714,9 +712,9 @@ import mutantsData from '@/data/mutants/normal.json';
   </div>
   <!-- Side panel: filter and parent selection -->
   <!-- The width of the side panel has been increased to show more mutants at once -->
-  <div class="w-[28rem] border-l border-gray-700 pl-4">
+  <div class="w-full xl:w-[26rem] xl:flex-shrink-0 xl:border-l xl:pl-4 border-gray-700 mt-8 xl:mt-0">
     <!-- Gene filter row -->
-    <div class="flex justify-center space-x-2 mb-2">
+    <div class="flex flex-wrap justify-center gap-2 mb-3">
       {#each ['all', 'A', 'B', 'C', 'D', 'E', 'F'] as gene (gene)}
         <button
           class="p-1 rounded border border-gray-600 flex items-center justify-center"
@@ -741,9 +739,9 @@ import mutantsData from '@/data/mutants/normal.json';
     />
     <!-- List of parent mutants -->
     <!-- Increase the maximum height of the scroll area to reveal more items at once -->
-    <div class="max-h-[700px] overflow-y-auto pr-1">
+    <div class="max-h-[60vh] md:max-h-[700px] overflow-y-auto pr-1">
       <!-- Increase to four columns to display more mutants simultaneously -->
-      <div class="grid grid-cols-4 gap-2">
+      <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2">
         {#each filteredParents as m (m.id)}
           <div
             class="relative border border-gray-600 rounded cursor-pointer overflow-hidden bg-gray-800 hover:border-lime-500"

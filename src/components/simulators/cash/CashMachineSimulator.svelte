@@ -730,6 +730,21 @@
     }
   }
 
+  @media (max-width: 900px) {
+    .machine-body {
+      padding: 1.75rem;
+      border-radius: 28px;
+    }
+
+    .machine-header h2 {
+      font-size: 1.75rem;
+    }
+
+    .stats {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+  }
+
   @media (max-width: 640px) {
     .machine-body {
       padding: 1.5rem;
@@ -743,6 +758,50 @@
     .table-row {
       grid-template-columns: 1fr 0.6fr 0.8fr;
       font-size: 0.85rem;
+    }
+
+    .control-panel {
+      gap: 1rem;
+    }
+
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .actions button {
+      width: 100%;
+    }
+
+    .stats {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-card.currency {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .stat-card.currency strong {
+      text-align: left;
+    }
+
+    .machine-header p {
+      font-size: 0.95rem;
+    }
+
+    .history li {
+      align-items: flex-start;
+      gap: 0.75rem;
+      flex-direction: column;
+    }
+
+    .odds-panel {
+      padding: 1.5rem;
+    }
+
+    .odds-list {
+      grid-template-columns: 1fr;
     }
   }
 </style>
