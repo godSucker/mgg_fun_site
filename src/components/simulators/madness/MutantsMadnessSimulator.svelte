@@ -91,7 +91,7 @@
     },
     mutants: {
       label: 'Мутанты',
-      icon: '/mutants/icon_gacha.png',
+      icon: '/etc/icon_larva.png',
       metaLabel: 'Выпало суммарно',
     },
     jackpots: {
@@ -490,7 +490,7 @@
                 {@const currencyLabel = getCurrencyLabel(entry)}
                 <li class:index-top={index < 3}>
                   <div class="icon">
-                    <img src={entry.icon ?? '/mutants/icon_gacha.png'} alt="" loading="lazy" />
+                    <img src={entry.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
                   </div>
                   <div class="details">
                     <div class="row">
@@ -520,7 +520,7 @@
               {#each result.history as entry}
                 <li>
                   <div class="icon">
-                    <img src={entry.icon ?? '/mutants/icon_gacha.png'} alt="" loading="lazy" />
+                    <img src={entry.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
                   </div>
                   <div class="details">
                     <span class="name">{entry.label}</span>
