@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MutantsMadnessSimulator from '../../../components/simulators/madness/MutantsMadnessSimulator.svelte';
+import { madnessMachine, getResearchChanceBreakdown } from '../../../lib/madness-machine';
+
+const machine = madnessMachine;
+const maxLevel = 200;
+const researchChances = getResearchChanceBreakdown(maxLevel, machine);
+const jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
+---
+<BaseLayout title="Mutants Madness — симулятор рулетки" fullWidth={true}>
+  <section class="hero">
+    <div class="hero-card">
+      <span class="badge">Sim • Mutants Madness</span>
+      <h1>Mutants Madness</h1>
+      <p>
+        Самая дорогая рулетка из Mutants: Genetic Gladiators с эксклюзивными мутантами в стиле казино.
+        Симулятор учитывает уровень славы игрока и реальные шансы наград, чтобы показать, сколько ресурсов
+        потребуется для желаемого приза.
+      </p>
+      <dl class="quick-stats" aria-label="Основные параметры Mutants Madness">
+        <div>
+          <dt>Стоимость золота</dt>
+          <dd>{machine.cost} за прокрут</dd>
+        </div>
+        <div>
+          <dt>Стоимость жетонов джекпота</dt>
+          <dd>{machine.tokenCost} жетонов джекпота за прокрут</dd>
+        </div>
+        <div>
+          <dt>Количество наград</dt>
+          <dd>{machine.rewards.length}</dd>
+        </div>
+        <div>
+          <dt>Шанс джекпота (200 ур.)</dt>
+          <dd>{(jackpotChance * 100).toFixed(4)}%</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <MutantsMadnessSimulator client:load machine={machine} />
+</BaseLayout>
+
+<style>
+  .hero {
+    margin-bottom: 2.6rem;
+  }
+
+  .hero-card {
+    position: relative;
+    padding: 2.9rem;
+    border-radius: 40px;
+    background: radial-gradient(circle at 20% 20%, rgba(244, 63, 94, 0.25), rgba(15, 23, 42, 0.92));
+    border: 1px solid rgba(244, 114, 182, 0.35);
+    box-shadow: 0 26px 48px rgba(236, 72, 153, 0.22);
+    overflow: hidden;
+  }
+
+  .hero-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.12), transparent 55%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.48rem 1.2rem;
+    border-radius: 999px;
+    background: rgba(244, 63, 94, 0.2);
+    color: #fbcfe8;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 1.1rem 0 0.75rem;
+    font-size: 3.1rem;
+    color: #ffe4e6;
+  }
+
+  p {
+    margin: 0;
+    max-width: 720px;
+    color: rgba(252, 231, 243, 0.82);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .quick-stats {
+    margin: 2.2rem 0 0;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  dt {
+    margin: 0 0 0.4rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(253, 242, 248, 0.6);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #ffe4e6;
+    font-weight: 600;
+  }
+
+  @media (max-width: 720px) {
+    .hero-card {
+      padding: 2.2rem;
+      border-radius: 32px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+    }
+  }
+</style>

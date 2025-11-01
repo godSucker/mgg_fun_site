@@ -313,7 +313,7 @@
     <div class="stage-controls">
       <div class="cost-line">
         <div class="cost-pill">
-          <span class="pill-label">Стоимость жетона</span>
+          <span class="pill-label">Стоимость жетона джекпота</span>
           <strong>{gacha.token_cost}</strong>
         </div>
         <div class="cost-pill">
@@ -323,7 +323,7 @@
       </div>
       <div class="spin-buttons">
         <button class="spin token" on:click={() => spin('token')}>
-          🎲 Крутить за жетоны
+          🎲 Крутить за жетоны джекпота
         </button>
         <button class="spin hc" on:click={() => spin('hc')}>
           💰 Крутить за золото
@@ -354,7 +354,7 @@
       <div class="info-card result-card">
         <header>
           <span class={`badge ${lastResult.costType === 'token' ? 'token' : 'hc'}`}>
-            {lastResult.costType === 'token' ? 'Жетоны' : 'Золото'}
+            {lastResult.costType === 'token' ? 'Жетоны джекпота' : 'Золото'}
           </span>
           {#if lastResult.isCompletionReward}
             <span class="badge completion">🏆</span>

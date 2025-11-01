@@ -3,9 +3,7 @@
     LuckyMachineDefinition,
     LuckyRewardAggregate,
     LuckyRewardChance,
-    LuckyCategoryAggregate,
     LuckySimulation,
-    LuckySpinSummary,
   } from '@/lib/lucky-machine';
   import {
     formatNumber,
@@ -25,12 +23,222 @@
   let isSimulating = false;
   let error: string | null = null;
   let result: LuckySimulation | null = null;
-  let breakdown: LuckyRewardAggregate[] = [];
-  let categories: LuckyCategoryAggregate[] = [];
-  let history: LuckySpinSummary[] = [];
   let progress = 0;
   let completedPaid = 0;
   let controller: AbortController | null = null;
+
+  type ResourceSummaryKey =
+    | 'consumables'
+    | 'stars'
+    | 'spheres'
+    | 'boosters'
+    | 'tokens'
+    | 'mutants'
+    | 'jackpots';
+
+  interface ResourceSummaryDefinition {
+    label: string;
+    icon: string;
+    metaLabel: string;
+  }
+
+  interface ResourceSummary extends ResourceSummaryDefinition {
+    key: ResourceSummaryKey;
+    count: number;
+    totalAmount: number;
+  }
+
+  const resourceSummaryConfig: Record<ResourceSummaryKey, ResourceSummaryDefinition> = {
+    consumables: {
+      label: 'Расходники',
+      icon: '/med/normal_med.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    stars: {
+      label: 'Звёзды',
+      icon: '/stars/all_stars.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    spheres: {
+      label: 'Сферы',
+      icon: '/orbs/basic/orb_slot.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    boosters: {
+      label: 'Бустеры',
+      icon: '/boosters/charm_xpx2.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    tokens: {
+      label: 'Жетоны',
+      icon: '/tokens/material_jackpot_token.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    mutants: {
+      label: 'Мутанты',
+      icon: '/etc/icon_larva.png',
+      metaLabel: 'Выпало суммарно',
+    },
+    jackpots: {
+      label: 'Джекпоты',
+      icon: '/cash/jackpot.png',
+      metaLabel: 'Выпало суммарно',
+    },
+  };
+
+  const resourceSummaryOrder: ResourceSummaryKey[] = [
+    'consumables',
+    'stars',
+    'spheres',
+    'boosters',
+    'tokens',
+    'mutants',
+    'jackpots',
+  ];
+
+  const rewardChanceMap = new Map<number, number>();
+  for (const reward of rewardChances) {
+    rewardChanceMap.set(reward.rewardId, reward.chance);
+  }
+
+  function detectResourceSummaryKey(entry: LuckyRewardAggregate): ResourceSummaryKey | null {
+    const { reward } = entry;
+    const name = reward.name.toLowerCase();
+    const slug = reward.id?.toLowerCase?.() ?? '';
+
+    if (reward.isSuperJackpot || reward.category === 'jackpot' || name.includes('джекпот')) {
+      return 'jackpots';
+    }
+
+    if (reward.category === 'mutant' || slug.includes('specimen') || name.includes('мутант')) {
+      return 'mutants';
+    }
+
+    if (
+      reward.category === 'token' ||
+      name.includes('жетон') ||
+      slug.includes('token') ||
+      slug.includes('jackpot') ||
+      slug.includes('reactor')
+    ) {
+      return 'tokens';
+    }
+
+    if (
+      reward.category === 'orb' ||
+      name.includes('сфер') ||
+      name.includes('sphere') ||
+      name.includes('орб') ||
+      slug.includes('orb')
+    ) {
+      return 'spheres';
+    }
+
+    if (
+      reward.category === 'booster' ||
+      name.includes('бустер') ||
+      name.includes('ускорител') ||
+      name.includes('чарм') ||
+      slug.includes('booster') ||
+      slug.includes('charm')
+    ) {
+      return 'boosters';
+    }
+
+    if (
+      reward.category === 'star' ||
+      name.includes('звёзд') ||
+      name.includes('звезд') ||
+      name.includes('звезда') ||
+      name.includes('звезды') ||
+      name.includes('star') ||
+      slug.includes('star')
+    ) {
+      return 'stars';
+    }
+
+    if (
+      reward.category === 'material' ||
+      reward.category === 'special' ||
+      name.includes('апт') ||
+      name.includes('опыт') ||
+      name.includes('мутостерон') ||
+      name.includes('серон') ||
+      name.includes('стерон') ||
+      name.includes('пропуск') ||
+      name.includes('experience') ||
+      slug.includes('med') ||
+      slug.includes('mutoster') ||
+      slug.includes('steroid') ||
+      slug.includes('pass') ||
+      slug.includes('consumable') ||
+      slug.includes('xp')
+    ) {
+      return 'consumables';
+    }
+
+    return null;
+  }
+
+  function buildResourceSummaries(simulation: LuckySimulation | null): ResourceSummary[] {
+    const totals = new Map<ResourceSummaryKey, { count: number; totalAmount: number }>();
+
+    if (simulation) {
+      for (const entry of simulation.breakdown) {
+        const key = detectResourceSummaryKey(entry);
+        if (!key) continue;
+        const current = totals.get(key) ?? { count: 0, totalAmount: 0 };
+        current.count += entry.count;
+        current.totalAmount += entry.totalAmount;
+        totals.set(key, current);
+      }
+    }
+
+    return resourceSummaryOrder.map((key) => {
+      const config = resourceSummaryConfig[key];
+      const bucket = totals.get(key) ?? { count: 0, totalAmount: 0 };
+      return {
+        key,
+        label: config.label,
+        icon: config.icon,
+        metaLabel: config.metaLabel,
+        count: bucket.count,
+        totalAmount: bucket.totalAmount,
+      };
+    });
+  }
+
+  let resourceSummaries: ResourceSummary[] = [];
+  let jackpotCount = 0;
+
+  function formatPercent(value: number, digits = 2): string {
+    return `${(value * 100).toFixed(digits)}%`;
+  }
+
+  function getActualShare(entry: LuckyRewardAggregate): string {
+    if (!result || result.totalSpins <= 0) return '—';
+    return formatPercent(entry.count / result.totalSpins, 2);
+  }
+
+  function getExpectedShare(entry: LuckyRewardAggregate): string {
+    const chance = rewardChanceMap.get(entry.reward.rewardId);
+    if (chance == null) return '—';
+    return formatPercent(chance, 4);
+  }
+
+  function getCurrencyLabel(entry: LuckyRewardAggregate): string {
+    const { reward, totalAmount } = entry;
+    if (reward.type === 'hardcurrency') {
+      return `${formatNumber(totalAmount)} × золото`;
+    }
+    if (reward.type === 'softcurrency') {
+      return `${formatNumber(totalAmount)} × серебро`;
+    }
+    if (reward.category === 'token') {
+      return `${formatNumber(totalAmount)} × жетоны джекпота`;
+    }
+    return '—';
+  }
 
   function resetSimulation() {
     if (controller) {
@@ -38,9 +246,6 @@
       controller = null;
     }
     result = null;
-    breakdown = [];
-    categories = [];
-    history = [];
     progress = 0;
     completedPaid = 0;
     error = null;
@@ -62,9 +267,6 @@
     }
 
     result = null;
-    breakdown = [];
-    categories = [];
-    history = [];
     progress = 0;
     completedPaid = 0;
 
@@ -85,9 +287,6 @@
       });
 
       result = simulation;
-      breakdown = simulation.breakdown;
-      categories = simulation.categories;
-      history = simulation.history;
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
         error = 'Симуляция остановлена.';
@@ -103,20 +302,6 @@
     }
   }
 
-  function formatRewardAmount(entry: LuckyRewardAggregate): string {
-    const { reward, totalAmount } = entry;
-    if (reward.type === 'hardcurrency') {
-      return `${formatNumber(totalAmount)} золота`;
-    }
-    if (reward.type === 'softcurrency') {
-      return `${formatNumber(totalAmount)} серебра`;
-    }
-    if (reward.amount > 1 && totalAmount > 1) {
-      return `${formatNumber(totalAmount)} шт.`;
-    }
-    return formatNumber(totalAmount);
-  }
-
   function getFreeSpinRate(sim?: LuckySimulation | null): string {
     if (!sim || sim.totalSpins === 0) return '—';
     const rate = (sim.freeSpins / sim.totalSpins) * 100;
@@ -129,6 +314,9 @@
     if (!Number.isFinite(ratio) || ratio <= 0) return '—';
     return `1 к ${ratio.toFixed(2)}`;
   }
+
+  $: resourceSummaries = buildResourceSummaries(result);
+  $: jackpotCount = resourceSummaries.find((summary) => summary.key === 'jackpots')?.count ?? 0;
 
   onDestroy(() => {
     stopSimulation();
@@ -159,7 +347,7 @@
           />
           <span class="suffix">спинов</span>
         </div>
-        <small id="spins-hint">Бесплатные спины считаются отдельно и не требуют токенов.</small>
+        <small id="spins-hint">Бесплатные спины считаются отдельно и не требуют жетонов джекпота.</small>
       </label>
 
       <div class="actions">
@@ -220,73 +408,100 @@
           </div>
         </div>
         <div class="stat-card currency">
-          <img class="stat-icon" src="/tokens/material_gacha_token.png" alt="Иконка жетона" loading="lazy" />
+          <img
+            class="stat-icon"
+            src="/tokens/material_gacha_token.png"
+            alt="Иконка жетона джекпота"
+            loading="lazy"
+          />
           <div class="stat-body">
             <span class="label">Жетоны и билеты</span>
             <strong>{formatNumber(result.tokenItems)}</strong>
           </div>
         </div>
       </section>
+      <section class="results">
+        <header class="results-header">
+          <h3>Результаты симуляции</h3>
+          <p>
+            Выполнено {formatNumber(result.totalSpins)} прокрутов: {formatNumber(result.paidSpins)} платных и
+            {formatNumber(result.freeSpins)} бесплатных. Выпало джекпотов: {formatNumber(jackpotCount)}.
+          </p>
+        </header>
 
-      {#if categories.length}
-        <section class="category-grid">
-          {#each categories as category (category.category)}
-            <article class="category-card">
-              <header>
-                <img src={category.icon} alt={category.label} loading="lazy" />
-                <div>
-                  <h4>{category.label}</h4>
-                  <span class="count">x{formatNumber(category.count)}</span>
-                </div>
-              </header>
-              <p>Ресурсов суммарно: {formatNumber(category.totalAmount)}</p>
+        <div class="resource-summary" role="presentation">
+          {#each resourceSummaries as summary (summary.key)}
+            <article class="resource-card">
+              <div class="resource-icon">
+                <img src={summary.icon} alt="" loading="lazy" />
+              </div>
+              <div class="resource-body">
+                <span class="resource-title">{summary.label}</span>
+                <strong>{formatNumber(summary.count)}</strong>
+                <span class="resource-meta">
+                  {summary.metaLabel}: {formatNumber(summary.totalAmount)}
+                </span>
+              </div>
             </article>
           {/each}
-        </section>
-      {/if}
-
-      <section class="results-grid">
-        <div class="panel">
-          <h3>Статистика призов</h3>
-          <div class="table">
-            <div class="table-row head">
-              <span>Награда</span>
-              <span class="reward-count">Выпало</span>
-              <span class="reward-total">Всего</span>
-            </div>
-            {#each breakdown as entry}
-              <div class="table-row">
-                <span class="reward-label">
-                  <img class="reward-icon" src={entry.icon} alt={entry.label} loading="lazy" />
-                  <span class="name">{entry.label}</span>
-                </span>
-                <span class="reward-count">x{formatNumber(entry.count)}</span>
-                <span class="reward-total">{formatRewardAmount(entry)}</span>
-              </div>
-            {/each}
-          </div>
         </div>
-        <div class="panel">
-          <h3>Последние события</h3>
-          {#if history.length === 0}
-            <p class="empty">Запустите симуляцию, чтобы увидеть историю.</p>
-          {:else}
-            <ul class="history">
-              {#each history as spin (spin.timestamp)}
-                <li class={spin.type === 'free-spin' ? 'free-spin' : ''}>
-                  <div class="history-info">
-                    <img class="history-icon" src={spin.icon} alt={spin.label} loading="lazy" />
-                    <span class="title">{spin.label}</span>
-                  </div>
-                  {#if spin.type === 'free-spin'}
-                    <span class="note">+1 спин</span>
-                  {:else}
-                    <span class="note">x{formatNumber(spin.reward.amount)}</span>
-                  {/if}
-                </li>
-              {/each}
-            </ul>
-          {/if}
+
+        <div class="result-grid">
+          <section class="result-column">
+            <h4>По наградам</h4>
+            {#if result.breakdown.length}
+              <ul class="reward-board">
+                {#each result.breakdown as entry, index}
+                  {@const totalLabel = getCurrencyLabel(entry)}
+                  <li class:index-top={index < 3}>
+                    <div class="icon">
+                      <img src={entry.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
+                    </div>
+                    <div class="details">
+                      <div class="row">
+                        <span class="name">{entry.label}</span>
+                        <span class="count-badge">{formatNumber(entry.count)}×</span>
+                      </div>
+                      <div class="pills">
+                        <span class="pill actual">Факт: {getActualShare(entry)}</span>
+                        <span class="pill expected">Теор: {getExpectedShare(entry)}</span>
+                      </div>
+                      {#if totalLabel !== '—'}
+                        <span class="currency">{totalLabel}</span>
+                      {:else if entry.totalAmount > entry.count}
+                        <span class="currency">{formatNumber(entry.totalAmount)} шт.</span>
+                      {/if}
+                    </div>
+                  </li>
+                {/each}
+              </ul>
+            {:else}
+              <p class="muted">Награды пока не выпадали.</p>
+            {/if}
+          </section>
+
+          <section class="result-column">
+            <h4>История последних выпадений</h4>
+            {#if result.history.length}
+              <ul class="history-list">
+                {#each result.history as spin}
+                  <li class:free-spin={spin.type === 'free-spin'}>
+                    <div class="history-info">
+                      <img src={spin.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
+                      <span class="title">{spin.label}</span>
+                    </div>
+                    {#if spin.type === 'free-spin'}
+                      <span class="note">+1 спин</span>
+                    {:else}
+                      <span class="note">{formatNumber(spin.reward.amount)}×</span>
+                    {/if}
+                  </li>
+                {/each}
+              </ul>
+            {:else}
+              <p class="muted">Запустите симуляцию, чтобы увидеть историю.</p>
+            {/if}
+          </section>
         </div>
       </section>
     {/if}
@@ -553,179 +768,270 @@
     color: rgba(148, 163, 184, 0.75);
   }
 
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-
-  .category-card {
-    background: rgba(20, 24, 38, 0.85);
-    border-radius: 20px;
-    padding: 1.1rem 1.25rem;
-    border: 1px solid rgba(129, 140, 248, 0.28);
+  .results {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1.75rem;
   }
 
-  .category-card header {
+  .results-header h3 {
+    margin: 0;
+    font-size: 1.85rem;
+    color: #c7d2fe;
+  }
+
+  .results-header p {
+    margin: 0.6rem 0 0;
+    color: rgba(226, 232, 240, 0.8);
+  }
+
+  .resource-summary {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  .resource-card {
     display: flex;
-    gap: 0.85rem;
     align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.3rem;
+    border-radius: 24px;
+    background: rgba(17, 24, 39, 0.72);
+    border: 1px solid rgba(129, 140, 248, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
-  .category-card header img {
-    width: 46px;
-    height: 46px;
+  .resource-icon {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(129, 140, 248, 0.35);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
   }
 
-  .category-card h4 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #e0e7ff;
+  .resource-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
   }
 
-  .category-card .count {
-    color: rgba(148, 163, 184, 0.75);
+  .resource-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .resource-title {
     font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(191, 219, 254, 0.82);
   }
 
-  .category-card p {
-    margin: 0;
-    color: rgba(203, 213, 225, 0.8);
+  .resource-body strong {
+    font-size: 1.55rem;
+    color: #f8fafc;
+    line-height: 1.2;
+  }
+
+  .resource-meta {
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.85);
   }
 
   .results-grid {
     display: grid;
-    gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 
-  .panel {
-    background: rgba(15, 23, 42, 0.85);
-    border-radius: 20px;
-    padding: 1.25rem 1.5rem;
-    border: 1px solid rgba(129, 140, 248, 0.2);
+  .result-column {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 1.4rem;
+    border-radius: 24px;
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(129, 140, 248, 0.2);
   }
 
-  .panel h3 {
+  .result-column h4 {
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #e0e7ff;
   }
 
-  .table {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .table-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.75fr) minmax(0, 1fr);
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    color: rgba(226, 232, 240, 0.85);
-  }
-
-  .table-row.head {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: rgba(148, 163, 184, 0.7);
-  }
-
-  .reward-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    min-width: 0;
-  }
-
-  .reward-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    background: rgba(129, 140, 248, 0.2);
-    padding: 0.25rem;
-  }
-
-  .reward-label .name {
-    overflow-wrap: anywhere;
-  }
-
-  .reward-count,
-  .reward-total {
-    justify-self: end;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .reward-total {
-    text-align: right;
-    overflow-wrap: anywhere;
-    max-width: 100%;
-  }
-
-  .table-row.head .reward-count,
-  .table-row.head .reward-total {
-    justify-self: start;
-    text-align: left;
-  }
-
-  .history {
+  .reward-board,
+  .history-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    gap: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-height: 420px;
+    overflow-y: auto;
   }
 
-  .history li {
+  .reward-board li,
+  .history-list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem;
+    align-items: center;
+  }
+
+  .reward-board li {
+    padding: 0.8rem 0.95rem;
+    border-radius: 18px;
+    background: rgba(22, 30, 46, 0.85);
+    border: 1px solid rgba(129, 140, 248, 0.18);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .reward-board li.index-top {
+    border-color: rgba(129, 140, 248, 0.48);
+    box-shadow: 0 16px 32px rgba(99, 102, 241, 0.18);
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(129, 140, 248, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .details .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .details .name {
+    font-weight: 600;
+    color: #e0e7ff;
+  }
+
+  .count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(129, 140, 248, 0.18);
+    border: 1px solid rgba(129, 140, 248, 0.45);
+    color: #c7d2fe;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(148, 163, 184, 0.16);
+    color: rgba(226, 232, 240, 0.75);
+  }
+
+  .pill.actual {
+    background: rgba(248, 113, 113, 0.16);
+    color: rgba(248, 113, 113, 0.95);
+  }
+
+  .pill.expected {
+    background: rgba(129, 140, 248, 0.18);
+    color: rgba(165, 180, 252, 0.92);
+  }
+
+  .currency {
+    font-size: 0.82rem;
+    color: rgba(203, 213, 225, 0.78);
+  }
+
+  .muted {
+    margin: 0;
+    color: rgba(148, 163, 184, 0.65);
+  }
+
+  .history-list li {
+    padding: 0.7rem 0.85rem;
+    border-radius: 18px;
+    background: rgba(22, 30, 46, 0.78);
+    border: 1px solid rgba(129, 140, 248, 0.18);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.6rem 0.8rem;
-    border-radius: 14px;
-    background: rgba(22, 30, 46, 0.7);
-    border: 1px solid rgba(129, 140, 248, 0.12);
-    color: rgba(226, 232, 240, 0.9);
+    gap: 0.75rem;
   }
 
-  .history li.free-spin {
-    border-color: rgba(129, 140, 248, 0.35);
-    background: rgba(129, 140, 248, 0.18);
+  .history-list li.free-spin {
+    border-color: rgba(129, 140, 248, 0.45);
+    background: rgba(129, 140, 248, 0.2);
   }
 
   .history-info {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.7rem;
+    min-width: 0;
   }
 
-  .history-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(129, 140, 248, 0.25);
-    padding: 0.25rem;
+  .history-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(129, 140, 248, 0.28);
+    padding: 0.35rem;
   }
 
-  .history .title {
+  .history-info .title {
     font-size: 0.95rem;
+    color: #e0e7ff;
+    overflow-wrap: anywhere;
   }
 
-  .history .note {
-    font-size: 0.8rem;
-    color: rgba(226, 232, 240, 0.7);
-  }
-
-  .empty {
-    margin: 0;
-    color: rgba(148, 163, 184, 0.7);
+  .history-list .note {
+    font-size: 0.82rem;
+    color: rgba(226, 232, 240, 0.78);
+    white-space: nowrap;
   }
 
   .odds-panel {
