@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CraftSimulator from '../../components/simulators/craft/CraftSimulator.svelte';
+---
+
+<BaseLayout title="Black Hole Craft Lab — симулятор крафта" fullWidth={true}>
+  <CraftSimulator client:load />
+</BaseLayout>
