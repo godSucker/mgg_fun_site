@@ -415,7 +415,7 @@
             loading="lazy"
           />
           <div class="stat-body">
-            <span class="label">Жетоны и билеты</span>
+            <span class="label">Жетоны</span>
             <strong>{formatNumber(result.tokenItems)}</strong>
           </div>
         </div>
