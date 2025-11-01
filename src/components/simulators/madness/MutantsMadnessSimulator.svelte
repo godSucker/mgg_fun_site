@@ -65,6 +65,7 @@
   $: goldRemaining = Math.max(gold - goldSpent, 0);
 
   $: jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
+  $: jackpotOddsRatio = jackpotChance > 0 ? 1 / jackpotChance : null;
 
   function resetSimulation() {
     if (controller) {
@@ -207,6 +208,9 @@
         <span class="title">Шанс джекпота</span>
         <strong>{formatPercent(jackpotChance, 4)}</strong>
         <span class="meta">Для уровня {level}</span>
+        {#if jackpotOddsRatio}
+          <span class="meta odds">К общему количеству жетонов: 1 к {jackpotOddsRatio.toFixed(2)}</span>
+        {/if}
       </div>
     </div>
 
@@ -468,6 +472,11 @@
 
   .summary-card.highlight .meta {
     color: rgba(221, 214, 254, 0.75);
+  }
+
+  .summary-card .meta.odds {
+    font-size: 0.78rem;
+    color: rgba(221, 214, 254, 0.85);
   }
 
   .actions {
