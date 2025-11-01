@@ -1,3 +1,11 @@
+/**
+ * This module is a TypeScript port of the original desktop craft simulator that
+ * lived in {@link src/data/simulators/CRAFT/craft.py}. The legacy script
+ * consumed the same XML-like recipe files, translated item identifiers and
+ * simulated reward rolls. By mirroring those routines we guarantee that the web
+ * version stays perfectly in sync with the proven Python reference.
+ */
+
 import blackholeRaw from '@/data/simulators/CRAFT/blackhole.txt?raw';
 import labRaw from '@/data/simulators/CRAFT/lab.txt?raw';
 import orbRaw from '@/data/simulators/CRAFT/orb.txt?raw';
@@ -37,6 +45,26 @@ export interface SimulationResult {
   crafts: number;
   mainRewards: Record<string, number>;
   incentiveRewards: Record<string, number>;
+}
+
+export interface RewardSummary {
+  id: string;
+  amount: number;
+  perCraft: number;
+  share: number;
+}
+
+export interface IncentiveSummary {
+  id: string;
+  amount: number;
+  perCraft: number;
+}
+
+export interface DetailedSimulationResult extends SimulationResult {
+  rewardDetails: RewardSummary[];
+  incentiveDetails: IncentiveSummary[];
+  expectedIncentiveChance: number;
+  log: string[];
 }
 
 const RAW_SOURCES: Array<{ category: CraftCategory; raw: string }> = [
@@ -79,8 +107,8 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   Material_Muto10: 'Доза мутостерона',
   Material_Muto50: 'Большая доза мутостерона',
   Material_XP10: 'Плитка опыта',
-  Material_XP250: 'Маленькая банка опыта',
-  Material_XP1000: 'Банка опыта',
+  Material_XP250: 'Батончик опыта',
+  Material_XP1000: 'Маленькая банка опыта',
   Material_LP10: 'Маленькая аптечка',
   Material_LP100: 'Аптечка',
   Material_LP1000: 'Большая аптечка',
@@ -332,44 +360,140 @@ export function describeIngredientRegex(regex: string): string {
   return regex;
 }
 
+export function calculateIncentiveChance(
+  recipe: CraftRecipe,
+  incentive: IncentiveReward | null,
+): number {
+  if (!incentive || recipe.bonusPer1000 <= 0) {
+    return 0;
+  }
+
+  return (recipe.bonusPer1000 / 1000) * (incentive.per1000 / 1000);
+}
+
 export function simulateRecipe(
   recipe: CraftRecipe,
   crafts: number,
   incentive: IncentiveReward | null,
   rng: () => number = Math.random,
-): SimulationResult {
+): DetailedSimulationResult {
   const totalOdds = recipe.rewards.reduce((sum, reward) => sum + reward.odds, 0);
   const mainRewards: Record<string, number> = {};
   const incentiveRewardsResult: Record<string, number> = {};
+  const log: string[] = [];
 
   if (crafts < 1) {
-    return { crafts: 0, mainRewards, incentiveRewards: incentiveRewardsResult };
+    return {
+      crafts: 0,
+      mainRewards,
+      incentiveRewards: incentiveRewardsResult,
+      rewardDetails: [],
+      incentiveDetails: [],
+      expectedIncentiveChance: 0,
+      log,
+    };
   }
+
+  const expectedIncentiveChance = calculateIncentiveChance(recipe, incentive);
 
   for (let i = 0; i < crafts; i += 1) {
     if (totalOdds > 0 && recipe.rewards.length > 0) {
-      let roll = rng() * totalOdds;
+      const roll = Math.floor(rng() * totalOdds) + 1;
+      let current = 0;
       for (const reward of recipe.rewards) {
-        roll -= reward.odds;
-        if (roll <= 0) {
+        current += reward.odds;
+        if (roll <= current) {
           mainRewards[reward.id] = (mainRewards[reward.id] ?? 0) + reward.amount;
           break;
         }
       }
     }
 
-    if (incentive && recipe.bonusPer1000 > 0) {
-      const incentiveChance = (recipe.bonusPer1000 / 1000) * (incentive.per1000 / 1000);
-      if (rng() < incentiveChance) {
+    if (incentive && expectedIncentiveChance > 0) {
+      if (rng() < expectedIncentiveChance) {
         incentiveRewardsResult[incentive.id] = (incentiveRewardsResult[incentive.id] ?? 0) + 1;
       }
     }
   }
 
+  const rewardDetails = Object.entries(mainRewards)
+    .map(([id, amount]) => ({
+      id,
+      amount,
+      perCraft: crafts > 0 ? amount / crafts : 0,
+      share: 0,
+    }))
+    .sort((a, b) => b.amount - a.amount);
+
+  const totalMain = rewardDetails.reduce((sum, item) => sum + item.amount, 0);
+  const totalIncentive = Object.values(incentiveRewardsResult).reduce((sum, amount) => sum + amount, 0);
+
+  if (totalMain > 0) {
+    for (const item of rewardDetails) {
+      item.share = item.amount / totalMain;
+    }
+  }
+
+  const incentiveDetails: IncentiveSummary[] = Object.entries(incentiveRewardsResult)
+    .map(([id, amount]) => ({
+      id,
+      amount,
+      perCraft: crafts > 0 ? amount / crafts : 0,
+    }))
+    .sort((a, b) => b.amount - a.amount);
+
+  log.push(`🎯 Результаты ${crafts} крафтов`);
+  log.push(`📋 Рецепт: ${recipe.id}`);
+
+  if (expectedIncentiveChance > 0 && incentive) {
+    log.push(`🎲 Шанс доп. награды: ${(expectedIncentiveChance * 100).toFixed(2)}%`);
+  }
+
+  log.push('🏆 Основные награды:');
+  if (rewardDetails.length === 0) {
+    log.push('  - Нет наград');
+  } else {
+    for (const detail of rewardDetails) {
+      const chancePerCraft = detail.perCraft * 100;
+      const sharePercent = detail.share * 100;
+      log.push(
+        `  - ${translateItemId(detail.id)}: ${detail.amount} шт. (${chancePerCraft.toFixed(1)}% за крафт, ${sharePercent.toFixed(
+          1,
+        )}% от всех наград)`,
+      );
+    }
+  }
+
+  if (incentive) {
+    if (incentiveDetails.length > 0) {
+      log.push(`✨ Дополнительные награды (${translateItemId(incentive.id)}):`);
+      for (const detail of incentiveDetails) {
+        const actualChance = detail.perCraft * 100;
+        const expectedPercent = expectedIncentiveChance * 100;
+        log.push(
+          `  - ${translateItemId(detail.id)}: ${detail.amount} шт. (ожидалось: ${expectedPercent.toFixed(1)}%, получено: ${actualChance.toFixed(
+            1,
+          )}%)`,
+        );
+      }
+    } else {
+      log.push(`✨ Дополнительные награды (${translateItemId(incentive.id)}) не выпали.`);
+    }
+  }
+
+  log.push('📊 Статистика:');
+  log.push(`  - Всего основных наград: ${totalMain}`);
+  log.push(`  - Всего дополнительных наград: ${totalIncentive}`);
+  log.push(`  - Общее количество наград: ${totalMain + totalIncentive}`);
+
   return {
     crafts,
     mainRewards,
     incentiveRewards: incentiveRewardsResult,
+    rewardDetails,
+    incentiveDetails,
+    expectedIncentiveChance,
+    log,
   };
 }
 

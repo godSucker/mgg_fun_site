@@ -6,12 +6,13 @@
     describeIngredientRegex,
     getItemTexture,
     simulateRecipe,
+    calculateIncentiveChance,
     formatDurationMinutes,
     getBonusRange,
     getOkhcRange,
     getFeaturedRewardIds,
     type CraftRecipe,
-    type SimulationResult,
+    type DetailedSimulationResult,
     type IncentiveReward,
   } from '@/lib/craft-simulator';
 
@@ -40,8 +41,10 @@
   interface FacilityState {
     selectedRecipeId: string;
     craftCount: number;
-    result: SimulationResult | null;
+    result: DetailedSimulationResult | null;
   }
+
+  const MAX_SIMULATIONS = 10000;
 
   const allRecipes: CraftRecipe[] = [
     ...craftRecipesByCategory.star,
@@ -162,7 +165,9 @@
   }
 
   function updateCraftCount(facilityId: FacilityId, value: number) {
-    const safeValue = Number.isFinite(value) ? Math.min(Math.max(Math.floor(value), 1), 10000) : 1;
+    const safeValue = Number.isFinite(value)
+      ? Math.min(Math.max(Math.floor(value), 1), MAX_SIMULATIONS)
+      : 1;
     facilityStates = {
       ...facilityStates,
       [facilityId]: {
@@ -180,7 +185,7 @@
     const recipe = facility.recipes.find((item) => item.id === state.selectedRecipeId);
     if (!recipe) return;
 
-    const crafts = Math.min(Math.max(Math.floor(state.craftCount), 1), 10000);
+    const crafts = Math.min(Math.max(Math.floor(state.craftCount), 1), MAX_SIMULATIONS);
     const result = simulateRecipe(recipe, crafts, activeIncentive);
 
     facilityStates = {
@@ -203,11 +208,6 @@
 
   function formatPercent(value: number): string {
     return `${(value * 100).toFixed(value * 100 < 1 ? 2 : 1)}%`;
-  }
-
-  function getIncentiveChance(recipe: CraftRecipe, incentive: IncentiveReward | null): number {
-    if (!incentive || recipe.bonusPer1000 <= 0) return 0;
-    return (recipe.bonusPer1000 / 1000) * (incentive.per1000 / 1000);
   }
 </script>
 
@@ -305,7 +305,7 @@
     activeFacility.recipes.find((recipe) => recipe.id === state.selectedRecipeId) ??
     activeFacility.recipes[0]}
   {@const rewardDisplay = currentRecipe ? getRewardDisplay(currentRecipe) : []}
-  {@const incentiveChance = getIncentiveChance(currentRecipe, activeIncentive)}
+  {@const incentiveChance = calculateIncentiveChance(currentRecipe, activeIncentive)}
   {@const bonusRange = getBonusRange(activeFacility.recipes)}
   {@const okhcRange = getOkhcRange(activeFacility.recipes)}
 
@@ -479,7 +479,7 @@
                   id={`craft-count-${activeFacility.id}`}
                   type="number"
                   min="1"
-                  max="10000"
+                  max={MAX_SIMULATIONS}
                   value={state.craftCount}
                   on:input={(event) =>
                     updateCraftCount(activeFacility.id, Number(event.currentTarget.value))}
@@ -495,20 +495,17 @@
             </footer>
 
             {#if state.result}
-              {@const totalMain = Object.values(state.result.mainRewards).reduce(
-                (sum, amount) => sum + amount,
-                0,
-              )}
-              {@const totalIncentive = Object.values(state.result.incentiveRewards).reduce(
-                (sum, amount) => sum + amount,
-                0,
-              )}
+              {@const rewardDetails = state.result.rewardDetails}
+              {@const incentiveDetails = state.result.incentiveDetails}
+              {@const totalMain = rewardDetails.reduce((sum, item) => sum + item.amount, 0)}
+              {@const totalIncentive = incentiveDetails.reduce((sum, item) => sum + item.amount, 0)}
               <div class="results-card">
                 <header>
                   <h4>Результаты {state.result.crafts} крафтов</h4>
-                  {#if incentiveChance > 0 && activeIncentive}
+                  {#if state.result.expectedIncentiveChance > 0 && activeIncentive}
                     <span>
-                      Ожидалось доп. награды: {formatPercent(incentiveChance)} за крафт
+                      Ожидалось доп. награды:
+                      {formatPercent(state.result.expectedIncentiveChance)} за крафт
                     </span>
                   {/if}
                 </header>
@@ -516,12 +513,11 @@
                 <div class="results-grid">
                   <div>
                     <h5>Основные награды</h5>
-                    {#if totalMain > 0}
+                    {#if rewardDetails.length > 0}
                       <ul>
-                        {#each Object.entries(state.result.mainRewards)
-                          .sort((a, b) => b[1] - a[1]) as [rewardId, amount]}
-                          {@const label = translateItemId(rewardId)}
-                          {@const icon = getItemTexture(rewardId)}
+                        {#each rewardDetails as detail (detail.id)}
+                          {@const label = translateItemId(detail.id)}
+                          {@const icon = getItemTexture(detail.id)}
                           <li>
                             <div class="item-icon">
                               {#if icon}
@@ -533,12 +529,15 @@
                             <div class="item-info">
                               <span class="item-title">{label}</span>
                               <span class="item-sub">
-                                {amount} шт. • {formatPercent(amount / state.result.crafts)} за крафт
+                                {detail.amount} шт. • {formatPercent(detail.perCraft)} за крафт
                               </span>
                             </div>
-                            <span class="item-odds__raw">
-                              {totalMain > 0 ? formatPercent(amount / totalMain) : '—'} от дропа
-                            </span>
+                            <div class="item-odds">
+                              <span>{formatPercent(detail.perCraft)}</span>
+                              <span class="item-odds__raw">
+                                {totalMain > 0 ? formatPercent(detail.share) : '—'} от дропа
+                              </span>
+                            </div>
                           </li>
                         {/each}
                       </ul>
@@ -549,11 +548,11 @@
 
                   <div>
                     <h5>Дополнительные награды</h5>
-                    {#if totalIncentive > 0}
+                    {#if incentiveDetails.length > 0}
                       <ul>
-                        {#each Object.entries(state.result.incentiveRewards) as [rewardId, amount]}
-                          {@const label = translateItemId(rewardId)}
-                          {@const icon = getItemTexture(rewardId)}
+                        {#each incentiveDetails as detail (detail.id)}
+                          {@const label = translateItemId(detail.id)}
+                          {@const icon = getItemTexture(detail.id)}
                           <li>
                             <div class="item-icon">
                               {#if icon}
@@ -565,7 +564,7 @@
                             <div class="item-info">
                               <span class="item-title">{label}</span>
                               <span class="item-sub">
-                                {amount} шт. • {formatPercent(amount / state.result.crafts)} за крафт
+                                {detail.amount} шт. • {formatPercent(detail.perCraft)} за крафт
                               </span>
                             </div>
                           </li>
@@ -576,6 +575,20 @@
                     {/if}
                   </div>
                 </div>
+
+                {#if state.result.log.length > 0}
+                  <div class="results-log">
+                    <h5>Текстовый лог</h5>
+                    <ul>
+                      {#each state.result.log as line, index}
+                        <li>
+                          <span class="results-log__index">{index + 1}.</span>
+                          <span>{line}</span>
+                        </li>
+                      {/each}
+                    </ul>
+                  </div>
+                {/if}
               </div>
             {/if}
           </div>
@@ -1156,7 +1169,7 @@
 
   .results-grid li {
     display: grid;
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 52px 1fr auto;
     gap: 0.9rem;
     align-items: center;
     padding: 0.75rem 1rem;
@@ -1165,9 +1178,44 @@
     border: 1px solid rgba(148, 163, 184, 0.15);
   }
 
+  .results-grid li .item-odds {
+    justify-self: end;
+    display: grid;
+    gap: 0.25rem;
+    text-align: right;
+    color: rgba(226, 232, 240, 0.7);
+    font-size: 0.9rem;
+  }
+
+  .results-log {
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.15);
+  }
+
+  .results-log ul {
+    margin: 0.8rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  .results-log li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.6rem;
+    color: rgba(226, 232, 240, 0.75);
+    font-size: 0.92rem;
+  }
+
+  .results-log__index {
+    color: rgba(148, 163, 184, 0.65);
+    font-variant-numeric: tabular-nums;
+  }
+
   .results-grid li .item-odds__raw {
-    justify-self: start;
-    margin-top: 0.3rem;
+    justify-self: end;
+    opacity: 0.7;
   }
 
   .empty {
