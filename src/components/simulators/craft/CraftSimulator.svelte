@@ -123,11 +123,15 @@
     },
   ];
 
+  let activeFacilityId: FacilityId = facilities[0]?.id ?? 'metal';
+
   let activeIncentiveId: string = incentiveRewards[0]?.id ?? '';
   $: activeIncentive =
     activeIncentiveId === ''
       ? null
       : incentiveRewards.find((reward) => reward.id === activeIncentiveId) ?? null;
+  $: activeFacility =
+    facilities.find((facility) => facility.id === activeFacilityId) ?? facilities[0] ?? null;
 
   let facilityStates: Record<FacilityId, FacilityState> = facilities.reduce(
     (acc, facility) => {
@@ -140,6 +144,10 @@
     },
     {} as Record<FacilityId, FacilityState>,
   );
+
+  function setActiveFacility(id: FacilityId) {
+    activeFacilityId = id;
+  }
 
   function selectRecipe(facilityId: FacilityId, recipeId: string) {
     const state = facilityStates[facilityId];
@@ -272,26 +280,52 @@
   </div>
 </section>
 
-{#each facilities as facility (facility.id)}
-  {@const state = facilityStates[facility.id]}
+<section
+  class="facility-tabs"
+  role="tablist"
+  aria-label="Станции крафта"
+>
+  {#each facilities as facility (facility.id)}
+    <button
+      type="button"
+      class:active={facility.id === activeFacilityId}
+      on:click={() => setActiveFacility(facility.id)}
+      role="tab"
+      aria-selected={facility.id === activeFacilityId}
+    >
+      <span class="facility-tabs__name">{facility.name}</span>
+      <span class="facility-tabs__tagline">{facility.tagline}</span>
+    </button>
+  {/each}
+</section>
+
+{#if activeFacility}
+  {@const state = facilityStates[activeFacility.id]}
   {@const currentRecipe =
-    facility.recipes.find((recipe) => recipe.id === state.selectedRecipeId) ?? facility.recipes[0]}
+    activeFacility.recipes.find((recipe) => recipe.id === state.selectedRecipeId) ??
+    activeFacility.recipes[0]}
   {@const rewardDisplay = currentRecipe ? getRewardDisplay(currentRecipe) : []}
   {@const incentiveChance = getIncentiveChance(currentRecipe, activeIncentive)}
-  {@const bonusRange = getBonusRange(facility.recipes)}
-  {@const okhcRange = getOkhcRange(facility.recipes)}
+  {@const bonusRange = getBonusRange(activeFacility.recipes)}
+  {@const okhcRange = getOkhcRange(activeFacility.recipes)}
 
-  <section class="facility" style={`--accent: ${facility.accent}; --glow: ${facility.glow};`}>
-    <div class="facility__background" style={`background-image: ${facility.gradient};`}></div>
+  <section
+    class="facility"
+    style={`--accent: ${activeFacility.accent}; --glow: ${activeFacility.glow};`}
+  >
+    <div
+      class="facility__background"
+      style={`background-image: ${activeFacility.gradient};`}
+    ></div>
     <div class="facility__inner">
       <aside class="facility__sidebar">
         <div class="facility__header">
-          <span class="badge badge--outline">{facility.badge}</span>
-          <h2>{facility.name}</h2>
-          <p>{facility.tagline}</p>
+          <span class="badge badge--outline">{activeFacility.badge}</span>
+          <h2>{activeFacility.name}</h2>
+          <p>{activeFacility.description}</p>
         </div>
         <div class="facility__featured" aria-label="Ключевые награды">
-          {#each facility.featuredRewards as item (item.id)}
+          {#each activeFacility.featuredRewards as item (item.id)}
             <div class="featured-item">
               {#if item.icon}
                 <img src={item.icon} alt={item.label} />
@@ -305,7 +339,7 @@
         <dl class="facility__stats" aria-label="Статистика секции">
           <div>
             <dt>Рецептов</dt>
-            <dd>{facility.recipes.length}</dd>
+            <dd>{activeFacility.recipes.length}</dd>
           </div>
           <div>
             <dt>Бонус доп. награды</dt>
@@ -329,15 +363,17 @@
       </aside>
 
       <div class="facility__content">
-        <div class="recipe-selector" role="tablist" aria-label={`Рецепты ${facility.name}`}>
-          {#each facility.recipes as recipe (recipe.id)}
+        <div class="recipe-selector" role="tablist" aria-label={`Рецепты ${activeFacility.name}`}>
+          {#each activeFacility.recipes as recipe (recipe.id)}
             {@const displayReward = recipe.rewards[0]}
-            {@const rewardLabel = displayReward ? translateItemId(displayReward.id) : recipe.id}
+            {@const rewardLabel = displayReward
+              ? translateItemId(displayReward.id)
+              : 'Рецепт'}
             {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
             <button
               type="button"
               class:selected={recipe.id === currentRecipe?.id}
-              on:click={() => selectRecipe(facility.id, recipe.id)}
+              on:click={() => selectRecipe(activeFacility.id, recipe.id)}
               role="tab"
               aria-selected={recipe.id === currentRecipe?.id}
             >
@@ -345,22 +381,26 @@
                 <img src={rewardIcon} alt={rewardLabel} />
               {/if}
               <span class="recipe-selector__title">{rewardLabel}</span>
-              <span class="recipe-selector__id">{recipe.id}</span>
             </button>
           {/each}
         </div>
 
         {#if currentRecipe}
-            <div class="recipe-card">
-              <header class="recipe-card__header">
-                <div>
-                  <span class="badge badge--ghost">ID: {currentRecipe.id}</span>
-                  <h3>
-                    {currentRecipe.rewards.length
-                      ? `→ ${translateItemId(currentRecipe.rewards[0].id)}`
-                      : 'Рецепт'}
-                  </h3>
-                </div>
+          {@const totalIngredientPieces = currentRecipe
+            ? currentRecipe.ingredients.reduce((sum, ingredient) => sum + ingredient.amount, 0)
+            : 0}
+          <div class="recipe-card">
+            <header class="recipe-card__header">
+              <div>
+                <h3>
+                  {currentRecipe.rewards.length
+                    ? translateItemId(currentRecipe.rewards[0].id)
+                    : 'Рецепт'}
+                </h3>
+                <p class="recipe-card__subtitle">
+                  {currentRecipe.ingredients.length} типов ингредиентов • {totalIngredientPieces} предметов
+                </p>
+              </div>
               <div class="recipe-card__meta">
                 {#if currentRecipe.bonusPer1000 > 0}
                   <span class="meta-pill">
@@ -434,18 +474,22 @@
 
             <footer class="recipe-card__footer">
               <div class="craft-input">
-                <label for={`craft-count-${facility.id}`}>Количество крафтов</label>
+                <label for={`craft-count-${activeFacility.id}`}>Количество крафтов</label>
                 <input
-                  id={`craft-count-${facility.id}`}
+                  id={`craft-count-${activeFacility.id}`}
                   type="number"
                   min="1"
                   max="10000"
                   value={state.craftCount}
                   on:input={(event) =>
-                    updateCraftCount(facility.id, Number(event.currentTarget.value))}
+                    updateCraftCount(activeFacility.id, Number(event.currentTarget.value))}
                 />
               </div>
-              <button type="button" class="simulate-btn" on:click={() => runSimulation(facility.id)}>
+              <button
+                type="button"
+                class="simulate-btn"
+                on:click={() => runSimulation(activeFacility.id)}
+              >
                 🎲 Симулировать
               </button>
             </footer>
@@ -539,7 +583,7 @@
       </div>
     </div>
   </section>
-{/each}
+{/if}
 
 <style>
   :global(body) {
@@ -711,6 +755,51 @@
     color: rgba(248, 250, 252, 0.92);
   }
 
+  .facility-tabs {
+    margin: 3rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .facility-tabs button {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem 1.4rem;
+    border-radius: 18px;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(30, 41, 59, 0.65);
+    color: rgba(226, 232, 240, 0.82);
+    text-align: left;
+    cursor: pointer;
+    min-width: 220px;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .facility-tabs button.active {
+    border-color: rgba(192, 132, 252, 0.45);
+    background: rgba(76, 29, 149, 0.35);
+    box-shadow: 0 18px 30px rgba(76, 29, 149, 0.25);
+    color: rgba(248, 250, 252, 0.95);
+  }
+
+  .facility-tabs button:hover,
+  .facility-tabs button:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(129, 140, 248, 0.5);
+  }
+
+  .facility-tabs__name {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .facility-tabs__tagline {
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.75);
+  }
+
   .facility {
     position: relative;
     border-radius: 40px;
@@ -718,14 +807,11 @@
     box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
   }
 
-  .facility + .facility {
-    margin-top: 3.5rem;
-  }
-
   .facility__background {
     position: absolute;
     inset: 0;
     opacity: 0.92;
+    pointer-events: none;
   }
 
   .facility__inner {
@@ -853,13 +939,6 @@
     color: rgba(248, 250, 252, 0.92);
   }
 
-  .recipe-selector__id {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.65);
-  }
-
   .recipe-card {
     position: relative;
     border-radius: 28px;
@@ -884,6 +963,12 @@
     flex-wrap: wrap;
     gap: 0.6rem;
     justify-content: flex-end;
+  }
+
+  .recipe-card__subtitle {
+    margin: 0.3rem 0 0;
+    color: rgba(148, 163, 184, 0.7);
+    font-size: 0.95rem;
   }
 
   .meta-pill {
@@ -1108,10 +1193,25 @@
   @media (max-width: 780px) {
     .craft-hero__card,
     .incentive-card,
+    .facility-tabs,
     .facility__content,
     .facility__sidebar,
     .recipe-card {
       padding: 1.75rem;
+    }
+
+    .facility-tabs {
+      padding: 0 1.75rem;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      gap: 0.75rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .facility-tabs button {
+      min-width: 200px;
+      scroll-snap-align: start;
     }
 
     .recipe-selector {
@@ -1141,6 +1241,16 @@
   @media (max-width: 520px) {
     section + section {
       margin-top: 2rem;
+    }
+
+    .facility-tabs {
+      margin: 2rem 0 1.5rem;
+      padding: 0.75rem 0.5rem;
+      gap: 0.65rem;
+    }
+
+    .facility-tabs button {
+      min-width: 180px;
     }
 
     .recipe-card__header,
