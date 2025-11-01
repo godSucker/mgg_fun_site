@@ -159,7 +159,7 @@
           />
           <span class="suffix">спинов</span>
         </div>
-        <small id="spins-hint">Бесплатные спины считаются отдельно и не требуют токенов.</small>
+        <small id="spins-hint">Бесплатные спины считаются отдельно и не требуют жетонов джекпота.</small>
       </label>
 
       <div class="actions">
@@ -220,7 +220,12 @@
           </div>
         </div>
         <div class="stat-card currency">
-          <img class="stat-icon" src="/tokens/material_gacha_token.png" alt="Иконка жетона" loading="lazy" />
+          <img
+            class="stat-icon"
+            src="/tokens/material_gacha_token.png"
+            alt="Иконка жетона джекпота"
+            loading="lazy"
+          />
           <div class="stat-body">
             <span class="label">Жетоны и билеты</span>
             <strong>{formatNumber(result.tokenItems)}</strong>
