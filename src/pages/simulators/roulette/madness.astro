@@ -15,7 +15,7 @@ const jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.
       <h1>Mutants Madness</h1>
       <p>
         Самая дорогая рулетка из Mutants: Genetic Gladiators с эксклюзивными мутантами в стиле казино.
-        Симулятор учитывает уровень игрока и реальные шансы наград, чтобы показать, сколько ресурсов
+        Симулятор учитывает уровень славы игрока и реальные шансы наград, чтобы показать, сколько ресурсов
         потребуется для желаемого приза.
       </p>
       <dl class="quick-stats" aria-label="Основные параметры Mutants Madness">
@@ -24,8 +24,8 @@ const jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.
           <dd>{machine.cost} за прокрут</dd>
         </div>
         <div>
-          <dt>Стоимость жетонов</dt>
-          <dd>{machine.tokenCost} за прокрут</dd>
+          <dt>Стоимость жетонов джекпота</dt>
+          <dd>{machine.tokenCost} жетонов джекпота за прокрут</dd>
         </div>
         <div>
           <dt>Количество наград</dt>

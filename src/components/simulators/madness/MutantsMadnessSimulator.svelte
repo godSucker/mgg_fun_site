@@ -42,6 +42,188 @@
     return numberFormatter.format(Math.floor(value));
   }
 
+  type ResourceSummaryKey =
+    | 'consumables'
+    | 'stars'
+    | 'spheres'
+    | 'boosters'
+    | 'tokens'
+    | 'mutants'
+    | 'jackpots';
+
+  interface ResourceSummaryDefinition {
+    label: string;
+    icon: string;
+    metaLabel: string;
+  }
+
+  interface ResourceSummary extends ResourceSummaryDefinition {
+    key: ResourceSummaryKey;
+    count: number;
+    totalAmount: number;
+  }
+
+  const resourceSummaryConfig: Record<ResourceSummaryKey, ResourceSummaryDefinition> = {
+    consumables: {
+      label: 'Расходники',
+      icon: '/med/normal_med.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    stars: {
+      label: 'Звёзды',
+      icon: '/stars/all_stars.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    spheres: {
+      label: 'Сферы',
+      icon: '/orbs/basic/orb_slot.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    boosters: {
+      label: 'Бустеры',
+      icon: '/boosters/charm_xpx2.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    tokens: {
+      label: 'Жетоны',
+      icon: '/tokens/material_jackpot_token.png',
+      metaLabel: 'Ресурсов суммарно',
+    },
+    mutants: {
+      label: 'Мутанты',
+      icon: '/mutants/icon_gacha.png',
+      metaLabel: 'Выпало суммарно',
+    },
+    jackpots: {
+      label: 'Джекпоты',
+      icon: '/cash/jackpot.png',
+      metaLabel: 'Выпало суммарно',
+    },
+  };
+
+  const resourceSummaryOrder: ResourceSummaryKey[] = [
+    'consumables',
+    'stars',
+    'spheres',
+    'boosters',
+    'tokens',
+    'mutants',
+    'jackpots',
+  ];
+
+  function detectResourceSummaryKey(entry: MadnessRewardAggregate): ResourceSummaryKey {
+    const { reward, label } = entry;
+
+    if (reward.isSuperJackpot) {
+      return 'jackpots';
+    }
+
+    if (reward.id?.startsWith('Specimen')) {
+      return 'mutants';
+    }
+
+    const slug = reward.slug?.toLowerCase() ?? '';
+    const name = label.toLowerCase();
+
+    if (
+      name.includes('жетон') ||
+      slug.includes('token') ||
+      slug.includes('jackpot') ||
+      slug.includes('reactor')
+    ) {
+      return 'tokens';
+    }
+
+    if (
+      name.includes('сфер') ||
+      name.includes('sphere') ||
+      name.includes('орб') ||
+      slug.includes('orb') ||
+      slug.includes('sphere')
+    ) {
+      return 'spheres';
+    }
+
+    if (
+      name.includes('бустер') ||
+      name.includes('ускорител') ||
+      name.includes('чарм') ||
+      name.includes('booster') ||
+      slug.includes('booster') ||
+      slug.includes('charm')
+    ) {
+      return 'boosters';
+    }
+
+    if (
+      name.includes('звёзд') ||
+      name.includes('звезд') ||
+      name.includes('звезда') ||
+      name.includes('звезды') ||
+      name.includes('star') ||
+      slug.includes('star') ||
+      slug.includes('elite')
+    ) {
+      return 'stars';
+    }
+
+    if (
+      name.includes('апт') ||
+      name.includes('опыт') ||
+      name.includes('мутостерон') ||
+      name.includes('серон') ||
+      name.includes('стерон') ||
+      name.includes('пропуск') ||
+      name.includes('experience') ||
+      slug.includes('med') ||
+      slug.includes('mutoster') ||
+      slug.includes('steroid') ||
+      slug.includes('pass') ||
+      slug.includes('consumable') ||
+      slug.includes('xp')
+    ) {
+      return 'consumables';
+    }
+
+    return 'mutants';
+  }
+
+  function buildResourceSummaries(simulation: MadnessSimulation | null): ResourceSummary[] {
+    const totals = new Map<ResourceSummaryKey, { count: number; totalAmount: number }>();
+
+    if (simulation) {
+      for (const entry of simulation.rewardBreakdown) {
+        const key = detectResourceSummaryKey(entry);
+        const current = totals.get(key) ?? { count: 0, totalAmount: 0 };
+        current.count += entry.count;
+        current.totalAmount += entry.totalAmount;
+        totals.set(key, current);
+      }
+
+      const jackpotBucket = totals.get('jackpots') ?? { count: 0, totalAmount: 0 };
+      if (simulation.jackpotCount > jackpotBucket.count) {
+        jackpotBucket.count = simulation.jackpotCount;
+        jackpotBucket.totalAmount = simulation.jackpotCount;
+        totals.set('jackpots', jackpotBucket);
+      }
+    }
+
+    return resourceSummaryOrder.map((key) => {
+      const config = resourceSummaryConfig[key];
+      const bucket = totals.get(key) ?? { count: 0, totalAmount: 0 };
+      return {
+        key,
+        label: config.label,
+        icon: config.icon,
+        metaLabel: config.metaLabel,
+        count: bucket.count,
+        totalAmount: bucket.totalAmount,
+      };
+    });
+  }
+
+  let resourceSummaries: ResourceSummary[] = [];
+
   function formatPercent(value: number, digits = 3): string {
     return `${(value * 100).toFixed(digits)}%`;
   }
@@ -66,6 +248,7 @@
 
   $: jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
   $: jackpotOddsRatio = jackpotChance > 0 ? 1 / jackpotChance : null;
+  $: resourceSummaries = buildResourceSummaries(result);
 
   function resetSimulation() {
     if (controller) {
@@ -89,7 +272,7 @@
     error = null;
 
     if (level < 1) {
-      error = 'Уровень игрока должен быть не менее 1.';
+      error = 'Уровень славы игрока должен быть не менее 1.';
       return;
     }
 
@@ -99,7 +282,7 @@
     }
 
     if (!Number.isFinite(level)) {
-      error = 'Уровень игрока указан некорректно.';
+      error = 'Уровень славы игрока указан некорректно.';
       return;
     }
 
@@ -149,7 +332,7 @@
     const { token, gold } = entry.currencyCounts;
     if (!token && !gold) return '—';
     const parts: string[] = [];
-    if (token) parts.push(`${formatNumber(token)} × жетоны`);
+    if (token) parts.push(`${formatNumber(token)} × жетоны джекпота`);
     if (gold) parts.push(`${formatNumber(gold)} × золото`);
     return parts.join(' · ');
   }
@@ -163,7 +346,7 @@
   <form class="control-panel" on:submit|preventDefault={handleSimulate}>
     <div class="inputs">
       <label class="field">
-        <span class="label">Уровень игрока</span>
+        <span class="label">Уровень славы игрока</span>
         <input type="number" min={1} bind:value={level} />
         <small>Максимальное исследование: {maxResearch > 0 ? maxResearch : 'не доступно'}</small>
       </label>
@@ -173,9 +356,9 @@
         <small>Стоимость прокрута: {formatNumber(goldCostPerSpin)} золота</small>
       </label>
       <label class="field">
-        <span class="label">Жетоны</span>
+        <span class="label">Жетоны джекпота</span>
         <input type="number" min={0} step={1} bind:value={tokens} />
-        <small>Стоимость прокрута: {formatNumber(tokenCostPerSpin)} жетонов</small>
+        <small>Стоимость прокрута: {formatNumber(tokenCostPerSpin)} жетонов джекпота</small>
       </label>
       <label class="field">
         <span class="label">Скидка</span>
@@ -190,9 +373,9 @@
 
     <div class="summary-grid" role="presentation">
       <div class="summary-card">
-        <span class="title">Прокруты за жетоны</span>
+        <span class="title">Прокруты за жетоны джекпота</span>
         <strong>{formatNumber(tokenSpins)}</strong>
-        <span class="meta">Останется: {formatNumber(tokenRemaining)} жет.</span>
+        <span class="meta">Останется: {formatNumber(tokenRemaining)} жетонов джекпота</span>
       </div>
       <div class="summary-card">
         <span class="title">Прокруты за золото</span>
@@ -209,7 +392,7 @@
         <strong>{formatPercent(jackpotChance, 4)}</strong>
         <span class="meta">Для уровня {level}</span>
         {#if jackpotOddsRatio}
-          <span class="meta odds">К общему количеству жетонов: 1 к {jackpotOddsRatio.toFixed(2)}</span>
+          <span class="meta odds">К общему количеству жетонов джекпота: 1 к {jackpotOddsRatio.toFixed(2)}</span>
         {/if}
       </div>
     </div>
@@ -276,17 +459,34 @@
       <header class="results-header">
         <h3>Результаты симуляции</h3>
         <p>
-          Выполнено {formatNumber(result.totalSpins)} прокрутов: {formatNumber(result.tokenSpins)} за жетоны и
+          Выполнено {formatNumber(result.totalSpins)} прокрутов: {formatNumber(result.tokenSpins)} за жетоны джекпота и
           {formatNumber(result.goldSpins)} за золото. Выпало джекпотов: {formatNumber(result.jackpotCount)}.
         </p>
       </header>
+
+      <div class="resource-summary" role="presentation">
+        {#each resourceSummaries as summary (summary.key)}
+          <article class="resource-card">
+            <div class="resource-icon">
+              <img src={summary.icon} alt="" loading="lazy" />
+            </div>
+            <div class="resource-body">
+              <span class="resource-title">{summary.label}</span>
+              <strong>{formatNumber(summary.count)}</strong>
+              <span class="resource-meta">
+                {summary.metaLabel}: {formatNumber(summary.totalAmount)}
+              </span>
+            </div>
+          </article>
+        {/each}
+      </div>
 
       <div class="result-grid">
         <section class="result-column">
           <h4>По наградам</h4>
           {#if result.rewardBreakdown.length}
             <ul class="reward-board">
-              {#each result.rewardBreakdown.slice(0, 30) as entry, index}
+              {#each result.rewardBreakdown as entry, index}
                 {@const currencyLabel = getCurrencyLabel(entry)}
                 <li class:index-top={index < 3}>
                   <div class="icon">
@@ -325,7 +525,7 @@
                   <div class="details">
                     <span class="name">{entry.label}</span>
                     <span class="meta">
-                      {entry.currency === 'token' ? 'жетоны' : 'золото'} · {getResearchLabel(entry.researchKey)}
+                      {entry.currency === 'token' ? 'жетоны джекпота' : 'золото'} · {getResearchLabel(entry.researchKey)}
                     </span>
                   </div>
                 </li>
@@ -643,6 +843,66 @@
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
+  }
+
+  .resource-summary {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  .resource-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.3rem;
+    border-radius: 24px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .resource-icon {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .resource-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+
+  .resource-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .resource-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.75);
+  }
+
+  .resource-body strong {
+    font-size: 1.6rem;
+    color: #f8fafc;
+    line-height: 1.2;
+  }
+
+  .resource-meta {
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.8);
   }
 
   .results-header h3 {
