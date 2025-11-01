@@ -599,6 +599,55 @@
       flex: 0 0 clamp(200px, 75vw, 240px);
       max-width: clamp(200px, 75vw, 240px);
     }
+
+    .reactor-stage {
+      padding: 1.75rem 1.5rem 1.5rem;
+    }
+
+    .stage-header {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 1rem;
+    }
+
+    .header-progress {
+      width: 100%;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .stage-controls {
+      gap: 1rem;
+    }
+
+    .cost-line {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .spin-buttons {
+      width: 100%;
+    }
+
+    .spin {
+      flex: 1 1 100%;
+    }
+
+    .info-panel {
+      gap: 1.25rem;
+    }
+
+    .result-body {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .history-card li {
+      align-items: flex-start;
+    }
   }
 
   .slot-inner {
