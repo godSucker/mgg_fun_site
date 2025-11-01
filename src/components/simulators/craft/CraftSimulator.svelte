@@ -254,7 +254,7 @@
         aria-label="Активная дополнительная награда"
       >
         <option value="">Без бонуса</option>
-        {#each incentiveRewards as incentive (incentive.id)}
+        {#each incentiveRewards as incentive, index (index)}
           <option value={incentive.id}>
             {translateItemId(incentive.id)} — {(incentive.per1000 / 10).toFixed(1)}%
           </option>
@@ -280,7 +280,7 @@
   </div>
 </section>
 
-<section
+<div
   class="facility-tabs"
   role="tablist"
   aria-label="Станции крафта"
@@ -297,7 +297,7 @@
       <span class="facility-tabs__tagline">{facility.tagline}</span>
     </button>
   {/each}
-</section>
+</div>
 
 {#if activeFacility}
   {@const state = facilityStates[activeFacility.id]}
@@ -445,7 +445,7 @@
               <div class="recipe-section">
                 <h4>Награды</h4>
                 <ul class="reward-list">
-                  {#each rewardDisplay as reward (reward.id)}
+                  {#each rewardDisplay as reward, index (index)}
                     {@const label = translateItemId(reward.id)}
                     {@const icon = getItemTexture(reward.id)}
                     <li>
@@ -652,11 +652,6 @@
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: rgba(226, 232, 240, 0.85);
-  }
-
-  .badge--ghost {
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(226, 232, 240, 0.78);
   }
 
   h1 {
