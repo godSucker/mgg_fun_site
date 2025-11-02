@@ -664,12 +664,19 @@
     background: rgba(15, 23, 42, 0.65);
     border: 1px solid rgba(148, 163, 184, 0.2);
     display: flex;
+<<<<<<< ours
     align-items: center;
     gap: 1rem;
   }
 
   .summary-card.no-icon {
     padding: 1.3rem 1.6rem;
+=======
+    flex-direction: column;
+    gap: 0.45rem;
+    align-items: flex-end;
+    text-align: right;
+>>>>>>> theirs
   }
 
   .summary-card.highlight {
@@ -738,6 +745,7 @@
   }
 
   .summary-card strong {
+<<<<<<< ours
     font-size: 1.6rem;
     color: #fce7f3;
     font-variant-numeric: tabular-nums;
@@ -758,6 +766,14 @@
     align-self: flex-end;
     width: 100%;
     text-align: right;
+=======
+    font-size: clamp(1.35rem, 1.1rem + 0.4vw, 1.65rem);
+    color: #fce7f3;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.015em;
+    width: 100%;
+    word-break: break-all;
+>>>>>>> theirs
   }
 
   .summary-card.highlight strong {
@@ -1010,7 +1026,10 @@
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.015em;
+<<<<<<< ours
     white-space: nowrap;
+=======
+>>>>>>> theirs
     overflow-wrap: anywhere;
   }
 

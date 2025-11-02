@@ -1,4 +1,3 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/src/components/simulators/cash/CashMachineSimulator.svelte b/src/components/simulators/cash/CashMachineSimulator.svelte
 index e9925ffd6d4334200634bfb7358d95ea4478a621..e36ee1b4ea04f740311a66d0b78f8e3b226a31ca 100644
 --- a/src/components/simulators/cash/CashMachineSimulator.svelte
@@ -4024,6 +4023,3 @@ index e7f5ae0c1eeca99d93a3b41570f87bdff8c3f495..741b8633d8c7ebd37a06ee52d46086af
 +  }
 +
  </style>
- 
-EOF
-)
