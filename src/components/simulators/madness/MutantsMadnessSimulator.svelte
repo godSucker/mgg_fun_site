@@ -223,6 +223,7 @@
   }
 
   let resourceSummaries: ResourceSummary[] = [];
+  let displayedResourceSummaries: ResourceSummary[] = [];
 
   function formatPercent(value: number, digits = 3): string {
     return `${(value * 100).toFixed(digits)}%`;
@@ -249,6 +250,9 @@
   $: jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
   $: jackpotOddsRatio = jackpotChance > 0 ? 1 / jackpotChance : null;
   $: resourceSummaries = buildResourceSummaries(result);
+  $: displayedResourceSummaries = resourceSummaries.filter((summary) =>
+    summary.key === 'mutants' || summary.key === 'jackpots',
+  );
 
   function resetSimulation() {
     if (controller) {
@@ -465,20 +469,24 @@
       </header>
 
       <div class="resource-summary" role="presentation">
-        {#each resourceSummaries as summary (summary.key)}
-          <article class="resource-card">
-            <div class="resource-icon">
-              <img src={summary.icon} alt="" loading="lazy" />
-            </div>
-            <div class="resource-body">
-              <span class="resource-title">{summary.label}</span>
-              <strong>{formatNumber(summary.count)}</strong>
-              <span class="resource-meta">
-                {summary.metaLabel}: {formatNumber(summary.totalAmount)}
-              </span>
-            </div>
-          </article>
-        {/each}
+        {#if displayedResourceSummaries.length === 0}
+          <p class="muted">Мутанты и джекпоты ещё не выпадали.</p>
+        {:else}
+          {#each displayedResourceSummaries as summary (summary.key)}
+            <article class="resource-card">
+              <div class="resource-icon">
+                <img src={summary.icon} alt="" loading="lazy" />
+              </div>
+              <div class="resource-body">
+                <span class="resource-title">{summary.label}</span>
+                <strong>{formatNumber(summary.count)}</strong>
+                <span class="resource-meta">
+                  {summary.metaLabel}: {formatNumber(summary.totalAmount)}
+                </span>
+              </div>
+            </article>
+          {/each}
+        {/if}
       </div>
 
       <div class="result-grid">
@@ -658,6 +666,11 @@
   .summary-card strong {
     font-size: 1.7rem;
     color: #fce7f3;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    text-align: right;
+    align-self: flex-end;
   }
 
   .summary-card.highlight strong {
@@ -851,6 +864,13 @@
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   }
 
+  .resource-summary > .muted {
+    margin: 0;
+    grid-column: 1 / -1;
+    text-align: center;
+    color: rgba(203, 213, 225, 0.75);
+  }
+
   .resource-card {
     display: flex;
     align-items: center;
@@ -898,6 +918,9 @@
     font-size: 1.6rem;
     color: #f8fafc;
     line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.015em;
+    white-space: nowrap;
   }
 
   .resource-meta {

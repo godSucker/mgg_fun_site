@@ -494,6 +494,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
+    justify-content: space-between;
+    min-height: 134px;
   }
 
   .stat-card.currency {
@@ -511,6 +513,7 @@
     flex-direction: column;
     gap: 0.2rem;
     min-width: 0;
+    align-items: flex-end;
   }
 
   .stat-card .label {
@@ -527,14 +530,14 @@
   }
 
   .stat-card strong {
-    font-size: 1.5rem;
+    font-size: clamp(1.35rem, 1.05rem + 0.6vw, 1.8rem);
     color: #fceabb;
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-  }
-
-  .stat-card.currency strong {
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.015em;
+    white-space: nowrap;
     text-align: right;
+    align-self: flex-end;
   }
 
   .stat-body {
@@ -687,15 +690,18 @@
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 0.75rem;
+    gap: 0.9rem;
   }
 
   .odds-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 213, 79, 0.25);
+    background: linear-gradient(145deg, rgba(255, 213, 79, 0.08), rgba(255, 214, 0, 0.02));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .odds-name {
@@ -715,9 +721,15 @@
   }
 
   .odds-list .chance {
-    color: rgba(248, 250, 252, 0.7);
+    color: rgba(248, 250, 252, 0.78);
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
+<<<<<<< ours
     font-size: 0.9rem;
+=======
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+>>>>>>> theirs
   }
 
   /* Responsive overrides removed to keep desktop layout across devices */

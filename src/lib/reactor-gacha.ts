@@ -22,6 +22,7 @@ export interface GachaMeta extends GachaDefinition {
   id: string;
   name: string;
   totalOdds: number;
+  cover: string | null;
 }
 
 export const STAR_LABEL: Record<number, string> = {
@@ -62,6 +63,27 @@ export const GACHA_NAME_RU: Record<string, string> = {
   olympics: 'Кровавые игры',
 };
 
+export const GACHA_COVERS: Partial<Record<string, string>> = {
+  western: '/reactor/western.png',
+  beach: '/reactor/tropical.png',
+  soldiers: '/reactor/time.png',
+  heroes: '/reactor/superhero.png',
+  villains: '/reactor/super.png',
+  steampunk: '/reactor/steampunk.png',
+  starwars: '/reactor/starwars.png',
+  lucha: '/reactor/muchachos.png',
+  movies: '/reactor/movie.png',
+  girl: '/reactor/lady.png',
+  japan: '/reactor/japan.png',
+  gothic: '/reactor/gotic.png',
+  olympians: '/reactor/gods.png',
+  fantasy: '/reactor/fantasy.png',
+  elements: '/reactor/element.png',
+  music: '/reactor/disco.png',
+  olympics: '/reactor/bloody_games.png',
+  gachaboss: '/reactor/bigboss.png',
+};
+
 export const mutantNames: Record<string, string> = mutantNamesRaw;
 
 export const gachaMap: Record<string, GachaDefinition> = gachaRaw;
@@ -73,10 +95,12 @@ export function getGachaMeta(id: string): GachaMeta | null {
   }
   const totalOdds = definition.basic_elements.reduce((sum, item) => sum + item.odds, 0);
   const name = GACHA_NAME_RU[id] ?? id;
+  const cover = GACHA_COVERS[id] ?? null;
   return {
     id,
     name,
     totalOdds,
+    cover,
     ...definition,
   };
 }

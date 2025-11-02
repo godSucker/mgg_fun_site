@@ -713,17 +713,22 @@
     border: 1px solid rgba(148, 163, 184, 0.2);
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.45rem;
     color: rgba(226, 232, 240, 0.85);
     min-width: 0;
+    justify-content: space-between;
+    min-height: 132px;
   }
 
   .stat-card strong {
-    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.3rem);
+    font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
     color: #f1f5f9;
-    line-height: 1.15;
-    word-break: break-all;
-    overflow-wrap: anywhere;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.015em;
+    white-space: nowrap;
+    text-align: right;
+    align-self: flex-end;
     max-width: 100%;
   }
 
@@ -759,6 +764,10 @@
     align-items: flex-start;
     min-width: 0;
     flex: 1 1 140px;
+  }
+
+  .stat-card.currency .stat-body {
+    align-items: flex-end;
   }
 
   .label {
@@ -1064,7 +1073,7 @@
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1rem 1.25rem;
+    gap: 1.05rem 1.25rem;
   }
 
   .odds-list li {
@@ -1072,6 +1081,11 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 18px;
+    border: 1px solid rgba(129, 140, 248, 0.35);
+    background: linear-gradient(155deg, rgba(129, 140, 248, 0.16), rgba(30, 41, 59, 0.85));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .odds-name {
@@ -1097,7 +1111,9 @@
     font-variant-numeric: tabular-nums;
     color: #c7d2fe;
     text-align: right;
-    min-width: 72px;
+    min-width: 76px;
+    font-size: 0.96rem;
+    letter-spacing: 0.02em;
   }
 
   /* Responsive overrides removed to keep desktop layout across devices */
