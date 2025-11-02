@@ -717,44 +717,43 @@
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
   }
 
   .stat-card {
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(17, 24, 39, 0.55);
     border-radius: 18px;
-    padding: 1.15rem 1.5rem;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    display: flex;
     align-items: center;
-    gap: 1rem;
-    color: rgba(226, 232, 240, 0.85);
+    gap: 0.85rem;
+    color: rgba(226, 232, 240, 0.88);
     min-width: 0;
+    box-shadow: none;
   }
 
-  .stat-card.metric,
-  .stat-card.currency {
-    gap: 1rem;
+  .stat-card.highlight {
+    background: rgba(129, 140, 248, 0.16);
+    border-color: rgba(129, 140, 248, 0.32);
   }
 
   .metric-icon {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
-    border-radius: 16px;
-    background: rgba(30, 27, 75, 0.4);
-    border: 1px solid rgba(129, 140, 248, 0.35);
+    border-radius: 14px;
+    background: rgba(129, 140, 248, 0.15);
+    border: none;
     display: grid;
     place-items: center;
     overflow: hidden;
-    justify-self: start;
   }
 
   .metric-icon img {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
   }
 
@@ -762,100 +761,48 @@
   .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-    color: rgba(226, 232, 240, 0.85);
-    gap: 0.35rem;
+    gap: 0.28rem;
+    color: rgba(226, 232, 240, 0.88);
     min-width: 0;
-    justify-content: space-between;
-    min-height: 132px;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .stat-card strong {
-    font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
-    color: #f1f5f9;
-    line-height: 1.1;
+    font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.55rem);
+    color: #f8fafc;
+    line-height: 1.15;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.01em;
     white-space: nowrap;
-    text-align: right;
-    align-self: flex-end;
     max-width: 100%;
   }
 
   .stat-card.small {
-    font-size: 0.9rem;
-    align-self: flex-end;
     width: 100%;
-    text-align: right;
-    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.45rem);
-    color: #f1f5f9;
+    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.4rem);
+    color: #f8fafc;
     line-height: 1.15;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     overflow-wrap: anywhere;
   }
 
-  .stat-card.highlight {
-    background: rgba(129, 140, 248, 0.15);
-    border-color: rgba(129, 140, 248, 0.35);
-  }
-
-  .stat-card.highlight small {
-    color: rgba(148, 163, 184, 0.8);
-    align-self: flex-end;
-    text-align: right;
-  }
-
-  .stat-card.total-spins {
-    background: linear-gradient(145deg, rgba(129, 140, 248, 0.18), rgba(15, 23, 42, 0.85));
-    border-color: rgba(129, 140, 248, 0.35);
-  }
-
-  .stat-card.total-spins .metric-icon {
-    border-color: rgba(129, 140, 248, 0.45);
-    background: rgba(129, 140, 248, 0.22);
-  }
-
-  .stat-card.paid-spins {
-    background: linear-gradient(145deg, rgba(192, 132, 252, 0.18), rgba(15, 23, 42, 0.85));
-    border-color: rgba(165, 180, 252, 0.35);
-  }
-
-  .stat-card.paid-spins .metric-icon {
-    border-color: rgba(165, 180, 252, 0.45);
-    background: rgba(192, 132, 252, 0.22);
-  }
-
-  .stat-card.free-spins .metric-icon {
-    border-color: rgba(96, 165, 250, 0.6);
-    background: rgba(96, 165, 250, 0.22);
-  }
-
   .stat-icon {
-    width: 40px;
-    height: 40px;
-    justify-self: start;
-  }
-
-  .stat-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    align-items: flex-end;
-    text-align: right;
-    min-width: 0;
+    width: 36px;
+    height: 36px;
   }
 
   .stat-card.currency .stat-body {
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   .label {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
-    align-self: flex-start;
+    color: rgba(148, 163, 184, 0.72);
   }
 
   .results {
@@ -877,68 +824,60 @@
 
   .resource-summary {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
   .resource-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.3rem;
-    border-radius: 24px;
-    background: rgba(17, 24, 39, 0.72);
-    border: 1px solid rgba(129, 140, 248, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    background: rgba(17, 24, 39, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
   }
 
   .resource-icon {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(129, 140, 248, 0.35);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.8);
     display: grid;
     place-items: center;
     overflow: hidden;
   }
 
   .resource-icon img {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
   }
 
   .resource-body {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.25rem;
     min-width: 0;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .resource-title {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(191, 219, 254, 0.82);
-    align-self: flex-start;
+    font-size: 0.9rem;
+    color: rgba(226, 232, 240, 0.9);
   }
 
   .resource-body strong {
-    font-size: 1.55rem;
+    font-size: 1.1rem;
     color: #f8fafc;
-    line-height: 1.2;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    overflow-wrap: anywhere;
+    letter-spacing: 0.01em;
   }
 
   .resource-meta {
-    font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.85);
+    font-size: 0.78rem;
+    color: rgba(148, 163, 184, 0.72);
   }
 
   .results-grid {
@@ -1088,10 +1027,10 @@
   }
 
   .history-list li {
-    padding: 0.7rem 0.85rem;
-    border-radius: 18px;
-    background: rgba(22, 30, 46, 0.78);
-    border: 1px solid rgba(129, 140, 248, 0.18);
+    padding: 0.65rem 0.85rem;
+    border-radius: 16px;
+    background: rgba(17, 24, 39, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1099,24 +1038,23 @@
   }
 
   .history-list li.free-spin {
-    border-color: rgba(129, 140, 248, 0.45);
-    background: rgba(129, 140, 248, 0.2);
+    border-color: rgba(129, 140, 248, 0.32);
+    background: rgba(129, 140, 248, 0.18);
   }
 
   .history-info {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.6rem;
     min-width: 0;
   }
 
   .history-info img {
-    width: 40px;
-    height: 40px;
-    border-radius: 14px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(129, 140, 248, 0.28);
-    padding: 0.35rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.82);
+    padding: 0.25rem;
   }
 
   .history-info .title {
