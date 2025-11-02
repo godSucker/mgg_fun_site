@@ -735,16 +735,13 @@
     font-size: 1.6rem;
     color: #fce7f3;
     font-variant-numeric: tabular-nums;
-<<<<<<< ours
     letter-spacing: 0.02em;
     white-space: nowrap;
     text-align: right;
     align-self: flex-end;
-=======
     letter-spacing: 0.015em;
     word-break: break-word;
     align-self: stretch;
->>>>>>> theirs
   }
 
   .summary-card.highlight strong {
@@ -997,11 +994,8 @@
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.015em;
-<<<<<<< ours
     white-space: nowrap;
-=======
     overflow-wrap: anywhere;
->>>>>>> theirs
   }
 
   .resource-meta {

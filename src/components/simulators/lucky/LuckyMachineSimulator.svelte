@@ -762,19 +762,15 @@
   .stat-body {
     display: flex;
     flex-direction: column;
-<<<<<<< ours
     gap: 0.45rem;
     color: rgba(226, 232, 240, 0.85);
-=======
     gap: 0.35rem;
->>>>>>> theirs
     min-width: 0;
     justify-content: space-between;
     min-height: 132px;
   }
 
   .stat-card strong {
-<<<<<<< ours
     font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
     color: #f1f5f9;
     line-height: 1.1;
@@ -788,7 +784,6 @@
 
   .stat-card.small {
     font-size: 0.9rem;
-=======
     align-self: flex-end;
     width: 100%;
     text-align: right;
@@ -798,7 +793,6 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.03em;
     overflow-wrap: anywhere;
->>>>>>> theirs
   }
 
   .stat-card.highlight {
@@ -1167,7 +1161,6 @@
     margin: 0;
     padding: 0;
     display: grid;
-<<<<<<< ours
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 1.05rem 1.25rem;
   }
@@ -1178,7 +1171,6 @@
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.85rem 1rem;
-=======
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.1rem 1.7rem;
   }
@@ -1189,7 +1181,6 @@
     align-items: center;
     gap: 1rem;
     padding: 1.05rem 1.3rem;
->>>>>>> theirs
     border-radius: 18px;
     border: 1px solid rgba(129, 140, 248, 0.35);
     background: linear-gradient(155deg, rgba(129, 140, 248, 0.16), rgba(30, 41, 59, 0.85));

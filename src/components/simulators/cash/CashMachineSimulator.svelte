@@ -197,14 +197,11 @@
 
     {#if result}
       <section class="stats">
-<<<<<<< ours
          <div class="stat-card metric spins">
           <div class="metric-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
-=======
         <div class="stat-card metric spins no-icon">
->>>>>>> theirs
           <div class="metric-body">
             <span class="label">Прокрутов</span>
             <strong>{formatNumber(result.spins)}</strong>
@@ -499,14 +496,12 @@
     background: rgba(13, 17, 23, 0.78);
     border-radius: 18px;
     border: 1px solid rgba(255, 213, 79, 0.25);
-<<<<<<< ours
     padding: 1rem 1.25rem;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
     justify-content: space-between;
     min-width: 0;
-=======
     padding: 1.05rem 1.4rem;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -518,18 +513,14 @@
   .stat-card.no-icon {
     grid-template-columns: minmax(0, 1fr);
     padding: 1.15rem 1.6rem;
->>>>>>> theirs
   }
 
   .stat-card.metric,
   .stat-card.currency {
-<<<<<<< ours
     flex-direction: row;
     align-items: center;
     gap: 0.85rem;
-=======
     gap: 1rem;
->>>>>>> theirs
   }
 
   .metric-icon {
@@ -542,7 +533,6 @@
     display: grid;
     place-items: center;
     overflow: hidden;
-<<<<<<< ours
   }
 
   .metric-icon img {
@@ -551,8 +541,6 @@
     object-fit: contain;
   }
 
-=======
-  }
 
   .metric-icon img {
     width: 42px;
@@ -560,7 +548,6 @@
     object-fit: contain;
   }
 
->>>>>>> theirs
   .stat-icon {
     width: 52px;
     height: 52px;
@@ -569,7 +556,6 @@
   }
 
   .stat-card.spins {
-<<<<<<< ours
     background: linear-gradient(150deg, rgba(255, 213, 79, 0.25), rgba(13, 17, 23, 0.85));
     border-color: rgba(255, 213, 79, 0.4);
   }
@@ -590,7 +576,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-=======
     background: linear-gradient(150deg, rgba(255, 213, 79, 0.22), rgba(13, 17, 23, 0.88));
     border-color: rgba(255, 213, 79, 0.4);
   }
@@ -600,7 +585,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
->>>>>>> theirs
     min-width: 0;
     align-items: flex-end;
   }
@@ -610,7 +594,6 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: rgba(248, 250, 252, 0.55);
-<<<<<<< ours
   }
 
   .stat-card strong {
@@ -630,7 +613,6 @@
     flex-direction: column;
     gap: 0.2rem;
     flex: 1;
-=======
     align-self: flex-start;
   }
 
@@ -644,7 +626,6 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.03em;
     overflow-wrap: anywhere;
->>>>>>> theirs
   }
 
   .stat-icon {
@@ -830,12 +811,9 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-<<<<<<< ours
     padding: 0.85rem 1rem;
-=======
     gap: 1rem;
     padding: 0.95rem 1.2rem;
->>>>>>> theirs
     border-radius: 16px;
     border: 1px solid rgba(255, 213, 79, 0.25);
     background: linear-gradient(145deg, rgba(255, 213, 79, 0.08), rgba(255, 214, 0, 0.02));
