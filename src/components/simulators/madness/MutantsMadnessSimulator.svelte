@@ -386,28 +386,22 @@
           <span class="meta">Останется: {formatNumber(tokenRemaining)} жетонов джекпота</span>
         </div>
       </div>
-<<<<<<< ours
       <div class="summary-card gold-spins">
         <div class="summary-icon" aria-hidden="true">
           <img src="/cash/g20.png" alt="" loading="lazy" />
         </div>
-=======
       <div class="summary-card gold-spins no-icon">
->>>>>>> theirs
         <div class="summary-body">
           <span class="title">Прокруты за золото</span>
           <strong>{formatNumber(goldSpins)}</strong>
           <span class="meta">Останется: {formatNumber(goldRemaining)} зол.</span>
         </div>
       </div>
-<<<<<<< ours
       <div class="summary-card total-spins">
         <div class="summary-icon" aria-hidden="true">
           <img src="/etc/icon_timer.png" alt="" loading="lazy" />
         </div>
-=======
       <div class="summary-card total-spins no-icon">
->>>>>>> theirs
         <div class="summary-body">
           <span class="title">Всего прокрутов</span>
           <strong>{formatNumber(totalSpins)}</strong>
@@ -672,13 +666,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-<<<<<<< ours
-=======
   }
 
   .summary-card.no-icon {
     padding: 1.3rem 1.6rem;
->>>>>>> theirs
   }
 
   .summary-card.highlight {
@@ -710,7 +701,6 @@
     background: rgba(250, 204, 21, 0.18);
   }
 
-<<<<<<< ours
   .summary-card.gold-spins .summary-icon {
     border-color: rgba(253, 224, 71, 0.45);
     background: rgba(253, 224, 71, 0.18);
@@ -721,8 +711,6 @@
     background: rgba(244, 114, 182, 0.18);
   }
 
-=======
->>>>>>> theirs
   .summary-card.jackpot-chance .summary-icon {
     border-color: rgba(253, 224, 71, 0.65);
     background: rgba(250, 204, 21, 0.22);
@@ -750,7 +738,6 @@
   }
 
   .summary-card strong {
-<<<<<<< ours
     font-size: 1.6rem;
     color: #fce7f3;
     font-variant-numeric: tabular-nums;
@@ -761,7 +748,6 @@
     letter-spacing: 0.015em;
     word-break: break-word;
     align-self: stretch;
-=======
     font-size: 1.55rem;
     color: #fce7f3;
     font-variant-numeric: tabular-nums;
@@ -772,7 +758,6 @@
     align-self: flex-end;
     width: 100%;
     text-align: right;
->>>>>>> theirs
   }
 
   .summary-card.highlight strong {
@@ -1025,10 +1010,7 @@
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.015em;
-<<<<<<< ours
     white-space: nowrap;
-=======
->>>>>>> theirs
     overflow-wrap: anywhere;
   }
 
