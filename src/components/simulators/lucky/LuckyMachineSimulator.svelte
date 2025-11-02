@@ -380,18 +380,33 @@
 
     {#if result}
       <section class="stats">
-        <div class="stat-card">
-          <span class="label">Всего прокрутов</span>
-          <strong>{formatNumber(result.totalSpins)}</strong>
+        <div class="stat-card metric total-spins">
+          <div class="metric-icon" aria-hidden="true">
+            <img src="/etc/icon_timer.png" alt="" loading="lazy" />
+          </div>
+          <div class="metric-body">
+            <span class="label">Всего прокрутов</span>
+            <strong>{formatNumber(result.totalSpins)}</strong>
+          </div>
         </div>
-        <div class="stat-card">
-          <span class="label">Платных</span>
-          <strong>{formatNumber(result.paidSpins)}</strong>
+        <div class="stat-card metric paid-spins">
+          <div class="metric-icon" aria-hidden="true">
+            <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
+          </div>
+          <div class="metric-body">
+            <span class="label">Платных</span>
+            <strong>{formatNumber(result.paidSpins)}</strong>
+          </div>
         </div>
-        <div class="stat-card highlight">
-          <span class="label">Бесплатных</span>
-          <strong>{formatNumber(result.freeSpins)}</strong>
-          <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
+        <div class="stat-card metric highlight free-spins">
+          <div class="metric-icon" aria-hidden="true">
+            <img src="/etc/freespin.png" alt="" loading="lazy" />
+          </div>
+          <div class="metric-body">
+            <span class="label">Бесплатных</span>
+            <strong>{formatNumber(result.freeSpins)}</strong>
+            <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
+          </div>
         </div>
         <div class="stat-card currency">
           <img class="stat-icon" src="/cash/g20.png" alt="Иконка золота" loading="lazy" />
@@ -702,25 +717,64 @@
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 1rem;
   }
 
   .stat-card {
     background: rgba(15, 23, 42, 0.8);
     border-radius: 18px;
-    padding: 1.1rem 1.3rem;
+    padding: 1.15rem 1.5rem;
     border: 1px solid rgba(148, 163, 184, 0.2);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    color: rgba(226, 232, 240, 0.85);
+    min-width: 0;
+  }
+
+  .stat-card.metric,
+  .stat-card.currency {
+    gap: 1rem;
+  }
+
+  .metric-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: rgba(30, 27, 75, 0.4);
+    border: 1px solid rgba(129, 140, 248, 0.35);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    justify-self: start;
+  }
+
+  .metric-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+
+  .metric-body,
+  .stat-body {
     display: flex;
     flex-direction: column;
+<<<<<<< ours
     gap: 0.45rem;
     color: rgba(226, 232, 240, 0.85);
+=======
+    gap: 0.35rem;
+>>>>>>> theirs
     min-width: 0;
     justify-content: space-between;
     min-height: 132px;
   }
 
   .stat-card strong {
+<<<<<<< ours
     font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
     color: #f1f5f9;
     line-height: 1.1;
@@ -734,6 +788,17 @@
 
   .stat-card.small {
     font-size: 0.9rem;
+=======
+    align-self: flex-end;
+    width: 100%;
+    text-align: right;
+    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.45rem);
+    color: #f1f5f9;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+    overflow-wrap: anywhere;
+>>>>>>> theirs
   }
 
   .stat-card.highlight {
@@ -743,27 +808,48 @@
 
   .stat-card.highlight small {
     color: rgba(148, 163, 184, 0.8);
+    align-self: flex-end;
+    text-align: right;
   }
 
-  .stat-card.currency {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+  .stat-card.total-spins {
+    background: linear-gradient(145deg, rgba(129, 140, 248, 0.18), rgba(15, 23, 42, 0.85));
+    border-color: rgba(129, 140, 248, 0.35);
+  }
+
+  .stat-card.total-spins .metric-icon {
+    border-color: rgba(129, 140, 248, 0.45);
+    background: rgba(129, 140, 248, 0.22);
+  }
+
+  .stat-card.paid-spins {
+    background: linear-gradient(145deg, rgba(192, 132, 252, 0.18), rgba(15, 23, 42, 0.85));
+    border-color: rgba(165, 180, 252, 0.35);
+  }
+
+  .stat-card.paid-spins .metric-icon {
+    border-color: rgba(165, 180, 252, 0.45);
+    background: rgba(192, 132, 252, 0.22);
+  }
+
+  .stat-card.free-spins .metric-icon {
+    border-color: rgba(96, 165, 250, 0.6);
+    background: rgba(96, 165, 250, 0.22);
   }
 
   .stat-icon {
     width: 40px;
     height: 40px;
+    justify-self: start;
   }
 
   .stat-body {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    align-items: flex-start;
+    align-items: flex-end;
+    text-align: right;
     min-width: 0;
-    flex: 1 1 140px;
   }
 
   .stat-card.currency .stat-body {
@@ -775,6 +861,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(148, 163, 184, 0.75);
+    align-self: flex-start;
   }
 
   .results {
@@ -834,6 +921,8 @@
     flex-direction: column;
     gap: 0.35rem;
     min-width: 0;
+    align-items: flex-end;
+    text-align: right;
   }
 
   .resource-title {
@@ -841,12 +930,16 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(191, 219, 254, 0.82);
+    align-self: flex-start;
   }
 
   .resource-body strong {
     font-size: 1.55rem;
     color: #f8fafc;
     line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
   }
 
   .resource-meta {
@@ -893,7 +986,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.85rem;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .reward-board li {
@@ -959,6 +1052,7 @@
     font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: 0.04em;
+    flex-shrink: 0;
   }
 
   .pills {
@@ -1046,13 +1140,14 @@
   .odds-panel {
     background: linear-gradient(170deg, rgba(30, 27, 75, 0.95), rgba(15, 23, 42, 0.92));
     border-radius: 32px;
-    padding: 2rem 1.75rem;
+    padding: 2.2rem 2rem;
     border: 1px solid rgba(99, 102, 241, 0.35);
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
     color: rgba(226, 232, 240, 0.88);
     box-shadow: 0 24px 40px rgba(79, 70, 229, 0.25);
+    min-width: 360px;
   }
 
   .odds-panel h3 {
@@ -1072,6 +1167,7 @@
     margin: 0;
     padding: 0;
     display: grid;
+<<<<<<< ours
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 1.05rem 1.25rem;
   }
@@ -1082,6 +1178,18 @@
     align-items: flex-start;
     gap: 0.75rem;
     padding: 0.85rem 1rem;
+=======
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.1rem 1.7rem;
+  }
+
+  .odds-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.05rem 1.3rem;
+>>>>>>> theirs
     border-radius: 18px;
     border: 1px solid rgba(129, 140, 248, 0.35);
     background: linear-gradient(155deg, rgba(129, 140, 248, 0.16), rgba(30, 41, 59, 0.85));
@@ -1091,7 +1199,7 @@
   .odds-name {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.75rem;
     min-width: 0;
   }
 
@@ -1104,6 +1212,8 @@
   }
 
   .odds-name .name {
+    font-size: 0.95rem;
+    line-height: 1.4;
     overflow-wrap: anywhere;
   }
 

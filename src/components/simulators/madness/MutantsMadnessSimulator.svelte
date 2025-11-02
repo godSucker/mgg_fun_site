@@ -376,28 +376,48 @@
     </div>
 
     <div class="summary-grid" role="presentation">
-      <div class="summary-card">
-        <span class="title">Прокруты за жетоны джекпота</span>
-        <strong>{formatNumber(tokenSpins)}</strong>
-        <span class="meta">Останется: {formatNumber(tokenRemaining)} жетонов джекпота</span>
+      <div class="summary-card token-spins">
+        <div class="summary-icon" aria-hidden="true">
+          <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
+        </div>
+        <div class="summary-body">
+          <span class="title">Прокруты за жетоны джекпота</span>
+          <strong>{formatNumber(tokenSpins)}</strong>
+          <span class="meta">Останется: {formatNumber(tokenRemaining)} жетонов джекпота</span>
+        </div>
       </div>
-      <div class="summary-card">
-        <span class="title">Прокруты за золото</span>
-        <strong>{formatNumber(goldSpins)}</strong>
-        <span class="meta">Останется: {formatNumber(goldRemaining)} зол.</span>
+      <div class="summary-card gold-spins">
+        <div class="summary-icon" aria-hidden="true">
+          <img src="/cash/g20.png" alt="" loading="lazy" />
+        </div>
+        <div class="summary-body">
+          <span class="title">Прокруты за золото</span>
+          <strong>{formatNumber(goldSpins)}</strong>
+          <span class="meta">Останется: {formatNumber(goldRemaining)} зол.</span>
+        </div>
       </div>
-      <div class="summary-card">
-        <span class="title">Всего прокрутов</span>
-        <strong>{formatNumber(totalSpins)}</strong>
-        <span class="meta">Открыто исследований: {maxResearch}</span>
+      <div class="summary-card total-spins">
+        <div class="summary-icon" aria-hidden="true">
+          <img src="/etc/icon_timer.png" alt="" loading="lazy" />
+        </div>
+        <div class="summary-body">
+          <span class="title">Всего прокрутов</span>
+          <strong>{formatNumber(totalSpins)}</strong>
+          <span class="meta">Открыто исследований: {maxResearch}</span>
+        </div>
       </div>
-      <div class="summary-card highlight">
-        <span class="title">Шанс джекпота</span>
-        <strong>{formatPercent(jackpotChance, 4)}</strong>
-        <span class="meta">Для уровня {level}</span>
-        {#if jackpotOddsRatio}
-          <span class="meta odds">К общему количеству жетонов джекпота: 1 к {jackpotOddsRatio.toFixed(2)}</span>
-        {/if}
+      <div class="summary-card highlight jackpot-chance">
+        <div class="summary-icon" aria-hidden="true">
+          <img src="/etc/icon_chance.png" alt="" loading="lazy" />
+        </div>
+        <div class="summary-body">
+          <span class="title">Шанс джекпота</span>
+          <strong>{formatPercent(jackpotChance, 4)}</strong>
+          <span class="meta">Для уровня {level}</span>
+          {#if jackpotOddsRatio}
+            <span class="meta odds">К общему количеству жетонов джекпота: 1 к {jackpotOddsRatio.toFixed(2)}</span>
+          {/if}
+        </div>
       </div>
     </div>
 
@@ -642,8 +662,8 @@
     background: rgba(15, 23, 42, 0.65);
     border: 1px solid rgba(148, 163, 184, 0.18);
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    align-items: center;
+    gap: 1rem;
   }
 
   .summary-card.highlight {
@@ -652,11 +672,59 @@
     box-shadow: 0 18px 40px rgba(168, 85, 247, 0.25);
   }
 
+  .summary-icon {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(196, 181, 253, 0.35);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .summary-icon img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+  }
+
+  .summary-card.token-spins .summary-icon {
+    border-color: rgba(254, 240, 138, 0.45);
+    background: rgba(250, 204, 21, 0.18);
+  }
+
+  .summary-card.gold-spins .summary-icon {
+    border-color: rgba(253, 224, 71, 0.45);
+    background: rgba(253, 224, 71, 0.18);
+  }
+
+  .summary-card.total-spins .summary-icon {
+    border-color: rgba(244, 114, 182, 0.45);
+    background: rgba(244, 114, 182, 0.18);
+  }
+
+  .summary-card.jackpot-chance .summary-icon {
+    border-color: rgba(253, 224, 71, 0.65);
+    background: rgba(250, 204, 21, 0.22);
+  }
+
+  .summary-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+    align-items: flex-end;
+    text-align: right;
+  }
+
   .summary-card .title {
     font-size: 0.82rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(148, 163, 184, 0.75);
+    align-self: flex-start;
   }
 
   .summary-card.highlight .title {
@@ -664,13 +732,19 @@
   }
 
   .summary-card strong {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     color: #fce7f3;
     font-variant-numeric: tabular-nums;
+<<<<<<< ours
     letter-spacing: 0.02em;
     white-space: nowrap;
     text-align: right;
     align-self: flex-end;
+=======
+    letter-spacing: 0.015em;
+    word-break: break-word;
+    align-self: stretch;
+>>>>>>> theirs
   }
 
   .summary-card.highlight strong {
@@ -905,6 +979,8 @@
     flex-direction: column;
     gap: 0.35rem;
     min-width: 0;
+    align-items: flex-end;
+    text-align: right;
   }
 
   .resource-title {
@@ -912,6 +988,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(226, 232, 240, 0.75);
+    align-self: flex-start;
   }
 
   .resource-body strong {
@@ -920,7 +997,11 @@
     line-height: 1.2;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.015em;
+<<<<<<< ours
     white-space: nowrap;
+=======
+    overflow-wrap: anywhere;
+>>>>>>> theirs
   }
 
   .resource-meta {
@@ -979,7 +1060,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.85rem;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .reward-board {
@@ -1022,6 +1103,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+    min-width: 0;
   }
 
   .details .name {
@@ -1055,6 +1137,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 0.04em;
+    flex-shrink: 0;
   }
 
   .pills {
