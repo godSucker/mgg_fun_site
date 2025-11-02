@@ -197,9 +197,14 @@
 
     {#if result}
       <section class="stats">
-        <div class="stat-card">
-          <span class="label">Прокрутов</span>
-          <strong>{formatNumber(result.spins)}</strong>
+         <div class="stat-card metric spins">
+          <div class="metric-icon" aria-hidden="true">
+            <img src="/etc/icon_timer.png" alt="" loading="lazy" />
+          </div>
+          <div class="metric-body">
+            <span class="label">Прокрутов</span>
+            <strong>{formatNumber(result.spins)}</strong>
+          </div>
         </div>
         <div class="stat-card currency">
           <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
@@ -493,25 +498,63 @@
     padding: 1rem 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.35rem;
     justify-content: space-between;
-    min-height: 134px;
+    min-width: 0;
   }
 
+  .stat-card.metric,
   .stat-card.currency {
     flex-direction: row;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.85rem;
   }
 
-  .stat-card.currency .stat-icon {
+  .metric-icon {
+    width: 52px;
+    height: 52px;
     flex-shrink: 0;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 213, 79, 0.35);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .metric-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+
+  .stat-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+
+  .stat-card.spins {
+    background: linear-gradient(150deg, rgba(255, 213, 79, 0.25), rgba(13, 17, 23, 0.85));
+    border-color: rgba(255, 213, 79, 0.4);
+  }
+
+  .stat-card.spins .metric-icon {
+    border-color: rgba(255, 213, 79, 0.6);
+    background: rgba(255, 213, 79, 0.18);
+  }
+
+  .metric-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
   }
 
   .stat-card.currency .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.25rem;
     min-width: 0;
     align-items: flex-end;
   }
@@ -522,17 +565,13 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: rgba(248, 250, 252, 0.55);
-    margin-bottom: 0.45rem;
-  }
-
-  .stat-card.currency .label {
-    margin-bottom: 0.2rem;
   }
 
   .stat-card strong {
-    font-size: clamp(1.35rem, 1.05rem + 0.6vw, 1.8rem);
+    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.35rem);
     color: #fceabb;
-    line-height: 1.1;
+    line-height: 1.2;
+    word-break: break-word;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.015em;
     white-space: nowrap;
@@ -565,7 +604,32 @@
   }
 
   .stat-card.net.negative strong {
-    color: #ff8a80;
+    background: linear-gradient(200deg, rgba(255, 215, 0, 0.1), rgba(13, 17, 23, 0.95));
+    border-radius: 28px;
+    border: 1px solid rgba(255, 213, 79, 0.25);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .odds-panel h3 {
+    margin: 0;
+    color: #ffe082;
+  }
+
+  .odds-caption {
+    margin: 0;
+    color: rgba(248, 250, 252, 0.6);
+    font-size: 0.9rem;
+  }
+
+  .odds-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
   }
 
   .results-grid {
@@ -723,13 +787,9 @@
   .odds-list .chance {
     color: rgba(248, 250, 252, 0.78);
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
-<<<<<<< ours
-    font-size: 0.9rem;
-=======
     font-size: 0.92rem;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
->>>>>>> theirs
   }
 
   /* Responsive overrides removed to keep desktop layout across devices */

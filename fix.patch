@@ -1,8 +1,71 @@
 diff --git a/src/components/simulators/cash/CashMachineSimulator.svelte b/src/components/simulators/cash/CashMachineSimulator.svelte
-index e9925ffd6d4334200634bfb7358d95ea4478a621..6508ec4fb1415c060f17ef46188fd4278c004385 100644
+index e9925ffd6d4334200634bfb7358d95ea4478a621..530425b93441182e911e4b13739cdd5a34689e9a 100644
 --- a/src/components/simulators/cash/CashMachineSimulator.svelte
 +++ b/src/components/simulators/cash/CashMachineSimulator.svelte
-@@ -472,91 +472,94 @@
+@@ -175,53 +175,58 @@
+         </button>
+         <button
+           type="button"
+           class={`ghost ${isSimulating ? 'danger' : ''}`}
+           on:click={isSimulating ? stopSimulation : resetSimulation}
+         >
+           {isSimulating ? 'Остановить' : 'Очистить'}
+         </button>
+       </div>
+       {#if isSimulating}
+         <div class="progress">
+           <div class="progress-bar" style={`--progress: ${Math.min(progress * 100, 100)}%`}></div>
+           <div class="progress-label">
+             Выполнено {Math.min(Math.floor(progress * 100), 100)}% — {formatNumber(completedSpins)} из
+             {formatNumber(totalSpins)} прокрутов
+           </div>
+         </div>
+       {/if}
+       {#if error}
+         <p class="error">{error}</p>
+       {/if}
+     </form>
+ 
+     {#if result}
+       <section class="stats">
+-        <div class="stat-card">
+-          <span class="label">Прокрутов</span>
+-          <strong>{formatNumber(result.spins)}</strong>
++        <div class="stat-card metric spins">
++          <div class="metric-icon" aria-hidden="true">
++            <img src="/etc/icon_timer.png" alt="" loading="lazy" />
++          </div>
++          <div class="metric-body">
++            <span class="label">Прокрутов</span>
++            <strong>{formatNumber(result.spins)}</strong>
++          </div>
+         </div>
+         <div class="stat-card currency">
+           <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+           <div class="stat-body">
+             <span class="label">Потрачено золота</span>
+             <strong>{formatNumber(result.goldSpent)}</strong>
+           </div>
+         </div>
+         <div class="stat-card currency">
+           <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+           <div class="stat-body">
+             <span class="label">Выиграно золота</span>
+             <strong>{formatNumber(result.goldWon)}</strong>
+           </div>
+         </div>
+         <div class="stat-card currency">
+           <img class="stat-icon" src={silverIcon} alt="Иконка серебра" loading="lazy" />
+           <div class="stat-body">
+             <span class="label">Выиграно серебра</span>
+             <strong>{formatNumber(result.silverWon)}</strong>
+           </div>
+         </div>
+         <div
+           class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}
+         >
+@@ -471,94 +476,125 @@
+     background: linear-gradient(120deg, #ffcc80, #ff9100);
      transform-origin: left center;
      transform: scaleX(calc(var(--progress, 0%) / 100));
      transition: transform 0.18s ease-out;
@@ -27,27 +90,67 @@ index e9925ffd6d4334200634bfb7358d95ea4478a621..6508ec4fb1415c060f17ef46188fd427
      padding: 1rem 1.25rem;
      display: flex;
      flex-direction: column;
-     gap: 0.45rem;
-+    justify-content: space-between;
-+    min-height: 134px;
+-    gap: 0.45rem;
++    gap: 0.35rem;
++    min-width: 0;
    }
  
++  .stat-card.metric,
    .stat-card.currency {
      flex-direction: row;
      align-items: center;
-     gap: 0.9rem;
+-    gap: 0.9rem;
++    gap: 0.85rem;
    }
  
-   .stat-card.currency .stat-icon {
+-  .stat-card.currency .stat-icon {
++  .metric-icon {
++    width: 52px;
++    height: 52px;
++    flex-shrink: 0;
++    border-radius: 16px;
++    background: rgba(15, 23, 42, 0.85);
++    border: 1px solid rgba(255, 213, 79, 0.35);
++    display: grid;
++    place-items: center;
++    overflow: hidden;
++  }
++
++  .metric-icon img {
++    width: 42px;
++    height: 42px;
++    object-fit: contain;
++  }
++
++  .stat-icon {
++    width: 52px;
++    height: 52px;
      flex-shrink: 0;
    }
  
++  .stat-card.spins {
++    background: linear-gradient(150deg, rgba(255, 213, 79, 0.25), rgba(13, 17, 23, 0.85));
++    border-color: rgba(255, 213, 79, 0.4);
++  }
++
++  .stat-card.spins .metric-icon {
++    border-color: rgba(255, 213, 79, 0.6);
++    background: rgba(255, 213, 79, 0.18);
++  }
++
++  .metric-body {
++    display: flex;
++    flex-direction: column;
++    gap: 0.25rem;
++    min-width: 0;
++  }
++
    .stat-card.currency .stat-body {
      display: flex;
      flex-direction: column;
-     gap: 0.2rem;
+-    gap: 0.2rem;
++    gap: 0.25rem;
      min-width: 0;
-+    align-items: flex-end;
    }
  
    .stat-card .label {
@@ -56,30 +159,27 @@ index e9925ffd6d4334200634bfb7358d95ea4478a621..6508ec4fb1415c060f17ef46188fd427
      text-transform: uppercase;
      letter-spacing: 0.08em;
      color: rgba(248, 250, 252, 0.55);
-     margin-bottom: 0.45rem;
-   }
- 
-   .stat-card.currency .label {
-     margin-bottom: 0.2rem;
+-    margin-bottom: 0.45rem;
+-  }
+-
+-  .stat-card.currency .label {
+-    margin-bottom: 0.2rem;
    }
  
    .stat-card strong {
 -    font-size: 1.5rem;
-+    font-size: clamp(1.35rem, 1.05rem + 0.6vw, 1.8rem);
++    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.35rem);
      color: #fceabb;
 -    line-height: 1.15;
--    overflow-wrap: anywhere;
--  }
--
--  .stat-card.currency strong {
-+    line-height: 1.1;
-+    font-variant-numeric: tabular-nums;
-+    letter-spacing: 0.015em;
-+    white-space: nowrap;
-     text-align: right;
-+    align-self: flex-end;
++    line-height: 1.2;
++    word-break: break-word;
+     overflow-wrap: anywhere;
    }
  
+-  .stat-card.currency strong {
+-    text-align: right;
+-  }
+-
    .stat-body {
      display: flex;
      flex-direction: column;
@@ -103,7 +203,9 @@ index e9925ffd6d4334200634bfb7358d95ea4478a621..6508ec4fb1415c060f17ef46188fd427
    .stat-card.net.positive strong {
      color: #c6ff00;
    }
-@@ -665,143 +668,65 @@
+ 
+   .stat-card.net.negative strong {
+@@ -665,143 +701,65 @@
      background: linear-gradient(200deg, rgba(255, 215, 0, 0.1), rgba(13, 17, 23, 0.95));
      border-radius: 28px;
      border: 1px solid rgba(255, 213, 79, 0.25);
@@ -1487,15 +1589,98 @@ index 0000000000000000000000000000000000000000..1d207e1849ef2fbf0b8427859f42f1c6
 +  /* Responsive overrides removed to keep desktop layout across devices */
 +</style>
 diff --git a/src/components/simulators/lucky/LuckyMachineSimulator.svelte b/src/components/simulators/lucky/LuckyMachineSimulator.svelte
-index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc33095214312f6d 100644
+index 383d5c430437ffaa411b948e50e64d1e649bbc45..c37a0118e4ae3fd8a60098b06ae170192e6638f1 100644
 --- a/src/components/simulators/lucky/LuckyMachineSimulator.svelte
 +++ b/src/components/simulators/lucky/LuckyMachineSimulator.svelte
-@@ -691,98 +691,107 @@
-     color: #e0e7ff;
-   }
+@@ -358,62 +358,77 @@
+           type="button"
+           class={`ghost ${isSimulating ? 'danger' : ''}`}
+           on:click={isSimulating ? stopSimulation : resetSimulation}
+         >
+           {isSimulating ? 'Остановить' : 'Очистить'}
+         </button>
+       </div>
  
-   .error {
-     margin: 0;
+       {#if isSimulating}
+         <div class="progress">
+           <div class="progress-bar" style={`--progress: ${Math.min(progress * 100, 100)}%`}></div>
+           <div class="progress-label">
+             Выполнено {Math.min(Math.floor(progress * 100), 100)}% —
+             {formatNumber(completedPaid)} из {formatNumber(spins)} платных прокрутов
+           </div>
+         </div>
+       {/if}
+ 
+       {#if error}
+         <p class="error">{error}</p>
+       {/if}
+     </form>
+ 
+     {#if result}
+       <section class="stats">
+-        <div class="stat-card">
+-          <span class="label">Всего прокрутов</span>
+-          <strong>{formatNumber(result.totalSpins)}</strong>
++        <div class="stat-card metric total-spins">
++          <div class="metric-icon" aria-hidden="true">
++            <img src="/etc/icon_timer.png" alt="" loading="lazy" />
++          </div>
++          <div class="metric-body">
++            <span class="label">Всего прокрутов</span>
++            <strong>{formatNumber(result.totalSpins)}</strong>
++          </div>
+         </div>
+-        <div class="stat-card">
+-          <span class="label">Платных</span>
+-          <strong>{formatNumber(result.paidSpins)}</strong>
++        <div class="stat-card metric paid-spins">
++          <div class="metric-icon" aria-hidden="true">
++            <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
++          </div>
++          <div class="metric-body">
++            <span class="label">Платных</span>
++            <strong>{formatNumber(result.paidSpins)}</strong>
++          </div>
+         </div>
+-        <div class="stat-card highlight">
+-          <span class="label">Бесплатных</span>
+-          <strong>{formatNumber(result.freeSpins)}</strong>
+-          <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
++        <div class="stat-card metric highlight free-spins">
++          <div class="metric-icon" aria-hidden="true">
++            <img src="/etc/freespin.png" alt="" loading="lazy" />
++          </div>
++          <div class="metric-body">
++            <span class="label">Бесплатных</span>
++            <strong>{formatNumber(result.freeSpins)}</strong>
++            <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
++          </div>
+         </div>
+         <div class="stat-card currency">
+           <img class="stat-icon" src="/cash/g20.png" alt="Иконка золота" loading="lazy" />
+           <div class="stat-body">
+             <span class="label">Выиграно золота</span>
+             <strong>{formatNumber(result.goldWon)}</strong>
+           </div>
+         </div>
+         <div class="stat-card currency">
+           <img class="stat-icon" src="/cash/softcurrency.png" alt="Иконка серебра" loading="lazy" />
+           <div class="stat-body">
+             <span class="label">Выиграно серебра</span>
+             <strong>{formatNumber(result.silverWon)}</strong>
+           </div>
+         </div>
+         <div class="stat-card currency">
+           <img
+             class="stat-icon"
+             src="/tokens/material_gacha_token.png"
+             alt="Иконка жетона джекпота"
+             loading="lazy"
+           />
+           <div class="stat-body">
+             <span class="label">Жетоны и билеты</span>
+             <strong>{formatNumber(result.tokenItems)}</strong>
+@@ -696,93 +711,146 @@
      color: #fecaca;
      background: rgba(248, 113, 113, 0.1);
      border: 1px solid rgba(248, 113, 113, 0.3);
@@ -1516,32 +1701,57 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
      border: 1px solid rgba(148, 163, 184, 0.2);
      display: flex;
      flex-direction: column;
--    gap: 0.35rem;
-+    gap: 0.45rem;
+     gap: 0.35rem;
      color: rgba(226, 232, 240, 0.85);
      min-width: 0;
-+    justify-content: space-between;
-+    min-height: 132px;
    }
  
++  .stat-card.metric,
++  .stat-card.currency {
++    flex-direction: row;
++    align-items: center;
++    gap: 0.85rem;
++  }
++
++  .metric-icon {
++    width: 48px;
++    height: 48px;
++    flex-shrink: 0;
++    border-radius: 16px;
++    background: rgba(30, 27, 75, 0.4);
++    border: 1px solid rgba(129, 140, 248, 0.35);
++    display: grid;
++    place-items: center;
++    overflow: hidden;
++  }
++
++  .metric-icon img {
++    width: 36px;
++    height: 36px;
++    object-fit: contain;
++  }
++
++  .metric-body {
++    display: flex;
++    flex-direction: column;
++    gap: 0.3rem;
++    min-width: 0;
++  }
++
    .stat-card strong {
 -    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.3rem);
-+    font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
++    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.4rem);
      color: #f1f5f9;
 -    line-height: 1.15;
 -    word-break: break-all;
--    overflow-wrap: anywhere;
-+    line-height: 1.1;
-+    font-variant-numeric: tabular-nums;
-+    letter-spacing: 0.015em;
-+    white-space: nowrap;
-+    text-align: right;
-+    align-self: flex-end;
-     max-width: 100%;
-   }
- 
-   .stat-card.small {
-     font-size: 0.9rem;
++    line-height: 1.2;
++    word-break: break-word;
+     overflow-wrap: anywhere;
+-    max-width: 100%;
+-  }
+-
+-  .stat-card.small {
+-    font-size: 0.9rem;
    }
  
    .stat-card.highlight {
@@ -1553,10 +1763,35 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
      color: rgba(148, 163, 184, 0.8);
    }
  
++  .stat-card.total-spins {
++    background: linear-gradient(145deg, rgba(129, 140, 248, 0.18), rgba(15, 23, 42, 0.85));
++    border-color: rgba(129, 140, 248, 0.35);
++  }
++
++  .stat-card.total-spins .metric-icon {
++    border-color: rgba(129, 140, 248, 0.45);
++    background: rgba(129, 140, 248, 0.22);
++  }
++
++  .stat-card.paid-spins {
++    background: linear-gradient(145deg, rgba(192, 132, 252, 0.18), rgba(15, 23, 42, 0.85));
++    border-color: rgba(165, 180, 252, 0.35);
++  }
++
++  .stat-card.paid-spins .metric-icon {
++    border-color: rgba(165, 180, 252, 0.45);
++    background: rgba(192, 132, 252, 0.22);
++  }
++
++  .stat-card.free-spins .metric-icon {
++    border-color: rgba(96, 165, 250, 0.6);
++    background: rgba(96, 165, 250, 0.22);
++  }
++
    .stat-card.currency {
-     flex-direction: row;
-     align-items: center;
-     gap: 0.75rem;
+-    flex-direction: row;
+-    align-items: center;
+-    gap: 0.75rem;
      flex-wrap: wrap;
    }
  
@@ -1575,7 +1810,7 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
    }
  
 +  .stat-card.currency .stat-body {
-+    align-items: flex-end;
++    align-items: flex-start;
 +  }
 +
    .label {
@@ -1603,7 +1838,113 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
    }
  
    .resource-summary {
-@@ -1042,148 +1051,70 @@
+@@ -862,51 +930,51 @@
+   }
+ 
+   .result-column h4 {
+     margin: 0;
+     font-size: 1.2rem;
+     color: #e0e7ff;
+   }
+ 
+   .reward-board,
+   .history-list {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-direction: column;
+     gap: 0.9rem;
+     max-height: 420px;
+     overflow-y: auto;
+   }
+ 
+   .reward-board li,
+   .history-list li {
+     display: grid;
+     grid-template-columns: auto 1fr;
+     gap: 0.85rem;
+-    align-items: center;
++    align-items: flex-start;
+   }
+ 
+   .reward-board li {
+     padding: 0.8rem 0.95rem;
+     border-radius: 18px;
+     background: rgba(22, 30, 46, 0.85);
+     border: 1px solid rgba(129, 140, 248, 0.18);
+     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+   }
+ 
+   .reward-board li.index-top {
+     border-color: rgba(129, 140, 248, 0.48);
+     box-shadow: 0 16px 32px rgba(99, 102, 241, 0.18);
+     transform: translateY(-2px);
+   }
+ 
+   .icon {
+     width: 48px;
+     height: 48px;
+     border-radius: 16px;
+     background: rgba(15, 23, 42, 0.9);
+     border: 1px solid rgba(129, 140, 248, 0.28);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+@@ -928,50 +996,51 @@
+   .details .row {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 0.75rem;
+     flex-wrap: wrap;
+   }
+ 
+   .details .name {
+     font-weight: 600;
+     color: #e0e7ff;
+   }
+ 
+   .count-badge {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0.25rem 0.75rem;
+     border-radius: 999px;
+     background: rgba(129, 140, 248, 0.18);
+     border: 1px solid rgba(129, 140, 248, 0.45);
+     color: #c7d2fe;
+     font-size: 1.05rem;
+     font-weight: 600;
+     letter-spacing: 0.04em;
++    flex-shrink: 0;
+   }
+ 
+   .pills {
+     display: flex;
+     gap: 0.5rem;
+     flex-wrap: wrap;
+   }
+ 
+   .pill {
+     display: inline-flex;
+     align-items: center;
+     padding: 0.25rem 0.6rem;
+     border-radius: 999px;
+     font-size: 0.75rem;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+     background: rgba(148, 163, 184, 0.16);
+     color: rgba(226, 232, 240, 0.75);
+   }
+ 
+   .pill.actual {
+     background: rgba(248, 113, 113, 0.16);
+     color: rgba(248, 113, 113, 0.95);
+   }
+ 
+@@ -1041,149 +1110,73 @@
+     border: 1px solid rgba(99, 102, 241, 0.35);
      display: flex;
      flex-direction: column;
      gap: 1.2rem;
@@ -1628,17 +1969,20 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
      margin: 0;
      padding: 0;
      display: grid;
-     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 -    gap: 1rem 1.25rem;
-+    gap: 1.05rem 1.25rem;
++    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
++    gap: 1.05rem 1.5rem;
    }
  
    .odds-list li {
      display: flex;
      justify-content: space-between;
-     align-items: flex-start;
-     gap: 0.75rem;
-+    padding: 0.85rem 1rem;
+-    align-items: flex-start;
+-    gap: 0.75rem;
++    align-items: center;
++    gap: 0.85rem;
++    padding: 0.95rem 1.2rem;
 +    border-radius: 18px;
 +    border: 1px solid rgba(129, 140, 248, 0.35);
 +    background: linear-gradient(155deg, rgba(129, 140, 248, 0.16), rgba(30, 41, 59, 0.85));
@@ -1648,7 +1992,8 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
    .odds-name {
      display: flex;
      align-items: center;
-     gap: 0.65rem;
+-    gap: 0.65rem;
++    gap: 0.75rem;
      min-width: 0;
    }
  
@@ -1661,6 +2006,8 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
    }
  
    .odds-name .name {
++    font-size: 0.95rem;
++    line-height: 1.4;
      overflow-wrap: anywhere;
    }
  
@@ -1669,11 +2016,8 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
      color: #c7d2fe;
      text-align: right;
 -    min-width: 72px;
-+    min-width: 76px;
-+    font-size: 0.96rem;
-+    letter-spacing: 0.02em;
-   }
- 
+-  }
+-
 -  @media (max-width: 900px) {
 -    .machine-body {
 -      padding: 1.85rem;
@@ -1687,8 +2031,11 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
 -    .stats {
 -      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 -    }
--  }
--
++    min-width: 76px;
++    font-size: 0.96rem;
++    letter-spacing: 0.02em;
+   }
+ 
 -  @media (max-width: 1100px) {
 -    .machine-shell {
 -      grid-template-columns: 1fr;
@@ -1763,7 +2110,7 @@ index 383d5c430437ffaa411b948e50e64d1e649bbc45..c6cb6c8942d86473b6917dbbbc330952
 +  /* Responsive overrides removed to keep desktop layout across devices */
  </style>
 diff --git a/src/components/simulators/madness/MutantsMadnessSimulator.svelte b/src/components/simulators/madness/MutantsMadnessSimulator.svelte
-index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab74c35ad53 100644
+index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..4c005fb375c63654cf0372e82e4cf953c54c6b65 100644
 --- a/src/components/simulators/madness/MutantsMadnessSimulator.svelte
 +++ b/src/components/simulators/madness/MutantsMadnessSimulator.svelte
 @@ -201,76 +201,80 @@
@@ -1847,7 +2194,119 @@ index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab7
      if (level < 1) {
        error = 'Уровень славы игрока должен быть не менее 1.';
        return;
-@@ -443,64 +447,68 @@
+@@ -350,72 +354,92 @@
+         <input type="number" min={1} bind:value={level} />
+         <small>Максимальное исследование: {maxResearch > 0 ? maxResearch : 'не доступно'}</small>
+       </label>
+       <label class="field">
+         <span class="label">Золото</span>
+         <input type="number" min={0} step={1} bind:value={gold} />
+         <small>Стоимость прокрута: {formatNumber(goldCostPerSpin)} золота</small>
+       </label>
+       <label class="field">
+         <span class="label">Жетоны джекпота</span>
+         <input type="number" min={0} step={1} bind:value={tokens} />
+         <small>Стоимость прокрута: {formatNumber(tokenCostPerSpin)} жетонов джекпота</small>
+       </label>
+       <label class="field">
+         <span class="label">Скидка</span>
+         <select bind:value={discountValue}>
+           {#each discountOptions as option}
+             <option value={option}>{option}%</option>
+           {/each}
+         </select>
+         <small>После скидки стоимость округляется вверх.</small>
+       </label>
+     </div>
+ 
+     <div class="summary-grid" role="presentation">
+-      <div class="summary-card">
+-        <span class="title">Прокруты за жетоны джекпота</span>
+-        <strong>{formatNumber(tokenSpins)}</strong>
+-        <span class="meta">Останется: {formatNumber(tokenRemaining)} жетонов джекпота</span>
++      <div class="summary-card token-spins">
++        <div class="summary-icon" aria-hidden="true">
++          <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
++        </div>
++        <div class="summary-body">
++          <span class="title">Прокруты за жетоны джекпота</span>
++          <strong>{formatNumber(tokenSpins)}</strong>
++          <span class="meta">Останется: {formatNumber(tokenRemaining)} жетонов джекпота</span>
++        </div>
+       </div>
+-      <div class="summary-card">
+-        <span class="title">Прокруты за золото</span>
+-        <strong>{formatNumber(goldSpins)}</strong>
+-        <span class="meta">Останется: {formatNumber(goldRemaining)} зол.</span>
++      <div class="summary-card gold-spins">
++        <div class="summary-icon" aria-hidden="true">
++          <img src="/cash/g20.png" alt="" loading="lazy" />
++        </div>
++        <div class="summary-body">
++          <span class="title">Прокруты за золото</span>
++          <strong>{formatNumber(goldSpins)}</strong>
++          <span class="meta">Останется: {formatNumber(goldRemaining)} зол.</span>
++        </div>
+       </div>
+-      <div class="summary-card">
+-        <span class="title">Всего прокрутов</span>
+-        <strong>{formatNumber(totalSpins)}</strong>
+-        <span class="meta">Открыто исследований: {maxResearch}</span>
++      <div class="summary-card total-spins">
++        <div class="summary-icon" aria-hidden="true">
++          <img src="/etc/icon_timer.png" alt="" loading="lazy" />
++        </div>
++        <div class="summary-body">
++          <span class="title">Всего прокрутов</span>
++          <strong>{formatNumber(totalSpins)}</strong>
++          <span class="meta">Открыто исследований: {maxResearch}</span>
++        </div>
+       </div>
+-      <div class="summary-card highlight">
+-        <span class="title">Шанс джекпота</span>
+-        <strong>{formatPercent(jackpotChance, 4)}</strong>
+-        <span class="meta">Для уровня {level}</span>
+-        {#if jackpotOddsRatio}
+-          <span class="meta odds">К общему количеству жетонов джекпота: 1 к {jackpotOddsRatio.toFixed(2)}</span>
+-        {/if}
++      <div class="summary-card highlight jackpot-chance">
++        <div class="summary-icon" aria-hidden="true">
++          <img src="/etc/icon_chance.png" alt="" loading="lazy" />
++        </div>
++        <div class="summary-body">
++          <span class="title">Шанс джекпота</span>
++          <strong>{formatPercent(jackpotChance, 4)}</strong>
++          <span class="meta">Для уровня {level}</span>
++          {#if jackpotOddsRatio}
++            <span class="meta odds">К общему количеству жетонов джекпота: 1 к {jackpotOddsRatio.toFixed(2)}</span>
++          {/if}
++        </div>
+       </div>
+     </div>
+ 
+     <div class="actions">
+       <button type="submit" class="primary" disabled={isSimulating}>
+         {isSimulating ? 'Считаем…' : 'Запустить симуляцию'}
+       </button>
+       <button
+         type="button"
+         class={`ghost ${isSimulating ? 'danger' : ''}`}
+         on:click={isSimulating ? stopSimulation : resetSimulation}
+       >
+         {isSimulating ? 'Остановить' : 'Очистить'}
+       </button>
+     </div>
+ 
+     {#if isSimulating}
+       <div class="progress">
+         <div class="progress-bar" style={`--progress: ${Math.min(progress * 100, 100)}%`}></div>
+         <div class="progress-label">
+           Выполнено {Math.floor(progress * 100)}% — {formatNumber(completedSpins)} из
+           {formatNumber(totalSpins)} спинов
+         </div>
+       </div>
+     {/if}
+@@ -443,64 +467,68 @@
                <li>
                  <span>{reward.label}</span>
                  <span class="value">{formatPercent(reward.chance, 4)}</span>
@@ -1930,10 +2389,36 @@ index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab7
                      {#if currencyLabel !== '—'}
                        <span class="currency">{currencyLabel}</span>
                      {/if}
-@@ -636,50 +644,55 @@
+@@ -612,74 +640,122 @@
+ 
+   input:focus,
+   select:focus {
+     outline: none;
+     border-color: rgba(249, 168, 212, 0.8);
+     box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25);
+   }
+ 
+   small {
+     color: rgba(148, 163, 184, 0.7);
+     font-size: 0.78rem;
+   }
+ 
+   .summary-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+     gap: 1.2rem;
+   }
+ 
+   .summary-card {
+     padding: 1.2rem 1.4rem;
+     border-radius: 22px;
+     background: rgba(15, 23, 42, 0.65);
+     border: 1px solid rgba(148, 163, 184, 0.18);
      display: flex;
-     flex-direction: column;
-     gap: 0.4rem;
+-    flex-direction: column;
+-    gap: 0.4rem;
++    align-items: center;
++    gap: 1rem;
    }
  
    .summary-card.highlight {
@@ -1942,6 +2427,51 @@ index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab7
      box-shadow: 0 18px 40px rgba(168, 85, 247, 0.25);
    }
  
++  .summary-icon {
++    width: 56px;
++    height: 56px;
++    flex: 0 0 56px;
++    border-radius: 18px;
++    background: rgba(15, 23, 42, 0.85);
++    border: 1px solid rgba(196, 181, 253, 0.35);
++    display: grid;
++    place-items: center;
++    overflow: hidden;
++  }
++
++  .summary-icon img {
++    width: 44px;
++    height: 44px;
++    object-fit: contain;
++  }
++
++  .summary-card.token-spins .summary-icon {
++    border-color: rgba(254, 240, 138, 0.45);
++    background: rgba(250, 204, 21, 0.18);
++  }
++
++  .summary-card.gold-spins .summary-icon {
++    border-color: rgba(253, 224, 71, 0.45);
++    background: rgba(253, 224, 71, 0.18);
++  }
++
++  .summary-card.total-spins .summary-icon {
++    border-color: rgba(244, 114, 182, 0.45);
++    background: rgba(244, 114, 182, 0.18);
++  }
++
++  .summary-card.jackpot-chance .summary-icon {
++    border-color: rgba(253, 224, 71, 0.65);
++    background: rgba(250, 204, 21, 0.22);
++  }
++
++  .summary-body {
++    display: flex;
++    flex-direction: column;
++    gap: 0.4rem;
++    min-width: 0;
++  }
++
    .summary-card .title {
      font-size: 0.82rem;
      letter-spacing: 0.08em;
@@ -1954,13 +2484,12 @@ index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab7
    }
  
    .summary-card strong {
-     font-size: 1.7rem;
+-    font-size: 1.7rem;
++    font-size: 1.6rem;
      color: #fce7f3;
 +    font-variant-numeric: tabular-nums;
-+    letter-spacing: 0.02em;
-+    white-space: nowrap;
-+    text-align: right;
-+    align-self: flex-end;
++    letter-spacing: 0.015em;
++    word-break: break-word;
    }
  
    .summary-card.highlight strong {
@@ -1986,7 +2515,7 @@ index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab7
      display: flex;
      gap: 1rem;
      flex-wrap: wrap;
-@@ -829,97 +842,107 @@
+@@ -829,97 +905,107 @@
      font-size: 0.9rem;
      color: rgba(226, 232, 240, 0.88);
    }
@@ -2094,6 +2623,136 @@ index 804d68b4641f96b0b281f0e19f9db86d643f4cd5..796da4a7c71a3d8315ddeed9e298fab7
    }
  
    .result-column {
+@@ -934,126 +1020,128 @@
+ 
+   .result-column h4 {
+     margin: 0;
+     font-size: 1.2rem;
+     color: #fce7f3;
+   }
+ 
+   .reward-board,
+   .history-list,
+   .research-list {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-direction: column;
+     gap: 0.85rem;
+     max-height: 420px;
+     overflow-y: auto;
+   }
+ 
+   .reward-board li,
+   .history-list li {
+     display: grid;
+     grid-template-columns: auto 1fr;
+     gap: 0.85rem;
+-    align-items: center;
++    align-items: flex-start;
+   }
+ 
+   .reward-board {
+     gap: 1rem;
+   }
+ 
+   .reward-board li {
+     padding: 0.75rem 0.85rem;
+     border-radius: 18px;
+     background: rgba(15, 23, 42, 0.72);
+     border: 1px solid rgba(148, 163, 184, 0.16);
+     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+   }
+ 
+   .reward-board li.index-top {
+     border-color: rgba(236, 72, 153, 0.45);
+     box-shadow: 0 16px 32px rgba(236, 72, 153, 0.2);
+     transform: translateY(-2px);
+   }
+ 
+   .icon {
+     width: 48px;
+     height: 48px;
+     border-radius: 16px;
+     background: rgba(15, 23, 42, 0.85);
+     border: 1px solid rgba(148, 163, 184, 0.2);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     overflow: hidden;
+   }
+ 
+   .icon img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+   }
+ 
+   .details {
+     display: flex;
+     flex-direction: column;
+     gap: 0.3rem;
++    min-width: 0;
+   }
+ 
+   .details .name {
+     font-weight: 600;
+     color: #e9d5ff;
+   }
+ 
+   .details .meta,
+   .research-list .meta {
+     font-size: 0.82rem;
+     color: rgba(203, 213, 225, 0.7);
+   }
+ 
+   .details .row {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 0.75rem;
+     flex-wrap: wrap;
+   }
+ 
+   .count-badge {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0.2rem 0.75rem;
+     border-radius: 999px;
+     background: rgba(254, 202, 202, 0.18);
+     border: 1px solid rgba(254, 202, 202, 0.35);
+     color: #fecaca;
+     font-size: 1.1rem;
+     font-weight: 600;
+     letter-spacing: 0.04em;
++    flex-shrink: 0;
+   }
+ 
+   .pills {
+     display: flex;
+     gap: 0.5rem;
+     flex-wrap: wrap;
+   }
+ 
+   .pill {
+     display: inline-flex;
+     align-items: center;
+     padding: 0.25rem 0.6rem;
+     border-radius: 999px;
+     font-size: 0.75rem;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+     background: rgba(148, 163, 184, 0.16);
+     color: rgba(226, 232, 240, 0.75);
+   }
+ 
+   .pill.actual {
+     background: rgba(248, 113, 113, 0.16);
+     color: rgba(248, 113, 113, 0.95);
+   }
+ 
 diff --git a/src/components/simulators/reactor/ReactorSimulator.svelte b/src/components/simulators/reactor/ReactorSimulator.svelte
 index 6929042c085f6e0c93987e47f8ed74ed2ccf0d06..592ce8d2a5c05c4a447099081a263d8313a6a805 100644
 --- a/src/components/simulators/reactor/ReactorSimulator.svelte
@@ -3039,10 +3698,10 @@ index 4da090a7faf598e90b9daccbcd401e1d5d65f816..a7f9ee7ad82131a5defa26be2e46972d
    />
  </BaseLayout>
 diff --git a/src/pages/simulators/reactor/index.astro b/src/pages/simulators/reactor/index.astro
-index e7f5ae0c1eeca99d93a3b41570f87bdff8c3f495..cffed98317588270ac5eee6f6852bcd729780ba8 100644
+index e7f5ae0c1eeca99d93a3b41570f87bdff8c3f495..b58b12b547d8719242bf3ab8a1a90f6d08424ad1 100644
 --- a/src/pages/simulators/reactor/index.astro
 +++ b/src/pages/simulators/reactor/index.astro
-@@ -1,44 +1,51 @@
+@@ -1,157 +1,158 @@
  ---
  import BaseLayout from '../../../layouts/BaseLayout.astro';
  import { listGachas } from '../../../lib/reactor-gacha';
@@ -3062,39 +3721,58 @@ index e7f5ae0c1eeca99d93a3b41570f87bdff8c3f495..cffed98317588270ac5eee6f6852bcd7
      <div class="list-grid">
        {gachas.map((gacha) => (
          <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
-+          <div class="card-cover" aria-hidden="true">
+-          <div class="card-header">
+-            <span class="tag">{gacha.filter}</span>
+-            <h2>{gacha.name}</h2>
+-          </div>
+-          <div class="card-body">
+-            <div class="stat">
+-              <span class="label">Мутантов</span>
+-              <strong>{gacha.basic_elements.length}</strong>
+-            </div>
+-            <div class="stat">
+-              <span class="label">Жетоны</span>
+-              <strong>{gacha.token_cost}</strong>
+-            </div>
+-            <div class="stat">
+-              <span class="label">Золото</span>
+-              <strong>{gacha.hc_cost}</strong>
++          <div class="card-cover">
 +            {gacha.cover ? (
 +              <img src={gacha.cover} alt="" loading="lazy" />
 +            ) : (
-+              <span>Mutants Reactor</span>
++              <span class="fallback">Mutants Reactor</span>
 +            )}
-+          </div>
-           <div class="card-header">
-             <span class="tag">{gacha.filter}</span>
-             <h2>{gacha.name}</h2>
-           </div>
-           <div class="card-body">
-             <div class="stat">
-               <span class="label">Мутантов</span>
-               <strong>{gacha.basic_elements.length}</strong>
-             </div>
-             <div class="stat">
-               <span class="label">Жетоны</span>
-               <strong>{gacha.token_cost}</strong>
-             </div>
-             <div class="stat">
-               <span class="label">Золото</span>
-               <strong>{gacha.hc_cost}</strong>
++            <div class="overlay">
++              <span class="tag">{gacha.filter}</span>
++              <h2>{gacha.name}</h2>
++              <span class="cta">Открыть генератор →</span>
              </div>
            </div>
-           <span class="cta">Открыть генератор →</span>
+-          <span class="cta">Открыть генератор →</span>
          </a>
        ))}
      </div>
    </section>
  </BaseLayout>
  
-@@ -62,50 +69,80 @@ const gachas = listGachas();
+ <style>
+   .intro {
+     margin-bottom: 2.5rem;
+   }
+ 
+   .intro h1 {
+     margin: 0 0 1rem;
+     font-size: 2.4rem;
+     color: #f8fafc;
+   }
+ 
+   .intro p {
+     margin: 0;
+     color: #94a3b8;
+     max-width: 720px;
+     font-size: 1rem;
+     line-height: 1.7;
    }
  
    .gacha-list {
@@ -3108,70 +3786,145 @@ index e7f5ae0c1eeca99d93a3b41570f87bdff8c3f495..cffed98317588270ac5eee6f6852bcd7
    }
  
    .gacha-card {
-     display: flex;
-     flex-direction: column;
-     gap: 1rem;
-     padding: 1.5rem;
-     border-radius: 18px;
-     border: 1px solid rgba(148, 163, 184, 0.18);
-     background: radial-gradient(circle at top, rgba(59, 130, 246, 0.28), rgba(15, 23, 42, 0.88));
-     color: #e2e8f0;
+-    display: flex;
+-    flex-direction: column;
+-    gap: 1rem;
+-    padding: 1.5rem;
+-    border-radius: 18px;
+-    border: 1px solid rgba(148, 163, 184, 0.18);
+-    background: radial-gradient(circle at top, rgba(59, 130, 246, 0.28), rgba(15, 23, 42, 0.88));
+-    color: #e2e8f0;
++    display: block;
++    border-radius: 20px;
++    overflow: hidden;
++    border: 1px solid rgba(96, 165, 250, 0.35);
++    background: rgba(15, 23, 42, 0.9);
      text-decoration: none;
-     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
++    color: inherit;
++    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
    }
  
+-  .gacha-card:hover {
+-    transform: translateY(-6px);
+-    border-color: rgba(96, 165, 250, 0.65);
+-    box-shadow: 0 18px 36px rgba(37, 99, 235, 0.25);
 +  .card-cover {
 +    position: relative;
-+    overflow: hidden;
-+    border-radius: 16px;
-+    border: 1px solid rgba(96, 165, 250, 0.28);
-+    background: radial-gradient(circle at 50% 10%, rgba(59, 130, 246, 0.4), rgba(15, 23, 42, 0.9));
 +    aspect-ratio: 16 / 9;
-+    display: grid;
-+    place-items: center;
-+  }
-+
++    overflow: hidden;
++    display: block;
+   }
+ 
+-  .card-header {
+-    display: flex;
+-    flex-direction: column;
+-    gap: 0.5rem;
 +  .card-cover img {
++    position: absolute;
++    inset: 0;
 +    width: 100%;
 +    height: 100%;
 +    object-fit: cover;
-+    filter: saturate(1.2) contrast(1.05);
-+    transition: transform 0.3s ease;
-+  }
-+
-+  .gacha-card:hover .card-cover img {
-+    transform: scale(1.04);
-+  }
-+
-+  .card-cover span {
-+    font-size: 0.95rem;
-+    color: rgba(226, 232, 240, 0.7);
++    filter: saturate(1.12) contrast(1.08);
++    transition: transform 0.35s ease;
+   }
+ 
+-  .card-header h2 {
+-    margin: 0;
+-    font-size: 1.4rem;
+-    line-height: 1.25;
+-    color: #f8fafc;
++  .fallback {
++    position: absolute;
++    inset: 0;
++    display: grid;
++    place-items: center;
++    font-size: 1rem;
 +    letter-spacing: 0.08em;
 +    text-transform: uppercase;
++    color: rgba(226, 232, 240, 0.7);
++    background: radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.35), rgba(15, 23, 42, 0.92));
 +  }
 +
-   .gacha-card:hover {
-     transform: translateY(-6px);
-     border-color: rgba(96, 165, 250, 0.65);
-     box-shadow: 0 18px 36px rgba(37, 99, 235, 0.25);
-   }
- 
-   .card-header {
-     display: flex;
-     flex-direction: column;
-     gap: 0.5rem;
-   }
- 
-   .card-header h2 {
-     margin: 0;
-     font-size: 1.4rem;
-     line-height: 1.25;
-     color: #f8fafc;
++  .overlay {
++    position: absolute;
++    inset: 0;
++    padding: 1.5rem;
++    display: flex;
++    flex-direction: column;
++    justify-content: flex-end;
++    gap: 0.6rem;
++    background: linear-gradient(180deg, rgba(15, 23, 42, 0) 20%, rgba(15, 23, 42, 0.78));
    }
  
    .tag {
      align-self: flex-start;
      background: rgba(15, 23, 42, 0.65);
-     border: 1px solid rgba(148, 163, 184, 0.25);
+-    border: 1px solid rgba(148, 163, 184, 0.25);
++    border: 1px solid rgba(148, 163, 184, 0.35);
      border-radius: 999px;
-     padding: 0.25rem 0.75rem;
+-    padding: 0.25rem 0.75rem;
++    padding: 0.35rem 0.85rem;
+     font-size: 0.75rem;
+-    text-transform: uppercase;
+     letter-spacing: 0.08em;
++    text-transform: uppercase;
+     color: #cbd5f5;
+   }
+ 
+-  .card-body {
+-    display: flex;
+-    gap: 0.75rem;
+-  }
+-
+-  .stat {
+-    flex: 1;
+-    background: rgba(15, 23, 42, 0.55);
+-    border-radius: 12px;
+-    padding: 0.75rem;
+-    text-align: center;
+-    border: 1px solid rgba(148, 163, 184, 0.18);
++  .overlay h2 {
++    margin: 0;
++    font-size: 1.6rem;
++    color: #f8fafc;
+   }
+ 
+-  .stat .label {
+-    display: block;
+-    font-size: 0.75rem;
+-    color: #94a3b8;
+-    margin-bottom: 0.25rem;
++  .overlay .cta {
++    font-size: 0.95rem;
++    letter-spacing: 0.06em;
++    text-transform: uppercase;
++    color: #93c5fd;
+   }
+ 
+-  .stat strong {
+-    font-size: 1.15rem;
+-    color: #f8fafc;
++  .gacha-card:hover {
++    transform: translateY(-6px);
++    border-color: rgba(96, 165, 250, 0.65);
++    box-shadow: 0 22px 38px rgba(37, 99, 235, 0.28);
+   }
+ 
+-  .cta {
+-    margin-top: auto;
+-    font-size: 0.95rem;
+-    color: #93c5fd;
+-    text-transform: uppercase;
+-    letter-spacing: 0.08em;
++  .gacha-card:hover .card-cover img {
++    transform: scale(1.06);
+   }
+ 
+   @media (max-width: 640px) {
+     .list-grid {
+       grid-template-columns: 1fr;
+     }
+   }
+ </style>
