@@ -380,19 +380,27 @@
 
     {#if result}
       <section class="stats">
+<<<<<<< ours
         <div class="stat-card metric total-spins">
           <div class="metric-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
+=======
+        <div class="stat-card metric total-spins no-icon">
+>>>>>>> theirs
           <div class="metric-body">
             <span class="label">Всего прокрутов</span>
             <strong>{formatNumber(result.totalSpins)}</strong>
           </div>
         </div>
+<<<<<<< ours
         <div class="stat-card metric paid-spins">
           <div class="metric-icon" aria-hidden="true">
             <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
           </div>
+=======
+        <div class="stat-card metric paid-spins no-icon">
+>>>>>>> theirs
           <div class="metric-body">
             <span class="label">Платных</span>
             <strong>{formatNumber(result.paidSpins)}</strong>
@@ -725,7 +733,11 @@
     background: rgba(15, 23, 42, 0.8);
     border-radius: 18px;
     padding: 1.15rem 1.5rem;
+<<<<<<< ours
     border: 1px solid rgba(148, 163, 184, 0.2);
+=======
+    border: 1px solid rgba(148, 163, 184, 0.22);
+>>>>>>> theirs
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
@@ -734,6 +746,14 @@
     min-width: 0;
   }
 
+<<<<<<< ours
+=======
+  .stat-card.no-icon {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.25rem 1.65rem;
+  }
+
+>>>>>>> theirs
   .stat-card.metric,
   .stat-card.currency {
     gap: 1rem;
@@ -762,8 +782,11 @@
   .stat-body {
     display: flex;
     flex-direction: column;
+<<<<<<< ours
     gap: 0.45rem;
     color: rgba(226, 232, 240, 0.85);
+=======
+>>>>>>> theirs
     gap: 0.35rem;
     min-width: 0;
     justify-content: space-between;
@@ -771,6 +794,7 @@
   }
 
   .stat-card strong {
+<<<<<<< ours
     font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
     color: #f1f5f9;
     line-height: 1.1;
@@ -793,6 +817,19 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.03em;
     overflow-wrap: anywhere;
+=======
+    align-self: flex-end;
+    width: 100%;
+    text-align: right;
+    font-size: clamp(1.05rem, 0.88rem + 0.38vw, 1.38rem);
+    color: #f1f5f9;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+>>>>>>> theirs
   }
 
   .stat-card.highlight {
@@ -811,21 +848,27 @@
     border-color: rgba(129, 140, 248, 0.35);
   }
 
+<<<<<<< ours
   .stat-card.total-spins .metric-icon {
     border-color: rgba(129, 140, 248, 0.45);
     background: rgba(129, 140, 248, 0.22);
   }
 
+=======
+>>>>>>> theirs
   .stat-card.paid-spins {
     background: linear-gradient(145deg, rgba(192, 132, 252, 0.18), rgba(15, 23, 42, 0.85));
     border-color: rgba(165, 180, 252, 0.35);
   }
 
+<<<<<<< ours
   .stat-card.paid-spins .metric-icon {
     border-color: rgba(165, 180, 252, 0.45);
     background: rgba(192, 132, 252, 0.22);
   }
 
+=======
+>>>>>>> theirs
   .stat-card.free-spins .metric-icon {
     border-color: rgba(96, 165, 250, 0.6);
     background: rgba(96, 165, 250, 0.22);
@@ -844,10 +887,13 @@
     align-items: flex-end;
     text-align: right;
     min-width: 0;
+<<<<<<< ours
   }
 
   .stat-card.currency .stat-body {
     align-items: flex-end;
+=======
+>>>>>>> theirs
   }
 
   .label {
@@ -1134,14 +1180,22 @@
   .odds-panel {
     background: linear-gradient(170deg, rgba(30, 27, 75, 0.95), rgba(15, 23, 42, 0.92));
     border-radius: 32px;
+<<<<<<< ours
     padding: 2.2rem 2rem;
+=======
+    padding: 2.2rem 2.2rem;
+>>>>>>> theirs
     border: 1px solid rgba(99, 102, 241, 0.35);
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
     color: rgba(226, 232, 240, 0.88);
     box-shadow: 0 24px 40px rgba(79, 70, 229, 0.25);
+<<<<<<< ours
     min-width: 360px;
+=======
+    min-width: 420px;
+>>>>>>> theirs
   }
 
   .odds-panel h3 {
@@ -1161,6 +1215,7 @@
     margin: 0;
     padding: 0;
     display: grid;
+<<<<<<< ours
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 1.05rem 1.25rem;
   }
@@ -1176,6 +1231,13 @@
   }
 
   .odds-list li {
+=======
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.1rem 1.9rem;
+  }
+
+  .odds-list li {
+>>>>>>> theirs
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;

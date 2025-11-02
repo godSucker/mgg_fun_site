@@ -197,10 +197,13 @@
 
     {#if result}
       <section class="stats">
+<<<<<<< ours
          <div class="stat-card metric spins">
           <div class="metric-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
+=======
+>>>>>>> theirs
         <div class="stat-card metric spins no-icon">
           <div class="metric-body">
             <span class="label">Прокрутов</span>
@@ -228,9 +231,7 @@
             <strong>{formatNumber(result.silverWon)}</strong>
           </div>
         </div>
-        <div
-          class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}
-        >
+        <div class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
           <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
             <span class="label">Чистый результат</span>
@@ -495,6 +496,7 @@
   .stat-card {
     background: rgba(13, 17, 23, 0.78);
     border-radius: 18px;
+<<<<<<< ours
     border: 1px solid rgba(255, 213, 79, 0.25);
     padding: 1rem 1.25rem;
     display: flex;
@@ -502,6 +504,9 @@
     gap: 0.35rem;
     justify-content: space-between;
     min-width: 0;
+=======
+    border: 1px solid rgba(255, 213, 79, 0.22);
+>>>>>>> theirs
     padding: 1.05rem 1.4rem;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -517,6 +522,7 @@
 
   .stat-card.metric,
   .stat-card.currency {
+<<<<<<< ours
     flex-direction: row;
     align-items: center;
     gap: 0.85rem;
@@ -570,11 +576,46 @@
     flex-direction: column;
     gap: 0.25rem;
     min-width: 0;
+=======
+    gap: 1rem;
   }
 
-  .stat-card.currency .stat-body {
+  .metric-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 213, 79, 0.35);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .metric-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+
+  .stat-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    justify-self: start;
+>>>>>>> theirs
+  }
+
+  .stat-card.spins {
+    background: linear-gradient(150deg, rgba(255, 213, 79, 0.22), rgba(13, 17, 23, 0.88));
+    border-color: rgba(255, 213, 79, 0.4);
+  }
+
+  .metric-body,
+  .stat-body {
     display: flex;
     flex-direction: column;
+<<<<<<< ours
     gap: 0.25rem;
     background: linear-gradient(150deg, rgba(255, 213, 79, 0.22), rgba(13, 17, 23, 0.88));
     border-color: rgba(255, 213, 79, 0.4);
@@ -584,6 +625,8 @@
   .stat-body {
     display: flex;
     flex-direction: column;
+=======
+>>>>>>> theirs
     gap: 0.35rem;
     min-width: 0;
     align-items: flex-end;
@@ -594,6 +637,7 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: rgba(248, 250, 252, 0.55);
+<<<<<<< ours
   }
 
   .stat-card strong {
@@ -626,6 +670,23 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.03em;
     overflow-wrap: anywhere;
+=======
+    align-self: flex-start;
+  }
+
+  .stat-card strong {
+    align-self: flex-end;
+    width: 100%;
+    text-align: right;
+    font-size: clamp(1.05rem, 0.82rem + 0.38vw, 1.32rem);
+    color: #fceabb;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+>>>>>>> theirs
   }
 
   .stat-icon {
@@ -645,7 +706,10 @@
   .stat-card.net {
     border: none;
     background: linear-gradient(160deg, rgba(255, 224, 130, 0.16), rgba(13, 17, 23, 0.92));
+<<<<<<< ours
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 28px rgba(255, 193, 7, 0.2);
+=======
+>>>>>>> theirs
   }
 
   .stat-card.net.positive strong {
@@ -780,12 +844,22 @@
   .odds-panel {
     background: linear-gradient(200deg, rgba(255, 215, 0, 0.1), rgba(13, 17, 23, 0.95));
     border-radius: 28px;
+<<<<<<< ours
     border: 1px solid rgba(255, 213, 79, 0.25);
     padding: 2rem 1.9rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     min-width: 340px;
+=======
+    border: 1px solid rgba(255, 213, 79, 0.3);
+    padding: 2.1rem 2.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    min-width: 400px;
+    box-shadow: 0 18px 36px rgba(255, 193, 7, 0.18);
+>>>>>>> theirs
   }
 
   .odds-panel h3 {
@@ -804,14 +878,22 @@
     padding: 0;
     margin: 0;
     display: grid;
+<<<<<<< ours
     gap: 0.9rem;
+=======
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem 1.7rem;
+>>>>>>> theirs
   }
 
   .odds-list li {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+<<<<<<< ours
     padding: 0.85rem 1rem;
+=======
+>>>>>>> theirs
     gap: 1rem;
     padding: 0.95rem 1.2rem;
     border-radius: 16px;
