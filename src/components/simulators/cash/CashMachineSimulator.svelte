@@ -488,144 +488,85 @@
 
   .stats {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
   .stat-card {
-    background: rgba(13, 17, 23, 0.78);
-    border-radius: 18px;
-    border: 1px solid rgba(255, 213, 79, 0.25);
-    padding: 1rem 1.25rem;
+    background: rgba(13, 17, 23, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 213, 79, 0.18);
+    padding: 0.95rem 1.1rem;
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    justify-content: space-between;
-    min-width: 0;
-    padding: 1.05rem 1.4rem;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    gap: 1rem;
+    gap: 0.85rem;
     min-width: 0;
   }
 
   .stat-card.no-icon {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 1.15rem 1.6rem;
-  }
-
-  .stat-card.metric,
-  .stat-card.currency {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.85rem;
-    gap: 1rem;
+    justify-content: space-between;
+    padding: 0.95rem 1.1rem;
   }
 
   .metric-icon {
-    width: 52px;
-    height: 52px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
-    border-radius: 16px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(255, 213, 79, 0.35);
+    border-radius: 14px;
+    background: rgba(255, 213, 79, 0.16);
     display: grid;
     place-items: center;
-    overflow: hidden;
   }
 
   .metric-icon img {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-  }
-
-
-  .metric-icon img {
-    width: 42px;
-    height: 42px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
   }
 
   .stat-icon {
-    width: 52px;
-    height: 52px;
-    flex-shrink: 0;
-    justify-self: start;
+    width: 36px;
+    height: 36px;
   }
 
   .stat-card.spins {
-    background: linear-gradient(150deg, rgba(255, 213, 79, 0.25), rgba(13, 17, 23, 0.85));
-    border-color: rgba(255, 213, 79, 0.4);
+    background: linear-gradient(150deg, rgba(255, 213, 79, 0.18), rgba(13, 17, 23, 0.78));
+    border-color: rgba(255, 213, 79, 0.3);
   }
 
   .stat-card.spins .metric-icon {
-    border-color: rgba(255, 213, 79, 0.6);
-    background: rgba(255, 213, 79, 0.18);
-  }
-
-  .metric-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    min-width: 0;
-  }
-
-  .stat-card.currency .stat-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    background: linear-gradient(150deg, rgba(255, 213, 79, 0.22), rgba(13, 17, 23, 0.88));
-    border-color: rgba(255, 213, 79, 0.4);
+    background: rgba(255, 213, 79, 0.22);
   }
 
   .metric-body,
   .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.25rem;
     min-width: 0;
-    align-items: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    color: rgba(252, 234, 187, 0.88);
+  }
+
+  .stat-card.currency .stat-body {
+    align-items: flex-start;
   }
 
   .stat-card .label {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(248, 250, 252, 0.55);
+    color: rgba(252, 234, 187, 0.6);
   }
 
   .stat-card strong {
-    font-size: clamp(1.05rem, 0.95rem + 0.45vw, 1.35rem);
-    color: #fceabb;
-    line-height: 1.2;
-    word-break: break-word;
+    font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.5rem);
+    color: #ffe082;
+    line-height: 1.15;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.015em;
     white-space: nowrap;
-    text-align: right;
-    align-self: flex-end;
-  }
-
-  .stat-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    flex: 1;
-    align-self: flex-start;
-  }
-
-  .stat-card strong {
-    align-self: flex-end;
-    width: 100%;
-    text-align: right;
-    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.5rem);
-    color: #fceabb;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.03em;
-    overflow-wrap: anywhere;
   }
 
   .stat-icon {
@@ -643,23 +584,17 @@
   }
 
   .stat-card.net {
-    border: none;
-    background: linear-gradient(160deg, rgba(255, 224, 130, 0.16), rgba(13, 17, 23, 0.92));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 28px rgba(255, 193, 7, 0.2);
+    background: linear-gradient(160deg, rgba(255, 213, 79, 0.2), rgba(13, 17, 23, 0.82));
+    border: 1px solid rgba(255, 213, 79, 0.32);
+    box-shadow: none;
   }
 
   .stat-card.net.positive strong {
-    color: #c6ff00;
+    color: #d4ff6a;
   }
 
   .stat-card.net.negative strong {
-    background: linear-gradient(200deg, rgba(255, 215, 0, 0.1), rgba(13, 17, 23, 0.95));
-    border-radius: 28px;
-    border: 1px solid rgba(255, 213, 79, 0.25);
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    color: #ffab91;
   }
 
   .odds-panel h3 {
