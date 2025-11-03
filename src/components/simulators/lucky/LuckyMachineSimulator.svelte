@@ -379,61 +379,62 @@
     </form>
 
     {#if result}
-      <section class="stats">
-        <div class="stat-card metric total-spins">
-          <div class="metric-icon" aria-hidden="true">
+      <section class="stats" aria-label="Итоги симуляции">
+        <article class="stat-card metric">
+          <div class="stat-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
-          <div class="metric-body">
+          <div class="stat-body">
             <span class="label">Всего прокрутов</span>
-            <strong>{formatNumber(result.totalSpins)}</strong>
+            <span class="value">{formatNumber(result.totalSpins)}</span>
           </div>
-        </div>
-        <div class="stat-card metric paid-spins">
-          <div class="metric-icon" aria-hidden="true">
+        </article>
+        <article class="stat-card metric">
+          <div class="stat-icon token" aria-hidden="true">
             <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
           </div>
-          <div class="metric-body">
+          <div class="stat-body">
             <span class="label">Платных</span>
-            <strong>{formatNumber(result.paidSpins)}</strong>
+            <span class="value">{formatNumber(result.paidSpins)}</span>
           </div>
-        </div>
-        <div class="stat-card metric highlight free-spins">
-          <div class="metric-icon" aria-hidden="true">
+        </article>
+        <article class="stat-card metric highlight">
+          <div class="stat-icon free" aria-hidden="true">
             <img src="/etc/freespin.png" alt="" loading="lazy" />
           </div>
-          <div class="metric-body">
+          <div class="stat-body">
             <span class="label">Бесплатных</span>
-            <strong>{formatNumber(result.freeSpins)}</strong>
-            <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
+            <span class="value">{formatNumber(result.freeSpins)}</span>
+            <span class="meta">Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</span>
           </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src="/cash/g20.png" alt="Иконка золота" loading="lazy" />
+        </article>
+        <article class="stat-card currency gold">
+          <div class="stat-icon gold" aria-hidden="true">
+            <img src="/cash/g20.png" alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Выиграно золота</span>
-            <strong>{formatNumber(result.goldWon)}</strong>
+            <span class="value">{formatNumber(result.goldWon)}</span>
           </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src="/cash/softcurrency.png" alt="Иконка серебра" loading="lazy" />
+        </article>
+        <article class="stat-card currency silver">
+          <div class="stat-icon silver" aria-hidden="true">
+            <img src="/cash/softcurrency.png" alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Выиграно серебра</span>
-            <strong>{formatNumber(result.silverWon)}</strong>
+            <span class="value">{formatNumber(result.silverWon)}</span>
           </div>
-        </div>
-        <div class="stat-card currency">
-          <img
-            class="stat-icon"
-            src="/tokens/material_gacha_token.png"
-            alt="Иконка жетона джекпота"
-            loading="lazy"
-          />
+        </article>
+        <article class="stat-card currency token">
+          <div class="stat-icon token" aria-hidden="true">
+            <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Жетоны</span>
-            <strong>{formatNumber(result.tokenItems)}</strong>
+            <span class="value">{formatNumber(result.tokenItems)}</span>
           </div>
-        </div>
+        </article>
       </section>
       <section class="results">
         <header class="results-header">
@@ -717,92 +718,101 @@
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
   }
 
   .stat-card {
-    background: rgba(17, 24, 39, 0.55);
-    border-radius: 18px;
-    padding: 0.95rem 1.1rem;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    color: rgba(226, 232, 240, 0.88);
-    min-width: 0;
-    box-shadow: none;
-  }
-
-  .stat-card.highlight {
-    background: rgba(129, 140, 248, 0.16);
-    border-color: rgba(129, 140, 248, 0.32);
-  }
-
-  .metric-icon {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    border-radius: 14px;
-    background: rgba(129, 140, 248, 0.15);
-    border: none;
+    position: relative;
     display: grid;
-    place-items: center;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 22px;
+    background: radial-gradient(140% 150% at 0% 0%, rgba(129, 140, 248, 0.24), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(129, 140, 248, 0.32);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 16px 30px rgba(124, 77, 255, 0.2);
     overflow: hidden;
   }
 
-  .metric-icon img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
+  .stat-card.highlight {
+    border-color: rgba(191, 219, 254, 0.5);
+    background: radial-gradient(160% 160% at 0% 0%, rgba(165, 180, 252, 0.35), rgba(15, 23, 42, 0.95));
   }
 
-  .metric-body,
-  .stat-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.28rem;
-    color: rgba(226, 232, 240, 0.88);
-    min-width: 0;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
+  .stat-card.currency.gold {
+    border-color: rgba(251, 191, 36, 0.32);
+    background: radial-gradient(150% 150% at 0% 0%, rgba(251, 191, 36, 0.2), rgba(15, 23, 42, 0.92));
   }
 
-  .stat-card strong {
-    font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.55rem);
-    color: #f8fafc;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    max-width: 100%;
+  .stat-card.currency.silver {
+    border-color: rgba(96, 165, 250, 0.28);
+    background: radial-gradient(150% 150% at 0% 0%, rgba(96, 165, 250, 0.2), rgba(15, 23, 42, 0.92));
   }
 
-  .stat-card.small {
-    width: 100%;
-    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.4rem);
-    color: #f8fafc;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    overflow-wrap: anywhere;
+  .stat-card.currency.token {
+    border-color: rgba(244, 114, 182, 0.32);
+    background: radial-gradient(150% 150% at 0% 0%, rgba(244, 114, 182, 0.22), rgba(15, 23, 42, 0.9));
   }
 
   .stat-icon {
-    width: 36px;
-    height: 36px;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: rgba(129, 140, 248, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
-  .stat-card.currency .stat-body {
-    align-items: flex-start;
+  .stat-icon.gold {
+    background: rgba(251, 191, 36, 0.22);
   }
 
-  .label {
-    font-size: 0.74rem;
+  .stat-icon.silver {
+    background: rgba(96, 165, 250, 0.22);
+  }
+
+  .stat-icon.token {
+    background: rgba(244, 114, 182, 0.22);
+  }
+
+  .stat-icon.free {
+    background: rgba(165, 180, 252, 0.28);
+  }
+
+  .stat-icon img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.35));
+  }
+
+  .stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .stat-body .label {
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.72);
+    color: rgba(226, 232, 240, 0.7);
+  }
+
+  .stat-body .value {
+    font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.95rem);
+    font-weight: 600;
+    color: #e0e7ff;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-body .meta {
+    font-size: 0.82rem;
+    color: rgba(226, 232, 240, 0.7);
   }
 
   .results {

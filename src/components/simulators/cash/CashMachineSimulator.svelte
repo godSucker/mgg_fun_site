@@ -196,47 +196,55 @@
     </form>
 
     {#if result}
-      <section class="stats">
-         <div class="stat-card metric spins">
-          <div class="metric-icon" aria-hidden="true">
+      <section class="stats" aria-label="Итоги симуляции">
+        <article class="stat-card metric">
+          <div class="stat-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
-        <div class="stat-card metric spins no-icon">
-          <div class="metric-body">
+          <div class="stat-body">
             <span class="label">Прокрутов</span>
-            <strong>{formatNumber(result.spins)}</strong>
+            <span class="value">{formatNumber(result.spins)}</span>
           </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+        </article>
+        <article class="stat-card currency">
+          <div class="stat-icon gold" aria-hidden="true">
+            <img src={goldIcon} alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Потрачено золота</span>
-            <strong>{formatNumber(result.goldSpent)}</strong>
+            <span class="value">{formatNumber(result.goldSpent)}</span>
           </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+        </article>
+        <article class="stat-card currency">
+          <div class="stat-icon gold" aria-hidden="true">
+            <img src={goldIcon} alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Выиграно золота</span>
-            <strong>{formatNumber(result.goldWon)}</strong>
+            <span class="value">{formatNumber(result.goldWon)}</span>
           </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src={silverIcon} alt="Иконка серебра" loading="lazy" />
+        </article>
+        <article class="stat-card currency silver">
+          <div class="stat-icon silver" aria-hidden="true">
+            <img src={silverIcon} alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Выиграно серебра</span>
-            <strong>{formatNumber(result.silverWon)}</strong>
+            <span class="value">{formatNumber(result.silverWon)}</span>
           </div>
-        </div>
-        <div
-          class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}
-        >
-          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+        </article>
+        <article class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
+          <div class="stat-icon gold" aria-hidden="true">
+            <img src={goldIcon} alt="" loading="lazy" />
+          </div>
           <div class="stat-body">
             <span class="label">Чистый результат</span>
-            <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>
+            <span class="value">{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</span>
+            <span class="meta">
+              {result.netGold >= 0 ? 'В плюс к бюджету' : 'В минус от бюджета'}
+            </span>
           </div>
-        </div>
+        </article>
       </section>
 
       <section class="results-grid">
@@ -488,113 +496,114 @@
 
   .stats {
     display: grid;
-    gap: 0.85rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
   .stat-card {
-    background: rgba(13, 17, 23, 0.6);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 213, 79, 0.18);
-    padding: 0.95rem 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    min-width: 0;
-  }
-
-  .stat-card.no-icon {
-    justify-content: space-between;
-    padding: 0.95rem 1.1rem;
-  }
-
-  .metric-icon {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    border-radius: 14px;
-    background: rgba(255, 213, 79, 0.16);
+    position: relative;
     display: grid;
-    place-items: center;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 20px;
+    background: radial-gradient(120% 140% at 0% 0%, rgba(255, 213, 79, 0.22), rgba(13, 17, 23, 0.92));
+    border: 1px solid rgba(255, 213, 79, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 26px rgba(255, 193, 7, 0.18);
+    overflow: hidden;
   }
 
-  .metric-icon img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
+  .stat-card.metric {
+    background: radial-gradient(150% 150% at 0% 0%, rgba(255, 213, 79, 0.28), rgba(13, 17, 23, 0.9));
+  }
+
+  .stat-card.currency.silver {
+    border-color: rgba(165, 243, 252, 0.35);
+    background: radial-gradient(150% 150% at 0% 0%, rgba(165, 243, 252, 0.2), rgba(13, 17, 23, 0.9));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 14px 26px rgba(6, 182, 212, 0.12);
   }
 
   .stat-icon {
-    width: 36px;
-    height: 36px;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 213, 79, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
-  .stat-card.spins {
-    background: linear-gradient(150deg, rgba(255, 213, 79, 0.18), rgba(13, 17, 23, 0.78));
-    border-color: rgba(255, 213, 79, 0.3);
-  }
-
-  .stat-card.spins .metric-icon {
+  .stat-icon.gold {
     background: rgba(255, 213, 79, 0.22);
   }
 
-  .metric-body,
+  .stat-icon.silver {
+    background: rgba(165, 243, 252, 0.18);
+  }
+
+  .stat-icon img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  }
+
   .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.35rem;
     min-width: 0;
-    align-items: flex-start;
-    text-align: left;
-    color: rgba(252, 234, 187, 0.88);
   }
 
-  .stat-card.currency .stat-body {
-    align-items: flex-start;
-  }
-
-  .stat-card .label {
-    font-size: 0.74rem;
+  .stat-body .label {
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(252, 234, 187, 0.6);
+    color: rgba(252, 234, 187, 0.65);
   }
 
-  .stat-card strong {
-    font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.5rem);
-    color: #ffe082;
-    line-height: 1.15;
+  .stat-body .value {
+    font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.9rem);
+    font-weight: 600;
+    color: #ffecb3;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.015em;
-    white-space: nowrap;
   }
 
-  .stat-icon {
-    width: 52px;
-    height: 52px;
-    flex-shrink: 0;
-    justify-self: start;
+  .stat-body .meta {
+    font-size: 0.82rem;
+    color: rgba(252, 234, 187, 0.65);
   }
 
-  .stat-icon,
-  .reward-icon,
-  .history-icon,
-  .odds-icon {
-    display: block;
+  .stat-card.currency .stat-body .value {
+    color: #ffe082;
+  }
+
+  .stat-card.currency.silver .stat-body .value {
+    color: #bae6fd;
   }
 
   .stat-card.net {
-    background: linear-gradient(160deg, rgba(255, 213, 79, 0.2), rgba(13, 17, 23, 0.82));
-    border: 1px solid rgba(255, 213, 79, 0.32);
-    box-shadow: none;
+    border-color: rgba(255, 213, 79, 0.32);
+    background: radial-gradient(160% 160% at 0% 0%, rgba(255, 213, 79, 0.2), rgba(13, 17, 23, 0.9));
   }
 
-  .stat-card.net.positive strong {
-    color: #d4ff6a;
+  .stat-card.net.positive {
+    border-color: rgba(134, 239, 172, 0.45);
+    background: radial-gradient(160% 160% at 0% 0%, rgba(34, 197, 94, 0.22), rgba(13, 17, 23, 0.9));
   }
 
-  .stat-card.net.negative strong {
-    color: #ffab91;
+  .stat-card.net.positive .stat-body .value {
+    color: #bbf7d0;
+  }
+
+  .stat-card.net.negative {
+    border-color: rgba(248, 113, 113, 0.45);
+    background: radial-gradient(160% 160% at 0% 0%, rgba(248, 113, 113, 0.26), rgba(13, 17, 23, 0.9));
+  }
+
+  .stat-card.net.negative .stat-body .value {
+    color: #ffcdd2;
   }
 
   .odds-panel h3 {
