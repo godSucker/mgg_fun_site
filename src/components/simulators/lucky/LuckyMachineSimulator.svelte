@@ -379,62 +379,61 @@
     </form>
 
     {#if result}
-      <section class="stats" aria-label="Итоги симуляции">
-        <article class="stat-card metric">
-          <div class="stat-icon" aria-hidden="true">
+      <section class="stats">
+        <div class="stat-card metric total-spins">
+          <div class="metric-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
-          <div class="stat-body">
+          <div class="metric-body">
             <span class="label">Всего прокрутов</span>
-            <span class="value">{formatNumber(result.totalSpins)}</span>
+            <strong>{formatNumber(result.totalSpins)}</strong>
           </div>
-        </article>
-        <article class="stat-card metric">
-          <div class="stat-icon token" aria-hidden="true">
+        </div>
+        <div class="stat-card metric paid-spins">
+          <div class="metric-icon" aria-hidden="true">
             <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
           </div>
-          <div class="stat-body">
+          <div class="metric-body">
             <span class="label">Платных</span>
-            <span class="value">{formatNumber(result.paidSpins)}</span>
+            <strong>{formatNumber(result.paidSpins)}</strong>
           </div>
-        </article>
-        <article class="stat-card metric highlight">
-          <div class="stat-icon free" aria-hidden="true">
+        </div>
+        <div class="stat-card metric highlight free-spins">
+          <div class="metric-icon" aria-hidden="true">
             <img src="/etc/freespin.png" alt="" loading="lazy" />
           </div>
-          <div class="stat-body">
+          <div class="metric-body">
             <span class="label">Бесплатных</span>
-            <span class="value">{formatNumber(result.freeSpins)}</span>
-            <span class="meta">Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</span>
+            <strong>{formatNumber(result.freeSpins)}</strong>
+            <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
           </div>
-        </article>
-        <article class="stat-card currency gold">
-          <div class="stat-icon gold" aria-hidden="true">
-            <img src="/cash/g20.png" alt="" loading="lazy" />
-          </div>
+        </div>
+        <div class="stat-card currency">
+          <img class="stat-icon" src="/cash/g20.png" alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
             <span class="label">Выиграно золота</span>
-            <span class="value">{formatNumber(result.goldWon)}</span>
+            <strong>{formatNumber(result.goldWon)}</strong>
           </div>
-        </article>
-        <article class="stat-card currency silver">
-          <div class="stat-icon silver" aria-hidden="true">
-            <img src="/cash/softcurrency.png" alt="" loading="lazy" />
-          </div>
+        </div>
+        <div class="stat-card currency">
+          <img class="stat-icon" src="/cash/softcurrency.png" alt="Иконка серебра" loading="lazy" />
           <div class="stat-body">
             <span class="label">Выиграно серебра</span>
-            <span class="value">{formatNumber(result.silverWon)}</span>
+            <strong>{formatNumber(result.silverWon)}</strong>
           </div>
-        </article>
-        <article class="stat-card currency token">
-          <div class="stat-icon token" aria-hidden="true">
-            <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
-          </div>
+        </div>
+        <div class="stat-card currency">
+          <img
+            class="stat-icon"
+            src="/tokens/material_gacha_token.png"
+            alt="Иконка жетона джекпота"
+            loading="lazy"
+          />
           <div class="stat-body">
             <span class="label">Жетоны</span>
-            <span class="value">{formatNumber(result.tokenItems)}</span>
+            <strong>{formatNumber(result.tokenItems)}</strong>
           </div>
-        </article>
+        </div>
       </section>
       <section class="results">
         <header class="results-header">
@@ -791,6 +790,7 @@
     background: rgba(96, 165, 250, 0.28);
   }
 
+  .metric-body,
   .stat-body {
     display: flex;
     flex-direction: column;
@@ -810,6 +810,8 @@
     color: #ede9fe;
     line-height: 1.15;
     font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
   }
 
   .stat-body .meta {

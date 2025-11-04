@@ -196,55 +196,47 @@
     </form>
 
     {#if result}
-      <section class="stats" aria-label="Итоги симуляции">
-        <article class="stat-card metric">
-          <div class="stat-icon" aria-hidden="true">
+      <section class="stats">
+         <div class="stat-card metric spins">
+          <div class="metric-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
-          <div class="stat-body">
+        <div class="stat-card metric spins no-icon">
+          <div class="metric-body">
             <span class="label">Прокрутов</span>
-            <span class="value">{formatNumber(result.spins)}</span>
+            <strong>{formatNumber(result.spins)}</strong>
           </div>
-        </article>
-        <article class="stat-card currency">
-          <div class="stat-icon gold" aria-hidden="true">
-            <img src={goldIcon} alt="" loading="lazy" />
-          </div>
+        </div>
+        <div class="stat-card currency">
+          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
             <span class="label">Потрачено золота</span>
-            <span class="value">{formatNumber(result.goldSpent)}</span>
+            <strong>{formatNumber(result.goldSpent)}</strong>
           </div>
-        </article>
-        <article class="stat-card currency">
-          <div class="stat-icon gold" aria-hidden="true">
-            <img src={goldIcon} alt="" loading="lazy" />
-          </div>
+        </div>
+        <div class="stat-card currency">
+          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
             <span class="label">Выиграно золота</span>
-            <span class="value">{formatNumber(result.goldWon)}</span>
+            <strong>{formatNumber(result.goldWon)}</strong>
           </div>
-        </article>
-        <article class="stat-card currency silver">
-          <div class="stat-icon silver" aria-hidden="true">
-            <img src={silverIcon} alt="" loading="lazy" />
-          </div>
+        </div>
+        <div class="stat-card currency">
+          <img class="stat-icon" src={silverIcon} alt="Иконка серебра" loading="lazy" />
           <div class="stat-body">
             <span class="label">Выиграно серебра</span>
-            <span class="value">{formatNumber(result.silverWon)}</span>
+            <strong>{formatNumber(result.silverWon)}</strong>
           </div>
-        </article>
-        <article class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
-          <div class="stat-icon gold" aria-hidden="true">
-            <img src={goldIcon} alt="" loading="lazy" />
-          </div>
+        </div>
+        <div
+          class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}
+        >
+          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
             <span class="label">Чистый результат</span>
-            <span class="value">{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</span>
-            <span class="meta">
-              {result.netGold >= 0 ? 'В плюс к бюджету' : 'В минус от бюджета'}
-            </span>
+            <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>
           </div>
-        </article>
+        </div>
       </section>
 
       <section class="results-grid">
@@ -550,6 +542,7 @@
     border-radius: 15px;
   }
 
+  .metric-body,
   .stat-body {
     display: flex;
     flex-direction: column;
@@ -569,6 +562,8 @@
     color: #ffe082;
     line-height: 1.15;
     font-variant-numeric: tabular-nums;
+    letter-spacing: 0.015em;
+    white-space: nowrap;
   }
 
   .stat-body .meta {
