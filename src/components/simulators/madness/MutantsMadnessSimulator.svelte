@@ -657,55 +657,51 @@
   }
 
   .summary-card {
-    position: relative;
-    padding: 1.05rem 1.25rem;
-    border-radius: 22px;
-    background: radial-gradient(140% 150% at 0% 0%, rgba(236, 72, 153, 0.18), rgba(15, 23, 42, 0.85));
-    border: 1px solid rgba(236, 72, 153, 0.32);
-    display: grid;
-    grid-template-columns: 60px 1fr;
+    padding: 0.95rem 1.1rem;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    display: flex;
     align-items: center;
-    gap: 1rem;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 16px 32px rgba(236, 72, 153, 0.22);
+    gap: 0.85rem;
   }
 
   .summary-card.highlight {
-    background: radial-gradient(160% 160% at 0% 0%, rgba(192, 132, 252, 0.32), rgba(15, 23, 42, 0.88));
-    border-color: rgba(192, 132, 252, 0.45);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 36px rgba(147, 51, 234, 0.25);
+    background: linear-gradient(140deg, rgba(76, 29, 149, 0.28), rgba(15, 23, 42, 0.7));
+    border-color: rgba(196, 181, 253, 0.38);
+    box-shadow: none;
   }
 
   .summary-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 18px;
-    background: rgba(236, 72, 153, 0.22);
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(148, 163, 184, 0.15);
     display: grid;
     place-items: center;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
   .summary-icon img {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.4));
   }
 
   .summary-card.token-spins .summary-icon {
-    background: rgba(250, 204, 21, 0.26);
+    background: rgba(250, 204, 21, 0.18);
   }
 
   .summary-card.gold-spins .summary-icon {
-    background: rgba(253, 224, 71, 0.26);
+    background: rgba(253, 224, 71, 0.18);
   }
 
   .summary-card.total-spins .summary-icon {
-    background: rgba(244, 114, 182, 0.28);
+    background: rgba(244, 114, 182, 0.2);
   }
 
   .summary-card.jackpot-chance .summary-icon {
-    background: rgba(253, 224, 71, 0.32);
+    background: rgba(253, 224, 71, 0.22);
   }
 
   .summary-body {
@@ -721,32 +717,32 @@
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(243, 232, 255, 0.75);
+    color: rgba(203, 213, 225, 0.7);
   }
 
   .summary-card.highlight .title {
-    color: rgba(243, 232, 255, 0.92);
+    color: rgba(221, 214, 254, 0.82);
   }
 
   .summary-card strong {
-    font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.75rem);
-    color: #fde68a;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.6rem);
+    color: #fce7f3;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.01em;
     white-space: nowrap;
   }
 
   .summary-card.highlight strong {
-    color: #e9d5ff;
+    color: #fef3c7;
   }
 
   .summary-card .meta {
     font-size: 0.78rem;
-    color: rgba(243, 232, 255, 0.65);
+    color: rgba(203, 213, 225, 0.7);
   }
 
   .summary-card.highlight .meta {
-    color: rgba(243, 232, 255, 0.78);
+    color: rgba(221, 214, 254, 0.75);
   }
 
   .summary-card .meta.odds {
