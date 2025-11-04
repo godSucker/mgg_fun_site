@@ -449,32 +449,17 @@
     color: #ffab91;
   }
 
-  button.ghost.danger:hover {
-    border-color: rgba(255, 138, 101, 0.7);
-    background: rgba(255, 82, 82, 0.18);
-    color: #ffcdd2;
-  }
-
-  .error {
-    margin: 0;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    background: rgba(255, 82, 82, 0.12);
-    border: 1px solid rgba(255, 138, 101, 0.4);
-    color: #ffab91;
-  }
-
   .progress {
-    display: grid;
-    gap: 0.35rem;
-    margin-top: -0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
   }
 
   .progress-bar {
-    position: relative;
     height: 8px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
     overflow: hidden;
   }
 
@@ -482,147 +467,113 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, #ffcc80, #ff9100);
-    transform-origin: left center;
-    transform: scaleX(calc(var(--progress, 0%) / 100));
-    transition: transform 0.18s ease-out;
+    transform-origin: left;
+    transform: scaleX(calc(var(--progress) / 100));
+    background: linear-gradient(120deg, #ffd54f, #ff9100);
+    transition: transform 0.2s ease;
   }
 
   .progress-label {
     font-size: 0.85rem;
-    color: rgba(255, 248, 225, 0.75);
-    letter-spacing: 0.02em;
+    color: rgba(252, 234, 187, 0.7);
+  }
+
+  .error {
+    color: #ffab91;
+    margin: 0;
   }
 
   .stats {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 
   .stat-card {
-    position: relative;
-    display: grid;
-    grid-template-columns: 60px 1fr;
+    display: flex;
+    gap: 0.9rem;
+    padding: 1rem 1.15rem;
+    border-radius: 18px;
+    background: rgba(13, 17, 23, 0.7);
+    border: 1px solid rgba(255, 213, 79, 0.25);
+    box-shadow: 0 12px 28px rgba(255, 193, 7, 0.15);
     align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.25rem;
-    border-radius: 20px;
-    background: radial-gradient(120% 140% at 0% 0%, rgba(255, 213, 79, 0.22), rgba(13, 17, 23, 0.92));
-    border: 1px solid rgba(255, 213, 79, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 26px rgba(255, 193, 7, 0.18);
-    overflow: hidden;
   }
 
   .stat-card.metric {
-    background: radial-gradient(150% 150% at 0% 0%, rgba(255, 213, 79, 0.28), rgba(13, 17, 23, 0.9));
+    background: linear-gradient(150deg, rgba(255, 213, 79, 0.18), rgba(13, 17, 23, 0.78));
+    border-color: rgba(255, 213, 79, 0.3);
+  }
+
+  .stat-card.currency.gold {
+    border-color: rgba(255, 215, 128, 0.3);
   }
 
   .stat-card.currency.silver {
-    border-color: rgba(165, 243, 252, 0.35);
-    background: radial-gradient(150% 150% at 0% 0%, rgba(165, 243, 252, 0.2), rgba(13, 17, 23, 0.9));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 14px 26px rgba(6, 182, 212, 0.12);
+    border-color: rgba(224, 224, 224, 0.25);
+  }
+
+  .stat-card.currency.net {
+    box-shadow: none;
+    background: linear-gradient(160deg, rgba(255, 213, 79, 0.2), rgba(13, 17, 23, 0.82));
+  }
+
+  .stat-card.currency.net.positive .value {
+    color: #d4ff6a;
+  }
+
+  .stat-card.currency.net.negative .value {
+    color: #ffab91;
   }
 
   .stat-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 18px;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
     display: grid;
     place-items: center;
-    background: rgba(255, 213, 79, 0.18);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  }
-
-  .stat-icon.gold {
-    background: rgba(255, 213, 79, 0.22);
-  }
-
-  .stat-icon.silver {
-    background: rgba(165, 243, 252, 0.18);
   }
 
   .stat-icon img {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  }
+
+  .stat-icon.gold {
+    background: rgba(255, 215, 128, 0.16);
+    border-radius: 15px;
+  }
+
+  .stat-icon.silver {
+    background: rgba(225, 245, 254, 0.16);
+    border-radius: 15px;
   }
 
   .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    min-width: 0;
+    gap: 0.25rem;
+    color: rgba(252, 234, 187, 0.88);
   }
 
   .stat-body .label {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(252, 234, 187, 0.65);
+    color: rgba(252, 234, 187, 0.6);
   }
 
   .stat-body .value {
-    font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.9rem);
-    font-weight: 600;
-    color: #ffecb3;
+    font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.5rem);
+    color: #ffe082;
+    line-height: 1.15;
     font-variant-numeric: tabular-nums;
   }
 
   .stat-body .meta {
-    font-size: 0.82rem;
-    color: rgba(252, 234, 187, 0.65);
-  }
-
-  .stat-card.currency .stat-body .value {
-    color: #ffe082;
-  }
-
-  .stat-card.currency.silver .stat-body .value {
-    color: #bae6fd;
-  }
-
-  .stat-card.net {
-    border-color: rgba(255, 213, 79, 0.32);
-    background: radial-gradient(160% 160% at 0% 0%, rgba(255, 213, 79, 0.2), rgba(13, 17, 23, 0.9));
-  }
-
-  .stat-card.net.positive {
-    border-color: rgba(134, 239, 172, 0.45);
-    background: radial-gradient(160% 160% at 0% 0%, rgba(34, 197, 94, 0.22), rgba(13, 17, 23, 0.9));
-  }
-
-  .stat-card.net.positive .stat-body .value {
-    color: #bbf7d0;
-  }
-
-  .stat-card.net.negative {
-    border-color: rgba(248, 113, 113, 0.45);
-    background: radial-gradient(160% 160% at 0% 0%, rgba(248, 113, 113, 0.26), rgba(13, 17, 23, 0.9));
-  }
-
-  .stat-card.net.negative .stat-body .value {
-    color: #ffcdd2;
-  }
-
-  .odds-panel h3 {
-    margin: 0;
-    color: #ffe082;
-  }
-
-  .odds-caption {
-    margin: 0;
-    color: rgba(248, 250, 252, 0.6);
-    font-size: 0.9rem;
-  }
-
-  .odds-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.9rem;
+    font-size: 0.75rem;
+    color: rgba(252, 234, 187, 0.7);
   }
 
   .results-grid {
@@ -653,83 +604,88 @@
 
   .table-row {
     display: grid;
-    grid-template-columns: 1.8fr 0.7fr 1fr;
-    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.8fr));
     align-items: center;
-    font-size: 0.95rem;
-    color: #f8fafc;
+    gap: 0.75rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    background: rgba(13, 17, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .table-row.head {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    color: rgba(252, 234, 187, 0.6);
+    background: transparent;
+    border: none;
   }
 
   .reward-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.65rem;
   }
 
   .reward-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .table-row.head {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: rgba(248, 250, 252, 0.5);
+    width: 42px;
+    height: 42px;
   }
 
   .history {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    gap: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
   }
 
   .history li {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.06);
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.8rem 0.9rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
   }
 
   .history-info {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
 
   .history-icon {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
   }
 
   .history .title {
-    color: #fceabb;
+    color: rgba(248, 250, 252, 0.88);
   }
 
   .history .odds {
-    color: rgba(248, 250, 252, 0.6);
-    font-size: 0.85rem;
+    color: #d4ff6a;
+    font-weight: 600;
   }
 
   .empty {
-    color: rgba(248, 250, 252, 0.6);
     margin: 0;
+    color: rgba(248, 250, 252, 0.55);
   }
 
   .odds-panel {
-    background: linear-gradient(200deg, rgba(255, 215, 0, 0.1), rgba(13, 17, 23, 0.95));
+    background: linear-gradient(160deg, rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.95));
     border-radius: 28px;
-    border: 1px solid rgba(255, 213, 79, 0.25);
-    padding: 2rem 1.9rem;
+    border: 1px solid rgba(255, 213, 79, 0.28);
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    min-width: 340px;
+    gap: 1.15rem;
+    height: fit-content;
   }
 
   .odds-panel h3 {
@@ -752,42 +708,38 @@
   }
 
   .odds-list li {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0.85rem 1rem;
-    gap: 1rem;
-    padding: 0.95rem 1.2rem;
+    gap: 0.75rem;
+    padding: 0.85rem 0.95rem;
     border-radius: 16px;
-    border: 1px solid rgba(255, 213, 79, 0.25);
-    background: linear-gradient(145deg, rgba(255, 213, 79, 0.08), rgba(255, 214, 0, 0.02));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
   }
 
   .odds-name {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    min-width: 0;
+    gap: 0.65rem;
   }
 
   .odds-icon {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
   }
 
-  .odds-list .name {
-    color: #fceabb;
+  .chance {
+    font-weight: 600;
+    color: #ffd54f;
   }
 
-  .odds-list .chance {
-    color: rgba(248, 250, 252, 0.78);
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    font-size: 0.92rem;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-  }
+  @media (max-width: 1080px) {
+    .machine-shell {
+      grid-template-columns: 1fr;
+    }
 
-  /* Responsive overrides removed to keep desktop layout across devices */
+    .odds-panel {
+      order: -1;
+    }
+  }
 </style>

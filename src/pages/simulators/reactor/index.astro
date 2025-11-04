@@ -2,7 +2,15 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { listGachas } from '../../../lib/reactor-gacha';
 
-const gachas = listGachas();
+let gachas: ReturnType<typeof listGachas> = [];
+let loadError = false;
+
+try {
+  gachas = listGachas();
+} catch (error) {
+  loadError = true;
+  console.error('Не удалось загрузить генераторы реактора', error);
+}
 ---
 <BaseLayout title="Реактор — выбор генератора">
   <section class="intro">
@@ -14,38 +22,45 @@ const gachas = listGachas();
   </section>
 
   <section class="gacha-list" aria-label="Генераторы реактора">
-    <div class="list-grid">
-      {gachas.map((gacha) => (
-        <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
-          <div class="card-cover">
-            {gacha.cover ? (
-              <img src={gacha.cover} alt="" loading="lazy" />
-            ) : (
-              <span class="fallback">Mutants Reactor</span>
-            )}
-            <div class="overlay">
-              <span class="tag">{gacha.filter}</span>
-              <h2>{gacha.name}</h2>
-              <span class="cta">Открыть генератор →</span>
+    {loadError ? (
+      <div class="error-state" role="alert">
+        <p>Не удалось загрузить список генераторов. Попробуйте обновить страницу позже.</p>
+        <p class="hint">Если проблема повторяется, сообщите об этом в Discord сервера проекта.</p>
+      </div>
+    ) : (
+      <div class="list-grid">
+        {gachas.map((gacha) => (
+          <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
+            <div class="card-cover">
+              {gacha.cover ? (
+                <img src={gacha.cover} alt="" loading="lazy" />
+              ) : (
+                <span class="fallback">Mutants Reactor</span>
+              )}
+              <div class="overlay">
+                <span class="tag">{gacha.filter}</span>
+                <h2>{gacha.name}</h2>
+                <span class="cta">Открыть генератор →</span>
+              </div>
             </div>
-          </div>
-          <dl class="card-stats">
-            <div>
-              <dt>Мутантов</dt>
-              <dd>{gacha.basic_elements.length}</dd>
-            </div>
-            <div>
-              <dt>Жетоны</dt>
-              <dd>{gacha.token_cost}</dd>
-            </div>
-            <div>
-              <dt>Золото</dt>
-              <dd>{gacha.hc_cost}</dd>
-            </div>
-          </dl>
-        </a>
-      ))}
-    </div>
+            <dl class="card-stats">
+              <div>
+                <dt>Мутантов</dt>
+                <dd>{gacha.basic_elements.length}</dd>
+              </div>
+              <div>
+                <dt>Жетоны</dt>
+                <dd>{gacha.token_cost}</dd>
+              </div>
+              <div>
+                <dt>Золото</dt>
+                <dd>{gacha.hc_cost}</dd>
+              </div>
+            </dl>
+          </a>
+        ))}
+      </div>
+    )}
   </section>
 </BaseLayout>
 
@@ -70,6 +85,27 @@ const gachas = listGachas();
 
   .gacha-list {
     margin-top: 3rem;
+  }
+
+  .error-state {
+    margin: 0;
+    padding: 2.5rem;
+    border-radius: 18px;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    background: rgba(15, 23, 42, 0.85);
+    color: #cbd5f5;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .error-state .hint {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(148, 163, 184, 0.8);
   }
 
   .list-grid {
