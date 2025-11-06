@@ -390,7 +390,6 @@
         <div class="summary-icon" aria-hidden="true">
           <img src="/cash/g20.png" alt="" loading="lazy" />
         </div>
-      <div class="summary-card gold-spins no-icon">
         <div class="summary-body">
           <span class="title">Прокруты за золото</span>
           <strong>{formatNumber(goldSpins)}</strong>
@@ -401,7 +400,6 @@
         <div class="summary-icon" aria-hidden="true">
           <img src="/etc/icon_timer.png" alt="" loading="lazy" />
         </div>
-      <div class="summary-card total-spins no-icon">
         <div class="summary-body">
           <span class="title">Всего прокрутов</span>
           <strong>{formatNumber(totalSpins)}</strong>
@@ -1239,12 +1237,6 @@
 
     .summary-grid {
       grid-template-columns: 1fr;
-    }
-
-    .reward-board,
-    .history-list,
-    .research-list {
-      max-height: none;
     }
 
     .reward-board li,

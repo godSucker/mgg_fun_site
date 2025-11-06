@@ -15,34 +15,9 @@ const gachas = listGachas();
 
   <section class="gacha-list" aria-label="Генераторы реактора">
     <div class="list-grid">
-<<<<<<< ours
-<<<<<<< ours
       {gachas.map((gacha) => (
         <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
           <div class="card-cover" aria-hidden="true">
-            {gacha.cover ? (
-              <img src={gacha.cover} alt="" loading="lazy" />
-            ) : (
-              <span>Mutants Reactor</span>
-            )}
-          </div>
-          <div class="card-header">
-            <span class="tag">{gacha.filter}</span>
-            <h2>{gacha.name}</h2>
-          </div>
-          <div class="card-body">
-            <div class="stat">
-              <span class="label">Мутантов</span>
-              <strong>{gacha.basic_elements.length}</strong>
-            </div>
-            <div class="stat">
-              <span class="label">Жетоны</span>
-              <strong>{gacha.token_cost}</strong>
-            </div>
-            <div class="stat">
-              <span class="label">Золото</span>
-              <strong>{gacha.hc_cost}</strong>
-          <div class="card-cover">
             {gacha.cover ? (
               <img src={gacha.cover} alt="" loading="lazy" />
             ) : (
@@ -56,46 +31,6 @@ const gachas = listGachas();
           </div>
         </a>
       ))}
-=======
-      {gachas.map((gacha) => {
-        return (
-          <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
-            <div class="card-cover">
-              {gacha.cover ? (
-                <img src={gacha.cover} alt="" loading="lazy" />
-              ) : (
-                <span class="fallback">Mutants Reactor</span>
-              )}
-              <div class="overlay">
-                <span class="tag">{gacha.filter}</span>
-                <h2>{gacha.name}</h2>
-                <span class="cta">Открыть генератор →</span>
-              </div>
-            </div>
-          </a>
-        );
-      })}
->>>>>>> theirs
-=======
-      {gachas.map((gacha) => {
-        return (
-          <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`}>
-            <div class="card-cover">
-              {gacha.cover ? (
-                <img src={gacha.cover} alt="" loading="lazy" />
-              ) : (
-                <span class="fallback">Mutants Reactor</span>
-              )}
-              <div class="overlay">
-                <span class="tag">{gacha.filter}</span>
-                <h2>{gacha.name}</h2>
-                <span class="cta">Открыть генератор →</span>
-              </div>
-            </div>
-          </a>
-        );
-      })}
->>>>>>> theirs
     </div>
   </section>
 </BaseLayout>
@@ -138,58 +73,12 @@ const gachas = listGachas();
     text-decoration: none;
     color: inherit;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-<<<<<<< ours
-<<<<<<< ours
-=======
->>>>>>> theirs
-  }
-
-  .card-cover {
-    position: relative;
-<<<<<<< ours
-    overflow: hidden;
-    border-radius: 16px;
-    border: 1px solid rgba(96, 165, 250, 0.28);
-    background: radial-gradient(circle at 50% 10%, rgba(59, 130, 246, 0.4), rgba(15, 23, 42, 0.9));
-    aspect-ratio: 16 / 9;
-    display: grid;
-    place-items: center;
-  }
-
-  .card-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(1.2) contrast(1.05);
-    transition: transform 0.3s ease;
-  }
-
-  .gacha-card:hover .card-cover img {
-    transform: scale(1.04);
-  }
-
-  .card-cover span {
-    font-size: 0.95rem;
-    color: rgba(226, 232, 240, 0.7);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-=======
->>>>>>> theirs
   }
 
   .card-cover {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    display: block;
-  }
-
-<<<<<<< ours
-  .card-cover {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    display: block;
   }
 
   .card-cover img {
@@ -202,35 +91,6 @@ const gachas = listGachas();
     transition: transform 0.35s ease;
   }
 
-=======
-  .card-cover img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(1.12) contrast(1.08);
-    transition: transform 0.35s ease;
-  }
-
->>>>>>> theirs
-=======
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    display: block;
-  }
-
-  .card-cover img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(1.12) contrast(1.08);
-    transition: transform 0.35s ease;
-  }
-
->>>>>>> theirs
   .fallback {
     position: absolute;
     inset: 0;
@@ -270,8 +130,6 @@ const gachas = listGachas();
     margin: 0;
     font-size: 1.6rem;
     color: #f8fafc;
-<<<<<<< ours
-<<<<<<< ours
   }
 
   .overlay .cta {
@@ -289,42 +147,5 @@ const gachas = listGachas();
 
   .gacha-card:hover .card-cover img {
     transform: scale(1.06);
-=======
-=======
->>>>>>> theirs
   }
-
-  .overlay .cta {
-    font-size: 0.95rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #93c5fd;
-<<<<<<< ours
->>>>>>> theirs
-  }
-
-  .gacha-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(96, 165, 250, 0.65);
-    box-shadow: 0 22px 38px rgba(37, 99, 235, 0.28);
-  }
-
-  .gacha-card:hover .card-cover img {
-    transform: scale(1.06);
-  }
-
-=======
-  }
-
-  .gacha-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(96, 165, 250, 0.65);
-    box-shadow: 0 22px 38px rgba(37, 99, 235, 0.28);
-  }
-
-  .gacha-card:hover .card-cover img {
-    transform: scale(1.06);
-  }
-
->>>>>>> theirs
 </style>

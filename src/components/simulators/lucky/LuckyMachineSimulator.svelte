@@ -384,7 +384,6 @@
           <div class="metric-icon" aria-hidden="true">
             <img src="/etc/icon_timer.png" alt="" loading="lazy" />
           </div>
-        <div class="stat-card metric total-spins no-icon">
           <div class="metric-body">
             <span class="label">Всего прокрутов</span>
             <strong>{formatNumber(result.totalSpins)}</strong>
@@ -394,7 +393,6 @@
           <div class="metric-icon" aria-hidden="true">
             <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
           </div>
-        <div class="stat-card metric paid-spins no-icon">
           <div class="metric-body">
             <span class="label">Платных</span>
             <strong>{formatNumber(result.paidSpins)}</strong>
@@ -541,11 +539,12 @@
   </aside>
 </div>
 
+
 <style>
   .machine-shell {
     display: grid;
     gap: 1.75rem;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
     align-items: start;
   }
 
@@ -654,115 +653,135 @@
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+  }
+
+  button:disabled {
+    cursor: progress;
+    opacity: 0.65;
   }
 
   button.primary {
-    background: linear-gradient(120deg, #7c4dff, #c084fc);
-    color: #0f172a;
-    box-shadow: 0 16px 35px rgba(124, 77, 255, 0.35);
+    background: linear-gradient(120deg, #b39ddb, #7c4dff);
+    color: #0f0a18;
+    box-shadow: 0 16px 32px rgba(124, 77, 255, 0.35);
   }
 
-  button.primary:disabled {
-    opacity: 0.7;
-    cursor: progress;
-    box-shadow: none;
+  button.primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 36px rgba(124, 77, 255, 0.4);
   }
 
   button.ghost {
-    background: rgba(129, 140, 248, 0.12);
-    color: #c7d2fe;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e0e7ff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  button.ghost:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.25);
   }
 
   button.ghost.danger {
-    background: rgba(248, 113, 113, 0.18);
-    color: #fecaca;
+    border-color: rgba(244, 114, 182, 0.45);
+    color: #f472b6;
   }
 
-  button:not(:disabled):hover {
-    transform: translateY(-2px);
-  }
-
-  .progress {
-    position: relative;
-    border-radius: 14px;
-    border: 1px solid rgba(129, 140, 248, 0.25);
-    overflow: hidden;
-    background: rgba(15, 23, 42, 0.75);
-  }
-
-  .progress-bar {
-    width: var(--progress, 0%);
-    height: 100%;
-    background: linear-gradient(90deg, rgba(124, 77, 255, 0.6), rgba(192, 132, 252, 0.8));
-    transition: width 0.2s ease;
-  }
-
-  .progress-label {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    color: #e0e7ff;
+  button.ghost.danger:hover:not(:disabled) {
+    background: rgba(244, 114, 182, 0.15);
+    border-color: rgba(244, 114, 182, 0.6);
+    color: #f9a8d4;
   }
 
   .error {
     margin: 0;
-    color: #fecaca;
-    background: rgba(248, 113, 113, 0.1);
-    border: 1px solid rgba(248, 113, 113, 0.3);
     padding: 0.75rem 1rem;
     border-radius: 12px;
+    background: rgba(244, 114, 182, 0.12);
+    border: 1px solid rgba(244, 114, 182, 0.4);
+    color: #f9a8d4;
+  }
+
+  .progress {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .progress-bar {
+    position: relative;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, #c7b8ff, #7c4dff);
+    transform-origin: left center;
+    transform: scaleX(calc(var(--progress, 0%) / 100));
+    transition: transform 0.18s ease-out;
+  }
+
+  .progress-label {
+    font-size: 0.85rem;
+    color: rgba(226, 232, 240, 0.75);
+    letter-spacing: 0.02em;
   }
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1rem;
+    gap: 1.15rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
   .stat-card {
-    background: rgba(15, 23, 42, 0.8);
-    border-radius: 18px;
-    padding: 1.15rem 1.5rem;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    gap: 1rem;
-    color: rgba(226, 232, 240, 0.85);
+    background: rgba(18, 16, 32, 0.85);
+    border-radius: 20px;
+    border: 1px solid rgba(129, 140, 248, 0.25);
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
     min-width: 0;
-  }
-
-  .stat-card.no-icon {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 1.25rem 1.65rem;
   }
 
   .stat-card.metric,
   .stat-card.currency {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
     gap: 1rem;
   }
 
+  .stat-card.metric.highlight {
+    background: linear-gradient(160deg, rgba(129, 140, 248, 0.3), rgba(17, 24, 39, 0.9));
+    border-color: rgba(129, 140, 248, 0.45);
+  }
+
   .metric-icon {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
     border-radius: 16px;
-    background: rgba(30, 27, 75, 0.4);
-    border: 1px solid rgba(129, 140, 248, 0.35);
+    background: rgba(14, 11, 26, 0.9);
+    border: 1px solid rgba(129, 140, 248, 0.45);
     display: grid;
     place-items: center;
     overflow: hidden;
-    justify-self: start;
   }
 
   .metric-icon img {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+  }
+
+  .stat-icon {
+    width: 56px;
+    height: 56px;
     object-fit: contain;
   }
 
@@ -770,179 +789,53 @@
   .stat-body {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-    color: rgba(226, 232, 240, 0.85);
-    gap: 0.35rem;
-    min-width: 0;
-    justify-content: space-between;
-    min-height: 132px;
-  }
-
-  .stat-card strong {
-    font-size: clamp(1.2rem, 1rem + 0.55vw, 1.6rem);
-    color: #f1f5f9;
-    line-height: 1.1;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.015em;
-    white-space: nowrap;
-    text-align: right;
-    align-self: flex-end;
-    max-width: 100%;
-  }
-
-  .stat-card.small {
-    font-size: 0.9rem;
-    align-self: flex-end;
-    width: 100%;
-    text-align: right;
-    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.45rem);
-    color: #f1f5f9;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.03em;
-    overflow-wrap: anywhere;
-    align-self: flex-end;
-    width: 100%;
-    text-align: right;
-    font-size: clamp(1.05rem, 0.88rem + 0.38vw, 1.38rem);
-    color: #f1f5f9;
-    line-height: 1.1;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.025em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-self: flex-end;
-    width: 100%;
-    text-align: right;
-    font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.38rem);
-    color: #f1f5f9;
-    align-self: flex-end;
-    width: 100%;
-    text-align: right;
-    font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.38rem);
-    color: #f1f5f9;
-    line-height: 1.12;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.025em;
-    word-break: break-all;
-  }
-
-  .stat-card.highlight {
-    background: rgba(129, 140, 248, 0.15);
-    border-color: rgba(129, 140, 248, 0.35);
-  }
-
-  .stat-card.highlight small {
-    color: rgba(148, 163, 184, 0.8);
-    align-self: flex-end;
-    text-align: right;
-  }
-
-  .stat-card.total-spins {
-    background: linear-gradient(145deg, rgba(129, 140, 248, 0.18), rgba(15, 23, 42, 0.85));
-    border-color: rgba(129, 140, 248, 0.35);
-  }
-
-
-  .stat-card.total-spins .metric-icon {
-    border-color: rgba(129, 140, 248, 0.45);
-    background: rgba(129, 140, 248, 0.22);
-  }
-
-  .stat-card.paid-spins {
-    background: linear-gradient(145deg, rgba(192, 132, 252, 0.18), rgba(15, 23, 42, 0.85));
-    border-color: rgba(165, 180, 252, 0.35);
-  }
-
-  .stat-card.paid-spins .metric-icon {
-    border-color: rgba(165, 180, 252, 0.45);
-    background: rgba(192, 132, 252, 0.22);
-  }
-
-  .stat-card.free-spins .metric-icon {
-    border-color: rgba(96, 165, 250, 0.6);
-    background: rgba(96, 165, 250, 0.22);
-  }
-
-  .stat-icon {
-    width: 40px;
-    height: 40px;
-    justify-self: start;
-  }
-
-  .stat-body {
-    display: flex;
-    flex-direction: column;
     gap: 0.3rem;
+    min-width: 0;
     align-items: flex-end;
     text-align: right;
-    min-width: 0;
   }
 
-  .stat-card.currency .stat-body {
-    align-items: flex-end;
-
-
-  }
-
-  .label {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
+  .stat-card .label {
+    display: block;
+    font-size: 0.78rem;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
+    letter-spacing: 0.08em;
+    color: rgba(226, 232, 240, 0.6);
     align-self: flex-start;
   }
 
-  .results {
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
+  .stat-card strong {
+    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.45rem);
+    color: #e0e7ff;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
   }
 
-  .results-header h3 {
-    margin: 0;
-    font-size: 1.85rem;
-    color: #c7d2fe;
-  }
-
-  .results-header p {
-    margin: 0.6rem 0 0;
-    color: rgba(226, 232, 240, 0.8);
+  .stat-card small {
+    color: rgba(148, 163, 184, 0.75);
   }
 
   .resource-summary {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
   .resource-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.3rem;
-    border-radius: 24px;
-    background: rgba(17, 24, 39, 0.72);
-    border: 1px solid rgba(129, 140, 248, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  }
-
-  .resource-icon {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
+    background: rgba(15, 13, 28, 0.85);
     border-radius: 18px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(129, 140, 248, 0.35);
+    border: 1px solid rgba(129, 140, 248, 0.25);
+    padding: 1rem 1.3rem;
     display: grid;
-    place-items: center;
-    overflow: hidden;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.85rem;
+    align-items: center;
   }
 
   .resource-icon img {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
   }
 
@@ -950,68 +843,51 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    min-width: 0;
-    align-items: flex-end;
-    text-align: right;
+    color: rgba(226, 232, 240, 0.85);
   }
 
   .resource-title {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(191, 219, 254, 0.82);
-    align-self: flex-start;
-  }
-
-  .resource-body strong {
-    font-size: clamp(1.25rem, 1.05rem + 0.4vw, 1.55rem);
-    color: #f8fafc;
-    line-height: 1.2;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    overflow-wrap: anywhere;
-    width: 100%;
-    word-break: break-all;
-    width: 100%;
-    word-break: break-all;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: rgba(226, 232, 240, 0.6);
   }
 
   .resource-meta {
     font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.85);
+    color: rgba(148, 163, 184, 0.75);
   }
 
-  .results-grid {
+  .result-grid {
     display: grid;
-    gap: 1.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
   .result-column {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 1.4rem;
-    border-radius: 24px;
-    background: rgba(15, 23, 42, 0.78);
+    background: rgba(15, 13, 28, 0.8);
+    border-radius: 20px;
     border: 1px solid rgba(129, 140, 248, 0.2);
+    padding: 1.4rem 1.5rem;
   }
 
   .result-column h4 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #e0e7ff;
   }
 
   .reward-board,
   .history-list {
     list-style: none;
-    margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    max-height: 420px;
+    margin: 0;
+    display: grid;
+    gap: 0.85rem;
+    max-height: 360px;
     overflow-y: auto;
   }
 
@@ -1020,259 +896,200 @@
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.85rem;
-    align-items: flex-start;
-  }
-
-  .reward-board li {
-    padding: 0.8rem 0.95rem;
-    border-radius: 18px;
-    background: rgba(22, 30, 46, 0.85);
-    border: 1px solid rgba(129, 140, 248, 0.18);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .reward-board li.index-top {
-    border-color: rgba(129, 140, 248, 0.48);
-    box-shadow: 0 16px 32px rgba(99, 102, 241, 0.18);
-    transform: translateY(-2px);
+    background: linear-gradient(150deg, rgba(129, 140, 248, 0.35), rgba(17, 24, 39, 0.9));
   }
 
-  .icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 16px;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(129, 140, 248, 0.28);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  .reward-board .icon img,
+  .history-list img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
   }
 
-  .icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .details {
+  .reward-board .details,
+  .history-list .history-info {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.4rem;
   }
 
-  .details .row {
+  .reward-board .row {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
   }
 
-  .details .name {
+  .reward-board .name {
     font-weight: 600;
     color: #e0e7ff;
   }
 
   .count-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 999px;
-    background: rgba(129, 140, 248, 0.18);
-    border: 1px solid rgba(129, 140, 248, 0.45);
-    color: #c7d2fe;
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
+    background: rgba(124, 77, 255, 0.2);
+    color: #c7b8ff;
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
   }
 
   .pills {
     display: flex;
-    gap: 0.5rem;
     flex-wrap: wrap;
+    gap: 0.35rem;
   }
 
   .pill {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.6rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 999px;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    background: rgba(148, 163, 184, 0.16);
     color: rgba(226, 232, 240, 0.75);
   }
 
   .pill.actual {
-    background: rgba(248, 113, 113, 0.16);
-    color: rgba(248, 113, 113, 0.95);
+    background: rgba(16, 185, 129, 0.18);
+    color: #6ee7b7;
   }
 
   .pill.expected {
-    background: rgba(129, 140, 248, 0.18);
-    color: rgba(165, 180, 252, 0.92);
+    background: rgba(124, 77, 255, 0.18);
+    color: #c7b8ff;
   }
 
-  .currency {
-    font-size: 0.82rem;
-    color: rgba(203, 213, 225, 0.78);
-  }
-
-  .muted {
-    margin: 0;
-    color: rgba(148, 163, 184, 0.65);
+  .currency,
+  .note {
+    font-size: 0.85rem;
+    color: rgba(226, 232, 240, 0.7);
   }
 
   .history-list li {
-    padding: 0.7rem 0.85rem;
-    border-radius: 18px;
-    background: rgba(22, 30, 46, 0.78);
-    border: 1px solid rgba(129, 140, 248, 0.18);
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .history-list .history-info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 0.75rem;
   }
 
-  .history-list li.free-spin {
-    border-color: rgba(129, 140, 248, 0.45);
-    background: rgba(129, 140, 248, 0.2);
-  }
-
-  .history-info {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    min-width: 0;
-  }
-
-  .history-info img {
-    width: 40px;
-    height: 40px;
-    border-radius: 14px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(129, 140, 248, 0.28);
-    padding: 0.35rem;
-  }
-
-  .history-info .title {
-    font-size: 0.95rem;
-    color: #e0e7ff;
-    overflow-wrap: anywhere;
-  }
-
   .history-list .note {
-    font-size: 0.82rem;
-    color: rgba(226, 232, 240, 0.78);
-    white-space: nowrap;
+    justify-self: end;
+  }
+
+  .muted {
+    color: rgba(148, 163, 184, 0.75);
+    margin: 0;
+  }
+
+  .results-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .results-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #e0e7ff;
+  }
+
+  .results-header p {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.75);
   }
 
   .odds-panel {
-    background: linear-gradient(170deg, rgba(30, 27, 75, 0.95), rgba(15, 23, 42, 0.92));
-    border-radius: 32px;
-    padding: 2.2rem 2rem;
-    padding: 2.2rem 2.2rem;
-    border: 1px solid rgba(99, 102, 241, 0.35);
+    background: rgba(16, 14, 26, 0.85);
+    border-radius: 28px;
+    border: 1px solid rgba(129, 140, 248, 0.25);
+    padding: 1.8rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    color: rgba(226, 232, 240, 0.88);
-    box-shadow: 0 24px 40px rgba(79, 70, 229, 0.25);
-    min-width: 360px;
-    min-width: 420px;
+    color: rgba(226, 232, 240, 0.85);
   }
 
   .odds-panel h3 {
     margin: 0;
-    font-size: 1.4rem;
-    color: #c7d2fe;
+    font-size: 1.2rem;
+    color: #c7b8ff;
   }
 
   .odds-caption {
     margin: 0;
-    color: rgba(148, 163, 184, 0.75);
+    color: rgba(226, 232, 240, 0.65);
     font-size: 0.9rem;
   }
 
   .odds-list {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1.05rem 1.25rem;
+    gap: 0.85rem;
   }
 
   .odds-list li {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.85rem 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.1rem 1.7rem;
-  }
-
-  .odds-list li {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 1.1rem 1.9rem;
-  }
-
-  .odds-list li {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 1.1rem 1.9rem;
-  }
-
-  .odds-list li {
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 1.1rem 1.9rem;
-  }
-
-  .odds-list li {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
-    padding: 1.05rem 1.3rem;
-    border-radius: 18px;
-    border: 1px solid rgba(129, 140, 248, 0.35);
-    background: linear-gradient(155deg, rgba(129, 140, 248, 0.16), rgba(30, 41, 59, 0.85));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .odds-name {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.65rem;
     min-width: 0;
   }
 
   .odds-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 12px;
-    background: rgba(129, 140, 248, 0.2);
-    padding: 0.3rem;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
   }
 
   .odds-name .name {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    overflow-wrap: anywhere;
+    font-weight: 600;
+    color: #e0e7ff;
   }
 
   .chance {
     font-variant-numeric: tabular-nums;
-    color: #c7d2fe;
-    text-align: right;
-    min-width: 76px;
-    font-size: 0.96rem;
-    letter-spacing: 0.02em;
+    color: rgba(226, 232, 240, 0.7);
   }
 
-  /* Responsive overrides removed to keep desktop layout across devices */
+  @media (max-width: 980px) {
+    .machine-shell {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .odds-panel {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .machine-body {
+      padding: 1.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .machine-body,
+    .odds-panel {
+      padding: 1.5rem;
+    }
+  }
 </style>
