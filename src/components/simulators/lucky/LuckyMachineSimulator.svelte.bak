@@ -768,7 +768,6 @@
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 1rem;
-}
 
   .stat-card.highlight {
     background: rgba(129, 140, 248, 0.16);

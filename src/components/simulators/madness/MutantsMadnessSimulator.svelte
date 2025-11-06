@@ -653,7 +653,6 @@
   .summary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-<<<<<<< HEAD
     gap: 1.2rem;
   }
 
@@ -673,7 +672,6 @@
     gap: 0.45rem;
     align-items: flex-end;
     text-align: right;
-=======
     gap: 1rem;
   }
 
@@ -685,7 +683,6 @@
     display: flex;
     align-items: center;
     gap: 0.85rem;
->>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .summary-card.highlight {
@@ -752,7 +749,6 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.01em;
     white-space: nowrap;
-<<<<<<< HEAD
     text-align: right;
     align-self: flex-end;
     letter-spacing: 0.015em;
@@ -774,8 +770,6 @@
     letter-spacing: 0.015em;
     width: 100%;
     word-break: break-all;
-=======
->>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .summary-card.highlight strong {

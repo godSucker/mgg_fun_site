@@ -633,7 +633,6 @@
 
   .stat-card.currency.net.negative strong {
     color: #ffab91;
-  }
 
   .stat-icon,
   .reward-icon,
