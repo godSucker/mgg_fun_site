@@ -653,6 +653,7 @@
   .summary-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+<<<<<<< HEAD
     gap: 1.2rem;
   }
 
@@ -672,79 +673,86 @@
     gap: 0.45rem;
     align-items: flex-end;
     text-align: right;
+=======
+    gap: 1rem;
+  }
+
+  .summary-card {
+    padding: 0.95rem 1.1rem;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .summary-card.highlight {
-    background: linear-gradient(140deg, rgba(59, 7, 100, 0.85), rgba(76, 29, 149, 0.7));
-    border-color: rgba(196, 181, 253, 0.45);
-    box-shadow: 0 18px 40px rgba(168, 85, 247, 0.25);
+    background: linear-gradient(140deg, rgba(76, 29, 149, 0.28), rgba(15, 23, 42, 0.7));
+    border-color: rgba(196, 181, 253, 0.38);
+    box-shadow: none;
   }
 
   .summary-icon {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(196, 181, 253, 0.35);
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(148, 163, 184, 0.15);
     display: grid;
     place-items: center;
-    overflow: hidden;
   }
 
   .summary-icon img {
-    width: 44px;
-    height: 44px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
   }
 
   .summary-card.token-spins .summary-icon {
-    border-color: rgba(254, 240, 138, 0.45);
     background: rgba(250, 204, 21, 0.18);
   }
 
   .summary-card.gold-spins .summary-icon {
-    border-color: rgba(253, 224, 71, 0.45);
     background: rgba(253, 224, 71, 0.18);
   }
 
   .summary-card.total-spins .summary-icon {
-    border-color: rgba(244, 114, 182, 0.45);
-    background: rgba(244, 114, 182, 0.18);
+    background: rgba(244, 114, 182, 0.2);
   }
 
   .summary-card.jackpot-chance .summary-icon {
-    border-color: rgba(253, 224, 71, 0.65);
-    background: rgba(250, 204, 21, 0.22);
+    background: rgba(253, 224, 71, 0.22);
   }
 
   .summary-body {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.25rem;
     min-width: 0;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .summary-card .title {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
-    align-self: flex-start;
+    color: rgba(203, 213, 225, 0.7);
   }
 
   .summary-card.highlight .title {
-    color: rgba(221, 214, 254, 0.85);
+    color: rgba(221, 214, 254, 0.82);
   }
 
   .summary-card strong {
-    font-size: 1.6rem;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.6rem);
     color: #fce7f3;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     white-space: nowrap;
+<<<<<<< HEAD
     text-align: right;
     align-self: flex-end;
     letter-spacing: 0.015em;
@@ -766,16 +774,17 @@
     letter-spacing: 0.015em;
     width: 100%;
     word-break: break-all;
+=======
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .summary-card.highlight strong {
     color: #fef3c7;
-    text-shadow: 0 0 18px rgba(253, 224, 71, 0.45);
   }
 
   .summary-card .meta {
-    font-size: 0.82rem;
-    color: rgba(203, 213, 225, 0.72);
+    font-size: 0.78rem;
+    color: rgba(203, 213, 225, 0.7);
   }
 
   .summary-card.highlight .meta {
@@ -955,8 +964,8 @@
 
   .resource-summary {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
   .resource-summary > .muted {
@@ -967,64 +976,56 @@
   }
 
   .resource-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.3rem;
-    border-radius: 24px;
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
   }
 
   .resource-icon {
-    width: 56px;
-    height: 56px;
-    flex: 0 0 56px;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(148, 163, 184, 0.28);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.78);
     display: grid;
     place-items: center;
     overflow: hidden;
   }
 
   .resource-icon img {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
   }
 
   .resource-body {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.25rem;
     min-width: 0;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .resource-title {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(226, 232, 240, 0.75);
-    align-self: flex-start;
+    font-size: 0.88rem;
+    color: rgba(226, 232, 240, 0.85);
   }
 
   .resource-body strong {
-    font-size: 1.6rem;
+    font-size: 1.15rem;
     color: #f8fafc;
-    line-height: 1.2;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.015em;
-    white-space: nowrap;
-    overflow-wrap: anywhere;
+    letter-spacing: 0.01em;
   }
 
   .resource-meta {
-    font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.8);
+    font-size: 0.78rem;
+    color: rgba(148, 163, 184, 0.75);
   }
 
   .results-header h3 {
@@ -1093,6 +1094,14 @@
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
+  .history-list li {
+    padding: 0.65rem 0.85rem;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    align-items: center;
+  }
+
   .reward-board li.index-top {
     border-color: rgba(236, 72, 153, 0.45);
     box-shadow: 0 16px 32px rgba(236, 72, 153, 0.2);
@@ -1109,6 +1118,28 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+  }
+
+  .history-list .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.82);
+    border: none;
+  }
+
+  .history-list .icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .history-list .details {
+    gap: 0.2rem;
+  }
+
+  .history-list .details .meta {
+    color: rgba(203, 213, 225, 0.72);
   }
 
   .icon img {

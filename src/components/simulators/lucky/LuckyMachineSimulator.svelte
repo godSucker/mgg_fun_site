@@ -734,6 +734,7 @@
 
   .stats {
     display: grid;
+<<<<<<< HEAD
     gap: 1.15rem;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
@@ -746,15 +747,37 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    min-width: 0;
+=======
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
   }
 
+  .stat-card {
+    background: rgba(17, 24, 39, 0.55);
+    border-radius: 18px;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: rgba(226, 232, 240, 0.88);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
+    min-width: 0;
+    box-shadow: none;
+  }
+
+<<<<<<< HEAD
   .stat-card.metric,
   .stat-card.currency {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 1rem;
+=======
+  .stat-card.highlight {
+    background: rgba(129, 140, 248, 0.16);
+    border-color: rgba(129, 140, 248, 0.32);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .stat-card.metric.highlight {
@@ -763,17 +786,27 @@
   }
 
   .metric-icon {
+<<<<<<< HEAD
     width: 56px;
     height: 56px;
     border-radius: 16px;
     background: rgba(14, 11, 26, 0.9);
     border: 1px solid rgba(129, 140, 248, 0.45);
+=======
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(129, 140, 248, 0.15);
+    border: none;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     display: grid;
     place-items: center;
     overflow: hidden;
   }
 
   .metric-icon img {
+<<<<<<< HEAD
     width: 44px;
     height: 44px;
     object-fit: contain;
@@ -782,6 +815,10 @@
   .stat-icon {
     width: 56px;
     height: 56px;
+=======
+    width: 28px;
+    height: 28px;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     object-fit: contain;
   }
 
@@ -789,6 +826,7 @@
   .stat-body {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 0.3rem;
     min-width: 0;
     align-items: flex-end;
@@ -802,6 +840,50 @@
     letter-spacing: 0.08em;
     color: rgba(226, 232, 240, 0.6);
     align-self: flex-start;
+=======
+    gap: 0.28rem;
+    color: rgba(226, 232, 240, 0.88);
+    min-width: 0;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .stat-card strong {
+    font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.55rem);
+    color: #f8fafc;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .stat-card.small {
+    width: 100%;
+    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.4rem);
+    color: #f8fafc;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .stat-card.currency .stat-body {
+    align-items: flex-start;
+  }
+
+  .label {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.72);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .stat-card strong {
@@ -818,6 +900,7 @@
 
   .resource-summary {
     display: grid;
+<<<<<<< HEAD
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
@@ -827,6 +910,28 @@
     border-radius: 18px;
     border: 1px solid rgba(129, 140, 248, 0.25);
     padding: 1rem 1.3rem;
+=======
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .resource-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    background: rgba(17, 24, 39, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+  }
+
+  .resource-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.8);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     gap: 0.85rem;
@@ -834,14 +939,20 @@
   }
 
   .resource-icon img {
+<<<<<<< HEAD
     width: 52px;
     height: 52px;
+=======
+    width: 32px;
+    height: 32px;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     object-fit: contain;
   }
 
   .resource-body {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 0.35rem;
     color: rgba(226, 232, 240, 0.85);
   }
@@ -856,6 +967,28 @@
   .resource-meta {
     font-size: 0.85rem;
     color: rgba(148, 163, 184, 0.75);
+=======
+    gap: 0.25rem;
+    min-width: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .resource-title {
+    font-size: 0.9rem;
+    color: rgba(226, 232, 240, 0.9);
+  }
+
+  .resource-body strong {
+    font-size: 1.1rem;
+    color: #f8fafc;
+    letter-spacing: 0.01em;
+  }
+
+  .resource-meta {
+    font-size: 0.78rem;
+    color: rgba(148, 163, 184, 0.72);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .result-grid {
@@ -973,15 +1106,51 @@
   }
 
   .history-list li {
+<<<<<<< HEAD
     grid-template-columns: auto 1fr auto;
   }
 
   .history-list .history-info {
+=======
+    padding: 0.65rem 0.85rem;
+    border-radius: 16px;
+    background: rgba(17, 24, 39, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     display: flex;
     align-items: center;
     gap: 0.75rem;
   }
 
+<<<<<<< HEAD
+=======
+  .history-list li.free-spin {
+    border-color: rgba(129, 140, 248, 0.32);
+    background: rgba(129, 140, 248, 0.18);
+  }
+
+  .history-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .history-info img {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.82);
+    padding: 0.25rem;
+  }
+
+  .history-info .title {
+    font-size: 0.95rem;
+    color: #e0e7ff;
+    overflow-wrap: anywhere;
+  }
+
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   .history-list .note {
     justify-self: end;
   }

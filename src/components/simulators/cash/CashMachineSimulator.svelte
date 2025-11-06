@@ -492,11 +492,16 @@
 
   .stats {
     display: grid;
+<<<<<<< HEAD
     gap: 1.15rem;
+=======
+    gap: 0.85rem;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
   .stat-card {
+<<<<<<< HEAD
     background: rgba(13, 17, 23, 0.82);
     border-radius: 18px;
     border: 1px solid rgba(255, 213, 79, 0.3);
@@ -513,6 +518,21 @@
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
     gap: 1rem;
+=======
+    background: rgba(13, 17, 23, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 213, 79, 0.18);
+    padding: 0.95rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .stat-card.no-icon {
+    justify-content: space-between;
+    padding: 0.95rem 1.1rem;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .stat-card.spins {
@@ -521,32 +541,59 @@
   }
 
   .metric-icon {
+<<<<<<< HEAD
     width: 56px;
     height: 56px;
     border-radius: 16px;
     background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(255, 213, 79, 0.45);
+=======
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(255, 213, 79, 0.16);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     display: grid;
     place-items: center;
-    overflow: hidden;
   }
 
   .metric-icon img {
+<<<<<<< HEAD
     width: 44px;
     height: 44px;
+=======
+    width: 28px;
+    height: 28px;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
     object-fit: contain;
   }
 
   .stat-icon {
+<<<<<<< HEAD
     width: 56px;
     height: 56px;
     object-fit: contain;
+=======
+    width: 36px;
+    height: 36px;
+  }
+
+  .stat-card.spins {
+    background: linear-gradient(150deg, rgba(255, 213, 79, 0.18), rgba(13, 17, 23, 0.78));
+    border-color: rgba(255, 213, 79, 0.3);
+  }
+
+  .stat-card.spins .metric-icon {
+    background: rgba(255, 213, 79, 0.22);
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .metric-body,
   .stat-body {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 0.3rem;
     min-width: 0;
     align-items: flex-end;
@@ -568,14 +615,82 @@
     line-height: 1.1;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
+=======
+    gap: 0.25rem;
+    min-width: 0;
+    align-items: flex-start;
+    text-align: left;
+    color: rgba(252, 234, 187, 0.88);
+  }
+
+  .stat-card.currency .stat-body {
+    align-items: flex-start;
+  }
+
+  .stat-card .label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(252, 234, 187, 0.6);
+  }
+
+  .stat-card strong {
+    font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.5rem);
+    color: #ffe082;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.015em;
+    white-space: nowrap;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .stat-card.currency.net.positive strong {
     color: #a5d6a7;
   }
 
+<<<<<<< HEAD
   .stat-card.currency.net.negative strong {
     color: #ffab91;
+=======
+  .stat-icon,
+  .reward-icon,
+  .history-icon,
+  .odds-icon {
+    display: block;
+  }
+
+  .stat-card.net {
+    background: linear-gradient(160deg, rgba(255, 213, 79, 0.2), rgba(13, 17, 23, 0.82));
+    border: 1px solid rgba(255, 213, 79, 0.32);
+    box-shadow: none;
+  }
+
+  .stat-card.net.positive strong {
+    color: #d4ff6a;
+  }
+
+  .stat-card.net.negative strong {
+    color: #ffab91;
+  }
+
+  .odds-panel h3 {
+    margin: 0;
+    color: #ffe082;
+  }
+
+  .odds-caption {
+    margin: 0;
+    color: rgba(248, 250, 252, 0.6);
+    font-size: 0.9rem;
+  }
+
+  .odds-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem;
+>>>>>>> 4d2fd57f (Refine roulette resource panels and fix reactor listing)
   }
 
   .results-grid {
