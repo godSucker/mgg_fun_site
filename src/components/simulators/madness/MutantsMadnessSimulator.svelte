@@ -378,7 +378,7 @@
     <div class="summary-grid" role="presentation">
       <div class="summary-card token-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
+          <img src="/tokens/material_jackpot_token.png" alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Прокруты за жетоны джекпота</span>

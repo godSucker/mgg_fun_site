@@ -391,7 +391,7 @@
         </div>
         <div class="stat-card metric paid-spins">
           <div class="metric-icon" aria-hidden="true">
-            <img src="/tokens/material_gacha_token.png" alt="" loading="lazy" />
+            <img src="/tokens/material_jackpot_token.png" alt="" loading="lazy" />
           </div>
           <div class="metric-body">
             <span class="label">Платных</span>
