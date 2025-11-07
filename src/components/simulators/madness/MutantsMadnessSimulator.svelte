@@ -408,7 +408,7 @@
       </div>
       <div class="summary-card highlight jackpot-chance">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/etc/icon_chance.png" alt="" loading="lazy" />
+          <img src="/cash/jackpot.png" alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Шанс джекпота</span>

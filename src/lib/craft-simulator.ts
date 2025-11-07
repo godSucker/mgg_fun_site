@@ -148,7 +148,7 @@ const ITEM_TEXTURES: Record<string, string> = {
 
   // Tokens
   Material_Gacha_Token: '/tokens/material_gacha_token.png',
-  Material_Event_Token: '/tokens/daily_token.png',
+  Material_Event_Token: '/tokens/material_event_token.png',
   Material_Jackpot_Token: '/tokens/material_jackpot_token.png',
 
   // Supplies
@@ -167,11 +167,11 @@ const ITEM_TEXTURES: Record<string, string> = {
 };
 
 const SPECIAL_ORB_TEXTURE_BLACKLIST = new Set([
-  'orb_special_addshield',
-  'orb_special_addshield_01',
-  'orb_special_addshield_02',
-  'orb_special_addshield_03',
-  'orb_special_addshield_04',
+  'orb_special_shield_1',
+  'orb_special_shield_2',
+  'orb_special_shield_3',
+  'orb_special_shield_4',
+  'orb_special_shield_5',
 ]);
 
 const COMPLEX_REGEX_DESCRIPTIONS: Record<string, string> = {

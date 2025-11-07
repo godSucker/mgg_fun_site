@@ -654,7 +654,7 @@
         "description": "Добавить мутанту эффект контратаки (25%)"
     },
     {
-        "id": "orb_special_addshield",
+        "id": "orb_special_addshield_01",
         "name": "Спец. Щит 2%",
         "percent": "2",
         "description": "Добавить мутанту эффект щита (2%)"
