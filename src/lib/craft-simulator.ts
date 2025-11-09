@@ -443,7 +443,8 @@ export function simulateRecipe(
     .sort((a, b) => b.amount - a.amount);
 
   log.push(`🎯 Результаты ${crafts} крафтов`);
-  log.push(`📋 Рецепт: ${recipe.id}`);
+  const recipeName = recipe.rewards.length ? translateItemId(recipe.rewards[0].id) : recipe.id;
+  log.push(`📋 Рецепт: ${recipeName}`);
 
   if (expectedIncentiveChance > 0 && incentive) {
     log.push(`🎲 Шанс доп. награды: ${(expectedIncentiveChance * 100).toFixed(2)}%`);

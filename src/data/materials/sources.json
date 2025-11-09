@@ -1,0 +1,42 @@
+{
+  "Building_Gold_Smelter": [
+    {
+      "type": "bingo",
+      "where": "Бинго"
+    }
+  ],
+  "Building_Forge": [
+    {
+      "type": "bingo",
+      "where": "Бинго"
+    }
+  ],
+  "Building_Luxury_Zone_x4": [
+    {
+      "type": "shop",
+      "where": "Магазин"
+    },
+    {
+      "type": "bingo",
+      "where": "Бинго"
+    },
+    {
+      "type": "division",
+      "where": "Награда дивизиона"
+    }
+  ],
+  "Building_Luxury_Zone_x3": [
+    {
+      "type": "shop",
+      "where": "Магазин"
+    },
+    {
+      "type": "bingo",
+      "where": "Бинго"
+    },
+    {
+      "type": "division",
+      "where": "Награда дивизиона"
+    }
+  ]
+}

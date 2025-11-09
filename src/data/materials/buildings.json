@@ -1,0 +1,50 @@
+[
+  {
+    "id": "Building_Gold_Smelter",
+    "name": "Золотоплавильня",
+    "description": "Приносит 50 золота раз в два дня.",
+    "production": {
+      "gold": 50,
+      "interval": "2d",
+      "hours": 48
+    },
+    "obtain": [
+      "Бинго"
+    ]
+  },
+  {
+    "id": "Building_Forge",
+    "name": "Кузня",
+    "description": "Приносит 5 золота раз в 12 часов.",
+    "production": {
+      "gold": 5,
+      "interval": "12h",
+      "hours": 12
+    },
+    "obtain": [
+      "Бинго"
+    ]
+  },
+  {
+    "id": "Building_Luxury_Zone_x4",
+    "name": "Люкс зона ×4",
+    "description": "На неё можно разместить мутанта любого гена. Вместимость: 400000 кредитов.",
+    "capacity_credits": 400000,
+    "obtain": [
+      "Магазин",
+      "Бинго",
+      "Награда дивизиона"
+    ]
+  },
+  {
+    "id": "Building_Luxury_Zone_x3",
+    "name": "Люкс зона ×3",
+    "description": "На неё можно разместить мутанта любого гена. Вместимость: 320000 кредитов.",
+    "capacity_credits": 320000,
+    "obtain": [
+      "Магазин",
+      "Бинго",
+      "Награда дивизиона"
+    ]
+  }
+]

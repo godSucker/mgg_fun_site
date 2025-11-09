@@ -42,7 +42,7 @@ export const STAR_ICON: Record<number, string> = {
 };
 
 export const GACHA_NAME_RU: Record<string, string> = {
-  western: 'Western',
+  western: 'Вестерн',
   gachaboss: 'Большой босс',
   japan: 'Япония',
   fantasy: 'Темное фентези',
@@ -82,6 +82,7 @@ export const GACHA_COVERS: Partial<Record<string, string>> = {
   music: '/reactor/disco.png',
   olympics: '/reactor/bloody_games.png',
   gachaboss: '/reactor/bigboss.png',
+  vegetal: '/reactor/photosintez.png',
 };
 
 export const mutantNames: Record<string, string> = mutantNamesRaw;

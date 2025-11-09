@@ -449,35 +449,6 @@
     {/if}
   </form>
 
-  <section class="odds-section">
-    <header>
-      <h3>Шансы наград по исследованиям</h3>
-      <p>Для уровня {level} доступны исследования до {maxResearch}. Всего наград: {rewardChances.length}.</p>
-    </header>
-    <div class="odds-table">
-      {#each researchChances as group}
-        <article class="odds-card">
-          <header>
-            <h4>{group.label}</h4>
-            <span class="chance">{formatPercent(group.chance, 4)}</span>
-          </header>
-          <p class="odds-meta">Наград: {group.rewards.length}</p>
-          <ul>
-            {#each group.rewards.slice(0, 5) as reward}
-              <li>
-                <span>{reward.label}</span>
-                <span class="value">{formatPercent(reward.chance, 4)}</span>
-              </li>
-            {/each}
-            {#if group.rewards.length > 5}
-              <li class="more">…и ещё {group.rewards.length - 5}</li>
-            {/if}
-          </ul>
-        </article>
-      {/each}
-    </div>
-  </section>
-
   {#if result}
     <section class="results">
       <header class="results-header">
@@ -588,6 +559,35 @@
     </section>
   {/if}
 </div>
+
+  <section class="odds-section">
+    <header>
+      <h3>Шансы наград по исследованиям</h3>
+      <p>Для уровня {level} доступны исследования до {maxResearch}. Всего наград: {rewardChances.length}.</p>
+    </header>
+    <div class="odds-table">
+      {#each researchChances as group}
+        <article class="odds-card">
+          <header>
+            <h4>{group.label}</h4>
+            <span class="chance">{formatPercent(group.chance, 4)}</span>
+          </header>
+          <p class="odds-meta">Наград: {group.rewards.length}</p>
+          <ul>
+            {#each group.rewards.slice(0, 5) as reward}
+              <li>
+                <span>{reward.label}</span>
+                <span class="value">{formatPercent(reward.chance, 4)}</span>
+              </li>
+            {/each}
+            {#if group.rewards.length > 5}
+              <li class="more">…и ещё {group.rewards.length - 5}</li>
+            {/if}
+          </ul>
+        </article>
+      {/each}
+    </div>
+  </section>
 
 <style>
   :global(body) {
