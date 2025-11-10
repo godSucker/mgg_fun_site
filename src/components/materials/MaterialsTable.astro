@@ -60,7 +60,7 @@ const toChip = (s: SourceInfo) => {
   <div class="header">
     <h2>{title}</h2>
     <div class="controls">
-      <input id="mat-search" type="search" placeholder="Поиск по названию/описанию/ID…" />
+      <input id="mat-search" type="search" placeholder="Поиск по названию/описанию…" />
     </div>
   </div>
 
@@ -93,7 +93,6 @@ const toChip = (s: SourceInfo) => {
               <div class="name-wrap">
                 <strong class="title">{row.name || row.id}</strong>
                 <span class="meta">
-                  <code class="id">{row.id}</code>
                   {row.percent && <span class="tag">% {row.percent}</span>}
                   {row.value && <span class="tag">+{row.value}</span>}
                   {row.rarity && <span class="tag">{row.rarity}</span>}
@@ -196,7 +195,7 @@ const toChip = (s: SourceInfo) => {
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    padding: 6px;
+    padding: 8px;           /* больше воздуха, чтобы не "резало" по краям */
     box-sizing: border-box;
     background:
       radial-gradient(60% 60% at 30% 30%, rgba(59, 130, 246, 0.18), transparent 60%),
@@ -209,6 +208,7 @@ const toChip = (s: SourceInfo) => {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: center;
     image-rendering: auto;
     transform: translateZ(0);
   }
@@ -225,13 +225,6 @@ const toChip = (s: SourceInfo) => {
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-top: 0.35rem;
-  }
-  .meta .id {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px dashed rgba(96,165,250,0.35);
-    border-radius: 8px;
-    padding: 0.1rem 0.4rem;
-    color: #93c5fd;
   }
   .tag {
     background: rgba(59, 130, 246, 0.15);

@@ -8,31 +8,7 @@ import buildingsData from '../../data/materials/buildings.json';
 import sourcesMap from '../../data/materials/sources.json';
 import { getItemTexture } from '../../lib/craft-simulator';
 
-// Server-side utilities
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const rootFromThis = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..'); // -> project/src
-const publicDir = path.resolve(rootFromThis, '../public');
-
-// Build an index for /public/tokens/event_tokens with any extension, keyed by lowercase stem
-const eventsDir = path.join(publicDir, 'tokens', 'event_tokens');
-const eventTokenIndex = new Map(); // id(lowercase) -> filename (with extension)
-if (fs.existsSync(eventsDir)) {
-  for (const f of fs.readdirSync(eventsDir)) {
-    if (!/\.(png|jpg|jpeg|webp|gif|avif)$/i.test(f)) continue;
-    const stem = f.replace(/\.[^.]+$/, '');
-    eventTokenIndex.set(stem.toLowerCase(), f);
-  }
-}
-
-function withTokenTextureFallback(id) {
-  const hit = eventTokenIndex.get(String(id).toLowerCase());
-  return hit ? `/tokens/event_tokens/${encodeURI(hit)}` : null;
-}
-
-function normRow(item){
+function withTexture(item){
   const id = String(item?.id || '').trim();
   const name = item?.name || id;
   const description = item?.description || '';
@@ -40,20 +16,17 @@ function normRow(item){
   const value = item?.value ?? null;
   const rarity = item?.rarity ?? null;
 
-  // priority: known mapping -> /materials/<id>.png -> /tokens/event_tokens/<id>.<ext>
-  let texture = getItemTexture(id);
-  if (!texture) {
-    const materialsPath = path.join(publicDir, 'materials', `${id}.png`);
-    if (fs.existsSync(materialsPath)) {
-      texture = `/materials/${id}.png`;
+  let tex = getItemTexture(id);
+  if (!tex) {
+    // если это токен — грузим из /tokens/event_tokens/
+    if (/token/i.test(id) || id === 'Daily_Token') {
+      tex = `/tokens/event_tokens/${id}.png`;
+    } else {
+      tex = `/materials/${id}.png`;
     }
   }
-  if (!texture) {
-    const tokenTex = withTokenTextureFallback(id);
-    if (tokenTex) texture = tokenTex;
-  }
 
-  return { id, name, description, percent, value, rarity, texture };
+  return { id, name, description, percent, value, rarity, texture: tex };
 }
 
 const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
@@ -61,9 +34,11 @@ const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
   return id && !id.includes('ephemeral');
 });
 
-const materialsRows = (Array.isArray(materialData) ? materialData : []).map(normRow);
-const charmsRows    = (Array.isArray(charmsData) ? charmsData : []).map(normRow);
-const orbsRows      = (Array.isArray(orbsData) ? orbsData : []).map(normRow);
+const materialsRows = (Array.isArray(materialData) ? materialData : []).map(withTexture);
+const charmsRows    = (Array.isArray(charmsData) ? charmsData : []).map(withTexture);
+const orbsRows      = (Array.isArray(orbsData) ? orbsData : []).map(withTexture);
+
+// Buildings: держим как есть; текстуры будем искать в /buildings/<ID>.png
 const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b) => ({
   id: String(b?.id || '').trim(),
   name: b?.name || (b?.id || ''),
@@ -83,7 +58,7 @@ const DEFAULT_TAB = 'materials';
 <BaseLayout title="Материалы и ресурсы">
   <section class="intro">
     <h1>Материалы и ресурсы</h1>
-    <p>Текстуры токенов подхватываются автоматически из <code>public/tokens/event_tokens</code> по их ID и расширению. Поиск работает по названию и описанию.</p>
+    <p>Выбери раздел: сферы, бустеры, материалы или здания. Все предметы показаны с текстурами и описаниями; источники добычи настраиваются в <code>src/data/materials/sources.json</code>.</p>
   </section>
 
   <nav class="tabs" aria-label="Разделы материалов">
@@ -118,6 +93,7 @@ const DEFAULT_TAB = 'materials';
 
 <script>
   (function(){
+    const qs = (s,d=document)=>d.querySelector(s);
     const qsa = (s,d=document)=>Array.from(d.querySelectorAll(s));
     const tabs = qsa('.tab-btn');
     const sections = qsa('.tab-section');
@@ -126,6 +102,7 @@ const DEFAULT_TAB = 'materials';
     let active = fromUrl || 'materials';
 
     function showTab(key){
+      active = key;
       for(const b of tabs){
         const on = b.dataset.tab === key;
         b.classList.toggle('active', on);
