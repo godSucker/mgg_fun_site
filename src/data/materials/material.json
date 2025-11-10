@@ -2,7 +2,7 @@
     {
         "id": "Daily_Token",
         "name": "Магнитный ключ",
-        "description": ""
+        "description": "Удаленный предмет"
     },
     {
         "id": "Material_Jackpot_Token",
@@ -27,7 +27,7 @@
     {
         "id": "Material_Easter_Token",
         "name": "Пасхальный жетон",
-        "description": ""
+        "description": "Жетон на пасху"
     },
     {
         "id": "Material_Plague_Token",
@@ -42,7 +42,7 @@
     {
         "id": "Material_Easter21_Token",
         "name": "Жетон пасхи (2021)",
-        "description": ""
+        "description": "Жетон на пасху"
     },
     {
         "id": "Material_Pyramid_Token",
@@ -62,12 +62,12 @@
     {
         "id": "Material_Valentines22_Token",
         "name": "Жетон сердца",
-        "description": ""
+        "description": "Жетон на день святого валентина"
     },
     {
         "id": "Material_Hallowen_Nightmare",
         "name": "Жетон кошмара",
-        "description": ""
+        "description": "Жетон на хеллоуин"
     },
     {
         "id": "Material_Data_Token",
@@ -187,7 +187,7 @@
     {
         "id": "Material_Antimatter",
         "name": "Осколок антиматерии",
-        "description": ""
+        "description": "Осторожно! Может рвануть!"
     },
     {
         "id": "Material_Banshee_Veil",
@@ -197,12 +197,12 @@
     {
         "id": "Material_Easter22_Token",
         "name": "Жетон зайца",
-        "description": ""
+        "description": "Жетон на пасху"
     },
     {
         "id": "Material_Winter_123",
         "name": "Жетон снега",
-        "description": ""
+        "description": "Жетон на новый год"
     },
     {
         "id": "Material_Winter_Orange",
@@ -212,7 +212,7 @@
         {
         "id": "Material_Winter_Coal",
         "name": "Уголь",
-        "description": ""
+        "description": "Жетон на новый год"
     },
     {
         "id": "Material_Mutenstein_Token",
@@ -222,12 +222,12 @@
     {
         "id": "Material_Easter_Bronze",
         "name": "Базовое яйцо",
-        "description": ""
+        "description": "Что же внутри?"
     },
     {
         "id": "Material_Easter_Silver",
         "name": "Серебрянное яйцо",
-        "description": ""
+        "description": "Что же внутри?"
     },
     {
         "id": "Star_Bronze",
