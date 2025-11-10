@@ -15,7 +15,17 @@ function withTexture(item){
   const percent = item?.percent ?? item?.pct ?? null;
   const value = item?.value ?? null;
   const rarity = item?.rarity ?? null;
-  const tex = getItemTexture(id) ?? `/materials/${id}.png`;
+
+  let tex = getItemTexture(id);
+  if (!tex) {
+    // если это токен — грузим из /tokens/event_tokens/
+    if (/token/i.test(id) || id === 'Daily_Token') {
+      tex = `/tokens/event_tokens/${id}.png`;
+    } else {
+      tex = `/materials/${id}.png`;
+    }
+  }
+
   return { id, name, description, percent, value, rarity, texture: tex };
 }
 

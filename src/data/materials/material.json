@@ -25,6 +25,11 @@
         "description": "Жетон в честь 7-й годовщины игры Mutants: Genetic Gladiators"
     },
     {
+        "id": "Material_Easter_Token",
+        "name": "Пасхальный жетон",
+        "description": ""
+    },
+    {
         "id": "Material_Plague_Token",
         "name": "Жетон чумы",
         "description": "Жетон чумы"
@@ -56,12 +61,12 @@
     },
     {
         "id": "Material_Valentines22_Token",
-        "name": "Жетон дня Святого Валентина (2022)",
+        "name": "Жетон сердца",
         "description": ""
     },
     {
-        "id": "Material_Easter22_Token",
-        "name": "Жетон пасхи (2022)",
+        "id": "Material_Hallowen_Nightmare",
+        "name": "Жетон кошмара",
         "description": ""
     },
     {
@@ -161,17 +166,12 @@
     },
     {
         "id": "Material_Tcg_Corgi_Token",
-        "name": "",
-        "description": ""
-    },
-    {
-        "id": "Material_Winter_Snowball",
-        "name": "",
-        "description": ""
+        "name": "Жетон корги",
+        "description": "Можно было получить купив пакет в магазине"
     },
     {
         "id": "Material_Easter_2019_Chocobase",
-        "name": "Chocpbase",
+        "name": "Chocobase",
         "description": "Маленькая шоколадная конфета. Можно использовать, чтобы получить немного опыта, или рафинировать в Черной дыре и получить продвинутый шоколад."
     },
     {
@@ -185,18 +185,13 @@
         "description": "Лучший шоколад. Можно использовать, чтобы получить много опыта, или обменять в Обменном пункте."
     },
     {
-        "id": "Material_Preorder_Token_FC_11",
-        "name": "",
-        "description": ""
-    },
-    {
         "id": "Material_Dark_Matter",
         "name": "Осколок темной материи",
         "description": "Стабильный осколок странного черного-фиолетового кристалла. Возможно, они связаны с текущими событиями?"
     },
     {
         "id": "Material_Antimatter",
-        "name": "",
+        "name": "Осколок антиматерии",
         "description": ""
     },
     {
@@ -205,8 +200,13 @@
         "description": "Кусок призрачной материи."
     },
     {
-        "id": "Material_Claiomh_Solais",
-        "name": "",
+        "id": "Material_Easter22_Token",
+        "name": "Жетон зайца",
+        "description": ""
+    },
+    {
+        "id": "Material_Winter_123",
+        "name": "Жетон снега",
         "description": ""
     },
     {
@@ -220,18 +220,18 @@
         "description": ""
     },
     {
-        "id": "Material_Love_Token",
-        "name": "",
-        "description": ""
-    },
-    {
         "id": "Material_Mutenstein_Token",
         "name": "Мутенштейн жетон",
         "description": "Мутенштейн жетон"
     },
     {
-        "id": "Material_Easter_Token",
-        "name": "",
+        "id": "Material_Easter_Bronze",
+        "name": "Базовое яйцо",
+        "description": ""
+    },
+    {
+        "id": "Material_Easter_Silver",
+        "name": "Серебрянное яйцо",
         "description": ""
     },
     {
