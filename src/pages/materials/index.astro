@@ -10,7 +10,7 @@ import sourcesMap from '../../data/materials/sources.json';
 import { getItemTexture } from '../../lib/craft-simulator';
 
 // ---------- нормализация материалов/бустеров/сфер ----------
-const normRow = (item: any) => {
+const normRow = (item) => {
   const id = String(item?.id || '').trim();
   const name = item?.name || id;
   const description = item?.description || '';
@@ -18,7 +18,7 @@ const normRow = (item: any) => {
   const value = item?.value ?? null;
   const rarity = item?.rarity ?? null;
 
-  let texture = getItemTexture(id);
+  let texture = getItemTexture?.(id);
 
   // точечные подмены по названию
   const lname = String(name).trim().toLowerCase();
@@ -48,11 +48,11 @@ const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b
 }));
 
 // ---------- зоны: поддержка строк/объектов из zones.json ----------
-const geneMap: Record<string,string> = { a:'Робот', b:'Зомби', c:'Рубака', d:'Зверь', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
-const capMap: Record<number,number> = { 1:2, 2:3, 3:4 };
+const geneMap = { a:'Робот', b:'Зомби', c:'Рубака', d:'Зверь', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
+const capMap  = { 1:2, 2:3, 3:4 };
 
-function metaFromStem(stem: string) {
-  const m = /^habitat_([a-f]+|abcdef)_(\d)(?:_hc)?$/i.exec(stem);
+function metaFromStem(stem) {
+  const m = /^habitat_([a-f]+|abcdef)_(\\d)(?:_hc)?$/i.exec(stem);
   if (!m) return { title: stem, desc: '' };
   const geneKey = m[1].toLowerCase();
   const lvl = Number(m[2]);
@@ -63,15 +63,12 @@ function metaFromStem(stem: string) {
   return { title, desc };
 }
 
-type ZoneCfg = string | { file: string; name?: string; description?: string };
-type ZoneRow = { id: string; name: string; description: string; texture: string };
-
-function normalizeZone(list: ZoneCfg[], base: '/zones/normal'|'/zones/luxe'): ZoneRow[] {
-  const rows: ZoneRow[] = [];
+function normalizeZone(list, base) {
+  const rows = [];
   for (const it of (list || [])) {
     const file = typeof it === 'string' ? it : it.file;
     if (!file) continue;
-    const stem = file.replace(/\.[^.]+$/, '');
+    const stem = file.replace(/\\.[^.]+$/, '');
     const meta = metaFromStem(stem);
     rows.push({
       id: stem,
@@ -80,7 +77,6 @@ function normalizeZone(list: ZoneCfg[], base: '/zones/normal'|'/zones/luxe'): Zo
       texture: `${base}/${file}`
     });
   }
-  // дедуп по id
   const map = new Map(rows.map(r => [r.id, r]));
   return Array.from(map.values());
 }
@@ -127,9 +123,9 @@ const TABS = [
   </section>
 
   <section id="section-zones" class="tab-section" data-tab="zones" hidden>
-    <div class="zone-toggle" role="group" aria-label="Тип зон">
-      <button type="button" class="zbtn active" data-kind="normal">Обычные</button>
-      <button type="button" class="zbtn" data-kind="luxe">Люкс</button>
+    <div class="zone-toggle" role="tablist" aria-label="Тип зон">
+      <button type="button" class="zbtn active" data-kind="normal" role="tab" aria-selected="true">Обычные</button>
+      <button type="button" class="zbtn" data-kind="luxe" role="tab" aria-selected="false">Люкс</button>
     </div>
 
     <div id="zones-normal" class="zones-grid" data-kind="normal">
@@ -151,7 +147,7 @@ const TABS = [
           {z.description && <div class="zone-desc">{z.description}</div>}
         </div>
       ))}
-      {zonesLuxe.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет люкс-зон.</div>}
+      {zonesLuxe.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет люкс‑зон.</div>}
     </div>
   </section>
 </BaseLayout>
@@ -159,12 +155,13 @@ const TABS = [
 <script>
   (function(){
     const qsa = (s,d=document)=>Array.from(d.querySelectorAll(s));
+
+    // --- tabs ---
     const tabs = qsa('.tab-btn');
     const sections = qsa('.tab-section');
-
     function showTab(key){
-      for (const b of tabs) { const on = b.dataset.tab===key; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); }
-      for (const s of sections) { const on = s.dataset.tab===key; s.hidden = !on; }
+      for(const b of tabs){ const on = b.dataset.tab===key; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); }
+      for(const s of sections){ const on = s.dataset.tab===key; s.hidden = !on; }
       const url = new URL(window.location.href);
       url.searchParams.set('tab', key);
       history.replaceState(null, '', url.toString());
@@ -172,11 +169,16 @@ const TABS = [
     tabs.forEach((b)=>b.addEventListener('click', ()=>showTab(b.dataset.tab)));
     showTab(new URL(window.location.href).searchParams.get('tab') || 'materials');
 
+    // --- zones toggle ---
     const zbtns = qsa('.zbtn');
     const grids = qsa('.zones-grid');
     function showZones(kind){
-      for (const b of zbtns) b.classList.toggle('active', b.dataset.kind===kind);
-      for (const g of grids) g.hidden = g.dataset.kind!==kind;
+      for(const b of zbtns){
+        const on = b.dataset.kind===kind;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', String(on));
+      }
+      for(const g of grids){ g.hidden = g.dataset.kind!==kind; }
     }
     zbtns.forEach((b)=>b.addEventListener('click', ()=>showZones(b.dataset.kind)));
     showZones('normal');
@@ -194,6 +196,13 @@ const TABS = [
   .tab-btn.active { background: linear-gradient(180deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.92)); border-color: rgba(96, 165, 250, 0.65); box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22); }
   .tab-section { margin-top: 0.5rem; }
 
+  /* переключатель Обычные/Люкс */
+  .zone-toggle{ display:inline-flex; gap:0.5rem; margin-bottom:0.8rem; }
+  .zbtn{ appearance:none; border:1px solid rgba(96,165,250,.28); background:rgba(15,23,42,.92); color:#e2e8f0; border-radius:999px; padding:.35rem .8rem; font-size:.92rem; font-weight:700; letter-spacing:.02em; cursor:pointer; line-height:1; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease; }
+  .zbtn:hover{ transform:translateY(-1px); border-color:rgba(96,165,250,.6); box-shadow:0 10px 18px rgba(37,99,235,.22); }
+  .zbtn.active{ background:linear-gradient(180deg, rgba(30,58,138,.3), rgba(15,23,42,.92)); border-color:rgba(96,165,250,.65); }
+  .zbtn:focus-visible{ outline:2px solid rgba(96,165,250,.8); outline-offset:2px; border-color:rgba(96,165,250,.8); }
+
   /* ЗОНЫ */
   .zones-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
   .zone-card {
@@ -205,7 +214,7 @@ const TABS = [
   }
   .zone-card:hover { transform: translateY(-3px); border-color: rgba(96,165,250,0.6); box-shadow: 0 12px 24px rgba(37,99,235,.22); }
 
-  /* витрина изображения — фикс. высота, картинка ВЕСЬМА влезает; без клиппинга */
+  /* витрина изображения — фикс. высота, картинка целиком; без клиппинга */
   .zone-cover {
     height: 240px;
     padding: 12px;
