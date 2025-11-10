@@ -9,6 +9,7 @@ import zonesData from '../../data/materials/zones.json';
 import sourcesMap from '../../data/materials/sources.json';
 import { getItemTexture } from '../../lib/craft-simulator';
 
+// ---------- нормализация материалов/бустеров/сфер ----------
 const normRow = (item: any) => {
   const id = String(item?.id || '').trim();
   const name = item?.name || id;
@@ -19,15 +20,14 @@ const normRow = (item: any) => {
 
   let texture = getItemTexture(id);
 
+  // точечные подмены по названию
   const lname = String(name).trim().toLowerCase();
   if (!texture) {
     if (lname === 'баночка опыта') texture = '/materials/normal_xp.png';
-    if (lname === 'банка спирта') texture = '/materials/bigbig_med.png';
+    if (lname === 'банка спирта')  texture = '/materials/bigbig_med.png';
   }
 
-  if (!texture) {
-    texture = `/materials/${id}.png`;
-  }
+  if (!texture) texture = `/materials/${id}.png`;
 
   return { id, name, description, percent, value, rarity, texture };
 };
@@ -47,28 +47,61 @@ const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b
   texture: b?.texture || `/buildings/${b?.id}.png`
 }));
 
-type ZoneRow = { id: string; name: string; texture: string };
-const toRow = (rel: string) => (f: string): ZoneRow => {
-  const stem = f.replace(/\.[^.]+$/, '');
-  return { id: stem, name: stem, texture: `${rel}/${f}` };
-};
-const zonesNormal = (zonesData?.normal ?? []).map(toRow('/zones/normal'));
-const zonesLuxe   = (zonesData?.luxe ?? []).map(toRow('/zones/luxe'));
+// ---------- зоны: поддержка строк/объектов из zones.json ----------
+const geneMap: Record<string,string> = { a:'Робот', b:'Зомби', c:'Рубака', d:'Зверь', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
+const capMap: Record<number,number> = { 1:2, 2:3, 3:4 };
+
+function metaFromStem(stem: string) {
+  const m = /^habitat_([a-f]+|abcdef)_(\d)(?:_hc)?$/i.exec(stem);
+  if (!m) return { title: stem, desc: '' };
+  const geneKey = m[1].toLowerCase();
+  const lvl = Number(m[2]);
+  const cap = capMap[lvl] ?? '?';
+  const geneName = geneMap[geneKey] ?? geneKey.toUpperCase();
+  const title = geneKey === 'abcdef' ? `Общая зона · вместимость ${cap}` : `Зона ${geneName} · вместимость ${cap}`;
+  const desc  = `Ген: ${geneKey === 'abcdef' ? 'Любые гены' : geneName} • Вместимость: ${cap}`;
+  return { title, desc };
+}
+
+type ZoneCfg = string | { file: string; name?: string; description?: string };
+type ZoneRow = { id: string; name: string; description: string; texture: string };
+
+function normalizeZone(list: ZoneCfg[], base: '/zones/normal'|'/zones/luxe'): ZoneRow[] {
+  const rows: ZoneRow[] = [];
+  for (const it of (list || [])) {
+    const file = typeof it === 'string' ? it : it.file;
+    if (!file) continue;
+    const stem = file.replace(/\.[^.]+$/, '');
+    const meta = metaFromStem(stem);
+    rows.push({
+      id: stem,
+      name: (typeof it === 'object' && it.name) ? it.name : meta.title,
+      description: (typeof it === 'object' && it.description) ? it.description : meta.desc,
+      texture: `${base}/${file}`
+    });
+  }
+  // дедуп по id
+  const map = new Map(rows.map(r => [r.id, r]));
+  return Array.from(map.values());
+}
+
+const zonesCfg = (zonesData && typeof zonesData === 'object') ? zonesData : { normal: [], luxe: [] };
+const zonesNormal = normalizeZone(zonesCfg.normal || [], '/zones/normal');
+const zonesLuxe   = normalizeZone(zonesCfg.luxe   || [], '/zones/luxe');
 
 const TABS = [
-  { key: 'orbs', label: 'Сферы' },
-  { key: 'charms', label: 'Бустеры' },
+  { key: 'orbs',      label: 'Сферы' },
+  { key: 'charms',    label: 'Бустеры' },
   { key: 'materials', label: 'Материалы' },
   { key: 'buildings', label: 'Здания' },
-  { key: 'zones', label: 'Зоны' },
+  { key: 'zones',     label: 'Зоны' },
 ];
-const DEFAULT_TAB = 'materials';
 ---
 
 <BaseLayout title="Материалы и ресурсы">
   <section class="intro">
     <h1>Материалы и ресурсы</h1>
-    <p>Зоны берутся из <code>src/data/materials/zones.json</code>. Просто перечисли имена файлов (с расширениями). Превью зданий — без обрезания.</p>
+    <p>Зоны берутся из <code>src/data/materials/zones.json</code> (строка или объект с <code>file/name/description</code>), карточки показывают картинку целиком.</p>
   </section>
 
   <nav class="tabs" aria-label="Разделы материалов">
@@ -104,6 +137,7 @@ const DEFAULT_TAB = 'materials';
         <div class="zone-card" aria-label={z.name} title={z.name}>
           <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
           <div class="zone-title">{z.name}</div>
+          {z.description && <div class="zone-desc">{z.description}</div>}
         </div>
       ))}
       {zonesNormal.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет обычных зон.</div>}
@@ -114,9 +148,10 @@ const DEFAULT_TAB = 'materials';
         <div class="zone-card" aria-label={z.name} title={z.name}>
           <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
           <div class="zone-title">{z.name}</div>
+          {z.description && <div class="zone-desc">{z.description}</div>}
         </div>
       ))}
-      {zonesLuxe.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет люкс‑зон.</div>}
+      {zonesLuxe.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет люкс-зон.</div>}
     </div>
   </section>
 </BaseLayout>
@@ -126,23 +161,22 @@ const DEFAULT_TAB = 'materials';
     const qsa = (s,d=document)=>Array.from(d.querySelectorAll(s));
     const tabs = qsa('.tab-btn');
     const sections = qsa('.tab-section');
-    const url = new URL(window.location.href);
-    const fromUrl = (url.searchParams.get('tab') || window.location.hash.replace('#','') || '').trim().toLowerCase();
-    let active = fromUrl || 'materials';
+
     function showTab(key){
-      for(const b of tabs){ const on = b.dataset.tab===key; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); }
-      for(const s of sections){ const on = s.dataset.tab===key; s.hidden = !on; }
-      const u = new URL(window.location.href); u.searchParams.set('tab', key); history.replaceState(null, '', u.toString());
+      for (const b of tabs) { const on = b.dataset.tab===key; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); }
+      for (const s of sections) { const on = s.dataset.tab===key; s.hidden = !on; }
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', key);
+      history.replaceState(null, '', url.toString());
     }
     tabs.forEach((b)=>b.addEventListener('click', ()=>showTab(b.dataset.tab)));
-    if(!tabs.some((b)=>b.dataset.tab===active)) active = 'materials';
-    showTab(active);
+    showTab(new URL(window.location.href).searchParams.get('tab') || 'materials');
 
     const zbtns = qsa('.zbtn');
     const grids = qsa('.zones-grid');
     function showZones(kind){
-      for(const b of zbtns) b.classList.toggle('active', b.dataset.kind===kind);
-      for(const g of grids) g.hidden = g.dataset.kind!==kind;
+      for (const b of zbtns) b.classList.toggle('active', b.dataset.kind===kind);
+      for (const g of grids) g.hidden = g.dataset.kind!==kind;
     }
     zbtns.forEach((b)=>b.addEventListener('click', ()=>showZones(b.dataset.kind)));
     showZones('normal');
@@ -160,15 +194,38 @@ const DEFAULT_TAB = 'materials';
   .tab-btn.active { background: linear-gradient(180deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.92)); border-color: rgba(96, 165, 250, 0.65); box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22); }
   .tab-section { margin-top: 0.5rem; }
 
-  .zone-toggle { display: inline-flex; gap: 0.5rem; margin-bottom: 0.8rem; }
-  .zbtn { appearance: none; border: 1px solid rgba(96, 165, 250, 0.28); background: rgba(15, 23, 42, 0.92); color: #e2e8f0; border-radius: 999px; padding: 0.35rem 0.8rem; font-size: 0.92rem; letter-spacing: 0.02em; cursor: pointer; }
-  .zbtn.active { background: linear-gradient(180deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.92)); border-color: rgba(96, 165, 250, 0.65); }
-
+  /* ЗОНЫ */
   .zones-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-  .zone-card { display: grid; gap: 0.5rem; text-decoration: none; color: inherit; border: 1px solid rgba(96, 165, 250, 0.28); border-radius: 16px; padding: 0.75rem; background: rgba(15, 23, 42, 0.92); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .zone-card {
+    display: grid; gap: 0.5rem;
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    border-radius: 16px; padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.92);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
   .zone-card:hover { transform: translateY(-3px); border-color: rgba(96,165,250,0.6); box-shadow: 0 12px 24px rgba(37,99,235,.22); }
-  .zone-cover { aspect-ratio: 3 / 2; display: grid; place-items: center; overflow: hidden; border-radius: 12px; background: rgba(2,6,23,0.6); padding: 10px; box-sizing: border-box; }
-  .zone-cover img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; margin: auto; object-fit: contain; object-position: center; }
-  .zone-title { color: #e2e8f0; font-size: 0.95rem; }
-  .zone-empty { color: #94a3b8; padding: 0.6rem 0.2rem; }
+
+  /* витрина изображения — фикс. высота, картинка ВЕСЬМА влезает; без клиппинга */
+  .zone-cover {
+    height: 240px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(2,6,23,0.6);
+    display: grid; place-items: center;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+  .zone-cover img {
+    max-width: 100%; max-height: 100%;
+    width: auto; height: auto;
+    object-fit: contain; object-position: center; display: block;
+  }
+
+  .zone-title { color: #e2e8f0; font-size: 0.95rem; font-weight: 700; }
+  .zone-desc  { color: #94a3b8; font-size: 0.85rem; line-height: 1.25; }
+
+  @media (max-width: 800px) {
+    .zones-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .zone-cover { height: 200px; }
+  }
 </style>
