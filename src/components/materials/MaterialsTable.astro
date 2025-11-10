@@ -33,6 +33,9 @@ const {
 
 const resolveTexture = (row: MaterialRow) => row.texture ? row.texture : `${texturePrefix}${row.id}${textureExt}`;
 
+// Unique root id to scope search per component instance
+const uid = `mat-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
 const toChip = (s: SourceInfo) => {
   const iconByType: Record<string, string> = {
     reactor: '⚛️',
@@ -56,11 +59,11 @@ const toChip = (s: SourceInfo) => {
 };
 ---
 
-<section class="materials" data-title={title}>
+<section class="materials" id={uid} data-title={title}>
   <div class="header">
     <h2>{title}</h2>
     <div class="controls">
-      <input id="mat-search" type="search" placeholder="Поиск по названию/описанию…" />
+      <input class="mat-search" type="search" placeholder="Поиск по названию/описанию…" />
     </div>
   </div>
 
@@ -74,7 +77,7 @@ const toChip = (s: SourceInfo) => {
       </div>
     </div>
 
-    <div class="tbody" role="rowgroup" id="mat-body">
+    <div class="tbody" role="rowgroup">
       {rows.map((row) => {
         const srcs = sourcesMap[row.id] ?? [];
         return (
@@ -119,22 +122,26 @@ const toChip = (s: SourceInfo) => {
 </section>
 
 <script>
-  const $ = (sel) => document.querySelector(sel);
-  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+  (() => {
+    const ROOT_ID = "{uid}";
+    const root = document.getElementById(ROOT_ID);
+    if (!root) return;
+    const input = root.querySelector('.mat-search');
+    const body = root.querySelector('.tbody');
+    const rows = () => Array.from(body?.querySelectorAll('.tr') || []);
 
-  const input = $('#mat-search');
-  const rows = () => $$('#mat-body .tr');
-
-  function applyFilter() {
-    const q = (input?.value || '').trim().toLowerCase();
-    for (const r of rows()) {
-      const id = r.dataset.id?.toLowerCase() || '';
-      const text = r.textContent?.toLowerCase() || '';
-      const match = q === '' || id.includes(q) || text.includes(q);
-      r.style.display = match ? '' : 'none';
+    function applyFilter() {
+      const q = (input?.value || '').trim().toLowerCase();
+      for (const r of rows()) {
+        const id = (r.getAttribute('data-id') || '').toLowerCase();
+        const text = (r.textContent || '').toLowerCase();
+        const match = q === '' || id.includes(q) || text.includes(q);
+        r.style.display = match ? '' : 'none';
+      }
     }
-  }
-  input?.addEventListener('input', applyFilter);
+
+    input?.addEventListener('input', applyFilter);
+  })();
 </script>
 
 <style>

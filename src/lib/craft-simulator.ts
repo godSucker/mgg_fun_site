@@ -167,6 +167,7 @@ const ITEM_TEXTURES: Record<string, string> = {
 };
 
 const SPECIAL_ORB_TEXTURE_BLACKLIST = new Set([
+  'orb_special_shield',
   'orb_special_shield_1',
   'orb_special_shield_2',
   'orb_special_shield_3',
