@@ -48,32 +48,61 @@ const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b
 }));
 
 // ---------- зоны: поддержка строк/объектов из zones.json ----------
-const geneMap = { a:'Робот', b:'Зомби', c:'Рубака', d:'Зверь', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
+const geneMap = { a:'Киборг', b:'Нежить', c:'Рубака', d:'Зооморф', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
 const capMap  = { 1:2, 2:3, 3:4 };
 
-function metaFromStem(stem) {
-  const m = /^habitat_([a-f]+|abcdef)_(\\d)(?:_hc)?$/i.exec(stem);
-  if (!m) return { title: stem, desc: '' };
-  const geneKey = m[1].toLowerCase();
-  const lvl = Number(m[2]);
-  const cap = capMap[lvl] ?? '?';
-  const geneName = geneMap[geneKey] ?? geneKey.toUpperCase();
-  const title = geneKey === 'abcdef' ? `Общая зона · вместимость ${cap}` : `Зона ${geneName} · вместимость ${cap}`;
-  const desc  = `Ген: ${geneKey === 'abcdef' ? 'Любые гены' : geneName} • Вместимость: ${cap}`;
-  return { title, desc };
+function parseStem(stem) {
+  // stem уже без расширения, например 'habitat_f_3_hc'
+  const lux = /_hc$/i.test(stem);
+  const m = /^habitat_([a-f]+|abcdef)_(\d)(?:_hc)?$/i.exec(stem);
+  if (!m) return { geneKey: '', level: null, isLuxe: lux };
+  return {
+    geneKey: String(m[1] || '').toLowerCase(),
+    level: Number(m[2]),
+    isLuxe: lux
+  };
 }
+
+function metaFromStem(stem) {
+  const { geneKey, level, isLuxe } = parseStem(stem);
+  const cap = capMap[level] ?? '?';
+  const geneName = geneMap[geneKey] ?? (geneKey ? geneKey.toUpperCase() : '—');
+  const title = geneKey === 'abcdef' ? `Общая зона · вместимость ${cap}` : `Зона ${geneName} · вместимость ${cap}`;
+  const desc  = geneKey
+    ? `Ген: ${geneKey === 'abcdef' ? 'Любые гены' : geneName} • Вместимость: ${cap}`
+    : '';
+  return { title, desc, geneKey, isLuxe };
+}
+
+// правила хранения серебра
+function calcStorage(geneKey, isLuxe) {
+  if (isLuxe) {
+    // Люкс: универсальные (abcdef) = 400000, остальные = 320000
+    return geneKey === 'abcdef' ? 400000 : 320000;
+  }
+  // Обычные по гену
+  if (geneKey === 'a' || geneKey === 'b' || geneKey === 'c') return 9000;     // киборг/нежить/рубака
+  if (geneKey === 'd') return 30000;                                          // зооморф
+  if (geneKey === 'e') return 80000;                                          // галактик
+  if (geneKey === 'f') return 160000;                                         // мифик
+  return null;
+}
+
+const fmt = (n) => new Intl.NumberFormat('ru-RU').format(n ?? 0);
 
 function normalizeZone(list, base) {
   const rows = [];
   for (const it of (list || [])) {
     const file = typeof it === 'string' ? it : it.file;
     if (!file) continue;
-    const stem = file.replace(/\\.[^.]+$/, '');
+    const stem = file.replace(/\.[^.]+$/, '');
     const meta = metaFromStem(stem);
+    const store = calcStorage(meta.geneKey, meta.isLuxe);
     rows.push({
       id: stem,
       name: (typeof it === 'object' && it.name) ? it.name : meta.title,
       description: (typeof it === 'object' && it.description) ? it.description : meta.desc,
+      storage: store,
       texture: `${base}/${file}`
     });
   }
@@ -97,7 +126,7 @@ const TABS = [
 <BaseLayout title="Материалы и ресурсы">
   <section class="intro">
     <h1>Материалы и ресурсы</h1>
-    <p>Зоны берутся из <code>src/data/materials/zones.json</code> (строка или объект с <code>file/name/description</code>), карточки показывают картинку целиком.</p>
+    <p>Тут находятся все материалы, сферы, бустеры, здания и зоны.</p>
   </section>
 
   <nav class="tabs" aria-label="Разделы материалов">
@@ -134,6 +163,7 @@ const TABS = [
           <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
           <div class="zone-title">{z.name}</div>
           {z.description && <div class="zone-desc">{z.description}</div>}
+          {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
         </div>
       ))}
       {zonesNormal.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет обычных зон.</div>}
@@ -145,6 +175,7 @@ const TABS = [
           <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
           <div class="zone-title">{z.name}</div>
           {z.description && <div class="zone-desc">{z.description}</div>}
+          {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
         </div>
       ))}
       {zonesLuxe.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет люкс‑зон.</div>}
@@ -206,7 +237,7 @@ const TABS = [
   /* ЗОНЫ */
   .zones-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
   .zone-card {
-    display: grid; gap: 0.5rem;
+    display: grid; gap: 0.4rem;
     border: 1px solid rgba(96, 165, 250, 0.28);
     border-radius: 16px; padding: 0.75rem;
     background: rgba(15, 23, 42, 0.92);
@@ -232,6 +263,7 @@ const TABS = [
 
   .zone-title { color: #e2e8f0; font-size: 0.95rem; font-weight: 700; }
   .zone-desc  { color: #94a3b8; font-size: 0.85rem; line-height: 1.25; }
+  .zone-cap   { color: #a7f3d0; font-size: 0.86rem; line-height: 1.25; }
 
   @media (max-width: 800px) {
     .zones-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
