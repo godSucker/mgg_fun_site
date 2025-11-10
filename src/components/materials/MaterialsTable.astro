@@ -56,7 +56,7 @@ const toChip = (s: SourceInfo) => {
 };
 ---
 
-<section class="materials">
+<section class="materials" data-title={title}>
   <div class="header">
     <h2>{title}</h2>
     <div class="controls">
@@ -141,25 +141,14 @@ const toChip = (s: SourceInfo) => {
   .materials { margin-top: 1rem; }
 
   .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; margin-bottom: 1rem;
   }
-  .header h2 {
-    margin: 0;
-    font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
-    color: #e2e8f0;
-  }
+  .header h2 { margin: 0; font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem); color: #e2e8f0; }
   .controls { display: flex; gap: 0.75rem; }
   .controls input[type="search"] {
-    height: 40px;
-    border-radius: 12px;
-    border: 1px solid rgba(96, 165, 250, 0.28);
-    background: rgba(15, 23, 42, 0.92);
-    color: #e2e8f0;
-    padding: 0 0.8rem;
+    height: 40px; border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.28);
+    background: rgba(15, 23, 42, 0.92); color: #e2e8f0; padding: 0 0.8rem;
   }
   .controls input::placeholder { color: #94a3b8; }
 
@@ -169,102 +158,103 @@ const toChip = (s: SourceInfo) => {
     border-radius: 16px;
     overflow: hidden;
   }
+
+  /* Default layout */
   .thead .tr, .tbody .tr {
     display: grid;
     grid-template-columns: 92px minmax(200px, 1fr) minmax(260px, 2fr) minmax(220px, 1.4fr);
     gap: 0;
   }
+
+  /* Bigger image column for Buildings with no cropping */
+  .materials[data-title="Здания"] .thead .tr,
+  .materials[data-title="Здания"] .tbody .tr {
+    grid-template-columns: 160px minmax(200px, 1fr) minmax(260px, 2fr) minmax(220px, 1.4fr);
+  }
+
   .thead .tr {
     background: linear-gradient(180deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    position: sticky; top: 0; z-index: 1;
     border-bottom: 1px solid rgba(96, 165, 250, 0.28);
   }
-  .th, .td {
-    padding: 0.9rem 1rem;
-    border-bottom: 1px solid rgba(96, 165, 250, 0.12);
-  }
+  .th, .td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(96, 165, 250, 0.12); }
   .th { font-weight: 600; color: #9ec5fe; font-size: 0.9rem; }
 
   .tbody .tr:hover { background: rgba(30, 58, 138, 0.18); }
 
   .thumb {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
-    overflow: hidden;
+    width: 84px;
+    height: auto;
+    border-radius: 14px;
+    overflow: visible;
     position: relative;
-    padding: 8px;           /* больше воздуха, чтобы не "резало" по краям */
-    box-sizing: border-box;
+    padding: 10px; box-sizing: border-box;
     background:
       radial-gradient(60% 60% at 30% 30%, rgba(59, 130, 246, 0.18), transparent 60%),
       radial-gradient(60% 60% at 70% 70%, rgba(147, 197, 253, 0.15), transparent 60%),
       linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95));
-    display: grid;
-    place-items: center;
+    display: grid; place-items: center;
   }
+
+  /* Larger thumbs for Buildings (no crop, fully visible) */
+  .materials[data-title="Здания"] .thumb {
+    width: 140px;
+    height: auto;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
   .thumb img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 180px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: auto;
     object-fit: contain;
     object-position: center;
     image-rendering: auto;
     transform: translateZ(0);
   }
-  .thumb.noimg::after {
-    content: 'No image';
-    color: #64748b;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
+
+  .materials[data-title="Здания"] .thumb img {
+    max-height: 200px;
   }
 
+  .thumb.noimg::after { content: 'No image'; color: #64748b; font-size: 0.7rem; letter-spacing: 0.06em; }
+
   .name .title { color: #e2e8f0; }
-  .meta {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.35rem;
-  }
+  .meta { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.35rem; }
+
   .tag {
-    background: rgba(59, 130, 246, 0.15);
-    color: #bfdbfe;
-    padding: 0.1rem 0.5rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
+    background: rgba(59, 130, 246, 0.15); color: #bfdbfe;
+    padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.78rem; letter-spacing: 0.04em;
   }
 
   .muted { color: #94a3b8; }
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .chip {
-    background: rgba(34, 197, 94, 0.16);
-    color: #a7f3d0;
+    background: rgba(34, 197, 94, 0.16); color: #a7f3d0;
     border: 1px solid rgba(16, 185, 129, 0.25);
-    padding: 0.2rem 0.55rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
+    padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.78rem;
   }
 
   @media (max-width: 980px) {
-    .thead .tr, .tbody .tr {
-      grid-template-columns: 64px minmax(160px, 1fr) minmax(200px, 2fr) minmax(160px, 1.2fr);
-    }
+    .thead .tr, .tbody .tr { grid-template-columns: 92px minmax(160px, 1fr) minmax(200px, 2fr) minmax(160px, 1.2fr); }
+    .materials[data-title="Здания"] .thead .tr,
+    .materials[data-title="Здания"] .tbody .tr { grid-template-columns: 150px minmax(160px, 1fr) minmax(200px, 2fr) minmax(160px, 1.2fr); }
     .th, .td { padding: 0.75rem 0.8rem; }
   }
   @media (max-width: 720px) {
     .thead { display: none; }
     .tbody .tr {
-      grid-template-columns: 64px 1fr;
-      grid-auto-rows: auto;
-      gap: 0.25rem 0.8rem;
-      padding: 0.6rem 0.2rem;
-      border-bottom: 1px solid rgba(96, 165, 250, 0.12);
+      grid-template-columns: 92px 1fr;
+      grid-auto-rows: auto; gap: 0.25rem 0.8rem;
+      padding: 0.6rem 0.2rem; border-bottom: 1px solid rgba(96, 165, 250, 0.12);
+    }
+    .materials[data-title="Здания"] .tbody .tr {
+      grid-template-columns: 150px 1fr;
     }
     .td.name { grid-column: 2 / -1; }
     .td.desc { grid-column: 1 / -1; padding-top: 0; }

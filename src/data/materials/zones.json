@@ -1,0 +1,40 @@
+{
+  "normal": [
+    "habitat_a_1.png",
+    "habitat_b_1.png",
+    "habitat_c_1.png",
+    "habitat_d_1.png",
+    "habitat_e_1.png",
+    "habitat_f_1.png",
+    "habitat_a_2.png",
+    "habitat_b_2.png",
+    "habitat_c_2.png",
+    "habitat_d_2.png",
+    "habitat_e_2.png",
+    "habitat_f_2.png",
+    "habitat_a_3.png",
+    "habitat_b_3.png",
+    "habitat_c_3.png",
+    "habitat_d_3.png",
+    "habitat_e_3.png",
+    "habitat_f_3.png"
+  ],
+  "luxe": [
+    "habitat_a_2_hc.png",
+    "habitat_b_2_hc.png",
+    "habitat_c_2_hc.png",
+    "habitat_d_2_hc.png",
+    "habitat_e_2_hc.png",
+    "habitat_f_2_hc.png",
+    "habitat_a_3_hc.png",
+    "habitat_b_3_hc.png",
+    "habitat_c_3_hc.png",
+    "habitat_d_3_hc.png",
+    "habitat_e_3_hc.png",
+    "habitat_f_3_hc.png",
+    "habitat_a_3_hc.png",
+    "habitat_a_3_hc.png",
+    "habitat_abcdef_2_hc.png",
+    "habitat_abcdef_3_hc.png"
+  ]
+}

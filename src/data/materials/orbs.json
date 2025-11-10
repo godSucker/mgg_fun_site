@@ -126,22 +126,10 @@
         "description": "Предоставляет силу этой сферы на ограниченное количество битв. Доступно только в начале сражения"
     },
     {
-        "id": "orb_basic_attack_08",
-        "name": "Атака 19%",
-        "percent": "19",
-        "description": "Увеличение атаки мутанта (+19%)"
-    },
-    {
         "id": "orb_basic_attack_08_ephemeral_10",
         "name": "Атака 19% (заряд: 10)",
         "percent": "19",
         "description": "Предоставляет силу этой сферы на ограниченное количество битв. Доступно только в начале сражения"
-    },
-    {
-        "id": "orb_basic_attack_09",
-        "name": "Атака 20%",
-        "percent": "20",
-        "description": "Увеличение атаки мутанта (+20%)"
     },
     {
         "id": "orb_basic_attack_09_ephemeral_10",
@@ -214,18 +202,6 @@
         "name": "Здоровье 35%",
         "percent": "35",
         "description": "Увеличение здоровья мутанта (+35%)"
-    },
-    {
-        "id": "orb_basic_life_08",
-        "name": "Здоровье 40%",
-        "percent": "40",
-        "description": "Увеличение здоровья мутанта (+40%)"
-    },
-    {
-        "id": "orb_basic_life_09",
-        "name": "Здоровье 45%",
-        "percent": "45",
-        "description": "Увеличение здоровья мутанта (+45%)"
     },
     {
         "id": "orb_basic_critical",
@@ -318,12 +294,6 @@
         "description": "Увеличение вытягивания жизни мутанта (+30%)"
     },
     {
-        "id": "orb_basic_regenerate_07",
-        "name": "Вытягивание жизни 65%",
-        "percent": "65",
-        "description": "Увеличение вытягивания жизни мутанта (+65%)"
-    },
-    {
         "id": "orb_basic_retaliate",
         "name": "Контратака 3%",
         "percent": "3",
@@ -364,12 +334,6 @@
         "name": "Контратака 20%",
         "percent": "20",
         "description": "Увеличение контратаки мутанта (+20%)"
-    },
-    {
-        "id": "orb_basic_retaliate_07",
-        "name": "Контратака 65%",
-        "percent": "65",
-        "description": "Увеличение контратаки мутанта (+65%)"
     },
     {
         "id": "orb_basic_shield",
@@ -414,12 +378,6 @@
         "description": "Увеличение щита мутанта (+25%)"
     },
     {
-        "id": "orb_basic_shield_07",
-        "name": "Щит 65%",
-        "percent": "65",
-        "description": "Увеличение щита мутанта (+65%)"
-    },
-    {
         "id": "orb_basic_slash",
         "name": "Ранение 3%",
         "percent": "3",
@@ -460,12 +418,6 @@
         "name": "Ранение 25%",
         "percent": "25",
         "description": "Увеличение ранения мутанта (+25%)"
-    },
-    {
-        "id": "orb_basic_sslash_07",
-        "name": "Ранение 65%",
-        "percent": "65",
-        "description": "Увеличение ранения мутанта (+65%)"
     },
     {
         "id": "orb_basic_strengthen",
@@ -510,12 +462,6 @@
         "description": "Увеличение усиления мутанта (+25%)"
     },
     {
-        "id": "orb_basic_strengthen_07",
-        "name": "Усиление 26%",
-        "percent": "26",
-        "description": "Увеличение усиления мутанта (+26%)"
-    },
-    {
         "id": "orb_basic_weaken",
         "name": "Проклятие 3%",
         "percent": "3",
@@ -556,12 +502,6 @@
         "name": "Проклятие 25%",
         "percent": "25",
         "description": "Увеличение проклятия мутанта (+25%)"
-    },
-    {
-        "id": "orb_basic_weaken_07",
-        "name": "Проклятие 65%",
-        "percent": "65",
-        "description": "Увеличение проклятия мутанта (+65%)"
     },
     {
         "id": "orb_special_addregenerate",

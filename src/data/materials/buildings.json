@@ -1,50 +1,50 @@
 [
   {
-    "id": "Building_Gold_Smelter",
-    "name": "Золотоплавильня",
-    "description": "Приносит 50 золота раз в два дня.",
-    "production": {
-      "gold": 50,
-      "interval": "2d",
-      "hours": 48
-    },
-    "obtain": [
-      "Бинго"
-    ]
-  },
-  {
     "id": "Building_Forge",
     "name": "Кузня",
-    "description": "Приносит 5 золота раз в 12 часов.",
-    "production": {
-      "gold": 5,
-      "interval": "12h",
-      "hours": 12
-    },
-    "obtain": [
-      "Бинго"
-    ]
+    "description": "Приносит 5 золота раз в 12 часов",
+    "texture": "/buildings/gold_hc1.png"
   },
   {
-    "id": "Building_Luxury_Zone_x4",
-    "name": "Люкс зона ×4",
-    "description": "На неё можно разместить мутанта любого гена. Вместимость: 400000 кредитов.",
-    "capacity_credits": 400000,
-    "obtain": [
-      "Магазин",
-      "Бинго",
-      "Награда дивизиона"
-    ]
+    "id": "Building_Gold_Smelter",
+    "name": "Плавильня",
+    "description": "Приносит 50 золота раз в 2 суток",
+    "texture": "/buildings/gold_hc2.png"
   },
   {
-    "id": "Building_Luxury_Zone_x3",
-    "name": "Люкс зона ×3",
-    "description": "На неё можно разместить мутанта любого гена. Вместимость: 320000 кредитов.",
-    "capacity_credits": 320000,
-    "obtain": [
-      "Магазин",
-      "Бинго",
-      "Награда дивизиона"
-    ]
+    "id": "Building_Med_Lab",
+    "name": "Мед. Лаборатория",
+    "description": "Здание для крафта аптечек",
+    "texture": "/buildings/medlab.png"
+  },
+  {
+    "id": "Building_Evo_Center",
+    "name": "Эво. Центр",
+    "description": "Здания для повышения уровня ЭВО",
+    "texture": "/buildings/evo.png"
+  },
+  {
+    "id": "Building_Exchange",
+    "name": "Обменник",
+    "description": "Здание в котором можно обменивать жетоны джекпота",
+    "texture": "/buildings/jackpot.png"
+  },
+  {
+    "id": "Building_Incubator",
+    "name": "Инкубатор",
+    "description": "Здание в котором выводятся мутанты",
+    "texture": "/buildings/incub.png"
+  },
+  {
+    "id": "Building_Trial_Hall",
+    "name": "Зал Испытаний",
+    "description": "Здание в котором можно обменивать жетоны испытаний",
+    "texture": "/buildings/event.png"
+  },
+  {
+    "id": "Building_Breeding_Center",
+    "name": "Центр Скрещивания",
+    "description": "Здание в котором можно скрещивать мутантов",
+    "texture": "/buildings/merge.png"
   }
 ]
