@@ -1,0 +1,81 @@
+
+/* public/styles/mobile-ux.css
+   Мобильные правки (<=840px), десктоп не трогаем.
+   - компактные сетки
+   - <details> аккордеоны для вторичных блоков
+   - горизонтальные ленты для больших списков
+*/
+
+/* Базовый мягкий даунскейл шрифта */
+@media (max-width: 840px){ html { font-size: 93.75%; } }
+@media (max-width: 560px){ html { font-size: 87.5%; } }
+
+/* Картинки не обрезаем на мобилке */
+@media (max-width: 840px){
+  img { max-width: 100%; height: auto; object-fit: contain; object-position: center; }
+  .thumb img, .zone-cover img, .mutant-thumb img { max-width: 100%; max-height: 100%; }
+}
+
+/* -------- Мутанты: аккуратная сетка и уменьшенные превью -------- */
+@media (max-width: 840px){
+  .mutants-grid, [data-page="mutants"] .grid, [class*="mutant"] .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: .6rem;
+  }
+  .mutant-thumb{ background: rgba(2,6,23,.5); border-radius: 12px; padding: 6px; }
+  .mutant-thumb img{ max-height: 128px; }
+  @media (max-width: 480px){ .mutant-thumb img{ max-height: 110px; } }
+}
+
+/* -------- Скрещивания: значки генов компактнее -------- */
+@media (max-width: 840px){
+  .simulator [class*="gene"] img,
+  .simulator [class*="dna"] img,
+  .simulator button img,
+  .simulator label img { max-height: 56px; width: auto; object-fit: contain; }
+  .simulator .chip img, .simulator .tag img { max-height: 40px; }
+}
+
+/* -------- Реактор: компактные карты выбора -------- */
+@media (max-width: 840px){
+  .reactor-covers, .reactor-grid {
+    display: grid; gap: .65rem;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+  .reactor-covers img, .reactor-grid img { width: 100%; height: auto; border-radius: 10px; }
+  @media (max-width: 420px){
+    .reactor-covers, .reactor-grid { grid-template-columns: 1fr 1fr; gap: .55rem; }
+  }
+}
+
+/* -------- Рулетки/ЧД/Реактор: вторичные панели в аккордеон -------- */
+@media (max-width: 840px){
+  details.m-accordion { border: 1px solid rgba(96,165,250,.28); border-radius: 12px; padding: .4rem .6rem; background: rgba(15,23,42,.92); }
+  details.m-accordion + * { margin-top: .6rem; }
+  details.m-accordion > summary {
+    cursor: pointer; list-style: none; user-select: none; outline: none;
+    font-weight: 700; color: #e2e8f0; display: flex; align-items: center; gap: .5rem;
+  }
+  details.m-accordion > summary::marker, details.m-accordion > summary::-webkit-details-marker { display: none; }
+  details.m-accordion > summary::after { content: "▼"; font-size: .85em; opacity: .85; margin-left: auto; }
+  details.m-accordion[open] > summary::after { content: "▲"; }
+  .m-accordion .m-acc-body { margin-top: .55rem; }
+}
+
+/* -------- Длинные логи: скролл внутри, не растягиваем страницу -------- */
+@media (max-width: 840px){
+  .text-log, .result-log, .results .panel, .log, .console, .sim-log {
+    max-height: 60vh; overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* -------- Горизонтальные ленты для больших коллекций -------- */
+@media (max-width: 840px){
+  .h-scroll {
+    display: flex; gap: .6rem; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; padding-bottom: .2rem;
+  }
+  .h-scroll > * { flex: 0 0 auto; scroll-snap-align: start; }
+  .h-item { display: inline-block; }
+}

@@ -90,7 +90,12 @@ const gachas = listGachas();
     min-height: calc(160px * (2 / 3)); /* на случай, если аспект меняют на лету */
   }
 
-  @media (max-width: 640px) {
-    :root { --min-card: 180px; }
-  }
+ @media (max-width: 640px) {
+  :root { --min-card: 150px; --card-aspect: 1 / 1; }
+  .intro { margin-bottom: .6rem; }
+  .list-grid { gap: .65rem; }
+}
+@media (max-width: 400px) {
+  :root { --min-card: 140px; }
+}
 </style>

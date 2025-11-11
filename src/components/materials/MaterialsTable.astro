@@ -33,9 +33,6 @@ const {
 
 const resolveTexture = (row: MaterialRow) => row.texture ? row.texture : `${texturePrefix}${row.id}${textureExt}`;
 
-// Unique root id to scope search per component instance
-const uid = `mat-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-
 const toChip = (s: SourceInfo) => {
   const iconByType: Record<string, string> = {
     reactor: '⚛️',
@@ -59,7 +56,7 @@ const toChip = (s: SourceInfo) => {
 };
 ---
 
-<section class="materials" id={uid} data-title={title}>
+<section class="materials" data-title={title}>
   <div class="header">
     <h2>{title}</h2>
     <div class="controls">
@@ -121,26 +118,38 @@ const toChip = (s: SourceInfo) => {
   </div>
 </section>
 
-<script>
-  (() => {
-    const ROOT_ID = "{uid}";
-    const root = document.getElementById(ROOT_ID);
-    if (!root) return;
-    const input = root.querySelector('.mat-search');
-    const body = root.querySelector('.tbody');
-    const rows = () => Array.from(body?.querySelectorAll('.tr') || []);
+<script is:inline>
+  (function(){
+    function wire(root){
+      if (!root || root.dataset.searchReady === '1') return;
+      const input = root.querySelector('.mat-search');
+      const body  = root.querySelector('.tbody');
+      if (!input || !body) { root.dataset.searchReady = '1'; return; }
+      const rows  = Array.from(body.querySelectorAll('.tr'));
 
-    function applyFilter() {
-      const q = (input?.value || '').trim().toLowerCase();
-      for (const r of rows()) {
-        const id = (r.getAttribute('data-id') || '').toLowerCase();
-        const text = (r.textContent || '').toLowerCase();
-        const match = q === '' || id.includes(q) || text.includes(q);
-        r.style.display = match ? '' : 'none';
+      function apply(){
+        const q = (input.value || '').trim().toLowerCase();
+        for (const r of rows) {
+          const id = (r.getAttribute('data-id') || '').toLowerCase();
+          const text = (r.textContent || '').toLowerCase();
+          const match = !q || id.includes(q) || text.includes(q);
+          r.style.display = match ? '' : 'none';
+        }
       }
+      input.addEventListener('input', apply);
+      root.dataset.searchReady = '1';
+      apply();
     }
 
-    input?.addEventListener('input', applyFilter);
+    function init(){
+      document.querySelectorAll('.materials').forEach(wire);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once:true });
+    } else {
+      init();
+    }
   })();
 </script>
 
@@ -245,6 +254,16 @@ const toChip = (s: SourceInfo) => {
     background: rgba(34, 197, 94, 0.16); color: #a7f3d0;
     border: 1px solid rgba(16, 185, 129, 0.25);
     padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.78rem;
+  }
+
+  /* === Orbs sizing normalization === */
+  .materials[data-title="Сферы"] .thumb { width: 84px; height: 84px; }
+  .materials[data-title="Сферы"] .thumb img { max-width: 90%; max-height: 90%; }
+
+  /* Shrink ONLY the shield variants to match speed orb visual size */
+  .materials[data-title="Сферы"] .thumb img[src*="orb_special_addshield"] {
+    max-width: 82% !important;
+    max-height: 82% !important;
   }
 
   @media (max-width: 980px) {
