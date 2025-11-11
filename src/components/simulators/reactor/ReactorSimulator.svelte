@@ -918,4 +918,155 @@
     text-transform: uppercase;
     color: #c4b5fd;
   }
+  
+  /* Mobile styles */
+  @media (max-width: 1023px) {
+    .reactor-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .reactor-stage {
+      padding: 1.5rem 1rem;
+      border-radius: 20px;
+    }
+    
+    .stage-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .stage-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .stage-header p {
+      font-size: 0.875rem;
+    }
+    
+    .header-progress {
+      width: 100%;
+      text-align: left;
+    }
+    
+    .slot-track {
+      --slot-gap: 0.75rem;
+      margin: 1.5rem 0 1.5rem;
+      overflow-x: auto;
+      overflow-y: visible;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .slot-card {
+      flex: 0 0 140px;
+      max-width: 140px;
+      border-radius: 14px;
+    }
+    
+    .slot-inner {
+      padding: 0.75rem 0.5rem;
+    }
+    
+    .slot-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    
+    .slot-stars {
+      height: 24px;
+    }
+    
+    .slot-odds {
+      font-size: 0.75rem;
+    }
+    
+    .slot-art {
+      height: 90px;
+    }
+    
+    .slot-name {
+      font-size: 0.8rem;
+    }
+    
+    .slot-footer {
+      margin-top: 0.4rem;
+    }
+    
+    .slot-status {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.4rem;
+    }
+    
+    .completion-label {
+      font-size: 0.7rem;
+    }
+    
+    .stage-controls {
+      margin-top: 1.5rem;
+    }
+    
+    .cost-line {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .cost-pill {
+      padding: 0.75rem 1rem;
+    }
+    
+    .pill-label {
+      font-size: 0.75rem;
+    }
+    
+    .spin-buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .spin {
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .info-panel {
+      order: -1;
+    }
+    
+    .info-card {
+      padding: 1.25rem;
+    }
+    
+    .result-body {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .result-art {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .stage-header h1 {
+      font-size: 1.25rem;
+    }
+    
+    .slot-card {
+      flex: 0 0 120px;
+      max-width: 120px;
+    }
+    
+    .slot-art {
+      height: 80px;
+    }
+    
+    .slot-name {
+      font-size: 0.75rem;
+    }
+  }
 </style>

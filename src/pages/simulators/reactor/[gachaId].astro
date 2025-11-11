@@ -54,4 +54,11 @@ const { gacha, baseTextures, completionTexture } = Astro.props as Props;
   .back-link:hover {
     text-decoration: underline;
   }
+  
+  @media (max-width: 767px) {
+    .back-link {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+  }
 </style>

@@ -1218,5 +1218,170 @@
     color: rgba(148, 163, 184, 0.7);
   }
 
-  /* Responsive overrides removed to keep desktop layout across devices */
+  /* Mobile responsive styles */
+  @media (max-width: 1023px) {
+    .craft-hero__card {
+      padding: 2rem 1.5rem;
+      border-radius: 24px;
+    }
+    
+    .craft-hero__card h1 {
+      font-size: 1.75rem;
+    }
+    
+    .craft-hero__card p {
+      font-size: 0.9rem;
+    }
+    
+    .hero-stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .incentive-card {
+      padding: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    
+    .incentive-card__controls {
+      grid-column: 1;
+    }
+    
+    .incentive-card__stats {
+      grid-template-columns: 1fr;
+    }
+    
+    .facility-tabs {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    
+    .facility-tabs button {
+      padding: 1rem;
+    }
+    
+    .facility-tabs__tagline {
+      font-size: 0.8rem;
+    }
+    
+    .facility-panel {
+      padding: 1.5rem 1rem;
+      border-radius: 20px;
+    }
+    
+    .facility-panel__header h2 {
+      font-size: 1.5rem;
+    }
+    
+    .facility-panel__header p {
+      font-size: 0.875rem;
+    }
+    
+    .facility-panel__featured {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.5rem;
+    }
+    
+    .facility-panel__featured ul {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.75rem;
+    }
+    
+    .facility-panel__featured li {
+      flex: 0 0 auto;
+      min-width: 100px;
+    }
+    
+    .recipe-selector {
+      padding: 1rem;
+    }
+    
+    .recipe-selector label {
+      font-size: 0.85rem;
+    }
+    
+    .recipe-selector select {
+      font-size: 0.9rem;
+    }
+    
+    .recipe-details {
+      padding: 1.25rem;
+    }
+    
+    .recipe-details__header h3 {
+      font-size: 1.25rem;
+    }
+    
+    .recipe-details__meta {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    
+    .recipe-details__rewards ul {
+      grid-template-columns: 1fr;
+    }
+    
+    .craft-controls {
+      padding: 1.25rem;
+    }
+    
+    .craft-controls__input {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .craft-controls__input input {
+      width: 100%;
+    }
+    
+    .craft-controls__button {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .results-grid li {
+      grid-template-columns: 48px 1fr;
+      gap: 0.75rem;
+    }
+    
+    .results-grid li .item-odds {
+      grid-column: 2;
+      justify-self: start;
+      margin-top: 0.5rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .craft-hero__card {
+      padding: 1.5rem 1rem;
+      border-radius: 20px;
+    }
+    
+    .craft-hero__card h1 {
+      font-size: 1.5rem;
+    }
+    
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.9rem;
+    }
+    
+    .facility-panel__header h2 {
+      font-size: 1.25rem;
+    }
+    
+    .recipe-details__header h3 {
+      font-size: 1.125rem;
+    }
+    
+    .results-grid li {
+      padding: 0.625rem 0.75rem;
+    }
+  }
 </style>
