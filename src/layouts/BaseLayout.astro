@@ -24,40 +24,236 @@ const { title, fullWidth = false } = Astro.props;
         background-color: #0d1117;
         color: #c9d1d9;
       }
+      
+      /* Header styles */
       header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem 2rem;
+        padding: 0.75rem 1rem;
         background-color: #161b22;
         border-bottom: 1px solid #30363d;
+        position: relative;
       }
-      header a {
+      
+      header .logo a {
         color: #58a6ff;
         text-decoration: none;
-        margin-right: 1rem;
+        font-size: 1.25rem;
       }
+      
+      /* Hamburger menu button */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+      }
+      
+      .menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 3px;
+        background-color: #c9d1d9;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+      
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+      
+      /* Desktop navigation */
+      header nav {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      
+      header nav a {
+        color: #58a6ff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        transition: color 0.2s;
+      }
+      
       header nav a:hover {
         text-decoration: underline;
+        color: #79c0ff;
       }
+      
+      /* Mobile navigation */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: #161b22;
+        border-left: 1px solid #30363d;
+        padding: 1rem;
+        z-index: 1000;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+      }
+      
+      .mobile-nav.active {
+        right: 0;
+      }
+      
+      .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #30363d;
+      }
+      
+      .mobile-nav-header h2 {
+        color: #c9d1d9;
+        font-size: 1.25rem;
+        margin: 0;
+      }
+      
+      .close-btn {
+        background: none;
+        border: none;
+        color: #c9d1d9;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .mobile-nav a {
+        display: block;
+        color: #58a6ff;
+        text-decoration: none;
+        padding: 0.875rem 0;
+        font-size: 1rem;
+        border-bottom: 1px solid #21262d;
+        transition: color 0.2s;
+      }
+      
+      .mobile-nav a:hover {
+        color: #79c0ff;
+      }
+      
+      /* Overlay */
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .overlay.active {
+        opacity: 1;
+      }
+      
+      /* Main content */
       main {
-        padding: 2rem;
+        padding: 1rem;
         max-width: 1024px;
         margin: 0 auto;
       }
 
       main.wide {
         max-width: none;
-        width: min(1600px, calc(100vw - 4rem));
+        width: min(1600px, calc(100vw - 2rem));
       }
+      
+      /* Footer */
       footer {
         margin-top: 3rem;
-        padding: 1rem 2rem;
+        padding: 1rem;
         background-color: #161b22;
         border-top: 1px solid #30363d;
         text-align: center;
         color: #7d8590;
-        font-size: 0.875rem;
+        font-size: 0.8rem;
+      }
+      
+      /* Mobile styles */
+      @media (max-width: 767px) {
+        .menu-toggle {
+          display: flex;
+        }
+        
+        header nav {
+          display: none;
+        }
+        
+        .mobile-nav {
+          display: block;
+        }
+        
+        .overlay {
+          display: block;
+        }
+        
+        main {
+          padding: 1rem 0.75rem;
+        }
+        
+        main.wide {
+          width: calc(100vw - 1.5rem);
+        }
+        
+        footer {
+          padding: 1rem 0.75rem;
+          font-size: 0.75rem;
+        }
+      }
+      
+      /* Tablet styles */
+      @media (min-width: 768px) and (max-width: 1023px) {
+        header {
+          padding: 1rem 1.5rem;
+        }
+        
+        header nav a {
+          font-size: 0.85rem;
+        }
+        
+        main {
+          padding: 1.5rem;
+        }
+      }
+      
+      /* Desktop styles */
+      @media (min-width: 1024px) {
+        header {
+          padding: 1rem 2rem;
+        }
+        
+        main {
+          padding: 2rem;
+        }
       }
     </style>
   </head>
@@ -67,18 +263,89 @@ const { title, fullWidth = false } = Astro.props;
         <a href="/">MGG Hub</a>
       </div>
       <nav>
+<<<<<<< HEAD
     <a href="/mutants">Мутанты</a>
     <a href="/simulators/stats">Калькулятор</a>
     <a href="/materials">Материалы</a>
     <a href="/simulators">Симуляторы</a>
     <a href="/simulators/breeding">Скрещивания</a> <!-- ← добавить -->
     </nav>
+=======
+        <a href="/mutants">Мутанты</a>
+        <a href="/skins">Скины</a>
+        <a href="/simulators/stats">Калькулятор</a>
+        <a href="/materials">Материалы</a>
+        <a href="/simulators">Симуляторы</a>
+        <a href="/simulators/breeding">Скрещивания</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+>>>>>>> 127d851b (feat: добавлена мобильная адаптация сайта)
     </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="overlay" id="overlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-header">
+        <h2>Меню</h2>
+        <button class="close-btn" id="closeBtn" aria-label="Закрыть меню">&times;</button>
+      </div>
+      <a href="/">Главная</a>
+      <a href="/mutants">Мутанты</a>
+      <a href="/skins">Скины</a>
+      <a href="/simulators/stats">Калькулятор</a>
+      <a href="/materials">Материалы</a>
+      <a href="/simulators">Симуляторы</a>
+      <a href="/simulators/breeding">Скрещивания</a>
+    </nav>
+    
     <main class={fullWidth ? 'wide' : ''}>
       <slot />
     </main>
     <footer>
       <p>&copy; {new Date().getFullYear()} MGG Hub — база знаний по игре и симуляторы с реальными шансами.</p>
     </footer>
+    
+    <script>
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+      const closeBtn = document.getElementById('closeBtn');
+      
+      function openMenu() {
+        menuToggle?.classList.add('active');
+        mobileNav?.classList.add('active');
+        overlay?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeMenu() {
+        menuToggle?.classList.remove('active');
+        mobileNav?.classList.remove('active');
+        overlay?.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      menuToggle?.addEventListener('click', () => {
+        if (mobileNav?.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+      
+      closeBtn?.addEventListener('click', closeMenu);
+      overlay?.addEventListener('click', closeMenu);
+      
+      // Close menu when clicking on a link
+      const mobileNavLinks = mobileNav?.querySelectorAll('a');
+      mobileNavLinks?.forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    </script>
   </body>
 </html>

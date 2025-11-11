@@ -4,9 +4,12 @@ import svelte from '@sveltejs/vite-plugin-svelte'
 
 export default defineConfig({
   plugins: [
-    svelte()
+    svelte(),
     rawPlugin({
       match: /\.txt$/, // файлы, которые будут импортироваться как строки
     }),
   ],
+  server: {
+    allowedHosts: ['4321-ia309369isrgz2n7iwbsj-18e8148a.manus.computer'],
+  },
 });

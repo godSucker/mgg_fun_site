@@ -15,14 +15,45 @@ const { cards, heading } = Astro.props;
 </section>
 
 <style>
+  .card-grid-section {
+    margin-bottom: 2rem;
+  }
+  
   .grid-heading {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
     font-weight: 600;
+    padding: 0 0.25rem;
   }
+  
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+  
+  /* Tablet styles */
+  @media (min-width: 640px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .grid-heading {
+      font-size: 1.375rem;
+    }
+  }
+  
+  /* Desktop styles */
+  @media (min-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    
+    .grid-heading {
+      font-size: 1.5rem;
+      padding: 0;
+    }
   }
 </style>

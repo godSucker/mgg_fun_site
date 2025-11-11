@@ -23,7 +23,7 @@ export default defineConfig({
     },
     server: {
       host: true,
-      allowedHosts: ['.ru.tuna.am', '.nl.tuna.am'],
+      allowedHosts: ['.ru.tuna.am', '.nl.tuna.am', '.manus.computer'],
       watch: {
         usePolling: true,
         interval: 1000,
