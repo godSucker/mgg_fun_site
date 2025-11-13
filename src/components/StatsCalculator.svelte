@@ -1257,108 +1257,87 @@
     .list{ max-height:360px; }
   }
 
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   .stats-page {
     display: grid;
-    grid-template-columns: 1fr 280px;  /* ← Карточка слева, поиск справа */
+    grid-template-columns: 1fr 280px;
     gap: 12px;
-    padding: 8px;
+    padding: 12px;  /* ← Добавил padding вверху-внизу */
+    min-height: 100vh;  /* ← Чтобы не обрезалось */
   }
 
   .panel {
-    order: 1;  /* ← Карточка мутанта слева */
+    order: 1;
     padding: 12px;
+    border-radius: 12px;  /* ← Уменьшил радиус */
   }
 
   .catalog {
-    order: 2;  /* ← Поиск справа */
+    order: 2;
     padding: 10px;
   }
 
-  /* КОМПАКТНЫЕ СТАТЫ - 2 КОЛОНКИ */
+  /* КОМПАКТНЫЕ СТАТЫ - ПРАВИЛЬНАЯ СЕТКА */
   .stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6px;
+    width: 100%;
   }
 
   .row {
     padding: 8px 10px;
     font-size: 11px;
-    min-height: auto;
+    min-height: 48px;  /* ← Минимальная высота */
+    word-break: break-word;  /* ← Текст не выходит */
+    overflow: hidden;  /* ← Обрезаем выходящий текст */
   }
 
+  .row .label {
+    font-size: 10px;
+    white-space: nowrap;  /* ← Лейбл не переносится */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row b {
+    font-size: 13px;
+    word-break: break-all;  /* ← Числа разбиваются */
+  }
+
+  /* Атаки на полную ширину */
   .row.attack-row {
     grid-column: 1 / -1;
+    min-height: auto;
+    padding: 10px;
   }
 
-  .stats .row:last-child {
+  /* Скорость на полную ширину */
+  .stats > .row:last-child {
     grid-column: 1 / -1;
   }
 
-  /* Уменьшить образ мутанта */
+  /* Уменьшить образ */
   .mut-figure .texture {
-    width: 160px;
-    height: 160px;
-    transform: translateY(24px);
+    width: 150px;
+    height: 150px;
+    transform: translateY(20px);
   }
 
   .mut-figure::after {
-    width: 160px;
-    bottom: -20px;
-    height: 50px;
+    width: 150px;
+    bottom: -18px;
+    height: 45px;
   }
 
-  /* Меньше отступы */
+  .title {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+  }
+
   .hero-section {
     gap: 8px;
-  }
-
-  .hero-controls {
-    gap: 6px;
-  }
-
-  .slots {
-    gap: 6px;
-  }
-
-  .slot-btn {
-    width: 56px;
-    height: 56px;
-  }
-
-  /* Список мутантов компактнее */
-  .list {
-    max-height: 50vh;
-  }
-
-  .mut-row {
-    padding: 6px;
-    gap: 6px;
-  }
-
-  .mut-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .search {
-    padding: 6px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-page {
-    grid-template-columns: 1fr 250px;
-    gap: 8px;
-    padding: 4px;
-  }
-
-  .mut-figure .texture {
-    width: 140px;
-    height: 140px;
-    transform: translateY(20px);
   }
 
   .slot-btn {
@@ -1366,8 +1345,67 @@
     height: 52px;
   }
 
+  /* Список компактнее */
+  .list {
+    max-height: 45vh;
+    gap: 4px;
+  }
+
+  .mut-row {
+    padding: 6px;
+  }
+
+  .search {
+    padding: 6px 8px;
+  }
+
+  /* Контролы поменьше */
+  .control {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  .lvl {
+    width: 45px;
+    padding: 4px 5px;
+    font-size: 10px;
+  }
+
+  .star {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-page {
+    grid-template-columns: 1fr 240px;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .row {
+    min-height: 44px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .row b {
+    font-size: 12px;
+  }
+
+  .mut-figure .texture {
+    width: 130px;
+    height: 130px;
+    transform: translateY(18px);
+  }
+
   .title {
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  .list {
+    max-height: 40vh;
   }
 }
 </style>
