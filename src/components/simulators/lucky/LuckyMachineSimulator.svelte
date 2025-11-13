@@ -521,7 +521,6 @@
       </section>
     {/if}
   </div>
-
   <aside class="odds-panel">
   <h3>Теоретические шансы</h3>
   <p class="odds-caption">Каждый процент рассчитан из реальных весов наград.</p>
@@ -539,7 +538,7 @@
     </ul>
   </div>
 </aside>
-
+</div>
 <style>
   .machine-shell {
     display: grid;
