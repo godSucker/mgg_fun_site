@@ -523,8 +523,9 @@
   </div>
 
   <aside class="odds-panel">
-    <h3>Теоретические шансы</h3>
-    <p class="odds-caption">Каждый процент рассчитан из реальных весов наград.</p>
+  <h3>Теоретические шансы</h3>
+  <p class="odds-caption">Каждый процент рассчитан из реальных весов наград.</p>
+  <div class="odds-scroll">
     <ul class="odds-list">
       {#each rewardChances as reward}
         <li>
@@ -536,8 +537,8 @@
         </li>
       {/each}
     </ul>
-  </aside>
-</div>
+  </div>
+</aside>
 
 <style>
   .machine-shell {
@@ -1232,5 +1233,31 @@
     .odds-panel {
       padding: 1.5rem;
     }
+  }
+
+    .odds-scroll {
+    max-height: 480px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+  }
+
+    .odds-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+    .odds-scroll::-webkit-scrollbar-track {
+    background: rgba(17, 24, 39, 0.4);
+    border-radius: 4px;
+  }
+
+    .odds-scroll::-webkit-scrollbar-thumb {
+    background: rgba(129, 140, 248, 0.3);
+    border-radius: 4px;
+  }
+
+    .odds-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(129, 140, 248, 0.5);
   }
 </style>
