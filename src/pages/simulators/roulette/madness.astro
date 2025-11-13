@@ -8,7 +8,7 @@ const maxLevel = 200;
 const researchChances = getResearchChanceBreakdown(maxLevel, machine);
 const jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
 ---
-<BaseLayout title="Mutants Madness — симулятор рулетки" fullWidth={true}>
+<BaseLayout title="Mutants Madness — симулятор рулетки" fullWidth={true} viewport="width=1024">
   <section class="hero">
     <div class="hero-card">
       <span class="badge">Sim • Mutants Madness</span>
