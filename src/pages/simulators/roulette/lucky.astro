@@ -8,7 +8,7 @@ const freeSpinReward = luckyMachine.rewards.find((reward) => reward.isFreeTry) ?
 const jackpotChance = jackpotReward ? getRewardWithChance(jackpotReward, luckyMachine).chance : 0;
 const freeSpinChance = freeSpinReward ? getRewardWithChance(freeSpinReward, luckyMachine).chance : 0;
 ---
-<BaseLayout title="Lucky Slots — симулятор рулетки" fullWidth={true} viewport="width=1024">
+<BaseLayout title="Lucky Slots — симулятор рулетки" fullWidth={true} viewport="width=1440, initial-scale=0.4, minimum-scale=0.4, maximum-scale=1.0">
   <section class="hero">
     <div class="hero-card">
       <span class="badge">Sim • Lucky Slots</span>

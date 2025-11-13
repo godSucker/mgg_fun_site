@@ -27,7 +27,7 @@ export function getStaticPaths() {
 
 const { gacha, baseTextures, completionTexture } = Astro.props as Props;
 ---
-<BaseLayout title={`Реактор — ${gacha.name}`} fullWidth viewport="width=1024">
+<BaseLayout title={`Реактор — ${gacha.name}`} fullWidth viewport="width=1440, initial-scale=0.4, minimum-scale=0.4, maximum-scale=1.0">
   <a class="back-link" href="/simulators/reactor">← Назад к выбору генератора</a>
   <ReactorSimulator
     client:load

@@ -2,7 +2,7 @@
 import "@/styles/global.css";
 // Simple base layout for the site.
 // It provides a consistent header, footer and sets a dark theme background.
-const { title, fullWidth = false } = Astro.props;
+const { title, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ const { title, fullWidth = false } = Astro.props;
   <link rel="preload" as="font" type="font/woff2" href="/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/tt-supermolot-neue/tt-supermolot-neue.css">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content={viewport} />
     <title>{title ?? 'MGG Hub'}</title>
     <style>
       body {
