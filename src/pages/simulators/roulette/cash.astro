@@ -6,7 +6,7 @@ import { cashMachine, getRewardChance } from '../../../lib/cash-machine';
 const jackpotReward = cashMachine.rewards.find((reward) => reward.isSuperJackpot) ?? cashMachine.rewards[0];
 const jackpotChance = jackpotReward ? getRewardChance(jackpotReward, cashMachine) : 0;
 ---
-<BaseLayout title="Cash Frenzy — симулятор рулетки" fullWidth={true} viewport="width=1280, initial-scale=0.45, minimum-scale=0.45, maximum-scale=1.0"">
+<BaseLayout title="Cash Frenzy — симулятор рулетки" fullWidth={true} viewport="width=1280, initial-scale=0.45, minimum-scale=0.45, maximum-scale=1.0">
   <section class="hero">
     <div class="hero-card">
       <span class="badge">Sim • Cash Machine</span>
