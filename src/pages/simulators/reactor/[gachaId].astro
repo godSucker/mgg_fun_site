@@ -27,7 +27,7 @@ export function getStaticPaths() {
 
 const { gacha, baseTextures, completionTexture } = Astro.props as Props;
 ---
-<BaseLayout title={`Реактор — ${gacha.name}`} fullWidth viewport="width=1280, initial-scale=0.45, minimum-scale=0.45, maximum-scale=1.0"">
+<BaseLayout title={`Реактор — ${gacha.name}`} fullWidth viewport="width=1280, initial-scale=0.45, minimum-scale=0.45, maximum-scale=1.0">
   <a class="back-link" href="/simulators/reactor">← Назад к выбору генератора</a>
   <ReactorSimulator
     client:load
@@ -54,11 +54,5 @@ const { gacha, baseTextures, completionTexture } = Astro.props as Props;
   .back-link:hover {
     text-decoration: underline;
   }
-  
-  @media (max-width: 767px) {
-    .back-link {
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-    }
-  }
+
 </style>
