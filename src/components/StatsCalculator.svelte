@@ -1202,9 +1202,9 @@
   .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:12px; }
   .slots{ display:flex; gap:16px; justify-content:center; margin:4px 0 0; position:relative; flex-wrap:wrap; }
   .slot{ position:relative; }
-  .slot-btn{ position:relative; width:84px; height:84px; border-radius:12px; background:transparent; border:none; padding:0; }
+  .slot-btn{ position:relative; width:76px; height:76px; border-radius:12px; background:transparent; border:none; padding:0; }
   .slot-bg{ width:100%; height:100%; object-fit:contain; }
-  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:7px; object-fit:contain; }
+  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:0px; object-fit:contain; }
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; }
   .dropdown{ position:absolute; top:104px; left:0; width:250px; max-height:260px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
@@ -1291,7 +1291,7 @@
   @media (max-width: 480px) {
     .mut-figure .texture{ width:180px; height:180px; transform:translateY(24px); }
     .mut-figure::after{ width:200px; }
-    .slot-btn{ width:72px; height:72px; }
+    .slot-btn{ width:68px; height:68px; }
     .dropdown{ top:96px; }
   }
 </style>

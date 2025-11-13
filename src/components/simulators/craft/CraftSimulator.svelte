@@ -280,11 +280,7 @@
   </div>
 </section>
 
-<div
-  class="facility-tabs"
-  role="tablist"
-  aria-label="Станции крафта"
->
+<div class="facility-tabs" role="tablist" aria-label="Станции крафта">
   {#each facilities as facility (facility.id)}
     <button
       type="button"
@@ -313,10 +309,7 @@
     class="facility"
     style={`--accent: ${activeFacility.accent}; --glow: ${activeFacility.glow};`}
   >
-    <div
-      class="facility__background"
-      style={`background-image: ${activeFacility.gradient};`}
-    ></div>
+    <div class="facility__background" style={`background-image: ${activeFacility.gradient};`}></div>
     <div class="facility__inner">
       <aside class="facility__sidebar">
         <div class="facility__header">
@@ -366,9 +359,11 @@
         <div class="recipe-selector" role="tablist" aria-label={`Рецепты ${activeFacility.name}`}>
           {#each activeFacility.recipes as recipe (recipe.id)}
             {@const displayReward = recipe.rewards[0]}
-            {@const rewardLabel = displayReward
-              ? translateItemId(displayReward.id)
-              : 'Рецепт'}
+            {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+            {@const totalIngredients = recipe.ingredients.reduce((sum, ing) => sum + ing.amount, 0)}
+            {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
+              ? `${baseLabel} ×${totalIngredients}`
+              : baseLabel}
             {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
             <button
               type="button"
@@ -419,6 +414,7 @@
             </header>
 
             <div class="recipe-card__body">
+              <!-- Ингредиенты -->
               <div class="recipe-section">
                 <h4>Ингредиенты</h4>
                 <ul class="ingredient-list">
@@ -442,37 +438,41 @@
                 </ul>
               </div>
 
+              <!-- Награды -->
               <div class="recipe-section">
                 <h4>Награды</h4>
-                <ul class="reward-list">
-                  {#each rewardDisplay as reward, index (index)}
-                    {@const label = translateItemId(reward.id)}
-                    {@const icon = getItemTexture(reward.id)}
-                    <li>
-                      <div class="item-icon">
-                        {#if icon}
-                          <img src={icon} alt={label} />
-                        {:else}
-                          <span>{label.slice(0, 1)}</span>
-                        {/if}
-                      </div>
-                      <div class="item-info">
-                        <span class="item-title">{label}</span>
-                        <span class="item-sub">
-                          {reward.amount > 1 ? `×${reward.amount}` : 'ед.'}
-                        </span>
-                      </div>
-                      <div class="item-odds">
-                        <span>{formatPercent(reward.chance)}</span>
-                        <span class="item-odds__raw">{reward.odds}/1000</span>
-                      </div>
-                    </li>
-                  {/each}
-                </ul>
+                <div class="rewards-scroll">
+                  <ul class="reward-list">
+                    {#each rewardDisplay as reward, index (index)}
+                      {@const label = translateItemId(reward.id)}
+                      {@const icon = getItemTexture(reward.id)}
+                      <li>
+                        <div class="item-icon">
+                          {#if icon}
+                            <img src={icon} alt={label} />
+                          {:else}
+                            <span>{label.slice(0, 1)}</span>
+                          {/if}
+                        </div>
+                        <div class="item-info">
+                          <span class="item-title">{label}</span>
+                          <span class="item-sub">
+                            {reward.amount > 1 ? `×${reward.amount}` : 'ед.'}
+                          </span>
+                        </div>
+                        <div class="item-odds">
+                          <span>{formatPercent(reward.chance)}</span>
+                          <span class="item-odds__raw">{reward.odds}/1000</span>
+                        </div>
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <footer class="recipe-card__footer">
+            <!-- Блок симуляции -->
+            <div class="simulation-controls">
               <div class="craft-input">
                 <label for={`craft-count-${activeFacility.id}`}>Количество крафтов</label>
                 <input
@@ -492,8 +492,9 @@
               >
                 🎲 Симулировать
               </button>
-            </footer>
+            </div>
 
+            <!-- Результаты симуляции -->
             {#if state.result}
               {@const rewardDetails = state.result.rewardDetails}
               {@const incentiveDetails = state.result.incentiveDetails}
@@ -1083,14 +1084,6 @@
     color: rgba(148, 163, 184, 0.65);
   }
 
-  .recipe-card__footer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .craft-input {
     display: grid;
     gap: 0.45rem;
@@ -1218,6 +1211,42 @@
     color: rgba(148, 163, 184, 0.7);
   }
 
+  .rewards-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  .rewards-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .rewards-scroll::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 4px;
+  }
+
+  .rewards-scroll::-webkit-scrollbar-thumb {
+    background: rgba(192, 132, 252, 0.3);
+    border-radius: 4px;
+  }
+
+  .rewards-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(192, 132, 252, 0.5);
+  }
+
+  .simulation-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+  }
+
   /* Mobile responsive styles */
   @media (max-width: 1023px) {
     .craft-hero__card {
@@ -1252,7 +1281,6 @@
     }
 
     .facility-tabs {
-      grid-template-columns: 1fr;
       gap: 0.5rem;
     }
 
@@ -1264,81 +1292,8 @@
       font-size: 0.8rem;
     }
 
-    .facility-panel {
-      padding: 1.5rem 1rem;
-      border-radius: 20px;
-    }
-
-    .facility-panel__header h2 {
-      font-size: 1.5rem;
-    }
-
-    .facility-panel__header p {
-      font-size: 0.875rem;
-    }
-
-    .facility-panel__featured {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 0.5rem;
-    }
-
-    .facility-panel__featured ul {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0.75rem;
-    }
-
-    .facility-panel__featured li {
-      flex: 0 0 auto;
-      min-width: 100px;
-    }
-
     .recipe-selector {
-      padding: 1rem;
-    }
-
-    .recipe-selector label {
-      font-size: 0.85rem;
-    }
-
-    .recipe-selector select {
-      font-size: 0.9rem;
-    }
-
-    .recipe-details {
-      padding: 1.25rem;
-    }
-
-    .recipe-details__header h3 {
-      font-size: 1.25rem;
-    }
-
-    .recipe-details__meta {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .recipe-details__rewards ul {
-      grid-template-columns: 1fr;
-    }
-
-    .craft-controls {
-      padding: 1.25rem;
-    }
-
-    .craft-controls__input {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .craft-controls__input input {
-      width: 100%;
-    }
-
-    .craft-controls__button {
-      padding: 1rem;
-      font-size: 1rem;
+      gap: 0.6rem;
     }
 
     .results-grid {
@@ -1356,7 +1311,7 @@
       margin-top: 0.5rem;
     }
   }
-  
+
   @media (max-width: 640px) {
     .craft-hero__card {
       padding: 1.5rem 1rem;
@@ -1370,14 +1325,6 @@
     .badge {
       font-size: 0.75rem;
       padding: 0.35rem 0.9rem;
-    }
-
-    .facility-panel__header h2 {
-      font-size: 1.25rem;
-    }
-
-    .recipe-details__header h3 {
-      font-size: 1.125rem;
     }
 
     .results-grid li {
