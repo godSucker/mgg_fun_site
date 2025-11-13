@@ -1257,117 +1257,41 @@
     .list{ max-height:360px; }
   }
 
- @media (max-width: 768px) {
-  .stats-page {
-    display: grid;
-    grid-template-columns: 1fr 280px;  /* ← Карточка слева, поиск справа */
-    gap: 12px;
-    padding: 8px;
+  @media (max-width: 768px) {
+    .catalog{ padding:12px; }
+    .panel{ padding:18px 16px; }
+    .hero-section{ align-items:stretch; }
+    .mut-figure{ padding-bottom:12px; }
+    .mut-figure::after{ bottom:-28px; width:220px; }
+    .mut-figure .texture{ width:220px; height:220px; transform:translateY(32px); }
+    .hero-controls{ max-width:100%; }
+    .slots{ justify-content:center; }
+    .controls{ flex-direction:column; align-items:stretch; }
+    .control{ justify-content:space-between; }
+    .stats{ max-width:100%; }
+    .row{ flex-direction:column; align-items:flex-start; gap:0.75rem; }
+    .row.attack-row{ flex-direction:column; }
+    .attack-side{ width:100%; }
+    .ability-divider{ display:none !important; }
+    .effect-side{ width:100%; }
   }
 
-  .panel {
-    order: 1;  /* ← Карточка мутанта слева */
-    padding: 12px;
+  @media (max-width: 640px) {
+    .filters-row{ justify-content:center; }
+    .sort-switch{ width:100%; justify-content:space-between; }
+    .sort-switch button{ flex:1; }
+    .list{ max-height:55vh; }
+    .dropdown{ left:50%; transform:translateX(-50%); max-width:min(260px,90vw); }
+    .hero-section{ gap:12px; }
+    .hero-controls{ padding:0 6px; }
+    .stars{ justify-content:center; }
+    .star{ width:26px; height:26px; }
   }
 
-  .catalog {
-    order: 2;  /* ← Поиск справа */
-    padding: 10px;
+  @media (max-width: 480px) {
+    .mut-figure .texture{ width:180px; height:180px; transform:translateY(24px); }
+    .mut-figure::after{ width:200px; }
+    .slot-btn{ width:68px; height:68px; }
+    .dropdown{ top:96px; }
   }
-
-  /* КОМПАКТНЫЕ СТАТЫ - 2 КОЛОНКИ */
-  .stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-  }
-
-  .row {
-    padding: 8px 10px;
-    font-size: 11px;
-    min-height: auto;
-  }
-
-  .row.attack-row {
-    grid-column: 1 / -1;
-  }
-
-  .stats .row:last-child {
-    grid-column: 1 / -1;
-  }
-
-  /* Уменьшить образ мутанта */
-  .mut-figure .texture {
-    width: 160px;
-    height: 160px;
-    transform: translateY(24px);
-  }
-
-  .mut-figure::after {
-    width: 160px;
-    bottom: -20px;
-    height: 50px;
-  }
-
-  /* Меньше отступы */
-  .hero-section {
-    gap: 8px;
-  }
-
-  .hero-controls {
-    gap: 6px;
-  }
-
-  .slots {
-    gap: 6px;
-  }
-
-  .slot-btn {
-    width: 56px;
-    height: 56px;
-  }
-
-  /* Список мутантов компактнее */
-  .list {
-    max-height: 50vh;
-  }
-
-  .mut-row {
-    padding: 6px;
-    gap: 6px;
-  }
-
-  .mut-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .search {
-    padding: 6px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-page {
-    grid-template-columns: 1fr 250px;
-    gap: 8px;
-    padding: 4px;
-  }
-
-  .mut-figure .texture {
-    width: 140px;
-    height: 140px;
-    transform: translateY(20px);
-  }
-
-  .slot-btn {
-    width: 52px;
-    height: 52px;
-  }
-
-  .title {
-    font-size: 16px;
-  }
-}
 </style>
