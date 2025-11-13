@@ -1262,14 +1262,12 @@
     display: grid;
     grid-template-columns: 1fr 280px;
     gap: 12px;
-    padding: 12px;  /* ← Добавил padding вверху-внизу */
-    min-height: 100vh;  /* ← Чтобы не обрезалось */
+    padding: 12px;
   }
 
   .panel {
     order: 1;
-    padding: 12px;
-    border-radius: 12px;  /* ← Уменьшил радиус */
+    padding: 14px;
   }
 
   .catalog {
@@ -1277,103 +1275,157 @@
     padding: 10px;
   }
 
-  /* КОМПАКТНЫЕ СТАТЫ - ПРАВИЛЬНАЯ СЕТКА */
+  /* СТАТЫ - ОСТАЮТСЯ КАК БЫЛИ, ПРОСТО КОМПАКТНЕЕ */
   .stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     width: 100%;
   }
 
   .row {
-    padding: 8px 10px;
-    font-size: 11px;
-    min-height: 48px;  /* ← Минимальная высота */
-    word-break: break-word;  /* ← Текст не выходит */
-    overflow: hidden;  /* ← Обрезаем выходящий текст */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1b212a;
+    border: 1px solid #2e3948;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: #dfe7f3;
+    font-size: 12px;
+    min-height: 44px;
   }
 
   .row .label {
-    font-size: 10px;
-    white-space: nowrap;  /* ← Лейбл не переносится */
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #aab6c8;
+    font-size: 11px;
+    flex: 0 0 auto;
   }
 
   .row b {
-    font-size: 13px;
-    word-break: break-all;  /* ← Числа разбиваются */
+    font-size: 14px;
+    color: #e9eef6;
   }
 
-  /* Атаки на полную ширину */
   .row.attack-row {
-    grid-column: 1 / -1;
-    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
     padding: 10px;
+    min-height: auto;
   }
 
-  /* Скорость на полную ширину */
-  .stats > .row:last-child {
-    grid-column: 1 / -1;
+  .attack-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  /* Уменьшить образ */
+  .attack-gene {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  .attack-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .attack-label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .attack-damage {
+    font-size: 14px;
+  }
+
+  .ability-divider {
+    display: none !important;
+  }
+
+  .effect-side {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .effect-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 19, 25, 0.35);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+  }
+
+  .ability-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .effect-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  .effect-percent {
+    font-size: 11px;
+    color: #90f36b;
+  }
+
+  .effect-value {
+    font-size: 12px;
+    color: #90f36b;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* Уменьшить изображение */
   .mut-figure .texture {
-    width: 150px;
-    height: 150px;
-    transform: translateY(20px);
+    width: 160px;
+    height: 160px;
+    transform: translateY(24px);
   }
 
   .mut-figure::after {
-    width: 150px;
-    bottom: -18px;
-    height: 45px;
+    width: 160px;
+    bottom: -22px;
+    height: 50px;
   }
 
   .title {
     font-size: 16px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .hero-section {
-    gap: 8px;
-  }
-
-  .slot-btn {
-    width: 52px;
-    height: 52px;
   }
 
   /* Список компактнее */
   .list {
-    max-height: 45vh;
+    max-height: 50vh;
     gap: 4px;
   }
 
   .mut-row {
     padding: 6px;
+    gap: 6px;
+  }
+
+  .mut-icon {
+    width: 32px;
+    height: 32px;
   }
 
   .search {
     padding: 6px 8px;
-  }
-
-  /* Контролы поменьше */
-  .control {
-    padding: 5px 8px;
-    font-size: 10px;
-  }
-
-  .lvl {
-    width: 45px;
-    padding: 4px 5px;
-    font-size: 10px;
-  }
-
-  .star {
-    width: 20px;
-    height: 20px;
+    font-size: 11px;
+    margin: 6px 0 8px;
   }
 }
 
@@ -1381,31 +1433,32 @@
   .stats-page {
     grid-template-columns: 1fr 240px;
     gap: 8px;
-    padding: 10px;
+    padding: 8px;
   }
 
   .row {
-    min-height: 44px;
-    padding: 6px 8px;
-    font-size: 10px;
+    padding: 8px 10px;
+    font-size: 11px;
+    min-height: 40px;
   }
 
   .row b {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .mut-figure .texture {
-    width: 130px;
-    height: 130px;
-    transform: translateY(18px);
+    width: 140px;
+    height: 140px;
+    transform: translateY(20px);
+  }
+
+  .slot-btn {
+    width: 50px;
+    height: 50px;
   }
 
   .title {
     font-size: 14px;
-  }
-
-  .list {
-    max-height: 40vh;
   }
 }
 </style>
