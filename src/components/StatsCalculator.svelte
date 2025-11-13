@@ -1258,207 +1258,275 @@
   }
 
 @media (max-width: 768px) {
-  .stats-page {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 12px;
-    padding: 12px;
+  :global(body) {
+    padding-bottom: 2rem;  /* ← Футер не обрезается внизу */
+    padding-top: 1rem;     /* ← Хедер не обрезается вверху */
   }
 
-  .panel {
-    order: 1;
-    padding: 14px;
+  section + section {
+    margin-top: 1.5rem;
   }
 
-  .catalog {
-    order: 2;
-    padding: 10px;
+  .craft-hero {
+    margin-bottom: 1.5rem;
   }
 
-  /* СТАТЫ - ОСТАЮТСЯ КАК БЫЛИ, ПРОСТО КОМПАКТНЕЕ */
-  .stats {
-    display: flex;
+  .craft-hero__card {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+
+  .craft-hero__card h1 {
+    font-size: 1.5rem;
+  }
+
+  .craft-hero__card p {
+    font-size: 0.85rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .incentive-card {
+    padding: 1.2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .incentive-card__controls {
+    grid-column: 1;
+  }
+
+  .incentive-card__stats {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .facility-tabs {
+    gap: 0.3rem;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .facility-tabs button {
+    padding: 0.75rem 1rem;
+    min-width: 160px;
+    font-size: 0.9rem;
+  }
+
+  .facility-tabs__name {
+    font-size: 0.9rem;
+  }
+
+  .facility-tabs__tagline {
+    font-size: 0.75rem;
+  }
+
+  .facility__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .facility__sidebar {
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .facility__content {
+    padding: 1.5rem;
+  }
+
+  .recipe-selector {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.6rem;
+  }
+
+  .recipe-card {
+    padding: 1.2rem;
+    gap: 1.2rem;
+  }
+
+  .recipe-card__header {
     flex-direction: column;
-    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .recipe-card__body {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .recipe-section h4 {
+    margin: 0 0 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .ingredient-list li,
+  .reward-list li {
+    padding: 0.6rem 0.8rem;
+    gap: 0.7rem;
+  }
+
+  .item-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .item-icon img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .item-title {
+    font-size: 0.9rem;
+  }
+
+  .item-sub {
+    font-size: 0.75rem;
+  }
+
+  .rewards-scroll {
+    max-height: 250px;
+  }
+
+  .simulation-controls {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .craft-input {
     width: 100%;
   }
 
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1b212a;
-    border: 1px solid #2e3948;
-    border-radius: 10px;
-    padding: 10px 12px;
-    color: #dfe7f3;
-    font-size: 12px;
-    min-height: 44px;
+  .craft-input input {
+    width: 100%;
   }
 
-  .row .label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #aab6c8;
-    font-size: 11px;
-    flex: 0 0 auto;
+  .simulate-btn {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
   }
 
-  .row b {
-    font-size: 14px;
-    color: #e9eef6;
+  .results-card {
+    padding: 1.2rem;
+    gap: 1rem;
   }
 
-  .row.attack-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding: 10px;
-    min-height: auto;
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
-  .attack-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .results-grid li {
+    padding: 0.6rem 0.8rem;
+  }
+
+  /* AOE ИКОНКА - ГЛАВНОЕ ИЗМЕНЕНИЕ */
+  .attack-aoe {
+    width: 36px !important;
+    height: 36px !important;
+    top: -4px !important;
+    right: -12px !important;
   }
 
   .attack-gene {
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
   }
 
-  .attack-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .attack-label {
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  .attack-damage {
-    font-size: 14px;
-  }
-
-  .ability-divider {
-    display: none !important;
-  }
-
-  .effect-side {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-  }
-
-  .effect-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(15, 19, 25, 0.35);
-    padding: 8px 10px;
-    border-radius: 8px;
-    font-size: 11px;
-  }
-
-  .ability-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-  }
-
-  .effect-name {
-    flex: 1;
-    min-width: 0;
-    font-size: 11px;
-  }
-
-  .effect-percent {
-    font-size: 11px;
-    color: #90f36b;
-  }
-
-  .effect-value {
-    font-size: 12px;
-    color: #90f36b;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
-  /* Уменьшить изображение */
-  .mut-figure .texture {
-    width: 160px;
-    height: 160px;
-    transform: translateY(24px);
-  }
-
-  .mut-figure::after {
-    width: 160px;
-    bottom: -22px;
-    height: 50px;
-  }
-
-  .title {
-    font-size: 16px;
-  }
-
-  /* Список компактнее */
-  .list {
-    max-height: 50vh;
-    gap: 4px;
-  }
-
-  .mut-row {
-    padding: 6px;
-    gap: 6px;
-  }
-
-  .mut-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .search {
-    padding: 6px 8px;
-    font-size: 11px;
-    margin: 6px 0 8px;
+  .gene-icon {
+    width: 65%;
+    height: 65%;
   }
 }
 
 @media (max-width: 480px) {
-  .stats-page {
-    grid-template-columns: 1fr 240px;
-    gap: 8px;
-    padding: 8px;
+  :global(body) {
+    padding-bottom: 1.5rem;
+    padding-top: 0.8rem;
   }
 
-  .row {
-    padding: 8px 10px;
-    font-size: 11px;
-    min-height: 40px;
+  .craft-hero__card {
+    padding: 1rem;
+    border-radius: 16px;
   }
 
-  .row b {
-    font-size: 13px;
+  .craft-hero__card h1 {
+    font-size: 1.3rem;
+    margin: 0.5rem 0 0.5rem;
   }
 
-  .mut-figure .texture {
-    width: 140px;
-    height: 140px;
-    transform: translateY(20px);
+  .craft-hero__card p {
+    font-size: 0.8rem;
   }
 
-  .slot-btn {
-    width: 50px;
-    height: 50px;
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
   }
 
-  .title {
-    font-size: 14px;
+  .facility-tabs button {
+    padding: 0.6rem 0.8rem;
+    min-width: 140px;
+    font-size: 0.8rem;
+  }
+
+  .recipe-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .recipe-section h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .ingredient-list li,
+  .reward-list li {
+    padding: 0.5rem 0.7rem;
+    grid-template-columns: 40px 1fr auto;
+  }
+
+  .item-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .item-icon img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .item-title {
+    font-size: 0.85rem;
+  }
+
+  .item-sub {
+    font-size: 0.7rem;
+  }
+
+  /* AOE НА МАЛЕНЬКИХ ЭКРАНАХ */
+  .attack-aoe {
+    width: 28px !important;
+    height: 28px !important;
+    top: -2px !important;
+    right: -8px !important;
+  }
+
+  .attack-gene {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gene-icon {
+    width: 60%;
+    height: 60%;
+  }
+
+  .results-grid li {
+    padding: 0.5rem 0.6rem;
+    gap: 0.6rem;
   }
 }
 </style>
