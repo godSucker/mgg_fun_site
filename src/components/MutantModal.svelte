@@ -591,9 +591,9 @@ $: displayBingo = (() => {
 {/if}
 
 <style>
-  .stat-icon { width: 24px; height: 24px; display:inline-block; }
-  .type-icon { width: 26px; height: 26px; display:inline-block; }
-  .ability-icon { width: 24px; height: 24px; display:inline-block; vertical-align: middle; }
+  .stat-icon { width: 1.5rem; height: 1.5rem; display:inline-block; }
+  .type-icon { width: 1.625rem; height: 1.625rem; display:inline-block; }
+  .ability-icon { width: 1.5rem; height: 1.5rem; display:inline-block; vertical-align: middle; }
   .row-icon { display: inline-flex; align-items: center; gap: .45rem; }
   .mut-dt { color: rgba(255,255,255,.6); }
   .mut-dd { color: rgba(255,255,255,.9); }
@@ -601,11 +601,11 @@ $: displayBingo = (() => {
 
   .gene-ico {
     position: relative;
-    width: 26px;
-    height: 26px;
+    width: 1.625rem;
+    height: 1.625rem;
     display: inline-block;
   }
-  /* AOE — по правому ребру, растянута по высоте гена, лёгкий hover-эффект через .group */
+
   .gene-aoe {
     position: absolute;
     right: -6px;
@@ -621,43 +621,30 @@ $: displayBingo = (() => {
   }
   .group:hover .gene-aoe { opacity: .96; }
 
- /* компактные иконки в модалке мутанта — ТОЛЬКО мобильный */
-@media (max-width: 640px) {
-  .stat-icon { width: 18px; height: 18px; }
-  .type-icon { width: 20px; height: 20px; }
-  .gene-ico { width: 22px; height: 22px; }
-  .gene-aoe { right: -4px; }
-  .ability-icon { width: 18px; height: 18px; }
+  /* компактные иконки в модалке мутанта — ТОЛЬКО мобильный */
+  @media (max-width: 768px) {
+    .stat-icon { width: 1.125rem; height: 1.125rem; }
+    .type-icon { width: 1.25rem; height: 1.25rem; }
+    .gene-ico { width: 1.375rem; height: 1.375rem; }
+    .gene-aoe { right: -4px; }
+    .ability-icon { width: 1.125rem; height: 1.125rem; }
+    .mut-dt, .mut-dd { font-size: 0.75rem; }
+  }
 
-  /* слегка уменьшаем шрифты, чтобы не расползались ряды */
-  .mut-dt, .mut-dd { font-size: 12px; }
-}
+  /* ультра-узкие телефоны */
+  @media (max-width: 400px) {
+    .stat-icon { width: 1rem; height: 1rem; }
+    .type-icon { width: 1.125rem; height: 1.125rem; }
+    .gene-ico { width: 1.25rem; height: 1.25rem; }
+    .ability-icon { width: 1rem; height: 1rem; }
+    .mut-dt, .mut-dd { font-size: 0.7rem; }
+  }
 
-/* Средние телефоны (5.5-6.5") - Galaxy S20, Pixel 5, iPhone 12 Pro */
-@media (max-width: 768px) and (min-width: 641px) {
-  .stat-icon { width: 20px; height: 20px; }
-  .type-icon { width: 22px; height: 22px; }
-  .gene-ico { width: 24px; height: 24px; }
-  .ability-icon { width: 20px; height: 20px; }
-  .mut-dt, .mut-dd { font-size: 13px; }
-}
-
-/* Большие телефоны (6.5"+) - POCO F5 Pro, Galaxy S24 Ultra и т.д. */
-@media (min-width: 769px) and (max-height: 900px) {
-  .stat-icon { width: 22px; height: 22px; }
-  .type-icon { width: 24px; height: 24px; }
-  .gene-ico { width: 26px; height: 26px; }
-  .ability-icon { width: 22px; height: 22px; }
-  .mut-dt, .mut-dd { font-size: 13px; }
-}
-
-/* ультра-узкие телефоны */
-@media (max-width: 400px) {
-  .stat-icon { width: 16px; height: 16px; }
-  .type-icon { width: 18px; height: 18px; }
-  .gene-ico { width: 20px; height: 20px; }
-  .ability-icon { width: 16px; height: 16px; }
-  .mut-dt, .mut-dd { font-size: 11px; }
-}
-
+  /* Высокий DPI экраны (retina, AMOLED и т.д.) */
+  @media (min-resolution: 2dppx) and (max-width: 768px) {
+    .stat-icon { width: 16px; height: 16px; }
+    .type-icon { width: 18px; height: 18px; }
+    .gene-ico { width: 20px; height: 20px; }
+    .ability-icon { width: 16px; height: 16px; }
+  }
 </style>
