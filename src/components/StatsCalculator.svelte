@@ -1231,7 +1231,17 @@
   .attack-side{ display:flex; align-items:center; gap:12px; flex:1 1 0; min-width:0; }
   .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:61px; height:64px; flex-shrink:0; }
   .attack-gene .gene-icon{ width:70%; height:70%; object-fit:contain; display:block; }
-  .attack-gene .attack-aoe{ position:absolute; top:0; right:-24px; width:64px; height:64px; object-fit:contain; pointer-events:none; }
+  .attack-gene .attack-aoe{
+   position:static;
+    top:auto;
+    right:auto;
+    width:80px;
+    height:47px;
+    margin-left:-16px;
+    object-fit:contain;
+    pointer-events:none;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.45));
+  }
   .attack-gene.empty{ opacity:0; }
   .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; }
   .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; }
@@ -1324,32 +1334,9 @@
     gap: 10px;
   }
 
-  .attack-gene {
-    position: relative;
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .gene-icon {
-    width: 65%;
-    height: 65%;
-    object-fit: contain;
-  }
-
-  /* AOE ИКОНКА - ПРАВИЛЬНОЕ ПОЗИЦИОНИРОВАНИЕ */
-  .attack-aoe {
-    position: absolute;
-    width: 32px !important;
-    height: 32px !important;
-    top: -6px;
-    right: -10px;
-    object-fit: contain;
-    pointer-events: none;
-  }
+  .attack-gene .gene-icon{ width:40px; height:40px; }
+  .attack-gene .attack-aoe{ width:80px; height:47px; margin-left:-17px; }
+ }
 
   .attack-info {
     flex: 1;
@@ -1447,7 +1434,7 @@
     font-size: 11px;
     margin: 6px 0 8px;
   }
-}
+
 
 @media (max-width: 480px) {
   .stats-page {

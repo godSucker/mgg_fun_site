@@ -279,25 +279,25 @@
         <label class="block">
           <span class="text-sky-300/80 text-sm">Стартовый уровень (≥ 5)</span>
           <input type="text" bind:value={startLevel} on:input={onInputStartLevel} inputmode="numeric" placeholder="например, 120"
-                 class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
+            class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Серебро</span>
-          <input type="text" bind:value={silver} on:input={onInputSilver} inputmode="numeric" placeholder="можно пусто"
-                 class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
+           <input type="text" bind:value={silver} on:input={onInputSilver} inputmode="numeric" placeholder="можно пусто"
+            class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Золото</span>
-          <input type="text" bind:value={gold} on:input={onInputGold} inputmode="numeric" placeholder="можно пусто"
-                 class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60"/>
+           <input type="text" bind:value={gold} on:input={onInputGold} inputmode="numeric" placeholder="можно пусто"
+              class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Скидка</span>
-          <select bind:value={discount}
-                  class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 outline-none focus:ring-2 focus:ring-sky-500/60">
+           <select bind:value={discount}
+               class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad">
             <option value="0">0%</option>
             <option value="60">60%</option>
             <option value="70">70%</option>
@@ -339,3 +339,6 @@
     </div>
   </div>
 </div>
+<style>
+.evo-pad { padding-left: 16px; } /* нужно ещё правее? поставь 22px; меньше? 18px */
+</style>
