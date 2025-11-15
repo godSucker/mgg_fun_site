@@ -591,9 +591,10 @@ $: displayBingo = (() => {
 {/if}
 
 <style>
-  .stat-icon { width: 1.5rem; height: 1.5rem; display:inline-block; }
-  .type-icon { width: 1.625rem; height: 1.625rem; display:inline-block; }
-  .ability-icon { width: 1.5rem; height: 1.5rem; display:inline-block; vertical-align: middle; }
+  /* Базовые размеры для ПК */
+  .stat-icon { width: 24px; height: 24px; display:inline-block; }
+  .type-icon { width: 26px; height: 26px; display:inline-block; }
+  .ability-icon { width: 24px; height: 24px; display:inline-block; vertical-align: middle; }
   .row-icon { display: inline-flex; align-items: center; gap: .45rem; }
   .mut-dt { color: rgba(255,255,255,.6); }
   .mut-dd { color: rgba(255,255,255,.9); }
@@ -601,8 +602,8 @@ $: displayBingo = (() => {
 
   .gene-ico {
     position: relative;
-    width: 1.625rem;
-    height: 1.625rem;
+    width: 26px;
+    height: 26px;
     display: inline-block;
   }
 
@@ -621,30 +622,66 @@ $: displayBingo = (() => {
   }
   .group:hover .gene-aoe { opacity: .96; }
 
-  /* компактные иконки в модалке мутанта — ТОЛЬКО мобильный */
-  @media (max-width: 768px) {
-    .stat-icon { width: 1.125rem; height: 1.125rem; }
-    .type-icon { width: 1.25rem; height: 1.25rem; }
-    .gene-ico { width: 1.375rem; height: 1.375rem; }
-    .gene-aoe { right: -4px; }
-    .ability-icon { width: 1.125rem; height: 1.125rem; }
-    .mut-dt, .mut-dd { font-size: 0.75rem; }
+  /* Мобильные устройства - ЛЮБОГО размера */
+  @media (hover: none) and (pointer: coarse) {
+    .stat-icon {
+      width: 18px;
+      height: 18px;
+      transform: scale(0.75);
+      transform-origin: left center;
+    }
+
+    .type-icon {
+      width: 18px;
+      height: 18px;
+      transform: scale(0.69);
+      transform-origin: left center;
+    }
+
+    .gene-ico {
+      width: 20px;
+      height: 20px;
+      transform: scale(0.77);
+      transform-origin: center;
+    }
+
+    .ability-icon {
+      width: 18px;
+      height: 18px;
+      transform: scale(0.75);
+      transform-origin: center;
+    }
+
+    .mut-dt, .mut-dd { font-size: 12px; }
+    .gene-aoe { right: -3px; }
   }
 
-  /* ультра-узкие телефоны */
+  /* Очень узкие телефоны */
   @media (max-width: 400px) {
-    .stat-icon { width: 1rem; height: 1rem; }
-    .type-icon { width: 1.125rem; height: 1.125rem; }
-    .gene-ico { width: 1.25rem; height: 1.25rem; }
-    .ability-icon { width: 1rem; height: 1rem; }
-    .mut-dt, .mut-dd { font-size: 0.7rem; }
-  }
+    .stat-icon {
+      width: 16px;
+      height: 16px;
+      transform: scale(0.67);
+    }
 
-  /* Высокий DPI экраны (retina, AMOLED и т.д.) */
-  @media (min-resolution: 2dppx) and (max-width: 768px) {
-    .stat-icon { width: 16px; height: 16px; }
-    .type-icon { width: 18px; height: 18px; }
-    .gene-ico { width: 20px; height: 20px; }
-    .ability-icon { width: 16px; height: 16px; }
+    .type-icon {
+      width: 16px;
+      height: 16px;
+      transform: scale(0.62);
+    }
+
+    .gene-ico {
+      width: 18px;
+      height: 18px;
+      transform: scale(0.69);
+    }
+
+    .ability-icon {
+      width: 16px;
+      height: 16px;
+      transform: scale(0.67);
+    }
+
+    .mut-dt, .mut-dd { font-size: 11px; }
   }
 </style>
