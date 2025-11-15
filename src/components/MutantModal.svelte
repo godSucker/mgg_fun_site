@@ -621,24 +621,43 @@ $: displayBingo = (() => {
   }
   .group:hover .gene-aoe { opacity: .96; }
 
-  /* компактные иконки в модалке мутанта — ТОЛЬКО мобильный */
+ /* компактные иконки в модалке мутанта — ТОЛЬКО мобильный */
 @media (max-width: 640px) {
-  .gene-ico { width: 24px; height: 24px; }
+  .stat-icon { width: 18px; height: 18px; }
+  .type-icon { width: 20px; height: 20px; }
+  .gene-ico { width: 22px; height: 22px; }
   .gene-aoe { right: -4px; }
-  .ability-icon { width: 20px; height: 20px; }
-
-  /* чуть меньше базовые стат-иконки если надо */
-  .stat-icon { width: 22px; height: 22px; }
+  .ability-icon { width: 18px; height: 18px; }
 
   /* слегка уменьшаем шрифты, чтобы не расползались ряды */
   .mut-dt, .mut-dd { font-size: 12px; }
 }
 
-/* ультра‑узкие телефоны */
+/* Средние телефоны (5.5-6.5") - Galaxy S20, Pixel 5, iPhone 12 Pro */
+@media (max-width: 768px) and (min-width: 641px) {
+  .stat-icon { width: 20px; height: 20px; }
+  .type-icon { width: 22px; height: 22px; }
+  .gene-ico { width: 24px; height: 24px; }
+  .ability-icon { width: 20px; height: 20px; }
+  .mut-dt, .mut-dd { font-size: 13px; }
+}
+
+/* Большие телефоны (6.5"+) - POCO F5 Pro, Galaxy S24 Ultra и т.д. */
+@media (min-width: 769px) and (max-height: 900px) {
+  .stat-icon { width: 22px; height: 22px; }
+  .type-icon { width: 24px; height: 24px; }
+  .gene-ico { width: 26px; height: 26px; }
+  .ability-icon { width: 22px; height: 22px; }
+  .mut-dt, .mut-dd { font-size: 13px; }
+}
+
+/* ультра-узкие телефоны */
 @media (max-width: 400px) {
+  .stat-icon { width: 16px; height: 16px; }
+  .type-icon { width: 18px; height: 18px; }
   .gene-ico { width: 20px; height: 20px; }
-  .ability-icon { width: 18px; height: 18px; }
-  .mut-dt, .mut-dd { font-size: 11.5px; }
+  .ability-icon { width: 16px; height: 16px; }
+  .mut-dt, .mut-dd { font-size: 11px; }
 }
 
 </style>
