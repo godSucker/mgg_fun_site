@@ -460,7 +460,7 @@ $: displayBingo = (() => {
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.spd)}</dd>
         </dl>
 
-        <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
+        <div class="mt-1 stat-grid items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
           {#each rowsLvl1 as r}
             <div class="contents group">
               <div class="flex items-center">
@@ -500,7 +500,7 @@ $: displayBingo = (() => {
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.spd)}</dd>
         </dl>
 
-        <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
+        <div class="mt-1 stat-grid items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
           {#each rowsLvl30 as r}
             <div class="contents group">
               <div class="flex items-center">
@@ -591,7 +591,12 @@ $: displayBingo = (() => {
 {/if}
 
 <style>
-  /* Базовые размеры для ПК */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr) auto minmax(0, 1fr) auto;
+    gap: 0.5rem 0.5rem;
+  }
+
   .stat-icon { width: 24px; height: 24px; display:inline-block; }
   .type-icon { width: 26px; height: 26px; display:inline-block; }
   .ability-icon { width: 24px; height: 24px; display:inline-block; vertical-align: middle; }
@@ -622,66 +627,31 @@ $: displayBingo = (() => {
   }
   .group:hover .gene-aoe { opacity: .96; }
 
-  /* Мобильные устройства - ЛЮБОГО размера */
-  @media (hover: none) and (pointer: coarse) {
-    .stat-icon {
-      width: 18px;
-      height: 18px;
-      transform: scale(0.75);
-      transform-origin: left center;
+  /* На реальных мобильных устройствах */
+  @media (max-width: 768px) {
+    .stat-grid {
+      grid-template-columns: 20px minmax(0, 1fr) auto minmax(0, 1fr) auto;
     }
 
-    .type-icon {
-      width: 18px;
-      height: 18px;
-      transform: scale(0.69);
-      transform-origin: left center;
-    }
-
-    .gene-ico {
-      width: 20px;
-      height: 20px;
-      transform: scale(0.77);
-      transform-origin: center;
-    }
-
-    .ability-icon {
-      width: 18px;
-      height: 18px;
-      transform: scale(0.75);
-      transform-origin: center;
-    }
-
-    .mut-dt, .mut-dd { font-size: 12px; }
+    .stat-icon { width: 16px; height: 16px; }
+    .type-icon { width: 18px; height: 18px; }
+    .gene-ico { width: 20px; height: 20px; }
     .gene-aoe { right: -3px; }
-  }
-
-  /* Очень узкие телефоны */
-  @media (max-width: 400px) {
-    .stat-icon {
-      width: 16px;
-      height: 16px;
-      transform: scale(0.67);
-    }
-
-    .type-icon {
-      width: 16px;
-      height: 16px;
-      transform: scale(0.62);
-    }
-
-    .gene-ico {
-      width: 18px;
-      height: 18px;
-      transform: scale(0.69);
-    }
-
-    .ability-icon {
-      width: 16px;
-      height: 16px;
-      transform: scale(0.67);
-    }
+    .ability-icon { width: 16px; height: 16px; }
 
     .mut-dt, .mut-dd { font-size: 11px; }
+  }
+
+  /* Очень узкие экраны */
+  @media (max-width: 400px) {
+    .stat-grid {
+      grid-template-columns: 18px minmax(0, 1fr) auto minmax(0, 1fr) auto;
+    }
+
+    .stat-icon { width: 14px; height: 14px; }
+    .type-icon { width: 16px; height: 16px; }
+    .gene-ico { width: 18px; height: 18px; }
+    .ability-icon { width: 14px; height: 14px; }
+    .mut-dt, .mut-dd { font-size: 10px; }
   }
 </style>
