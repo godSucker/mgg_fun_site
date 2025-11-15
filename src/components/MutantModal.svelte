@@ -620,6 +620,25 @@ $: displayBingo = (() => {
     transition: opacity .12s linear;
   }
   .group:hover .gene-aoe { opacity: .96; }
-  /* 2K апскейл */
-  @media (min-width: 2048px){ .modal-2k { font-size: 1.0625rem; } }
+
+  /* компактные иконки в модалке мутанта — ТОЛЬКО мобильный */
+@media (max-width: 640px) {
+  .gene-ico { width: 24px; height: 24px; }
+  .gene-aoe { right: -4px; }
+  .ability-icon { width: 20px; height: 20px; }
+
+  /* чуть меньше базовые стат-иконки если надо */
+  .stat-icon { width: 22px; height: 22px; }
+
+  /* слегка уменьшаем шрифты, чтобы не расползались ряды */
+  .mut-dt, .mut-dd { font-size: 12px; }
+}
+
+/* ультра‑узкие телефоны */
+@media (max-width: 400px) {
+  .gene-ico { width: 20px; height: 20px; }
+  .ability-icon { width: 18px; height: 18px; }
+  .mut-dt, .mut-dd { font-size: 11.5px; }
+}
+
 </style>

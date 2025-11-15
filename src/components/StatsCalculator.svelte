@@ -1267,6 +1267,9 @@
     .list{ max-height:360px; }
   }
 
+    .attack-gene .gene-icon{ width:40px; height:40px; }
+    .attack-gene .attack-aoe{ width:80px; height:47px; margin-left:-17px; }
+
 @media (max-width: 768px) {
   .stats-page {
     display: grid;
@@ -1449,22 +1452,8 @@
     min-height: 40px;
   }
 
-  .attack-aoe {
-    width: 26px !important;
-    height: 26px !important;
-    top: -4px;
-    right: -8px;
-  }
-
-  .attack-gene {
-    width: 40px;
-    height: 40px;
-  }
-
-  .gene-icon {
-    width: 60%;
-    height: 60%;
-  }
+  .attack-gene .gene-icon{ width:40px; height:40px; }
+    .attack-gene .attack-aoe{ width:70px; height:41px; margin-left:-17px; }
 
   .mut-figure .texture {
     width: 140px;
