@@ -1247,75 +1247,68 @@
     border: 1px solid rgba(192, 132, 252, 0.2);
   }
 
-  /* --- МОБИЛЬНАЯ АДАПТАЦИЯ (FIXED) --- */
+  /* Mobile responsive styles */
   @media (max-width: 1023px) {
-    /* 1. Стек блоков друг под другом */
-    .facility__inner {
-      grid-template-columns: 1fr;
-    }
-
-    .facility__sidebar {
-      border-right: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    .craft-hero__card {
       padding: 2rem 1.5rem;
+      border-radius: 24px;
     }
 
-    .facility__content {
-      padding: 1.5rem;
+    .craft-hero__card h1 {
+      font-size: 1.75rem;
     }
 
-    /* 2. Табы - горизонтальная лента (Stories style) */
-    .facility-tabs {
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      margin: 2rem -1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
-    }
-    .facility-tabs::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome */
-    }
-    .facility-tabs button {
-      min-width: 260px;
-      flex: 0 0 auto;
+    .craft-hero__card p {
+      font-size: 0.9rem;
     }
 
-    /* 3. Рецепты - список на всю ширину */
-    .recipe-selector {
+    .hero-stats {
       grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
-    /* 4. Incentive card */
     .incentive-card {
       padding: 1.5rem;
       grid-template-columns: 1fr;
     }
+
     .incentive-card__controls {
       grid-column: 1;
     }
+
     .incentive-card__stats {
       grid-template-columns: 1fr;
     }
 
-    /* 5. Simulation controls - Vertical stack */
-    .simulation-controls {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .craft-input input {
-      width: 100%;
+    .facility-tabs {
+      gap: 0.5rem;
     }
 
-    /* 6. Results & Ingredients */
-    .recipe-card__body {
-      grid-template-columns: 1fr;
+    .facility-tabs button {
+      padding: 1rem;
+    }
+
+    .facility-tabs__tagline {
+      font-size: 0.8rem;
+    }
+
+    .recipe-selector {
+      gap: 0.6rem;
     }
 
     .results-grid {
       grid-template-columns: 1fr;
+    }
+
+    .results-grid li {
+      grid-template-columns: 48px 1fr;
+      gap: 0.75rem;
+    }
+
+    .results-grid li .item-odds {
+      grid-column: 2;
+      justify-self: start;
+      margin-top: 0.5rem;
     }
   }
 

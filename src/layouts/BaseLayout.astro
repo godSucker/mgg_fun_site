@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import Analytics from '@vercel/analytics/astro';
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 // Simple base layout for the site.
 // It provides a consistent header, footer and sets a dark theme background.
 const { title, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
@@ -9,11 +10,17 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content="База знаний и многое другое - Archivist-Library" />
+  <!-- Ссылка на красивую картинку-превью сайта -->
+  <meta property="og:image" content="https://your-domain.com/og-preview.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/tt-supermolot-neue/tt-supermolot-neue.css">
     <meta charset="utf-8" />
     <meta name="viewport" content={viewport} />
-    <title>{title ?? 'MGG Hub'}</title>
+    <title>{title ?? 'Archivist-Library'}</title>
     <style>
       body {
         margin: 0;
@@ -260,11 +267,12 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       }
     </style>
   </head>
+  <SpeedInsights/>
   <Analytics />
   <body>
     <header>
       <div class="logo">
-        <a href="/">MGG Hub</a>
+        <a href="/">Archivist-Library</a>
       </div>
       <nav>
     <a href="/mutants">Мутанты</a>
@@ -289,8 +297,8 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       </div>
       <a href="/">Главная</a>
       <a href="/mutants">Мутанты</a>
-      <a href="/skins">Скины</a>
-      <a href="/simulators/stats">Калькулятор</a>
+      <a href="/simulators/stats">Калькулятор статов</a>
+      <a href="/evolution/evotech-calculator">Калькулятор эво</a>
       <a href="/materials">Материалы</a>
       <a href="/simulators">Симуляторы</a>
       <a href="/simulators/breeding">Скрещивания</a>
@@ -300,7 +308,7 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       <slot />
     </main>
     <footer>
-      <p>&copy; {new Date().getFullYear()} MGG Hub — база знаний по игре и симуляторы с реальными шансами.</p>
+      <p>&copy; {new Date().getFullYear()} Archivist-Library — база знаний по игре и симуляторы с реальными шансами.</p>
     </footer>
     
     <script>

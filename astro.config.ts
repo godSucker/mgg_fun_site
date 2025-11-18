@@ -3,10 +3,12 @@ import svelte from '@astrojs/svelte'
 import tailwindcss from '@tailwindcss/vite'
 import raw from 'vite-plugin-raw'
 import { fileURLToPath } from 'node:url'
+import { defineConfig } from 'astro/config';
 
 const SRC = fileURLToPath(new URL('./src', import.meta.url))
 
 export default defineConfig({
+  prefetch: true,
   integrations: [svelte()],
   alias: {
     '@': SRC,
