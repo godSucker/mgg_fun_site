@@ -68,31 +68,31 @@ $: displayBingo = (() => {
   }
 
   const TYPE_ICON: Record<string, string> = {
-    zodiac: '/mut_icons/icon_zodiac.png',
-    videogame: '/mut_icons/icon_videogame.png',
-    special: '/mut_icons/icon_special.png',
-    seasonal: '/mut_icons/icon_seasonal.png',
-    recipe: '/mut_icons/icon_recipe.png',
-    pvp: '/mut_icons/icon_pvp.png',
-    heroic: '/mut_icons/icon_heroic.png',
-    legend: '/mut_icons/icon_legendary.png',
-    legends: '/mut_icons/icon_legendary.png',
-    legendary: '/mut_icons/icon_legendary.png',
-    gacha: '/mut_icons/icon_gacha.png',
-    reactor: '/mut_icons/icon_gacha.png',
-    'реактор': '/mut_icons/icon_gacha.png'
+    zodiac: '/mut_icons/icon_zodiac.webp',
+    videogame: '/mut_icons/icon_videogame.webp',
+    special: '/mut_icons/icon_special.webp',
+    seasonal: '/mut_icons/icon_seasonal.webp',
+    recipe: '/mut_icons/icon_recipe.webp',
+    pvp: '/mut_icons/icon_pvp.webp',
+    heroic: '/mut_icons/icon_heroic.webp',
+    legend: '/mut_icons/icon_legendary.webp',
+    legends: '/mut_icons/icon_legendary.webp',
+    legendary: '/mut_icons/icon_legendary.webp',
+    gacha: '/mut_icons/icon_gacha.webp',
+    reactor: '/mut_icons/icon_gacha.webp',
+    'реактор': '/mut_icons/icon_gacha.webp'
   };
   const typeIcon = (t?: string | null) => TYPE_ICON[String(t ?? '').toLowerCase()] ?? null;
 
   // Genes
   const GENE_ICON: Record<string, string> = {
-    a: '/genes/gene_a.png',
-    b: '/genes/gene_b.png',
-    c: '/genes/gene_c.png',
-    d: '/genes/gene_d.png',
-    e: '/genes/gene_e.png',
-    f: '/genes/gene_f.png',
-    neutro: '/genes/gene_all.png'
+    a: '/genes/gene_a.webp',
+    b: '/genes/gene_b.webp',
+    c: '/genes/gene_c.webp',
+    d: '/genes/gene_d.webp',
+    e: '/genes/gene_e.webp',
+    f: '/genes/gene_f.webp',
+    neutro: '/genes/gene_all.webp'
   };
   const normalizeGene = (code?: string | null) => {
     if (!code) return null;
@@ -107,22 +107,22 @@ $: displayBingo = (() => {
 
   // Ability icons
   const ABILITY_ICON: Record<string, string> = {
-    weaken: '/ability/ability_weaken.png',
-    curse: '/ability/ability_weaken.png',
-    strengthen: '/ability/ability_strengthen.png',
-    buff: '/ability/ability_strengthen.png',
-    slash: '/ability/ability_slash.png',
-    wound: '/ability/ability_slash.png',
-    bleed: '/ability/ability_slash.png',
-    shield: '/ability/ability_shield.png',
-    protect: '/ability/ability_shield.png',
-    retaliate: '/ability/ability_retaliate.png',
-    counter: '/ability/ability_retaliate.png',
-    regenerate: '/ability/ability_regenerate.png',
-    lifesteal: '/ability/ability_regenerate.png',
-    life_drain: '/ability/ability_regenerate.png',
-    drain: '/ability/ability_regenerate.png',
-    regen: '/ability/ability_regenerate.png'
+    weaken: '/ability/ability_weaken.webp',
+    curse: '/ability/ability_weaken.webp',
+    strengthen: '/ability/ability_strengthen.webp',
+    buff: '/ability/ability_strengthen.webp',
+    slash: '/ability/ability_slash.webp',
+    wound: '/ability/ability_slash.webp',
+    bleed: '/ability/ability_slash.webp',
+    shield: '/ability/ability_shield.webp',
+    protect: '/ability/ability_shield.webp',
+    retaliate: '/ability/ability_retaliate.webp',
+    counter: '/ability/ability_retaliate.webp',
+    regenerate: '/ability/ability_regenerate.webp',
+    lifesteal: '/ability/ability_regenerate.webp',
+    life_drain: '/ability/ability_regenerate.webp',
+    drain: '/ability/ability_regenerate.webp',
+    regen: '/ability/ability_regenerate.webp'
   };
   const ABILITY_RU_INV: Record<string, string> = {};
   for (const k in (ABILITY_RU as any)) {
@@ -170,7 +170,7 @@ $: displayBingo = (() => {
     const list: string[] = m?.image ?? [];
     const pick =
       list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
-    if (!pick) return '/placeholder-mutant.png';
+    if (!pick) return '/placeholder-mutant.webp';
     return pick.startsWith('/') ? pick : `/${pick}`;
   };
 
@@ -461,8 +461,8 @@ $: displayBingo = (() => {
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
         <div class="text-xs text-white/60 mb-1.5">Статы на 1 уровне</div>
         <dl class="grid grid-cols-2 gap-y-[2px] text-sm">
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.hp)}</dd>
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.spd)}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.hp)}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.spd)}</dd>
         </dl>
 
         <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
@@ -473,7 +473,7 @@ $: displayBingo = (() => {
                   <span class="gene-ico">
                     <img src={geneIcon(r.gene)} alt="" aria-hidden="true" class="w-full h-full" loading="lazy" decoding="async" />
                     {#if r.isAoe}
-                      <img src="/genes/atk_multiple.png" alt="" aria-hidden="true" class="gene-aoe" loading="lazy" decoding="async" />
+                      <img src="/genes/atk_multiple.webp" alt="" aria-hidden="true" class="gene-aoe" loading="lazy" decoding="async" />
                     {/if}
                   </span>
                 {/if}
@@ -501,8 +501,8 @@ $: displayBingo = (() => {
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
         <div class="text-xs text-white/60 mb-1.5">Статы на 30 уровне</div>
         <dl class="grid grid-cols-2 gap-y-[2px] text-sm">
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.hp)}</dd>
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.spd)}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.hp)}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.spd)}</dd>
         </dl>
 
         <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
@@ -513,7 +513,7 @@ $: displayBingo = (() => {
                   <span class="gene-ico">
                     <img src={geneIcon(r.gene)} alt="" aria-hidden="true" class="w-full h-full" loading="lazy" decoding="async" />
                     {#if r.isAoe}
-                      <img src="/genes/atk_multiple.png" alt="" aria-hidden="true" class="gene-aoe" loading="lazy" decoding="async" />
+                      <img src="/genes/atk_multiple.webp" alt="" aria-hidden="true" class="gene-aoe" loading="lazy" decoding="async" />
                     {/if}
                   </span>
                 {/if}
@@ -539,7 +539,7 @@ $: displayBingo = (() => {
 
       <!-- Bingo -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Бинго</span></div>
+        <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Бинго</span></div>
         {#if displayBingo.length}
           <div class="flex flex-wrap gap-2">
               {#each displayBingo as b}
@@ -556,11 +556,11 @@ $: displayBingo = (() => {
         <div class="text-xs text-white/60 mb-1">Прочее</div>
         <div class="text-sm text-white/80 space-y-1">
           <div class="flex items-center gap-2 leading-tight">
-            <span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Инкубация:</span>
+            <span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Инкубация:</span>
             <span class="text-white">{incubTime ?? '—'}</span>{#if incubTime != null}<span class="opacity-80"> мин.</span>{/if}
           </div>
           <div class="flex items-center gap-2 leading-tight">
-            <span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />Шанс:</span>
+            <span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Шанс:</span>
             <span class="text-white">{chanceVal ?? '—'}</span>{#if chanceVal != null}<span class="opacity-80"> %</span>{/if}
           </div>
         </div>

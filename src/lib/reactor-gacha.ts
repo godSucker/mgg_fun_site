@@ -34,11 +34,11 @@ export const STAR_LABEL: Record<number, string> = {
 };
 
 export const STAR_ICON: Record<number, string> = {
-  0: '/stars/no_stars.png',
-  1: '/stars/star_bronze.png',
-  2: '/stars/star_silver.png',
-  3: '/stars/star_gold.png',
-  4: '/stars/star_platinum.png',
+  0: '/stars/no_stars.webp',
+  1: '/stars/star_bronze.webp',
+  2: '/stars/star_silver.webp',
+  3: '/stars/star_gold.webp',
+  4: '/stars/star_platinum.webp',
 };
 
 export const GACHA_NAME_RU: Record<string, string> = {
@@ -64,25 +64,25 @@ export const GACHA_NAME_RU: Record<string, string> = {
 };
 
 export const GACHA_COVERS: Partial<Record<string, string>> = {
-  western: '/reactor/western.png',
-  beach: '/reactor/tropical.png',
-  soldiers: '/reactor/time.png',
-  heroes: '/reactor/superhero.png',
-  villains: '/reactor/super.png',
-  steampunk: '/reactor/steampunk.png',
-  starwars: '/reactor/starwars.png',
-  lucha: '/reactor/muchachos.png',
-  movies: '/reactor/movie.png',
-  girl: '/reactor/lady.png',
-  japan: '/reactor/japan.png',
-  gothic: '/reactor/gotic.png',
-  olympians: '/reactor/gods.png',
-  fantasy: '/reactor/fantasy.png',
-  elements: '/reactor/element.png',
-  music: '/reactor/disco.png',
-  olympics: '/reactor/bloody_games.png',
-  gachaboss: '/reactor/bigboss.png',
-  vegetal: '/reactor/photosintez.png',
+  western: '/reactor/western.webp',
+  beach: '/reactor/tropical.webp',
+  soldiers: '/reactor/time.webp',
+  heroes: '/reactor/superhero.webp',
+  villains: '/reactor/super.webp',
+  steampunk: '/reactor/steampunk.webp',
+  starwars: '/reactor/starwars.webp',
+  lucha: '/reactor/muchachos.webp',
+  movies: '/reactor/movie.webp',
+  girl: '/reactor/lady.webp',
+  japan: '/reactor/japan.webp',
+  gothic: '/reactor/gotic.webp',
+  olympians: '/reactor/gods.webp',
+  fantasy: '/reactor/fantasy.webp',
+  elements: '/reactor/element.webp',
+  music: '/reactor/disco.webp',
+  olympics: '/reactor/bloody_games.webp',
+  gachaboss: '/reactor/bigboss.webp',
+  vegetal: '/reactor/photosintez.webp',
 };
 
 export const mutantNames: Record<string, string> = mutantNamesRaw;

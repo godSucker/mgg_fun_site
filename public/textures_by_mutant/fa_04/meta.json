@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:02.346525Z",
   "found_files": [
     {
-      "src": "full-char/mythic_cyber/normal/FA_04_normal.png",
+      "src": "full-char/mythic_cyber/normal/FA_04_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fa_04/FA_04_normal.png",
-      "filename": "FA_04_normal.png"
+      "dst": "textures_by_mutant/fa_04/FA_04_normal.webp",
+      "filename": "FA_04_normal.webp"
     },
     {
-      "src": "semi-full/F/F_A/normal/specimen_fa_04_normal.png",
+      "src": "semi-full/F/F_A/normal/specimen_fa_04_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fa_04/specimen_fa_04_normal.png",
-      "filename": "specimen_fa_04_normal.png"
+      "dst": "textures_by_mutant/fa_04/specimen_fa_04_normal.webp",
+      "filename": "specimen_fa_04_normal.webp"
     },
     {
-      "src": "larva/6) MYTHIC/mythic_cyber/larva_fa_04.png",
+      "src": "larva/6) MYTHIC/mythic_cyber/larva_fa_04.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/fa_04/larva_fa_04.png",
-      "filename": "larva_fa_04.png"
+      "dst": "textures_by_mutant/fa_04/larva_fa_04.webp",
+      "filename": "larva_fa_04.webp"
     }
   ],
   "tier": "un-tired",

@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:07.215595Z",
   "found_files": [
     {
-      "src": "full-char/cyber_necro/normal/AB_99_normal.png",
+      "src": "full-char/cyber_necro/normal/AB_99_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ab_99/AB_99_normal.png",
-      "filename": "AB_99_normal.png"
+      "dst": "textures_by_mutant/ab_99/AB_99_normal.webp",
+      "filename": "AB_99_normal.webp"
     },
     {
-      "src": "semi-full/A/A_B/normal/specimen_ab_99_normal.png",
+      "src": "semi-full/A/A_B/normal/specimen_ab_99_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ab_99/specimen_ab_99_normal.png",
-      "filename": "specimen_ab_99_normal.png"
+      "dst": "textures_by_mutant/ab_99/specimen_ab_99_normal.webp",
+      "filename": "specimen_ab_99_normal.webp"
     },
     {
-      "src": "larva/1) CYBER/cyber_necro/larva_ab_99.png",
+      "src": "larva/1) CYBER/cyber_necro/larva_ab_99.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ab_99/larva_ab_99.png",
-      "filename": "larva_ab_99.png"
+      "dst": "textures_by_mutant/ab_99/larva_ab_99.webp",
+      "filename": "larva_ab_99.webp"
     }
   ],
   "tier": "3+",

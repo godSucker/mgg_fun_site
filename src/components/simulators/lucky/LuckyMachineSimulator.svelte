@@ -51,37 +51,37 @@
   const resourceSummaryConfig: Record<ResourceSummaryKey, ResourceSummaryDefinition> = {
     consumables: {
       label: 'Расходники',
-      icon: '/med/normal_med.png',
+      icon: '/med/normal_med.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     stars: {
       label: 'Звёзды',
-      icon: '/stars/all_stars.png',
+      icon: '/stars/all_stars.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     spheres: {
       label: 'Сферы',
-      icon: '/orbs/basic/orb_slot.png',
+      icon: '/orbs/basic/orb_slot.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     boosters: {
       label: 'Бустеры',
-      icon: '/boosters/charm_xpx2.png',
+      icon: '/boosters/charm_xpx2.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     tokens: {
       label: 'Жетоны',
-      icon: '/tokens/material_jackpot_token.png',
+      icon: '/tokens/material_jackpot_token.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     mutants: {
       label: 'Мутанты',
-      icon: '/etc/icon_larva.png',
+      icon: '/etc/icon_larva.webp',
       metaLabel: 'Выпало суммарно',
     },
     jackpots: {
       label: 'Джекпоты',
-      icon: '/cash/jackpot.png',
+      icon: '/cash/jackpot.webp',
       metaLabel: 'Выпало суммарно',
     },
   };
@@ -382,7 +382,7 @@
       <section class="stats">
         <div class="stat-card metric total-spins">
           <div class="metric-icon" aria-hidden="true">
-            <img src="/etc/icon_timer.png" alt="" loading="lazy" />
+            <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
           </div>
           <div class="metric-body">
             <span class="label">Всего прокрутов</span>
@@ -391,7 +391,7 @@
         </div>
         <div class="stat-card metric paid-spins">
           <div class="metric-icon" aria-hidden="true">
-            <img src="/tokens/material_jackpot_token.png" alt="" loading="lazy" />
+            <img src="/tokens/material_jackpot_token.webp" alt="" loading="lazy" />
           </div>
           <div class="metric-body">
             <span class="label">Платных</span>
@@ -400,7 +400,7 @@
         </div>
         <div class="stat-card metric highlight free-spins">
           <div class="metric-icon" aria-hidden="true">
-            <img src="/etc/freespin.png" alt="" loading="lazy" />
+            <img src="/etc/freespin.webp" alt="" loading="lazy" />
           </div>
           <div class="metric-body">
             <span class="label">Бесплатных</span>
@@ -409,14 +409,14 @@
           </div>
         </div>
         <div class="stat-card currency">
-          <img class="stat-icon" src="/cash/g20.png" alt="Иконка золота" loading="lazy" />
+          <img class="stat-icon" src="/cash/g20.webp" alt="Иконка золота" loading="lazy" />
           <div class="stat-body">
             <span class="label">Выиграно золота</span>
             <strong>{formatNumber(result.goldWon)}</strong>
           </div>
         </div>
         <div class="stat-card currency">
-          <img class="stat-icon" src="/cash/softcurrency.png" alt="Иконка серебра" loading="lazy" />
+          <img class="stat-icon" src="/cash/softcurrency.webp" alt="Иконка серебра" loading="lazy" />
           <div class="stat-body">
             <span class="label">Выиграно серебра</span>
             <strong>{formatNumber(result.silverWon)}</strong>
@@ -425,7 +425,7 @@
         <div class="stat-card currency">
           <img
             class="stat-icon"
-            src="/tokens/material_gacha_token.png"
+            src="/tokens/material_gacha_token.webp"
             alt="Иконка жетона джекпота"
             loading="lazy"
           />
@@ -470,7 +470,7 @@
                   {@const totalLabel = getCurrencyLabel(entry)}
                   <li class:index-top={index < 3}>
                     <div class="icon">
-                      <img src={entry.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
+                      <img src={entry.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
                     </div>
                     <div class="details">
                       <div class="row">
@@ -502,7 +502,7 @@
                 {#each result.history as spin}
                   <li class:free-spin={spin.type === 'free-spin'}>
                     <div class="history-info">
-                      <img src={spin.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
+                      <img src={spin.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
                       <span class="title">{spin.label}</span>
                     </div>
                     {#if spin.type === 'free-spin'}

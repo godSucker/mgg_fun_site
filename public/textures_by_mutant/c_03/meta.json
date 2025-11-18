@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:01.766497Z",
   "found_files": [
     {
-      "src": "full-char/monogen_saber/normal/C_03_normal.png",
+      "src": "full-char/monogen_saber/normal/C_03_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/c_03/C_03_normal.png",
-      "filename": "C_03_normal.png"
+      "dst": "textures_by_mutant/c_03/C_03_normal.webp",
+      "filename": "C_03_normal.webp"
     },
     {
-      "src": "semi-full/C/C/normal/specimen_c_03_normal.png",
+      "src": "semi-full/C/C/normal/specimen_c_03_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/c_03/specimen_c_03_normal.png",
-      "filename": "specimen_c_03_normal.png"
+      "dst": "textures_by_mutant/c_03/specimen_c_03_normal.webp",
+      "filename": "specimen_c_03_normal.webp"
     },
     {
-      "src": "larva/3) SABER/monogen_saber/larva_c_03.png",
+      "src": "larva/3) SABER/monogen_saber/larva_c_03.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/c_03/larva_c_03.png",
-      "filename": "larva_c_03.png"
+      "dst": "textures_by_mutant/c_03/larva_c_03.webp",
+      "filename": "larva_c_03.webp"
     }
   ],
   "tier": "un-tired",

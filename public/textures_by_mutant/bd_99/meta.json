@@ -5,10 +5,10 @@
   "created_at": "2025-09-02T01:35:07.271785Z",
   "found_files": [
     {
-      "src": "larva/2) NECRO/necrco_zoo/larva_bd_99.png",
+      "src": "larva/2) NECRO/necrco_zoo/larva_bd_99.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/bd_99/larva_bd_99.png",
-      "filename": "larva_bd_99.png"
+      "dst": "textures_by_mutant/bd_99/larva_bd_99.webp",
+      "filename": "larva_bd_99.webp"
     }
   ],
   "tier": "un-tired",

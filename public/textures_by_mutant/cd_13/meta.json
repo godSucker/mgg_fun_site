@@ -5,70 +5,70 @@
   "created_at": "2025-09-02T01:35:06.988239Z",
   "found_files": [
     {
-      "src": "full-char/saber_zoo/bronze/CD_13_bronze.png",
+      "src": "full-char/saber_zoo/bronze/CD_13_bronze.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_13/CD_13_bronze.png",
-      "filename": "CD_13_bronze.png"
+      "dst": "textures_by_mutant/cd_13/CD_13_bronze.webp",
+      "filename": "CD_13_bronze.webp"
     },
     {
-      "src": "full-char/saber_zoo/gold/CD_13_gold.png",
+      "src": "full-char/saber_zoo/gold/CD_13_gold.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_13/CD_13_gold.png",
-      "filename": "CD_13_gold.png"
+      "dst": "textures_by_mutant/cd_13/CD_13_gold.webp",
+      "filename": "CD_13_gold.webp"
     },
     {
-      "src": "full-char/saber_zoo/normal/CD_13_normal.png",
+      "src": "full-char/saber_zoo/normal/CD_13_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_13/CD_13_normal.png",
-      "filename": "CD_13_normal.png"
+      "dst": "textures_by_mutant/cd_13/CD_13_normal.webp",
+      "filename": "CD_13_normal.webp"
     },
     {
-      "src": "full-char/saber_zoo/platinum/CD_13_platinum.png",
+      "src": "full-char/saber_zoo/platinum/CD_13_platinum.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_13/CD_13_platinum.png",
-      "filename": "CD_13_platinum.png"
+      "dst": "textures_by_mutant/cd_13/CD_13_platinum.webp",
+      "filename": "CD_13_platinum.webp"
     },
     {
-      "src": "full-char/saber_zoo/silver/CD_13_silver.png",
+      "src": "full-char/saber_zoo/silver/CD_13_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_13/CD_13_silver.png",
-      "filename": "CD_13_silver.png"
+      "dst": "textures_by_mutant/cd_13/CD_13_silver.webp",
+      "filename": "CD_13_silver.webp"
     },
     {
-      "src": "semi-full/C/C_D/silver/specimen_cd_13_silver_silver.png",
+      "src": "semi-full/C/C_D/silver/specimen_cd_13_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_13/specimen_cd_13_silver_silver.png",
-      "filename": "specimen_cd_13_silver_silver.png"
+      "dst": "textures_by_mutant/cd_13/specimen_cd_13_silver_silver.webp",
+      "filename": "specimen_cd_13_silver_silver.webp"
     },
     {
-      "src": "semi-full/C/C_D/platinum/specimen_cd_13_platinum_platinum.png",
+      "src": "semi-full/C/C_D/platinum/specimen_cd_13_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_13/specimen_cd_13_platinum_platinum.png",
-      "filename": "specimen_cd_13_platinum_platinum.png"
+      "dst": "textures_by_mutant/cd_13/specimen_cd_13_platinum_platinum.webp",
+      "filename": "specimen_cd_13_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/C/C_D/normal/specimen_cd_13_normal.png",
+      "src": "semi-full/C/C_D/normal/specimen_cd_13_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_13/specimen_cd_13_normal.png",
-      "filename": "specimen_cd_13_normal.png"
+      "dst": "textures_by_mutant/cd_13/specimen_cd_13_normal.webp",
+      "filename": "specimen_cd_13_normal.webp"
     },
     {
-      "src": "semi-full/C/C_D/gold/specimen_cd_13_gold_gold.png",
+      "src": "semi-full/C/C_D/gold/specimen_cd_13_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_13/specimen_cd_13_gold_gold.png",
-      "filename": "specimen_cd_13_gold_gold.png"
+      "dst": "textures_by_mutant/cd_13/specimen_cd_13_gold_gold.webp",
+      "filename": "specimen_cd_13_gold_gold.webp"
     },
     {
-      "src": "semi-full/C/C_D/bronze/specimen_cd_13_bronze_bronze.png",
+      "src": "semi-full/C/C_D/bronze/specimen_cd_13_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_13/specimen_cd_13_bronze_bronze.png",
-      "filename": "specimen_cd_13_bronze_bronze.png"
+      "dst": "textures_by_mutant/cd_13/specimen_cd_13_bronze_bronze.webp",
+      "filename": "specimen_cd_13_bronze_bronze.webp"
     },
     {
-      "src": "larva/3) SABER/saber_zoo/larva_cd_13.png",
+      "src": "larva/3) SABER/saber_zoo/larva_cd_13.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/cd_13/larva_cd_13.png",
-      "filename": "larva_cd_13.png"
+      "dst": "textures_by_mutant/cd_13/larva_cd_13.webp",
+      "filename": "larva_cd_13.webp"
     }
   ],
   "tier": "3+",

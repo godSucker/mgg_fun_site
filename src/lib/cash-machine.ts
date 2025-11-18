@@ -70,7 +70,7 @@ const GOLD_REWARD_AMOUNTS = new Set([
 const SILVER_REWARD_AMOUNTS = new Set([50000]);
 
 function buildCashIcon(prefix: 'g' | 's', amount: number): string {
-  return `/cash/${prefix}${amount}.png`;
+  return `/cash/${prefix}${amount}.webp`;
 }
 
 function getGoldRewardIcon(amount: number): string {
@@ -91,8 +91,8 @@ function getSilverRewardIcon(amount: number): string {
 
 export function getCurrencyIcon(currency: 'hardcurrency' | 'softcurrency'): string {
   return currency === 'hardcurrency'
-    ? '/cash/hardcurrency.png'
-    : '/cash/softcurrency.png';
+    ? '/cash/hardcurrency.webp'
+    : '/cash/softcurrency.webp';
 }
 
 export function getRewardIcon(reward: CashReward): string {
@@ -105,10 +105,10 @@ export function getRewardIcon(reward: CashReward): string {
   }
 
   if (reward.type === 'entity') {
-    return '/cash/jackpot.png';
+    return '/cash/jackpot.webp';
   }
 
-  return '/cash/unknown.png';
+  return '/cash/unknown.webp';
 }
 
 export function getRewardChance(

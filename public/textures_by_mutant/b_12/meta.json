@@ -5,70 +5,70 @@
   "created_at": "2025-09-02T01:35:06.813457Z",
   "found_files": [
     {
-      "src": "full-char/monogen_necro/bronze/B_12_bronze.png",
+      "src": "full-char/monogen_necro/bronze/B_12_bronze.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/b_12/B_12_bronze.png",
-      "filename": "B_12_bronze.png"
+      "dst": "textures_by_mutant/b_12/B_12_bronze.webp",
+      "filename": "B_12_bronze.webp"
     },
     {
-      "src": "full-char/monogen_necro/gold/B_12_gold.png",
+      "src": "full-char/monogen_necro/gold/B_12_gold.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/b_12/B_12_gold.png",
-      "filename": "B_12_gold.png"
+      "dst": "textures_by_mutant/b_12/B_12_gold.webp",
+      "filename": "B_12_gold.webp"
     },
     {
-      "src": "full-char/monogen_necro/normal/B_12_normal.png",
+      "src": "full-char/monogen_necro/normal/B_12_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/b_12/B_12_normal.png",
-      "filename": "B_12_normal.png"
+      "dst": "textures_by_mutant/b_12/B_12_normal.webp",
+      "filename": "B_12_normal.webp"
     },
     {
-      "src": "full-char/monogen_necro/platinum/B_12_platinum.png",
+      "src": "full-char/monogen_necro/platinum/B_12_platinum.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/b_12/B_12_platinum.png",
-      "filename": "B_12_platinum.png"
+      "dst": "textures_by_mutant/b_12/B_12_platinum.webp",
+      "filename": "B_12_platinum.webp"
     },
     {
-      "src": "full-char/monogen_necro/silver/B_12_silver.png",
+      "src": "full-char/monogen_necro/silver/B_12_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/b_12/B_12_silver.png",
-      "filename": "B_12_silver.png"
+      "dst": "textures_by_mutant/b_12/B_12_silver.webp",
+      "filename": "B_12_silver.webp"
     },
     {
-      "src": "semi-full/B/B/silver/specimen_b_12_silver_silver.png",
+      "src": "semi-full/B/B/silver/specimen_b_12_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/b_12/specimen_b_12_silver_silver.png",
-      "filename": "specimen_b_12_silver_silver.png"
+      "dst": "textures_by_mutant/b_12/specimen_b_12_silver_silver.webp",
+      "filename": "specimen_b_12_silver_silver.webp"
     },
     {
-      "src": "semi-full/B/B/platinum/specimen_b_12_platinum_platinum.png",
+      "src": "semi-full/B/B/platinum/specimen_b_12_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/b_12/specimen_b_12_platinum_platinum.png",
-      "filename": "specimen_b_12_platinum_platinum.png"
+      "dst": "textures_by_mutant/b_12/specimen_b_12_platinum_platinum.webp",
+      "filename": "specimen_b_12_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/B/B/normal/specimen_b_12_normal.png",
+      "src": "semi-full/B/B/normal/specimen_b_12_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/b_12/specimen_b_12_normal.png",
-      "filename": "specimen_b_12_normal.png"
+      "dst": "textures_by_mutant/b_12/specimen_b_12_normal.webp",
+      "filename": "specimen_b_12_normal.webp"
     },
     {
-      "src": "semi-full/B/B/gold/specimen_b_12_gold_gold.png",
+      "src": "semi-full/B/B/gold/specimen_b_12_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/b_12/specimen_b_12_gold_gold.png",
-      "filename": "specimen_b_12_gold_gold.png"
+      "dst": "textures_by_mutant/b_12/specimen_b_12_gold_gold.webp",
+      "filename": "specimen_b_12_gold_gold.webp"
     },
     {
-      "src": "semi-full/B/B/bronze/specimen_b_12_bronze_bronze.png",
+      "src": "semi-full/B/B/bronze/specimen_b_12_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/b_12/specimen_b_12_bronze_bronze.png",
-      "filename": "specimen_b_12_bronze_bronze.png"
+      "dst": "textures_by_mutant/b_12/specimen_b_12_bronze_bronze.webp",
+      "filename": "specimen_b_12_bronze_bronze.webp"
     },
     {
-      "src": "larva/2) NECRO/monogen_necro/larva_b_12.png",
+      "src": "larva/2) NECRO/monogen_necro/larva_b_12.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/b_12/larva_b_12.png",
-      "filename": "larva_b_12.png"
+      "dst": "textures_by_mutant/b_12/larva_b_12.webp",
+      "filename": "larva_b_12.webp"
     }
   ],
   "tier": "3+",

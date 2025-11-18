@@ -5,70 +5,70 @@
   "created_at": "2025-09-02T01:35:04.786354Z",
   "found_files": [
     {
-      "src": "full-char/zoo_mythic/bronze/DF_08_bronze.png",
+      "src": "full-char/zoo_mythic/bronze/DF_08_bronze.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/df_08/DF_08_bronze.png",
-      "filename": "DF_08_bronze.png"
+      "dst": "textures_by_mutant/df_08/DF_08_bronze.webp",
+      "filename": "DF_08_bronze.webp"
     },
     {
-      "src": "full-char/zoo_mythic/gold/DF_08_gold.png",
+      "src": "full-char/zoo_mythic/gold/DF_08_gold.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/df_08/DF_08_gold.png",
-      "filename": "DF_08_gold.png"
+      "dst": "textures_by_mutant/df_08/DF_08_gold.webp",
+      "filename": "DF_08_gold.webp"
     },
     {
-      "src": "full-char/zoo_mythic/normal/DF_08_normal.png",
+      "src": "full-char/zoo_mythic/normal/DF_08_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/df_08/DF_08_normal.png",
-      "filename": "DF_08_normal.png"
+      "dst": "textures_by_mutant/df_08/DF_08_normal.webp",
+      "filename": "DF_08_normal.webp"
     },
     {
-      "src": "full-char/zoo_mythic/platinum/DF_08_platinum.png",
+      "src": "full-char/zoo_mythic/platinum/DF_08_platinum.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/df_08/DF_08_platinum.png",
-      "filename": "DF_08_platinum.png"
+      "dst": "textures_by_mutant/df_08/DF_08_platinum.webp",
+      "filename": "DF_08_platinum.webp"
     },
     {
-      "src": "full-char/zoo_mythic/silver/DF_08_silver.png",
+      "src": "full-char/zoo_mythic/silver/DF_08_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/df_08/DF_08_silver.png",
-      "filename": "DF_08_silver.png"
+      "dst": "textures_by_mutant/df_08/DF_08_silver.webp",
+      "filename": "DF_08_silver.webp"
     },
     {
-      "src": "semi-full/D/D_F/silver/specimen_df_08_silver_silver.png",
+      "src": "semi-full/D/D_F/silver/specimen_df_08_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/df_08/specimen_df_08_silver_silver.png",
-      "filename": "specimen_df_08_silver_silver.png"
+      "dst": "textures_by_mutant/df_08/specimen_df_08_silver_silver.webp",
+      "filename": "specimen_df_08_silver_silver.webp"
     },
     {
-      "src": "semi-full/D/D_F/platinum/specimen_df_08_platinum_platinum.png",
+      "src": "semi-full/D/D_F/platinum/specimen_df_08_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/df_08/specimen_df_08_platinum_platinum.png",
-      "filename": "specimen_df_08_platinum_platinum.png"
+      "dst": "textures_by_mutant/df_08/specimen_df_08_platinum_platinum.webp",
+      "filename": "specimen_df_08_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/D/D_F/normal/specimen_df_08_normal.png",
+      "src": "semi-full/D/D_F/normal/specimen_df_08_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/df_08/specimen_df_08_normal.png",
-      "filename": "specimen_df_08_normal.png"
+      "dst": "textures_by_mutant/df_08/specimen_df_08_normal.webp",
+      "filename": "specimen_df_08_normal.webp"
     },
     {
-      "src": "semi-full/D/D_F/gold/specimen_df_08_gold_gold.png",
+      "src": "semi-full/D/D_F/gold/specimen_df_08_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/df_08/specimen_df_08_gold_gold.png",
-      "filename": "specimen_df_08_gold_gold.png"
+      "dst": "textures_by_mutant/df_08/specimen_df_08_gold_gold.webp",
+      "filename": "specimen_df_08_gold_gold.webp"
     },
     {
-      "src": "semi-full/D/D_F/bronze/specimen_df_08_bronze_bronze.png",
+      "src": "semi-full/D/D_F/bronze/specimen_df_08_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/df_08/specimen_df_08_bronze_bronze.png",
-      "filename": "specimen_df_08_bronze_bronze.png"
+      "dst": "textures_by_mutant/df_08/specimen_df_08_bronze_bronze.webp",
+      "filename": "specimen_df_08_bronze_bronze.webp"
     },
     {
-      "src": "larva/4) ZOO/zoo_mythic/larva_df_08.png",
+      "src": "larva/4) ZOO/zoo_mythic/larva_df_08.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/df_08/larva_df_08.png",
-      "filename": "larva_df_08.png"
+      "dst": "textures_by_mutant/df_08/larva_df_08.webp",
+      "filename": "larva_df_08.webp"
     }
   ],
   "bingo": [

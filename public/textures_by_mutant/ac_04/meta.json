@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:01.870329Z",
   "found_files": [
     {
-      "src": "full-char/cyber_saber/normal/AC_04_normal.png",
+      "src": "full-char/cyber_saber/normal/AC_04_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ac_04/AC_04_normal.png",
-      "filename": "AC_04_normal.png"
+      "dst": "textures_by_mutant/ac_04/AC_04_normal.webp",
+      "filename": "AC_04_normal.webp"
     },
     {
-      "src": "semi-full/A/A_C/normal/specimen_ac_04_normal.png",
+      "src": "semi-full/A/A_C/normal/specimen_ac_04_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ac_04/specimen_ac_04_normal.png",
-      "filename": "specimen_ac_04_normal.png"
+      "dst": "textures_by_mutant/ac_04/specimen_ac_04_normal.webp",
+      "filename": "specimen_ac_04_normal.webp"
     },
     {
-      "src": "larva/1) CYBER/cyber_saber/larva_ac_04.png",
+      "src": "larva/1) CYBER/cyber_saber/larva_ac_04.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ac_04/larva_ac_04.png",
-      "filename": "larva_ac_04.png"
+      "dst": "textures_by_mutant/ac_04/larva_ac_04.webp",
+      "filename": "larva_ac_04.webp"
     }
   ],
   "bingo": [

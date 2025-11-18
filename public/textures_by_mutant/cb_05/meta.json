@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:02.759496Z",
   "found_files": [
     {
-      "src": "full-char/saber_necro/normal/CB_05_normal.png",
+      "src": "full-char/saber_necro/normal/CB_05_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cb_05/CB_05_normal.png",
-      "filename": "CB_05_normal.png"
+      "dst": "textures_by_mutant/cb_05/CB_05_normal.webp",
+      "filename": "CB_05_normal.webp"
     },
     {
-      "src": "semi-full/C/C_B/normal/specimen_cb_05_normal.png",
+      "src": "semi-full/C/C_B/normal/specimen_cb_05_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cb_05/specimen_cb_05_normal.png",
-      "filename": "specimen_cb_05_normal.png"
+      "dst": "textures_by_mutant/cb_05/specimen_cb_05_normal.webp",
+      "filename": "specimen_cb_05_normal.webp"
     },
     {
-      "src": "larva/3) SABER/saber_necro/larva_cb_05.png",
+      "src": "larva/3) SABER/saber_necro/larva_cb_05.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/cb_05/larva_cb_05.png",
-      "filename": "larva_cb_05.png"
+      "dst": "textures_by_mutant/cb_05/larva_cb_05.webp",
+      "filename": "larva_cb_05.webp"
     }
   ],
   "tier": "un-tired",

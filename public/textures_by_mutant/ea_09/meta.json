@@ -5,70 +5,70 @@
   "created_at": "2025-09-02T01:35:05.351686Z",
   "found_files": [
     {
-      "src": "full-char/galactic_cyber/bronze/EA_09_bronze.png",
+      "src": "full-char/galactic_cyber/bronze/EA_09_bronze.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ea_09/EA_09_bronze.png",
-      "filename": "EA_09_bronze.png"
+      "dst": "textures_by_mutant/ea_09/EA_09_bronze.webp",
+      "filename": "EA_09_bronze.webp"
     },
     {
-      "src": "full-char/galactic_cyber/gold/EA_09_gold.png",
+      "src": "full-char/galactic_cyber/gold/EA_09_gold.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ea_09/EA_09_gold.png",
-      "filename": "EA_09_gold.png"
+      "dst": "textures_by_mutant/ea_09/EA_09_gold.webp",
+      "filename": "EA_09_gold.webp"
     },
     {
-      "src": "full-char/galactic_cyber/normal/EA_09_normal.png",
+      "src": "full-char/galactic_cyber/normal/EA_09_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ea_09/EA_09_normal.png",
-      "filename": "EA_09_normal.png"
+      "dst": "textures_by_mutant/ea_09/EA_09_normal.webp",
+      "filename": "EA_09_normal.webp"
     },
     {
-      "src": "full-char/galactic_cyber/platinum/EA_09_platinum.png",
+      "src": "full-char/galactic_cyber/platinum/EA_09_platinum.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ea_09/EA_09_platinum.png",
-      "filename": "EA_09_platinum.png"
+      "dst": "textures_by_mutant/ea_09/EA_09_platinum.webp",
+      "filename": "EA_09_platinum.webp"
     },
     {
-      "src": "full-char/galactic_cyber/silver/EA_09_silver.png",
+      "src": "full-char/galactic_cyber/silver/EA_09_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ea_09/EA_09_silver.png",
-      "filename": "EA_09_silver.png"
+      "dst": "textures_by_mutant/ea_09/EA_09_silver.webp",
+      "filename": "EA_09_silver.webp"
     },
     {
-      "src": "semi-full/E/E_A/silver/specimen_ea_09_silver_silver.png",
+      "src": "semi-full/E/E_A/silver/specimen_ea_09_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ea_09/specimen_ea_09_silver_silver.png",
-      "filename": "specimen_ea_09_silver_silver.png"
+      "dst": "textures_by_mutant/ea_09/specimen_ea_09_silver_silver.webp",
+      "filename": "specimen_ea_09_silver_silver.webp"
     },
     {
-      "src": "semi-full/E/E_A/platinum/specimen_ea_09_platinum_platinum.png",
+      "src": "semi-full/E/E_A/platinum/specimen_ea_09_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ea_09/specimen_ea_09_platinum_platinum.png",
-      "filename": "specimen_ea_09_platinum_platinum.png"
+      "dst": "textures_by_mutant/ea_09/specimen_ea_09_platinum_platinum.webp",
+      "filename": "specimen_ea_09_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/E/E_A/normal/specimen_ea_09_normal.png",
+      "src": "semi-full/E/E_A/normal/specimen_ea_09_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ea_09/specimen_ea_09_normal.png",
-      "filename": "specimen_ea_09_normal.png"
+      "dst": "textures_by_mutant/ea_09/specimen_ea_09_normal.webp",
+      "filename": "specimen_ea_09_normal.webp"
     },
     {
-      "src": "semi-full/E/E_A/gold/specimen_ea_09_gold_gold.png",
+      "src": "semi-full/E/E_A/gold/specimen_ea_09_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ea_09/specimen_ea_09_gold_gold.png",
-      "filename": "specimen_ea_09_gold_gold.png"
+      "dst": "textures_by_mutant/ea_09/specimen_ea_09_gold_gold.webp",
+      "filename": "specimen_ea_09_gold_gold.webp"
     },
     {
-      "src": "semi-full/E/E_A/bronze/specimen_ea_09_bronze_bronze.png",
+      "src": "semi-full/E/E_A/bronze/specimen_ea_09_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ea_09/specimen_ea_09_bronze_bronze.png",
-      "filename": "specimen_ea_09_bronze_bronze.png"
+      "dst": "textures_by_mutant/ea_09/specimen_ea_09_bronze_bronze.webp",
+      "filename": "specimen_ea_09_bronze_bronze.webp"
     },
     {
-      "src": "larva/5) GALACTIC/galactic_cyber/larva_ea_09.png",
+      "src": "larva/5) GALACTIC/galactic_cyber/larva_ea_09.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ea_09/larva_ea_09.png",
-      "filename": "larva_ea_09.png"
+      "dst": "textures_by_mutant/ea_09/larva_ea_09.webp",
+      "filename": "larva_ea_09.webp"
     }
   ],
   "bingo": [

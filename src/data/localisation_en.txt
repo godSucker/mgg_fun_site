@@ -8413,7 +8413,7 @@ mobile_nb_tips;13
 mobile_tips_001;There are secret recipes you have to find to get some new mutants!
 mobile_tips_002;You can upgrade your Evolution Center in credits or gold
 mobile_tips_003;Mutants given in the global tournament are exclusive and can't be bought in the shop
-mobile_hospital_offer_locked;Unlock at level $CONDITION_LEVEL [icon/experience.png#25x25]
+mobile_hospital_offer_locked;Unlock at level $CONDITION_LEVEL [icon/experience.webp#25x25]
 op_facebook_popup1;Connecting to your Facebook account will let you:\n- Send and receive gifts through the inbox\n- Continue your game on other devices when you connect with your account\n- Ask your friends for help during fights
 op_facebook_popup2;You can change the connected account whenever you want by tapping on the Facebook button in the option menu
 op_account_none;None

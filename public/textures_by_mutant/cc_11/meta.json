@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:06.190416Z",
   "found_files": [
     {
-      "src": "full-char/saber_saber/normal/CC_11_normal.png",
+      "src": "full-char/saber_saber/normal/CC_11_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cc_11/CC_11_normal.png",
-      "filename": "CC_11_normal.png"
+      "dst": "textures_by_mutant/cc_11/CC_11_normal.webp",
+      "filename": "CC_11_normal.webp"
     },
     {
-      "src": "semi-full/C/C_C/normal/specimen_cc_11_normal.png",
+      "src": "semi-full/C/C_C/normal/specimen_cc_11_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cc_11/specimen_cc_11_normal.png",
-      "filename": "specimen_cc_11_normal.png"
+      "dst": "textures_by_mutant/cc_11/specimen_cc_11_normal.webp",
+      "filename": "specimen_cc_11_normal.webp"
     },
     {
-      "src": "larva/3) SABER/saber_saber/larva_cc_11.png",
+      "src": "larva/3) SABER/saber_saber/larva_cc_11.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/cc_11/larva_cc_11.png",
-      "filename": "larva_cc_11.png"
+      "dst": "textures_by_mutant/cc_11/larva_cc_11.webp",
+      "filename": "larva_cc_11.webp"
     }
   ],
   "tier": "3",

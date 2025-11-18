@@ -141,29 +141,29 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
 
 const ITEM_TEXTURES: Record<string, string> = {
   // Stars
-  Star_Bronze: '/stars/star_bronze.png',
-  Star_Silver: '/stars/star_silver.png',
-  Star_Gold: '/stars/star_gold.png',
-  Star_Platinum: '/stars/star_platinum.png',
+  Star_Bronze: '/stars/star_bronze.webp',
+  Star_Silver: '/stars/star_silver.webp',
+  Star_Gold: '/stars/star_gold.webp',
+  Star_Platinum: '/stars/star_platinum.webp',
 
   // Tokens
-  Material_Gacha_Token: '/tokens/material_gacha_token.png',
-  Material_Event_Token: '/tokens/material_event_token.png',
-  Material_Jackpot_Token: '/tokens/material_jackpot_token.png',
+  Material_Gacha_Token: '/tokens/material_gacha_token.webp',
+  Material_Event_Token: '/tokens/material_event_token.webp',
+  Material_Jackpot_Token: '/tokens/material_jackpot_token.webp',
 
   // Supplies
-  Material_Muto1: '/materials/mini_muto.png',
-  Material_Muto10: '/materials/normal_muto.png',
-  Material_Muto50: '/materials/big_muto.png',
-  Material_XP10: '/materials/mini_xp.png',
-  Material_XP250: '/materials/normal_xp.png',
-  Material_XP1000: '/materials/big_xp.png',
-  Material_LP10: '/med/mini_med.png',
-  Material_LP100: '/med/big_med.png',
-  Material_LP1000: '/med/normal_med.png',
-  Material_Energy5: '/materials/ticket_5.png',
-  Material_Energy25: '/materials/ticket_25.png',
-  Material_Energy1: '/materials/ticket_1.png',
+  Material_Muto1: '/materials/mini_muto.webp',
+  Material_Muto10: '/materials/normal_muto.webp',
+  Material_Muto50: '/materials/big_muto.webp',
+  Material_XP10: '/materials/mini_xp.webp',
+  Material_XP250: '/materials/normal_xp.webp',
+  Material_XP1000: '/materials/big_xp.webp',
+  Material_LP10: '/med/mini_med.webp',
+  Material_LP100: '/med/big_med.webp',
+  Material_LP1000: '/med/normal_med.webp',
+  Material_Energy5: '/materials/ticket_5.webp',
+  Material_Energy25: '/materials/ticket_25.webp',
+  Material_Energy1: '/materials/ticket_1.webp',
 };
 
 const SPECIAL_ORB_TEXTURE_BLACKLIST = new Set([
@@ -321,18 +321,18 @@ export function getItemTexture(itemId: string): string | null {
   }
 
   if (itemId.startsWith('orb_basic_')) {
-    return `/orbs/basic/${itemId}.png`;
+    return `/orbs/basic/${itemId}.webp`;
   }
 
   if (itemId.startsWith('orb_special_')) {
     if (SPECIAL_ORB_TEXTURE_BLACKLIST.has(itemId)) {
       return null;
     }
-    return `/orbs/special/${itemId}.png`;
+    return `/orbs/special/${itemId}.webp`;
   }
 
   if (itemId.startsWith('Charm_')) {
-    return `/boosters/${itemId.toLowerCase()}.png`;
+    return `/boosters/${itemId.toLowerCase()}.webp`;
   }
 
   return null;

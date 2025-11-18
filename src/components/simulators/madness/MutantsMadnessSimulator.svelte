@@ -66,37 +66,37 @@
   const resourceSummaryConfig: Record<ResourceSummaryKey, ResourceSummaryDefinition> = {
     consumables: {
       label: 'Расходники',
-      icon: '/med/normal_med.png',
+      icon: '/med/normal_med.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     stars: {
       label: 'Звёзды',
-      icon: '/stars/all_stars.png',
+      icon: '/stars/all_stars.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     spheres: {
       label: 'Сферы',
-      icon: '/orbs/basic/orb_slot.png',
+      icon: '/orbs/basic/orb_slot.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     boosters: {
       label: 'Бустеры',
-      icon: '/boosters/charm_xpx2.png',
+      icon: '/boosters/charm_xpx2.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     tokens: {
       label: 'Жетоны',
-      icon: '/tokens/material_jackpot_token.png',
+      icon: '/tokens/material_jackpot_token.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     mutants: {
       label: 'Мутанты',
-      icon: '/etc/icon_larva.png',
+      icon: '/etc/icon_larva.webp',
       metaLabel: 'Выпало суммарно',
     },
     jackpots: {
       label: 'Джекпоты',
-      icon: '/cash/jackpot.png',
+      icon: '/cash/jackpot.webp',
       metaLabel: 'Выпало суммарно',
     },
   };
@@ -378,7 +378,7 @@
     <div class="summary-grid" role="presentation">
       <div class="summary-card token-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/tokens/material_jackpot_token.png" alt="" loading="lazy" />
+          <img src="/tokens/material_jackpot_token.webp" alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Прокруты за жетоны джекпота</span>
@@ -388,7 +388,7 @@
       </div>
       <div class="summary-card gold-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/cash/g20.png" alt="" loading="lazy" />
+          <img src="/cash/g20.webp" alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Прокруты за золото</span>
@@ -398,7 +398,7 @@
       </div>
       <div class="summary-card total-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/etc/icon_timer.png" alt="" loading="lazy" />
+          <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Всего прокрутов</span>
@@ -408,7 +408,7 @@
       </div>
       <div class="summary-card highlight jackpot-chance">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/cash/jackpot.png" alt="" loading="lazy" />
+          <img src="/cash/jackpot.webp" alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Шанс джекпота</span>
@@ -489,7 +489,7 @@
                 {@const currencyLabel = getCurrencyLabel(entry)}
                 <li class:index-top={index < 3}>
                   <div class="icon">
-                    <img src={entry.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
+                    <img src={entry.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
                   </div>
                   <div class="details">
                     <div class="row">
@@ -519,7 +519,7 @@
               {#each result.history as entry}
                 <li>
                   <div class="icon">
-                    <img src={entry.icon ?? '/etc/icon_larva.png'} alt="" loading="lazy" />
+                    <img src={entry.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
                   </div>
                   <div class="details">
                     <span class="name">{entry.label}</span>

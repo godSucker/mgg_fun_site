@@ -5,34 +5,34 @@
   "created_at": "2025-09-02T01:35:01.609557Z",
   "found_files": [
     {
-      "src": "full-char/galactic_mythic/normal/EF_03_normal.png",
+      "src": "full-char/galactic_mythic/normal/EF_03_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ef_03/EF_03_normal.png",
-      "filename": "EF_03_normal.png"
+      "dst": "textures_by_mutant/ef_03/EF_03_normal.webp",
+      "filename": "EF_03_normal.webp"
     },
     {
-      "src": "full-char/galactic_mythic/silver/EF_03_silver.png",
+      "src": "full-char/galactic_mythic/silver/EF_03_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ef_03/EF_03_silver.png",
-      "filename": "EF_03_silver.png"
+      "dst": "textures_by_mutant/ef_03/EF_03_silver.webp",
+      "filename": "EF_03_silver.webp"
     },
     {
-      "src": "semi-full/E/E_F/silver/specimen_ef_03_silver_silver.png",
+      "src": "semi-full/E/E_F/silver/specimen_ef_03_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ef_03/specimen_ef_03_silver_silver.png",
-      "filename": "specimen_ef_03_silver_silver.png"
+      "dst": "textures_by_mutant/ef_03/specimen_ef_03_silver_silver.webp",
+      "filename": "specimen_ef_03_silver_silver.webp"
     },
     {
-      "src": "semi-full/E/E_F/normal/specimen_ef_03_normal.png",
+      "src": "semi-full/E/E_F/normal/specimen_ef_03_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ef_03/specimen_ef_03_normal.png",
-      "filename": "specimen_ef_03_normal.png"
+      "dst": "textures_by_mutant/ef_03/specimen_ef_03_normal.webp",
+      "filename": "specimen_ef_03_normal.webp"
     },
     {
-      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_03.png",
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_03.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ef_03/larva_ef_03.png",
-      "filename": "larva_ef_03.png"
+      "dst": "textures_by_mutant/ef_03/larva_ef_03.webp",
+      "filename": "larva_ef_03.webp"
     }
   ],
   "tier": "un-tired",

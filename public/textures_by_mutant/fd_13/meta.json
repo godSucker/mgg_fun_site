@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:07.137851Z",
   "found_files": [
     {
-      "src": "full-char/mythic_zoo/normal/FD_13_normal.png",
+      "src": "full-char/mythic_zoo/normal/FD_13_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fd_13/FD_13_normal.png",
-      "filename": "FD_13_normal.png"
+      "dst": "textures_by_mutant/fd_13/FD_13_normal.webp",
+      "filename": "FD_13_normal.webp"
     },
     {
-      "src": "semi-full/F/F_D/normal/specimen_fd_13_normal.png",
+      "src": "semi-full/F/F_D/normal/specimen_fd_13_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fd_13/specimen_fd_13_normal.png",
-      "filename": "specimen_fd_13_normal.png"
+      "dst": "textures_by_mutant/fd_13/specimen_fd_13_normal.webp",
+      "filename": "specimen_fd_13_normal.webp"
     },
     {
-      "src": "larva/6) MYTHIC/mythic_zoo/larva_fd_13.png",
+      "src": "larva/6) MYTHIC/mythic_zoo/larva_fd_13.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/fd_13/larva_fd_13.png",
-      "filename": "larva_fd_13.png"
+      "dst": "textures_by_mutant/fd_13/larva_fd_13.webp",
+      "filename": "larva_fd_13.webp"
     }
   ],
   "tier": "un-tired",

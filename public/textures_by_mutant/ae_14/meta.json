@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:07.782756Z",
   "found_files": [
     {
-      "src": "full-char/cyber_galactic/normal/AE_14_normal.png",
+      "src": "full-char/cyber_galactic/normal/AE_14_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ae_14/AE_14_normal.png",
-      "filename": "AE_14_normal.png"
+      "dst": "textures_by_mutant/ae_14/AE_14_normal.webp",
+      "filename": "AE_14_normal.webp"
     },
     {
-      "src": "semi-full/A/A_E/normal/specimen_ae_14_normal.png",
+      "src": "semi-full/A/A_E/normal/specimen_ae_14_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ae_14/specimen_ae_14_normal.png",
-      "filename": "specimen_ae_14_normal.png"
+      "dst": "textures_by_mutant/ae_14/specimen_ae_14_normal.webp",
+      "filename": "specimen_ae_14_normal.webp"
     },
     {
-      "src": "larva/1) CYBER/cyber_galactic/larva_ae_14.png",
+      "src": "larva/1) CYBER/cyber_galactic/larva_ae_14.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ae_14/larva_ae_14.png",
-      "filename": "larva_ae_14.png"
+      "dst": "textures_by_mutant/ae_14/larva_ae_14.webp",
+      "filename": "larva_ae_14.webp"
     }
   ],
   "tier": "3-",

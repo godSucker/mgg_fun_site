@@ -44,9 +44,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/a_01/A_01_silver.png",
-      "textures_by_mutant/a_01/specimen_a_01_silver_silver.png",
-      "textures_by_mutant/a_01/larva_a_01.png"
+      "textures_by_mutant/a_01/A_01_silver.webp",
+      "textures_by_mutant/a_01/specimen_a_01_silver_silver.webp",
+      "textures_by_mutant/a_01/larva_a_01.webp"
     ],
     "type": "default",
     "incub_time": 5,
@@ -108,9 +108,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_01/AA_01_silver.png",
-      "textures_by_mutant/aa_01/specimen_aa_01_silver_silver.png",
-      "textures_by_mutant/aa_01/larva_aa_01.png"
+      "textures_by_mutant/aa_01/AA_01_silver.webp",
+      "textures_by_mutant/aa_01/specimen_aa_01_silver_silver.webp",
+      "textures_by_mutant/aa_01/larva_aa_01.webp"
     ],
     "type": "default",
     "incub_time": 60,
@@ -172,9 +172,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_01/AB_01_silver.png",
-      "textures_by_mutant/ab_01/specimen_ab_01_silver_silver.png",
-      "textures_by_mutant/ab_01/larva_ab_01.png"
+      "textures_by_mutant/ab_01/AB_01_silver.webp",
+      "textures_by_mutant/ab_01/specimen_ab_01_silver_silver.webp",
+      "textures_by_mutant/ab_01/larva_ab_01.webp"
     ],
     "type": "default",
     "incub_time": 10,
@@ -236,9 +236,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_01/AC_01_silver.png",
-      "textures_by_mutant/ac_01/specimen_ac_01_silver_silver.png",
-      "textures_by_mutant/ac_01/larva_ac_01.png"
+      "textures_by_mutant/ac_01/AC_01_silver.webp",
+      "textures_by_mutant/ac_01/specimen_ac_01_silver_silver.webp",
+      "textures_by_mutant/ac_01/larva_ac_01.webp"
     ],
     "type": "default",
     "incub_time": 10,
@@ -300,9 +300,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_01/AD_01_silver.png",
-      "textures_by_mutant/ad_01/specimen_ad_01_silver_silver.png",
-      "textures_by_mutant/ad_01/larva_ad_01.png"
+      "textures_by_mutant/ad_01/AD_01_silver.webp",
+      "textures_by_mutant/ad_01/specimen_ad_01_silver_silver.webp",
+      "textures_by_mutant/ad_01/larva_ad_01.webp"
     ],
     "type": "default",
     "incub_time": 240,
@@ -364,9 +364,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_01/AE_01_silver.png",
-      "textures_by_mutant/ae_01/specimen_ae_01_silver_silver.png",
-      "textures_by_mutant/ae_01/larva_ae_01.png"
+      "textures_by_mutant/ae_01/AE_01_silver.webp",
+      "textures_by_mutant/ae_01/specimen_ae_01_silver_silver.webp",
+      "textures_by_mutant/ae_01/larva_ae_01.webp"
     ],
     "type": "default",
     "incub_time": 420,
@@ -428,9 +428,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_01/AF_01_silver.png",
-      "textures_by_mutant/af_01/specimen_af_01_silver_silver.png",
-      "textures_by_mutant/af_01/larva_af_01.png"
+      "textures_by_mutant/af_01/AF_01_silver.webp",
+      "textures_by_mutant/af_01/specimen_af_01_silver_silver.webp",
+      "textures_by_mutant/af_01/larva_af_01.webp"
     ],
     "type": "default",
     "incub_time": 1440,
@@ -492,9 +492,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/b_01/B_01_silver.png",
-      "textures_by_mutant/b_01/specimen_b_01_silver_silver.png",
-      "textures_by_mutant/b_01/larva_b_01.png"
+      "textures_by_mutant/b_01/B_01_silver.webp",
+      "textures_by_mutant/b_01/specimen_b_01_silver_silver.webp",
+      "textures_by_mutant/b_01/larva_b_01.webp"
     ],
     "type": "default",
     "incub_time": 5,
@@ -556,9 +556,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_01/BA_01_silver.png",
-      "textures_by_mutant/ba_01/specimen_ba_01_silver_silver.png",
-      "textures_by_mutant/ba_01/larva_ba_01.png"
+      "textures_by_mutant/ba_01/BA_01_silver.webp",
+      "textures_by_mutant/ba_01/specimen_ba_01_silver_silver.webp",
+      "textures_by_mutant/ba_01/larva_ba_01.webp"
     ],
     "type": "default",
     "incub_time": 10,
@@ -620,9 +620,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_01/BB_01_silver.png",
-      "textures_by_mutant/bb_01/specimen_bb_01_silver_silver.png",
-      "textures_by_mutant/bb_01/larva_bb_01.png"
+      "textures_by_mutant/bb_01/BB_01_silver.webp",
+      "textures_by_mutant/bb_01/specimen_bb_01_silver_silver.webp",
+      "textures_by_mutant/bb_01/larva_bb_01.webp"
     ],
     "type": "default",
     "incub_time": 60,
@@ -684,9 +684,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_01/BC_01_silver.png",
-      "textures_by_mutant/bc_01/specimen_bc_01_silver_silver.png",
-      "textures_by_mutant/bc_01/larva_bc_01.png"
+      "textures_by_mutant/bc_01/BC_01_silver.webp",
+      "textures_by_mutant/bc_01/specimen_bc_01_silver_silver.webp",
+      "textures_by_mutant/bc_01/larva_bc_01.webp"
     ],
     "type": "default",
     "incub_time": 10,
@@ -748,9 +748,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_01/BD_01_silver.png",
-      "textures_by_mutant/bd_01/specimen_bd_01_silver_silver.png",
-      "textures_by_mutant/bd_01/larva_bd_01.png"
+      "textures_by_mutant/bd_01/BD_01_silver.webp",
+      "textures_by_mutant/bd_01/specimen_bd_01_silver_silver.webp",
+      "textures_by_mutant/bd_01/larva_bd_01.webp"
     ],
     "type": "default",
     "incub_time": 720,
@@ -812,9 +812,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_01/BE_01_silver.png",
-      "textures_by_mutant/be_01/specimen_be_01_silver_silver.png",
-      "textures_by_mutant/be_01/larva_be_01.png"
+      "textures_by_mutant/be_01/BE_01_silver.webp",
+      "textures_by_mutant/be_01/specimen_be_01_silver_silver.webp",
+      "textures_by_mutant/be_01/larva_be_01.webp"
     ],
     "type": "default",
     "incub_time": 420,
@@ -876,9 +876,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_01/BF_01_silver.png",
-      "textures_by_mutant/bf_01/specimen_bf_01_silver_silver.png",
-      "textures_by_mutant/bf_01/larva_bf_01.png"
+      "textures_by_mutant/bf_01/BF_01_silver.webp",
+      "textures_by_mutant/bf_01/specimen_bf_01_silver_silver.webp",
+      "textures_by_mutant/bf_01/larva_bf_01.webp"
     ],
     "type": "default",
     "incub_time": 600,
@@ -940,9 +940,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/c_01/C_01_silver.png",
-      "textures_by_mutant/c_01/specimen_c_01_silver_silver.png",
-      "textures_by_mutant/c_01/larva_c_01.png"
+      "textures_by_mutant/c_01/C_01_silver.webp",
+      "textures_by_mutant/c_01/specimen_c_01_silver_silver.webp",
+      "textures_by_mutant/c_01/larva_c_01.webp"
     ],
     "type": "default",
     "incub_time": 5,
@@ -1004,9 +1004,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_01/CA_01_silver.png",
-      "textures_by_mutant/ca_01/specimen_ca_01_silver_silver.png",
-      "textures_by_mutant/ca_01/larva_ca_01.png"
+      "textures_by_mutant/ca_01/CA_01_silver.webp",
+      "textures_by_mutant/ca_01/specimen_ca_01_silver_silver.webp",
+      "textures_by_mutant/ca_01/larva_ca_01.webp"
     ],
     "type": "default",
     "incub_time": 10,
@@ -1068,9 +1068,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_01/CB_01_silver.png",
-      "textures_by_mutant/cb_01/specimen_cb_01_silver_silver.png",
-      "textures_by_mutant/cb_01/larva_cb_01.png"
+      "textures_by_mutant/cb_01/CB_01_silver.webp",
+      "textures_by_mutant/cb_01/specimen_cb_01_silver_silver.webp",
+      "textures_by_mutant/cb_01/larva_cb_01.webp"
     ],
     "type": "default",
     "incub_time": 10,
@@ -1132,9 +1132,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_01/CC_01_silver.png",
-      "textures_by_mutant/cc_01/specimen_cc_01_silver_silver.png",
-      "textures_by_mutant/cc_01/larva_cc_01.png"
+      "textures_by_mutant/cc_01/CC_01_silver.webp",
+      "textures_by_mutant/cc_01/specimen_cc_01_silver_silver.webp",
+      "textures_by_mutant/cc_01/larva_cc_01.webp"
     ],
     "type": "default",
     "incub_time": 60,
@@ -1196,9 +1196,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_01/CD_01_silver.png",
-      "textures_by_mutant/cd_01/specimen_cd_01_silver_silver.png",
-      "textures_by_mutant/cd_01/larva_cd_01.png"
+      "textures_by_mutant/cd_01/CD_01_silver.webp",
+      "textures_by_mutant/cd_01/specimen_cd_01_silver_silver.webp",
+      "textures_by_mutant/cd_01/larva_cd_01.webp"
     ],
     "type": "default",
     "incub_time": 240,
@@ -1260,9 +1260,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_01/CE_01_silver.png",
-      "textures_by_mutant/ce_01/specimen_ce_01_silver_silver.png",
-      "textures_by_mutant/ce_01/larva_ce_01.png"
+      "textures_by_mutant/ce_01/CE_01_silver.webp",
+      "textures_by_mutant/ce_01/specimen_ce_01_silver_silver.webp",
+      "textures_by_mutant/ce_01/larva_ce_01.webp"
     ],
     "type": "default",
     "incub_time": 1260,
@@ -1324,9 +1324,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_01/CF_01_silver.png",
-      "textures_by_mutant/cf_01/specimen_cf_01_silver_silver.png",
-      "textures_by_mutant/cf_01/larva_cf_01.png"
+      "textures_by_mutant/cf_01/CF_01_silver.webp",
+      "textures_by_mutant/cf_01/specimen_cf_01_silver_silver.webp",
+      "textures_by_mutant/cf_01/larva_cf_01.webp"
     ],
     "type": "default",
     "incub_time": 600,
@@ -1388,9 +1388,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/d_01/D_01_silver.png",
-      "textures_by_mutant/d_01/specimen_d_01_silver_silver.png",
-      "textures_by_mutant/d_01/larva_d_01.png"
+      "textures_by_mutant/d_01/D_01_silver.webp",
+      "textures_by_mutant/d_01/specimen_d_01_silver_silver.webp",
+      "textures_by_mutant/d_01/larva_d_01.webp"
     ],
     "type": "default",
     "incub_time": 180,
@@ -1452,9 +1452,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_01/DA_01_silver.png",
-      "textures_by_mutant/da_01/specimen_da_01_silver_silver.png",
-      "textures_by_mutant/da_01/larva_da_01.png"
+      "textures_by_mutant/da_01/DA_01_silver.webp",
+      "textures_by_mutant/da_01/specimen_da_01_silver_silver.webp",
+      "textures_by_mutant/da_01/larva_da_01.webp"
     ],
     "type": "default",
     "incub_time": 720,
@@ -1516,9 +1516,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_01/DB_01_silver.png",
-      "textures_by_mutant/db_01/specimen_db_01_silver_silver.png",
-      "textures_by_mutant/db_01/larva_db_01.png"
+      "textures_by_mutant/db_01/DB_01_silver.webp",
+      "textures_by_mutant/db_01/specimen_db_01_silver_silver.webp",
+      "textures_by_mutant/db_01/larva_db_01.webp"
     ],
     "type": "default",
     "incub_time": 240,
@@ -1580,9 +1580,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_01/DC_01_silver.png",
-      "textures_by_mutant/dc_01/specimen_dc_01_silver_silver.png",
-      "textures_by_mutant/dc_01/larva_dc_01.png"
+      "textures_by_mutant/dc_01/DC_01_silver.webp",
+      "textures_by_mutant/dc_01/specimen_dc_01_silver_silver.webp",
+      "textures_by_mutant/dc_01/larva_dc_01.webp"
     ],
     "type": "default",
     "incub_time": 720,
@@ -1644,9 +1644,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_01/DD_01_silver.png",
-      "textures_by_mutant/dd_01/specimen_dd_01_silver_silver.png",
-      "textures_by_mutant/dd_01/larva_dd_01.png"
+      "textures_by_mutant/dd_01/DD_01_silver.webp",
+      "textures_by_mutant/dd_01/specimen_dd_01_silver_silver.webp",
+      "textures_by_mutant/dd_01/larva_dd_01.webp"
     ],
     "type": "default",
     "incub_time": 360,
@@ -1708,9 +1708,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_01/DE_01_silver.png",
-      "textures_by_mutant/de_01/specimen_de_01_silver_silver.png",
-      "textures_by_mutant/de_01/larva_de_01.png"
+      "textures_by_mutant/de_01/DE_01_silver.webp",
+      "textures_by_mutant/de_01/specimen_de_01_silver_silver.webp",
+      "textures_by_mutant/de_01/larva_de_01.webp"
     ],
     "type": "default",
     "incub_time": 540,
@@ -1772,9 +1772,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_01/DF_01_silver.png",
-      "textures_by_mutant/df_01/specimen_df_01_silver_silver.png",
-      "textures_by_mutant/df_01/larva_df_01.png"
+      "textures_by_mutant/df_01/DF_01_silver.webp",
+      "textures_by_mutant/df_01/specimen_df_01_silver_silver.webp",
+      "textures_by_mutant/df_01/larva_df_01.webp"
     ],
     "type": "default",
     "incub_time": 1440,
@@ -1836,9 +1836,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/e_01/E_01_silver.png",
-      "textures_by_mutant/e_01/specimen_e_01_silver_silver.png",
-      "textures_by_mutant/e_01/larva_e_01.png"
+      "textures_by_mutant/e_01/E_01_silver.webp",
+      "textures_by_mutant/e_01/specimen_e_01_silver_silver.webp",
+      "textures_by_mutant/e_01/larva_e_01.webp"
     ],
     "type": "default",
     "incub_time": 360,
@@ -1900,9 +1900,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_01/EA_01_silver.png",
-      "textures_by_mutant/ea_01/specimen_ea_01_silver_silver.png",
-      "textures_by_mutant/ea_01/larva_ea_01.png"
+      "textures_by_mutant/ea_01/EA_01_silver.webp",
+      "textures_by_mutant/ea_01/specimen_ea_01_silver_silver.webp",
+      "textures_by_mutant/ea_01/larva_ea_01.webp"
     ],
     "type": "default",
     "incub_time": 1260,
@@ -1964,9 +1964,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_01/EB_01_silver.png",
-      "textures_by_mutant/eb_01/specimen_eb_01_silver_silver.png",
-      "textures_by_mutant/eb_01/larva_eb_01.png"
+      "textures_by_mutant/eb_01/EB_01_silver.webp",
+      "textures_by_mutant/eb_01/specimen_eb_01_silver_silver.webp",
+      "textures_by_mutant/eb_01/larva_eb_01.webp"
     ],
     "type": "default",
     "incub_time": 1260,
@@ -2028,9 +2028,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_01/EC_01_silver.png",
-      "textures_by_mutant/ec_01/specimen_ec_01_silver_silver.png",
-      "textures_by_mutant/ec_01/larva_ec_01.png"
+      "textures_by_mutant/ec_01/EC_01_silver.webp",
+      "textures_by_mutant/ec_01/specimen_ec_01_silver_silver.webp",
+      "textures_by_mutant/ec_01/larva_ec_01.webp"
     ],
     "type": "default",
     "incub_time": 420,
@@ -2092,9 +2092,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_01/ED_01_silver.png",
-      "textures_by_mutant/ed_01/specimen_ed_01_silver_silver.png",
-      "textures_by_mutant/ed_01/larva_ed_01.png"
+      "textures_by_mutant/ed_01/ED_01_silver.webp",
+      "textures_by_mutant/ed_01/specimen_ed_01_silver_silver.webp",
+      "textures_by_mutant/ed_01/larva_ed_01.webp"
     ],
     "type": "default",
     "incub_time": 1440,
@@ -2156,9 +2156,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_01/EE_01_silver.png",
-      "textures_by_mutant/ee_01/specimen_ee_01_silver_silver.png",
-      "textures_by_mutant/ee_01/larva_ee_01.png"
+      "textures_by_mutant/ee_01/EE_01_silver.webp",
+      "textures_by_mutant/ee_01/specimen_ee_01_silver_silver.webp",
+      "textures_by_mutant/ee_01/larva_ee_01.webp"
     ],
     "type": "default",
     "incub_time": 720,
@@ -2220,9 +2220,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_01/EF_01_silver.png",
-      "textures_by_mutant/ef_01/specimen_ef_01_silver_silver.png",
-      "textures_by_mutant/ef_01/larva_ef_01.png"
+      "textures_by_mutant/ef_01/EF_01_silver.webp",
+      "textures_by_mutant/ef_01/specimen_ef_01_silver_silver.webp",
+      "textures_by_mutant/ef_01/larva_ef_01.webp"
     ],
     "type": "default",
     "incub_time": 900,
@@ -2284,9 +2284,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/f_01/F_01_silver.png",
-      "textures_by_mutant/f_01/specimen_f_01_silver_silver.png",
-      "textures_by_mutant/f_01/larva_f_01.png"
+      "textures_by_mutant/f_01/F_01_silver.webp",
+      "textures_by_mutant/f_01/specimen_f_01_silver_silver.webp",
+      "textures_by_mutant/f_01/larva_f_01.webp"
     ],
     "type": "default",
     "incub_time": 540,
@@ -2348,9 +2348,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_01/FA_01_silver.png",
-      "textures_by_mutant/fa_01/specimen_fa_01_silver_silver.png",
-      "textures_by_mutant/fa_01/larva_fa_01.png"
+      "textures_by_mutant/fa_01/FA_01_silver.webp",
+      "textures_by_mutant/fa_01/specimen_fa_01_silver_silver.webp",
+      "textures_by_mutant/fa_01/larva_fa_01.webp"
     ],
     "type": "default",
     "incub_time": 600,
@@ -2412,9 +2412,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_01/FB_01_silver.png",
-      "textures_by_mutant/fb_01/specimen_fb_01_silver_silver.png",
-      "textures_by_mutant/fb_01/larva_fb_01.png"
+      "textures_by_mutant/fb_01/FB_01_silver.webp",
+      "textures_by_mutant/fb_01/specimen_fb_01_silver_silver.webp",
+      "textures_by_mutant/fb_01/larva_fb_01.webp"
     ],
     "type": "default",
     "incub_time": 1440,
@@ -2476,9 +2476,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_01/FC_01_silver.png",
-      "textures_by_mutant/fc_01/specimen_fc_01_silver_silver.png",
-      "textures_by_mutant/fc_01/larva_fc_01.png"
+      "textures_by_mutant/fc_01/FC_01_silver.webp",
+      "textures_by_mutant/fc_01/specimen_fc_01_silver_silver.webp",
+      "textures_by_mutant/fc_01/larva_fc_01.webp"
     ],
     "type": "default",
     "incub_time": 1440,
@@ -2540,9 +2540,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_01/FD_01_silver.png",
-      "textures_by_mutant/fd_01/specimen_fd_01_silver_silver.png",
-      "textures_by_mutant/fd_01/larva_fd_01.png"
+      "textures_by_mutant/fd_01/FD_01_silver.webp",
+      "textures_by_mutant/fd_01/specimen_fd_01_silver_silver.webp",
+      "textures_by_mutant/fd_01/larva_fd_01.webp"
     ],
     "type": "default",
     "incub_time": 720,
@@ -2604,9 +2604,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_01/FE_01_silver.png",
-      "textures_by_mutant/fe_01/specimen_fe_01_silver_silver.png",
-      "textures_by_mutant/fe_01/larva_fe_01.png"
+      "textures_by_mutant/fe_01/FE_01_silver.webp",
+      "textures_by_mutant/fe_01/specimen_fe_01_silver_silver.webp",
+      "textures_by_mutant/fe_01/larva_fe_01.webp"
     ],
     "type": "default",
     "incub_time": 1440,
@@ -2668,9 +2668,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_01/FF_01_silver.png",
-      "textures_by_mutant/ff_01/specimen_ff_01_silver_silver.png",
-      "textures_by_mutant/ff_01/larva_ff_01.png"
+      "textures_by_mutant/ff_01/FF_01_silver.webp",
+      "textures_by_mutant/ff_01/specimen_ff_01_silver_silver.webp",
+      "textures_by_mutant/ff_01/larva_ff_01.webp"
     ],
     "type": "default",
     "incub_time": 1080,
@@ -2732,8 +2732,8 @@
       }
     ],
     "image": [
-      "textures_by_mutant/a_02/A_02_normal.png",
-      "textures_by_mutant/a_02/specimen_a_02_normal.png"
+      "textures_by_mutant/a_02/A_02_normal.webp",
+      "textures_by_mutant/a_02/specimen_a_02_normal.webp"
     ],
     "type": "default",
     "incub_time": 180,
@@ -2795,8 +2795,8 @@
       }
     ],
     "image": [
-      "textures_by_mutant/b_02/B_02_normal.png",
-      "textures_by_mutant/b_02/specimen_b_02_normal.png"
+      "textures_by_mutant/b_02/B_02_normal.webp",
+      "textures_by_mutant/b_02/specimen_b_02_normal.webp"
     ],
     "type": "default",
     "incub_time": 180,
@@ -2858,9 +2858,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/c_02/C_02_normal.png",
-      "textures_by_mutant/c_02/specimen_c_02_normal.png",
-      "textures_by_mutant/c_02/larva_c_02.png"
+      "textures_by_mutant/c_02/C_02_normal.webp",
+      "textures_by_mutant/c_02/specimen_c_02_normal.webp",
+      "textures_by_mutant/c_02/larva_c_02.webp"
     ],
     "type": "default",
     "incub_time": 180,
@@ -2922,9 +2922,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_02/AB_02_silver.png",
-      "textures_by_mutant/ab_02/specimen_ab_02_silver_silver.png",
-      "textures_by_mutant/ab_02/larva_ab_02.png"
+      "textures_by_mutant/ab_02/AB_02_silver.webp",
+      "textures_by_mutant/ab_02/specimen_ab_02_silver_silver.webp",
+      "textures_by_mutant/ab_02/larva_ab_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -2986,9 +2986,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_02/AC_02_silver.png",
-      "textures_by_mutant/ac_02/specimen_ac_02_silver_silver.png",
-      "textures_by_mutant/ac_02/larva_ac_02.png"
+      "textures_by_mutant/ac_02/AC_02_silver.webp",
+      "textures_by_mutant/ac_02/specimen_ac_02_silver_silver.webp",
+      "textures_by_mutant/ac_02/larva_ac_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -3050,9 +3050,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_02/AD_02_silver.png",
-      "textures_by_mutant/ad_02/specimen_ad_02_silver_silver.png",
-      "textures_by_mutant/ad_02/larva_ad_02.png"
+      "textures_by_mutant/ad_02/AD_02_silver.webp",
+      "textures_by_mutant/ad_02/specimen_ad_02_silver_silver.webp",
+      "textures_by_mutant/ad_02/larva_ad_02.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -3114,9 +3114,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_02/AE_02_silver.png",
-      "textures_by_mutant/ae_02/specimen_ae_02_silver_silver.png",
-      "textures_by_mutant/ae_02/larva_ae_02.png"
+      "textures_by_mutant/ae_02/AE_02_silver.webp",
+      "textures_by_mutant/ae_02/specimen_ae_02_silver_silver.webp",
+      "textures_by_mutant/ae_02/larva_ae_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -3178,9 +3178,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_02/AF_02_silver.png",
-      "textures_by_mutant/af_02/specimen_af_02_silver_silver.png",
-      "textures_by_mutant/af_02/larva_af_02.png"
+      "textures_by_mutant/af_02/AF_02_silver.webp",
+      "textures_by_mutant/af_02/specimen_af_02_silver_silver.webp",
+      "textures_by_mutant/af_02/larva_af_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -3242,9 +3242,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_02/BA_02_silver.png",
-      "textures_by_mutant/ba_02/specimen_ba_02_silver_silver.png",
-      "textures_by_mutant/ba_02/larva_ba_02.png"
+      "textures_by_mutant/ba_02/BA_02_silver.webp",
+      "textures_by_mutant/ba_02/specimen_ba_02_silver_silver.webp",
+      "textures_by_mutant/ba_02/larva_ba_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -3306,9 +3306,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_02/BB_02_silver.png",
-      "textures_by_mutant/bb_02/specimen_bb_02_silver_silver.png",
-      "textures_by_mutant/bb_02/larva_bb_02.png"
+      "textures_by_mutant/bb_02/BB_02_silver.webp",
+      "textures_by_mutant/bb_02/specimen_bb_02_silver_silver.webp",
+      "textures_by_mutant/bb_02/larva_bb_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -3370,9 +3370,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_02/BC_02_silver.png",
-      "textures_by_mutant/bc_02/specimen_bc_02_silver_silver.png",
-      "textures_by_mutant/bc_02/larva_bc_02.png"
+      "textures_by_mutant/bc_02/BC_02_silver.webp",
+      "textures_by_mutant/bc_02/specimen_bc_02_silver_silver.webp",
+      "textures_by_mutant/bc_02/larva_bc_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -3434,9 +3434,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_02/BD_02_silver.png",
-      "textures_by_mutant/bd_02/specimen_bd_02_silver_silver.png",
-      "textures_by_mutant/bd_02/larva_bd_02.png"
+      "textures_by_mutant/bd_02/BD_02_silver.webp",
+      "textures_by_mutant/bd_02/specimen_bd_02_silver_silver.webp",
+      "textures_by_mutant/bd_02/larva_bd_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -3498,9 +3498,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_02/BE_02_silver.png",
-      "textures_by_mutant/be_02/specimen_be_02_silver_silver.png",
-      "textures_by_mutant/be_02/larva_be_02.png"
+      "textures_by_mutant/be_02/BE_02_silver.webp",
+      "textures_by_mutant/be_02/specimen_be_02_silver_silver.webp",
+      "textures_by_mutant/be_02/larva_be_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -3562,9 +3562,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_02/BF_02_silver.png",
-      "textures_by_mutant/bf_02/specimen_bf_02_silver_silver.png",
-      "textures_by_mutant/bf_02/larva_bf_02.png"
+      "textures_by_mutant/bf_02/BF_02_silver.webp",
+      "textures_by_mutant/bf_02/specimen_bf_02_silver_silver.webp",
+      "textures_by_mutant/bf_02/larva_bf_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -3626,9 +3626,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_02/CA_02_silver.png",
-      "textures_by_mutant/ca_02/specimen_ca_02_silver_silver.png",
-      "textures_by_mutant/ca_02/larva_ca_02.png"
+      "textures_by_mutant/ca_02/CA_02_silver.webp",
+      "textures_by_mutant/ca_02/specimen_ca_02_silver_silver.webp",
+      "textures_by_mutant/ca_02/larva_ca_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -3690,9 +3690,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_02/CB_02_silver.png",
-      "textures_by_mutant/cb_02/specimen_cb_02_silver_silver.png",
-      "textures_by_mutant/cb_02/larva_cb_02.png"
+      "textures_by_mutant/cb_02/CB_02_silver.webp",
+      "textures_by_mutant/cb_02/specimen_cb_02_silver_silver.webp",
+      "textures_by_mutant/cb_02/larva_cb_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -3754,9 +3754,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_02/CC_02_silver.png",
-      "textures_by_mutant/cc_02/specimen_cc_02_silver_silver.png",
-      "textures_by_mutant/cc_02/larva_cc_02.png"
+      "textures_by_mutant/cc_02/CC_02_silver.webp",
+      "textures_by_mutant/cc_02/specimen_cc_02_silver_silver.webp",
+      "textures_by_mutant/cc_02/larva_cc_02.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -3818,9 +3818,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_02/CD_02_silver.png",
-      "textures_by_mutant/cd_02/specimen_cd_02_silver_silver.png",
-      "textures_by_mutant/cd_02/larva_cd_02.png"
+      "textures_by_mutant/cd_02/CD_02_silver.webp",
+      "textures_by_mutant/cd_02/specimen_cd_02_silver_silver.webp",
+      "textures_by_mutant/cd_02/larva_cd_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -3882,9 +3882,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_02/CE_02_silver.png",
-      "textures_by_mutant/ce_02/specimen_ce_02_silver_silver.png",
-      "textures_by_mutant/ce_02/larva_ce_02.png"
+      "textures_by_mutant/ce_02/CE_02_silver.webp",
+      "textures_by_mutant/ce_02/specimen_ce_02_silver_silver.webp",
+      "textures_by_mutant/ce_02/larva_ce_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -3946,9 +3946,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_02/CF_02_silver.png",
-      "textures_by_mutant/cf_02/specimen_cf_02_silver_silver.png",
-      "textures_by_mutant/cf_02/larva_cf_02.png"
+      "textures_by_mutant/cf_02/CF_02_silver.webp",
+      "textures_by_mutant/cf_02/specimen_cf_02_silver_silver.webp",
+      "textures_by_mutant/cf_02/larva_cf_02.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -4010,9 +4010,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_02/DA_02_silver.png",
-      "textures_by_mutant/da_02/specimen_da_02_silver_silver.png",
-      "textures_by_mutant/da_02/larva_da_02.png"
+      "textures_by_mutant/da_02/DA_02_silver.webp",
+      "textures_by_mutant/da_02/specimen_da_02_silver_silver.webp",
+      "textures_by_mutant/da_02/larva_da_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4074,9 +4074,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_02/DB_02_silver.png",
-      "textures_by_mutant/db_02/specimen_db_02_silver_silver.png",
-      "textures_by_mutant/db_02/larva_db_02.png"
+      "textures_by_mutant/db_02/DB_02_silver.webp",
+      "textures_by_mutant/db_02/specimen_db_02_silver_silver.webp",
+      "textures_by_mutant/db_02/larva_db_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4138,9 +4138,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_02/DC_02_silver.png",
-      "textures_by_mutant/dc_02/specimen_dc_02_silver_silver.png",
-      "textures_by_mutant/dc_02/larva_dc_02.png"
+      "textures_by_mutant/dc_02/DC_02_silver.webp",
+      "textures_by_mutant/dc_02/specimen_dc_02_silver_silver.webp",
+      "textures_by_mutant/dc_02/larva_dc_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -4202,9 +4202,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_02/DD_02_silver.png",
-      "textures_by_mutant/dd_02/specimen_dd_02_silver_silver.png",
-      "textures_by_mutant/dd_02/larva_dd_02.png"
+      "textures_by_mutant/dd_02/DD_02_silver.webp",
+      "textures_by_mutant/dd_02/specimen_dd_02_silver_silver.webp",
+      "textures_by_mutant/dd_02/larva_dd_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4266,9 +4266,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_02/DE_02_silver.png",
-      "textures_by_mutant/de_02/specimen_de_02_silver_silver.png",
-      "textures_by_mutant/de_02/larva_de_02.png"
+      "textures_by_mutant/de_02/DE_02_silver.webp",
+      "textures_by_mutant/de_02/specimen_de_02_silver_silver.webp",
+      "textures_by_mutant/de_02/larva_de_02.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -4330,9 +4330,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_02/DF_02_silver.png",
-      "textures_by_mutant/df_02/specimen_df_02_silver_silver.png",
-      "textures_by_mutant/df_02/larva_df_02.png"
+      "textures_by_mutant/df_02/DF_02_silver.webp",
+      "textures_by_mutant/df_02/specimen_df_02_silver_silver.webp",
+      "textures_by_mutant/df_02/larva_df_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4394,9 +4394,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_02/EA_02_silver.png",
-      "textures_by_mutant/ea_02/specimen_ea_02_silver_silver.png",
-      "textures_by_mutant/ea_02/larva_ea_02.png"
+      "textures_by_mutant/ea_02/EA_02_silver.webp",
+      "textures_by_mutant/ea_02/specimen_ea_02_silver_silver.webp",
+      "textures_by_mutant/ea_02/larva_ea_02.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -4458,9 +4458,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_02/EB_02_silver.png",
-      "textures_by_mutant/eb_02/specimen_eb_02_silver_silver.png",
-      "textures_by_mutant/eb_02/larva_eb_02.png"
+      "textures_by_mutant/eb_02/EB_02_silver.webp",
+      "textures_by_mutant/eb_02/specimen_eb_02_silver_silver.webp",
+      "textures_by_mutant/eb_02/larva_eb_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4522,9 +4522,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_02/EC_02_silver.png",
-      "textures_by_mutant/ec_02/specimen_ec_02_silver_silver.png",
-      "textures_by_mutant/ec_02/larva_ec_02.png"
+      "textures_by_mutant/ec_02/EC_02_silver.webp",
+      "textures_by_mutant/ec_02/specimen_ec_02_silver_silver.webp",
+      "textures_by_mutant/ec_02/larva_ec_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4586,9 +4586,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_02/ED_02_silver.png",
-      "textures_by_mutant/ed_02/specimen_ed_02_silver_silver.png",
-      "textures_by_mutant/ed_02/larva_ed_02.png"
+      "textures_by_mutant/ed_02/ED_02_silver.webp",
+      "textures_by_mutant/ed_02/specimen_ed_02_silver_silver.webp",
+      "textures_by_mutant/ed_02/larva_ed_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4650,9 +4650,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_02/EE_02_silver.png",
-      "textures_by_mutant/ee_02/specimen_ee_02_silver_silver.png",
-      "textures_by_mutant/ee_02/larva_ee_02.png"
+      "textures_by_mutant/ee_02/EE_02_silver.webp",
+      "textures_by_mutant/ee_02/specimen_ee_02_silver_silver.webp",
+      "textures_by_mutant/ee_02/larva_ee_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4714,9 +4714,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_02/FA_02_silver.png",
-      "textures_by_mutant/fa_02/specimen_fa_02_silver_silver.png",
-      "textures_by_mutant/fa_02/larva_fa_02.png"
+      "textures_by_mutant/fa_02/FA_02_silver.webp",
+      "textures_by_mutant/fa_02/specimen_fa_02_silver_silver.webp",
+      "textures_by_mutant/fa_02/larva_fa_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4778,9 +4778,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_02/FB_02_silver.png",
-      "textures_by_mutant/fb_02/specimen_fb_02_silver_silver.png",
-      "textures_by_mutant/fb_02/larva_fb_02.png"
+      "textures_by_mutant/fb_02/FB_02_silver.webp",
+      "textures_by_mutant/fb_02/specimen_fb_02_silver_silver.webp",
+      "textures_by_mutant/fb_02/larva_fb_02.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -4842,9 +4842,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_02/FD_02_silver.png",
-      "textures_by_mutant/fd_02/specimen_fd_02_silver_silver.png",
-      "textures_by_mutant/fd_02/larva_fd_02.png"
+      "textures_by_mutant/fd_02/FD_02_silver.webp",
+      "textures_by_mutant/fd_02/specimen_fd_02_silver_silver.webp",
+      "textures_by_mutant/fd_02/larva_fd_02.webp"
     ],
     "type": "RECIPE",
     "incub_time": 720,
@@ -4906,9 +4906,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_02/FE_02_silver.png",
-      "textures_by_mutant/fe_02/specimen_fe_02_silver_silver.png",
-      "textures_by_mutant/fe_02/larva_fe_02.png"
+      "textures_by_mutant/fe_02/FE_02_silver.webp",
+      "textures_by_mutant/fe_02/specimen_fe_02_silver_silver.webp",
+      "textures_by_mutant/fe_02/larva_fe_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -4970,9 +4970,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_02/FF_02_silver.png",
-      "textures_by_mutant/ff_02/specimen_ff_02_silver_silver.png",
-      "textures_by_mutant/ff_02/larva_ff_02.png"
+      "textures_by_mutant/ff_02/FF_02_silver.webp",
+      "textures_by_mutant/ff_02/specimen_ff_02_silver_silver.webp",
+      "textures_by_mutant/ff_02/larva_ff_02.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -5034,9 +5034,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_03/AA_03_silver.png",
-      "textures_by_mutant/aa_03/specimen_aa_03_silver_silver.png",
-      "textures_by_mutant/aa_03/larva_aa_03.png"
+      "textures_by_mutant/aa_03/AA_03_silver.webp",
+      "textures_by_mutant/aa_03/specimen_aa_03_silver_silver.webp",
+      "textures_by_mutant/aa_03/larva_aa_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5098,9 +5098,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_03/AB_03_silver.png",
-      "textures_by_mutant/ab_03/specimen_ab_03_silver_silver.png",
-      "textures_by_mutant/ab_03/larva_ab_03.png"
+      "textures_by_mutant/ab_03/AB_03_silver.webp",
+      "textures_by_mutant/ab_03/specimen_ab_03_silver_silver.webp",
+      "textures_by_mutant/ab_03/larva_ab_03.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -5162,9 +5162,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_03/AC_03_silver.png",
-      "textures_by_mutant/ac_03/specimen_ac_03_silver_silver.png",
-      "textures_by_mutant/ac_03/larva_ac_03.png"
+      "textures_by_mutant/ac_03/AC_03_silver.webp",
+      "textures_by_mutant/ac_03/specimen_ac_03_silver_silver.webp",
+      "textures_by_mutant/ac_03/larva_ac_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5226,9 +5226,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_03/AD_03_silver.png",
-      "textures_by_mutant/ad_03/specimen_ad_03_silver_silver.png",
-      "textures_by_mutant/ad_03/larva_ad_03.png"
+      "textures_by_mutant/ad_03/AD_03_silver.webp",
+      "textures_by_mutant/ad_03/specimen_ad_03_silver_silver.webp",
+      "textures_by_mutant/ad_03/larva_ad_03.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -5290,9 +5290,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_03/AE_03_silver.png",
-      "textures_by_mutant/ae_03/specimen_ae_03_silver_silver.png",
-      "textures_by_mutant/ae_03/larva_ae_03.png"
+      "textures_by_mutant/ae_03/AE_03_silver.webp",
+      "textures_by_mutant/ae_03/specimen_ae_03_silver_silver.webp",
+      "textures_by_mutant/ae_03/larva_ae_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5354,9 +5354,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_03/AF_03_silver.png",
-      "textures_by_mutant/af_03/specimen_af_03_silver_silver.png",
-      "textures_by_mutant/af_03/larva_af_03.png"
+      "textures_by_mutant/af_03/AF_03_silver.webp",
+      "textures_by_mutant/af_03/specimen_af_03_silver_silver.webp",
+      "textures_by_mutant/af_03/larva_af_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -5418,9 +5418,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_03/BA_03_silver.png",
-      "textures_by_mutant/ba_03/specimen_ba_03_silver_silver.png",
-      "textures_by_mutant/ba_03/larva_ba_03.png"
+      "textures_by_mutant/ba_03/BA_03_silver.webp",
+      "textures_by_mutant/ba_03/specimen_ba_03_silver_silver.webp",
+      "textures_by_mutant/ba_03/larva_ba_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5482,9 +5482,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_03/BB_03_silver.png",
-      "textures_by_mutant/bb_03/specimen_bb_03_silver_silver.png",
-      "textures_by_mutant/bb_03/larva_bb_03.png"
+      "textures_by_mutant/bb_03/BB_03_silver.webp",
+      "textures_by_mutant/bb_03/specimen_bb_03_silver_silver.webp",
+      "textures_by_mutant/bb_03/larva_bb_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5546,9 +5546,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_03/BC_03_silver.png",
-      "textures_by_mutant/bc_03/specimen_bc_03_silver_silver.png",
-      "textures_by_mutant/bc_03/larva_bc_03.png"
+      "textures_by_mutant/bc_03/BC_03_silver.webp",
+      "textures_by_mutant/bc_03/specimen_bc_03_silver_silver.webp",
+      "textures_by_mutant/bc_03/larva_bc_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -5610,9 +5610,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_03/BD_03_silver.png",
-      "textures_by_mutant/bd_03/specimen_bd_03_silver_silver.png",
-      "textures_by_mutant/bd_03/larva_bd_03.png"
+      "textures_by_mutant/bd_03/BD_03_silver.webp",
+      "textures_by_mutant/bd_03/specimen_bd_03_silver_silver.webp",
+      "textures_by_mutant/bd_03/larva_bd_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5674,9 +5674,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_03/BE_03_silver.png",
-      "textures_by_mutant/be_03/specimen_be_03_silver_silver.png",
-      "textures_by_mutant/be_03/larva_be_03.png"
+      "textures_by_mutant/be_03/BE_03_silver.webp",
+      "textures_by_mutant/be_03/specimen_be_03_silver_silver.webp",
+      "textures_by_mutant/be_03/larva_be_03.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -5738,9 +5738,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_03/BF_03_silver.png",
-      "textures_by_mutant/bf_03/specimen_bf_03_silver_silver.png",
-      "textures_by_mutant/bf_03/larva_bf_03.png"
+      "textures_by_mutant/bf_03/BF_03_silver.webp",
+      "textures_by_mutant/bf_03/specimen_bf_03_silver_silver.webp",
+      "textures_by_mutant/bf_03/larva_bf_03.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -5802,9 +5802,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_03/CA_03_silver.png",
-      "textures_by_mutant/ca_03/specimen_ca_03_silver_silver.png",
-      "textures_by_mutant/ca_03/larva_ca_03.png"
+      "textures_by_mutant/ca_03/CA_03_silver.webp",
+      "textures_by_mutant/ca_03/specimen_ca_03_silver_silver.webp",
+      "textures_by_mutant/ca_03/larva_ca_03.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -5866,9 +5866,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_03/CB_03_silver.png",
-      "textures_by_mutant/cb_03/specimen_cb_03_silver_silver.png",
-      "textures_by_mutant/cb_03/larva_cb_03.png"
+      "textures_by_mutant/cb_03/CB_03_silver.webp",
+      "textures_by_mutant/cb_03/specimen_cb_03_silver_silver.webp",
+      "textures_by_mutant/cb_03/larva_cb_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -5930,9 +5930,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_03/CC_03_silver.png",
-      "textures_by_mutant/cc_03/specimen_cc_03_silver_silver.png",
-      "textures_by_mutant/cc_03/larva_cc_03.png"
+      "textures_by_mutant/cc_03/CC_03_silver.webp",
+      "textures_by_mutant/cc_03/specimen_cc_03_silver_silver.webp",
+      "textures_by_mutant/cc_03/larva_cc_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -5994,9 +5994,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_03/CD_03_silver.png",
-      "textures_by_mutant/cd_03/specimen_cd_03_silver_silver.png",
-      "textures_by_mutant/cd_03/larva_cd_03.png"
+      "textures_by_mutant/cd_03/CD_03_silver.webp",
+      "textures_by_mutant/cd_03/specimen_cd_03_silver_silver.webp",
+      "textures_by_mutant/cd_03/larva_cd_03.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -6058,9 +6058,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_03/CE_03_silver.png",
-      "textures_by_mutant/ce_03/specimen_ce_03_silver_silver.png",
-      "textures_by_mutant/ce_03/larva_ce_03.png"
+      "textures_by_mutant/ce_03/CE_03_silver.webp",
+      "textures_by_mutant/ce_03/specimen_ce_03_silver_silver.webp",
+      "textures_by_mutant/ce_03/larva_ce_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -6122,9 +6122,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_03/CF_03_silver.png",
-      "textures_by_mutant/cf_03/specimen_cf_03_silver_silver.png",
-      "textures_by_mutant/cf_03/larva_cf_03.png"
+      "textures_by_mutant/cf_03/CF_03_silver.webp",
+      "textures_by_mutant/cf_03/specimen_cf_03_silver_silver.webp",
+      "textures_by_mutant/cf_03/larva_cf_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -6186,9 +6186,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_03/DA_03_silver.png",
-      "textures_by_mutant/da_03/specimen_da_03_silver_silver.png",
-      "textures_by_mutant/da_03/larva_da_03.png"
+      "textures_by_mutant/da_03/DA_03_silver.webp",
+      "textures_by_mutant/da_03/specimen_da_03_silver_silver.webp",
+      "textures_by_mutant/da_03/larva_da_03.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -6250,9 +6250,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_03/DB_03_silver.png",
-      "textures_by_mutant/db_03/specimen_db_03_silver_silver.png",
-      "textures_by_mutant/db_03/larva_db_03.png"
+      "textures_by_mutant/db_03/DB_03_silver.webp",
+      "textures_by_mutant/db_03/specimen_db_03_silver_silver.webp",
+      "textures_by_mutant/db_03/larva_db_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -6314,9 +6314,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_03/DD_03_silver.png",
-      "textures_by_mutant/dd_03/specimen_dd_03_silver_silver.png",
-      "textures_by_mutant/dd_03/larva_dd_03.png"
+      "textures_by_mutant/dd_03/DD_03_silver.webp",
+      "textures_by_mutant/dd_03/specimen_dd_03_silver_silver.webp",
+      "textures_by_mutant/dd_03/larva_dd_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -6378,9 +6378,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_03/DE_03_silver.png",
-      "textures_by_mutant/de_03/specimen_de_03_silver_silver.png",
-      "textures_by_mutant/de_03/larva_de_03.png"
+      "textures_by_mutant/de_03/DE_03_silver.webp",
+      "textures_by_mutant/de_03/specimen_de_03_silver_silver.webp",
+      "textures_by_mutant/de_03/larva_de_03.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -6442,9 +6442,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_03/DF_03_silver.png",
-      "textures_by_mutant/df_03/specimen_df_03_silver_silver.png",
-      "textures_by_mutant/df_03/larva_df_03.png"
+      "textures_by_mutant/df_03/DF_03_silver.webp",
+      "textures_by_mutant/df_03/specimen_df_03_silver_silver.webp",
+      "textures_by_mutant/df_03/larva_df_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -6506,9 +6506,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_03/EA_03_silver.png",
-      "textures_by_mutant/ea_03/specimen_ea_03_silver_silver.png",
-      "textures_by_mutant/ea_03/larva_ea_03.png"
+      "textures_by_mutant/ea_03/EA_03_silver.webp",
+      "textures_by_mutant/ea_03/specimen_ea_03_silver_silver.webp",
+      "textures_by_mutant/ea_03/larva_ea_03.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -6570,9 +6570,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_03/EB_03_silver.png",
-      "textures_by_mutant/eb_03/specimen_eb_03_silver_silver.png",
-      "textures_by_mutant/eb_03/larva_eb_03.png"
+      "textures_by_mutant/eb_03/EB_03_silver.webp",
+      "textures_by_mutant/eb_03/specimen_eb_03_silver_silver.webp",
+      "textures_by_mutant/eb_03/larva_eb_03.webp"
     ],
     "type": "RECIPE",
     "incub_time": 720,
@@ -6634,9 +6634,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_03/EC_03_silver.png",
-      "textures_by_mutant/ec_03/specimen_ec_03_silver_silver.png",
-      "textures_by_mutant/ec_03/larva_ec_03.png"
+      "textures_by_mutant/ec_03/EC_03_silver.webp",
+      "textures_by_mutant/ec_03/specimen_ec_03_silver_silver.webp",
+      "textures_by_mutant/ec_03/larva_ec_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -6698,9 +6698,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_03/ED_03_silver.png",
-      "textures_by_mutant/ed_03/specimen_ed_03_silver_silver.png",
-      "textures_by_mutant/ed_03/larva_ed_03.png"
+      "textures_by_mutant/ed_03/ED_03_silver.webp",
+      "textures_by_mutant/ed_03/specimen_ed_03_silver_silver.webp",
+      "textures_by_mutant/ed_03/larva_ed_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -6762,9 +6762,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_03/EE_03_silver.png",
-      "textures_by_mutant/ee_03/specimen_ee_03_silver_silver.png",
-      "textures_by_mutant/ee_03/larva_ee_03.png"
+      "textures_by_mutant/ee_03/EE_03_silver.webp",
+      "textures_by_mutant/ee_03/specimen_ee_03_silver_silver.webp",
+      "textures_by_mutant/ee_03/larva_ee_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -6826,9 +6826,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_03/EF_03_silver.png",
-      "textures_by_mutant/ef_03/specimen_ef_03_silver_silver.png",
-      "textures_by_mutant/ef_03/larva_ef_03.png"
+      "textures_by_mutant/ef_03/EF_03_silver.webp",
+      "textures_by_mutant/ef_03/specimen_ef_03_silver_silver.webp",
+      "textures_by_mutant/ef_03/larva_ef_03.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -6890,9 +6890,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_03/FA_03_silver.png",
-      "textures_by_mutant/fa_03/specimen_fa_03_silver_silver.png",
-      "textures_by_mutant/fa_03/larva_fa_03.png"
+      "textures_by_mutant/fa_03/FA_03_silver.webp",
+      "textures_by_mutant/fa_03/specimen_fa_03_silver_silver.webp",
+      "textures_by_mutant/fa_03/larva_fa_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -6954,9 +6954,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_03/FB_03_silver.png",
-      "textures_by_mutant/fb_03/specimen_fb_03_silver_silver.png",
-      "textures_by_mutant/fb_03/larva_fb_03.png"
+      "textures_by_mutant/fb_03/FB_03_silver.webp",
+      "textures_by_mutant/fb_03/specimen_fb_03_silver_silver.webp",
+      "textures_by_mutant/fb_03/larva_fb_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -7018,9 +7018,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_03/FE_03_silver.png",
-      "textures_by_mutant/fe_03/specimen_fe_03_silver_silver.png",
-      "textures_by_mutant/fe_03/larva_fe_03.png"
+      "textures_by_mutant/fe_03/FE_03_silver.webp",
+      "textures_by_mutant/fe_03/specimen_fe_03_silver_silver.webp",
+      "textures_by_mutant/fe_03/larva_fe_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7082,9 +7082,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_03/FF_03_silver.png",
-      "textures_by_mutant/ff_03/specimen_ff_03_silver_silver.png",
-      "textures_by_mutant/ff_03/larva_ff_03.png"
+      "textures_by_mutant/ff_03/FF_03_silver.webp",
+      "textures_by_mutant/ff_03/specimen_ff_03_silver_silver.webp",
+      "textures_by_mutant/ff_03/larva_ff_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 180,
@@ -7146,9 +7146,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/e_03/E_03_silver.png",
-      "textures_by_mutant/e_03/specimen_e_03_silver_silver.png",
-      "textures_by_mutant/e_03/larva_e_03.png"
+      "textures_by_mutant/e_03/E_03_silver.webp",
+      "textures_by_mutant/e_03/specimen_e_03_silver_silver.webp",
+      "textures_by_mutant/e_03/larva_e_03.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7210,9 +7210,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_04/AA_04_silver.png",
-      "textures_by_mutant/aa_04/specimen_aa_04_silver_silver.png",
-      "textures_by_mutant/aa_04/larva_aa_04.png"
+      "textures_by_mutant/aa_04/AA_04_silver.webp",
+      "textures_by_mutant/aa_04/specimen_aa_04_silver_silver.webp",
+      "textures_by_mutant/aa_04/larva_aa_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7274,9 +7274,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_04/AB_04_silver.png",
-      "textures_by_mutant/ab_04/specimen_ab_04_silver_silver.png",
-      "textures_by_mutant/ab_04/larva_ab_04.png"
+      "textures_by_mutant/ab_04/AB_04_silver.webp",
+      "textures_by_mutant/ab_04/specimen_ab_04_silver_silver.webp",
+      "textures_by_mutant/ab_04/larva_ab_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7338,9 +7338,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_04/AD_04_silver.png",
-      "textures_by_mutant/ad_04/specimen_ad_04_silver_silver.png",
-      "textures_by_mutant/ad_04/larva_ad_04.png"
+      "textures_by_mutant/ad_04/AD_04_silver.webp",
+      "textures_by_mutant/ad_04/specimen_ad_04_silver_silver.webp",
+      "textures_by_mutant/ad_04/larva_ad_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7402,9 +7402,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_04/AF_04_silver.png",
-      "textures_by_mutant/af_04/specimen_af_04_silver_silver.png",
-      "textures_by_mutant/af_04/larva_af_04.png"
+      "textures_by_mutant/af_04/AF_04_silver.webp",
+      "textures_by_mutant/af_04/specimen_af_04_silver_silver.webp",
+      "textures_by_mutant/af_04/larva_af_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7466,9 +7466,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_04/BA_04_silver.png",
-      "textures_by_mutant/ba_04/specimen_ba_04_silver_silver.png",
-      "textures_by_mutant/ba_04/larva_ba_04.png"
+      "textures_by_mutant/ba_04/BA_04_silver.webp",
+      "textures_by_mutant/ba_04/specimen_ba_04_silver_silver.webp",
+      "textures_by_mutant/ba_04/larva_ba_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7530,9 +7530,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_04/BB_04_silver.png",
-      "textures_by_mutant/bb_04/specimen_bb_04_silver_silver.png",
-      "textures_by_mutant/bb_04/larva_bb_04.png"
+      "textures_by_mutant/bb_04/BB_04_silver.webp",
+      "textures_by_mutant/bb_04/specimen_bb_04_silver_silver.webp",
+      "textures_by_mutant/bb_04/larva_bb_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7594,9 +7594,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_04/BD_04_silver.png",
-      "textures_by_mutant/bd_04/specimen_bd_04_silver_silver.png",
-      "textures_by_mutant/bd_04/larva_bd_04.png"
+      "textures_by_mutant/bd_04/BD_04_silver.webp",
+      "textures_by_mutant/bd_04/specimen_bd_04_silver_silver.webp",
+      "textures_by_mutant/bd_04/larva_bd_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7658,9 +7658,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_04/BE_04_silver.png",
-      "textures_by_mutant/be_04/specimen_be_04_silver_silver.png",
-      "textures_by_mutant/be_04/larva_be_04.png"
+      "textures_by_mutant/be_04/BE_04_silver.webp",
+      "textures_by_mutant/be_04/specimen_be_04_silver_silver.webp",
+      "textures_by_mutant/be_04/larva_be_04.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -7722,9 +7722,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_04/CA_04_silver.png",
-      "textures_by_mutant/ca_04/specimen_ca_04_silver_silver.png",
-      "textures_by_mutant/ca_04/larva_ca_04.png"
+      "textures_by_mutant/ca_04/CA_04_silver.webp",
+      "textures_by_mutant/ca_04/specimen_ca_04_silver_silver.webp",
+      "textures_by_mutant/ca_04/larva_ca_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7786,9 +7786,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_04/CB_04_silver.png",
-      "textures_by_mutant/cb_04/specimen_cb_04_silver_silver.png",
-      "textures_by_mutant/cb_04/larva_cb_04.png"
+      "textures_by_mutant/cb_04/CB_04_silver.webp",
+      "textures_by_mutant/cb_04/specimen_cb_04_silver_silver.webp",
+      "textures_by_mutant/cb_04/larva_cb_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7850,9 +7850,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_04/CD_04_silver.png",
-      "textures_by_mutant/cd_04/specimen_cd_04_silver_silver.png",
-      "textures_by_mutant/cd_04/larva_cd_04.png"
+      "textures_by_mutant/cd_04/CD_04_silver.webp",
+      "textures_by_mutant/cd_04/specimen_cd_04_silver_silver.webp",
+      "textures_by_mutant/cd_04/larva_cd_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7914,9 +7914,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_04/CE_04_silver.png",
-      "textures_by_mutant/ce_04/specimen_ce_04_silver_silver.png",
-      "textures_by_mutant/ce_04/larva_ce_04.png"
+      "textures_by_mutant/ce_04/CE_04_silver.webp",
+      "textures_by_mutant/ce_04/specimen_ce_04_silver_silver.webp",
+      "textures_by_mutant/ce_04/larva_ce_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -7978,9 +7978,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_04/CF_04_silver.png",
-      "textures_by_mutant/cf_04/specimen_cf_04_silver_silver.png",
-      "textures_by_mutant/cf_04/larva_cf_04.png"
+      "textures_by_mutant/cf_04/CF_04_silver.webp",
+      "textures_by_mutant/cf_04/specimen_cf_04_silver_silver.webp",
+      "textures_by_mutant/cf_04/larva_cf_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8042,9 +8042,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_04/DA_04_silver.png",
-      "textures_by_mutant/da_04/specimen_da_04_silver_silver.png",
-      "textures_by_mutant/da_04/larva_da_04.png"
+      "textures_by_mutant/da_04/DA_04_silver.webp",
+      "textures_by_mutant/da_04/specimen_da_04_silver_silver.webp",
+      "textures_by_mutant/da_04/larva_da_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8106,9 +8106,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_04/DC_04_silver.png",
-      "textures_by_mutant/dc_04/specimen_dc_04_silver_silver.png",
-      "textures_by_mutant/dc_04/larva_dc_04.png"
+      "textures_by_mutant/dc_04/DC_04_silver.webp",
+      "textures_by_mutant/dc_04/specimen_dc_04_silver_silver.webp",
+      "textures_by_mutant/dc_04/larva_dc_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8170,9 +8170,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_04/DD_04_silver.png",
-      "textures_by_mutant/dd_04/specimen_dd_04_silver_silver.png",
-      "textures_by_mutant/dd_04/larva_dd_04.png"
+      "textures_by_mutant/dd_04/DD_04_silver.webp",
+      "textures_by_mutant/dd_04/specimen_dd_04_silver_silver.webp",
+      "textures_by_mutant/dd_04/larva_dd_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8234,9 +8234,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_04/DE_04_silver.png",
-      "textures_by_mutant/de_04/specimen_de_04_silver_silver.png",
-      "textures_by_mutant/de_04/larva_de_04.png"
+      "textures_by_mutant/de_04/DE_04_silver.webp",
+      "textures_by_mutant/de_04/specimen_de_04_silver_silver.webp",
+      "textures_by_mutant/de_04/larva_de_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8298,9 +8298,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_04/DF_04_silver.png",
-      "textures_by_mutant/df_04/specimen_df_04_silver_silver.png",
-      "textures_by_mutant/df_04/larva_df_04.png"
+      "textures_by_mutant/df_04/DF_04_silver.webp",
+      "textures_by_mutant/df_04/specimen_df_04_silver_silver.webp",
+      "textures_by_mutant/df_04/larva_df_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8362,9 +8362,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_04/EA_04_silver.png",
-      "textures_by_mutant/ea_04/specimen_ea_04_silver_silver.png",
-      "textures_by_mutant/ea_04/larva_ea_04.png"
+      "textures_by_mutant/ea_04/EA_04_silver.webp",
+      "textures_by_mutant/ea_04/specimen_ea_04_silver_silver.webp",
+      "textures_by_mutant/ea_04/larva_ea_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8426,9 +8426,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_04/EB_04_silver.png",
-      "textures_by_mutant/eb_04/specimen_eb_04_silver_silver.png",
-      "textures_by_mutant/eb_04/larva_eb_04.png"
+      "textures_by_mutant/eb_04/EB_04_silver.webp",
+      "textures_by_mutant/eb_04/specimen_eb_04_silver_silver.webp",
+      "textures_by_mutant/eb_04/larva_eb_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8490,9 +8490,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_04/EE_04_silver.png",
-      "textures_by_mutant/ee_04/specimen_ee_04_silver_silver.png",
-      "textures_by_mutant/ee_04/larva_ee_04.png"
+      "textures_by_mutant/ee_04/EE_04_silver.webp",
+      "textures_by_mutant/ee_04/specimen_ee_04_silver_silver.webp",
+      "textures_by_mutant/ee_04/larva_ee_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8554,9 +8554,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_04/EF_04_silver.png",
-      "textures_by_mutant/ef_04/specimen_ef_04_silver_silver.png",
-      "textures_by_mutant/ef_04/larva_ef_04.png"
+      "textures_by_mutant/ef_04/EF_04_silver.webp",
+      "textures_by_mutant/ef_04/specimen_ef_04_silver_silver.webp",
+      "textures_by_mutant/ef_04/larva_ef_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8618,9 +8618,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_04/FB_04_silver.png",
-      "textures_by_mutant/fb_04/specimen_fb_04_silver_silver.png",
-      "textures_by_mutant/fb_04/larva_fb_04.png"
+      "textures_by_mutant/fb_04/FB_04_silver.webp",
+      "textures_by_mutant/fb_04/specimen_fb_04_silver_silver.webp",
+      "textures_by_mutant/fb_04/larva_fb_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8682,9 +8682,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_04/FD_04_silver.png",
-      "textures_by_mutant/fd_04/specimen_fd_04_silver_silver.png",
-      "textures_by_mutant/fd_04/larva_fd_04.png"
+      "textures_by_mutant/fd_04/FD_04_silver.webp",
+      "textures_by_mutant/fd_04/specimen_fd_04_silver_silver.webp",
+      "textures_by_mutant/fd_04/larva_fd_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8746,9 +8746,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_04/FE_04_silver.png",
-      "textures_by_mutant/fe_04/specimen_fe_04_silver_silver.png",
-      "textures_by_mutant/fe_04/larva_fe_04.png"
+      "textures_by_mutant/fe_04/FE_04_silver.webp",
+      "textures_by_mutant/fe_04/specimen_fe_04_silver_silver.webp",
+      "textures_by_mutant/fe_04/larva_fe_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8810,9 +8810,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_04/FF_04_silver.png",
-      "textures_by_mutant/ff_04/specimen_ff_04_silver_silver.png",
-      "textures_by_mutant/ff_04/larva_ff_04.png"
+      "textures_by_mutant/ff_04/FF_04_silver.webp",
+      "textures_by_mutant/ff_04/specimen_ff_04_silver_silver.webp",
+      "textures_by_mutant/ff_04/larva_ff_04.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -8874,9 +8874,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_05/AA_05_silver.png",
-      "textures_by_mutant/aa_05/specimen_aa_05_silver_silver.png",
-      "textures_by_mutant/aa_05/larva_aa_05.png"
+      "textures_by_mutant/aa_05/AA_05_silver.webp",
+      "textures_by_mutant/aa_05/specimen_aa_05_silver_silver.webp",
+      "textures_by_mutant/aa_05/larva_aa_05.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -8938,9 +8938,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_05/AC_05_silver.png",
-      "textures_by_mutant/ac_05/specimen_ac_05_silver_silver.png",
-      "textures_by_mutant/ac_05/larva_ac_05.png"
+      "textures_by_mutant/ac_05/AC_05_silver.webp",
+      "textures_by_mutant/ac_05/specimen_ac_05_silver_silver.webp",
+      "textures_by_mutant/ac_05/larva_ac_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9002,9 +9002,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_05/AD_05_silver.png",
-      "textures_by_mutant/ad_05/specimen_ad_05_silver_silver.png",
-      "textures_by_mutant/ad_05/larva_ad_05.png"
+      "textures_by_mutant/ad_05/AD_05_silver.webp",
+      "textures_by_mutant/ad_05/specimen_ad_05_silver_silver.webp",
+      "textures_by_mutant/ad_05/larva_ad_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9066,9 +9066,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_05/AE_05_silver.png",
-      "textures_by_mutant/ae_05/specimen_ae_05_silver_silver.png",
-      "textures_by_mutant/ae_05/larva_ae_05.png"
+      "textures_by_mutant/ae_05/AE_05_silver.webp",
+      "textures_by_mutant/ae_05/specimen_ae_05_silver_silver.webp",
+      "textures_by_mutant/ae_05/larva_ae_05.webp"
     ],
     "type": "RECIPE",
     "incub_time": 360,
@@ -9130,9 +9130,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_05/BA_05_silver.png",
-      "textures_by_mutant/ba_05/specimen_ba_05_silver_silver.png",
-      "textures_by_mutant/ba_05/larva_ba_05.png"
+      "textures_by_mutant/ba_05/BA_05_silver.webp",
+      "textures_by_mutant/ba_05/specimen_ba_05_silver_silver.webp",
+      "textures_by_mutant/ba_05/larva_ba_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9194,9 +9194,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_05/BB_05_silver.png",
-      "textures_by_mutant/bb_05/specimen_bb_05_silver_silver.png",
-      "textures_by_mutant/bb_05/larva_bb_05.png"
+      "textures_by_mutant/bb_05/BB_05_silver.webp",
+      "textures_by_mutant/bb_05/specimen_bb_05_silver_silver.webp",
+      "textures_by_mutant/bb_05/larva_bb_05.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -9258,9 +9258,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_05/BC_05_silver.png",
-      "textures_by_mutant/bc_05/specimen_bc_05_silver_silver.png",
-      "textures_by_mutant/bc_05/larva_bc_05.png"
+      "textures_by_mutant/bc_05/BC_05_silver.webp",
+      "textures_by_mutant/bc_05/specimen_bc_05_silver_silver.webp",
+      "textures_by_mutant/bc_05/larva_bc_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9322,9 +9322,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_05/BD_05_silver.png",
-      "textures_by_mutant/bd_05/specimen_bd_05_silver_silver.png",
-      "textures_by_mutant/bd_05/larva_bd_05.png"
+      "textures_by_mutant/bd_05/BD_05_silver.webp",
+      "textures_by_mutant/bd_05/specimen_bd_05_silver_silver.webp",
+      "textures_by_mutant/bd_05/larva_bd_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 120,
@@ -9386,9 +9386,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_05/BE_05_silver.png",
-      "textures_by_mutant/be_05/specimen_be_05_silver_silver.png",
-      "textures_by_mutant/be_05/larva_be_05.png"
+      "textures_by_mutant/be_05/BE_05_silver.webp",
+      "textures_by_mutant/be_05/specimen_be_05_silver_silver.webp",
+      "textures_by_mutant/be_05/larva_be_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9450,9 +9450,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_05/BF_05_silver.png",
-      "textures_by_mutant/bf_05/specimen_bf_05_silver_silver.png",
-      "textures_by_mutant/bf_05/larva_bf_05.png"
+      "textures_by_mutant/bf_05/BF_05_silver.webp",
+      "textures_by_mutant/bf_05/specimen_bf_05_silver_silver.webp",
+      "textures_by_mutant/bf_05/larva_bf_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9514,9 +9514,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_05/CA_05_silver.png",
-      "textures_by_mutant/ca_05/specimen_ca_05_silver_silver.png",
-      "textures_by_mutant/ca_05/larva_ca_05.png"
+      "textures_by_mutant/ca_05/CA_05_silver.webp",
+      "textures_by_mutant/ca_05/specimen_ca_05_silver_silver.webp",
+      "textures_by_mutant/ca_05/larva_ca_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9578,9 +9578,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_05/CC_05_silver.png",
-      "textures_by_mutant/cc_05/specimen_cc_05_silver_silver.png",
-      "textures_by_mutant/cc_05/larva_cc_05.png"
+      "textures_by_mutant/cc_05/CC_05_silver.webp",
+      "textures_by_mutant/cc_05/specimen_cc_05_silver_silver.webp",
+      "textures_by_mutant/cc_05/larva_cc_05.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -9642,9 +9642,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_05/CF_05_silver.png",
-      "textures_by_mutant/cf_05/specimen_cf_05_silver_silver.png",
-      "textures_by_mutant/cf_05/larva_cf_05.png"
+      "textures_by_mutant/cf_05/CF_05_silver.webp",
+      "textures_by_mutant/cf_05/specimen_cf_05_silver_silver.webp",
+      "textures_by_mutant/cf_05/larva_cf_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9706,9 +9706,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_05/DA_05_silver.png",
-      "textures_by_mutant/da_05/specimen_da_05_silver_silver.png",
-      "textures_by_mutant/da_05/larva_da_05.png"
+      "textures_by_mutant/da_05/DA_05_silver.webp",
+      "textures_by_mutant/da_05/specimen_da_05_silver_silver.webp",
+      "textures_by_mutant/da_05/larva_da_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9770,9 +9770,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_05/DC_05_silver.png",
-      "textures_by_mutant/dc_05/specimen_dc_05_silver_silver.png",
-      "textures_by_mutant/dc_05/larva_dc_05.png"
+      "textures_by_mutant/dc_05/DC_05_silver.webp",
+      "textures_by_mutant/dc_05/specimen_dc_05_silver_silver.webp",
+      "textures_by_mutant/dc_05/larva_dc_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9834,9 +9834,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_05/DD_05_silver.png",
-      "textures_by_mutant/dd_05/specimen_dd_05_silver_silver.png",
-      "textures_by_mutant/dd_05/larva_dd_05.png"
+      "textures_by_mutant/dd_05/DD_05_silver.webp",
+      "textures_by_mutant/dd_05/specimen_dd_05_silver_silver.webp",
+      "textures_by_mutant/dd_05/larva_dd_05.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -9898,9 +9898,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_05/DE_05_silver.png",
-      "textures_by_mutant/de_05/specimen_de_05_silver_silver.png",
-      "textures_by_mutant/de_05/larva_de_05.png"
+      "textures_by_mutant/de_05/DE_05_silver.webp",
+      "textures_by_mutant/de_05/specimen_de_05_silver_silver.webp",
+      "textures_by_mutant/de_05/larva_de_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -9962,9 +9962,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_05/DF_05_silver.png",
-      "textures_by_mutant/df_05/specimen_df_05_silver_silver.png",
-      "textures_by_mutant/df_05/larva_df_05.png"
+      "textures_by_mutant/df_05/DF_05_silver.webp",
+      "textures_by_mutant/df_05/specimen_df_05_silver_silver.webp",
+      "textures_by_mutant/df_05/larva_df_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10026,9 +10026,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_05/EA_05_silver.png",
-      "textures_by_mutant/ea_05/specimen_ea_05_silver_silver.png",
-      "textures_by_mutant/ea_05/larva_ea_05.png"
+      "textures_by_mutant/ea_05/EA_05_silver.webp",
+      "textures_by_mutant/ea_05/specimen_ea_05_silver_silver.webp",
+      "textures_by_mutant/ea_05/larva_ea_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10090,9 +10090,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_05/EB_05_silver.png",
-      "textures_by_mutant/eb_05/specimen_eb_05_silver_silver.png",
-      "textures_by_mutant/eb_05/larva_eb_05.png"
+      "textures_by_mutant/eb_05/EB_05_silver.webp",
+      "textures_by_mutant/eb_05/specimen_eb_05_silver_silver.webp",
+      "textures_by_mutant/eb_05/larva_eb_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10154,9 +10154,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_05/EC_05_silver.png",
-      "textures_by_mutant/ec_05/specimen_ec_05_silver_silver.png",
-      "textures_by_mutant/ec_05/larva_ec_05.png"
+      "textures_by_mutant/ec_05/EC_05_silver.webp",
+      "textures_by_mutant/ec_05/specimen_ec_05_silver_silver.webp",
+      "textures_by_mutant/ec_05/larva_ec_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10218,9 +10218,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_05/ED_05_silver.png",
-      "textures_by_mutant/ed_05/specimen_ed_05_silver_silver.png",
-      "textures_by_mutant/ed_05/larva_ed_05.png"
+      "textures_by_mutant/ed_05/ED_05_silver.webp",
+      "textures_by_mutant/ed_05/specimen_ed_05_silver_silver.webp",
+      "textures_by_mutant/ed_05/larva_ed_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10282,9 +10282,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_05/EE_05_silver.png",
-      "textures_by_mutant/ee_05/specimen_ee_05_silver_silver.png",
-      "textures_by_mutant/ee_05/larva_ee_05.png"
+      "textures_by_mutant/ee_05/EE_05_silver.webp",
+      "textures_by_mutant/ee_05/specimen_ee_05_silver_silver.webp",
+      "textures_by_mutant/ee_05/larva_ee_05.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -10346,9 +10346,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_05/EF_05_silver.png",
-      "textures_by_mutant/ef_05/specimen_ef_05_silver_silver.png",
-      "textures_by_mutant/ef_05/larva_ef_05.png"
+      "textures_by_mutant/ef_05/EF_05_silver.webp",
+      "textures_by_mutant/ef_05/specimen_ef_05_silver_silver.webp",
+      "textures_by_mutant/ef_05/larva_ef_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10410,9 +10410,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_05/FA_05_silver.png",
-      "textures_by_mutant/fa_05/specimen_fa_05_silver_silver.png",
-      "textures_by_mutant/fa_05/larva_fa_05.png"
+      "textures_by_mutant/fa_05/FA_05_silver.webp",
+      "textures_by_mutant/fa_05/specimen_fa_05_silver_silver.webp",
+      "textures_by_mutant/fa_05/larva_fa_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10474,9 +10474,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_05/FB_05_silver.png",
-      "textures_by_mutant/fb_05/specimen_fb_05_silver_silver.png",
-      "textures_by_mutant/fb_05/larva_fb_05.png"
+      "textures_by_mutant/fb_05/FB_05_silver.webp",
+      "textures_by_mutant/fb_05/specimen_fb_05_silver_silver.webp",
+      "textures_by_mutant/fb_05/larva_fb_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10538,9 +10538,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_05/FD_05_silver.png",
-      "textures_by_mutant/fd_05/specimen_fd_05_silver_silver.png",
-      "textures_by_mutant/fd_05/larva_fd_05.png"
+      "textures_by_mutant/fd_05/FD_05_silver.webp",
+      "textures_by_mutant/fd_05/specimen_fd_05_silver_silver.webp",
+      "textures_by_mutant/fd_05/larva_fd_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10602,9 +10602,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_05/FE_05_silver.png",
-      "textures_by_mutant/fe_05/specimen_fe_05_silver_silver.png",
-      "textures_by_mutant/fe_05/larva_fe_05.png"
+      "textures_by_mutant/fe_05/FE_05_silver.webp",
+      "textures_by_mutant/fe_05/specimen_fe_05_silver_silver.webp",
+      "textures_by_mutant/fe_05/larva_fe_05.webp"
     ],
     "type": "ZODIAC",
     "incub_time": 60,
@@ -10666,9 +10666,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_05/FF_05_silver.png",
-      "textures_by_mutant/ff_05/specimen_ff_05_silver_silver.png",
-      "textures_by_mutant/ff_05/larva_ff_05.png"
+      "textures_by_mutant/ff_05/FF_05_silver.webp",
+      "textures_by_mutant/ff_05/specimen_ff_05_silver_silver.webp",
+      "textures_by_mutant/ff_05/larva_ff_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10730,9 +10730,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/a_05/A_05_silver.png",
-      "textures_by_mutant/a_05/specimen_a_05_silver_silver.png",
-      "textures_by_mutant/a_05/larva_a_05.png"
+      "textures_by_mutant/a_05/A_05_silver.webp",
+      "textures_by_mutant/a_05/specimen_a_05_silver_silver.webp",
+      "textures_by_mutant/a_05/larva_a_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10794,9 +10794,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/b_05/B_05_silver.png",
-      "textures_by_mutant/b_05/specimen_b_05_silver_silver.png",
-      "textures_by_mutant/b_05/larva_b_05.png"
+      "textures_by_mutant/b_05/B_05_silver.webp",
+      "textures_by_mutant/b_05/specimen_b_05_silver_silver.webp",
+      "textures_by_mutant/b_05/larva_b_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10858,9 +10858,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/c_05/C_05_silver.png",
-      "textures_by_mutant/c_05/specimen_c_05_silver_silver.png",
-      "textures_by_mutant/c_05/larva_c_05.png"
+      "textures_by_mutant/c_05/C_05_silver.webp",
+      "textures_by_mutant/c_05/specimen_c_05_silver_silver.webp",
+      "textures_by_mutant/c_05/larva_c_05.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -10922,9 +10922,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_06/AA_06_silver.png",
-      "textures_by_mutant/aa_06/specimen_aa_06_silver_silver.png",
-      "textures_by_mutant/aa_06/larva_aa_06.png"
+      "textures_by_mutant/aa_06/AA_06_silver.webp",
+      "textures_by_mutant/aa_06/specimen_aa_06_silver_silver.webp",
+      "textures_by_mutant/aa_06/larva_aa_06.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -10986,9 +10986,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_06/AB_06_silver.png",
-      "textures_by_mutant/ab_06/specimen_ab_06_silver_silver.png",
-      "textures_by_mutant/ab_06/larva_ab_06.png"
+      "textures_by_mutant/ab_06/AB_06_silver.webp",
+      "textures_by_mutant/ab_06/specimen_ab_06_silver_silver.webp",
+      "textures_by_mutant/ab_06/larva_ab_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11050,9 +11050,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_06/AC_06_silver.png",
-      "textures_by_mutant/ac_06/specimen_ac_06_silver_silver.png",
-      "textures_by_mutant/ac_06/larva_ac_06.png"
+      "textures_by_mutant/ac_06/AC_06_silver.webp",
+      "textures_by_mutant/ac_06/specimen_ac_06_silver_silver.webp",
+      "textures_by_mutant/ac_06/larva_ac_06.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -11114,9 +11114,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_06/AD_06_silver.png",
-      "textures_by_mutant/ad_06/specimen_ad_06_silver_silver.png",
-      "textures_by_mutant/ad_06/larva_ad_06.png"
+      "textures_by_mutant/ad_06/AD_06_silver.webp",
+      "textures_by_mutant/ad_06/specimen_ad_06_silver_silver.webp",
+      "textures_by_mutant/ad_06/larva_ad_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11178,9 +11178,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_06/AE_06_silver.png",
-      "textures_by_mutant/ae_06/specimen_ae_06_silver_silver.png",
-      "textures_by_mutant/ae_06/larva_ae_06.png"
+      "textures_by_mutant/ae_06/AE_06_silver.webp",
+      "textures_by_mutant/ae_06/specimen_ae_06_silver_silver.webp",
+      "textures_by_mutant/ae_06/larva_ae_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11242,9 +11242,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_06/BA_06_silver.png",
-      "textures_by_mutant/ba_06/specimen_ba_06_silver_silver.png",
-      "textures_by_mutant/ba_06/larva_ba_06.png"
+      "textures_by_mutant/ba_06/BA_06_silver.webp",
+      "textures_by_mutant/ba_06/specimen_ba_06_silver_silver.webp",
+      "textures_by_mutant/ba_06/larva_ba_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11306,9 +11306,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_06/BB_06_silver.png",
-      "textures_by_mutant/bb_06/specimen_bb_06_silver_silver.png",
-      "textures_by_mutant/bb_06/larva_bb_06.png"
+      "textures_by_mutant/bb_06/BB_06_silver.webp",
+      "textures_by_mutant/bb_06/specimen_bb_06_silver_silver.webp",
+      "textures_by_mutant/bb_06/larva_bb_06.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -11370,9 +11370,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_06/BC_06_silver.png",
-      "textures_by_mutant/bc_06/specimen_bc_06_silver_silver.png",
-      "textures_by_mutant/bc_06/larva_bc_06.png"
+      "textures_by_mutant/bc_06/BC_06_silver.webp",
+      "textures_by_mutant/bc_06/specimen_bc_06_silver_silver.webp",
+      "textures_by_mutant/bc_06/larva_bc_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11434,9 +11434,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_06/BD_06_silver.png",
-      "textures_by_mutant/bd_06/specimen_bd_06_silver_silver.png",
-      "textures_by_mutant/bd_06/larva_bd_06.png"
+      "textures_by_mutant/bd_06/BD_06_silver.webp",
+      "textures_by_mutant/bd_06/specimen_bd_06_silver_silver.webp",
+      "textures_by_mutant/bd_06/larva_bd_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11498,9 +11498,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_06/BE_06_silver.png",
-      "textures_by_mutant/be_06/specimen_be_06_silver_silver.png",
-      "textures_by_mutant/be_06/larva_be_06.png"
+      "textures_by_mutant/be_06/BE_06_silver.webp",
+      "textures_by_mutant/be_06/specimen_be_06_silver_silver.webp",
+      "textures_by_mutant/be_06/larva_be_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11562,9 +11562,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_06/BF_06_silver.png",
-      "textures_by_mutant/bf_06/specimen_bf_06_silver_silver.png",
-      "textures_by_mutant/bf_06/larva_bf_06.png"
+      "textures_by_mutant/bf_06/BF_06_silver.webp",
+      "textures_by_mutant/bf_06/specimen_bf_06_silver_silver.webp",
+      "textures_by_mutant/bf_06/larva_bf_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11626,9 +11626,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_06/CA_06_silver.png",
-      "textures_by_mutant/ca_06/specimen_ca_06_silver_silver.png",
-      "textures_by_mutant/ca_06/larva_ca_06.png"
+      "textures_by_mutant/ca_06/CA_06_silver.webp",
+      "textures_by_mutant/ca_06/specimen_ca_06_silver_silver.webp",
+      "textures_by_mutant/ca_06/larva_ca_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11690,9 +11690,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_06/CC_06_silver.png",
-      "textures_by_mutant/cc_06/specimen_cc_06_silver_silver.png",
-      "textures_by_mutant/cc_06/larva_cc_06.png"
+      "textures_by_mutant/cc_06/CC_06_silver.webp",
+      "textures_by_mutant/cc_06/specimen_cc_06_silver_silver.webp",
+      "textures_by_mutant/cc_06/larva_cc_06.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -11754,9 +11754,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_06/CD_06_silver.png",
-      "textures_by_mutant/cd_06/specimen_cd_06_silver_silver.png",
-      "textures_by_mutant/cd_06/larva_cd_06.png"
+      "textures_by_mutant/cd_06/CD_06_silver.webp",
+      "textures_by_mutant/cd_06/specimen_cd_06_silver_silver.webp",
+      "textures_by_mutant/cd_06/larva_cd_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11818,9 +11818,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_06/CE_06_silver.png",
-      "textures_by_mutant/ce_06/specimen_ce_06_silver_silver.png",
-      "textures_by_mutant/ce_06/larva_ce_06.png"
+      "textures_by_mutant/ce_06/CE_06_silver.webp",
+      "textures_by_mutant/ce_06/specimen_ce_06_silver_silver.webp",
+      "textures_by_mutant/ce_06/larva_ce_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11882,9 +11882,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_06/DA_06_silver.png",
-      "textures_by_mutant/da_06/specimen_da_06_silver_silver.png",
-      "textures_by_mutant/da_06/larva_da_06.png"
+      "textures_by_mutant/da_06/DA_06_silver.webp",
+      "textures_by_mutant/da_06/specimen_da_06_silver_silver.webp",
+      "textures_by_mutant/da_06/larva_da_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -11946,9 +11946,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_06/DB_06_silver.png",
-      "textures_by_mutant/db_06/specimen_db_06_silver_silver.png",
-      "textures_by_mutant/db_06/larva_db_06.png"
+      "textures_by_mutant/db_06/DB_06_silver.webp",
+      "textures_by_mutant/db_06/specimen_db_06_silver_silver.webp",
+      "textures_by_mutant/db_06/larva_db_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12010,9 +12010,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_06/DC_06_silver.png",
-      "textures_by_mutant/dc_06/specimen_dc_06_silver_silver.png",
-      "textures_by_mutant/dc_06/larva_dc_06.png"
+      "textures_by_mutant/dc_06/DC_06_silver.webp",
+      "textures_by_mutant/dc_06/specimen_dc_06_silver_silver.webp",
+      "textures_by_mutant/dc_06/larva_dc_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12074,9 +12074,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_06/DD_06_silver.png",
-      "textures_by_mutant/dd_06/specimen_dd_06_silver_silver.png",
-      "textures_by_mutant/dd_06/larva_dd_06.png"
+      "textures_by_mutant/dd_06/DD_06_silver.webp",
+      "textures_by_mutant/dd_06/specimen_dd_06_silver_silver.webp",
+      "textures_by_mutant/dd_06/larva_dd_06.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -12138,9 +12138,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_06/EA_06_silver.png",
-      "textures_by_mutant/ea_06/specimen_ea_06_silver_silver.png",
-      "textures_by_mutant/ea_06/larva_ea_06.png"
+      "textures_by_mutant/ea_06/EA_06_silver.webp",
+      "textures_by_mutant/ea_06/specimen_ea_06_silver_silver.webp",
+      "textures_by_mutant/ea_06/larva_ea_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12202,9 +12202,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_06/ED_06_silver.png",
-      "textures_by_mutant/ed_06/specimen_ed_06_silver_silver.png",
-      "textures_by_mutant/ed_06/larva_ed_06.png"
+      "textures_by_mutant/ed_06/ED_06_silver.webp",
+      "textures_by_mutant/ed_06/specimen_ed_06_silver_silver.webp",
+      "textures_by_mutant/ed_06/larva_ed_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12266,9 +12266,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_06/EE_06_silver.png",
-      "textures_by_mutant/ee_06/specimen_ee_06_silver_silver.png",
-      "textures_by_mutant/ee_06/larva_ee_06.png"
+      "textures_by_mutant/ee_06/EE_06_silver.webp",
+      "textures_by_mutant/ee_06/specimen_ee_06_silver_silver.webp",
+      "textures_by_mutant/ee_06/larva_ee_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12330,9 +12330,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_06/EF_06_silver.png",
-      "textures_by_mutant/ef_06/specimen_ef_06_silver_silver.png",
-      "textures_by_mutant/ef_06/larva_ef_06.png"
+      "textures_by_mutant/ef_06/EF_06_silver.webp",
+      "textures_by_mutant/ef_06/specimen_ef_06_silver_silver.webp",
+      "textures_by_mutant/ef_06/larva_ef_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12394,9 +12394,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_06/FB_06_silver.png",
-      "textures_by_mutant/fb_06/specimen_fb_06_silver_silver.png",
-      "textures_by_mutant/fb_06/larva_fb_06.png"
+      "textures_by_mutant/fb_06/FB_06_silver.webp",
+      "textures_by_mutant/fb_06/specimen_fb_06_silver_silver.webp",
+      "textures_by_mutant/fb_06/larva_fb_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12458,9 +12458,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_06/FC_06_silver.png",
-      "textures_by_mutant/fc_06/specimen_fc_06_silver_silver.png",
-      "textures_by_mutant/fc_06/larva_fc_06.png"
+      "textures_by_mutant/fc_06/FC_06_silver.webp",
+      "textures_by_mutant/fc_06/specimen_fc_06_silver_silver.webp",
+      "textures_by_mutant/fc_06/larva_fc_06.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -12522,9 +12522,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_06/FD_06_silver.png",
-      "textures_by_mutant/fd_06/specimen_fd_06_silver_silver.png",
-      "textures_by_mutant/fd_06/larva_fd_06.png"
+      "textures_by_mutant/fd_06/FD_06_silver.webp",
+      "textures_by_mutant/fd_06/specimen_fd_06_silver_silver.webp",
+      "textures_by_mutant/fd_06/larva_fd_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12586,9 +12586,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_06/FE_06_silver.png",
-      "textures_by_mutant/fe_06/specimen_fe_06_silver_silver.png",
-      "textures_by_mutant/fe_06/larva_fe_06.png"
+      "textures_by_mutant/fe_06/FE_06_silver.webp",
+      "textures_by_mutant/fe_06/specimen_fe_06_silver_silver.webp",
+      "textures_by_mutant/fe_06/larva_fe_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12650,9 +12650,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_06/FF_06_silver.png",
-      "textures_by_mutant/ff_06/specimen_ff_06_silver_silver.png",
-      "textures_by_mutant/ff_06/larva_ff_06.png"
+      "textures_by_mutant/ff_06/FF_06_silver.webp",
+      "textures_by_mutant/ff_06/specimen_ff_06_silver_silver.webp",
+      "textures_by_mutant/ff_06/larva_ff_06.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12714,9 +12714,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_07/AA_07_silver.png",
-      "textures_by_mutant/aa_07/specimen_aa_07_silver_silver.png",
-      "textures_by_mutant/aa_07/larva_aa_07.png"
+      "textures_by_mutant/aa_07/AA_07_silver.webp",
+      "textures_by_mutant/aa_07/specimen_aa_07_silver_silver.webp",
+      "textures_by_mutant/aa_07/larva_aa_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12778,9 +12778,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_07/AD_07_silver.png",
-      "textures_by_mutant/ad_07/specimen_ad_07_silver_silver.png",
-      "textures_by_mutant/ad_07/larva_ad_07.png"
+      "textures_by_mutant/ad_07/AD_07_silver.webp",
+      "textures_by_mutant/ad_07/specimen_ad_07_silver_silver.webp",
+      "textures_by_mutant/ad_07/larva_ad_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12842,9 +12842,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_07/AE_07_silver.png",
-      "textures_by_mutant/ae_07/specimen_ae_07_silver_silver.png",
-      "textures_by_mutant/ae_07/larva_ae_07.png"
+      "textures_by_mutant/ae_07/AE_07_silver.webp",
+      "textures_by_mutant/ae_07/specimen_ae_07_silver_silver.webp",
+      "textures_by_mutant/ae_07/larva_ae_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -12906,9 +12906,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_07/AF_07_silver.png",
-      "textures_by_mutant/af_07/specimen_af_07_silver_silver.png",
-      "textures_by_mutant/af_07/larva_af_07.png"
+      "textures_by_mutant/af_07/AF_07_silver.webp",
+      "textures_by_mutant/af_07/specimen_af_07_silver_silver.webp",
+      "textures_by_mutant/af_07/larva_af_07.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -12970,9 +12970,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_07/BA_07_silver.png",
-      "textures_by_mutant/ba_07/specimen_ba_07_silver_silver.png",
-      "textures_by_mutant/ba_07/larva_ba_07.png"
+      "textures_by_mutant/ba_07/BA_07_silver.webp",
+      "textures_by_mutant/ba_07/specimen_ba_07_silver_silver.webp",
+      "textures_by_mutant/ba_07/larva_ba_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13034,9 +13034,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_07/BB_07_silver.png",
-      "textures_by_mutant/bb_07/specimen_bb_07_silver_silver.png",
-      "textures_by_mutant/bb_07/larva_bb_07.png"
+      "textures_by_mutant/bb_07/BB_07_silver.webp",
+      "textures_by_mutant/bb_07/specimen_bb_07_silver_silver.webp",
+      "textures_by_mutant/bb_07/larva_bb_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13098,9 +13098,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_07/BC_07_silver.png",
-      "textures_by_mutant/bc_07/specimen_bc_07_silver_silver.png",
-      "textures_by_mutant/bc_07/larva_bc_07.png"
+      "textures_by_mutant/bc_07/BC_07_silver.webp",
+      "textures_by_mutant/bc_07/specimen_bc_07_silver_silver.webp",
+      "textures_by_mutant/bc_07/larva_bc_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13162,9 +13162,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_07/BE_07_silver.png",
-      "textures_by_mutant/be_07/specimen_be_07_silver_silver.png",
-      "textures_by_mutant/be_07/larva_be_07.png"
+      "textures_by_mutant/be_07/BE_07_silver.webp",
+      "textures_by_mutant/be_07/specimen_be_07_silver_silver.webp",
+      "textures_by_mutant/be_07/larva_be_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13226,9 +13226,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_07/BF_07_silver.png",
-      "textures_by_mutant/bf_07/specimen_bf_07_silver_silver.png",
-      "textures_by_mutant/bf_07/larva_bf_07.png"
+      "textures_by_mutant/bf_07/BF_07_silver.webp",
+      "textures_by_mutant/bf_07/specimen_bf_07_silver_silver.webp",
+      "textures_by_mutant/bf_07/larva_bf_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13290,9 +13290,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_07/CA_07_silver.png",
-      "textures_by_mutant/ca_07/specimen_ca_07_silver_silver.png",
-      "textures_by_mutant/ca_07/larva_ca_07.png"
+      "textures_by_mutant/ca_07/CA_07_silver.webp",
+      "textures_by_mutant/ca_07/specimen_ca_07_silver_silver.webp",
+      "textures_by_mutant/ca_07/larva_ca_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13354,9 +13354,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_07/CB_07_silver.png",
-      "textures_by_mutant/cb_07/specimen_cb_07_silver_silver.png",
-      "textures_by_mutant/cb_07/larva_cb_07.png"
+      "textures_by_mutant/cb_07/CB_07_silver.webp",
+      "textures_by_mutant/cb_07/specimen_cb_07_silver_silver.webp",
+      "textures_by_mutant/cb_07/larva_cb_07.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -13418,9 +13418,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_07/CE_07_silver.png",
-      "textures_by_mutant/ce_07/specimen_ce_07_silver_silver.png",
-      "textures_by_mutant/ce_07/larva_ce_07.png"
+      "textures_by_mutant/ce_07/CE_07_silver.webp",
+      "textures_by_mutant/ce_07/specimen_ce_07_silver_silver.webp",
+      "textures_by_mutant/ce_07/larva_ce_07.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -13482,9 +13482,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_07/DA_07_silver.png",
-      "textures_by_mutant/da_07/specimen_da_07_silver_silver.png",
-      "textures_by_mutant/da_07/larva_da_07.png"
+      "textures_by_mutant/da_07/DA_07_silver.webp",
+      "textures_by_mutant/da_07/specimen_da_07_silver_silver.webp",
+      "textures_by_mutant/da_07/larva_da_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13546,9 +13546,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_07/DB_07_silver.png",
-      "textures_by_mutant/db_07/specimen_db_07_silver_silver.png",
-      "textures_by_mutant/db_07/larva_db_07.png"
+      "textures_by_mutant/db_07/DB_07_silver.webp",
+      "textures_by_mutant/db_07/specimen_db_07_silver_silver.webp",
+      "textures_by_mutant/db_07/larva_db_07.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -13610,9 +13610,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_07/DD_07_silver.png",
-      "textures_by_mutant/dd_07/specimen_dd_07_silver_silver.png",
-      "textures_by_mutant/dd_07/larva_dd_07.png"
+      "textures_by_mutant/dd_07/DD_07_silver.webp",
+      "textures_by_mutant/dd_07/specimen_dd_07_silver_silver.webp",
+      "textures_by_mutant/dd_07/larva_dd_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13674,9 +13674,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_07/DE_07_silver.png",
-      "textures_by_mutant/de_07/specimen_de_07_silver_silver.png",
-      "textures_by_mutant/de_07/larva_de_07.png"
+      "textures_by_mutant/de_07/DE_07_silver.webp",
+      "textures_by_mutant/de_07/specimen_de_07_silver_silver.webp",
+      "textures_by_mutant/de_07/larva_de_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13738,9 +13738,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_07/DF_07_silver.png",
-      "textures_by_mutant/df_07/specimen_df_07_silver_silver.png",
-      "textures_by_mutant/df_07/larva_df_07.png"
+      "textures_by_mutant/df_07/DF_07_silver.webp",
+      "textures_by_mutant/df_07/specimen_df_07_silver_silver.webp",
+      "textures_by_mutant/df_07/larva_df_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13802,9 +13802,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_07/EA_07_silver.png",
-      "textures_by_mutant/ea_07/specimen_ea_07_silver_silver.png",
-      "textures_by_mutant/ea_07/larva_ea_07.png"
+      "textures_by_mutant/ea_07/EA_07_silver.webp",
+      "textures_by_mutant/ea_07/specimen_ea_07_silver_silver.webp",
+      "textures_by_mutant/ea_07/larva_ea_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13866,9 +13866,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_07/EB_07_silver.png",
-      "textures_by_mutant/eb_07/specimen_eb_07_silver_silver.png",
-      "textures_by_mutant/eb_07/larva_eb_07.png"
+      "textures_by_mutant/eb_07/EB_07_silver.webp",
+      "textures_by_mutant/eb_07/specimen_eb_07_silver_silver.webp",
+      "textures_by_mutant/eb_07/larva_eb_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13930,9 +13930,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_07/EC_07_silver.png",
-      "textures_by_mutant/ec_07/specimen_ec_07_silver_silver.png",
-      "textures_by_mutant/ec_07/larva_ec_07.png"
+      "textures_by_mutant/ec_07/EC_07_silver.webp",
+      "textures_by_mutant/ec_07/specimen_ec_07_silver_silver.webp",
+      "textures_by_mutant/ec_07/larva_ec_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -13994,9 +13994,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_07/ED_07_silver.png",
-      "textures_by_mutant/ed_07/specimen_ed_07_silver_silver.png",
-      "textures_by_mutant/ed_07/larva_ed_07.png"
+      "textures_by_mutant/ed_07/ED_07_silver.webp",
+      "textures_by_mutant/ed_07/specimen_ed_07_silver_silver.webp",
+      "textures_by_mutant/ed_07/larva_ed_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14058,9 +14058,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_07/EE_07_silver.png",
-      "textures_by_mutant/ee_07/specimen_ee_07_silver_silver.png",
-      "textures_by_mutant/ee_07/larva_ee_07.png"
+      "textures_by_mutant/ee_07/EE_07_silver.webp",
+      "textures_by_mutant/ee_07/specimen_ee_07_silver_silver.webp",
+      "textures_by_mutant/ee_07/larva_ee_07.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -14122,9 +14122,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_07/EF_07_silver.png",
-      "textures_by_mutant/ef_07/specimen_ef_07_silver_silver.png",
-      "textures_by_mutant/ef_07/larva_ef_07.png"
+      "textures_by_mutant/ef_07/EF_07_silver.webp",
+      "textures_by_mutant/ef_07/specimen_ef_07_silver_silver.webp",
+      "textures_by_mutant/ef_07/larva_ef_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14186,9 +14186,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_07/FA_07_silver.png",
-      "textures_by_mutant/fa_07/specimen_fa_07_silver_silver.png",
-      "textures_by_mutant/fa_07/larva_fa_07.png"
+      "textures_by_mutant/fa_07/FA_07_silver.webp",
+      "textures_by_mutant/fa_07/specimen_fa_07_silver_silver.webp",
+      "textures_by_mutant/fa_07/larva_fa_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14250,9 +14250,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_07/FB_07_silver.png",
-      "textures_by_mutant/fb_07/specimen_fb_07_silver_silver.png",
-      "textures_by_mutant/fb_07/larva_fb_07.png"
+      "textures_by_mutant/fb_07/FB_07_silver.webp",
+      "textures_by_mutant/fb_07/specimen_fb_07_silver_silver.webp",
+      "textures_by_mutant/fb_07/larva_fb_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14314,9 +14314,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_07/FC_07_silver.png",
-      "textures_by_mutant/fc_07/specimen_fc_07_silver_silver.png",
-      "textures_by_mutant/fc_07/larva_fc_07.png"
+      "textures_by_mutant/fc_07/FC_07_silver.webp",
+      "textures_by_mutant/fc_07/specimen_fc_07_silver_silver.webp",
+      "textures_by_mutant/fc_07/larva_fc_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14380,9 +14380,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_07/FD_07_silver.png",
-      "textures_by_mutant/fd_07/specimen_fd_07_silver_silver.png",
-      "textures_by_mutant/fd_07/larva_fd_07.png"
+      "textures_by_mutant/fd_07/FD_07_silver.webp",
+      "textures_by_mutant/fd_07/specimen_fd_07_silver_silver.webp",
+      "textures_by_mutant/fd_07/larva_fd_07.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -14444,9 +14444,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_07/FE_07_silver.png",
-      "textures_by_mutant/fe_07/specimen_fe_07_silver_silver.png",
-      "textures_by_mutant/fe_07/larva_fe_07.png"
+      "textures_by_mutant/fe_07/FE_07_silver.webp",
+      "textures_by_mutant/fe_07/specimen_fe_07_silver_silver.webp",
+      "textures_by_mutant/fe_07/larva_fe_07.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14508,9 +14508,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_08/AA_08_silver.png",
-      "textures_by_mutant/aa_08/specimen_aa_08_silver_silver.png",
-      "textures_by_mutant/aa_08/larva_aa_08.png"
+      "textures_by_mutant/aa_08/AA_08_silver.webp",
+      "textures_by_mutant/aa_08/specimen_aa_08_silver_silver.webp",
+      "textures_by_mutant/aa_08/larva_aa_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14572,9 +14572,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_08/AB_08_silver.png",
-      "textures_by_mutant/ab_08/specimen_ab_08_silver_silver.png",
-      "textures_by_mutant/ab_08/larva_ab_08.png"
+      "textures_by_mutant/ab_08/AB_08_silver.webp",
+      "textures_by_mutant/ab_08/specimen_ab_08_silver_silver.webp",
+      "textures_by_mutant/ab_08/larva_ab_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14636,9 +14636,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_08/AC_08_silver.png",
-      "textures_by_mutant/ac_08/specimen_ac_08_silver_silver.png",
-      "textures_by_mutant/ac_08/larva_ac_08.png"
+      "textures_by_mutant/ac_08/AC_08_silver.webp",
+      "textures_by_mutant/ac_08/specimen_ac_08_silver_silver.webp",
+      "textures_by_mutant/ac_08/larva_ac_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14700,9 +14700,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_08/AD_08_silver.png",
-      "textures_by_mutant/ad_08/specimen_ad_08_silver_silver.png",
-      "textures_by_mutant/ad_08/larva_ad_08.png"
+      "textures_by_mutant/ad_08/AD_08_silver.webp",
+      "textures_by_mutant/ad_08/specimen_ad_08_silver_silver.webp",
+      "textures_by_mutant/ad_08/larva_ad_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14764,9 +14764,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_08/AE_08_silver.png",
-      "textures_by_mutant/ae_08/specimen_ae_08_silver_silver.png",
-      "textures_by_mutant/ae_08/larva_ae_08.png"
+      "textures_by_mutant/ae_08/AE_08_silver.webp",
+      "textures_by_mutant/ae_08/specimen_ae_08_silver_silver.webp",
+      "textures_by_mutant/ae_08/larva_ae_08.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -14828,9 +14828,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_08/AF_08_silver.png",
-      "textures_by_mutant/af_08/specimen_af_08_silver_silver.png",
-      "textures_by_mutant/af_08/larva_af_08.png"
+      "textures_by_mutant/af_08/AF_08_silver.webp",
+      "textures_by_mutant/af_08/specimen_af_08_silver_silver.webp",
+      "textures_by_mutant/af_08/larva_af_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14892,9 +14892,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_08/BA_08_silver.png",
-      "textures_by_mutant/ba_08/specimen_ba_08_silver_silver.png",
-      "textures_by_mutant/ba_08/larva_ba_08.png"
+      "textures_by_mutant/ba_08/BA_08_silver.webp",
+      "textures_by_mutant/ba_08/specimen_ba_08_silver_silver.webp",
+      "textures_by_mutant/ba_08/larva_ba_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -14956,9 +14956,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_08/BB_08_silver.png",
-      "textures_by_mutant/bb_08/specimen_bb_08_silver_silver.png",
-      "textures_by_mutant/bb_08/larva_bb_08.png"
+      "textures_by_mutant/bb_08/BB_08_silver.webp",
+      "textures_by_mutant/bb_08/specimen_bb_08_silver_silver.webp",
+      "textures_by_mutant/bb_08/larva_bb_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15020,9 +15020,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_08/BC_08_silver.png",
-      "textures_by_mutant/bc_08/specimen_bc_08_silver_silver.png",
-      "textures_by_mutant/bc_08/larva_bc_08.png"
+      "textures_by_mutant/bc_08/BC_08_silver.webp",
+      "textures_by_mutant/bc_08/specimen_bc_08_silver_silver.webp",
+      "textures_by_mutant/bc_08/larva_bc_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15084,9 +15084,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_08/BD_08_silver.png",
-      "textures_by_mutant/bd_08/specimen_bd_08_silver_silver.png",
-      "textures_by_mutant/bd_08/larva_bd_08.png"
+      "textures_by_mutant/bd_08/BD_08_silver.webp",
+      "textures_by_mutant/bd_08/specimen_bd_08_silver_silver.webp",
+      "textures_by_mutant/bd_08/larva_bd_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15148,9 +15148,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_08/BE_08_silver.png",
-      "textures_by_mutant/be_08/specimen_be_08_silver_silver.png",
-      "textures_by_mutant/be_08/larva_be_08.png"
+      "textures_by_mutant/be_08/BE_08_silver.webp",
+      "textures_by_mutant/be_08/specimen_be_08_silver_silver.webp",
+      "textures_by_mutant/be_08/larva_be_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15212,9 +15212,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_08/BF_08_silver.png",
-      "textures_by_mutant/bf_08/specimen_bf_08_silver_silver.png",
-      "textures_by_mutant/bf_08/larva_bf_08.png"
+      "textures_by_mutant/bf_08/BF_08_silver.webp",
+      "textures_by_mutant/bf_08/specimen_bf_08_silver_silver.webp",
+      "textures_by_mutant/bf_08/larva_bf_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15276,9 +15276,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_08/CA_08_silver.png",
-      "textures_by_mutant/ca_08/specimen_ca_08_silver_silver.png",
-      "textures_by_mutant/ca_08/larva_ca_08.png"
+      "textures_by_mutant/ca_08/CA_08_silver.webp",
+      "textures_by_mutant/ca_08/specimen_ca_08_silver_silver.webp",
+      "textures_by_mutant/ca_08/larva_ca_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15340,9 +15340,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_08/CB_08_silver.png",
-      "textures_by_mutant/cb_08/specimen_cb_08_silver_silver.png",
-      "textures_by_mutant/cb_08/larva_cb_08.png"
+      "textures_by_mutant/cb_08/CB_08_silver.webp",
+      "textures_by_mutant/cb_08/specimen_cb_08_silver_silver.webp",
+      "textures_by_mutant/cb_08/larva_cb_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15404,9 +15404,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_08/CC_08_silver.png",
-      "textures_by_mutant/cc_08/specimen_cc_08_silver_silver.png",
-      "textures_by_mutant/cc_08/larva_cc_08.png"
+      "textures_by_mutant/cc_08/CC_08_silver.webp",
+      "textures_by_mutant/cc_08/specimen_cc_08_silver_silver.webp",
+      "textures_by_mutant/cc_08/larva_cc_08.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -15468,9 +15468,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_08/CD_08_silver.png",
-      "textures_by_mutant/cd_08/specimen_cd_08_silver_silver.png",
-      "textures_by_mutant/cd_08/larva_cd_08.png"
+      "textures_by_mutant/cd_08/CD_08_silver.webp",
+      "textures_by_mutant/cd_08/specimen_cd_08_silver_silver.webp",
+      "textures_by_mutant/cd_08/larva_cd_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15532,9 +15532,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_08/CE_08_silver.png",
-      "textures_by_mutant/ce_08/specimen_ce_08_silver_silver.png",
-      "textures_by_mutant/ce_08/larva_ce_08.png"
+      "textures_by_mutant/ce_08/CE_08_silver.webp",
+      "textures_by_mutant/ce_08/specimen_ce_08_silver_silver.webp",
+      "textures_by_mutant/ce_08/larva_ce_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15596,9 +15596,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_08/CF_08_silver.png",
-      "textures_by_mutant/cf_08/specimen_cf_08_silver_silver.png",
-      "textures_by_mutant/cf_08/larva_cf_08.png"
+      "textures_by_mutant/cf_08/CF_08_silver.webp",
+      "textures_by_mutant/cf_08/specimen_cf_08_silver_silver.webp",
+      "textures_by_mutant/cf_08/larva_cf_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15660,9 +15660,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_08/DA_08_silver.png",
-      "textures_by_mutant/da_08/specimen_da_08_silver_silver.png",
-      "textures_by_mutant/da_08/larva_da_08.png"
+      "textures_by_mutant/da_08/DA_08_silver.webp",
+      "textures_by_mutant/da_08/specimen_da_08_silver_silver.webp",
+      "textures_by_mutant/da_08/larva_da_08.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -15724,9 +15724,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_08/DB_08_silver.png",
-      "textures_by_mutant/db_08/specimen_db_08_silver_silver.png",
-      "textures_by_mutant/db_08/larva_db_08.png"
+      "textures_by_mutant/db_08/DB_08_silver.webp",
+      "textures_by_mutant/db_08/specimen_db_08_silver_silver.webp",
+      "textures_by_mutant/db_08/larva_db_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15788,9 +15788,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_08/DC_08_silver.png",
-      "textures_by_mutant/dc_08/specimen_dc_08_silver_silver.png",
-      "textures_by_mutant/dc_08/larva_dc_08.png"
+      "textures_by_mutant/dc_08/DC_08_silver.webp",
+      "textures_by_mutant/dc_08/specimen_dc_08_silver_silver.webp",
+      "textures_by_mutant/dc_08/larva_dc_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15852,9 +15852,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_08/DD_08_silver.png",
-      "textures_by_mutant/dd_08/specimen_dd_08_silver_silver.png",
-      "textures_by_mutant/dd_08/larva_dd_08.png"
+      "textures_by_mutant/dd_08/DD_08_silver.webp",
+      "textures_by_mutant/dd_08/specimen_dd_08_silver_silver.webp",
+      "textures_by_mutant/dd_08/larva_dd_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15916,9 +15916,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_08/DE_08_silver.png",
-      "textures_by_mutant/de_08/specimen_de_08_silver_silver.png",
-      "textures_by_mutant/de_08/larva_de_08.png"
+      "textures_by_mutant/de_08/DE_08_silver.webp",
+      "textures_by_mutant/de_08/specimen_de_08_silver_silver.webp",
+      "textures_by_mutant/de_08/larva_de_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -15980,9 +15980,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_08/DF_08_silver.png",
-      "textures_by_mutant/df_08/specimen_df_08_silver_silver.png",
-      "textures_by_mutant/df_08/larva_df_08.png"
+      "textures_by_mutant/df_08/DF_08_silver.webp",
+      "textures_by_mutant/df_08/specimen_df_08_silver_silver.webp",
+      "textures_by_mutant/df_08/larva_df_08.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -16044,9 +16044,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_08/EC_08_silver.png",
-      "textures_by_mutant/ec_08/specimen_ec_08_silver_silver.png",
-      "textures_by_mutant/ec_08/larva_ec_08.png"
+      "textures_by_mutant/ec_08/EC_08_silver.webp",
+      "textures_by_mutant/ec_08/specimen_ec_08_silver_silver.webp",
+      "textures_by_mutant/ec_08/larva_ec_08.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -16108,9 +16108,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_08/ED_08_silver.png",
-      "textures_by_mutant/ed_08/specimen_ed_08_silver_silver.png",
-      "textures_by_mutant/ed_08/larva_ed_08.png"
+      "textures_by_mutant/ed_08/ED_08_silver.webp",
+      "textures_by_mutant/ed_08/specimen_ed_08_silver_silver.webp",
+      "textures_by_mutant/ed_08/larva_ed_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16172,9 +16172,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_08/EE_08_silver.png",
-      "textures_by_mutant/ee_08/specimen_ee_08_silver_silver.png",
-      "textures_by_mutant/ee_08/larva_ee_08.png"
+      "textures_by_mutant/ee_08/EE_08_silver.webp",
+      "textures_by_mutant/ee_08/specimen_ee_08_silver_silver.webp",
+      "textures_by_mutant/ee_08/larva_ee_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16236,9 +16236,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_08/FA_08_silver.png",
-      "textures_by_mutant/fa_08/specimen_fa_08_silver_silver.png",
-      "textures_by_mutant/fa_08/larva_fa_08.png"
+      "textures_by_mutant/fa_08/FA_08_silver.webp",
+      "textures_by_mutant/fa_08/specimen_fa_08_silver_silver.webp",
+      "textures_by_mutant/fa_08/larva_fa_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16300,9 +16300,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_08/FB_08_silver.png",
-      "textures_by_mutant/fb_08/specimen_fb_08_silver_silver.png",
-      "textures_by_mutant/fb_08/larva_fb_08.png"
+      "textures_by_mutant/fb_08/FB_08_silver.webp",
+      "textures_by_mutant/fb_08/specimen_fb_08_silver_silver.webp",
+      "textures_by_mutant/fb_08/larva_fb_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16364,9 +16364,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_08/FC_08_silver.png",
-      "textures_by_mutant/fc_08/specimen_fc_08_silver_silver.png",
-      "textures_by_mutant/fc_08/larva_fc_08.png"
+      "textures_by_mutant/fc_08/FC_08_silver.webp",
+      "textures_by_mutant/fc_08/specimen_fc_08_silver_silver.webp",
+      "textures_by_mutant/fc_08/larva_fc_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16428,9 +16428,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_08/FD_08_silver.png",
-      "textures_by_mutant/fd_08/specimen_fd_08_silver_silver.png",
-      "textures_by_mutant/fd_08/larva_fd_08.png"
+      "textures_by_mutant/fd_08/FD_08_silver.webp",
+      "textures_by_mutant/fd_08/specimen_fd_08_silver_silver.webp",
+      "textures_by_mutant/fd_08/larva_fd_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16492,9 +16492,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_08/FE_08_silver.png",
-      "textures_by_mutant/fe_08/specimen_fe_08_silver_silver.png",
-      "textures_by_mutant/fe_08/larva_fe_08.png"
+      "textures_by_mutant/fe_08/FE_08_silver.webp",
+      "textures_by_mutant/fe_08/specimen_fe_08_silver_silver.webp",
+      "textures_by_mutant/fe_08/larva_fe_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16556,9 +16556,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_08/FF_08_silver.png",
-      "textures_by_mutant/ff_08/specimen_ff_08_silver_silver.png",
-      "textures_by_mutant/ff_08/larva_ff_08.png"
+      "textures_by_mutant/ff_08/FF_08_silver.webp",
+      "textures_by_mutant/ff_08/specimen_ff_08_silver_silver.webp",
+      "textures_by_mutant/ff_08/larva_ff_08.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16620,9 +16620,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_09/AA_09_silver.png",
-      "textures_by_mutant/aa_09/specimen_aa_09_silver_silver.png",
-      "textures_by_mutant/aa_09/larva_aa_09.png"
+      "textures_by_mutant/aa_09/AA_09_silver.webp",
+      "textures_by_mutant/aa_09/specimen_aa_09_silver_silver.webp",
+      "textures_by_mutant/aa_09/larva_aa_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16684,9 +16684,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_09/AC_09_silver.png",
-      "textures_by_mutant/ac_09/specimen_ac_09_silver_silver.png",
-      "textures_by_mutant/ac_09/larva_ac_09.png"
+      "textures_by_mutant/ac_09/AC_09_silver.webp",
+      "textures_by_mutant/ac_09/specimen_ac_09_silver_silver.webp",
+      "textures_by_mutant/ac_09/larva_ac_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16748,9 +16748,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_09/AD_09_silver.png",
-      "textures_by_mutant/ad_09/specimen_ad_09_silver_silver.png",
-      "textures_by_mutant/ad_09/larva_ad_09.png"
+      "textures_by_mutant/ad_09/AD_09_silver.webp",
+      "textures_by_mutant/ad_09/specimen_ad_09_silver_silver.webp",
+      "textures_by_mutant/ad_09/larva_ad_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16812,9 +16812,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_09/AE_09_silver.png",
-      "textures_by_mutant/ae_09/specimen_ae_09_silver_silver.png",
-      "textures_by_mutant/ae_09/larva_ae_09.png"
+      "textures_by_mutant/ae_09/AE_09_silver.webp",
+      "textures_by_mutant/ae_09/specimen_ae_09_silver_silver.webp",
+      "textures_by_mutant/ae_09/larva_ae_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -16876,9 +16876,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_09/AF_09_silver.png",
-      "textures_by_mutant/af_09/specimen_af_09_silver_silver.png",
-      "textures_by_mutant/af_09/larva_af_09.png"
+      "textures_by_mutant/af_09/AF_09_silver.webp",
+      "textures_by_mutant/af_09/specimen_af_09_silver_silver.webp",
+      "textures_by_mutant/af_09/larva_af_09.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -16940,9 +16940,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_09/BA_09_silver.png",
-      "textures_by_mutant/ba_09/specimen_ba_09_silver_silver.png",
-      "textures_by_mutant/ba_09/larva_ba_09.png"
+      "textures_by_mutant/ba_09/BA_09_silver.webp",
+      "textures_by_mutant/ba_09/specimen_ba_09_silver_silver.webp",
+      "textures_by_mutant/ba_09/larva_ba_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17004,9 +17004,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_09/BB_09_silver.png",
-      "textures_by_mutant/bb_09/specimen_bb_09_silver_silver.png",
-      "textures_by_mutant/bb_09/larva_bb_09.png"
+      "textures_by_mutant/bb_09/BB_09_silver.webp",
+      "textures_by_mutant/bb_09/specimen_bb_09_silver_silver.webp",
+      "textures_by_mutant/bb_09/larva_bb_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17068,9 +17068,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_09/BC_09_silver.png",
-      "textures_by_mutant/bc_09/specimen_bc_09_silver_silver.png",
-      "textures_by_mutant/bc_09/larva_bc_09.png"
+      "textures_by_mutant/bc_09/BC_09_silver.webp",
+      "textures_by_mutant/bc_09/specimen_bc_09_silver_silver.webp",
+      "textures_by_mutant/bc_09/larva_bc_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17132,9 +17132,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_09/BD_09_silver.png",
-      "textures_by_mutant/bd_09/specimen_bd_09_silver_silver.png",
-      "textures_by_mutant/bd_09/larva_bd_09.png"
+      "textures_by_mutant/bd_09/BD_09_silver.webp",
+      "textures_by_mutant/bd_09/specimen_bd_09_silver_silver.webp",
+      "textures_by_mutant/bd_09/larva_bd_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17196,9 +17196,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_09/BE_09_silver.png",
-      "textures_by_mutant/be_09/specimen_be_09_silver_silver.png",
-      "textures_by_mutant/be_09/larva_be_09.png"
+      "textures_by_mutant/be_09/BE_09_silver.webp",
+      "textures_by_mutant/be_09/specimen_be_09_silver_silver.webp",
+      "textures_by_mutant/be_09/larva_be_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17260,9 +17260,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_09/CB_09_silver.png",
-      "textures_by_mutant/cb_09/specimen_cb_09_silver_silver.png",
-      "textures_by_mutant/cb_09/larva_cb_09.png"
+      "textures_by_mutant/cb_09/CB_09_silver.webp",
+      "textures_by_mutant/cb_09/specimen_cb_09_silver_silver.webp",
+      "textures_by_mutant/cb_09/larva_cb_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17324,9 +17324,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_09/CC_09_silver.png",
-      "textures_by_mutant/cc_09/specimen_cc_09_silver_silver.png",
-      "textures_by_mutant/cc_09/larva_cc_09.png"
+      "textures_by_mutant/cc_09/CC_09_silver.webp",
+      "textures_by_mutant/cc_09/specimen_cc_09_silver_silver.webp",
+      "textures_by_mutant/cc_09/larva_cc_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17388,9 +17388,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_09/CD_09_silver.png",
-      "textures_by_mutant/cd_09/specimen_cd_09_silver_silver.png",
-      "textures_by_mutant/cd_09/larva_cd_09.png"
+      "textures_by_mutant/cd_09/CD_09_silver.webp",
+      "textures_by_mutant/cd_09/specimen_cd_09_silver_silver.webp",
+      "textures_by_mutant/cd_09/larva_cd_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17452,9 +17452,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_09/CE_09_silver.png",
-      "textures_by_mutant/ce_09/specimen_ce_09_silver_silver.png",
-      "textures_by_mutant/ce_09/larva_ce_09.png"
+      "textures_by_mutant/ce_09/CE_09_silver.webp",
+      "textures_by_mutant/ce_09/specimen_ce_09_silver_silver.webp",
+      "textures_by_mutant/ce_09/larva_ce_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17516,9 +17516,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_09/CF_09_silver.png",
-      "textures_by_mutant/cf_09/specimen_cf_09_silver_silver.png",
-      "textures_by_mutant/cf_09/larva_cf_09.png"
+      "textures_by_mutant/cf_09/CF_09_silver.webp",
+      "textures_by_mutant/cf_09/specimen_cf_09_silver_silver.webp",
+      "textures_by_mutant/cf_09/larva_cf_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17580,9 +17580,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_09/DB_09_silver.png",
-      "textures_by_mutant/db_09/specimen_db_09_silver_silver.png",
-      "textures_by_mutant/db_09/larva_db_09.png"
+      "textures_by_mutant/db_09/DB_09_silver.webp",
+      "textures_by_mutant/db_09/specimen_db_09_silver_silver.webp",
+      "textures_by_mutant/db_09/larva_db_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17644,9 +17644,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_09/DC_09_silver.png",
-      "textures_by_mutant/dc_09/specimen_dc_09_silver_silver.png",
-      "textures_by_mutant/dc_09/larva_dc_09.png"
+      "textures_by_mutant/dc_09/DC_09_silver.webp",
+      "textures_by_mutant/dc_09/specimen_dc_09_silver_silver.webp",
+      "textures_by_mutant/dc_09/larva_dc_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17708,9 +17708,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_09/DD_09_silver.png",
-      "textures_by_mutant/dd_09/specimen_dd_09_silver_silver.png",
-      "textures_by_mutant/dd_09/larva_dd_09.png"
+      "textures_by_mutant/dd_09/DD_09_silver.webp",
+      "textures_by_mutant/dd_09/specimen_dd_09_silver_silver.webp",
+      "textures_by_mutant/dd_09/larva_dd_09.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -17772,9 +17772,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_09/DE_09_silver.png",
-      "textures_by_mutant/de_09/specimen_de_09_silver_silver.png",
-      "textures_by_mutant/de_09/larva_de_09.png"
+      "textures_by_mutant/de_09/DE_09_silver.webp",
+      "textures_by_mutant/de_09/specimen_de_09_silver_silver.webp",
+      "textures_by_mutant/de_09/larva_de_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17836,9 +17836,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_09/DF_09_silver.png",
-      "textures_by_mutant/df_09/specimen_df_09_silver_silver.png",
-      "textures_by_mutant/df_09/larva_df_09.png"
+      "textures_by_mutant/df_09/DF_09_silver.webp",
+      "textures_by_mutant/df_09/specimen_df_09_silver_silver.webp",
+      "textures_by_mutant/df_09/larva_df_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17900,9 +17900,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_09/EA_09_silver.png",
-      "textures_by_mutant/ea_09/specimen_ea_09_silver_silver.png",
-      "textures_by_mutant/ea_09/larva_ea_09.png"
+      "textures_by_mutant/ea_09/EA_09_silver.webp",
+      "textures_by_mutant/ea_09/specimen_ea_09_silver_silver.webp",
+      "textures_by_mutant/ea_09/larva_ea_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -17964,9 +17964,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_09/EB_09_silver.png",
-      "textures_by_mutant/eb_09/specimen_eb_09_silver_silver.png",
-      "textures_by_mutant/eb_09/larva_eb_09.png"
+      "textures_by_mutant/eb_09/EB_09_silver.webp",
+      "textures_by_mutant/eb_09/specimen_eb_09_silver_silver.webp",
+      "textures_by_mutant/eb_09/larva_eb_09.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -18028,9 +18028,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_09/EC_09_silver.png",
-      "textures_by_mutant/ec_09/specimen_ec_09_silver_silver.png",
-      "textures_by_mutant/ec_09/larva_ec_09.png"
+      "textures_by_mutant/ec_09/EC_09_silver.webp",
+      "textures_by_mutant/ec_09/specimen_ec_09_silver_silver.webp",
+      "textures_by_mutant/ec_09/larva_ec_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18092,9 +18092,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_09/ED_09_silver.png",
-      "textures_by_mutant/ed_09/specimen_ed_09_silver_silver.png",
-      "textures_by_mutant/ed_09/larva_ed_09.png"
+      "textures_by_mutant/ed_09/ED_09_silver.webp",
+      "textures_by_mutant/ed_09/specimen_ed_09_silver_silver.webp",
+      "textures_by_mutant/ed_09/larva_ed_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18156,9 +18156,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_09/EE_09_silver.png",
-      "textures_by_mutant/ee_09/specimen_ee_09_silver_silver.png",
-      "textures_by_mutant/ee_09/larva_ee_09.png"
+      "textures_by_mutant/ee_09/EE_09_silver.webp",
+      "textures_by_mutant/ee_09/specimen_ee_09_silver_silver.webp",
+      "textures_by_mutant/ee_09/larva_ee_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18220,9 +18220,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_09/EF_09_silver.png",
-      "textures_by_mutant/ef_09/specimen_ef_09_silver_silver.png",
-      "textures_by_mutant/ef_09/larva_ef_09.png"
+      "textures_by_mutant/ef_09/EF_09_silver.webp",
+      "textures_by_mutant/ef_09/specimen_ef_09_silver_silver.webp",
+      "textures_by_mutant/ef_09/larva_ef_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18284,9 +18284,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_09/FA_09_silver.png",
-      "textures_by_mutant/fa_09/specimen_fa_09_silver_silver.png",
-      "textures_by_mutant/fa_09/larva_fa_09.png"
+      "textures_by_mutant/fa_09/FA_09_silver.webp",
+      "textures_by_mutant/fa_09/specimen_fa_09_silver_silver.webp",
+      "textures_by_mutant/fa_09/larva_fa_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18348,9 +18348,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_09/FB_09_silver.png",
-      "textures_by_mutant/fb_09/specimen_fb_09_silver_silver.png",
-      "textures_by_mutant/fb_09/larva_fb_09.png"
+      "textures_by_mutant/fb_09/FB_09_silver.webp",
+      "textures_by_mutant/fb_09/specimen_fb_09_silver_silver.webp",
+      "textures_by_mutant/fb_09/larva_fb_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18412,9 +18412,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_09/FD_09_silver.png",
-      "textures_by_mutant/fd_09/specimen_fd_09_silver_silver.png",
-      "textures_by_mutant/fd_09/larva_fd_09.png"
+      "textures_by_mutant/fd_09/FD_09_silver.webp",
+      "textures_by_mutant/fd_09/specimen_fd_09_silver_silver.webp",
+      "textures_by_mutant/fd_09/larva_fd_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18476,9 +18476,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_09/FE_09_silver.png",
-      "textures_by_mutant/fe_09/specimen_fe_09_silver_silver.png",
-      "textures_by_mutant/fe_09/larva_fe_09.png"
+      "textures_by_mutant/fe_09/FE_09_silver.webp",
+      "textures_by_mutant/fe_09/specimen_fe_09_silver_silver.webp",
+      "textures_by_mutant/fe_09/larva_fe_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18540,9 +18540,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_09/FF_09_silver.png",
-      "textures_by_mutant/ff_09/specimen_ff_09_silver_silver.png",
-      "textures_by_mutant/ff_09/larva_ff_09.png"
+      "textures_by_mutant/ff_09/FF_09_silver.webp",
+      "textures_by_mutant/ff_09/specimen_ff_09_silver_silver.webp",
+      "textures_by_mutant/ff_09/larva_ff_09.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18604,9 +18604,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_10/AA_10_silver.png",
-      "textures_by_mutant/aa_10/specimen_aa_10_silver_silver.png",
-      "textures_by_mutant/aa_10/larva_aa_10.png"
+      "textures_by_mutant/aa_10/AA_10_silver.webp",
+      "textures_by_mutant/aa_10/specimen_aa_10_silver_silver.webp",
+      "textures_by_mutant/aa_10/larva_aa_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18668,9 +18668,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_10/AB_10_silver.png",
-      "textures_by_mutant/ab_10/specimen_ab_10_silver_silver.png",
-      "textures_by_mutant/ab_10/larva_ab_10.png"
+      "textures_by_mutant/ab_10/AB_10_silver.webp",
+      "textures_by_mutant/ab_10/specimen_ab_10_silver_silver.webp",
+      "textures_by_mutant/ab_10/larva_ab_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18732,9 +18732,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_10/AC_10_silver.png",
-      "textures_by_mutant/ac_10/specimen_ac_10_silver_silver.png",
-      "textures_by_mutant/ac_10/larva_ac_10.png"
+      "textures_by_mutant/ac_10/AC_10_silver.webp",
+      "textures_by_mutant/ac_10/specimen_ac_10_silver_silver.webp",
+      "textures_by_mutant/ac_10/larva_ac_10.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -18796,9 +18796,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_10/AD_10_silver.png",
-      "textures_by_mutant/ad_10/specimen_ad_10_silver_silver.png",
-      "textures_by_mutant/ad_10/larva_ad_10.png"
+      "textures_by_mutant/ad_10/AD_10_silver.webp",
+      "textures_by_mutant/ad_10/specimen_ad_10_silver_silver.webp",
+      "textures_by_mutant/ad_10/larva_ad_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18860,9 +18860,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_10/AF_10_silver.png",
-      "textures_by_mutant/af_10/specimen_af_10_silver_silver.png",
-      "textures_by_mutant/af_10/larva_af_10.png"
+      "textures_by_mutant/af_10/AF_10_silver.webp",
+      "textures_by_mutant/af_10/specimen_af_10_silver_silver.webp",
+      "textures_by_mutant/af_10/larva_af_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18924,9 +18924,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_10/BA_10_silver.png",
-      "textures_by_mutant/ba_10/specimen_ba_10_silver_silver.png",
-      "textures_by_mutant/ba_10/larva_ba_10.png"
+      "textures_by_mutant/ba_10/BA_10_silver.webp",
+      "textures_by_mutant/ba_10/specimen_ba_10_silver_silver.webp",
+      "textures_by_mutant/ba_10/larva_ba_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -18988,9 +18988,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_10/BB_10_silver.png",
-      "textures_by_mutant/bb_10/specimen_bb_10_silver_silver.png",
-      "textures_by_mutant/bb_10/larva_bb_10.png"
+      "textures_by_mutant/bb_10/BB_10_silver.webp",
+      "textures_by_mutant/bb_10/specimen_bb_10_silver_silver.webp",
+      "textures_by_mutant/bb_10/larva_bb_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19052,9 +19052,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_10/BC_10_silver.png",
-      "textures_by_mutant/bc_10/specimen_bc_10_silver_silver.png",
-      "textures_by_mutant/bc_10/larva_bc_10.png"
+      "textures_by_mutant/bc_10/BC_10_silver.webp",
+      "textures_by_mutant/bc_10/specimen_bc_10_silver_silver.webp",
+      "textures_by_mutant/bc_10/larva_bc_10.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -19116,9 +19116,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_10/BD_10_silver.png",
-      "textures_by_mutant/bd_10/specimen_bd_10_silver_silver.png",
-      "textures_by_mutant/bd_10/larva_bd_10.png"
+      "textures_by_mutant/bd_10/BD_10_silver.webp",
+      "textures_by_mutant/bd_10/specimen_bd_10_silver_silver.webp",
+      "textures_by_mutant/bd_10/larva_bd_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19180,9 +19180,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_10/BE_10_silver.png",
-      "textures_by_mutant/be_10/specimen_be_10_silver_silver.png",
-      "textures_by_mutant/be_10/larva_be_10.png"
+      "textures_by_mutant/be_10/BE_10_silver.webp",
+      "textures_by_mutant/be_10/specimen_be_10_silver_silver.webp",
+      "textures_by_mutant/be_10/larva_be_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19244,9 +19244,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_10/CA_10_silver.png",
-      "textures_by_mutant/ca_10/specimen_ca_10_silver_silver.png",
-      "textures_by_mutant/ca_10/larva_ca_10.png"
+      "textures_by_mutant/ca_10/CA_10_silver.webp",
+      "textures_by_mutant/ca_10/specimen_ca_10_silver_silver.webp",
+      "textures_by_mutant/ca_10/larva_ca_10.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -19308,9 +19308,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_10/CB_10_silver.png",
-      "textures_by_mutant/cb_10/specimen_cb_10_silver_silver.png",
-      "textures_by_mutant/cb_10/larva_cb_10.png"
+      "textures_by_mutant/cb_10/CB_10_silver.webp",
+      "textures_by_mutant/cb_10/specimen_cb_10_silver_silver.webp",
+      "textures_by_mutant/cb_10/larva_cb_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19372,9 +19372,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_10/CC_10_silver.png",
-      "textures_by_mutant/cc_10/specimen_cc_10_silver_silver.png",
-      "textures_by_mutant/cc_10/larva_cc_10.png"
+      "textures_by_mutant/cc_10/CC_10_silver.webp",
+      "textures_by_mutant/cc_10/specimen_cc_10_silver_silver.webp",
+      "textures_by_mutant/cc_10/larva_cc_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19436,9 +19436,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_10/CD_10_silver.png",
-      "textures_by_mutant/cd_10/specimen_cd_10_silver_silver.png",
-      "textures_by_mutant/cd_10/larva_cd_10.png"
+      "textures_by_mutant/cd_10/CD_10_silver.webp",
+      "textures_by_mutant/cd_10/specimen_cd_10_silver_silver.webp",
+      "textures_by_mutant/cd_10/larva_cd_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19500,9 +19500,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_10/CF_10_silver.png",
-      "textures_by_mutant/cf_10/specimen_cf_10_silver_silver.png",
-      "textures_by_mutant/cf_10/larva_cf_10.png"
+      "textures_by_mutant/cf_10/CF_10_silver.webp",
+      "textures_by_mutant/cf_10/specimen_cf_10_silver_silver.webp",
+      "textures_by_mutant/cf_10/larva_cf_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19564,9 +19564,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_10/DA_10_silver.png",
-      "textures_by_mutant/da_10/specimen_da_10_silver_silver.png",
-      "textures_by_mutant/da_10/larva_da_10.png"
+      "textures_by_mutant/da_10/DA_10_silver.webp",
+      "textures_by_mutant/da_10/specimen_da_10_silver_silver.webp",
+      "textures_by_mutant/da_10/larva_da_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19628,9 +19628,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_10/DB_10_silver.png",
-      "textures_by_mutant/db_10/specimen_db_10_silver_silver.png",
-      "textures_by_mutant/db_10/larva_db_10.png"
+      "textures_by_mutant/db_10/DB_10_silver.webp",
+      "textures_by_mutant/db_10/specimen_db_10_silver_silver.webp",
+      "textures_by_mutant/db_10/larva_db_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19692,9 +19692,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_10/DC_10_silver.png",
-      "textures_by_mutant/dc_10/specimen_dc_10_silver_silver.png",
-      "textures_by_mutant/dc_10/larva_dc_10.png"
+      "textures_by_mutant/dc_10/DC_10_silver.webp",
+      "textures_by_mutant/dc_10/specimen_dc_10_silver_silver.webp",
+      "textures_by_mutant/dc_10/larva_dc_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19756,9 +19756,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_10/DD_10_silver.png",
-      "textures_by_mutant/dd_10/specimen_dd_10_silver_silver.png",
-      "textures_by_mutant/dd_10/larva_dd_10.png"
+      "textures_by_mutant/dd_10/DD_10_silver.webp",
+      "textures_by_mutant/dd_10/specimen_dd_10_silver_silver.webp",
+      "textures_by_mutant/dd_10/larva_dd_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19820,9 +19820,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_10/DE_10_silver.png",
-      "textures_by_mutant/de_10/specimen_de_10_silver_silver.png",
-      "textures_by_mutant/de_10/larva_de_10.png"
+      "textures_by_mutant/de_10/DE_10_silver.webp",
+      "textures_by_mutant/de_10/specimen_de_10_silver_silver.webp",
+      "textures_by_mutant/de_10/larva_de_10.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -19884,9 +19884,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_10/DF_10_silver.png",
-      "textures_by_mutant/df_10/specimen_df_10_silver_silver.png",
-      "textures_by_mutant/df_10/larva_df_10.png"
+      "textures_by_mutant/df_10/DF_10_silver.webp",
+      "textures_by_mutant/df_10/specimen_df_10_silver_silver.webp",
+      "textures_by_mutant/df_10/larva_df_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -19948,9 +19948,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_10/EB_10_silver.png",
-      "textures_by_mutant/eb_10/specimen_eb_10_silver_silver.png",
-      "textures_by_mutant/eb_10/larva_eb_10.png"
+      "textures_by_mutant/eb_10/EB_10_silver.webp",
+      "textures_by_mutant/eb_10/specimen_eb_10_silver_silver.webp",
+      "textures_by_mutant/eb_10/larva_eb_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20012,9 +20012,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_10/EC_10_silver.png",
-      "textures_by_mutant/ec_10/specimen_ec_10_silver_silver.png",
-      "textures_by_mutant/ec_10/larva_ec_10.png"
+      "textures_by_mutant/ec_10/EC_10_silver.webp",
+      "textures_by_mutant/ec_10/specimen_ec_10_silver_silver.webp",
+      "textures_by_mutant/ec_10/larva_ec_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20076,9 +20076,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_10/ED_10_silver.png",
-      "textures_by_mutant/ed_10/specimen_ed_10_silver_silver.png",
-      "textures_by_mutant/ed_10/larva_ed_10.png"
+      "textures_by_mutant/ed_10/ED_10_silver.webp",
+      "textures_by_mutant/ed_10/specimen_ed_10_silver_silver.webp",
+      "textures_by_mutant/ed_10/larva_ed_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20140,9 +20140,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_10/EE_10_silver.png",
-      "textures_by_mutant/ee_10/specimen_ee_10_silver_silver.png",
-      "textures_by_mutant/ee_10/larva_ee_10.png"
+      "textures_by_mutant/ee_10/EE_10_silver.webp",
+      "textures_by_mutant/ee_10/specimen_ee_10_silver_silver.webp",
+      "textures_by_mutant/ee_10/larva_ee_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20204,9 +20204,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_10/EF_10_silver.png",
-      "textures_by_mutant/ef_10/specimen_ef_10_silver_silver.png",
-      "textures_by_mutant/ef_10/larva_ef_10.png"
+      "textures_by_mutant/ef_10/EF_10_silver.webp",
+      "textures_by_mutant/ef_10/specimen_ef_10_silver_silver.webp",
+      "textures_by_mutant/ef_10/larva_ef_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20268,9 +20268,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_10/FA_10_silver.png",
-      "textures_by_mutant/fa_10/specimen_fa_10_silver_silver.png",
-      "textures_by_mutant/fa_10/larva_fa_10.png"
+      "textures_by_mutant/fa_10/FA_10_silver.webp",
+      "textures_by_mutant/fa_10/specimen_fa_10_silver_silver.webp",
+      "textures_by_mutant/fa_10/larva_fa_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20332,9 +20332,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_10/FB_10_silver.png",
-      "textures_by_mutant/fb_10/specimen_fb_10_silver_silver.png",
-      "textures_by_mutant/fb_10/larva_fb_10.png"
+      "textures_by_mutant/fb_10/FB_10_silver.webp",
+      "textures_by_mutant/fb_10/specimen_fb_10_silver_silver.webp",
+      "textures_by_mutant/fb_10/larva_fb_10.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -20396,9 +20396,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_10/FC_10_silver.png",
-      "textures_by_mutant/fc_10/specimen_fc_10_silver_silver.png",
-      "textures_by_mutant/fc_10/larva_fc_10.png"
+      "textures_by_mutant/fc_10/FC_10_silver.webp",
+      "textures_by_mutant/fc_10/specimen_fc_10_silver_silver.webp",
+      "textures_by_mutant/fc_10/larva_fc_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20460,9 +20460,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_10/FD_10_normal.png",
-      "textures_by_mutant/fd_10/specimen_fd_10_normal.png",
-      "textures_by_mutant/fd_10/larva_fd_10.png"
+      "textures_by_mutant/fd_10/FD_10_normal.webp",
+      "textures_by_mutant/fd_10/specimen_fd_10_normal.webp",
+      "textures_by_mutant/fd_10/larva_fd_10.webp"
     ],
     "type": "COMMUNITY",
     "incub_time": 60,
@@ -20524,9 +20524,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_10/FE_10_silver.png",
-      "textures_by_mutant/fe_10/specimen_fe_10_silver_silver.png",
-      "textures_by_mutant/fe_10/larva_fe_10.png"
+      "textures_by_mutant/fe_10/FE_10_silver.webp",
+      "textures_by_mutant/fe_10/specimen_fe_10_silver_silver.webp",
+      "textures_by_mutant/fe_10/larva_fe_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20588,9 +20588,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_10/FF_10_silver.png",
-      "textures_by_mutant/ff_10/specimen_ff_10_silver_silver.png",
-      "textures_by_mutant/ff_10/larva_ff_10.png"
+      "textures_by_mutant/ff_10/FF_10_silver.webp",
+      "textures_by_mutant/ff_10/specimen_ff_10_silver_silver.webp",
+      "textures_by_mutant/ff_10/larva_ff_10.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20652,9 +20652,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_11/AA_11_silver.png",
-      "textures_by_mutant/aa_11/specimen_aa_11_silver_silver.png",
-      "textures_by_mutant/aa_11/larva_aa_11.png"
+      "textures_by_mutant/aa_11/AA_11_silver.webp",
+      "textures_by_mutant/aa_11/specimen_aa_11_silver_silver.webp",
+      "textures_by_mutant/aa_11/larva_aa_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20716,9 +20716,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_11/AB_11_silver.png",
-      "textures_by_mutant/ab_11/specimen_ab_11_silver_silver.png",
-      "textures_by_mutant/ab_11/larva_ab_11.png"
+      "textures_by_mutant/ab_11/AB_11_silver.webp",
+      "textures_by_mutant/ab_11/specimen_ab_11_silver_silver.webp",
+      "textures_by_mutant/ab_11/larva_ab_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20780,9 +20780,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_11/AC_11_silver.png",
-      "textures_by_mutant/ac_11/specimen_ac_11_silver_silver.png",
-      "textures_by_mutant/ac_11/larva_ac_11.png"
+      "textures_by_mutant/ac_11/AC_11_silver.webp",
+      "textures_by_mutant/ac_11/specimen_ac_11_silver_silver.webp",
+      "textures_by_mutant/ac_11/larva_ac_11.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -20844,9 +20844,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_11/AE_11_silver.png",
-      "textures_by_mutant/ae_11/specimen_ae_11_silver_silver.png",
-      "textures_by_mutant/ae_11/larva_ae_11.png"
+      "textures_by_mutant/ae_11/AE_11_silver.webp",
+      "textures_by_mutant/ae_11/specimen_ae_11_silver_silver.webp",
+      "textures_by_mutant/ae_11/larva_ae_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20908,9 +20908,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_11/BA_11_silver.png",
-      "textures_by_mutant/ba_11/specimen_ba_11_silver_silver.png",
-      "textures_by_mutant/ba_11/larva_ba_11.png"
+      "textures_by_mutant/ba_11/BA_11_silver.webp",
+      "textures_by_mutant/ba_11/specimen_ba_11_silver_silver.webp",
+      "textures_by_mutant/ba_11/larva_ba_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -20972,9 +20972,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_11/BC_11_silver.png",
-      "textures_by_mutant/bc_11/specimen_bc_11_silver_silver.png",
-      "textures_by_mutant/bc_11/larva_bc_11.png"
+      "textures_by_mutant/bc_11/BC_11_silver.webp",
+      "textures_by_mutant/bc_11/specimen_bc_11_silver_silver.webp",
+      "textures_by_mutant/bc_11/larva_bc_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21036,9 +21036,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_11/BD_11_silver.png",
-      "textures_by_mutant/bd_11/specimen_bd_11_silver_silver.png",
-      "textures_by_mutant/bd_11/larva_bd_11.png"
+      "textures_by_mutant/bd_11/BD_11_silver.webp",
+      "textures_by_mutant/bd_11/specimen_bd_11_silver_silver.webp",
+      "textures_by_mutant/bd_11/larva_bd_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21100,9 +21100,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_11/BE_11_silver.png",
-      "textures_by_mutant/be_11/specimen_be_11_silver_silver.png",
-      "textures_by_mutant/be_11/larva_be_11.png"
+      "textures_by_mutant/be_11/BE_11_silver.webp",
+      "textures_by_mutant/be_11/specimen_be_11_silver_silver.webp",
+      "textures_by_mutant/be_11/larva_be_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21164,9 +21164,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_11/CB_11_silver.png",
-      "textures_by_mutant/cb_11/specimen_cb_11_silver_silver.png",
-      "textures_by_mutant/cb_11/larva_cb_11.png"
+      "textures_by_mutant/cb_11/CB_11_silver.webp",
+      "textures_by_mutant/cb_11/specimen_cb_11_silver_silver.webp",
+      "textures_by_mutant/cb_11/larva_cb_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21228,9 +21228,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_11/CD_11_silver.png",
-      "textures_by_mutant/cd_11/specimen_cd_11_silver_silver.png",
-      "textures_by_mutant/cd_11/larva_cd_11.png"
+      "textures_by_mutant/cd_11/CD_11_silver.webp",
+      "textures_by_mutant/cd_11/specimen_cd_11_silver_silver.webp",
+      "textures_by_mutant/cd_11/larva_cd_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21292,9 +21292,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_11/CE_11_silver.png",
-      "textures_by_mutant/ce_11/specimen_ce_11_silver_silver.png",
-      "textures_by_mutant/ce_11/larva_ce_11.png"
+      "textures_by_mutant/ce_11/CE_11_silver.webp",
+      "textures_by_mutant/ce_11/specimen_ce_11_silver_silver.webp",
+      "textures_by_mutant/ce_11/larva_ce_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21356,9 +21356,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_11/DA_11_silver.png",
-      "textures_by_mutant/da_11/specimen_da_11_silver_silver.png",
-      "textures_by_mutant/da_11/larva_da_11.png"
+      "textures_by_mutant/da_11/DA_11_silver.webp",
+      "textures_by_mutant/da_11/specimen_da_11_silver_silver.webp",
+      "textures_by_mutant/da_11/larva_da_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21420,9 +21420,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_11/DC_11_silver.png",
-      "textures_by_mutant/dc_11/specimen_dc_11_silver_silver.png",
-      "textures_by_mutant/dc_11/larva_dc_11.png"
+      "textures_by_mutant/dc_11/DC_11_silver.webp",
+      "textures_by_mutant/dc_11/specimen_dc_11_silver_silver.webp",
+      "textures_by_mutant/dc_11/larva_dc_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21484,9 +21484,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_11/DD_11_silver.png",
-      "textures_by_mutant/dd_11/specimen_dd_11_silver_silver.png",
-      "textures_by_mutant/dd_11/larva_dd_11.png"
+      "textures_by_mutant/dd_11/DD_11_silver.webp",
+      "textures_by_mutant/dd_11/specimen_dd_11_silver_silver.webp",
+      "textures_by_mutant/dd_11/larva_dd_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21548,9 +21548,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_11/DE_11_silver.png",
-      "textures_by_mutant/de_11/specimen_de_11_silver_silver.png",
-      "textures_by_mutant/de_11/larva_de_11.png"
+      "textures_by_mutant/de_11/DE_11_silver.webp",
+      "textures_by_mutant/de_11/specimen_de_11_silver_silver.webp",
+      "textures_by_mutant/de_11/larva_de_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 90,
@@ -21612,9 +21612,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_11/EB_11_silver.png",
-      "textures_by_mutant/eb_11/specimen_eb_11_silver_silver.png",
-      "textures_by_mutant/eb_11/larva_eb_11.png"
+      "textures_by_mutant/eb_11/EB_11_silver.webp",
+      "textures_by_mutant/eb_11/specimen_eb_11_silver_silver.webp",
+      "textures_by_mutant/eb_11/larva_eb_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21676,9 +21676,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_11/ED_11_silver.png",
-      "textures_by_mutant/ed_11/specimen_ed_11_silver_silver.png",
-      "textures_by_mutant/ed_11/larva_ed_11.png"
+      "textures_by_mutant/ed_11/ED_11_silver.webp",
+      "textures_by_mutant/ed_11/specimen_ed_11_silver_silver.webp",
+      "textures_by_mutant/ed_11/larva_ed_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21740,9 +21740,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_11/EE_11_silver.png",
-      "textures_by_mutant/ee_11/specimen_ee_11_silver_silver.png",
-      "textures_by_mutant/ee_11/larva_ee_11.png"
+      "textures_by_mutant/ee_11/EE_11_silver.webp",
+      "textures_by_mutant/ee_11/specimen_ee_11_silver_silver.webp",
+      "textures_by_mutant/ee_11/larva_ee_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21804,9 +21804,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_11/EF_11_silver.png",
-      "textures_by_mutant/ef_11/specimen_ef_11_silver_silver.png",
-      "textures_by_mutant/ef_11/larva_ef_11.png"
+      "textures_by_mutant/ef_11/EF_11_silver.webp",
+      "textures_by_mutant/ef_11/specimen_ef_11_silver_silver.webp",
+      "textures_by_mutant/ef_11/larva_ef_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21868,9 +21868,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_11/FA_11_silver.png",
-      "textures_by_mutant/fa_11/specimen_fa_11_silver_silver.png",
-      "textures_by_mutant/fa_11/larva_fa_11.png"
+      "textures_by_mutant/fa_11/FA_11_silver.webp",
+      "textures_by_mutant/fa_11/specimen_fa_11_silver_silver.webp",
+      "textures_by_mutant/fa_11/larva_fa_11.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -21932,9 +21932,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_11/FB_11_silver.png",
-      "textures_by_mutant/fb_11/specimen_fb_11_silver_silver.png",
-      "textures_by_mutant/fb_11/larva_fb_11.png"
+      "textures_by_mutant/fb_11/FB_11_silver.webp",
+      "textures_by_mutant/fb_11/specimen_fb_11_silver_silver.webp",
+      "textures_by_mutant/fb_11/larva_fb_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -21996,9 +21996,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_11/FC_11_silver.png",
-      "textures_by_mutant/fc_11/specimen_fc_11_silver_silver.png",
-      "textures_by_mutant/fc_11/larva_fc_11.png"
+      "textures_by_mutant/fc_11/FC_11_silver.webp",
+      "textures_by_mutant/fc_11/specimen_fc_11_silver_silver.webp",
+      "textures_by_mutant/fc_11/larva_fc_11.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22060,9 +22060,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_11/FD_11_silver.png",
-      "textures_by_mutant/fd_11/specimen_fd_11_silver_silver.png",
-      "textures_by_mutant/fd_11/larva_fd_11.png"
+      "textures_by_mutant/fd_11/FD_11_silver.webp",
+      "textures_by_mutant/fd_11/specimen_fd_11_silver_silver.webp",
+      "textures_by_mutant/fd_11/larva_fd_11.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -22124,9 +22124,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_11/FE_11_silver.png",
-      "textures_by_mutant/fe_11/specimen_fe_11_silver_silver.png",
-      "textures_by_mutant/fe_11/larva_fe_11.png"
+      "textures_by_mutant/fe_11/FE_11_silver.webp",
+      "textures_by_mutant/fe_11/specimen_fe_11_silver_silver.webp",
+      "textures_by_mutant/fe_11/larva_fe_11.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -22188,9 +22188,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_11/FF_11_silver.png",
-      "textures_by_mutant/ff_11/specimen_ff_11_silver_silver.png",
-      "textures_by_mutant/ff_11/larva_ff_11.png"
+      "textures_by_mutant/ff_11/FF_11_silver.webp",
+      "textures_by_mutant/ff_11/specimen_ff_11_silver_silver.webp",
+      "textures_by_mutant/ff_11/larva_ff_11.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -22252,9 +22252,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_12/AA_12_silver.png",
-      "textures_by_mutant/aa_12/specimen_aa_12_silver_silver.png",
-      "textures_by_mutant/aa_12/larva_aa_12.png"
+      "textures_by_mutant/aa_12/AA_12_silver.webp",
+      "textures_by_mutant/aa_12/specimen_aa_12_silver_silver.webp",
+      "textures_by_mutant/aa_12/larva_aa_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22316,9 +22316,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_12/AB_12_silver.png",
-      "textures_by_mutant/ab_12/specimen_ab_12_silver_silver.png",
-      "textures_by_mutant/ab_12/larva_ab_12.png"
+      "textures_by_mutant/ab_12/AB_12_silver.webp",
+      "textures_by_mutant/ab_12/specimen_ab_12_silver_silver.webp",
+      "textures_by_mutant/ab_12/larva_ab_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22380,9 +22380,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_12/AC_12_silver.png",
-      "textures_by_mutant/ac_12/specimen_ac_12_silver_silver.png",
-      "textures_by_mutant/ac_12/larva_ac_12.png"
+      "textures_by_mutant/ac_12/AC_12_silver.webp",
+      "textures_by_mutant/ac_12/specimen_ac_12_silver_silver.webp",
+      "textures_by_mutant/ac_12/larva_ac_12.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -22444,9 +22444,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_12/AD_12_silver.png",
-      "textures_by_mutant/ad_12/specimen_ad_12_silver_silver.png",
-      "textures_by_mutant/ad_12/larva_ad_12.png"
+      "textures_by_mutant/ad_12/AD_12_silver.webp",
+      "textures_by_mutant/ad_12/specimen_ad_12_silver_silver.webp",
+      "textures_by_mutant/ad_12/larva_ad_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22508,9 +22508,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_12/AE_12_silver.png",
-      "textures_by_mutant/ae_12/specimen_ae_12_silver_silver.png",
-      "textures_by_mutant/ae_12/larva_ae_12.png"
+      "textures_by_mutant/ae_12/AE_12_silver.webp",
+      "textures_by_mutant/ae_12/specimen_ae_12_silver_silver.webp",
+      "textures_by_mutant/ae_12/larva_ae_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22572,9 +22572,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_12/BA_12_silver.png",
-      "textures_by_mutant/ba_12/specimen_ba_12_silver_silver.png",
-      "textures_by_mutant/ba_12/larva_ba_12.png"
+      "textures_by_mutant/ba_12/BA_12_silver.webp",
+      "textures_by_mutant/ba_12/specimen_ba_12_silver_silver.webp",
+      "textures_by_mutant/ba_12/larva_ba_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22636,9 +22636,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_12/BD_12_silver.png",
-      "textures_by_mutant/bd_12/specimen_bd_12_silver_silver.png",
-      "textures_by_mutant/bd_12/larva_bd_12.png"
+      "textures_by_mutant/bd_12/BD_12_silver.webp",
+      "textures_by_mutant/bd_12/specimen_bd_12_silver_silver.webp",
+      "textures_by_mutant/bd_12/larva_bd_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22700,9 +22700,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/be_12/BE_12_silver.png",
-      "textures_by_mutant/be_12/specimen_be_12_silver_silver.png",
-      "textures_by_mutant/be_12/larva_be_12.png"
+      "textures_by_mutant/be_12/BE_12_silver.webp",
+      "textures_by_mutant/be_12/specimen_be_12_silver_silver.webp",
+      "textures_by_mutant/be_12/larva_be_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22764,9 +22764,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bf_12/BF_12_silver.png",
-      "textures_by_mutant/bf_12/specimen_bf_12_silver_silver.png",
-      "textures_by_mutant/bf_12/larva_bf_12.png"
+      "textures_by_mutant/bf_12/BF_12_silver.webp",
+      "textures_by_mutant/bf_12/specimen_bf_12_silver_silver.webp",
+      "textures_by_mutant/bf_12/larva_bf_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22828,9 +22828,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ca_12/CA_12_silver.png",
-      "textures_by_mutant/ca_12/specimen_ca_12_silver_silver.png",
-      "textures_by_mutant/ca_12/larva_ca_12.png"
+      "textures_by_mutant/ca_12/CA_12_silver.webp",
+      "textures_by_mutant/ca_12/specimen_ca_12_silver_silver.webp",
+      "textures_by_mutant/ca_12/larva_ca_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22892,9 +22892,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_12/CB_12_silver.png",
-      "textures_by_mutant/cb_12/specimen_cb_12_silver_silver.png",
-      "textures_by_mutant/cb_12/larva_cb_12.png"
+      "textures_by_mutant/cb_12/CB_12_silver.webp",
+      "textures_by_mutant/cb_12/specimen_cb_12_silver_silver.webp",
+      "textures_by_mutant/cb_12/larva_cb_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -22956,9 +22956,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_12/CC_12_silver.png",
-      "textures_by_mutant/cc_12/specimen_cc_12_silver_silver.png",
-      "textures_by_mutant/cc_12/larva_cc_12.png"
+      "textures_by_mutant/cc_12/CC_12_silver.webp",
+      "textures_by_mutant/cc_12/specimen_cc_12_silver_silver.webp",
+      "textures_by_mutant/cc_12/larva_cc_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23020,9 +23020,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_12/CF_12_silver.png",
-      "textures_by_mutant/cf_12/specimen_cf_12_silver_silver.png",
-      "textures_by_mutant/cf_12/larva_cf_12.png"
+      "textures_by_mutant/cf_12/CF_12_silver.webp",
+      "textures_by_mutant/cf_12/specimen_cf_12_silver_silver.webp",
+      "textures_by_mutant/cf_12/larva_cf_12.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -23084,9 +23084,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_12/DA_12_silver.png",
-      "textures_by_mutant/da_12/specimen_da_12_silver_silver.png",
-      "textures_by_mutant/da_12/larva_da_12.png"
+      "textures_by_mutant/da_12/DA_12_silver.webp",
+      "textures_by_mutant/da_12/specimen_da_12_silver_silver.webp",
+      "textures_by_mutant/da_12/larva_da_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23148,9 +23148,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/de_12/DE_12_silver.png",
-      "textures_by_mutant/de_12/specimen_de_12_silver_silver.png",
-      "textures_by_mutant/de_12/larva_de_12.png"
+      "textures_by_mutant/de_12/DE_12_silver.webp",
+      "textures_by_mutant/de_12/specimen_de_12_silver_silver.webp",
+      "textures_by_mutant/de_12/larva_de_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23212,9 +23212,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_12/EA_12_silver.png",
-      "textures_by_mutant/ea_12/specimen_ea_12_silver_silver.png",
-      "textures_by_mutant/ea_12/larva_ea_12.png"
+      "textures_by_mutant/ea_12/EA_12_silver.webp",
+      "textures_by_mutant/ea_12/specimen_ea_12_silver_silver.webp",
+      "textures_by_mutant/ea_12/larva_ea_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23276,9 +23276,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/eb_12/EB_12_silver.png",
-      "textures_by_mutant/eb_12/specimen_eb_12_silver_silver.png",
-      "textures_by_mutant/eb_12/larva_eb_12.png"
+      "textures_by_mutant/eb_12/EB_12_silver.webp",
+      "textures_by_mutant/eb_12/specimen_eb_12_silver_silver.webp",
+      "textures_by_mutant/eb_12/larva_eb_12.webp"
     ],
     "type": "PVP",
     "incub_time": 60,
@@ -23340,9 +23340,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_12/EC_12_silver.png",
-      "textures_by_mutant/ec_12/specimen_ec_12_silver_silver.png",
-      "textures_by_mutant/ec_12/larva_ec_12.png"
+      "textures_by_mutant/ec_12/EC_12_silver.webp",
+      "textures_by_mutant/ec_12/specimen_ec_12_silver_silver.webp",
+      "textures_by_mutant/ec_12/larva_ec_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23404,9 +23404,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_12/ED_12_silver.png",
-      "textures_by_mutant/ed_12/specimen_ed_12_silver_silver.png",
-      "textures_by_mutant/ed_12/larva_ed_12.png"
+      "textures_by_mutant/ed_12/ED_12_silver.webp",
+      "textures_by_mutant/ed_12/specimen_ed_12_silver_silver.webp",
+      "textures_by_mutant/ed_12/larva_ed_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23468,9 +23468,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_12/EF_12_silver.png",
-      "textures_by_mutant/ef_12/specimen_ef_12_silver_silver.png",
-      "textures_by_mutant/ef_12/larva_ef_12.png"
+      "textures_by_mutant/ef_12/EF_12_silver.webp",
+      "textures_by_mutant/ef_12/specimen_ef_12_silver_silver.webp",
+      "textures_by_mutant/ef_12/larva_ef_12.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -23532,9 +23532,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fa_12/FA_12_silver.png",
-      "textures_by_mutant/fa_12/specimen_fa_12_silver_silver.png",
-      "textures_by_mutant/fa_12/larva_fa_12.png"
+      "textures_by_mutant/fa_12/FA_12_silver.webp",
+      "textures_by_mutant/fa_12/specimen_fa_12_silver_silver.webp",
+      "textures_by_mutant/fa_12/larva_fa_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23596,9 +23596,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_12/FB_12_silver.png",
-      "textures_by_mutant/fb_12/specimen_fb_12_silver_silver.png",
-      "textures_by_mutant/fb_12/larva_fb_12.png"
+      "textures_by_mutant/fb_12/FB_12_silver.webp",
+      "textures_by_mutant/fb_12/specimen_fb_12_silver_silver.webp",
+      "textures_by_mutant/fb_12/larva_fb_12.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -23660,9 +23660,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fd_12/FD_12_silver.png",
-      "textures_by_mutant/fd_12/specimen_fd_12_silver_silver.png",
-      "textures_by_mutant/fd_12/larva_fd_12.png"
+      "textures_by_mutant/fd_12/FD_12_silver.webp",
+      "textures_by_mutant/fd_12/specimen_fd_12_silver_silver.webp",
+      "textures_by_mutant/fd_12/larva_fd_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23724,9 +23724,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_12/FF_12_silver.png",
-      "textures_by_mutant/ff_12/specimen_ff_12_silver_silver.png",
-      "textures_by_mutant/ff_12/larva_ff_12.png"
+      "textures_by_mutant/ff_12/FF_12_silver.webp",
+      "textures_by_mutant/ff_12/specimen_ff_12_silver_silver.webp",
+      "textures_by_mutant/ff_12/larva_ff_12.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -23788,9 +23788,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/b_12/B_12_silver.png",
-      "textures_by_mutant/b_12/specimen_b_12_silver_silver.png",
-      "textures_by_mutant/b_12/larva_b_12.png"
+      "textures_by_mutant/b_12/B_12_silver.webp",
+      "textures_by_mutant/b_12/specimen_b_12_silver_silver.webp",
+      "textures_by_mutant/b_12/larva_b_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23852,9 +23852,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/d_12/D_12_silver.png",
-      "textures_by_mutant/d_12/specimen_d_12_silver_silver.png",
-      "textures_by_mutant/d_12/larva_d_12.png"
+      "textures_by_mutant/d_12/D_12_silver.webp",
+      "textures_by_mutant/d_12/specimen_d_12_silver_silver.webp",
+      "textures_by_mutant/d_12/larva_d_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23916,9 +23916,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/e_12/E_12_silver.png",
-      "textures_by_mutant/e_12/specimen_e_12_silver_silver.png",
-      "textures_by_mutant/e_12/larva_e_12.png"
+      "textures_by_mutant/e_12/E_12_silver.webp",
+      "textures_by_mutant/e_12/specimen_e_12_silver_silver.webp",
+      "textures_by_mutant/e_12/larva_e_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -23980,9 +23980,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/f_12/F_12_silver.png",
-      "textures_by_mutant/f_12/specimen_f_12_silver_silver.png",
-      "textures_by_mutant/f_12/larva_f_12.png"
+      "textures_by_mutant/f_12/F_12_silver.webp",
+      "textures_by_mutant/f_12/specimen_f_12_silver_silver.webp",
+      "textures_by_mutant/f_12/larva_f_12.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24044,9 +24044,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/aa_13/AA_13_silver.png",
-      "textures_by_mutant/aa_13/specimen_aa_13_silver_silver.png",
-      "textures_by_mutant/aa_13/larva_aa_13.png"
+      "textures_by_mutant/aa_13/AA_13_silver.webp",
+      "textures_by_mutant/aa_13/specimen_aa_13_silver_silver.webp",
+      "textures_by_mutant/aa_13/larva_aa_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24108,9 +24108,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ab_13/AB_13_silver.png",
-      "textures_by_mutant/ab_13/specimen_ab_13_silver_silver.png",
-      "textures_by_mutant/ab_13/larva_ab_13.png"
+      "textures_by_mutant/ab_13/AB_13_silver.webp",
+      "textures_by_mutant/ab_13/specimen_ab_13_silver_silver.webp",
+      "textures_by_mutant/ab_13/larva_ab_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -24172,9 +24172,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ad_13/AD_13_silver.png",
-      "textures_by_mutant/ad_13/specimen_ad_13_silver_silver.png",
-      "textures_by_mutant/ad_13/larva_ad_13.png"
+      "textures_by_mutant/ad_13/AD_13_silver.webp",
+      "textures_by_mutant/ad_13/specimen_ad_13_silver_silver.webp",
+      "textures_by_mutant/ad_13/larva_ad_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24236,9 +24236,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ae_13/AE_13_silver.png",
-      "textures_by_mutant/ae_13/specimen_ae_13_silver_silver.png",
-      "textures_by_mutant/ae_13/larva_ae_13.png"
+      "textures_by_mutant/ae_13/AE_13_silver.webp",
+      "textures_by_mutant/ae_13/specimen_ae_13_silver_silver.webp",
+      "textures_by_mutant/ae_13/larva_ae_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24300,9 +24300,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_13/AF_13_silver.png",
-      "textures_by_mutant/af_13/specimen_af_13_silver_silver.png",
-      "textures_by_mutant/af_13/larva_af_13.png"
+      "textures_by_mutant/af_13/AF_13_silver.webp",
+      "textures_by_mutant/af_13/specimen_af_13_silver_silver.webp",
+      "textures_by_mutant/af_13/larva_af_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24364,9 +24364,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ba_13/BA_13_silver.png",
-      "textures_by_mutant/ba_13/specimen_ba_13_silver_silver.png",
-      "textures_by_mutant/ba_13/larva_ba_13.png"
+      "textures_by_mutant/ba_13/BA_13_silver.webp",
+      "textures_by_mutant/ba_13/specimen_ba_13_silver_silver.webp",
+      "textures_by_mutant/ba_13/larva_ba_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24428,9 +24428,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bb_13/BB_13_silver.png",
-      "textures_by_mutant/bb_13/specimen_bb_13_silver_silver.png",
-      "textures_by_mutant/bb_13/larva_bb_13.png"
+      "textures_by_mutant/bb_13/BB_13_silver.webp",
+      "textures_by_mutant/bb_13/specimen_bb_13_silver_silver.webp",
+      "textures_by_mutant/bb_13/larva_bb_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24492,9 +24492,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bc_13/BC_13_silver.png",
-      "textures_by_mutant/bc_13/specimen_bc_13_silver_silver.png",
-      "textures_by_mutant/bc_13/larva_bc_13.png"
+      "textures_by_mutant/bc_13/BC_13_silver.webp",
+      "textures_by_mutant/bc_13/specimen_bc_13_silver_silver.webp",
+      "textures_by_mutant/bc_13/larva_bc_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24556,9 +24556,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_13/CB_13_silver.png",
-      "textures_by_mutant/cb_13/specimen_cb_13_silver_silver.png",
-      "textures_by_mutant/cb_13/larva_cb_13.png"
+      "textures_by_mutant/cb_13/CB_13_silver.webp",
+      "textures_by_mutant/cb_13/specimen_cb_13_silver_silver.webp",
+      "textures_by_mutant/cb_13/larva_cb_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24620,9 +24620,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cc_13/CC_13_silver.png",
-      "textures_by_mutant/cc_13/specimen_cc_13_silver_silver.png",
-      "textures_by_mutant/cc_13/larva_cc_13.png"
+      "textures_by_mutant/cc_13/CC_13_silver.webp",
+      "textures_by_mutant/cc_13/specimen_cc_13_silver_silver.webp",
+      "textures_by_mutant/cc_13/larva_cc_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24684,9 +24684,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cd_13/CD_13_silver.png",
-      "textures_by_mutant/cd_13/specimen_cd_13_silver_silver.png",
-      "textures_by_mutant/cd_13/larva_cd_13.png"
+      "textures_by_mutant/cd_13/CD_13_silver.webp",
+      "textures_by_mutant/cd_13/specimen_cd_13_silver_silver.webp",
+      "textures_by_mutant/cd_13/larva_cd_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24748,9 +24748,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ce_13/CE_13_silver.png",
-      "textures_by_mutant/ce_13/specimen_ce_13_silver_silver.png",
-      "textures_by_mutant/ce_13/larva_ce_13.png"
+      "textures_by_mutant/ce_13/CE_13_silver.webp",
+      "textures_by_mutant/ce_13/specimen_ce_13_silver_silver.webp",
+      "textures_by_mutant/ce_13/larva_ce_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -24812,9 +24812,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cf_13/CF_13_silver.png",
-      "textures_by_mutant/cf_13/specimen_cf_13_silver_silver.png",
-      "textures_by_mutant/cf_13/larva_cf_13.png"
+      "textures_by_mutant/cf_13/CF_13_silver.webp",
+      "textures_by_mutant/cf_13/specimen_cf_13_silver_silver.webp",
+      "textures_by_mutant/cf_13/larva_cf_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24876,9 +24876,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/da_13/DA_13_silver.png",
-      "textures_by_mutant/da_13/specimen_da_13_silver_silver.png",
-      "textures_by_mutant/da_13/larva_da_13.png"
+      "textures_by_mutant/da_13/DA_13_silver.webp",
+      "textures_by_mutant/da_13/specimen_da_13_silver_silver.webp",
+      "textures_by_mutant/da_13/larva_da_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -24940,9 +24940,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/db_13/DB_13_silver.png",
-      "textures_by_mutant/db_13/specimen_db_13_silver_silver.png",
-      "textures_by_mutant/db_13/larva_db_13.png"
+      "textures_by_mutant/db_13/DB_13_silver.webp",
+      "textures_by_mutant/db_13/specimen_db_13_silver_silver.webp",
+      "textures_by_mutant/db_13/larva_db_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25004,9 +25004,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dc_13/DC_13_silver.png",
-      "textures_by_mutant/dc_13/specimen_dc_13_silver_silver.png",
-      "textures_by_mutant/dc_13/larva_dc_13.png"
+      "textures_by_mutant/dc_13/DC_13_silver.webp",
+      "textures_by_mutant/dc_13/specimen_dc_13_silver_silver.webp",
+      "textures_by_mutant/dc_13/larva_dc_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25070,9 +25070,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_13/DD_13_silver.png",
-      "textures_by_mutant/dd_13/specimen_dd_13_silver_silver.png",
-      "textures_by_mutant/dd_13/larva_dd_13.png"
+      "textures_by_mutant/dd_13/DD_13_silver.webp",
+      "textures_by_mutant/dd_13/specimen_dd_13_silver_silver.webp",
+      "textures_by_mutant/dd_13/larva_dd_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25134,9 +25134,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/df_13/DF_13_silver.png",
-      "textures_by_mutant/df_13/specimen_df_13_silver_silver.png",
-      "textures_by_mutant/df_13/larva_df_13.png"
+      "textures_by_mutant/df_13/DF_13_silver.webp",
+      "textures_by_mutant/df_13/specimen_df_13_silver_silver.webp",
+      "textures_by_mutant/df_13/larva_df_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25198,9 +25198,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ea_13/EA_13_silver.png",
-      "textures_by_mutant/ea_13/specimen_ea_13_silver_silver.png",
-      "textures_by_mutant/ea_13/larva_ea_13.png"
+      "textures_by_mutant/ea_13/EA_13_silver.webp",
+      "textures_by_mutant/ea_13/specimen_ea_13_silver_silver.webp",
+      "textures_by_mutant/ea_13/larva_ea_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25262,9 +25262,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ec_13/EC_13_silver.png",
-      "textures_by_mutant/ec_13/specimen_ec_13_silver_silver.png",
-      "textures_by_mutant/ec_13/larva_ec_13.png"
+      "textures_by_mutant/ec_13/EC_13_silver.webp",
+      "textures_by_mutant/ec_13/specimen_ec_13_silver_silver.webp",
+      "textures_by_mutant/ec_13/larva_ec_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25326,9 +25326,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_13/ED_13_silver.png",
-      "textures_by_mutant/ed_13/specimen_ed_13_silver_silver.png",
-      "textures_by_mutant/ed_13/larva_ed_13.png"
+      "textures_by_mutant/ed_13/ED_13_silver.webp",
+      "textures_by_mutant/ed_13/specimen_ed_13_silver_silver.webp",
+      "textures_by_mutant/ed_13/larva_ed_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25390,9 +25390,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ee_13/EE_13_silver.png",
-      "textures_by_mutant/ee_13/specimen_ee_13_silver_silver.png",
-      "textures_by_mutant/ee_13/larva_ee_13.png"
+      "textures_by_mutant/ee_13/EE_13_silver.webp",
+      "textures_by_mutant/ee_13/specimen_ee_13_silver_silver.webp",
+      "textures_by_mutant/ee_13/larva_ee_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -25454,9 +25454,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ef_13/EF_13_silver.png",
-      "textures_by_mutant/ef_13/specimen_ef_13_silver_silver.png",
-      "textures_by_mutant/ef_13/larva_ef_13.png"
+      "textures_by_mutant/ef_13/EF_13_silver.webp",
+      "textures_by_mutant/ef_13/specimen_ef_13_silver_silver.webp",
+      "textures_by_mutant/ef_13/larva_ef_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25518,9 +25518,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_13/FB_13_silver.png",
-      "textures_by_mutant/fb_13/specimen_fb_13_silver_silver.png",
-      "textures_by_mutant/fb_13/larva_fb_13.png"
+      "textures_by_mutant/fb_13/FB_13_silver.webp",
+      "textures_by_mutant/fb_13/specimen_fb_13_silver_silver.webp",
+      "textures_by_mutant/fb_13/larva_fb_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25582,9 +25582,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_13/FC_13_silver.png",
-      "textures_by_mutant/fc_13/specimen_fc_13_silver_silver.png",
-      "textures_by_mutant/fc_13/larva_fc_13.png"
+      "textures_by_mutant/fc_13/FC_13_silver.webp",
+      "textures_by_mutant/fc_13/specimen_fc_13_silver_silver.webp",
+      "textures_by_mutant/fc_13/larva_fc_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25646,9 +25646,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ff_13/FF_13_silver.png",
-      "textures_by_mutant/ff_13/specimen_ff_13_silver_silver.png",
-      "textures_by_mutant/ff_13/larva_ff_13.png"
+      "textures_by_mutant/ff_13/FF_13_silver.webp",
+      "textures_by_mutant/ff_13/specimen_ff_13_silver_silver.webp",
+      "textures_by_mutant/ff_13/larva_ff_13.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -25710,9 +25710,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/a_13/A_13_silver.png",
-      "textures_by_mutant/a_13/specimen_a_13_silver_silver.png",
-      "textures_by_mutant/a_13/larva_a_13.png"
+      "textures_by_mutant/a_13/A_13_silver.webp",
+      "textures_by_mutant/a_13/specimen_a_13_silver_silver.webp",
+      "textures_by_mutant/a_13/larva_a_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 90,
@@ -25774,9 +25774,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/b_13/B_13_silver.png",
-      "textures_by_mutant/b_13/specimen_b_13_silver_silver.png",
-      "textures_by_mutant/b_13/larva_b_13.png"
+      "textures_by_mutant/b_13/B_13_silver.webp",
+      "textures_by_mutant/b_13/specimen_b_13_silver_silver.webp",
+      "textures_by_mutant/b_13/larva_b_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 90,
@@ -25838,9 +25838,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/c_13/C_13_silver.png",
-      "textures_by_mutant/c_13/specimen_c_13_silver_silver.png",
-      "textures_by_mutant/c_13/larva_c_13.png"
+      "textures_by_mutant/c_13/C_13_silver.webp",
+      "textures_by_mutant/c_13/specimen_c_13_silver_silver.webp",
+      "textures_by_mutant/c_13/larva_c_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 90,
@@ -25902,9 +25902,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/d_13/D_13_silver.png",
-      "textures_by_mutant/d_13/specimen_d_13_silver_silver.png",
-      "textures_by_mutant/d_13/larva_d_13.png"
+      "textures_by_mutant/d_13/D_13_silver.webp",
+      "textures_by_mutant/d_13/specimen_d_13_silver_silver.webp",
+      "textures_by_mutant/d_13/larva_d_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 90,
@@ -25966,9 +25966,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/e_13/E_13_silver.png",
-      "textures_by_mutant/e_13/specimen_e_13_silver_silver.png",
-      "textures_by_mutant/e_13/larva_e_13.png"
+      "textures_by_mutant/e_13/E_13_silver.webp",
+      "textures_by_mutant/e_13/specimen_e_13_silver_silver.webp",
+      "textures_by_mutant/e_13/larva_e_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 90,
@@ -26030,9 +26030,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/f_13/F_13_silver.png",
-      "textures_by_mutant/f_13/specimen_f_13_silver_silver.png",
-      "textures_by_mutant/f_13/larva_f_13.png"
+      "textures_by_mutant/f_13/F_13_silver.webp",
+      "textures_by_mutant/f_13/specimen_f_13_silver_silver.webp",
+      "textures_by_mutant/f_13/larva_f_13.webp"
     ],
     "type": "HEROIC",
     "incub_time": 90,
@@ -26094,9 +26094,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_99/AF_99_silver.png",
-      "textures_by_mutant/af_99/specimen_af_99_silver_silver.png",
-      "textures_by_mutant/af_99/larva_af_99.png"
+      "textures_by_mutant/af_99/AF_99_silver.webp",
+      "textures_by_mutant/af_99/specimen_af_99_silver_silver.webp",
+      "textures_by_mutant/af_99/larva_af_99.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26158,8 +26158,8 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_99/BD_99_silver.png",
-      "textures_by_mutant/bd_99/larva_bd_99.png"
+      "textures_by_mutant/bd_99/BD_99_silver.webp",
+      "textures_by_mutant/bd_99/larva_bd_99.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26221,9 +26221,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fc_99/FC_99_silver.png",
-      "textures_by_mutant/fc_99/specimen_fc_99_silver_silver.png",
-      "textures_by_mutant/fc_99/larva_fc_99.png"
+      "textures_by_mutant/fc_99/FC_99_silver.webp",
+      "textures_by_mutant/fc_99/specimen_fc_99_silver_silver.webp",
+      "textures_by_mutant/fc_99/larva_fc_99.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26285,9 +26285,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_99/FE_99_silver.png",
-      "textures_by_mutant/fe_99/specimen_fe_99_silver_silver.png",
-      "textures_by_mutant/fe_99/larva_fe_99.png"
+      "textures_by_mutant/fe_99/FE_99_silver.webp",
+      "textures_by_mutant/fe_99/specimen_fe_99_silver_silver.webp",
+      "textures_by_mutant/fe_99/larva_fe_99.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26349,9 +26349,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ac_14/AC_14_silver.png",
-      "textures_by_mutant/ac_14/specimen_ac_14_silver_silver.png",
-      "textures_by_mutant/ac_14/larva_ac_14.png"
+      "textures_by_mutant/ac_14/AC_14_silver.webp",
+      "textures_by_mutant/ac_14/specimen_ac_14_silver_silver.webp",
+      "textures_by_mutant/ac_14/larva_ac_14.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -26413,9 +26413,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/af_14/AF_14_silver.png",
-      "textures_by_mutant/af_14/specimen_af_14_silver_silver.png",
-      "textures_by_mutant/af_14/larva_af_14.png"
+      "textures_by_mutant/af_14/AF_14_silver.webp",
+      "textures_by_mutant/af_14/specimen_af_14_silver_silver.webp",
+      "textures_by_mutant/af_14/larva_af_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26477,9 +26477,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/bd_14/BD_14_silver.png",
-      "textures_by_mutant/bd_14/specimen_bd_14_silver_silver.png",
-      "textures_by_mutant/bd_14/larva_bd_14.png"
+      "textures_by_mutant/bd_14/BD_14_silver.webp",
+      "textures_by_mutant/bd_14/specimen_bd_14_silver_silver.webp",
+      "textures_by_mutant/bd_14/larva_bd_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26541,9 +26541,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/cb_14/CB_14_silver.png",
-      "textures_by_mutant/cb_14/specimen_cb_14_silver_silver.png",
-      "textures_by_mutant/cb_14/larva_cb_14.png"
+      "textures_by_mutant/cb_14/CB_14_silver.webp",
+      "textures_by_mutant/cb_14/specimen_cb_14_silver_silver.webp",
+      "textures_by_mutant/cb_14/larva_cb_14.webp"
     ],
     "type": "HEROIC",
     "incub_time": 60,
@@ -26605,9 +26605,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/dd_14/DD_14_silver.png",
-      "textures_by_mutant/dd_14/specimen_dd_14_silver_silver.png",
-      "textures_by_mutant/dd_14/larva_dd_14.png"
+      "textures_by_mutant/dd_14/DD_14_silver.webp",
+      "textures_by_mutant/dd_14/specimen_dd_14_silver_silver.webp",
+      "textures_by_mutant/dd_14/larva_dd_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26669,9 +26669,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/ed_14/ED_14_silver.png",
-      "textures_by_mutant/ed_14/specimen_ed_14_silver_silver.png",
-      "textures_by_mutant/ed_14/larva_ed_14.png"
+      "textures_by_mutant/ed_14/ED_14_silver.webp",
+      "textures_by_mutant/ed_14/specimen_ed_14_silver_silver.webp",
+      "textures_by_mutant/ed_14/larva_ed_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26733,9 +26733,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fb_14/FB_14_normal.png",
-      "textures_by_mutant/fb_14/specimen_fb_14_normal.png",
-      "textures_by_mutant/fb_14/larva_fb_14.png"
+      "textures_by_mutant/fb_14/FB_14_normal.webp",
+      "textures_by_mutant/fb_14/specimen_fb_14_normal.webp",
+      "textures_by_mutant/fb_14/larva_fb_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26797,9 +26797,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/fe_14/FE_14_silver.png",
-      "textures_by_mutant/fe_14/specimen_fe_14_silver_silver.png",
-      "textures_by_mutant/fe_14/larva_fe_14.png"
+      "textures_by_mutant/fe_14/FE_14_silver.webp",
+      "textures_by_mutant/fe_14/specimen_fe_14_silver_silver.webp",
+      "textures_by_mutant/fe_14/larva_fe_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26861,9 +26861,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/a_14/A_14_silver.png",
-      "textures_by_mutant/a_14/specimen_a_14_silver_silver.png",
-      "textures_by_mutant/a_14/larva_a_14.png"
+      "textures_by_mutant/a_14/A_14_silver.webp",
+      "textures_by_mutant/a_14/specimen_a_14_silver_silver.webp",
+      "textures_by_mutant/a_14/larva_a_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,
@@ -26925,9 +26925,9 @@
       }
     ],
     "image": [
-      "textures_by_mutant/c_14/C_14_silver.png",
-      "textures_by_mutant/c_14/specimen_c_14_silver_silver.png",
-      "textures_by_mutant/c_14/larva_c_14.png"
+      "textures_by_mutant/c_14/C_14_silver.webp",
+      "textures_by_mutant/c_14/specimen_c_14_silver_silver.webp",
+      "textures_by_mutant/c_14/larva_c_14.webp"
     ],
     "type": "LEGEND",
     "incub_time": 60,

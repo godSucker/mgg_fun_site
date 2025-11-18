@@ -21,33 +21,33 @@
     F: 'Рубака',
   };
   const GENE_ICON = {
-    '': '/genes/icon_gene_all.png',
-    A: '/genes/icon_gene_a.png',
-    B: '/genes/icon_gene_b.png',
-    C: '/genes/icon_gene_c.png',
-    D: '/genes/icon_gene_d.png',
-    E: '/genes/icon_gene_e.png',
-    F: '/genes/icon_gene_f.png',
+    '': '/genes/icon_gene_all.webp',
+    A: '/genes/icon_gene_a.webp',
+    B: '/genes/icon_gene_b.webp',
+    C: '/genes/icon_gene_c.webp',
+    D: '/genes/icon_gene_d.webp',
+    E: '/genes/icon_gene_e.webp',
+    F: '/genes/icon_gene_f.webp',
   };
   const ATTACK_GENE_ICON = {
-    a: '/genes/gene_a.png',
-    b: '/genes/gene_b.png',
-    c: '/genes/gene_c.png',
-    d: '/genes/gene_d.png',
-    e: '/genes/gene_e.png',
-    f: '/genes/gene_f.png',
-    neutro: '/genes/gene_all.png',
-    neutral: '/genes/gene_all.png',
-    none: '/genes/gene_all.png',
-    all: '/genes/gene_all.png',
+    a: '/genes/gene_a.webp',
+    b: '/genes/gene_b.webp',
+    c: '/genes/gene_c.webp',
+    d: '/genes/gene_d.webp',
+    e: '/genes/gene_e.webp',
+    f: '/genes/gene_f.webp',
+    neutro: '/genes/gene_all.webp',
+    neutral: '/genes/gene_all.webp',
+    none: '/genes/gene_all.webp',
+    all: '/genes/gene_all.webp',
   };
   const STAR_KEYS = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
   const STAR_ICON = {
-    0: '/stars/no_stars.png',
-    1: '/stars/star_bronze.png',
-    2: '/stars/star_silver.png',
-    3: '/stars/star_gold.png',
-    4: '/stars/star_platinum.png'
+    0: '/stars/no_stars.webp',
+    1: '/stars/star_bronze.webp',
+    2: '/stars/star_silver.webp',
+    3: '/stars/star_gold.webp',
+    4: '/stars/star_platinum.webp'
   };
   const STAR_IMAGE_KEYWORDS = {
     normal: ['_normal', 'normal'],
@@ -57,26 +57,26 @@
     platinum: ['_platinum', '_plat', 'platinum', 'plat']
   };
   const STAT_ICON = {
-    hp: '/etc/icon_hp.png',
-    atk: '/etc/icon_atk.png',
-    speed: '/etc/icon_speed.png',
+    hp: '/etc/icon_hp.webp',
+    atk: '/etc/icon_atk.webp',
+    speed: '/etc/icon_speed.webp',
   };
   const TYPE_ICON = {
-    default: '/mut_icons/icon_special.png',
-    special: '/mut_icons/icon_special.png',
-    heroic: '/mut_icons/icon_heroic.png',
-    legend: '/mut_icons/icon_legendary.png',
-    legendary: '/mut_icons/icon_legendary.png',
-    gacha: '/mut_icons/icon_gacha.png',
-    pvp: '/mut_icons/icon_pvp.png',
-    seasonal: '/mut_icons/icon_seasonal.png',
-    recipe: '/mut_icons/icon_recipe.png',
-    videogame: '/mut_icons/icon_videogame.png',
-    video_game: '/mut_icons/icon_videogame.png',
-    morphology: '/mut_icons/icon_morphology.png',
-    zodiac: '/mut_icons/icon_zodiac.png',
-    limited: '/mut_icons/limited.png',
-    community: '/mut_icons/icon_special.png',
+    default: '/mut_icons/icon_special.webp',
+    special: '/mut_icons/icon_special.webp',
+    heroic: '/mut_icons/icon_heroic.webp',
+    legend: '/mut_icons/icon_legendary.webp',
+    legendary: '/mut_icons/icon_legendary.webp',
+    gacha: '/mut_icons/icon_gacha.webp',
+    pvp: '/mut_icons/icon_pvp.webp',
+    seasonal: '/mut_icons/icon_seasonal.webp',
+    recipe: '/mut_icons/icon_recipe.webp',
+    videogame: '/mut_icons/icon_videogame.webp',
+    video_game: '/mut_icons/icon_videogame.webp',
+    morphology: '/mut_icons/icon_morphology.webp',
+    zodiac: '/mut_icons/icon_zodiac.webp',
+    limited: '/mut_icons/limited.webp',
+    community: '/mut_icons/icon_special.webp',
   };
 
   const starAux = buildStarAuxiliary();
@@ -460,7 +460,7 @@
       ...effects,
       percent,
       category,
-      icon: `/orbs/${category}/${id}.png`,
+      icon: `/orbs/${category}/${id}.webp`,
       type: category,
       specialAbility,
     };
@@ -656,7 +656,7 @@
     if (!raw) return '';
     const lower = raw.toLowerCase();
     if (TYPE_ICON[lower]) return TYPE_ICON[lower];
-    const prefixed = `/mut_icons/icon_${lower}.png`;
+    const prefixed = `/mut_icons/icon_${lower}.webp`;
     return prefixed;
   }
 
@@ -667,9 +667,9 @@
       .replace(/_plus_plus$/i, '')
       .replace(/_plus$/i, '');
     if (stripped === 'ability_regen') {
-      return '/ability/ability_regenerate.png';
+      return '/ability/ability_regenerate.webp';
     }
-    return `/ability/${stripped}.png`;
+    return `/ability/${stripped}.webp`;
   }
 
   // Применение модификаторов сфер (проценты)
@@ -1118,7 +1118,7 @@
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = `${selected.name || 'mutant'}-stats.png`;
+          link.download = `${selected.name || 'mutant'}-stats.webp`;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -1241,7 +1241,7 @@
             {#each basicSlots as orb, i}
               <div class="slot">
                 <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
-                  <img class="slot-bg" src="/orbs/basic/orb_slot.png" alt="slot" />
+                  <img class="slot-bg" src="/orbs/basic/orb_slot.webp" alt="slot" />
                   {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
                 </button>
                 {#if orb}
@@ -1262,7 +1262,7 @@
             <!-- спец-слот -->
             <div class="slot">
               <button class="slot-btn" on:click={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
-                <img class="slot-bg" src="/orbs/special/orb_slot_spe.png" alt="special" />
+                <img class="slot-bg" src="/orbs/special/orb_slot_spe.webp" alt="special" />
                 {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
               </button>
               {#if specialSlot}
@@ -1330,7 +1330,7 @@
                     <img class="gene-icon" src={attack.geneIcon} alt="" aria-hidden="true" />
                   {/if}
                   {#if attack.isAoe}
-                    <img class="attack-aoe" src="/genes/atk_multiple.png" alt="АОЕ" />
+                    <img class="attack-aoe" src="/genes/atk_multiple.webp" alt="АОЕ" />
                   {/if}
                 </span>
                 <div class="attack-info">

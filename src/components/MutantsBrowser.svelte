@@ -157,19 +157,19 @@
   type SkinStarKey = 'any'|'normal'|'bronze'|'silver'|'gold'|'platinum';
 
   const STAR_MUTANTS: {key: StarKey; icon: string; label: string}[] = [
-    { key: 'normal',   icon: '/stars/no_stars.png',      label: 'Обычные' },
-    { key: 'bronze',   icon: '/stars/star_bronze.png',   label: 'Бронза' },
-    { key: 'silver',   icon: '/stars/star_silver.png',   label: 'Серебро' },
-    { key: 'gold',     icon: '/stars/star_gold.png',     label: 'Золото' },
-    { key: 'platinum', icon: '/stars/star_platinum.png', label: 'Платина' },
+    { key: 'normal',   icon: '/stars/no_stars.webp',      label: 'Обычные' },
+    { key: 'bronze',   icon: '/stars/star_bronze.webp',   label: 'Бронза' },
+    { key: 'silver',   icon: '/stars/star_silver.webp',   label: 'Серебро' },
+    { key: 'gold',     icon: '/stars/star_gold.webp',     label: 'Золото' },
+    { key: 'platinum', icon: '/stars/star_platinum.webp', label: 'Платина' },
   ];
   const STAR_SKINS: {key: SkinStarKey; icon?: string; label: string}[] = [
     { key: 'any',      label: 'Все' },
-    { key: 'normal',   icon: '/stars/no_stars.png',      label: 'Обычные' },
-    { key: 'bronze',   icon: '/stars/star_bronze.png',   label: 'Бронза' },
-    { key: 'silver',   icon: '/stars/star_silver.png',   label: 'Серебро' },
-    { key: 'gold',     icon: '/stars/star_gold.png',     label: 'Золото' },
-    { key: 'platinum', icon: '/stars/star_platinum.png', label: 'Платина' },
+    { key: 'normal',   icon: '/stars/no_stars.webp',      label: 'Обычные' },
+    { key: 'bronze',   icon: '/stars/star_bronze.webp',   label: 'Бронза' },
+    { key: 'silver',   icon: '/stars/star_silver.webp',   label: 'Серебро' },
+    { key: 'gold',     icon: '/stars/star_gold.webp',     label: 'Золото' },
+    { key: 'platinum', icon: '/stars/star_platinum.webp', label: 'Платина' },
   ];
 
   // По умолчанию: мутанты = только обычные; скины = любые
@@ -188,13 +188,13 @@
 
   // Гены — иконки (public/genes)
   const geneList = [
-    { key: '',  label: 'Все',                   icon: '/genes/icon_gene_all.png' },
-    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.png' },
-    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/icon_gene_b.png' },
-    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/icon_gene_c.png' },
-    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/icon_gene_d.png' },
-    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.png' },
-    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.png' },
+    { key: '',  label: 'Все',                   icon: '/genes/icon_gene_all.webp' },
+    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.webp' },
+    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/icon_gene_b.webp' },
+    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/icon_gene_c.webp' },
+    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/icon_gene_d.webp' },
+    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.webp' },
+    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.webp' },
   ];
   const geneButtonClass = (selected: boolean) =>
     'p-1 rounded-lg ring-1 ' + (selected ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10');
@@ -313,7 +313,7 @@
     const pick =
       list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'))
       || list[0];
-    return pick ?? 'placeholder-mutant.png';
+    return pick ?? 'placeholder-mutant.webp';
   }
   function rarityType(item:any){
     const s = (item?.star ?? 'normal').toLowerCase();

@@ -21,8 +21,8 @@
       "star": "silver",
       "skin": "japan",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/A_01_japan.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_a_01_japan.png"
+        "textures_by_skins/textures_by_skin/full-char/A_01_japan.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_a_01_japan.webp"
       ]
     },
     {
@@ -46,8 +46,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/A_05_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_a_05_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/A_05_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_a_05_winter.webp"
       ]
     },
     {
@@ -71,8 +71,8 @@
       "star": "none",
       "skin": "girl_power",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_01_girl.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_01_girl.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_01_girl.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_01_girl.webp"
       ]
     },
     {
@@ -96,8 +96,8 @@
       "star": "none",
       "skin": "army",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_02_camo.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_02_camo.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_02_camo.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_02_camo.webp"
       ]
     },
     {
@@ -121,8 +121,8 @@
       "star": "silver",
       "skin": "disco",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_03_music.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_03_music.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_03_music.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_03_music.webp"
       ]
     },
     {
@@ -146,8 +146,8 @@
       "star": "platinum",
       "skin": "western",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_06_western.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_06_western.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_06_western.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_06_western.webp"
       ]
     },
     {
@@ -171,8 +171,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_07_wireframe.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_07_wireframe.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_07_wireframe.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_07_wireframe.webp"
       ]
     },
     {
@@ -196,8 +196,8 @@
       "star": "gold",
       "skin": "St. Valentine’s Day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_08_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_08_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_08_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_08_valentines.webp"
       ]
     },
     {
@@ -221,8 +221,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_09_winter.webp"
       ]
     },
     {
@@ -246,8 +246,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AA_11_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_11_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/AA_11_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_11_anniversary.webp"
       ]
     },
     {
@@ -271,8 +271,8 @@
       "star": "bronze",
       "skin": "steampunk",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AB_01_steampunk.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_01_steampunk.png"
+        "textures_by_skins/textures_by_skin/full-char/AB_01_steampunk.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_01_steampunk.webp"
       ]
     },
     {
@@ -296,8 +296,8 @@
       "star": "gold",
       "skin": "villain",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AB_02_villains.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_02_villains.png"
+        "textures_by_skins/textures_by_skin/full-char/AB_02_villains.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_02_villains.webp"
       ]
     },
     {
@@ -321,8 +321,8 @@
       "star": "silver",
       "skin": "timecop",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AB_04_soldiers.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_04_soldiers.png"
+        "textures_by_skins/textures_by_skin/full-char/AB_04_soldiers.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_04_soldiers.webp"
       ]
     },
     {
@@ -346,8 +346,8 @@
       "star": "none",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AB_05_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_05_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/AB_05_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_05_anniversary.webp"
       ]
     },
     {
@@ -371,8 +371,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AB_06_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_06_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AB_06_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_06_winter.webp"
       ]
     },
     {
@@ -396,8 +396,8 @@
       "star": "none",
       "skin": "tropical summer",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AB_07_beach.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_07_beach.png"
+        "textures_by_skins/textures_by_skin/full-char/AB_07_beach.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_07_beach.webp"
       ]
     },
     {
@@ -421,8 +421,8 @@
       "star": "bronze",
       "skin": "Gods_of_Olympus",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_01_olympians.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_01_olympians.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_01_olympians.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_01_olympians.webp"
       ]
     },
     {
@@ -446,8 +446,8 @@
       "star": "gold",
       "skin": "steampunk",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_02_steampunk.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_02_steampunk.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_02_steampunk.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_02_steampunk.webp"
       ]
     },
     {
@@ -471,8 +471,8 @@
       "star": "platinum",
       "skin": "fantasy",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_03_fantasy.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_03_fantasy.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_03_fantasy.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_03_fantasy.webp"
       ]
     },
     {
@@ -496,8 +496,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_05_wireframe.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_05_wireframe.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_05_wireframe.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_05_wireframe.webp"
       ]
     },
     {
@@ -521,8 +521,8 @@
       "star": "gold",
       "skin": "royal",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_08_kings.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_08_kings.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_08_kings.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_08_kings.webp"
       ]
     },
     {
@@ -546,8 +546,8 @@
       "star": "gold",
       "skin": "french_revolution",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_09_revolution.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_09_revolution.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_09_revolution.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_09_revolution.webp"
       ]
     },
     {
@@ -571,8 +571,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AC_11_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_11_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AC_11_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_11_winter.webp"
       ]
     },
     {
@@ -596,8 +596,8 @@
       "star": "gold",
       "skin": "steampunk",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AD_01_steampunk.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_01_steampunk.png"
+        "textures_by_skins/textures_by_skin/full-char/AD_01_steampunk.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_01_steampunk.webp"
       ]
     },
     {
@@ -621,8 +621,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AD_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/AD_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_02_halloween.webp"
       ]
     },
     {
@@ -646,8 +646,8 @@
       "star": "gold",
       "skin": "timecop",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AD_05_soldiers.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_05_soldiers.png"
+        "textures_by_skins/textures_by_skin/full-char/AD_05_soldiers.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_05_soldiers.webp"
       ]
     },
     {
@@ -671,8 +671,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AD_06_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_06_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/AD_06_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_06_valentines.webp"
       ]
     },
     {
@@ -696,8 +696,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AD_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AD_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_08_winter.webp"
       ]
     },
     {
@@ -721,8 +721,8 @@
       "star": "bronze",
       "skin": "hero",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AE_01_heroes.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_01_heroes.png"
+        "textures_by_skins/textures_by_skin/full-char/AE_01_heroes.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_01_heroes.webp"
       ]
     },
     {
@@ -746,8 +746,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AE_03_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_03_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AE_03_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_03_winter.webp"
       ]
     },
     {
@@ -771,8 +771,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AE_07_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_07_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AE_07_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_07_winter.webp"
       ]
     },
     {
@@ -796,8 +796,8 @@
       "star": "gold",
       "skin": "oktoberfest",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AE_08_oktoberfest.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_08_oktoberfest.png"
+        "textures_by_skins/textures_by_skin/full-char/AE_08_oktoberfest.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_08_oktoberfest.webp"
       ]
     },
     {
@@ -821,8 +821,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AE_11_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_11_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AE_11_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_11_winter.webp"
       ]
     },
     {
@@ -846,8 +846,8 @@
       "star": "platinum",
       "skin": "photosynthesis",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_01_vegetal.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_01_vegetal.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_01_vegetal.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_01_vegetal.webp"
       ]
     },
     {
@@ -871,8 +871,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_03_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_03_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_03_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_03_winter.webp"
       ]
     },
     {
@@ -896,8 +896,8 @@
       "star": "bronze",
       "skin": "star_wars",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_04_starwars.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_04_starwars.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_04_starwars.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_04_starwars.webp"
       ]
     },
     {
@@ -921,8 +921,8 @@
       "star": "none",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_06_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_06_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_06_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_06_anniversary.webp"
       ]
     },
     {
@@ -946,8 +946,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_07_opalescent.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_07_opalescent.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_07_opalescent.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_07_opalescent.webp"
       ]
     },
     {
@@ -971,8 +971,8 @@
       "star": "gold",
       "skin": "tropical_summer",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_08_beach.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_08_beach.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_08_beach.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_08_beach.webp"
       ]
     },
     {
@@ -996,8 +996,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_09_winter.webp"
       ]
     },
     {
@@ -1021,8 +1021,8 @@
       "star": "none",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_10_purgatory.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_10_purgatory.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_10_purgatory.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_10_purgatory.webp"
       ]
     },
     {
@@ -1046,8 +1046,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/AF_99_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_af_99_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/AF_99_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_99_winter.webp"
       ]
     },
     {
@@ -1071,8 +1071,8 @@
       "star": "silver",
       "skin": "villain",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/B_01_villains.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_b_01_villains.png"
+        "textures_by_skins/textures_by_skin/full-char/B_01_villains.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_b_01_villains.webp"
       ]
     },
     {
@@ -1096,8 +1096,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_01_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_01_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_01_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_01_halloween.webp"
       ]
     },
     {
@@ -1121,8 +1121,8 @@
       "star": "gold",
       "skin": "japan",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_02_japan.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_02_japan.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_02_japan.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_02_japan.webp"
       ]
     },
     {
@@ -1146,8 +1146,8 @@
       "star": "gold",
       "skin": "villain",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_03_villains.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_03_villains.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_03_villains.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_03_villains.webp"
       ]
     },
     {
@@ -1171,8 +1171,8 @@
       "star": "gold",
       "skin": "summer_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_05_summer.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_05_summer.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_05_summer.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_05_summer.webp"
       ]
     },
     {
@@ -1196,8 +1196,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_07_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_07_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_07_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_07_halloween.webp"
       ]
     },
     {
@@ -1221,8 +1221,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_08_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_08_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_08_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_08_valentines.webp"
       ]
     },
     {
@@ -1246,8 +1246,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_09_winter.webp"
       ]
     },
     {
@@ -1271,8 +1271,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BA_10_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_10_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/BA_10_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_10_anniversary.webp"
       ]
     },
     {
@@ -1296,8 +1296,8 @@
       "star": "silver",
       "skin": "hero",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_01_heroes.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_01_heroes.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_01_heroes.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_01_heroes.webp"
       ]
     },
     {
@@ -1321,8 +1321,8 @@
       "star": "gold",
       "skin": "photosynthesis",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_02_vegetal.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_02_vegetal.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_02_vegetal.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_02_vegetal.webp"
       ]
     },
     {
@@ -1346,8 +1346,8 @@
       "star": "gold",
       "skin": "Gods_of_Olympus",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_03_olympians.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_03_olympians.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_03_olympians.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_03_olympians.webp"
       ]
     },
     {
@@ -1371,8 +1371,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_04_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_04_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_04_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_04_halloween.webp"
       ]
     },
     {
@@ -1396,8 +1396,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_05_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_05_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_05_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_05_easter.webp"
       ]
     },
     {
@@ -1421,8 +1421,8 @@
       "star": "gold",
       "skin": "spring_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.webp"
       ]
     },
     {
@@ -1446,8 +1446,8 @@
       "star": "gold",
       "skin": "spring_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.webp"
       ]
     },
     {
@@ -1471,8 +1471,8 @@
       "star": "silver",
       "skin": "tropical_summer",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_08_beach.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_08_beach.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_08_beach.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_08_beach.webp"
       ]
     },
     {
@@ -1496,8 +1496,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_09_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_09_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/BB_09_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_09_halloween.webp"
       ]
     },
     {
@@ -1521,8 +1521,8 @@
       "star": "gold",
       "skin": "star_wars",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_01_starwars.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_01_starwars.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_01_starwars.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_01_starwars.webp"
       ]
     },
     {
@@ -1546,8 +1546,8 @@
       "star": "silver",
       "skin": "Gods_of_Olympus",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_02_olympians.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_02_olympians.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_02_olympians.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_02_olympians.webp"
       ]
     },
     {
@@ -1571,8 +1571,8 @@
       "star": "none",
       "skin": "timecop",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_04_soldiers.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_04_soldiers.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_04_soldiers.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_04_soldiers.webp"
       ]
     },
     {
@@ -1596,8 +1596,8 @@
       "star": "gold",
       "skin": "saint_patrick_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_06_patrick.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_06_patrick.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_06_patrick.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_06_patrick.webp"
       ]
     },
     {
@@ -1621,8 +1621,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_07_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_07_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_07_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_07_halloween.webp"
       ]
     },
     {
@@ -1646,8 +1646,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_08_winter.webp"
       ]
     },
     {
@@ -1671,8 +1671,8 @@
       "star": "gold",
       "skin": "oktoberfest",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_09_oktoberfest.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_09_oktoberfest.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_09_oktoberfest.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_09_oktoberfest.webp"
       ]
     },
     {
@@ -1696,8 +1696,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BC_11_masks.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_11_masks.png"
+        "textures_by_skins/textures_by_skin/full-char/BC_11_masks.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_11_masks.webp"
       ]
     },
     {
@@ -1721,8 +1721,8 @@
       "star": "gold",
       "skin": "film",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_03_movies.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_03_movies.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_03_movies.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_03_movies.webp"
       ]
     },
     {
@@ -1746,8 +1746,8 @@
       "star": "gold",
       "skin": "elementals_team",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_04_elements.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_04_elements.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_04_elements.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_04_elements.webp"
       ]
     },
     {
@@ -1771,8 +1771,8 @@
       "star": "platinum",
       "skin": "fantasy",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_05_fantasy.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_05_fantasy.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_05_fantasy.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_05_fantasy.webp"
       ]
     },
     {
@@ -1796,8 +1796,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_06_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_06_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_06_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_06_anniversary.webp"
       ]
     },
     {
@@ -1821,8 +1821,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_08_winter.webp"
       ]
     },
     {
@@ -1846,8 +1846,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_09_winter.webp"
       ]
     },
     {
@@ -1871,8 +1871,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BD_10_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_10_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/BD_10_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_10_winter.webp"
       ]
     },
     {
@@ -1896,8 +1896,8 @@
       "star": "gold",
       "skin": "summer_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BE_03_summer.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_be_03_summer.png"
+        "textures_by_skins/textures_by_skin/full-char/BE_03_summer.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_03_summer.webp"
       ]
     },
     {
@@ -1921,8 +1921,8 @@
       "star": "platinum",
       "skin": "muchachos",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BE_05_lucha.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_be_05_lucha.png"
+        "textures_by_skins/textures_by_skin/full-char/BE_05_lucha.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_05_lucha.webp"
       ]
     },
     {
@@ -1946,8 +1946,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BE_08_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_be_08_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/BE_08_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_08_easter.webp"
       ]
     },
     {
@@ -1971,8 +1971,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BE_09_masks.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_be_09_masks.png"
+        "textures_by_skins/textures_by_skin/full-char/BE_09_masks.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_09_masks.webp"
       ]
     },
     {
@@ -1996,8 +1996,8 @@
       "star": "none",
       "skin": "gothic",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_01_gothic.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_01_gothic.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_01_gothic.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_01_gothic.webp"
       ]
     },
     {
@@ -2021,8 +2021,8 @@
       "star": "none",
       "skin": "steampunk",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_02_steampunk.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_02_steampunk.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_02_steampunk.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_02_steampunk.webp"
       ]
     },
     {
@@ -2046,8 +2046,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.webp"
       ]
     },
     {
@@ -2071,10 +2071,10 @@
       "star": "platinum",
       "skin": "britani_buranka",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.png",
-        "textures_by_skins/textures_by_skin/full-char/BF_05_confrontation.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_confrontation.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_05_anniversary.webp",
+        "textures_by_skins/textures_by_skin/full-char/BF_05_confrontation.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_05_confrontation.webp"
       ]
     },
     {
@@ -2098,8 +2098,8 @@
       "star": "silver",
       "skin": "disco",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_06_music.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_06_music.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_06_music.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_06_music.webp"
       ]
     },
     {
@@ -2123,8 +2123,8 @@
       "star": "gold",
       "skin": "school_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_07_school.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_07_school.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_07_school.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_07_school.webp"
       ]
     },
     {
@@ -2148,8 +2148,8 @@
       "star": "gold",
       "skin": "independence_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_08_jefferson.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_08_jefferson.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_08_jefferson.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_08_jefferson.webp"
       ]
     },
     {
@@ -2173,8 +2173,8 @@
       "star": "gold",
       "skin": "saint_patrick_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/BF_12_patrick.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_12_patrick.png"
+        "textures_by_skins/textures_by_skin/full-char/BF_12_patrick.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bf_12_patrick.webp"
       ]
     },
     {
@@ -2198,8 +2198,8 @@
       "star": "silver",
       "skin": "steampunk",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/C_01_steampunk.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_c_01_steampunk.png"
+        "textures_by_skins/textures_by_skin/full-char/C_01_steampunk.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_c_01_steampunk.webp"
       ]
     },
     {
@@ -2223,8 +2223,8 @@
       "star": "gold",
       "skin": "hero",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CA_01_heroes.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_01_heroes.png"
+        "textures_by_skins/textures_by_skin/full-char/CA_01_heroes.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_01_heroes.webp"
       ]
     },
     {
@@ -2248,8 +2248,8 @@
       "star": "platinum",
       "skin": "blood_sport",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CA_02_olympics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_02_olympics.png"
+        "textures_by_skins/textures_by_skin/full-char/CA_02_olympics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_02_olympics.webp"
       ]
     },
     {
@@ -2273,8 +2273,8 @@
       "star": "gold",
       "skin": "workers_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CA_05_worker.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_05_worker.png"
+        "textures_by_skins/textures_by_skin/full-char/CA_05_worker.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_05_worker.webp"
       ]
     },
     {
@@ -2298,8 +2298,8 @@
       "star": "gold",
       "skin": "photosynthesis",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CA_06_vegetal.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_06_vegetal.png"
+        "textures_by_skins/textures_by_skin/full-char/CA_06_vegetal.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_06_vegetal.webp"
       ]
     },
     {
@@ -2323,8 +2323,8 @@
       "star": "silver",
       "skin": "blood_sport",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CA_07_olympics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_07_olympics.png"
+        "textures_by_skins/textures_by_skin/full-char/CA_07_olympics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_07_olympics.webp"
       ]
     },
     {
@@ -2348,8 +2348,8 @@
       "star": "gold",
       "skin": "blood_sport",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CA_08_olympics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_08_olympics.png"
+        "textures_by_skins/textures_by_skin/full-char/CA_08_olympics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ca_08_olympics.webp"
       ]
     },
     {
@@ -2373,8 +2373,8 @@
       "star": "none",
       "skin": "girl_power",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_01_girl.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_01_girl.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_01_girl.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_01_girl.webp"
       ]
     },
     {
@@ -2398,8 +2398,8 @@
       "star": "gold",
       "skin": "japan",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_02_japan.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_02_japan.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_02_japan.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_02_japan.webp"
       ]
     },
     {
@@ -2423,8 +2423,8 @@
       "star": "gold",
       "skin": "film",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_03_movies.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_03_movies.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_03_movies.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_03_movies.webp"
       ]
     },
     {
@@ -2448,8 +2448,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_04_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_04_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_04_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_04_halloween.webp"
       ]
     },
     {
@@ -2473,8 +2473,8 @@
       "star": "gold",
       "skin": "autumn_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_08_autumn.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_08_autumn.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_08_autumn.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_08_autumn.webp"
       ]
     },
     {
@@ -2498,8 +2498,8 @@
       "star": "gold",
       "skin": "1_april",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_09_aprilfools.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_09_aprilfools.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_09_aprilfools.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_09_aprilfools.webp"
       ]
     },
     {
@@ -2523,8 +2523,8 @@
       "star": "gold",
       "skin": "thanksgiving_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CB_10_thanksgiving.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_10_thanksgiving.png"
+        "textures_by_skins/textures_by_skin/full-char/CB_10_thanksgiving.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cb_10_thanksgiving.webp"
       ]
     },
     {
@@ -2548,8 +2548,8 @@
       "star": "bronze",
       "skin": "japan",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_01_japan.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_01_japan.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_01_japan.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_01_japan.webp"
       ]
     },
     {
@@ -2573,8 +2573,8 @@
       "star": "gold",
       "skin": "film",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_02_movies.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_02_movies.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_02_movies.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_02_movies.webp"
       ]
     },
     {
@@ -2598,8 +2598,8 @@
       "star": "silver",
       "skin": "star_wars",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_03_starwars.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_03_starwars.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_03_starwars.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_03_starwars.webp"
       ]
     },
     {
@@ -2623,8 +2623,8 @@
       "star": "none",
       "skin": "Gods_of_Olympus",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_04_olympians.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_04_olympians.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_04_olympians.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_04_olympians.webp"
       ]
     },
     {
@@ -2648,8 +2648,8 @@
       "star": "gold",
       "skin": "workers_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_08_labor.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_08_labor.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_08_labor.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_08_labor.webp"
       ]
     },
     {
@@ -2673,8 +2673,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_09_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_09_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_09_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_09_valentines.webp"
       ]
     },
     {
@@ -2698,8 +2698,8 @@
       "star": "gold",
       "skin": "royal",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CC_10_kings.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_10_kings.png"
+        "textures_by_skins/textures_by_skin/full-char/CC_10_kings.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_10_kings.webp"
       ]
     },
     {
@@ -2723,8 +2723,8 @@
       "star": "none",
       "skin": "girl_power",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CD_01_girl.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_01_girl.png"
+        "textures_by_skins/textures_by_skin/full-char/CD_01_girl.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_01_girl.webp"
       ]
     },
     {
@@ -2770,8 +2770,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CD_03_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_03_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/CD_03_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_03_winter.webp"
       ]
     },
     {
@@ -2795,8 +2795,8 @@
       "star": "platinum",
       "skin": "timecop",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CD_06_soldiers.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_06_soldiers.png"
+        "textures_by_skins/textures_by_skin/full-char/CD_06_soldiers.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_06_soldiers.webp"
       ]
     },
     {
@@ -2820,8 +2820,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CD_09_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_09_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/CD_09_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_09_anniversary.webp"
       ]
     },
     {
@@ -2845,8 +2845,8 @@
       "star": "gold",
       "skin": "workers_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CD_10_worker.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_10_worker.png"
+        "textures_by_skins/textures_by_skin/full-char/CD_10_worker.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_10_worker.webp"
       ]
     },
     {
@@ -2870,8 +2870,8 @@
       "star": "none",
       "skin": "gothic",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CE_01_gothic.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_01_gothic.png"
+        "textures_by_skins/textures_by_skin/full-char/CE_01_gothic.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_01_gothic.webp"
       ]
     },
     {
@@ -2895,8 +2895,8 @@
       "star": "gold",
       "skin": "Gods_of_Olympus",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CE_03_olympians.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_03_olympians.png"
+        "textures_by_skins/textures_by_skin/full-char/CE_03_olympians.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_03_olympians.webp"
       ]
     },
     {
@@ -2920,8 +2920,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CE_07_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_07_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/CE_07_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_07_anniversary.webp"
       ]
     },
     {
@@ -2945,8 +2945,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CE_08_cybernetics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_08_cybernetics.png"
+        "textures_by_skins/textures_by_skin/full-char/CE_08_cybernetics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_08_cybernetics.webp"
       ]
     },
     {
@@ -2970,8 +2970,8 @@
       "star": "gold",
       "skin": "girl_power",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_01_girl.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_01_girl.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_01_girl.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_01_girl.webp"
       ]
     },
     {
@@ -2995,8 +2995,8 @@
       "star": "gold",
       "skin": "timecop",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_02_soldiers.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_02_soldiers.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_02_soldiers.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_02_soldiers.webp"
       ]
     },
     {
@@ -3020,8 +3020,8 @@
       "star": "gold",
       "skin": "muchachos",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_03_lucha.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_03_lucha.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_03_lucha.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_03_lucha.webp"
       ]
     },
     {
@@ -3045,8 +3045,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_05_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_05_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_05_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_05_valentines.webp"
       ]
     },
     {
@@ -3070,8 +3070,8 @@
       "star": "none",
       "skin": "western",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_06_western.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_06_western.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_06_western.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_06_western.webp"
       ]
     },
     {
@@ -3095,8 +3095,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_08_solarflare.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_08_solarflare.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_08_solarflare.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_08_solarflare.webp"
       ]
     },
     {
@@ -3120,8 +3120,8 @@
       "star": "gold",
       "skin": "workers_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/CF_09_worker.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_09_worker.png"
+        "textures_by_skins/textures_by_skin/full-char/CF_09_worker.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_09_worker.webp"
       ]
     },
     {
@@ -3145,8 +3145,8 @@
       "star": "silver",
       "skin": "big_boss",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/D_01_gachaboss.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_d_01_gachaboss.png"
+        "textures_by_skins/textures_by_skin/full-char/D_01_gachaboss.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_d_01_gachaboss.webp"
       ]
     },
     {
@@ -3170,8 +3170,8 @@
       "star": "bronze",
       "skin": "villain",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DA_01_villains.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_da_01_villains.png"
+        "textures_by_skins/textures_by_skin/full-char/DA_01_villains.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_01_villains.webp"
       ]
     },
     {
@@ -3195,8 +3195,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DA_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_da_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/DA_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_02_halloween.webp"
       ]
     },
     {
@@ -3220,8 +3220,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DA_05_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_da_05_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DA_05_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_05_winter.webp"
       ]
     },
     {
@@ -3245,8 +3245,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DA_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_da_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DA_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_08_winter.webp"
       ]
     },
     {
@@ -3270,8 +3270,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DA_10_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_da_10_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/DA_10_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_10_halloween.webp"
       ]
     },
     {
@@ -3295,8 +3295,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DA_11_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_da_11_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/DA_11_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_11_anniversary.webp"
       ]
     },
     {
@@ -3320,8 +3320,8 @@
       "star": "gold",
       "skin": "big_boss",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_01_gachaboss.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_01_gachaboss.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_01_gachaboss.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_01_gachaboss.webp"
       ]
     },
     {
@@ -3345,8 +3345,8 @@
       "star": "none",
       "skin": "western",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_04_western.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_04_western.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_04_western.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_04_western.webp"
       ]
     },
     {
@@ -3370,8 +3370,8 @@
       "star": "gold",
       "skin": "fantasy",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_06_fantasy.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_06_fantasy.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_06_fantasy.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_06_fantasy.webp"
       ]
     },
     {
@@ -3395,8 +3395,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_07_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_07_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_07_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_07_halloween.webp"
       ]
     },
     {
@@ -3420,8 +3420,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_08_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_08_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_08_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_08_halloween.webp"
       ]
     },
     {
@@ -3445,8 +3445,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_09_nebula.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_09_nebula.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_09_nebula.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_09_nebula.webp"
       ]
     },
     {
@@ -3470,8 +3470,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DB_10_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_db_10_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/DB_10_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_db_10_anniversary.webp"
       ]
     },
     {
@@ -3495,8 +3495,8 @@
       "star": "none",
       "skin": "gothic",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_01_gothic.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_01_gothic.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_01_gothic.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_01_gothic.webp"
       ]
     },
     {
@@ -3520,8 +3520,8 @@
       "star": "gold",
       "skin": "muchachos",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_05_lucha.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_05_lucha.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_05_lucha.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_05_lucha.webp"
       ]
     },
     {
@@ -3545,8 +3545,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_06_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_06_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_06_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_06_winter.webp"
       ]
     },
     {
@@ -3570,8 +3570,8 @@
       "star": "silver",
       "skin": "photosynthesis",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_08_vegetal.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_08_vegetal.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_08_vegetal.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_08_vegetal.webp"
       ]
     },
     {
@@ -3595,8 +3595,8 @@
       "star": "gold",
       "skin": "1_april",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_09_aprilfools.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_09_aprilfools.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_09_aprilfools.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_09_aprilfools.webp"
       ]
     },
     {
@@ -3620,8 +3620,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_10_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_10_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_10_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_10_winter.webp"
       ]
     },
     {
@@ -3645,8 +3645,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DC_11_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_11_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DC_11_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dc_11_winter.webp"
       ]
     },
     {
@@ -3670,8 +3670,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_01_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_01_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/DD_01_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_01_valentines.webp"
       ]
     },
     {
@@ -3695,8 +3695,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.png"
+        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.webp"
       ]
     },
     {
@@ -3720,8 +3720,8 @@
       "star": "none",
       "skin": "spring_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.png"
+        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.webp"
       ]
     },
     {
@@ -3745,8 +3745,8 @@
       "star": "gold",
       "skin": "army",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_07_camo.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_07_camo.png"
+        "textures_by_skins/textures_by_skin/full-char/DD_07_camo.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_07_camo.webp"
       ]
     },
     {
@@ -3770,8 +3770,8 @@
       "star": "gold",
       "skin": "school_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_08_school.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_08_school.png"
+        "textures_by_skins/textures_by_skin/full-char/DD_08_school.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_08_school.webp"
       ]
     },
     {
@@ -3795,8 +3795,8 @@
       "star": "gold",
       "skin": "autumn_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_10_autumn.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_10_autumn.png"
+        "textures_by_skins/textures_by_skin/full-char/DD_10_autumn.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_10_autumn.webp"
       ]
     },
     {
@@ -3820,8 +3820,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_02_halloween.webp"
       ]
     },
     {
@@ -3845,8 +3845,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_03_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_03_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_03_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_03_winter.webp"
       ]
     },
     {
@@ -3870,8 +3870,8 @@
       "star": "silver",
       "skin": "muchachos",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_04_lucha.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_04_lucha.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_04_lucha.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_04_lucha.webp"
       ]
     },
     {
@@ -3895,8 +3895,8 @@
       "star": "platinum",
       "skin": "disco",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_05_music.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_05_music.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_05_music.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_05_music.webp"
       ]
     },
     {
@@ -3920,8 +3920,8 @@
       "star": "gold",
       "skin": "thanksgiving_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_07_thanksgiving.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_07_thanksgiving.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_07_thanksgiving.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_07_thanksgiving.webp"
       ]
     },
     {
@@ -3945,8 +3945,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_08_winter.webp"
       ]
     },
     {
@@ -3970,8 +3970,8 @@
       "star": "gold",
       "skin": "photosynthesis",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_09_vegetal.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_09_vegetal.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_09_vegetal.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_09_vegetal.webp"
       ]
     },
     {
@@ -3995,8 +3995,8 @@
       "star": "platinum",
       "skin": "card_game_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DE_11_tcg.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_de_11_tcg.png"
+        "textures_by_skins/textures_by_skin/full-char/DE_11_tcg.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_de_11_tcg.webp"
       ]
     },
     {
@@ -4020,8 +4020,8 @@
       "star": "gold",
       "skin": "japan",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_01_japan.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_01_japan.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_01_japan.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_01_japan.webp"
       ]
     },
     {
@@ -4045,8 +4045,8 @@
       "star": "gold",
       "skin": "spring_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_02_spring.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_02_spring.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_02_spring.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_02_spring.webp"
       ]
     },
     {
@@ -4070,10 +4070,10 @@
       "star": "gold",
       "skin": "elementals_team",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_04_elements.png",
-        "textures_by_skins/textures_by_skin/full-char/DF_04_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_elements.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_04_elements.webp",
+        "textures_by_skins/textures_by_skin/full-char/DF_04_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_elements.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_winter.webp"
       ]
     },
     {
@@ -4097,8 +4097,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_04_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_04_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_winter.webp"
       ]
     },
     {
@@ -4122,8 +4122,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_05_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_05_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_05_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_05_winter.webp"
       ]
     },
     {
@@ -4147,8 +4147,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_07_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_07_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_07_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_07_halloween.webp"
       ]
     },
     {
@@ -4172,8 +4172,8 @@
       "star": "gold",
       "skin": "thanksgiving_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_08_thanksgiving.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_08_thanksgiving.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_08_thanksgiving.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_08_thanksgiving.webp"
       ]
     },
     {
@@ -4197,8 +4197,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_09_purgatory.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_09_purgatory.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_09_purgatory.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_09_purgatory.webp"
       ]
     },
     {
@@ -4222,8 +4222,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/DF_10_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_df_10_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/DF_10_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_10_valentines.webp"
       ]
     },
     {
@@ -4247,8 +4247,8 @@
       "star": "bronze",
       "skin": "gothic",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/E_01_gothic.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_e_01_gothic.png"
+        "textures_by_skins/textures_by_skin/full-char/E_01_gothic.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_e_01_gothic.webp"
       ]
     },
     {
@@ -4272,8 +4272,8 @@
       "star": "gold",
       "skin": "big_boss",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EA_01_gachaboss.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_01_gachaboss.png"
+        "textures_by_skins/textures_by_skin/full-char/EA_01_gachaboss.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_01_gachaboss.webp"
       ]
     },
     {
@@ -4297,8 +4297,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EA_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/EA_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_02_halloween.webp"
       ]
     },
     {
@@ -4322,8 +4322,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EA_05_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_05_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/EA_05_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_05_easter.webp"
       ]
     },
     {
@@ -4347,8 +4347,8 @@
       "star": "gold",
       "skin": "thanksgiving_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EA_06_thanksgiving.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_06_thanksgiving.png"
+        "textures_by_skins/textures_by_skin/full-char/EA_06_thanksgiving.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_06_thanksgiving.webp"
       ]
     },
     {
@@ -4372,8 +4372,8 @@
       "star": "gold",
       "skin": "oktoberfest",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EA_07_oktoberfest.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_07_oktoberfest.png"
+        "textures_by_skins/textures_by_skin/full-char/EA_07_oktoberfest.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ea_07_oktoberfest.webp"
       ]
     },
     {
@@ -4397,8 +4397,8 @@
       "star": "silver",
       "skin": "elementals_team",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EB_02_elements.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_02_elements.png"
+        "textures_by_skins/textures_by_skin/full-char/EB_02_elements.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_02_elements.webp"
       ]
     },
     {
@@ -4422,8 +4422,8 @@
       "star": "silver",
       "skin": "film",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EB_04_movies.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_04_movies.png"
+        "textures_by_skins/textures_by_skin/full-char/EB_04_movies.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_04_movies.webp"
       ]
     },
     {
@@ -4447,8 +4447,8 @@
       "star": "gold",
       "skin": "elementals_team",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EB_05_elements.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_05_elements.png"
+        "textures_by_skins/textures_by_skin/full-char/EB_05_elements.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_05_elements.webp"
       ]
     },
     {
@@ -4472,8 +4472,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EB_09_masks.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_09_masks.png"
+        "textures_by_skins/textures_by_skin/full-char/EB_09_masks.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_09_masks.webp"
       ]
     },
     {
@@ -4497,8 +4497,8 @@
       "star": "none",
       "skin": "steampunk",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EC_01_steampunk.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_01_steampunk.png"
+        "textures_by_skins/textures_by_skin/full-char/EC_01_steampunk.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_01_steampunk.webp"
       ]
     },
     {
@@ -4522,8 +4522,8 @@
       "star": "gold",
       "skin": "star_wars",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EC_01_starwars.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_01_starwars.png"
+        "textures_by_skins/textures_by_skin/full-char/EC_01_starwars.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_01_starwars.webp"
       ]
     },
     {
@@ -4547,8 +4547,8 @@
       "star": "gold",
       "skin": "villain",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EC_03_villains.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_03_villains.png"
+        "textures_by_skins/textures_by_skin/full-char/EC_03_villains.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_03_villains.webp"
       ]
     },
     {
@@ -4572,8 +4572,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EC_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/EC_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_09_winter.webp"
       ]
     },
     {
@@ -4597,8 +4597,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_01_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_01_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_01_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_01_winter.webp"
       ]
     },
     {
@@ -4622,8 +4622,8 @@
       "star": "bronze",
       "skin": "film",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_03_movies.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_03_movies.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_03_movies.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_03_movies.webp"
       ]
     },
     {
@@ -4647,8 +4647,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_05_solarflare.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_05_solarflare.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_05_solarflare.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_05_solarflare.webp"
       ]
     },
     {
@@ -4672,8 +4672,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_06_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_06_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_06_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_06_easter.webp"
       ]
     },
     {
@@ -4697,8 +4697,8 @@
       "star": "gold",
       "skin": "summer_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_07_summer.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_07_summer.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_07_summer.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_07_summer.webp"
       ]
     },
     {
@@ -4722,8 +4722,8 @@
       "star": "none",
       "skin": "army",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_08_camo.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_08_camo.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_08_camo.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_08_camo.webp"
       ]
     },
     {
@@ -4747,8 +4747,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_10_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_10_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_10_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_10_valentines.webp"
       ]
     },
     {
@@ -4772,8 +4772,8 @@
       "star": "gold",
       "skin": "carnival",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/ED_11_carnival.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_11_carnival.png"
+        "textures_by_skins/textures_by_skin/full-char/ED_11_carnival.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_11_carnival.webp"
       ]
     },
     {
@@ -4797,8 +4797,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_02_halloween.webp"
       ]
     },
     {
@@ -4822,8 +4822,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_03_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_03_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_03_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_03_easter.webp"
       ]
     },
     {
@@ -4847,8 +4847,8 @@
       "star": "gold",
       "skin": "disco",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_04_music.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_04_music.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_04_music.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_04_music.webp"
       ]
     },
     {
@@ -4872,8 +4872,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_06_masks.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_06_masks.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_06_masks.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_06_masks.webp"
       ]
     },
     {
@@ -4897,8 +4897,8 @@
       "star": "platinum",
       "skin": "tropical_summer",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_07_beach.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_07_beach.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_07_beach.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_07_beach.webp"
       ]
     },
     {
@@ -4922,8 +4922,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_08_winter.webp"
       ]
     },
     {
@@ -4947,8 +4947,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_09_wireframe.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_09_wireframe.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_09_wireframe.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_09_wireframe.webp"
       ]
     },
     {
@@ -4972,8 +4972,8 @@
       "star": "gold",
       "skin": "school_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EE_10_school.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_10_school.png"
+        "textures_by_skins/textures_by_skin/full-char/EE_10_school.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ee_10_school.webp"
       ]
     },
     {
@@ -4997,8 +4997,8 @@
       "star": "bronze",
       "skin": "elementals_team",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EF_01_elements.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_01_elements.png"
+        "textures_by_skins/textures_by_skin/full-char/EF_01_elements.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_01_elements.webp"
       ]
     },
     {
@@ -5022,8 +5022,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EF_04_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_04_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/EF_04_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_04_easter.webp"
       ]
     },
     {
@@ -5047,8 +5047,8 @@
       "star": "gold",
       "skin": "blue_planet",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EF_05_blueplanet.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_05_blueplanet.png"
+        "textures_by_skins/textures_by_skin/full-char/EF_05_blueplanet.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_05_blueplanet.webp"
       ]
     },
     {
@@ -5072,8 +5072,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EF_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/EF_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_09_winter.webp"
       ]
     },
     {
@@ -5097,8 +5097,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/EF_10_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_10_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/EF_10_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_10_halloween.webp"
       ]
     },
     {
@@ -5122,8 +5122,8 @@
       "star": "bronze",
       "skin": "girl_power",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/F_01_girl.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_f_01_girl.png"
+        "textures_by_skins/textures_by_skin/full-char/F_01_girl.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_f_01_girl.webp"
       ]
     },
     {
@@ -5147,8 +5147,8 @@
       "star": "gold",
       "skin": "hero",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FA_01_heroes.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_01_heroes.png"
+        "textures_by_skins/textures_by_skin/full-char/FA_01_heroes.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_01_heroes.webp"
       ]
     },
     {
@@ -5172,8 +5172,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FA_02_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_02_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/FA_02_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_02_valentines.webp"
       ]
     },
     {
@@ -5197,8 +5197,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FA_05_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_05_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FA_05_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_05_winter.webp"
       ]
     },
     {
@@ -5222,8 +5222,8 @@
       "star": "silver",
       "skin": "blood_sport",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FA_08_olympics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_08_olympics.png"
+        "textures_by_skins/textures_by_skin/full-char/FA_08_olympics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_08_olympics.webp"
       ]
     },
     {
@@ -5247,8 +5247,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FA_10_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_10_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/FA_10_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_10_anniversary.webp"
       ]
     },
     {
@@ -5272,8 +5272,8 @@
       "star": "bronze",
       "skin": "girl_power",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FB_01_girl.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_01_girl.png"
+        "textures_by_skins/textures_by_skin/full-char/FB_01_girl.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_01_girl.webp"
       ]
     },
     {
@@ -5297,8 +5297,8 @@
       "star": "gold",
       "skin": "big_boss",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FB_03_gachaboss.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_03_gachaboss.png"
+        "textures_by_skins/textures_by_skin/full-char/FB_03_gachaboss.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_03_gachaboss.webp"
       ]
     },
     {
@@ -5322,8 +5322,8 @@
       "star": "platinum",
       "skin": "disco",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FB_05_music.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_05_music.png"
+        "textures_by_skins/textures_by_skin/full-char/FB_05_music.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_05_music.webp"
       ]
     },
     {
@@ -5347,8 +5347,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FB_06_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_06_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FB_06_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_06_winter.webp"
       ]
     },
     {
@@ -5372,8 +5372,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FB_10_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_10_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FB_10_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_10_winter.webp"
       ]
     },
     {
@@ -5397,8 +5397,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FC_01_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_01_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FC_01_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_01_winter.webp"
       ]
     },
     {
@@ -5422,8 +5422,8 @@
       "star": "none",
       "skin": "hero",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FC_02_heroes.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_02_heroes.png"
+        "textures_by_skins/textures_by_skin/full-char/FC_02_heroes.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_02_heroes.webp"
       ]
     },
     {
@@ -5447,8 +5447,8 @@
       "star": "silver",
       "skin": "fantasy",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FC_04_fantasy.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_04_fantasy.png"
+        "textures_by_skins/textures_by_skin/full-char/FC_04_fantasy.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_04_fantasy.webp"
       ]
     },
     {
@@ -5472,8 +5472,8 @@
       "star": "silver",
       "skin": "fantasy",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FC_05_fantasy.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_05_fantasy.png"
+        "textures_by_skins/textures_by_skin/full-char/FC_05_fantasy.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_05_fantasy.webp"
       ]
     },
     {
@@ -5497,8 +5497,8 @@
       "star": "gold",
       "skin": "western",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FC_07_western.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_07_western.png"
+        "textures_by_skins/textures_by_skin/full-char/FC_07_western.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_07_western.webp"
       ]
     },
     {
@@ -5522,8 +5522,8 @@
       "star": "gold",
       "skin": "europe_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FC_08_europe.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_08_europe.png"
+        "textures_by_skins/textures_by_skin/full-char/FC_08_europe.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_08_europe.webp"
       ]
     },
     {
@@ -5547,8 +5547,8 @@
       "star": "silver",
       "skin": "gothic",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_01_gothic.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_01_gothic.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_01_gothic.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_01_gothic.webp"
       ]
     },
     {
@@ -5572,8 +5572,8 @@
       "star": "gold",
       "skin": "valentine’s_day",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_02_valentines.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_02_valentines.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_02_valentines.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_02_valentines.webp"
       ]
     },
     {
@@ -5597,8 +5597,8 @@
       "star": "gold",
       "skin": "britani_buranka",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_04_confrontation.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_04_confrontation.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_04_confrontation.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_04_confrontation.webp"
       ]
     },
     {
@@ -5622,8 +5622,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_05_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_05_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_05_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_05_easter.webp"
       ]
     },
     {
@@ -5647,8 +5647,8 @@
       "star": "gold",
       "skin": "blood_sport",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_06_olympics.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_06_olympics.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_06_olympics.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_06_olympics.webp"
       ]
     },
     {
@@ -5672,8 +5672,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_07_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_07_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_07_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_07_easter.webp"
       ]
     },
     {
@@ -5697,8 +5697,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_08_winter.webp"
       ]
     },
     {
@@ -5722,8 +5722,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FD_09_anniversary.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_09_anniversary.png"
+        "textures_by_skins/textures_by_skin/full-char/FD_09_anniversary.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fd_09_anniversary.webp"
       ]
     },
     {
@@ -5747,8 +5747,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_02_halloween.webp"
       ]
     },
     {
@@ -5772,8 +5772,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_03_wireframe.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_03_wireframe.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_03_wireframe.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_03_wireframe.webp"
       ]
     },
     {
@@ -5797,8 +5797,8 @@
       "star": "platinum",
       "skin": "muchachos",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_04_lucha.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_04_lucha.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_04_lucha.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_04_lucha.webp"
       ]
     },
     {
@@ -5822,8 +5822,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_07_easter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_07_easter.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_07_easter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_07_easter.webp"
       ]
     },
     {
@@ -5847,8 +5847,8 @@
       "star": "gold",
       "skin": "tropical_summer",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_08_beach.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_08_beach.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_08_beach.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_08_beach.webp"
       ]
     },
     {
@@ -5872,8 +5872,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_09_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_09_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_09_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_09_winter.webp"
       ]
     },
     {
@@ -5897,8 +5897,8 @@
       "star": "gold",
       "skin": "anniversary",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_10_masks.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_10_masks.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_10_masks.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_10_masks.webp"
       ]
     },
     {
@@ -5922,8 +5922,8 @@
       "star": "none",
       "skin": "autumn_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_13_autumn.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_autumn.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_13_autumn.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_autumn.webp"
       ]
     },
     {
@@ -5947,8 +5947,8 @@
       "star": "none",
       "skin": "spring_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_13_spring.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_spring.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_13_spring.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_spring.webp"
       ]
     },
     {
@@ -5972,8 +5972,8 @@
       "star": "none",
       "skin": "summer_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_13_summer.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_summer.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_13_summer.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_summer.webp"
       ]
     },
     {
@@ -5997,8 +5997,8 @@
       "star": "none",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FE_13_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FE_13_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_winter.webp"
       ]
     },
     {
@@ -6022,8 +6022,8 @@
       "star": "bronze",
       "skin": "big_boss",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_01_gachaboss.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_01_gachaboss.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_01_gachaboss.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_01_gachaboss.webp"
       ]
     },
     {
@@ -6047,8 +6047,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_02_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_02_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_02_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_02_halloween.webp"
       ]
     },
     {
@@ -6072,8 +6072,8 @@
       "star": "gold",
       "skin": "spring_skin",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_03_spring.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_03_spring.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_03_spring.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_03_spring.webp"
       ]
     },
     {
@@ -6097,8 +6097,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_04_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_04_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_04_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_04_winter.webp"
       ]
     },
     {
@@ -6122,8 +6122,8 @@
       "star": "gold",
       "skin": "western",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_06_western.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_06_western.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_06_western.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_06_western.webp"
       ]
     },
     {
@@ -6147,8 +6147,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_08_winter.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_08_winter.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_08_winter.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_08_winter.webp"
       ]
     },
     {
@@ -6172,8 +6172,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full-char/FF_09_halloween.png",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_09_halloween.png"
+        "textures_by_skins/textures_by_skin/full-char/FF_09_halloween.webp",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_09_halloween.webp"
       ]
     }
   ]

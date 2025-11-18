@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import Analytics from '@vercel/analytics/astro';
 // Simple base layout for the site.
 // It provides a consistent header, footer and sets a dark theme background.
 const { title, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
@@ -259,6 +260,7 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       }
     </style>
   </head>
+  <Analytics />
   <body>
     <header>
       <div class="logo">

@@ -5,70 +5,70 @@
   "created_at": "2025-09-02T01:35:06.921432Z",
   "found_files": [
     {
-      "src": "full-char/necro_necro/bronze/BB_13_bronze.png",
+      "src": "full-char/necro_necro/bronze/BB_13_bronze.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bb_13/BB_13_bronze.png",
-      "filename": "BB_13_bronze.png"
+      "dst": "textures_by_mutant/bb_13/BB_13_bronze.webp",
+      "filename": "BB_13_bronze.webp"
     },
     {
-      "src": "full-char/necro_necro/gold/BB_13_gold.png",
+      "src": "full-char/necro_necro/gold/BB_13_gold.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bb_13/BB_13_gold.png",
-      "filename": "BB_13_gold.png"
+      "dst": "textures_by_mutant/bb_13/BB_13_gold.webp",
+      "filename": "BB_13_gold.webp"
     },
     {
-      "src": "full-char/necro_necro/normal/BB_13_normal.png",
+      "src": "full-char/necro_necro/normal/BB_13_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bb_13/BB_13_normal.png",
-      "filename": "BB_13_normal.png"
+      "dst": "textures_by_mutant/bb_13/BB_13_normal.webp",
+      "filename": "BB_13_normal.webp"
     },
     {
-      "src": "full-char/necro_necro/platinum/BB_13_platinum.png",
+      "src": "full-char/necro_necro/platinum/BB_13_platinum.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bb_13/BB_13_platinum.png",
-      "filename": "BB_13_platinum.png"
+      "dst": "textures_by_mutant/bb_13/BB_13_platinum.webp",
+      "filename": "BB_13_platinum.webp"
     },
     {
-      "src": "full-char/necro_necro/silver/BB_13_silver.png",
+      "src": "full-char/necro_necro/silver/BB_13_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bb_13/BB_13_silver.png",
-      "filename": "BB_13_silver.png"
+      "dst": "textures_by_mutant/bb_13/BB_13_silver.webp",
+      "filename": "BB_13_silver.webp"
     },
     {
-      "src": "semi-full/B/B_B/silver/specimen_bb_13_silver_silver.png",
+      "src": "semi-full/B/B_B/silver/specimen_bb_13_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bb_13/specimen_bb_13_silver_silver.png",
-      "filename": "specimen_bb_13_silver_silver.png"
+      "dst": "textures_by_mutant/bb_13/specimen_bb_13_silver_silver.webp",
+      "filename": "specimen_bb_13_silver_silver.webp"
     },
     {
-      "src": "semi-full/B/B_B/platinum/specimen_bb_13_platinum_platinum.png",
+      "src": "semi-full/B/B_B/platinum/specimen_bb_13_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bb_13/specimen_bb_13_platinum_platinum.png",
-      "filename": "specimen_bb_13_platinum_platinum.png"
+      "dst": "textures_by_mutant/bb_13/specimen_bb_13_platinum_platinum.webp",
+      "filename": "specimen_bb_13_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/B/B_B/normal/specimen_bb_13_normal.png",
+      "src": "semi-full/B/B_B/normal/specimen_bb_13_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bb_13/specimen_bb_13_normal.png",
-      "filename": "specimen_bb_13_normal.png"
+      "dst": "textures_by_mutant/bb_13/specimen_bb_13_normal.webp",
+      "filename": "specimen_bb_13_normal.webp"
     },
     {
-      "src": "semi-full/B/B_B/gold/specimen_bb_13_gold_gold.png",
+      "src": "semi-full/B/B_B/gold/specimen_bb_13_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bb_13/specimen_bb_13_gold_gold.png",
-      "filename": "specimen_bb_13_gold_gold.png"
+      "dst": "textures_by_mutant/bb_13/specimen_bb_13_gold_gold.webp",
+      "filename": "specimen_bb_13_gold_gold.webp"
     },
     {
-      "src": "semi-full/B/B_B/bronze/specimen_bb_13_bronze_bronze.png",
+      "src": "semi-full/B/B_B/bronze/specimen_bb_13_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bb_13/specimen_bb_13_bronze_bronze.png",
-      "filename": "specimen_bb_13_bronze_bronze.png"
+      "dst": "textures_by_mutant/bb_13/specimen_bb_13_bronze_bronze.webp",
+      "filename": "specimen_bb_13_bronze_bronze.webp"
     },
     {
-      "src": "larva/2) NECRO/necro_necro/larva_bb_13.png",
+      "src": "larva/2) NECRO/necro_necro/larva_bb_13.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/bb_13/larva_bb_13.png",
-      "filename": "larva_bb_13.png"
+      "dst": "textures_by_mutant/bb_13/larva_bb_13.webp",
+      "filename": "larva_bb_13.webp"
     }
   ],
   "tier": "2+",

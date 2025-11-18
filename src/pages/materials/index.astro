@@ -23,11 +23,11 @@ const normRow = (item) => {
   // точечные подмены по названию
   const lname = String(name).trim().toLowerCase();
   if (!texture) {
-    if (lname === 'баночка опыта') texture = '/materials/normal_xp.png';
-    if (lname === 'банка спирта')  texture = '/materials/bigbig_med.png';
+    if (lname === 'баночка опыта') texture = '/materials/normal_xp.webp';
+    if (lname === 'банка спирта')  texture = '/materials/bigbig_med.webp';
   }
 
-  if (!texture) texture = `/materials/${id}.png`;
+  if (!texture) texture = `/materials/${id}.webp`;
 
   return { id, name, description, percent, value, rarity, texture };
 };
@@ -44,7 +44,7 @@ const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b
   id: String(b?.id || '').trim(),
   name: b?.name || (b?.id || ''),
   description: b?.description || '',
-  texture: b?.texture || `/buildings/${b?.id}.png`
+  texture: b?.texture || `/buildings/${b?.id}.webp`
 }));
 
 // ---------- зоны: поддержка строк/объектов из zones.json ----------
@@ -148,7 +148,7 @@ const TABS = [
   </section>
 
   <section id="section-buildings" class="tab-section" data-tab="buildings" hidden>
-    <MaterialsTable rows={buildingsRows} sourcesMap={sourcesMap} title="Здания" texturePrefix="/buildings/" textureExt=".png" />
+    <MaterialsTable rows={buildingsRows} sourcesMap={sourcesMap} title="Здания" texturePrefix="/buildings/" textureExt=".webp" />
   </section>
 
   <section id="section-zones" class="tab-section" data-tab="zones" hidden>

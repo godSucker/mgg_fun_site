@@ -57,10 +57,10 @@
 
 Скриншоты мобильной версии доступны в директории `docs/mobile-screenshots/`:
 
-- `mobile_home.png` - главная страница
-- `mobile_menu_open.png` - открытое мобильное меню
-- `mobile_mutants.png` - страница мутантов
-- `mobile_simulators.png` - страница симуляторов
+- `mobile_home.webp` - главная страница
+- `mobile_menu_open.webp` - открытое мобильное меню
+- `mobile_mutants.webp` - страница мутантов
+- `mobile_simulators.webp` - страница симуляторов
 
 ## Совместимость
 

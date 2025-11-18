@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:07.838278Z",
   "found_files": [
     {
-      "src": "full-char/saber_cyber/normal/CA_14_normal.png",
+      "src": "full-char/saber_cyber/normal/CA_14_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ca_14/CA_14_normal.png",
-      "filename": "CA_14_normal.png"
+      "dst": "textures_by_mutant/ca_14/CA_14_normal.webp",
+      "filename": "CA_14_normal.webp"
     },
     {
-      "src": "semi-full/C/C_A/normal/specimen_ca_14_normal.png",
+      "src": "semi-full/C/C_A/normal/specimen_ca_14_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ca_14/specimen_ca_14_normal.png",
-      "filename": "specimen_ca_14_normal.png"
+      "dst": "textures_by_mutant/ca_14/specimen_ca_14_normal.webp",
+      "filename": "specimen_ca_14_normal.webp"
     },
     {
-      "src": "larva/3) SABER/saber_cyber/larva_ca_14.png",
+      "src": "larva/3) SABER/saber_cyber/larva_ca_14.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ca_14/larva_ca_14.png",
-      "filename": "larva_ca_14.png"
+      "dst": "textures_by_mutant/ca_14/larva_ca_14.webp",
+      "filename": "larva_ca_14.webp"
     }
   ],
   "tier": "1+",

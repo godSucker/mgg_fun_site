@@ -3,48 +3,48 @@
     "id": "Building_Forge",
     "name": "Кузня",
     "description": "Приносит 5 золота раз в 12 часов",
-    "texture": "/buildings/gold_hc1.png"
+    "texture": "/buildings/gold_hc1.webp"
   },
   {
     "id": "Building_Gold_Smelter",
     "name": "Плавильня",
     "description": "Приносит 50 золота раз в 2 суток",
-    "texture": "/buildings/gold_hc2.png"
+    "texture": "/buildings/gold_hc2.webp"
   },
   {
     "id": "Building_Med_Lab",
     "name": "Мед. Лаборатория",
     "description": "Здание для крафта аптечек",
-    "texture": "/buildings/medlab.png"
+    "texture": "/buildings/medlab.webp"
   },
   {
     "id": "Building_Evo_Center",
     "name": "Эво. Центр",
     "description": "Здания для повышения уровня ЭВО",
-    "texture": "/buildings/evo.png"
+    "texture": "/buildings/evo.webp"
   },
   {
     "id": "Building_Exchange",
     "name": "Обменник",
     "description": "Здание в котором можно обменивать жетоны джекпота",
-    "texture": "/buildings/jackpot.png"
+    "texture": "/buildings/jackpot.webp"
   },
   {
     "id": "Building_Incubator",
     "name": "Инкубатор",
     "description": "Здание в котором выводятся мутанты",
-    "texture": "/buildings/incub.png"
+    "texture": "/buildings/incub.webp"
   },
   {
     "id": "Building_Trial_Hall",
     "name": "Зал Испытаний",
     "description": "Здание в котором можно обменивать жетоны испытаний",
-    "texture": "/buildings/event.png"
+    "texture": "/buildings/event.webp"
   },
   {
     "id": "Building_Breeding_Center",
     "name": "Центр Скрещивания",
     "description": "Здание в котором можно скрещивать мутантов",
-    "texture": "/buildings/merge.png"
+    "texture": "/buildings/merge.webp"
   }
 ]

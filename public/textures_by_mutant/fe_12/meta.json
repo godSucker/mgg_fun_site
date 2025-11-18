@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:06.786390Z",
   "found_files": [
     {
-      "src": "full-char/mythic_galactic/normal/FE_12_normal.png",
+      "src": "full-char/mythic_galactic/normal/FE_12_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fe_12/FE_12_normal.png",
-      "filename": "FE_12_normal.png"
+      "dst": "textures_by_mutant/fe_12/FE_12_normal.webp",
+      "filename": "FE_12_normal.webp"
     },
     {
-      "src": "semi-full/F/F_E/normal/specimen_fe_12_normal.png",
+      "src": "semi-full/F/F_E/normal/specimen_fe_12_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fe_12/specimen_fe_12_normal.png",
-      "filename": "specimen_fe_12_normal.png"
+      "dst": "textures_by_mutant/fe_12/specimen_fe_12_normal.webp",
+      "filename": "specimen_fe_12_normal.webp"
     },
     {
-      "src": "larva/6) MYTHIC/mythic_galactic/larva_fe_12.png",
+      "src": "larva/6) MYTHIC/mythic_galactic/larva_fe_12.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/fe_12/larva_fe_12.png",
-      "filename": "larva_fe_12.png"
+      "dst": "textures_by_mutant/fe_12/larva_fe_12.webp",
+      "filename": "larva_fe_12.webp"
     }
   ],
   "bingo": [

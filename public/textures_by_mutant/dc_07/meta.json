@@ -5,22 +5,22 @@
   "created_at": "2025-09-02T01:35:04.158557Z",
   "found_files": [
     {
-      "src": "full-char/zoo_saber/normal/DC_07_normal.png",
+      "src": "full-char/zoo_saber/normal/DC_07_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/dc_07/DC_07_normal.png",
-      "filename": "DC_07_normal.png"
+      "dst": "textures_by_mutant/dc_07/DC_07_normal.webp",
+      "filename": "DC_07_normal.webp"
     },
     {
-      "src": "semi-full/D/D_C/normal/specimen_dc_07_normal.png",
+      "src": "semi-full/D/D_C/normal/specimen_dc_07_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/dc_07/specimen_dc_07_normal.png",
-      "filename": "specimen_dc_07_normal.png"
+      "dst": "textures_by_mutant/dc_07/specimen_dc_07_normal.webp",
+      "filename": "specimen_dc_07_normal.webp"
     },
     {
-      "src": "larva/4) ZOO/zoo_saber/larva_dc_07.png",
+      "src": "larva/4) ZOO/zoo_saber/larva_dc_07.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/dc_07/larva_dc_07.png",
-      "filename": "larva_dc_07.png"
+      "dst": "textures_by_mutant/dc_07/larva_dc_07.webp",
+      "filename": "larva_dc_07.webp"
     }
   ],
   "tier": "un-tired",

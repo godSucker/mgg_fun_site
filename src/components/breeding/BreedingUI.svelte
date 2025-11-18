@@ -59,50 +59,50 @@ import mutantsData from '@/data/mutants/normal.json';
 
   /**
    * Compute the path to a gene icon. Each gene letter maps to an image file in
-   * the `/genes` directory: e.g. `icon_gene_a.png` for gene A. If the gene
-   * letter isn't one of A-F, fall back to a generic `gene_all.png` which
+   * the `/genes` directory: e.g. `icon_gene_a.webp` for gene A. If the gene
+   * letter isn't one of A-F, fall back to a generic `gene_all.webp` which
    * represents a universal gene. The returned path is relative to the site
-   * root (e.g. `/genes/icon_gene_a.png`).
+   * root (e.g. `/genes/icon_gene_a.webp`).
    */
   function getGeneIconSrc(ch: string): string {
     const letter = ch.toLowerCase();
     const valid = ['a', 'b', 'c', 'd', 'e', 'f'];
     if (valid.includes(letter)) {
-      return `/genes/icon_gene_${letter}.png`;
+      return `/genes/icon_gene_${letter}.webp`;
     }
     // If the gene is unknown or empty, use the generic icon.
-    return `/genes/gene_all.png`;
+    return `/genes/gene_all.webp`;
   }
 
   /**
    * Compute the path to a bingo/icon for a mutant type. Assets live in
-   * `/public/mut_icons/` and are named `icon_{type}.png`. Ordinary
-   * (default) mutants all share `icon_morphology.png`. A missing or
+   * `/public/mut_icons/` and are named `icon_{type}.webp`. Ordinary
+   * (default) mutants all share `icon_morphology.webp`. A missing or
    * unknown type results in the morphology icon as a sensible default.
    */
   function getBingoIconSrc(type: string | undefined): string {
     const t = (type ?? '').toLowerCase();
     // Default/empty types fall back to morphology icon
     if (!t || t === 'default') {
-      return '/mut_icons/icon_morphology.png';
+      return '/mut_icons/icon_morphology.webp';
     }
-    return `/mut_icons/icon_${t}.png`;
+    return `/mut_icons/icon_${t}.webp`;
   }
 
   /**
    * Compute the path to a type icon based on the mutant's `type` property.
    * This mirrors the logic used in getBingoIconSrc: default types map to
-   * `icon_morphology.png`; other types lowercased map to `icon_{type}.png`.
+   * `icon_morphology.webp`; other types lowercased map to `icon_{type}.webp`.
    */
   function getTypeIcon(m: any): string {
     const type = (m.type ?? '').toLowerCase();
-    // legend uses a custom filename 'icon_legendary.png'
-    if (type === 'legend') return '/mut_icons/icon_legendary.png';
+    // legend uses a custom filename 'icon_legendary.webp'
+    if (type === 'legend') return '/mut_icons/icon_legendary.webp';
     // community has no dedicated icon
     if (type === 'community') return '';
     // default and empty types map to morphology
-    if (!type || type === 'default') return '/mut_icons/icon_morphology.png';
-    return `/mut_icons/icon_${type}.png`;
+    if (!type || type === 'default') return '/mut_icons/icon_morphology.webp';
+    return `/mut_icons/icon_${type}.webp`;
   }
 
   /**
@@ -611,7 +611,7 @@ import mutantsData from '@/data/mutants/normal.json';
                       <td class="px-3 py-1">
                         {#if Array.isArray(child.bingo) && child.bingo.length > 0}
                           <!-- Use the morphology icon for all bingo groups for simplicity -->
-                          <img src="/mut_icons/icon_morphology.png" alt="bingo" class="w-6 h-6" />
+                          <img src="/mut_icons/icon_morphology.webp" alt="bingo" class="w-6 h-6" />
                         {:else}
                           —
                         {/if}
@@ -722,7 +722,7 @@ import mutantsData from '@/data/mutants/normal.json';
           on:click={() => { geneFilter = gene; }}
         >
           {#if gene === 'all'}
-            <img src="/genes/gene_all.png" alt="all" class="w-5 h-5" />
+            <img src="/genes/gene_all.webp" alt="all" class="w-5 h-5" />
           {:else}
             <img src={getGeneIconSrc(gene)} alt={gene} class="w-5 h-5" />
           {/if}

@@ -5,46 +5,46 @@
   "created_at": "2025-09-02T01:35:05.754527Z",
   "found_files": [
     {
-      "src": "full-char/saber_galactic/normal/CE_10_normal.png",
+      "src": "full-char/saber_galactic/normal/CE_10_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/ce_10/CE_10_normal.png",
-      "filename": "CE_10_normal.png"
+      "dst": "textures_by_mutant/ce_10/CE_10_normal.webp",
+      "filename": "CE_10_normal.webp"
     },
     {
-      "src": "semi-full/C/C_E/silver/specimen_ce_10_silver_silver.png",
+      "src": "semi-full/C/C_E/silver/specimen_ce_10_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ce_10/specimen_ce_10_silver_silver.png",
-      "filename": "specimen_ce_10_silver_silver.png"
+      "dst": "textures_by_mutant/ce_10/specimen_ce_10_silver_silver.webp",
+      "filename": "specimen_ce_10_silver_silver.webp"
     },
     {
-      "src": "semi-full/C/C_E/platinum/specimen_ce_10_platinum_platinum.png",
+      "src": "semi-full/C/C_E/platinum/specimen_ce_10_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ce_10/specimen_ce_10_platinum_platinum.png",
-      "filename": "specimen_ce_10_platinum_platinum.png"
+      "dst": "textures_by_mutant/ce_10/specimen_ce_10_platinum_platinum.webp",
+      "filename": "specimen_ce_10_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/C/C_E/normal/specimen_ce_10_normal.png",
+      "src": "semi-full/C/C_E/normal/specimen_ce_10_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ce_10/specimen_ce_10_normal.png",
-      "filename": "specimen_ce_10_normal.png"
+      "dst": "textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
+      "filename": "specimen_ce_10_normal.webp"
     },
     {
-      "src": "semi-full/C/C_E/gold/specimen_ce_10_gold_gold.png",
+      "src": "semi-full/C/C_E/gold/specimen_ce_10_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ce_10/specimen_ce_10_gold_gold.png",
-      "filename": "specimen_ce_10_gold_gold.png"
+      "dst": "textures_by_mutant/ce_10/specimen_ce_10_gold_gold.webp",
+      "filename": "specimen_ce_10_gold_gold.webp"
     },
     {
-      "src": "semi-full/C/C_E/bronze/specimen_ce_10_bronze_bronze.png",
+      "src": "semi-full/C/C_E/bronze/specimen_ce_10_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/ce_10/specimen_ce_10_bronze_bronze.png",
-      "filename": "specimen_ce_10_bronze_bronze.png"
+      "dst": "textures_by_mutant/ce_10/specimen_ce_10_bronze_bronze.webp",
+      "filename": "specimen_ce_10_bronze_bronze.webp"
     },
     {
-      "src": "larva/3) SABER/saber_galactic/larva_ce_10.png",
+      "src": "larva/3) SABER/saber_galactic/larva_ce_10.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/ce_10/larva_ce_10.png",
-      "filename": "larva_ce_10.png"
+      "dst": "textures_by_mutant/ce_10/larva_ce_10.webp",
+      "filename": "larva_ce_10.webp"
     }
   ],
   "tier": "хзЧ",

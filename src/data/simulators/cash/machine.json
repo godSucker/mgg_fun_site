@@ -10,7 +10,7 @@
       "odds": 1,
       "type": "entity",
       "id": null,
-      "picture": "thumbnails/jackpot.png",
+      "picture": "thumbnails/jackpot.webp",
       "isBigwin": true,
       "isSuperJackpot": true
     },
@@ -20,7 +20,7 @@
       "odds": 42000,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x30.png",
+      "picture": "thumbnails/jackpot_gold_x30.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -30,7 +30,7 @@
       "odds": 22000,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x40.png",
+      "picture": "thumbnails/jackpot_gold_x40.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -40,7 +40,7 @@
       "odds": 10400,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x50.png",
+      "picture": "thumbnails/jackpot_gold_x50.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -50,7 +50,7 @@
       "odds": 3900,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x80.png",
+      "picture": "thumbnails/jackpot_gold_x80.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -60,7 +60,7 @@
       "odds": 1300,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x100.png",
+      "picture": "thumbnails/jackpot_gold_x100.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -70,7 +70,7 @@
       "odds": 500,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x200.png",
+      "picture": "thumbnails/jackpot_gold_x200.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -80,7 +80,7 @@
       "odds": 170,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x500.png",
+      "picture": "thumbnails/jackpot_gold_x500.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -90,7 +90,7 @@
       "odds": 75,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x1000.png",
+      "picture": "thumbnails/jackpot_gold_x1000.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -100,7 +100,7 @@
       "odds": 40,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x2000.png",
+      "picture": "thumbnails/jackpot_gold_x2000.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -110,7 +110,7 @@
       "odds": 10,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x5000.png",
+      "picture": "thumbnails/jackpot_gold_x5000.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     },
@@ -120,7 +120,7 @@
       "odds": 270000,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc10000.png",
+      "picture": "thumbnails/sc10000.webp",
       "isBigwin": false,
       "isSuperJackpot": false
     }

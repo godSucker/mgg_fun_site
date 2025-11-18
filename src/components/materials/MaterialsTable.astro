@@ -28,7 +28,7 @@ const {
   sourcesMap = {},
   title = 'Материалы',
   texturePrefix = '/materials/',
-  textureExt = '.png'
+  textureExt = '.webp'
 } = Astro.props;
 
 const resolveTexture = (row: MaterialRow) => row.texture ? row.texture : `${texturePrefix}${row.id}${textureExt}`;

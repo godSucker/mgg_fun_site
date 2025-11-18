@@ -8,7 +8,7 @@
 <Condition lvlCreatureMin="20" itemNeeded="Star_Gold" heuristicNeeded="2" result="3" timerMalus="200"/>
 <Condition lvlCreatureMin="30" itemNeeded="Star_Platinum" heuristicNeeded="3" result="4" timerMalus="0" useFusionRules="true"/>
 </Stars>
-<Exchange discountTag="offertags/offertag_70$$.png"/>
+<Exchange discountTag="offertags/offertag_70$$.webp"/>
 <Hybridization history="15" penalty="0" level2BonusOdds="50" level2BonusOddsReceipe="1" level3BonusOdds="200" level3BonusOddsReceipe="4">
 <Specimens allele1="1" allele2="1">
 <LengthOut one="1" two="4" three="0"/>

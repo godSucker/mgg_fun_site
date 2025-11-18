@@ -5,70 +5,70 @@
   "created_at": "2025-09-02T01:35:03.693031Z",
   "found_files": [
     {
-      "src": "full-char/mythic_necro/bronze/FB_06_bronze.png",
+      "src": "full-char/mythic_necro/bronze/FB_06_bronze.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fb_06/FB_06_bronze.png",
-      "filename": "FB_06_bronze.png"
+      "dst": "textures_by_mutant/fb_06/FB_06_bronze.webp",
+      "filename": "FB_06_bronze.webp"
     },
     {
-      "src": "full-char/mythic_necro/gold/FB_06_gold.png",
+      "src": "full-char/mythic_necro/gold/FB_06_gold.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fb_06/FB_06_gold.png",
-      "filename": "FB_06_gold.png"
+      "dst": "textures_by_mutant/fb_06/FB_06_gold.webp",
+      "filename": "FB_06_gold.webp"
     },
     {
-      "src": "full-char/mythic_necro/normal/FB_06_normal.png",
+      "src": "full-char/mythic_necro/normal/FB_06_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fb_06/FB_06_normal.png",
-      "filename": "FB_06_normal.png"
+      "dst": "textures_by_mutant/fb_06/FB_06_normal.webp",
+      "filename": "FB_06_normal.webp"
     },
     {
-      "src": "full-char/mythic_necro/platinum/FB_06_platinum.png",
+      "src": "full-char/mythic_necro/platinum/FB_06_platinum.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fb_06/FB_06_platinum.png",
-      "filename": "FB_06_platinum.png"
+      "dst": "textures_by_mutant/fb_06/FB_06_platinum.webp",
+      "filename": "FB_06_platinum.webp"
     },
     {
-      "src": "full-char/mythic_necro/silver/FB_06_silver.png",
+      "src": "full-char/mythic_necro/silver/FB_06_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/fb_06/FB_06_silver.png",
-      "filename": "FB_06_silver.png"
+      "dst": "textures_by_mutant/fb_06/FB_06_silver.webp",
+      "filename": "FB_06_silver.webp"
     },
     {
-      "src": "semi-full/F/F_B/silver/specimen_fb_06_silver_silver.png",
+      "src": "semi-full/F/F_B/silver/specimen_fb_06_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fb_06/specimen_fb_06_silver_silver.png",
-      "filename": "specimen_fb_06_silver_silver.png"
+      "dst": "textures_by_mutant/fb_06/specimen_fb_06_silver_silver.webp",
+      "filename": "specimen_fb_06_silver_silver.webp"
     },
     {
-      "src": "semi-full/F/F_B/platinum/specimen_fb_06_platinum_platinum.png",
+      "src": "semi-full/F/F_B/platinum/specimen_fb_06_platinum_platinum.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fb_06/specimen_fb_06_platinum_platinum.png",
-      "filename": "specimen_fb_06_platinum_platinum.png"
+      "dst": "textures_by_mutant/fb_06/specimen_fb_06_platinum_platinum.webp",
+      "filename": "specimen_fb_06_platinum_platinum.webp"
     },
     {
-      "src": "semi-full/F/F_B/normal/specimen_fb_06_normal.png",
+      "src": "semi-full/F/F_B/normal/specimen_fb_06_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fb_06/specimen_fb_06_normal.png",
-      "filename": "specimen_fb_06_normal.png"
+      "dst": "textures_by_mutant/fb_06/specimen_fb_06_normal.webp",
+      "filename": "specimen_fb_06_normal.webp"
     },
     {
-      "src": "semi-full/F/F_B/gold/specimen_fb_06_gold_gold.png",
+      "src": "semi-full/F/F_B/gold/specimen_fb_06_gold_gold.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fb_06/specimen_fb_06_gold_gold.png",
-      "filename": "specimen_fb_06_gold_gold.png"
+      "dst": "textures_by_mutant/fb_06/specimen_fb_06_gold_gold.webp",
+      "filename": "specimen_fb_06_gold_gold.webp"
     },
     {
-      "src": "semi-full/F/F_B/bronze/specimen_fb_06_bronze_bronze.png",
+      "src": "semi-full/F/F_B/bronze/specimen_fb_06_bronze_bronze.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/fb_06/specimen_fb_06_bronze_bronze.png",
-      "filename": "specimen_fb_06_bronze_bronze.png"
+      "dst": "textures_by_mutant/fb_06/specimen_fb_06_bronze_bronze.webp",
+      "filename": "specimen_fb_06_bronze_bronze.webp"
     },
     {
-      "src": "larva/6) MYTHIC/mythic_necro/larva_fb_06.png",
+      "src": "larva/6) MYTHIC/mythic_necro/larva_fb_06.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/fb_06/larva_fb_06.png",
-      "filename": "larva_fb_06.png"
+      "dst": "textures_by_mutant/fb_06/larva_fb_06.webp",
+      "filename": "larva_fb_06.webp"
     }
   ],
   "tier": "3-",

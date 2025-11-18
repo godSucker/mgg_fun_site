@@ -10,14 +10,14 @@
       "odds": 3,
       "type": "entity",
       "id": null,
-      "picture": "thumbnails/jackpot.png",
+      "picture": "thumbnails/jackpot.webp",
       "isBigwin": true,
       "isSuperJackpot": true,
       "isFreeTry": false,
       "name": "Джекпот",
       "description": "Главный приз",
       "category": "jackpot",
-      "icon": "/cash/jackpot.png"
+      "icon": "/cash/jackpot.webp"
     },
     {
       "rewardId": 2,
@@ -25,14 +25,14 @@
       "odds": 100000,
       "type": "entity",
       "id": null,
-      "picture": "thumbnails/freespin.png",
+      "picture": "thumbnails/freespin.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": true,
       "name": "Бесплатный прокрут",
       "description": "Возможность крутить рулетку еще раз без оплаты",
       "category": "free-spin",
-      "icon": "/etc/freespin.png"
+      "icon": "/etc/freespin.webp"
     },
     {
       "rewardId": 3,
@@ -47,7 +47,7 @@
       "name": "Бронзовая звезда",
       "description": "Валюта для улучшений",
       "category": "star",
-      "icon": "/stars/star_bronze.png"
+      "icon": "/stars/star_bronze.webp"
     },
     {
       "rewardId": 4,
@@ -62,7 +62,7 @@
       "name": "Серебряная звезда",
       "description": "Редкая валюта для улучшений",
       "category": "star",
-      "icon": "/stars/star_silver.png"
+      "icon": "/stars/star_silver.webp"
     },
     {
       "rewardId": 5,
@@ -77,7 +77,7 @@
       "name": "Золотая звезда",
       "description": "Очень редкая валюта для улучшений",
       "category": "star",
-      "icon": "/stars/star_gold.png"
+      "icon": "/stars/star_gold.webp"
     },
     {
       "rewardId": 6,
@@ -92,7 +92,7 @@
       "name": "25 пропусков",
       "description": "Энергия для прохождения уровней",
       "category": "material",
-      "icon": "/materials/ticket_25.png"
+      "icon": "/materials/ticket_25.webp"
     },
     {
       "rewardId": 7,
@@ -100,14 +100,14 @@
       "odds": 28900,
       "type": "entity",
       "id": "Material_LP100",
-      "picture": "thumbnails/material_lp100_x15.png",
+      "picture": "thumbnails/material_lp100_x15.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "Аптечка",
       "description": "15 аптечек для лечения мутантов",
       "category": "material",
-      "icon": "/med/normal_med.png"
+      "icon": "/med/normal_med.webp"
     },
     {
       "rewardId": 8,
@@ -115,14 +115,14 @@
       "odds": 4330,
       "type": "entity",
       "id": "Material_LP1000",
-      "picture": "thumbnails/material_lp1000_x10.png",
+      "picture": "thumbnails/material_lp1000_x10.webp",
       "isBigwin": true,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "Большая аптечка",
       "description": "10 больших аптечек",
       "category": "material",
-      "icon": "/med/big_med.png"
+      "icon": "/med/big_med.webp"
     },
     {
       "rewardId": 9,
@@ -130,14 +130,14 @@
       "odds": 13000,
       "type": "entity",
       "id": "Material_Muto50",
-      "picture": "thumbnails/material_muto50_x2.png",
+      "picture": "thumbnails/material_muto50_x2.webp",
       "isBigwin": true,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "Большая доза мутостерона",
       "description": "2 большие дозы для улучшений",
       "category": "material",
-      "icon": "/materials/big_muto.png"
+      "icon": "/materials/big_muto.webp"
     },
     {
       "rewardId": 10,
@@ -145,14 +145,14 @@
       "odds": 10,
       "type": "softcurrency",
       "id": "5000sc",
-      "picture": "thumbnails/sc100.png",
+      "picture": "thumbnails/sc100.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "5000 монет",
       "description": "Игровая валюта",
       "category": "currency",
-      "icon": "/cash/softcurrency.png"
+      "icon": "/cash/softcurrency.webp"
     },
     {
       "rewardId": 11,
@@ -160,14 +160,14 @@
       "odds": 110000,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc500.png",
+      "picture": "thumbnails/sc500.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "10000 монет",
       "description": "Игровая валюта",
       "category": "currency",
-      "icon": "/cash/s10000.png"
+      "icon": "/cash/s10000.webp"
     },
     {
       "rewardId": 12,
@@ -175,14 +175,14 @@
       "odds": 88000,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc1000.png",
+      "picture": "thumbnails/sc1000.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "20000 монет",
       "description": "Игровая валюта",
       "category": "currency",
-      "icon": "/cash/softcurrency.png"
+      "icon": "/cash/softcurrency.webp"
     },
     {
       "rewardId": 13,
@@ -190,14 +190,14 @@
       "odds": 50000,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc10000.png",
+      "picture": "thumbnails/sc10000.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "50000 монет",
       "description": "Игровая валюта",
       "category": "currency",
-      "icon": "/cash/s50000.png"
+      "icon": "/cash/s50000.webp"
     },
     {
       "rewardId": 14,
@@ -205,14 +205,14 @@
       "odds": 37154,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc50000.png",
+      "picture": "thumbnails/sc50000.webp",
       "isBigwin": true,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "100000 монет",
       "description": "Крупная сумма игровой валюты",
       "category": "currency",
-      "icon": "/cash/s100000.png"
+      "icon": "/cash/s100000.webp"
     },
     {
       "rewardId": 15,
@@ -220,14 +220,14 @@
       "odds": 13000,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc75000.png",
+      "picture": "thumbnails/sc75000.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "500000 монет",
       "description": "Очень крупная сумма игровой валюты",
       "category": "currency",
-      "icon": "/cash/softcurrency.png"
+      "icon": "/cash/softcurrency.webp"
     },
     {
       "rewardId": 16,
@@ -235,14 +235,14 @@
       "odds": 4342,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc100000.png",
+      "picture": "thumbnails/sc100000.webp",
       "isBigwin": true,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "1000000 монет",
       "description": "Огромная сумма игровой валюты",
       "category": "currency",
-      "icon": "/cash/s1000000.png"
+      "icon": "/cash/s1000000.webp"
     },
     {
       "rewardId": 17,
@@ -250,14 +250,14 @@
       "odds": 130,
       "type": "softcurrency",
       "id": null,
-      "picture": "thumbnails/sc1000000.png",
+      "picture": "thumbnails/sc1000000.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "5000000 монет",
       "description": "Гигантская сумма игровой валюты",
       "category": "currency",
-      "icon": "/cash/softcurrency.png"
+      "icon": "/cash/softcurrency.webp"
     },
     {
       "rewardId": 18,
@@ -272,7 +272,7 @@
       "name": "Жетон генератора",
       "description": "Для крутки других автоматов",
       "category": "token",
-      "icon": "/tokens/material_gacha_token.png"
+      "icon": "/tokens/material_gacha_token.webp"
     },
     {
       "rewardId": 19,
@@ -287,7 +287,7 @@
       "name": "Ежедневный жетон",
       "description": "Не участвует в розыгрыше (шанс 0%)",
       "category": "token",
-      "icon": "/tokens/daily_token.png"
+      "icon": "/tokens/daily_token.webp"
     },
     {
       "rewardId": 20,
@@ -295,14 +295,14 @@
       "odds": 91000,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/hc10.png",
+      "picture": "thumbnails/hc10.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "10 золота",
       "description": "Премиум валюта",
       "category": "currency",
-      "icon": "/cash/g10.png"
+      "icon": "/cash/g10.webp"
     },
     {
       "rewardId": 21,
@@ -310,14 +310,14 @@
       "odds": 26000,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/hc20.png",
+      "picture": "thumbnails/hc20.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "20 золота",
       "description": "Премиум валюта",
       "category": "currency",
-      "icon": "/cash/g20.png"
+      "icon": "/cash/g20.webp"
     },
     {
       "rewardId": 22,
@@ -325,14 +325,14 @@
       "odds": 2600,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/hc40.png",
+      "picture": "thumbnails/hc40.webp",
       "isBigwin": true,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "40 золота",
       "description": "Премиум валюта",
       "category": "currency",
-      "icon": "/cash/g40.png"
+      "icon": "/cash/g40.webp"
     },
     {
       "rewardId": 23,
@@ -340,14 +340,14 @@
       "odds": 32500,
       "type": "entity",
       "id": "Material_XP250",
-      "picture": "thumbnails/material_xp250.png",
+      "picture": "thumbnails/material_xp250.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "Баночка опыта",
       "description": "Опыт для прокачки мутантов",
       "category": "material",
-      "icon": "/materials/mini_xp.png"
+      "icon": "/materials/mini_xp.webp"
     },
     {
       "rewardId": 24,
@@ -355,14 +355,14 @@
       "odds": 32500,
       "type": "entity",
       "id": "Material_XP1000",
-      "picture": "thumbnails/material_xp1000.png",
+      "picture": "thumbnails/material_xp1000.webp",
       "isBigwin": true,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "Банка опыта",
       "description": "Много опыта для прокачки мутантов",
       "category": "material",
-      "icon": "/materials/big_xp.png"
+      "icon": "/materials/big_xp.webp"
     },
     {
       "rewardId": 25,
@@ -377,7 +377,7 @@
       "name": "Бустер критов (7 дней)",
       "description": "Повышение шанса критического удара",
       "category": "booster",
-      "icon": "/boosters/charm_critical_7.png"
+      "icon": "/boosters/charm_critical_7.webp"
     },
     {
       "rewardId": 26,
@@ -392,7 +392,7 @@
       "name": "Бустер щита (7 дней)",
       "description": "Защита от критических ударов",
       "category": "booster",
-      "icon": "/boosters/charm_anticritical_7.png"
+      "icon": "/boosters/charm_anticritical_7.webp"
     },
     {
       "rewardId": 27,
@@ -407,7 +407,7 @@
       "name": "Бустер опыта +100% (7 дней)",
       "description": "Удвоение получаемого опыта",
       "category": "booster",
-      "icon": "/boosters/charm_xpx2_7.png"
+      "icon": "/boosters/charm_xpx2_7.webp"
     },
     {
       "rewardId": 28,
@@ -422,7 +422,7 @@
       "name": "Бустер опыта +200% (7 дней)",
       "description": "Утроение получаемого опыта",
       "category": "booster",
-      "icon": "/boosters/charm_xpx3_7.png"
+      "icon": "/boosters/charm_xpx3_7.webp"
     },
     {
       "rewardId": 29,
@@ -437,7 +437,7 @@
       "name": "Бустер критов (1 день)",
       "description": "Повышение шанса критического удара",
       "category": "booster",
-      "icon": "/boosters/charm_critical_1.png"
+      "icon": "/boosters/charm_critical_1.webp"
     },
     {
       "rewardId": 30,
@@ -452,7 +452,7 @@
       "name": "Бустер щита (1 день)",
       "description": "Защита от критических ударов",
       "category": "booster",
-      "icon": "/boosters/charm_anticritical_1.png"
+      "icon": "/boosters/charm_anticritical_1.webp"
     },
     {
       "rewardId": 31,
@@ -467,7 +467,7 @@
       "name": "Бустер опыта +100% (1 день)",
       "description": "Удвоение получаемого опыта",
       "category": "booster",
-      "icon": "/boosters/charm_xpx2_1.png"
+      "icon": "/boosters/charm_xpx2_1.webp"
     },
     {
       "rewardId": 32,
@@ -482,7 +482,7 @@
       "name": "Бустер опыта +200% (1 день)",
       "description": "Утроение получаемого опыта",
       "category": "booster",
-      "icon": "/boosters/charm_xpx3_1.png"
+      "icon": "/boosters/charm_xpx3_1.webp"
     },
     {
       "rewardId": 33,
@@ -497,7 +497,7 @@
       "name": "Бустер регенерации +100% (1 день)",
       "description": "Удвоение скорости восстановления HP",
       "category": "booster",
-      "icon": "/boosters/charm_regenx2_1.png"
+      "icon": "/boosters/charm_regenx2_1.webp"
     },
     {
       "rewardId": 34,
@@ -512,7 +512,7 @@
       "name": "Бустер регенерации +300% (1 день)",
       "description": "Учетверение скорости восстановления HP",
       "category": "booster",
-      "icon": "/boosters/charm_regenx4_1.png"
+      "icon": "/boosters/charm_regenx4_1.webp"
     },
     {
       "rewardId": 35,
@@ -527,7 +527,7 @@
       "name": "Эскадрилья Носорог",
       "description": "Мутант",
       "category": "mutant",
-      "icon": "/textures_by_mutant/da_04/specimen_da_04_normal.png"
+      "icon": "/textures_by_mutant/da_04/specimen_da_04_normal.webp"
     },
     {
       "rewardId": 36,
@@ -542,7 +542,7 @@
       "name": "Стремглав",
       "description": "Мутант",
       "category": "mutant",
-      "icon": "/textures_by_mutant/af_04/specimen_af_04_normal.png"
+      "icon": "/textures_by_mutant/af_04/specimen_af_04_normal.webp"
     },
     {
       "rewardId": 37,
@@ -557,7 +557,7 @@
       "name": "Платиновая звезда",
       "description": "Очень редкая валюта для улучшений",
       "category": "star",
-      "icon": "/stars/star_platinum.png"
+      "icon": "/stars/star_platinum.webp"
     },
     {
       "rewardId": 38,
@@ -565,14 +565,14 @@
       "odds": 200,
       "type": "hardcurrency",
       "id": null,
-      "picture": "thumbnails/jackpot_gold_x1000.png",
+      "picture": "thumbnails/jackpot_gold_x1000.webp",
       "isBigwin": false,
       "isSuperJackpot": false,
       "isFreeTry": false,
       "name": "1000 золота",
       "description": "Огромное количество премиум валюты",
       "category": "currency",
-      "icon": "/cash/g1000.png"
+      "icon": "/cash/g1000.webp"
     },
     {
       "rewardId": 39,
@@ -587,7 +587,7 @@
       "name": "Биг Босс",
       "description": "Редкий мутант",
       "category": "mutant",
-      "icon": "/textures_by_mutant/ca_09/specimen_ca_09_normal.png"
+      "icon": "/textures_by_mutant/ca_09/specimen_ca_09_normal.webp"
     },
     {
       "rewardId": 40,
@@ -602,7 +602,7 @@
       "name": "Микс0-Лог (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/ae_11/specimen_ae_11_normal.png"
+      "icon": "/textures_by_mutant/ae_11/specimen_ae_11_normal.webp"
     },
     {
       "rewardId": 41,
@@ -617,7 +617,7 @@
       "name": "Z-0 (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/ba_06/specimen_ba_06_normal.png"
+      "icon": "/textures_by_mutant/ba_06/specimen_ba_06_normal.webp"
     },
     {
       "rewardId": 42,
@@ -632,7 +632,7 @@
       "name": "Шершеляшар (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/dd_07/specimen_dd_07_normal.png"
+      "icon": "/textures_by_mutant/dd_07/specimen_dd_07_normal.webp"
     },
     {
       "rewardId": 43,
@@ -647,7 +647,7 @@
       "name": "Футбот (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/fa_08/specimen_fa_08_normal.png"
+      "icon": "/textures_by_mutant/fa_08/specimen_fa_08_normal.webp"
     },
     {
       "rewardId": 44,
@@ -662,7 +662,7 @@
       "name": "Кранекен (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/cb_12/specimen_cb_12_normal.png"
+      "icon": "/textures_by_mutant/cb_12/specimen_cb_12_normal.webp"
     },
     {
       "rewardId": 45,
@@ -677,7 +677,7 @@
       "name": "Щиткалибур (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/ec_09/specimen_ec_09_normal.png"
+      "icon": "/textures_by_mutant/ec_09/specimen_ec_09_normal.webp"
     },
     {
       "rewardId": 46,
@@ -692,7 +692,7 @@
       "name": "Космопанды (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/de_08/specimen_de_08_normal.png"
+      "icon": "/textures_by_mutant/de_08/specimen_de_08_normal.webp"
     },
     {
       "rewardId": 47,
@@ -707,7 +707,7 @@
       "name": "Соколиный Глаз (Золотой)",
       "description": "Редкий мутант с золотым скином",
       "category": "mutant",
-      "icon": "/textures_by_mutant/da_10/specimen_da_10_normal.png"
+      "icon": "/textures_by_mutant/da_10/specimen_da_10_normal.webp"
     },
     {
       "rewardId": 48,
@@ -722,7 +722,7 @@
       "name": "Сфера опыта I (10 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_xp_01.png"
+      "icon": "/orbs/basic/orb_basic_xp_01.webp"
     },
     {
       "rewardId": 49,
@@ -737,7 +737,7 @@
       "name": "Сфера опыта II (10 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_xp_02.png"
+      "icon": "/orbs/basic/orb_basic_xp_02.webp"
     },
     {
       "rewardId": 50,
@@ -752,7 +752,7 @@
       "name": "Сфера опыта III (10 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_xp_03.png"
+      "icon": "/orbs/basic/orb_basic_xp_03.webp"
     },
     {
       "rewardId": 51,
@@ -767,7 +767,7 @@
       "name": "Сфера опыта IV (10 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_xp_04.png"
+      "icon": "/orbs/basic/orb_basic_xp_04.webp"
     },
     {
       "rewardId": 52,
@@ -782,7 +782,7 @@
       "name": "Сфера опыта V (10 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_xp_05.png"
+      "icon": "/orbs/basic/orb_basic_xp_05.webp"
     },
     {
       "rewardId": 53,
@@ -797,7 +797,7 @@
       "name": "Сфера атаки V (30 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_attack_05.png"
+      "icon": "/orbs/basic/orb_basic_attack_05.webp"
     },
     {
       "rewardId": 54,
@@ -812,7 +812,7 @@
       "name": "Сфера HP V (30 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_life_05.png"
+      "icon": "/orbs/basic/orb_basic_life_05.webp"
     },
     {
       "rewardId": 55,
@@ -827,7 +827,7 @@
       "name": "Сфера крит. урона V (30 зарядов)",
       "description": "Временная сфера",
       "category": "orb",
-      "icon": "/orbs/basic/orb_basic_critical_05.png"
+      "icon": "/orbs/basic/orb_basic_critical_05.webp"
     }
   ]
 }

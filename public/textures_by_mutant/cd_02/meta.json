@@ -5,34 +5,34 @@
   "created_at": "2025-09-02T01:35:00.691131Z",
   "found_files": [
     {
-      "src": "full-char/saber_zoo/normal/CD_02_normal.png",
+      "src": "full-char/saber_zoo/normal/CD_02_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_02/CD_02_normal.png",
-      "filename": "CD_02_normal.png"
+      "dst": "textures_by_mutant/cd_02/CD_02_normal.webp",
+      "filename": "CD_02_normal.webp"
     },
     {
-      "src": "full-char/saber_zoo/silver/CD_02_silver.png",
+      "src": "full-char/saber_zoo/silver/CD_02_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/cd_02/CD_02_silver.png",
-      "filename": "CD_02_silver.png"
+      "dst": "textures_by_mutant/cd_02/CD_02_silver.webp",
+      "filename": "CD_02_silver.webp"
     },
     {
-      "src": "semi-full/C/C_D/silver/specimen_cd_02_silver_silver.png",
+      "src": "semi-full/C/C_D/silver/specimen_cd_02_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_02/specimen_cd_02_silver_silver.png",
-      "filename": "specimen_cd_02_silver_silver.png"
+      "dst": "textures_by_mutant/cd_02/specimen_cd_02_silver_silver.webp",
+      "filename": "specimen_cd_02_silver_silver.webp"
     },
     {
-      "src": "semi-full/C/C_D/normal/specimen_cd_02_normal.png",
+      "src": "semi-full/C/C_D/normal/specimen_cd_02_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/cd_02/specimen_cd_02_normal.png",
-      "filename": "specimen_cd_02_normal.png"
+      "dst": "textures_by_mutant/cd_02/specimen_cd_02_normal.webp",
+      "filename": "specimen_cd_02_normal.webp"
     },
     {
-      "src": "larva/3) SABER/saber_zoo/larva_cd_02.png",
+      "src": "larva/3) SABER/saber_zoo/larva_cd_02.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/cd_02/larva_cd_02.png",
-      "filename": "larva_cd_02.png"
+      "dst": "textures_by_mutant/cd_02/larva_cd_02.webp",
+      "filename": "larva_cd_02.webp"
     }
   ],
   "tier": "un-tired",

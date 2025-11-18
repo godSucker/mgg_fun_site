@@ -5,34 +5,34 @@
   "created_at": "2025-09-02T01:35:01.286802Z",
   "found_files": [
     {
-      "src": "full-char/necro_mythic/normal/BF_03_normal.png",
+      "src": "full-char/necro_mythic/normal/BF_03_normal.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bf_03/BF_03_normal.png",
-      "filename": "BF_03_normal.png"
+      "dst": "textures_by_mutant/bf_03/BF_03_normal.webp",
+      "filename": "BF_03_normal.webp"
     },
     {
-      "src": "full-char/necro_mythic/silver/BF_03_silver.png",
+      "src": "full-char/necro_mythic/silver/BF_03_silver.webp",
       "found_in": "full-char",
-      "dst": "textures_by_mutant/bf_03/BF_03_silver.png",
-      "filename": "BF_03_silver.png"
+      "dst": "textures_by_mutant/bf_03/BF_03_silver.webp",
+      "filename": "BF_03_silver.webp"
     },
     {
-      "src": "semi-full/B/B_F/silver/specimen_bf_03_silver_silver.png",
+      "src": "semi-full/B/B_F/silver/specimen_bf_03_silver_silver.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bf_03/specimen_bf_03_silver_silver.png",
-      "filename": "specimen_bf_03_silver_silver.png"
+      "dst": "textures_by_mutant/bf_03/specimen_bf_03_silver_silver.webp",
+      "filename": "specimen_bf_03_silver_silver.webp"
     },
     {
-      "src": "semi-full/B/B_F/normal/specimen_bf_03_normal.png",
+      "src": "semi-full/B/B_F/normal/specimen_bf_03_normal.webp",
       "found_in": "semi-full",
-      "dst": "textures_by_mutant/bf_03/specimen_bf_03_normal.png",
-      "filename": "specimen_bf_03_normal.png"
+      "dst": "textures_by_mutant/bf_03/specimen_bf_03_normal.webp",
+      "filename": "specimen_bf_03_normal.webp"
     },
     {
-      "src": "larva/2) NECRO/necro_mythic/larva_bf_03.png",
+      "src": "larva/2) NECRO/necro_mythic/larva_bf_03.webp",
       "found_in": "larva",
-      "dst": "textures_by_mutant/bf_03/larva_bf_03.png",
-      "filename": "larva_bf_03.png"
+      "dst": "textures_by_mutant/bf_03/larva_bf_03.webp",
+      "filename": "larva_bf_03.webp"
     }
   ],
   "tier": "un-tired",
