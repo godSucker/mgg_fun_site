@@ -1138,10 +1138,6 @@
   }
 </script>
 
-<svelte:head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-</svelte:head>
-
 <svelte:window on:click={windowClick} />
 
 <div class="stats-page" class:single-col={!showCatalog}>
@@ -1517,21 +1513,7 @@
 
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; cursor: pointer; z-index: 2; }
 
-  .dropdown {
-    position: absolute;
-    top: 104px;
-    left: 0;
-    width: 250px;
-    max-height: 260px;
-    overflow: auto;
-    background: #1b212a;
-    border: 1px solid #3a475a;
-    border-radius: 12px;
-    padding: 8px;
-    z-index: 100;
-    /* ФИКС: Меню не может быть шире 85% экрана, чтобы не ломать верстку */
-    max-width: 47vw;
-  }
+  .dropdown{ position:absolute; top:104px; left:0; width:250px; max-height:260px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
   .orb-row:hover { background: #2e3948; }
   .orb-row img{ width:36px; height:36px; object-fit:contain; flex-shrink: 0; }
@@ -1596,10 +1578,10 @@
     padding: 10px 16px;
   }
 
-  .attack-side {
+  .attack-side{
     display: flex;
     align-items: center;
-    gap: 8px; /* Уменьшил отступ между иконкой и текстом (было 10-12px) */
+    gap: 10px;
     flex: 1 1 0;
     min-width: 0;
   }
@@ -1635,35 +1617,35 @@
   }
   .attack-gene.empty{ opacity: 0; }
 
-  .attack-info {
+  /* Текст и цифра в одну строку, как у ХП */
+  .attack-info{
     display: flex;
-    flex-direction: row; /* Выстраиваем Имя и Урон в одну линию */
-    justify-content: space-between; /* Имя слева, Урон справа (как на скриншоте) */
+    flex-direction: row; /* Было column */
+    justify-content: space-between; /* Разносим по краям */
     align-items: center;
     width: 100%;
     gap: 8px;
     min-width: 0;
   }
 
-
-  .attack-label {
-    font-weight: 600;
-    color: #aab6c8;
+  /* Шрифт названия атаки такой же серый, как лейбл "HP" */
+  .attack-label{
+    font-weight: 600; /* Чуть тоньше чем было */
+    color: #aab6c8;   /* Серый цвет вместо белого */
     font-size: 13px;
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.2;
     text-align: left;
-    flex: 1; /* Занимает все свободное место, толкая урон вправо */
   }
 
-  .attack-damage {
-    font-size: 15px; /* Чуть крупнее для читаемости */
+  /* Цифра атаки такая же белая и жирная, как значение HP */
+  .attack-damage{
+    font-size: 14px;
     font-weight: 700;
-    color: #e9eef6;
-    white-space: nowrap; /* Чтобы цифры не переносились */
-    text-align: right; /* Прижимаем к правому краю */
+    color: #e9eef6; /* Белый цвет */
+    white-space: nowrap;
   }
 
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); flex-shrink: 0; }
