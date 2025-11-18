@@ -1,5 +1,5 @@
 <script>
-  // ДАННЫЕ
+  // --- ИМПОРТЫ ДАННЫХ ---
   import mutantsRaw from '@/data/mutants/normal.json';
   import bronzeRaw from '@/data/mutants/bronze.json';
   import silverRaw from '@/data/mutants/silver.json';
@@ -8,14 +8,17 @@
   import orbsRaw from '@/data/materials/orbs.json';
   import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
 
+  // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
+  import domtoimage from 'dom-to-image-more';
+
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
   const GENE_NAME = {
-    A: 'Кибер',     // yellow
-    B: 'Зверь',     // brown
-    C: 'Галактик',  // blue
-    D: 'Зомби',     // green
-    E: 'Мифик',     // purple
-    F: 'Рубака',    // red
+    A: 'Кибер',
+    B: 'Зверь',
+    C: 'Галактик',
+    D: 'Зомби',
+    E: 'Мифик',
+    F: 'Рубака',
   };
   const GENE_ICON = {
     '': '/genes/icon_gene_all.png',
@@ -53,13 +56,11 @@
     gold: ['_gold', 'gold'],
     platinum: ['_platinum', '_plat', 'platinum', 'plat']
   };
-
   const STAT_ICON = {
     hp: '/etc/icon_hp.png',
     atk: '/etc/icon_atk.png',
     speed: '/etc/icon_speed.png',
   };
-
   const TYPE_ICON = {
     default: '/mut_icons/icon_special.png',
     special: '/mut_icons/icon_special.png',
@@ -77,15 +78,15 @@
     limited: '/mut_icons/limited.png',
     community: '/mut_icons/icon_special.png',
   };
-  const starAux = buildStarAuxiliary();
 
+  const starAux = buildStarAuxiliary();
   const SPECIAL_SLOT_COUNT = 1;
 
   const byNameAsc  = (a, b) => a.name.localeCompare(b.name, 'ru');
   const byNameDesc = (a, b) => b.name.localeCompare(a.name, 'ru');
   const byGene     = (a, b) => (a.geneKey||'').localeCompare(b.geneKey||'');
 
-  // Нормализуем мутантов из normal.json
+  // --- ЛОГИКА ОБРАБОТКИ ДАННЫХ ---
   function normalizeMutants(raw) {
     return raw.map((m) => {
       const baseId = baseIdOf(m);
@@ -145,6 +146,7 @@
       };
     });
   }
+
   function buildStarAuxiliary(){
     const datasets = {
       bronze: bronzeRaw,
@@ -206,7 +208,6 @@
     return Number.isFinite(num) ? num : (fallback ?? 0);
   }
   function tag(m, key) {
-    // поддержка формата с m.tags: [{key,value}] или m[key]
     if (m.tags && Array.isArray(m.tags)) {
       const t = m.tags.find(t => t.key === key);
       return t?.value ?? null;
@@ -547,7 +548,9 @@
   let allowedAbilityBases = new Set();
   let basicOrbOptions = ORBS.basic;
 
-  // контейнер дропдауна сфер (для клика вне)
+  // Состояние интерфейса
+  let showCatalog = true; // Показывать ли поиск/каталог слева
+  let isCopying = false;  // Состояние "Копируется..."
   let dropdownHost = null;
   let openDropdown = null; // 'basic-i' | 'special' | null
 
@@ -959,63 +962,273 @@
     if (!dropdownHost) return;
     if (!dropdownHost.contains(e.target)) openDropdown = null;
   }
+
+  // --- NEW CODE: Логика скрытия каталога и скриншота ---
+
+  function toggleCatalog() {
+    showCatalog = !showCatalog;
+  }
+
+    // --- ФУНКЦИЯ СКРИНШОТА (CROP FIX) ---
+  async function shareScreenshot() {
+    if (!selected || isCopying) return;
+    const panelEl = document.querySelector('.panel');
+    if (!panelEl) return;
+
+    isCopying = true;
+
+    try {
+      // 1. Песочница
+      const sandbox = document.createElement('div');
+      sandbox.style.width = '600px';
+      sandbox.style.height = 'auto';
+      sandbox.style.position = 'fixed';
+      sandbox.style.left = '-9999px';
+      sandbox.style.top = '0';
+      sandbox.style.zIndex = '-100';
+      sandbox.style.background = '#2a313c';
+      sandbox.style.borderRadius = '16px';
+      // Убираем паддинг, чтобы обрезать ровно по краю
+      sandbox.style.padding = '0';
+
+      // 2. Клон
+      const clone = panelEl.cloneNode(true);
+      clone.style.width = '100%';
+      clone.style.maxWidth = 'none';
+      clone.style.margin = '0';
+      clone.style.transform = 'none';
+
+      // Сброс стилей контейнера
+      clone.style.border = 'none';
+      clone.style.outline = 'none';
+      clone.style.boxShadow = 'none';
+      // Убираем скругление у клона, скругление будет у песочницы
+      clone.style.borderRadius = '0';
+
+      // 3. Чистка кнопок
+      clone.querySelectorAll('.tool-btn').forEach(b => b.remove());
+
+      // 4. Фикс инпута
+      const input = clone.querySelector('input.lvl');
+      if (input) {
+        const val = input.value;
+        const span = document.createElement('div');
+        span.className = 'lvl-static';
+        span.innerText = val;
+        if (input.parentNode) input.parentNode.replaceChild(span, input);
+      }
+
+      // 5. Центровка
+      const title = clone.querySelector('.title');
+      if (title) {
+        title.style.textAlign = 'center';
+        title.style.width = '100%';
+        title.style.margin = '0 0 15px 0';
+        title.style.flex = 'none';
+      }
+
+      // 6. Anti-squash
+      const freezeStyles = (selector, width, height) => {
+        clone.querySelectorAll(selector).forEach(el => {
+          el.style.width = width;
+          el.style.height = height;
+          el.style.minWidth = width;
+          el.style.minHeight = height;
+          el.style.maxWidth = width;
+          el.style.maxHeight = height;
+          el.style.flex = `0 0 ${width}`;
+          el.style.objectFit = 'contain';
+        });
+      };
+      freezeStyles('.slot-btn', '76px', '76px');
+      freezeStyles('.orb', '76px', '76px');
+      freezeStyles('.star', '32px', '32px');
+      freezeStyles('.star img', '32px', '32px');
+      freezeStyles('.mut-icon', '44px', '44px');
+
+      // 7. Зачистка внутренних рамок
+      clone.querySelectorAll('*').forEach(el => {
+        const whitelist = ['row', 'lvl-static', 'gene-chip', 'control', 'search', 'mut-row'];
+        const shouldKeep = whitelist.some(cls => el.classList.contains(cls));
+        if (!shouldKeep) {
+          el.style.border = 'none';
+          el.style.outline = 'none';
+          el.style.boxShadow = 'none';
+        }
+      });
+
+      // 8. Вотермарка
+      const wm = document.createElement('div');
+      wm.innerText = 'archivist-library.com';
+      wm.style.border = 'none';
+      Object.assign(wm.style, {
+        display: 'block', textAlign: 'center', fontSize: '14px', color: '#637083',
+        marginTop: '25px', paddingTop: '15px', paddingBottom: '20px', // Отступ снизу
+        borderTop: '1px solid #3a475a',
+        fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'sans-serif'
+      });
+      clone.appendChild(wm);
+
+      sandbox.appendChild(clone);
+      document.body.appendChild(sandbox);
+
+      await new Promise(resolve => setTimeout(resolve, 150));
+
+      // 9. ГЕНЕРАЦИЯ (Получаем Base64 URL)
+      const dataUrl = await domtoimage.toPng(sandbox, {
+        width: 600,
+        height: sandbox.offsetHeight,
+        bgcolor: '#2a313c',
+        style: { transform: 'scale(1)', transformOrigin: 'top left' },
+        quality: 1.0
+      });
+
+      // --- 10. ОПЕРАЦИЯ "ОБРЕЗАНИЕ" (КОСТЫЛЬ) ---
+
+      // Загружаем картинку в память
+      const img = new Image();
+      img.src = dataUrl;
+      await new Promise(r => img.onload = r);
+
+      // Создаем канвас для обрезки
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      // Сколько пикселей срезать с каждой стороны
+      const crop = 3;
+
+      // Размер нового канваса меньше оригинала на (crop * 2)
+      canvas.width = img.width - (crop * 2);
+      canvas.height = img.height - (crop * 2);
+
+      // Рисуем картинку со смещением влево и вверх (-2px, -2px)
+      // Тем самым белая рамка остается за пределами холста
+      ctx.drawImage(img, -crop, -crop);
+
+      // Превращаем обрезанный канвас в Blob
+      canvas.toBlob(async (blob) => {
+        if (!blob) { isCopying = false; return; }
+
+        try {
+          const item = new ClipboardItem({ 'image/png': blob });
+          await navigator.clipboard.write([item]);
+          setTimeout(() => isCopying = false, 2000);
+        } catch (clipboardErr) {
+          console.warn('Clipboard failed, downloading...', clipboardErr);
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${selected.name || 'mutant'}-stats.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          isCopying = false;
+        }
+
+        document.body.removeChild(sandbox);
+      }, 'image/png');
+
+    } catch (error) {
+      console.error('Screenshot failed:', error);
+      isCopying = false;
+      const sb = document.querySelector('div[style*="fixed"][style*="-9999px"]');
+      if(sb) sb.remove();
+    }
+  }
 </script>
 
-<!-- глобальный клик — безопасно для SSR -->
 <svelte:window on:click={windowClick} />
 
-<div class="stats-page">
-  <!-- ЛЕВАЯ КОЛОНКА: КАТАЛОГ -->
-  <aside class="catalog">
-    <div class="filters-row">
-      <!-- фильтры по генам -->
-      {#each ['A','B','C','D','E','F'] as g}
-        <button
-          class:active={geneFilter.has(g)}
-          class="gene-chip"
-          on:click={() => toggleGene(g)}
-          title={GENE_NAME[g]}>
-          <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
-        </button>
-      {/each}
+<div class="stats-page" class:single-col={!showCatalog}>
 
-      <!-- сортировки -->
-      <div class="sort-switch">
-        <button class:active={sortMode==='nameAsc'}  on:click={() => sortMode='nameAsc'}>Имя [А–Я]</button>
-        <button class:active={sortMode==='nameDesc'} on:click={() => sortMode='nameDesc'}>Имя [Я–А]</button>
-        <button class:active={sortMode==='gene'}     on:click={() => sortMode='gene'}>Ген</button>
+  <!-- ЛЕВАЯ КОЛОНКА: КАТАЛОГ (Скрывается по условию) -->
+  {#if showCatalog}
+    <aside class="catalog">
+      <div class="filters-row">
+        <!-- фильтры по генам -->
+        {#each ['A','B','C','D','E','F'] as g}
+          <button
+            class:active={geneFilter.has(g)}
+            class="gene-chip"
+            on:click={() => toggleGene(g)}
+            title={GENE_NAME[g]}>
+            <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+          </button>
+        {/each}
+
+        <!-- сортировки -->
+        <div class="sort-switch">
+          <button class:active={sortMode==='nameAsc'}  on:click={() => sortMode='nameAsc'}>А-Я</button>
+          <button class:active={sortMode==='nameDesc'} on:click={() => sortMode='nameDesc'}>Я-А</button>
+          <button class:active={sortMode==='gene'}     on:click={() => sortMode='gene'}>Ген</button>
+        </div>
       </div>
-    </div>
 
-    <input
-      class="search"
-      type="text"
-      placeholder="Введите имя мутанта"
-      bind:value={query}
-    />
+      <input
+        class="search"
+        type="text"
+        placeholder="Введите имя мутанта"
+        bind:value={query}
+      />
 
-    <div class="list">
-      {#each filtered as m (m.id)}
-        <button class="mut-row {selected?.id===m.id ? 'active' : ''}" on:click={() => selectMutant(m)}>
-          <img class="mut-icon" src={listThumbnail(m) || ''} alt={m.name} />
-          <div class="mut-meta">
-            <div class="name">{m.name}</div>
-            <div class="genes">
-              {#each m.genes as g}
-                <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} title={GENE_NAME[g]} />
-              {/each}
+      <div class="list">
+        {#each filtered as m (m.id)}
+          <button class="mut-row {selected?.id===m.id ? 'active' : ''}" on:click={() => selectMutant(m)}>
+            <img class="mut-icon" src={listThumbnail(m) || ''} alt={m.name} />
+            <div class="mut-meta">
+              <div class="name">{m.name}</div>
+              <div class="genes">
+                {#each m.genes as g}
+                  <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} title={GENE_NAME[g]} />
+                {/each}
+              </div>
             </div>
-          </div>
-          <div class="rar">{m.typeLabel}</div>
-        </button>
-      {/each}
-    </div>
-  </aside>
+            <div class="rar">{m.typeLabel}</div>
+          </button>
+        {/each}
+      </div>
+    </aside>
+  {/if}
 
   <!-- ПРАВАЯ КОЛОНКА: КАРТОЧКА -->
-  <section class="panel" >
+  <section class="panel">
     {#if selected}
-      <header class="title">{selected.name}</header>
+      <!-- Хедер панели с кнопками управления -->
+      <div class="panel-header">
+         <!-- Кнопка показа/скрытия каталога -->
+         <div class="header-left">
+            <button class="tool-btn" on:click={toggleCatalog} title={showCatalog ? "Скрыть поиск" : "Показать поиск"}>
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                 {#if showCatalog}
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                 {:else}
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                 {/if}
+               </svg>
+            </button>
+         </div>
+
+         <header class="title">{selected.name}</header>
+
+         <!-- Кнопка скриншота -->
+         <div class="header-right">
+            <button class="tool-btn share-btn" on:click={shareScreenshot} disabled={isCopying} title="Копировать скриншот">
+               {#if isCopying}
+                 <span style="font-size:10px;">...</span>
+               {:else}
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                   <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                   <polyline points="16 6 12 2 8 6"></polyline>
+                   <line x1="12" y1="2" x2="12" y2="15"></line>
+                 </svg>
+               {/if}
+            </button>
+         </div>
+      </div>
 
       <div class="hero-section">
         <div class="mut-figure">
@@ -1173,91 +1386,216 @@
                 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight:700;
   }
+
+  /* Если сайдбар скрыт - одна колонка по центру */
+  .stats-page.single-col {
+    grid-template-columns: minmax(0, 660px);
+    justify-content: center;
+  }
+
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
   .filters-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
-  .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; }
+  .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; cursor: pointer; }
   .gene-chip.active{ outline:2px solid #90f36b; }
   .gene-chip img{ width:100%; height:100%; object-fit:contain; }
   .sort-switch{ margin-left:auto; display:flex; gap:6px; }
-  .sort-switch button{ background:#2b3442; border:1px solid #3a475a; border-radius:8px; padding:6px 10px; font-size:12px; }
+  .sort-switch button{ background:#2b3442; border:1px solid #3a475a; border-radius:8px; padding:6px 10px; font-size:12px; cursor: pointer; color:#aab6c8; }
   .sort-switch .active{ background:#7a56ff; border-color:#7a56ff; color:white; }
   .search{ width:100%; margin:8px 0 12px; padding:8px 10px; border-radius:8px; border:1px solid #3a475a; background:#1b212a; color:#dfe7f3; }
   .list{ overflow:auto; max-height:70vh; display:flex; flex-direction:column; gap:6px; }
-  .mut-row{ display:flex; align-items:center; gap:12px; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:10px; width:100%; }
+  .mut-row{ display:flex; align-items:center; gap:12px; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:10px; width:100%; text-align: left; cursor: pointer; }
   .mut-row.active{ border-color:#90f36b; }
-  .mut-icon{ width:44px; height:44px; border-radius:8px; background:#0f1319; object-fit:cover; }
+  .mut-icon{ width:44px; height:44px; border-radius:8px; background:#0f1319; object-fit:cover; flex-shrink: 0; }
   .mut-meta{ flex:1; display:flex; flex-direction:column; }
   .mut-meta .name{ font-size:13px; color:#e9eef6; }
   .mut-meta .genes{ display:flex; gap:4px; }
   .mut-meta .genes img{ width:20px; height:20px; }
   .rar{ font-size:11px; color:#aab6c8; }
 
-  .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:16px; }
-  .title{ font-size:22px; font-weight:700; color:#e9eef6; text-align:center; }
-  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:12px; position: relative; }
+
+  /* Заголовок панели с кнопками */
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрируем контент (заголовок) */
+    position: relative;      /* Чтобы кнопки позиционировать абсолютно внутри */
+    margin-bottom: 6px;
+    min-height: 36px;
+  }
+
+  .header-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .header-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Имя: яркое белое, с подсветкой */
+  .title{
+    font-size:26px;
+    font-weight:800;
+    color:#ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+    text-align:center;
+    line-height: 1.2;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .tool-btn {
+    background: transparent;
+    border: none;
+    color: #aab6c8;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tool-btn:hover {
+    background: #3a475a;
+    color: white;
+  }
+  .tool-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .share-btn span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #90f36b;
+  }
+
+  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:12px; }
   .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; width:100%; }
   .mut-figure::after{ content:""; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
   .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(44px); }
 
   .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:12px; }
+
+  /* СЛОТЫ: защита от сплющивания + фикс сфер */
   .slots{ display:flex; gap:16px; justify-content:center; margin:4px 0 0; position:relative; flex-wrap:wrap; }
   .slot{ position:relative; }
-  .slot-btn{ position:relative; width:76px; height:76px; border-radius:12px; background:transparent; border:none; padding:0; }
-  .slot-bg{ width:100%; height:100%; object-fit:contain; }
-  .orb{ position:absolute; inset:0; width:100%; height:100%; padding:0px; object-fit:contain; }
-  .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; }
+  .slot-btn{
+    position:relative;
+    width:76px;
+    height:76px;
+    min-width: 76px;
+    min-height: 76px;
+    flex-shrink: 0;
+
+    border-radius:12px;
+    background:transparent;
+    border:none;
+    padding:0;
+    cursor: pointer;
+  }
+  .slot-bg{ width:100%; height:100%; object-fit:contain; display: block; }
+  /* Сфера должна лежать ровно поверх слота */
+  .orb{
+    position:absolute;
+    top: 0; left: 0;
+    width:100%; height:100%;
+    object-fit:contain;
+  }
+
+  .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; cursor: pointer; z-index: 2; }
+
   .dropdown{ position:absolute; top:104px; left:0; width:250px; max-height:260px; overflow:auto; background:#1b212a; border:1px solid #3a475a; border-radius:12px; padding:8px; z-index:10; }
-  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; }
-  .orb-row img{ width:36px; height:36px; object-fit:contain; }
+  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
+  .orb-row:hover { background: #2e3948; }
+  .orb-row img{ width:36px; height:36px; object-fit:contain; flex-shrink: 0; }
 
   .controls{ display:flex; gap:12px; justify-content:center; margin:0; flex-wrap:wrap; }
   .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:8px 12px; }
   .control .control-label{ white-space:nowrap; }
+
   .lvl{ width:64px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
 
-  .stars{ display:flex; gap:6px; }
-  .star{ width:30px; height:30px; border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; }
-  .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
-  .star img{ width:100%; height:100%; object-fit:contain; }
-  .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
-  .star:focus-visible{ outline:2px solid #90f36b; outline-offset:2px; }
-
-  .stats{ margin-top:0; display:flex; flex-direction:column; gap:12px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
-  .row{ display:flex; justify-content:space-between; align-items:center; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:12px 16px; color:#dfe7f3; font-size:14px; min-height:64px; }
-  .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
-.row .label-icon{ width:20px; height:20px; object-fit:contain; }
-.row .type-icon{ width:26px; height:26px; }
-  .row.attack-row{ align-items:stretch; gap:16px; padding:14px 16px; }
-  .attack-side{ display:flex; align-items:center; gap:12px; flex:1 1 0; min-width:0; }
-  .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:61px; height:64px; flex-shrink:0; }
-  .attack-gene .gene-icon{ width:70%; height:70%; object-fit:contain; display:block; }
-  .attack-gene .attack-aoe{
-   position:static;
-    top:auto;
-    right:auto;
-    width:80px;
-    height:47px;
-    margin-left:-16px;
-    object-fit:contain;
-    pointer-events:none;
-    filter:drop-shadow(0 1px 2px rgba(0,0,0,.45));
+  /* Стили для статического уровня на скриншоте */
+  :global(.lvl-static) {
+    width: 64px;
+    padding: 6px 7px;
+    background: #10161f;
+    color: #e9eef6;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #3a475a;
+    display: inline-block;
   }
+
+  /* ЗВЕЗДЫ: защита от сплющивания */
+  .stars{ display:flex; gap:6px; }
+  .star{
+    width:32px; height:32px;
+    min-width: 32px;
+    flex-shrink: 0;
+
+    border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; cursor: pointer;
+  }
+  .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
+  .star img{ width:100%; height:100%; object-fit:contain; display: block; }
+  .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
+
+  /* --- СТАТЫ (УПЛОТНЕННЫЕ) --- */
+  .stats{ margin-top:0; display:flex; flex-direction:column; gap:8px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
+
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#1b212a;
+    border:1px solid #2e3948;
+    border-radius:12px;
+    padding:8px 16px; /* Уменьшили вертикальный паддинг */
+    color:#dfe7f3;
+    font-size:14px;
+    min-height:50px; /* Чуть уменьшили высоту */
+  }
+
+  .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
+  .row .label-icon{ width:20px; height:20px; object-fit:contain; flex-shrink: 0; }
+  .row .type-icon{ width:26px; height:26px; flex-shrink: 0; }
+
+  .row.attack-row{ align-items:stretch; gap:14px; padding:10px 16px; }
+
+  .attack-side{ display:flex; align-items:center; gap:10px; flex:1 1 0; min-width:0; }
+  .attack-gene{ position:relative; display:flex; align-items:center; justify-content:center; width:60px; height:60px; flex-shrink:0; }
+  .attack-gene .gene-icon{ width:70%; height:70%; object-fit:contain; display:block; }
+  .attack-gene .attack-aoe{ position:static; width:76px; height:44px; margin-left:-16px; object-fit:contain; pointer-events:none; filter:drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
   .attack-gene.empty{ opacity:0; }
-  .attack-info{ display:flex; flex-direction:column; gap:4px; min-width:0; }
-  .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; }
+
+  .attack-info{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .attack-label{ font-weight:600; color:#f3f7ff; white-space:normal; overflow:hidden; text-overflow:ellipsis; font-size:14px; line-height: 1.3; }
   .attack-damage{ font-size:17px; font-weight:700; color:#ffffff; }
-  .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); }
+
+  .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); flex-shrink: 0; }
   .ability-divider.empty{ display:none; }
-  .effect-side{ display:flex; flex-direction:column; gap:10px; min-width:0; flex:1 1 0; align-items:stretch; }
-  .effect-row{ display:flex; align-items:center; gap:10px; background:rgba(15,19,25,0.35); padding:11px 14px; border-radius:10px; width:100%; }
-  .ability-icon{ width:30px; height:30px; object-fit:contain; }
-  .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; flex:1 1 auto; }
-  .effect-percent{ font-size:14px; color:#90f36b; font-weight:600; }
-  .effect-value{ font-size:18px; color:#90f36b; font-weight:700; }
-  .effect-empty{ color:#94a2b9; font-size:14px; text-align:center; }
+
+  .effect-side{ display:flex; flex-direction:column; gap:6px; min-width:0; flex:1 1 0; align-items:stretch; }
+  .effect-row{ display:flex; align-items:center; gap:8px; background:rgba(15,19,25,0.35); padding:6px 10px; border-radius:10px; width:100%; }
+
+  .ability-icon{ width:28px; height:28px; object-fit:contain; flex-shrink: 0; }
+
+  .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; flex:1 1 auto; font-size: 13px; }
+  .effect-percent{ font-size:13px; color:#90f36b; font-weight:600; white-space: nowrap; }
+  .effect-value{ font-size:16px; color:#90f36b; font-weight:700; white-space: nowrap; }
+  .effect-empty{ color:#94a2b9; font-size:13px; text-align:center; }
 
   @media (max-width: 1200px) {
     .stats-page{ grid-template-columns: 300px minmax(0,1fr); }
+    .stats-page.single-col { grid-template-columns: minmax(0,1fr); }
   }
 
   @media (max-width: 1024px) {
@@ -1267,202 +1605,23 @@
     .list{ max-height:360px; }
   }
 
-    .attack-gene .gene-icon{ width:40px; height:40px; }
-    .attack-gene .attack-aoe{ width:80px; height:47px; margin-left:-17px; }
+  @media (max-width: 768px) {
+    .stats-page { display: grid; grid-template-columns: 1fr 280px; gap: 12px; padding: 12px; }
+    .stats-page.single-col { grid-template-columns: 1fr; }
+    .panel { order: 1; padding: 14px; }
+    .catalog { order: 2; padding: 10px; }
 
-@media (max-width: 768px) {
-  .stats-page {
-    display: grid;
-    grid-template-columns: 1fr 280px;  /* ← КАРТОЧКА слева, ПОИСК справа */
-    gap: 12px;
-    padding: 12px;
+    .row.attack-row { flex-direction: column; gap: 8px; padding: 10px; }
+    .ability-divider { display: none !important; }
+    .mut-figure .texture { width: 160px; height: 160px; transform: translateY(24px); }
+    .mut-figure::after { width: 160px; bottom: -22px; height: 50px; }
   }
 
-  .panel {
-    order: 1;  /* ← Карточка СЛЕВА */
-    padding: 14px;
+  @media (max-width: 480px) {
+    .stats-page { grid-template-columns: 1fr; gap: 8px; padding: 8px; }
+    .stats-page.single-col { grid-template-columns: 1fr; }
+    .catalog { display: none; }
+
+    .mut-figure .texture { width: 140px; height: 140px; transform: translateY(20px); }
   }
-
-  .catalog {
-    order: 2;  /* ← Поиск СПРАВА */
-    padding: 10px;
-  }
-
-  /* СТАТЫ - как было */
-  .stats {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #1b212a;
-    border: 1px solid #2e3948;
-    border-radius: 10px;
-    padding: 10px 12px;
-    color: #dfe7f3;
-    font-size: 12px;
-    min-height: 44px;
-  }
-
-  .row .label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #aab6c8;
-    font-size: 11px;
-    flex: 0 0 auto;
-  }
-
-  .row b {
-    font-size: 14px;
-    color: #e9eef6;
-  }
-
-  .row.attack-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding: 10px;
-    min-height: auto;
-  }
-
-  .attack-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .attack-gene .gene-icon{ width:40px; height:40px; }
-  .attack-gene .attack-aoe{ width:80px; height:47px; margin-left:-17px; }
- }
-
-  .attack-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .attack-label {
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  .attack-damage {
-    font-size: 14px;
-  }
-
-  .ability-divider {
-    display: none !important;
-  }
-
-  .effect-side {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
-  }
-
-  .effect-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(15, 19, 25, 0.35);
-    padding: 8px 10px;
-    border-radius: 8px;
-    font-size: 11px;
-  }
-
-  .ability-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-  }
-
-  .effect-name {
-    flex: 1;
-    min-width: 0;
-    font-size: 11px;
-  }
-
-  .effect-percent {
-    font-size: 11px;
-    color: #90f36b;
-  }
-
-  .effect-value {
-    font-size: 12px;
-    color: #90f36b;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
-  /* Изображение меньше */
-  .mut-figure .texture {
-    width: 160px;
-    height: 160px;
-    transform: translateY(24px);
-  }
-
-  .mut-figure::after {
-    width: 160px;
-    bottom: -22px;
-    height: 50px;
-  }
-
-  .title {
-    font-size: 16px;
-  }
-
-  .list {
-    max-height: 50vh;
-    gap: 4px;
-  }
-
-  .mut-row {
-    padding: 6px;
-    gap: 6px;
-  }
-
-  .mut-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .search {
-    padding: 6px 8px;
-    font-size: 11px;
-    margin: 6px 0 8px;
-  }
-
-
-@media (max-width: 480px) {
-  .stats-page {
-    grid-template-columns: 1fr 240px;
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .row {
-    padding: 8px 10px;
-    font-size: 11px;
-    min-height: 40px;
-  }
-
-  .attack-gene .gene-icon{ width:40px; height:40px; }
-    .attack-gene .attack-aoe{ width:70px; height:41px; margin-left:-17px; }
-
-  .mut-figure .texture {
-    width: 140px;
-    height: 140px;
-    transform: translateY(20px);
-  }
-
-  .title {
-    font-size: 14px;
-  }
-}
 </style>
