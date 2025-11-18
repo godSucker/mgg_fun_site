@@ -1517,20 +1517,26 @@
 
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; cursor: pointer; z-index: 2; }
 
+   /* --- ИСПРАВЛЕННОЕ МЕНЮ СФЕР (ПО ЦЕНТРУ) --- */
   .dropdown {
-    position: absolute;
-    top: 104px;
-    left: 0;
-    width: 250px;
-    max-height: 260px;
-    overflow: auto;
-    background: #1b212a;
-    border: 1px solid #3a475a;
-    border-radius: 12px;
-    padding: 8px;
-    z-index: 100;
-    /* ФИКС: Меню не может быть шире 85% экрана, чтобы не ломать верстку */
-    max-width: 47vw;
+    position: fixed; /* Фиксируем относительно всего экрана */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Идеальная центровка */
+
+    width: 320px;      /* Комфортная ширина */
+    max-width: 90vw;   /* Отступ от краев на мобилках */
+    max-height: 50vh;  /* Ограничение высоты */
+    overflow-y: auto;  /* Скролл внутри, если сфер много */
+
+    background: #212832; /* Чуть темнее фон для контраста */
+    border: 1px solid #4b5975; /* Ярче граница */
+    border-radius: 16px;
+    padding: 12px;
+    z-index: 9999; /* Чтобы точно было поверх всего */
+
+    /* Сильная тень, чтобы затемнить фон под меню */
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7), 0 10px 40px rgba(0,0,0, 0.8);
   }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
   .orb-row:hover { background: #2e3948; }
