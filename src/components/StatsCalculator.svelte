@@ -1045,6 +1045,9 @@
       freezeStyles('.star', '32px', '32px');
       freezeStyles('.star img', '32px', '32px');
       freezeStyles('.mut-icon', '44px', '44px');
+      freezeStyles('.hero-genes img', '36px', '36px');
+      freezeStyles('.attack-gene .gene-icon', '22px', '22px');
+      freezeStyles('.attack-gene .attack-aoe', '46px', '46px');
 
       // 7. Зачистка внутренних рамок
       clone.querySelectorAll('*').forEach(el => {
@@ -1216,22 +1219,24 @@
          <header class="title">{selected.name}</header>
 
          <!-- Кнопка скриншота -->
-         <div class="header-right">
-            <button class="tool-btn share-btn" on:click={shareScreenshot} disabled={isCopying} title="Копировать скриншот">
+              <div class="header-right">
+            <!-- Заменили SVG иконку на Текст -->
+            <button class="tool-btn share-btn" on:click={shareScreenshot} disabled={isCopying} title="Сохранить как картинку">
                {#if isCopying}
-                 <span style="font-size:10px;">...</span>
+                 <span>Сохраняем...</span>
                {:else}
-                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                   <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                   <polyline points="16 6 12 2 8 6"></polyline>
-                   <line x1="12" y1="2" x2="12" y2="15"></line>
-                 </svg>
+                 <span>Скриншот</span>
                {/if}
             </button>
          </div>
       </div>
 
       <div class="hero-section">
+      <div class="hero-genes">
+          {#each selected.genes as g}
+            <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+          {/each}
+        </div>
         <div class="mut-figure">
           <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
         </div>
@@ -1378,6 +1383,24 @@
 </div>
 
 <style>
+
+/* --- ГЕНЫ НАД МУТАНТОМ --- */
+  .hero-genes {
+    display: flex;
+    justify-content: center;
+    gap: 6px; /* Расстояние между генами */
+    margin-bottom: -15px; /* Подтягиваем ближе к голове мутанта */
+    z-index: 5; /* Чтобы были поверх текстуры, если что */
+    position: relative;
+  }
+
+  .hero-genes img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.6)); /* Тень для объема */
+  }
+
   .stats-page{
     display:grid;
     grid-template-columns: 320px minmax(0,660px);
@@ -1470,10 +1493,33 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
-  .share-btn span {
+  /* --- НОВЫЙ СТИЛЬ ДЛЯ КНОПКИ СКРИНШОТА --- */
+  .share-btn {
+    background: rgba(59, 130, 246, 0.15); /* Синеватый фон */
+    border: 1px solid rgba(59, 130, 246, 0.3); /* Рамка */
+    color: #93c5fd; /* Светло-голубой текст */
+
+    /* Размеры и текст */
+    width: auto; /* Автоматическая ширина под текст */
+    height: 32px;
+    padding: 0 14px; /* Отступы по бокам */
+
     font-size: 12px;
-    font-weight: bold;
-    color: #90f36b;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+  }
+
+  .share-btn:hover {
+    background: rgba(59, 130, 246, 0.3);
+    color: #ffffff;
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .share-btn:active {
+    transform: translateY(0);
   }
 
   .hero-section{ display:flex; flex-direction:column; align-items:center; gap:12px; }
@@ -1505,11 +1551,11 @@
   .orb {
     position: absolute;
     top: -1px;
-    left: 0;
+    left: -1px;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transform: scale(1.15); /* Увеличиваем сферу */
+    transform: scale(1.12); /* Увеличиваем сферу */
   }
 
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; cursor: pointer; z-index: 2; }
@@ -1588,6 +1634,15 @@
     min-height:50px; /* Чуть уменьшили высоту */
   }
 
+  .row b {
+    font-size: 15px;       /* Единый размер */
+    font-weight: 700;      /* Одинаковая жирность */
+    color: #e9eef6;        /* Одинаковый цвет */
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums; /* Чтобы цифры стояли ровно */
+  }
+
   .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
   .row .label-icon{ width:20px; height:20px; object-fit:contain; flex-shrink: 0; }
   .row .type-icon{ width:26px; height:26px; flex-shrink: 0; }
@@ -1607,36 +1662,43 @@
     min-width: 0;
   }
 
-  .attack-gene{
+ /* --- ФИКС АТАКИ (МАКСИМАЛЬНЫЙ РАЗМЕР) --- */
+  .attack-gene {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;  /* Уменьшили контейнер */
-    height: 40px;
+    width: 52px;  /* Делаем область больше */
+    height: 52px;
     flex-shrink: 0;
   }
 
-  /* Уменьшаем иконку гена до размера остальных (HP/Speed ~20-26px) */
-  .attack-gene .gene-icon{
-    width: 26px;
-    height: 26px;
+  /* Иконка гена - маленькая точка в центре */
+  .attack-gene .gene-icon {
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     display: block;
+    position: relative;
+    z-index: 2; /* Сверху */
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.8)); /* Контраст, чтобы не сливался */
   }
 
-  /* Значок АОЕ теперь стоит ровно в углу */
-  .attack-gene .attack-aoe{
+  /* Иконка АОЕ - ОГРОМНАЯ на весь слот */
+  .attack-gene .attack-aoe {
     position: absolute;
-    bottom: 7.4px;
-    right: -3.7px;
-    width: 20px;
-    height: 27px;
+    top: 45%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 52px; /* На всю ширину */
+    height: 52px;
     object-fit: contain;
     pointer-events: none;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,.45));
+    z-index: 1; /* Снизу */
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
   }
-  .attack-gene.empty{ opacity: 0; }
+
+  .attack-gene.empty { opacity: 0; }
 
   .attack-info {
     display: flex;
@@ -1662,11 +1724,12 @@
   }
 
   .attack-damage {
-    font-size: 15px; /* Чуть крупнее для читаемости */
+    font-size: 15px;       /* Точно такой же размер */
     font-weight: 700;
-    color: #e9eef6;
-    white-space: nowrap; /* Чтобы цифры не переносились */
-    text-align: right; /* Прижимаем к правому краю */
+    color: #e9eef6;        /* Точно такой же цвет */
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
 
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); flex-shrink: 0; }

@@ -600,16 +600,23 @@
 {/if}
 
 <style>
+  /* --- ГЛОБАЛЬНЫЕ СТИЛИ --- */
   :global(body) {
     background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.95));
+    margin: 0;
+    /* Важно: предотвращаем горизонтальный скролл на уровне тела */
+    overflow-x: hidden;
   }
 
   section + section {
     margin-top: 3rem;
   }
 
+  /* --- HERO СЕКЦИЯ --- */
   .craft-hero {
     margin-bottom: 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .craft-hero__card {
@@ -631,6 +638,7 @@
     mix-blend-mode: screen;
   }
 
+  /* --- ТИПОГРАФИКА И БЕЙДЖИ --- */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -644,75 +652,30 @@
     text-transform: uppercase;
   }
 
-  .badge--soft {
-    background: rgba(139, 92, 246, 0.15);
-    color: #c4b5fd;
-  }
+  .badge--soft { background: rgba(139, 92, 246, 0.15); color: #c4b5fd; }
+  .badge--outline { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18); color: rgba(226, 232, 240, 0.85); }
 
-  .badge--outline {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: rgba(226, 232, 240, 0.85);
-  }
-
-  h1 {
-    margin: 1rem 0 0.8rem;
-    font-size: clamp(2.4rem, 5vw, 3.4rem);
-    color: #ede9fe;
-  }
-
-  h2 {
-    margin: 0.75rem 0;
-    font-size: clamp(1.9rem, 4vw, 2.4rem);
-    color: rgba(248, 250, 252, 0.95);
-  }
-
-  h3 {
-    margin: 0.35rem 0 0;
-    font-size: clamp(1.45rem, 3vw, 1.9rem);
-    color: rgba(248, 250, 252, 0.92);
-  }
-
-  p {
-    margin: 0;
-    color: rgba(226, 232, 240, 0.78);
-    line-height: 1.7;
-    max-width: 720px;
-  }
+  h1 { margin: 1rem 0 0.8rem; font-size: clamp(2rem, 5vw, 3.4rem); color: #ede9fe; word-wrap: break-word; }
+  h2 { margin: 0.75rem 0; font-size: clamp(1.5rem, 4vw, 2.4rem); color: rgba(248, 250, 252, 0.95); }
+  h3 { margin: 0.35rem 0 0; font-size: clamp(1.2rem, 3vw, 1.9rem); color: rgba(248, 250, 252, 0.92); }
+  p { margin: 0; color: rgba(226, 232, 240, 0.78); line-height: 1.7; max-width: 720px; }
 
   .hero-stats {
     margin: 2.2rem 0 0;
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    /* Адаптивная сетка, но не меньше 140px */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
-  dt {
-    margin: 0 0 0.35rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(226, 232, 240, 0.55);
-  }
+  dt { margin: 0 0 0.35rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(226, 232, 240, 0.55); }
+  dd { margin: 0; font-size: 1.35rem; color: rgba(248, 250, 252, 0.95); font-weight: 600; }
 
-  dd {
-    margin: 0;
-    font-size: 1.35rem;
-    color: rgba(248, 250, 252, 0.95);
-    font-weight: 600;
-  }
-
-  .incentive-panel {
-    display: flex;
-    justify-content: center;
-  }
-
+  /* --- БОНУСЫ --- */
+  .incentive-panel { display: flex; justify-content: center; width: 100%; box-sizing: border-box; }
   .incentive-card {
-    position: relative;
-    width: 100%;
-    display: grid;
-    gap: 1.75rem;
-    padding: 2.5rem;
+    position: relative; width: 100%; box-sizing: border-box;
+    display: grid; gap: 1.75rem; padding: 2.5rem;
     border-radius: 28px;
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(17, 24, 39, 0.92));
     border: 1px solid rgba(99, 102, 241, 0.25);
@@ -721,621 +684,240 @@
     align-items: start;
   }
 
-  .incentive-card__controls select {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border-radius: 16px;
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    background: rgba(15, 23, 42, 0.8);
-    color: rgba(226, 232, 240, 0.95);
-    font-size: 1rem;
-  }
+  .incentive-card__controls { min-width: 0; } /* Фикс переполнения */
+  .incentive-card__controls select { width: 100%; padding: 0.75rem 1rem; border-radius: 16px; border: 1px solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.8); color: rgba(226, 232, 240, 0.95); font-size: 1rem; max-width: 100%; }
+  .incentive-card__controls label { display: block; margin-bottom: 0.65rem; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(148, 163, 184, 0.75); }
 
-  .incentive-card__controls label {
-    display: block;
-    margin-bottom: 0.65rem;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
-  }
+  .incentive-card__stats { display: grid; gap: 1rem; padding: 1rem 1.4rem; border-radius: 20px; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(96, 165, 250, 0.25); min-width: 0; }
+  .metric-label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(148, 163, 184, 0.75); margin-bottom: 0.35rem; }
+  .metric-value { font-size: 1.05rem; font-weight: 600; color: rgba(248, 250, 252, 0.92); word-break: break-word; }
 
-  .incentive-card__stats {
-    display: grid;
-    gap: 1rem;
-    padding: 1rem 1.4rem;
-    border-radius: 20px;
-    background: rgba(59, 130, 246, 0.12);
-    border: 1px solid rgba(96, 165, 250, 0.25);
-  }
-
-  .metric-label {
-    display: block;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
-    margin-bottom: 0.35rem;
-  }
-
-  .metric-value {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: rgba(248, 250, 252, 0.92);
-  }
-
+  /* --- ТАБЫ --- */
   .facility-tabs {
     margin: 3rem 0 2rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+    width: 100%;
   }
-
   .facility-tabs button {
-    display: grid;
-    gap: 0.25rem;
-    padding: 1rem 1.4rem;
-    border-radius: 18px;
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    background: rgba(30, 41, 59, 0.65);
-    color: rgba(226, 232, 240, 0.82);
-    text-align: left;
-    cursor: pointer;
-    min-width: 220px;
+    display: grid; gap: 0.25rem; padding: 1rem 1.4rem;
+    border-radius: 18px; border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(30, 41, 59, 0.65); color: rgba(226, 232, 240, 0.82);
+    text-align: left; cursor: pointer;
+    min-width: 200px;
+    flex: 1 1 auto;
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
+  .facility-tabs button.active { border-color: rgba(192, 132, 252, 0.45); background: rgba(76, 29, 149, 0.35); box-shadow: 0 18px 30px rgba(76, 29, 149, 0.25); color: rgba(248, 250, 252, 0.95); }
+  .facility-tabs button:hover { transform: translateY(-2px); border-color: rgba(129, 140, 248, 0.5); }
+  .facility-tabs__name { font-weight: 600; font-size: 1.05rem; }
+  .facility-tabs__tagline { font-size: 0.85rem; color: rgba(148, 163, 184, 0.75); }
 
-  .facility-tabs button.active {
-    border-color: rgba(192, 132, 252, 0.45);
-    background: rgba(76, 29, 149, 0.35);
-    box-shadow: 0 18px 30px rgba(76, 29, 149, 0.25);
-    color: rgba(248, 250, 252, 0.95);
-  }
-
-  .facility-tabs button:hover,
-  .facility-tabs button:focus-visible {
-    transform: translateY(-2px);
-    border-color: rgba(129, 140, 248, 0.5);
-  }
-
-  .facility-tabs__name {
-    font-weight: 600;
-    font-size: 1.05rem;
-  }
-
-  .facility-tabs__tagline {
-    font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.75);
-  }
-
+  /* --- ОСНОВНОЙ ЛЕЙАУТ --- */
   .facility {
     position: relative;
     border-radius: 40px;
     overflow: hidden;
     box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
+    width: 100%; box-sizing: border-box;
   }
-
-  .facility__background {
-    position: absolute;
-    inset: 0;
-    opacity: 0.92;
-    pointer-events: none;
-  }
+  .facility__background { position: absolute; inset: 0; opacity: 0.92; pointer-events: none; }
 
   .facility__inner {
     position: relative;
     display: grid;
+    /* Десктопная сетка */
     grid-template-columns: minmax(240px, 320px) 1fr;
     gap: 0;
   }
 
+  /* САЙДБАР */
   .facility__sidebar {
-    position: relative;
-    padding: 2.8rem 2.4rem;
+    position: relative; padding: 2.8rem 2.4rem;
     background: linear-gradient(160deg, rgba(15, 23, 42, 0.85), rgba(15, 15, 18, 0.85));
     border-right: 1px solid rgba(255, 255, 255, 0.08);
-    display: grid;
-    gap: 2rem;
-    align-content: start;
+    display: grid; gap: 2rem; align-content: start;
   }
+  .facility__sidebar::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top, var(--glow), transparent 65%); opacity: 0.7; pointer-events: none; }
 
-  .facility__sidebar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top, var(--glow), transparent 65%);
-    opacity: 0.7;
-    pointer-events: none;
-  }
+  .facility__header h2 { margin-bottom: 0.4rem; }
+  .facility__header p { color: rgba(226, 232, 240, 0.75); }
 
-  .facility__header h2 {
-    margin-bottom: 0.4rem;
-  }
+  .facility__featured { display: grid; gap: 1.1rem; }
+  .featured-item { display: grid; grid-template-columns: 48px 1fr; gap: 0.75rem; align-items: center; padding: 0.6rem 0.8rem; border-radius: 18px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148, 163, 184, 0.15); }
+  .featured-item img { width: 48px; height: 48px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4)); }
+  .featured-item__label { font-size: 0.95rem; font-weight: 600; line-height: 1.2; color: #fff; }
+  .facility__stats { display: grid; gap: 1.2rem; }
 
-  .facility__header p {
-    color: rgba(226, 232, 240, 0.75);
-  }
-
-  .facility__featured {
-    display: grid;
-    gap: 1.1rem;
-  }
-
-  .featured-item {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 0.75rem;
-    align-items: center;
-    padding: 0.6rem 0.8rem;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-  }
-
-  .featured-item img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
-  }
-
-  .featured-item span {
-    color: rgba(226, 232, 240, 0.95);
-  }
-
-  .featured-item__label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-  .facility__stats {
-    display: grid;
-    gap: 1.2rem;
-  }
-
-  .facility__content {
-    position: relative;
-    padding: 2.8rem;
-    display: grid;
-    gap: 2rem;
-  }
+  /* КОНТЕНТ */
+  .facility__content { position: relative; padding: 2.8rem; display: grid; gap: 2rem; width: 100%; box-sizing: border-box; min-width: 0; }
 
   .recipe-selector {
-    display: grid;
-    gap: 0.85rem;
+    display: grid; gap: 0.85rem;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   }
-
   .recipe-selector button {
-    position: relative;
-    display: grid;
-    gap: 0.35rem;
-    align-content: center;
-    justify-items: center;
-    padding: 1rem;
-    border-radius: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(15, 23, 42, 0.78);
-    color: rgba(226, 232, 240, 0.85);
-    cursor: pointer;
+    position: relative; display: grid; gap: 0.35rem; align-content: center; justify-items: center;
+    padding: 1rem; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.78); color: rgba(226, 232, 240, 0.85); cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    width: 100%;
   }
+  .recipe-selector button img { width: 46px; height: 46px; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45)); }
+  .recipe-selector button.selected { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.35); box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35); }
+  .recipe-selector__title { font-weight: 600; text-align: center; color: rgba(248, 250, 252, 0.92); font-size: 0.9rem; }
 
-  .recipe-selector button img {
-    width: 46px;
-    height: 46px;
-    object-fit: contain;
-    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
-  }
-
-  .recipe-selector button:hover,
-  .recipe-selector button:focus-visible {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.28);
-  }
-
-  .recipe-selector button.selected {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.35);
-    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
-  }
-
-  .recipe-selector__title {
-    font-weight: 600;
-    text-align: center;
-    color: rgba(248, 250, 252, 0.92);
-  }
-
+  /* КАРТОЧКА РЕЦЕПТА */
   .recipe-card {
-    position: relative;
-    border-radius: 28px;
-    background: rgba(15, 23, 42, 0.82);
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.35);
-    display: grid;
-    gap: 1.75rem;
-    padding: 2.2rem;
+    position: relative; border-radius: 28px; background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(148, 163, 184, 0.18); box-shadow: 0 18px 32px rgba(0, 0, 0, 0.35);
+    display: grid; gap: 1.75rem; padding: 2.2rem;
+    width: 100%; box-sizing: border-box;
   }
+  .recipe-card__header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+  .recipe-card__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: flex-end; }
+  .recipe-card__subtitle { margin: 0.3rem 0 0; color: rgba(148, 163, 184, 0.7); font-size: 0.95rem; }
+  .meta-pill { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.45rem 0.9rem; border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: rgba(226, 232, 240, 0.85); font-size: 0.85rem; }
+  .meta-pill--accent { background: rgba(34, 197, 94, 0.15); color: rgba(134, 239, 172, 0.95); }
 
-  .recipe-card__header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-  }
+  /* СЕТКА ИНГРЕДИЕНТОВ И НАГРАД */
+  .recipe-card__body { display: grid; gap: 1.8rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .recipe-section h4 { margin: 0 0 1rem; font-size: 1.1rem; color: rgba(248, 250, 252, 0.92); }
 
-  .recipe-card__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    justify-content: flex-end;
+  .ingredient-list, .reward-list, .results-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+  .ingredient-list li, .reward-list li, .results-grid li {
+    display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 0.9rem;
+    padding: 0.75rem 1rem; border-radius: 18px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148, 163, 184, 0.15);
   }
+  .item-icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 16px; background: rgba(255, 255, 255, 0.05); overflow: hidden; flex-shrink: 0; }
+  .item-icon img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45)); }
+  .item-info { display: grid; gap: 0.25rem; min-width: 0; } /* min-width: 0 позволяет тексту сжиматься */
+  .item-title { font-weight: 600; color: rgba(248, 250, 252, 0.92); font-size: 0.95rem; white-space: normal; overflow-wrap: break-word; }
+  .item-sub { font-size: 0.85rem; color: rgba(148, 163, 184, 0.75); }
+  .item-odds { text-align: right; color: rgba(226, 232, 240, 0.9); font-weight: 600; }
+  .item-odds__raw { display: block; margin-top: 0.2rem; font-size: 0.75rem; color: rgba(148, 163, 184, 0.65); }
 
-  .recipe-card__subtitle {
-    margin: 0.3rem 0 0;
-    color: rgba(148, 163, 184, 0.7);
-    font-size: 0.95rem;
-  }
-
-  .meta-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(226, 232, 240, 0.85);
-    font-size: 0.85rem;
-  }
-
-  .meta-pill--accent {
-    background: rgba(34, 197, 94, 0.15);
-    color: rgba(134, 239, 172, 0.95);
-  }
-
-  .recipe-card__body {
-    display: grid;
-    gap: 1.8rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-
-  .recipe-section h4 {
-    margin: 0 0 1rem;
-    font-size: 1.1rem;
-    color: rgba(248, 250, 252, 0.92);
-  }
-
-  .ingredient-list,
-  .reward-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.9rem;
-  }
-
-  .ingredient-list li,
-  .reward-list li {
-    display: grid;
-    grid-template-columns: 52px 1fr auto;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 0.75rem 1rem;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-  }
-
-  .reward-list li .item-odds {
-    justify-self: end;
-  }
-
-  .item-icon {
-    width: 52px;
-    height: 52px;
-    display: grid;
-    place-items: center;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    overflow: hidden;
-  }
-
-  .item-icon img {
-    width: 44px;
-    height: 44px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
-  }
-
-  .item-icon span {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: rgba(226, 232, 240, 0.85);
-  }
-
-  .item-info {
-    display: grid;
-    gap: 0.25rem;
-  }
-
-  .item-title {
-    font-weight: 600;
-    color: rgba(248, 250, 252, 0.92);
-  }
-
-  .item-sub {
-    font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.75);
-  }
-
-  .item-odds {
-    text-align: right;
-    color: rgba(226, 232, 240, 0.9);
-    font-weight: 600;
-  }
-
-  .item-odds__raw {
-    display: block;
-    margin-top: 0.2rem;
-    font-size: 0.75rem;
-    color: rgba(148, 163, 184, 0.65);
-  }
-
-  .craft-input {
-    display: grid;
-    gap: 0.45rem;
-  }
-
-  .craft-input label {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
-  }
-
-  .craft-input input {
-    width: 140px;
-    padding: 0.65rem 0.9rem;
-    border-radius: 14px;
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    background: rgba(15, 23, 42, 0.85);
-    color: rgba(226, 232, 240, 0.95);
-    font-size: 1rem;
-  }
+  .craft-input { display: grid; gap: 0.45rem; flex: 1; }
+  .craft-input label { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(148, 163, 184, 0.75); }
+  .craft-input input { width: 100%; padding: 0.65rem 0.9rem; border-radius: 14px; border: 1px solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.85); color: rgba(226, 232, 240, 0.95); font-size: 1rem; box-sizing: border-box; }
 
   .simulate-btn {
-    padding: 0.8rem 1.8rem;
-    border-radius: 999px;
-    border: none;
+    padding: 0.8rem 1.8rem; border-radius: 999px; border: none;
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(56, 189, 248, 0.35));
-    color: rgba(248, 250, 252, 0.95);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: rgba(248, 250, 252, 0.95); font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; white-space: nowrap;
   }
-
-  .simulate-btn:hover,
-  .simulate-btn:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 32px rgba(56, 189, 248, 0.35);
-  }
-
-  .results-card {
-    border-radius: 24px;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    background: rgba(15, 23, 42, 0.7);
-    padding: 1.8rem;
-    display: grid;
-    gap: 1.6rem;
-  }
-
-  .results-card header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    color: rgba(226, 232, 240, 0.78);
-  }
-
-  .results-grid {
-    display: grid;
-    gap: 1.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-
-  .results-grid ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.9rem;
-  }
-
-  .results-grid li {
-    display: grid;
-    grid-template-columns: 52px 1fr auto;
-    gap: 0.9rem;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 18px;
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-  }
-
-  .results-grid li .item-odds {
-    justify-self: end;
-    display: grid;
-    gap: 0.25rem;
-    text-align: right;
-    color: rgba(226, 232, 240, 0.7);
-    font-size: 0.9rem;
-  }
-
-  .results-log {
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(148, 163, 184, 0.15);
-  }
-
-  .results-log ul {
-    margin: 0.8rem 0 0;
-    padding: 0;
-    display: grid;
-    gap: 0.5rem;
-    list-style: none;
-  }
-
-  .results-log li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.6rem;
-    color: rgba(226, 232, 240, 0.75);
-    font-size: 0.92rem;
-  }
-
-  .results-log__index {
-    color: rgba(148, 163, 184, 0.65);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .results-grid li .item-odds__raw {
-    justify-self: end;
-    opacity: 0.7;
-  }
-
-  .empty {
-    margin: 0;
-    color: rgba(148, 163, 184, 0.7);
-  }
-
-  .rewards-scroll {
-    max-height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 0.5rem;
-    margin-right: -0.5rem;
-  }
-
-  .rewards-scroll::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .rewards-scroll::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.4);
-    border-radius: 4px;
-  }
-
-  .rewards-scroll::-webkit-scrollbar-thumb {
-    background: rgba(192, 132, 252, 0.3);
-    border-radius: 4px;
-  }
-
-  .rewards-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(192, 132, 252, 0.5);
-  }
+  .simulate-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(56, 189, 248, 0.35); }
 
   .simulation-controls {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-end;
-    padding: 1.5rem;
-    border-radius: 20px;
-    background: rgba(139, 92, 246, 0.08);
-    border: 1px solid rgba(192, 132, 252, 0.2);
+    display: flex; gap: 1rem; align-items: flex-end; padding: 1.5rem;
+    border-radius: 20px; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(192, 132, 252, 0.2);
+    flex-wrap: wrap;
   }
 
-  /* --- МОБИЛЬНАЯ АДАПТАЦИЯ (FIXED) --- */
+  .results-card { border-radius: 24px; border: 1px solid rgba(148, 163, 184, 0.2); background: rgba(15, 23, 42, 0.7); padding: 1.8rem; display: grid; gap: 1.6rem; width: 100%; box-sizing: border-box; }
+  .results-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .results-log ul { margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.5rem; list-style: none; }
+  .results-log li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; color: rgba(226, 232, 240, 0.75); font-size: 0.92rem; word-break: break-word; }
+  .results-log__index { color: rgba(148, 163, 184, 0.65); font-variant-numeric: tabular-nums; }
+  .empty { margin: 0; color: rgba(148, 163, 184, 0.7); }
+
+  .rewards-scroll { max-height: 400px; overflow-y: auto; overflow-x: hidden; padding-right: 0.5rem; margin-right: -0.5rem; }
+  .rewards-scroll::-webkit-scrollbar { width: 8px; }
+  .rewards-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.4); border-radius: 4px; }
+  .rewards-scroll::-webkit-scrollbar-thumb { background: rgba(192, 132, 252, 0.3); border-radius: 4px; }
+
+  /* --- МОБИЛЬНАЯ АДАПТАЦИЯ (ЖЕЛЕЗОБЕТОННЫЙ ФИКС) --- */
   @media (max-width: 1023px) {
-    /* 1. Стек блоков друг под другом */
+    /* 1. Превращаем сетку в колонку */
     .facility__inner {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
     }
 
+    /* 2. Табы со скроллом (фикс разъезжания) */
+    .facility-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding-bottom: 1rem;
+      margin: 2rem 0;
+      /* Прячем скроллбар */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .facility-tabs::-webkit-scrollbar { display: none; }
+    .facility-tabs button {
+      flex: 0 0 85%; /* Кнопка занимает 85% экрана, видно кусок следующей */
+      max-width: 300px;
+      min-width: auto; /* Убираем жесткий минимум */
+    }
+
+    /* 3. Сайдбар и контент */
     .facility__sidebar {
       border-right: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 2rem 1.5rem;
     }
-
     .facility__content {
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
     }
 
-    /* 2. Табы - горизонтальная лента (Stories style) */
-    .facility-tabs {
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      margin: 2rem -1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
-    }
-    .facility-tabs::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome */
-    }
-    .facility-tabs button {
-      min-width: 260px;
-      flex: 0 0 auto;
-    }
-
-    /* 3. Рецепты - список на всю ширину */
+    /* 4. Список рецептов - в одну колонку */
     .recipe-selector {
       grid-template-columns: 1fr;
     }
 
-    /* 4. Incentive card */
-    .incentive-card {
-      padding: 1.5rem;
+    /* 5. Карточки и сетки - тоже в одну */
+    .incentive-card, .recipe-card__body, .results-grid {
       grid-template-columns: 1fr;
     }
-    .incentive-card__controls {
-      grid-column: 1;
-    }
-    .incentive-card__stats {
-      grid-template-columns: 1fr;
+    .incentive-card { padding: 1.5rem; }
+    .recipe-card { padding: 1.5rem 1rem; }
+
+    /* 6. Список ингредиентов (перенос шансов вниз) */
+    .ingredient-list li, .reward-list li, .results-grid li {
+      grid-template-columns: 48px 1fr; /* Две колонки: иконка + текст */
+      gap: 0.75rem;
+      padding: 0.75rem;
     }
 
-    /* 5. Simulation controls - Vertical stack */
+    /* Шансы и количество переносим под название на отдельную строку */
+    .item-odds, .reward-list li .item-odds {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.5rem;
+      margin-top: 0.25rem;
+      text-align: left;
+    }
+
+    .item-odds__raw {
+      display: inline;
+      margin: 0;
+    }
+
+    /* 7. Контролы */
     .simulation-controls {
       flex-direction: column;
       align-items: stretch;
+      padding: 1rem;
     }
-    .craft-input input {
-      width: 100%;
-    }
+    .craft-input input { width: 100%; }
+    .simulate-btn { width: 100%; margin-top: 0.5rem; }
 
-    /* 6. Results & Ingredients */
-    .recipe-card__body {
-      grid-template-columns: 1fr;
-    }
-
-    .results-grid {
-      grid-template-columns: 1fr;
-    }
+    /* 8. Hero и статистика */
+    .craft-hero__card { padding: 2rem 1rem; border-radius: 24px; }
+    .craft-hero__card h1 { font-size: 1.75rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
   }
 
+  /* Для очень маленьких экранов */
   @media (max-width: 640px) {
-    .craft-hero__card {
-      padding: 1.5rem 1rem;
-      border-radius: 20px;
-    }
-
-    .craft-hero__card h1 {
-      font-size: 1.5rem;
-    }
-
-    .badge {
-      font-size: 0.75rem;
-      padding: 0.35rem 0.9rem;
-    }
-
-    .results-grid li {
-      padding: 0.625rem 0.75rem;
-    }
+    .badge { font-size: 0.75rem; padding: 0.35rem 0.9rem; }
   }
 </style>

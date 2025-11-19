@@ -117,6 +117,10 @@
   let baseMap: BaseMap = new Map();
   $: baseMap = buildBaseMap(items ?? []);
 
+  // Создаем кешированные версии списков один раз при изменении входных данных
+  $: preparedMutants = (items || []).map(enrichItem);
+  $: preparedSkins = (normalizedSkins || []).map(enrichItem);
+
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
 
   // ===========
@@ -128,6 +132,16 @@
 
   // Поиск/фильтры МУТАНТОВ
   let query = '';
+  let debouncedQuery = '';
+  let searchTimer: any;
+
+  // Магия: обновляем фильтр только если ты перестал печатать на 300мс
+  $: {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      debouncedQuery = query;
+    }, 300); // 300мс задержка (глаз не заметит, а процессор скажет спасибо)
+  }
   let gene1Sel = '';
   let gene2Sel = '';
   $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join(''); // 'AB' | 'A' | ''
@@ -218,18 +232,30 @@
     ['E', 4],
     ['F', 5],
   ]);
+// --- ИСПРАВЛЕННАЯ СОРТИРОВКА ---
+  // Мы убрали сравнение по name. Теперь внутри одного гена
+  // мутанты будут идти в том порядке, в котором они пришли из базы (items).
+
   function geneSortTuple(it: any) {
     const code = normalizeGene(readGeneCode(it));
     const first = code?.[0] ?? '';
     const rank = first ? geneOrder.get(first) ?? 99 : 199;
-    return { rank, code, name: String(it?.name ?? '') };
+    return { rank, code }; // Имя больше не нужно
   }
-  function compareByGene(a: any, b: any) {
-    const ga = geneSortTuple(a);
-    const gb = geneSortTuple(b);
-    if (ga.rank !== gb.rank) return ga.rank - gb.rank;
-    if (ga.code !== gb.code) return ga.code.localeCompare(gb.code, 'ru');
-    return ga.name.localeCompare(gb.name, 'ru');
+
+  // СУПЕР-БЫСТРАЯ СОРТИРОВКА (Использует готовые _meta данные)
+  function compareByGeneFast(a: any, b: any) {
+    const ma = a._meta;
+    const mb = b._meta;
+
+    // 1. Ранг гена (A vs B)
+    if (ma.rank !== mb.rank) return ma.rank - mb.rank;
+
+    // 2. Код гена (A vs AB)
+    if (ma.code !== mb.code) return ma.code.localeCompare(mb.code, 'ru');
+
+    // 3. Сохраняем порядок (как в базе)
+    return 0;
   }
   const isSkin = (it:any) =>
     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
@@ -242,6 +268,40 @@
     }
     return `mut:${it?.id ?? index}`;
   };
+
+   // --- ОПТИМИЗАЦИЯ: ПРЕДВАРИТЕЛЬНЫЙ РАСЧЕТ ---
+  function enrichItem(it: any) {
+    // 1. Готовим имя для быстрого поиска (сразу в нижнем регистре)
+    const searchName = String(it?.name ?? '').toLowerCase();
+
+    // 2. Готовим данные для сортировки (Ген, Ранг, Код)
+    const rawCode = readGeneCode(it);
+    const code = normalizeGene(rawCode);
+    const first = code?.[0] ?? '';
+    const rank = first ? geneOrder.get(first) ?? 99 : 199;
+
+    // 3. Готовим ключи для фильтров
+    const typeKey = String(it?.type ?? '');
+    const starKey = starOf(it);
+
+    // Собираем бинго ключи в Set для мгновенной проверки (O(1))
+    const bingoKeys = new Set(collectBingoKeys(it).map(String));
+
+    // Возвращаем новый объект с кешированными данными в поле _meta
+    return {
+      ...it,
+      _meta: {
+        searchName,
+        code,
+        rank,
+        len: code.length,
+        typeKey,
+        starKey,
+        bingoKeys,
+        id: String(it?.id ?? '')
+      }
+    };
+  }
 
   // ==========
   // WORKER и быстрый пересчёт (сокращено для контекста ответа)
@@ -258,49 +318,83 @@
   // (инициализация воркера/сообщения пропущу — оставляю как в твоём файле)
   // ...
 
-  // ===========
-  // ФИЛЬТРАЦИЯ
-  // ===========
-  $: filteredMutants = useWorker
-    ? new Array(_workerTotal)
-    : memo(
-        JSON.stringify({q: query, t: typeSel, g: geneSel, b: bingoSel, star: starSelMutants, n: items?.length ?? 0}),
-        () => items
-          .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
-          .filter(it => !typeSel || String(it?.type ?? '') === typeSel)
-          .filter(it => {
-            if (!bingoSel) return true;
-            const keys = new Set(collectBingoKeys(it).map(String));
-            return keys.has(String(bingoSel));
-          })
-          .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
-          .filter(it => {
-            const k = starSelMutants;
-            return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
-          })
-          .slice()
-          .sort(compareByGene)
-      );
+   // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ (ОДИН ПРОХОД)
+  $: filteredMutants = (() => {
+    if (useWorker) return new Array(_workerTotal);
 
-  $: filteredSkins = memo(
-    JSON.stringify({q: query, gene: geneSel, star: starSelSkins, n: normalizedSkins?.length ?? 0}),
-    () => normalizedSkins
-      .filter(it => !query || String(it?.name ?? '').toLowerCase().includes(query.toLowerCase()))
-      .filter(it => !geneSel || normalizeGene(readGeneCode(it)) === geneSel)
-      .filter(it => {
-        const k = starSelSkins;
-        if (k === 'any') return true;
-        return k === 'normal' ? starOf(it) === 'normal' : starOf(it) === k;
-      })
-      .slice()
-      .sort(compareByGene)
-  );
+    // Подготовка переменных для поиска (чтобы не делать это внутри цикла)
+    const q = debouncedQuery ? debouncedQuery.toLowerCase() : null;
+    const sBingo = bingoSel ? String(bingoSel) : null;
+    const checkStars = starSelMutants !== 'normal'; // Если не 'normal', ищем конкретную звезду
+
+    // Бежим по массиву ОДИН раз
+    const res = preparedMutants.filter(it => {
+      const m = it._meta; // Быстрый доступ к кешу
+
+      // 1. Имя (Самое тяжелое - проверяем первым, если есть запрос)
+      if (q && !m.searchName.includes(q)) return false;
+
+      // 2. Ген
+      if (geneSel && m.code !== geneSel) return false;
+
+      // 3. Тип
+      if (typeSel && m.typeKey !== typeSel) return false;
+
+      // 4. Звезды
+      // Если выбрано 'normal' -> показываем только normal
+      // Если выбрано что-то другое -> показываем только это
+      if (checkStars) {
+        if (m.starKey !== starSelMutants) return false;
+      } else {
+        if (m.starKey !== 'normal') return false;
+      }
+
+      // 5. Бинго
+      if (sBingo && !m.bingoKeys.has(sBingo)) return false;
+
+      return true; // Если прошел все проверки
+    });
+
+    // Сортировка в конце (всегда быстрая, т.к. элементов мало)
+    return res.sort(compareByGeneFast);
+  })();
+
+ $: filteredSkins = (() => {
+    const q = debouncedQuery ? debouncedQuery.toLowerCase() : null;
+    const checkStars = starSelSkins !== 'any';
+    const targetStar = starSelSkins === 'normal' ? 'normal' : starSelSkins;
+
+    const res = preparedSkins.filter(it => {
+      const m = it._meta;
+
+      // 1. Имя
+      if (q && !m.searchName.includes(q)) return false;
+
+      // 2. Ген
+      if (geneSel && m.code !== geneSel) return false;
+
+      // 3. Звезды (логика для скинов чуть другая: есть 'any')
+      if (checkStars) {
+        if (m.starKey !== targetStar) return false;
+      }
+
+      return true;
+    });
+
+    return res.sort(compareByGeneFast);
+  })();
+
 
   // ===== Пагинация «Показать ещё» =====
   let pageSize = 60;
   let currentPage = 1;
-  $: resetKey = JSON.stringify({ mode, query, geneSel, typeSel, bingoSel, starSelMutants, lenM: items?.length ?? 0, lenS: normalizedSkins?.length ?? 0 });
-  $: if (resetKey) { currentPage = 1; }
+  $: {
+    // Мы просто "читаем" переменные, чтобы Svelte понял, что от них зависит этот блок
+    mode; debouncedQuery; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;
+
+    // И выполняем действие
+    currentPage = 1;
+  }
   $: endIndex = pageSize * currentPage;
   $: shownMutants = useWorker ? filteredMutantsWorkerSlice : filteredMutants.slice(0, endIndex);
   $: shownSkins = filteredSkins.slice(0, endIndex);
