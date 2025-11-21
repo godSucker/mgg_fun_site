@@ -1426,31 +1426,6 @@
       ]
     },
     {
-      "id": "Specimen_BB_07",
-      "name": "Некропаразит",
-      "genes": [
-        "BB"
-      ],
-      "base_stats": {
-        "lvl1": {
-          "hp": 4105,
-          "atk1": 485,
-          "atk2": 275
-        },
-        "lvl30": {
-          "hp": 16010,
-          "atk1": 2831,
-          "atk2": 1624
-        }
-      },
-      "star": "gold",
-      "skin": "spring_skin",
-      "image": [
-        "textures_by_skins/textures_by_skin/full-char/BB_07_spring.webp",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_spring.webp"
-      ]
-    },
-    {
       "id": "Specimen_BB_08",
       "name": "Чумная Ведьма",
       "genes": [
@@ -2745,7 +2720,10 @@
       },
       "star": "gold",
       "skin": "star_wars",
-      "image": []
+      "image": [
+      "textures_by_skins/textures_by_skin/full-char/CD_01_starwars.webp",
+      "textures_by_skin/semi-full/specimen_cd_01_starwars.webp"
+      ]
     },
     {
       "id": "Specimen_CD_03",
@@ -3692,31 +3670,6 @@
       },
       "star": "gold",
       "skin": "anniversary",
-      "image": [
-        "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.webp",
-        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.webp"
-      ]
-    },
-    {
-      "id": "Specimen_DD_05",
-      "name": "Хищнозавр",
-      "genes": [
-        "DD"
-      ],
-      "base_stats": {
-        "lvl1": {
-          "hp": 1003,
-          "atk1": 283,
-          "atk2": 164
-        },
-        "lvl30": {
-          "hp": 3912,
-          "atk1": 2512,
-          "atk2": 1256
-        }
-      },
-      "star": "none",
-      "skin": "spring_skin",
       "image": [
         "textures_by_skins/textures_by_skin/full-char/DD_05_cybernetics.webp",
         "textures_by_skins/textures_by_skin/semi-full/specimen_dd_05_cybernetics.webp"
