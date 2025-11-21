@@ -7,7 +7,7 @@
       role: "Основатель & Lead Dev",
       desc: "Архитектор кода, повелитель багов и создатель этой вселенной. По поводу найденных багов, предложений и пожеланий обращаться в телеграмм",
       color: "platinum", // gold, platinum, purple, blue, green, red
-      avatar: "public/avatars/my_avatar.jpg", // Ссылка на фото: '/avatars/godsucker.jpg' или оставь пустым
+      avatar: "avatars/my_avatar.jpg", // Ссылка на фото: '/avatars/godsucker.jpg' или оставь пустым
       socials: [
         { name: "Telegram", url: "https://t.me/absolutely_poxuy" },
         { name: "GitHub", url: "https://github.com/godSucker" }
@@ -18,7 +18,7 @@
       role: "Side helper",
       desc: "Настоящий архивариус информации и генератор идей, помогал на каждой стадии разработки, так же занимается донатом в игры(MGG, Genshin etc)",
       color: "blue",
-      avatar: "public/avatars/jenya_avatar.jpg",
+      avatar: "avatars/jenya_avatar.jpg",
       socials: [
         { name: "Telegram", url: "https://t.me/Donut_Safe" },
         { name: "ВК", url: "https://vk.com/id187030288" }
@@ -39,7 +39,7 @@
       role: "Side helper",
       desc: "Невероятный мотиватор и просто хороший человек",
       color: "purple",
-      avatar: "public/avatars/mege_avatar.jpg",
+      avatar: "avatars/mege_avatar.jpg",
       socials: [
         { name: "Telegram", url: "https://t.me/meeggee" }
       ]
