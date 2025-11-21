@@ -27,4 +27,5 @@ dist/
 !/.env.example
 
 # Misc
+mutants_site/src/assets
 coverage/
