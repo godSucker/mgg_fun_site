@@ -25,7 +25,7 @@
 | **Dev Lead** | [**がらんの画眉丸**](https://t.me/absolutely_poxuy) |
 | **Data helper** | [**Евгений aka DonutSafe**](https://t.me/Donut_Safe) |
 | **Sim Helper** | [**imashio aka blindpain**](https://t.me/blindpain) |
-| **and special thanks to** [**meegee**](https://t.me/meeggee) |
+| **and special thanks to** |[**meegee**](https://t.me/meeggee) |
 
 <br>
 
