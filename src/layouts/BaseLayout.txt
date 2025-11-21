@@ -16,7 +16,7 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
   <!-- ЗАГОЛОВОК (я добавил текст, без него не работает!) -->
   <meta property="og:title" content="Archivist Library — Главная" />
 
-  <!-- Описание -->
+  !-- Описание -->
   <meta property="og:description" content="Возрождаем MGG" />
 
   <!-- Ссылка на сам сайт (очень важно для корректной работы) -->
