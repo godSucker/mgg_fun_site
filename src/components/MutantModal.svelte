@@ -9,6 +9,7 @@
     ABILITY_RU
   } from '@/lib/mutant-dicts';
   import normalData from '@/data/mutants/normal.json';
+  import { orbingMap } from '@/lib/orbing-map';
 
   export let open = false;
   export let mutant: any = null;
@@ -341,6 +342,24 @@ $: displayBingo = (() => {
     mutant?.incubation_hours ??
     mutant?.hatch_time ??
     null;
+
+  // Orbing ID matching logic
+  const getOrbingImages = (m: any) => {
+    if (!m) return null;
+    const id = String(m.id || '');
+    // Try exact ID
+    if (orbingMap[id]) return orbingMap[id];
+    // Try Case-insensitive ID
+    const entry = Object.entries(orbingMap).find(([k]) => k.toLowerCase() === id.toLowerCase());
+    if (entry) return entry[1];
+    // Try baseId
+    const bId = baseId(id);
+    const entryBase = Object.entries(orbingMap).find(([k]) => k.toLowerCase() === bId.toLowerCase());
+    if (entryBase) return entryBase[1];
+    return null;
+  };
+
+  $: orbingImages = getOrbingImages(mutant);
   $: chanceVal = mutant?.chance ?? mutant?.chance_percent ?? null;
 
   // ===== a11y: focus trap =====
@@ -576,8 +595,35 @@ $: displayBingo = (() => {
 
       <!-- Spheres -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1">Сферовка</div>
-        <div class="text-sm text-white/70">Скоро будет добавлено…</div>
+        <div class="text-xs text-white/60 mb-2">Сферовка</div>
+        {#if orbingImages && orbingImages.rows}
+          <div class="flex flex-col items-center gap-3 py-2">
+            {#each orbingImages.rows as row}
+              <div class="flex items-center justify-center gap-3">
+                {#each row as orbFile}
+                  <div class="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 relative group">
+                    <img
+                      src={orbFile.startsWith('special/') ? '/orbs/special/orb_slot_spe.webp' : '/orbs/basic/orb_slot.webp'}
+                      alt=""
+                      class="absolute inset-0 w-full h-full opacity-40"
+                    />
+                    <img
+                      src={`/orbs/${orbFile}`}
+                      alt="Orb"
+                      class="relative z-10 w-full h-full drop-shadow-md transition-transform group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                {/each}
+              </div>
+            {/each}
+          </div>
+        {:else}
+          <div class="text-sm text-white/70 italic flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500/50 animate-pulse"></span>
+            Сферовки скоро появятся...
+          </div>
+        {/if}
       </div>
 
       <!-- Close -->

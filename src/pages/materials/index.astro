@@ -7,6 +7,8 @@ import orbsDataRaw from '../../data/materials/orbs.json';
 import buildingsData from '../../data/materials/buildings.json';
 import zonesData from '../../data/materials/zones.json';
 import sourcesMap from '../../data/materials/sources.json';
+import bingosData from '../../data/bingos.json';
+import { bingoLabel } from '../../lib/mutant-dicts';
 import { getItemTexture } from '../../lib/craft-simulator';
 
 // ---------- нормализация материалов/бустеров/сфер ----------
@@ -31,6 +33,55 @@ const normRow = (item) => {
 
   return { id, name, description, percent, value, rarity, texture };
 };
+
+function formatBingoTitle(title, id) {
+  const labelById = bingoLabel(id);
+  if (labelById && labelById !== id) return labelById;
+  const labelByTitle = bingoLabel(title);
+  if (labelByTitle && labelByTitle !== title) return labelByTitle;
+  return title
+    .replace(/^--------/, '')
+    .replace(/_/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
+// Map internal bingo reward names to building IDs
+const REWARD_TO_BUILDING = {
+  'Building_HC_1': 'Building_Forge',
+  'Building_HC_2': 'Building_Gold_Smelter'
+};
+
+const buildingSources = {};
+
+(bingosData || []).forEach(bingo => {
+  if (!bingo.rewards) return;
+  bingo.rewards.forEach(reward => {
+    const targetId = REWARD_TO_BUILDING[reward.name];
+    if (targetId) {
+      if (!buildingSources[targetId]) buildingSources[targetId] = [];
+      
+      const title = formatBingoTitle(bingo.title, bingo.id);
+      
+      // Avoid duplicates
+      if (!buildingSources[targetId].some(s => s.link === `/bingo?id=${bingo.id}`)) {
+        buildingSources[targetId].push({
+          type: 'bingo',
+          where: title,
+          link: `/bingo?id=${bingo.id}`
+        });
+      }
+    }
+  });
+});
+
+// Merge into sourcesMap
+Object.keys(buildingSources).forEach(id => {
+  const existing = (sourcesMap[id] || []).filter(s => s.type !== 'bingo');
+  sourcesMap[id] = [...existing, ...buildingSources[id]];
+});
 
 const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
   const id = String(o?.id || '').toLowerCase();

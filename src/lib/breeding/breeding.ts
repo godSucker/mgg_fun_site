@@ -239,7 +239,7 @@ export function findParentsFor(
               if (!areGenesCompatible(tGenes, getGeneStr(p1.genes), getGeneStr(p2.genes))) continue;
 
               results.push({ p1, p2, isSecret: false });
-              if (results.length >= 20) break outer;
+              if (results.length >= 10) break outer;
           }
       }
   }

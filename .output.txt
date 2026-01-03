@@ -1,0 +1,217 @@
+--- Analyzing Bingo Sizes ---
+ID: Starter, Title: morphology_starter
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: 2025_skins, Title: --------morphology_2025_skins
+Mutants: 25, Layout: 5 cols x 5 rows
+Rewards: 11 (Expected for lines: 11)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+!!! PROBLEM !!!
+---
+ID: 2025_mutants, Title: -morphology_2025_mutants
+Mutants: 25, Layout: 5 cols x 5 rows
+Rewards: 11 (Expected for lines: 11)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+!!! PROBLEM !!!
+---
+ID: 2025_events, Title: ---morphology_2025_events
+Mutants: 25, Layout: 5 cols x 5 rows
+Rewards: 11 (Expected for lines: 11)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+!!! PROBLEM !!!
+---
+ID: anniversary_25, Title: ---morphology_anniversary25
+Mutants: 16, Layout: 4 cols x 4 rows
+Rewards: 9 (Expected for lines: 9)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: cross_mutation, Title: -morphology_season_1
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_1, Title: morphology_season_2
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_2, Title: -----------morphology_season_3
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_3, Title: -----------morphology_season_4
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_4, Title: -----------morphology_season_5
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_5, Title: -----------morphology_season_6
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_6, Title: -----------morphology_season_7
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_7, Title: -----------morphology_season_8
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_8, Title: -----------morphology_season_9
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_9, Title: -----------morphology_season_10
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_10, Title: -----------morphology_season_11
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: research_11, Title: -----------morphology_season_12
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: reactor, Title: -----------morphology_reactor_1
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+!!! PROBLEM !!!
+---
+ID: legend, Title: -morphology_legendary
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: zodiac, Title: -morphology_zodiac
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: zodiac_silver, Title: -morphology_zodiac_silver
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: events, Title: -morphology_event_xmas2015
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: amazons, Title: -morphology_amazons
+Mutants: 16, Layout: 4 cols x 4 rows
+Rewards: 9 (Expected for lines: 9)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: bingo_bronze, Title: -morphology_season_1_bronze
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: bingo_silver, Title: -morphology_season_1_silver
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: bingo_gold, Title: -morphology_season_1_gold
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: bingo_plat, Title: -morphology_season_1_platinum
+Mutants: 36, Layout: 6 cols x 6 rows
+Rewards: 13 (Expected for lines: 13)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: starter_plat, Title: -morphology_starter_platinum
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: rumble, Title: -morphology_season_1_rumble
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: heroic, Title: -morphology_heroic
+Mutants: 16, Layout: 4 cols x 4 rows
+Rewards: 9 (Expected for lines: 9)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: event_2019, Title: -morphology_event_2019
+Mutants: 9, Layout: 3 cols x 3 rows
+Rewards: 7 (Expected for lines: 7)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: event_2020, Title: -morphology_event_2020
+Mutants: 12, Layout: 4 cols x 3 rows
+Rewards: 8 (Expected for lines: 8)
+Has Line Rewards: true
+Aspect Ratio (approx): 1.2597402597402596
+---
+ID: event_2021, Title: -morphology_event_2021
+Mutants: 16, Layout: 4 cols x 4 rows
+Rewards: 9 (Expected for lines: 9)
+Has Line Rewards: true
+Aspect Ratio (approx): 1
+---
+ID: event_2022, Title: morphology_event_2022
+Mutants: 32, Layout: 6 cols x 6 rows
+Rewards: 18 (Expected for lines: 13)
+Has Line Rewards: false
+Aspect Ratio (approx): 1
+>>> POTENTIAL CAUSE: Missing Line Rewards <<<
+!!! PROBLEM !!!
+---
+ID: event_2024, Title: morphology_event_2024
+Mutants: 16, Layout: 4 cols x 4 rows
+Rewards: 8 (Expected for lines: 9)
+Has Line Rewards: false
+Aspect Ratio (approx): 1
+---

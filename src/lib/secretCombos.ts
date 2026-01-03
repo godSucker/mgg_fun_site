@@ -21,6 +21,8 @@ export interface SecretCombo {
  * until you provide valid values.
  */
 export const secretCombos: SecretCombo[] = [
+  // Страхолюдочка (Secret Recipe)
+  { childName: "Страхолюдочка", parents: ["Зомби", "Робот"] },
   // Буши: два возможных рецепта
   { childName: "Буши", parents: ["Зомборг", "Ниндзябот"] },
   { childName: "Буши", parents: ["Прилипала", "Марсианский Воин"] },

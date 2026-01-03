@@ -1,0 +1,747 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import bingosData from '../data/bingos.json';
+import { getMutantTexturePath, getMutantTextureFallbacks, getRewardTexturePath, getRewardLabel } from '../lib/bingo-textures';
+import { bingoLabel } from '../lib/mutant-dicts';
+
+interface BingoMutant {
+  specimenId: string;
+  skin: string;
+}
+
+interface BingoReward {
+  name: string;
+  amount: number;
+  type: 'entity' | 'hardcurrency' | 'softcurrency';
+}
+
+interface Bingo {
+  title: string;
+  id: string;
+  mutants: BingoMutant[];
+  rewards: BingoReward[];
+}
+
+const bingos: Bingo[] = bingosData as Bingo[];
+
+function formatBingoTitle(title: string, id: string): string {
+  // Try to find translation by ID first, then by title
+  const labelById = bingoLabel(id);
+  if (labelById && labelById !== id) return labelById;
+
+  const labelByTitle = bingoLabel(title);
+  if (labelByTitle && labelByTitle !== title) return labelByTitle;
+
+  // Fallback formatting
+  return title
+    .replace(/^--------/, '')
+    .replace(/_/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
+function getBingoLayout(bingo: Bingo) {
+  const count = bingo.mutants.length;
+  // Heuristic for dimensions
+  let cols = Math.ceil(Math.sqrt(count));
+  // Prefer 4x3 for 12 (Starter)
+  if (count === 12) cols = 4;
+  
+  const rows = Math.ceil(count / cols);
+  
+  const expectedWithCompletion = rows + cols + 1;
+  const expectedNoCompletion = rows + cols;
+  
+  const hasCompletion = bingo.rewards.length === expectedWithCompletion;
+  const hasLineRewards = hasCompletion || bingo.rewards.length === expectedNoCompletion;
+
+  let rowRewards: BingoReward[] = [];
+  let colRewards: BingoReward[] = [];
+  let completionReward: BingoReward | null = null;
+  let otherRewards: BingoReward[] = [];
+
+  if (hasLineRewards) {
+    rowRewards = bingo.rewards.slice(0, rows);
+    colRewards = bingo.rewards.slice(rows, rows + cols);
+    if (hasCompletion) {
+      completionReward = bingo.rewards[bingo.rewards.length - 1];
+    }
+  } else {
+    otherRewards = bingo.rewards;
+  }
+  
+  return { rows, cols, hasLineRewards, rowRewards, colRewards, completionReward, otherRewards };
+}
+
+function getSubBingos(bingo: Bingo): Bingo[] {
+  // Special handling for Event 2022 (32 mutants, 18 rewards)
+  // It effectively consists of two 4x4 bingos (16 mutants, 9 rewards each)
+  if (bingo.mutants.length === 32 && bingo.rewards.length === 18) {
+    return [
+      {
+        ...bingo,
+        id: `${bingo.id}_part1`,
+        title: `${bingo.title} 1`,
+        mutants: bingo.mutants.slice(0, 16),
+        rewards: bingo.rewards.slice(0, 9)
+      },
+      {
+        ...bingo,
+        id: `${bingo.id}_part2`,
+        title: `${bingo.title} 2`,
+        mutants: bingo.mutants.slice(16, 32),
+        rewards: bingo.rewards.slice(9, 18)
+      }
+    ];
+  }
+  return [bingo];
+}
+---
+
+<BaseLayout title="Бинго — Archivist-Library">
+  <section class="intro">
+    <div class="intro-header">
+      <img src="/etc/icon_bingo.webp" alt="Бинго" class="bingo-icon" />
+      <div>
+        <h1>Бинго</h1>
+        <p>Все доступные бинго с мутантами и наградами</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bingo-tabs">
+    {bingos.map((bingo, idx) => (
+      <button
+        class="bingo-tab"
+        type="button"
+        data-bingo-index={idx}
+        data-bingo-id={bingo.id}
+        aria-selected={idx === 0}
+      >
+        {formatBingoTitle(bingo.title, bingo.id)}
+      </button>
+    ))}
+  </div>
+
+  <div class="bingo-content">
+    {bingos.map((originalBingo, bingoIdx) => {
+      const subBingos = getSubBingos(originalBingo);
+
+      return (
+        <div
+          class="bingo-panel"
+          data-bingo-index={bingoIdx}
+          hidden={bingoIdx !== 0}
+        >
+          <div class="bingo-card">
+            <div class="bingo-card-header">
+              <div class="bingo-card-title-wrapper">
+                <h2 class="bingo-card-title">{formatBingoTitle(originalBingo.title, originalBingo.id)}</h2>
+                <span class="bingo-card-id">#{originalBingo.id}</span>
+              </div>
+            </div>
+
+            <div class="bingo-sub-grids">
+              {subBingos.map((bingo, subIdx) => {
+                const layout = getBingoLayout(bingo);
+                const { rows, cols, hasLineRewards, rowRewards, colRewards, completionReward, otherRewards } = layout;
+                
+                const rewardFr = hasLineRewards ? 0.85 : 0;
+                const ratio = (cols + rewardFr) / (rows + rewardFr);
+                
+                // Dynamic grid templates using minmax(0, ...) to prevent blowout
+                const gridColsTemplate = `repeat(${cols}, minmax(0, 1fr))${hasLineRewards ? ' minmax(0, 0.85fr)' : ''}`;
+                const gridRowsTemplate = `repeat(${rows}, minmax(0, 1fr))${hasLineRewards ? ' minmax(0, 0.85fr)' : ''}`;
+                
+                // Use tighter gap for denser grids (5x5 or larger)
+                const gapSize = cols >= 5 ? '0.25rem' : '0.5rem';
+
+                return (
+                  <div class={`bingo-sub-grid-wrapper ${subBingos.length > 1 ? "has-separator" : ""}`}>
+                    {subBingos.length > 1 && (
+                       <h3 class="sub-bingo-title">
+                         Часть {subIdx + 1}
+                       </h3>
+                    )}
+
+                    <div class="bingo-board-container">
+                      <div 
+                        class="bingo-board" 
+                        style={`
+                          --cols: ${cols}; 
+                          --rows: ${rows}; 
+                          --ratio: ${ratio};
+                          --gap: ${gapSize};
+                          grid-template-columns: ${gridColsTemplate};
+                          grid-template-rows: ${gridRowsTemplate};
+                        `}
+                        data-has-line-rewards={hasLineRewards}
+                      >
+                        {/* Mutants */}
+                        {bingo.mutants.map((mutant, idx) => {
+                          const texturePath = getMutantTexturePath(mutant.specimenId, mutant.skin);
+                          const fallbacks = getMutantTextureFallbacks(mutant.specimenId, mutant.skin);
+                          const hasSkin = mutant.skin && mutant.skin !== '_any' && mutant.skin.trim() !== '';
+                          const row = Math.floor(idx / cols);
+                          const col = idx % cols;
+
+                          return (
+                            <div
+                              class="bingo-cell mutant-cell"
+                              style={`grid-column: ${col + 1}; grid-row: ${row + 1};`}
+                              data-index={idx}
+                            >
+                              <div class="cell-inner">
+                                <div class="cell-glow"></div>
+                                <img
+                                  src={texturePath}
+                                  alt={mutant.specimenId}
+                                  class="cell-mutant-img"
+                                  data-fallbacks={fallbacks.join(',')}
+                                  loading="lazy"
+                                />
+                                {hasSkin && (
+                                  <div class="cell-skin-badge" title={mutant.skin}>
+                                    <span class="skin-icon">✦</span>
+                                  </div>
+                                )}
+                                <div class="cell-checkmark">✓</div>
+                              </div>
+                              <div class="cell-number">{idx + 1}</div>
+                            </div>
+                          );
+                        })}
+
+                        {/* Rewards */}
+                        {hasLineRewards && (
+                          <>
+                            {/* Row Rewards */}
+                            {rowRewards.map((reward, r) => (
+                              <div 
+                                class="bingo-cell reward-cell row-reward"
+                                style={`grid-column: ${cols + 1}; grid-row: ${r + 1};`}
+                                title={`Награда за ряд ${r + 1}: ${getRewardLabel(reward)}`}
+                              >
+                                <div class="reward-icon-wrapper small">
+                                   <img src={getRewardTexturePath(reward)} alt="" class="reward-img" loading="lazy" />
+                                   <span class="reward-amount">x{reward.amount}</span>
+                                </div>
+                              </div>
+                            ))}
+
+                            {/* Col Rewards */}
+                            {colRewards.map((reward, c) => (
+                              <div 
+                                class="bingo-cell reward-cell col-reward"
+                                style={`grid-column: ${c + 1}; grid-row: ${rows + 1};`}
+                                title={`Награда за столбец ${c + 1}: ${getRewardLabel(reward)}`}
+                              >
+                                <div class="reward-icon-wrapper small">
+                                   <img src={getRewardTexturePath(reward)} alt="" class="reward-img" loading="lazy" />
+                                   <span class="reward-amount">x{reward.amount}</span>
+                                </div>
+                              </div>
+                            ))}
+
+                            {/* Completion Reward */}
+                            {completionReward && (
+                              <div 
+                                class="bingo-cell reward-cell completion-reward"
+                                style={`grid-column: ${cols + 1}; grid-row: ${rows + 1};`}
+                                title={`Награда за полное бинго: ${getRewardLabel(completionReward)}`}
+                              >
+                                <div class="reward-icon-wrapper large">
+                                   <img src={getRewardTexturePath(completionReward)} alt="" class="reward-img" loading="lazy" />
+                                   <span class="reward-amount main">x{completionReward.amount}</span>
+                                </div>
+                                <div class="completion-star">★</div>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    
+                    {/* Fallback for other rewards or if no line structure matches */}
+                    {(!hasLineRewards || (otherRewards && otherRewards.length > 0)) && (
+                       <div class="rewards-fallback">
+                         <h3>Награды</h3>
+                         <div class="rewards-grid">
+                           {(hasLineRewards ? otherRewards : bingo.rewards).map((reward, idx) => (
+                              <div class="reward-card">
+                                 <img src={getRewardTexturePath(reward)} alt="" class="reward-img" />
+                                 <span>{getRewardLabel(reward)}</span>
+                              </div>
+                           ))}
+                         </div>
+                       </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.bingo-tab');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        const btn = e.currentTarget;
+        const idx = btn.dataset.bingoIndex;
+        
+        // Toggle panels
+        document.querySelectorAll('.bingo-panel').forEach(p => p.hidden = true);
+        const panel = document.querySelector(`.bingo-panel[data-bingo-index="${idx}"]`);
+        if (panel) panel.hidden = false;
+        
+        // Update aria
+        tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+        
+        // Scroll logic: Center the selected tab to show context (prev/next tabs)
+        // This satisfies "scroll forward by one tab" by revealing the next hidden tab
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    });
+
+    // Check for ID param and open tab
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetId = urlParams.get('id');
+    if (targetId) {
+      const targetTab = document.querySelector(`.bingo-tab[data-bingo-id="${targetId}"]`);
+      if (targetTab) {
+        targetTab.click();
+      }
+    }
+  });
+</script>
+
+<style>
+  .intro {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(96, 165, 250, 0.25);
+  }
+
+  .intro-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .bingo-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 16px rgba(96, 165, 250, 0.4));
+  }
+
+  .intro h1 {
+    margin: 0 0 0.1rem;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    color: #e2e8f0;
+    font-weight: 800;
+    text-shadow: 0 3px 10px rgba(96, 165, 250, 0.4);
+  }
+
+  .intro p {
+    margin: 0;
+    color: #a0aec0;
+    font-size: 0.9rem;
+  }
+
+  .bingo-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid rgba(96, 165, 250, 0.25);
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #60a5fa rgba(30, 58, 138, 0.2);
+  }
+  
+  .bingo-tabs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .bingo-tabs::-webkit-scrollbar-track {
+    background: rgba(30, 58, 138, 0.2);
+    border-radius: 3px;
+  }
+
+  .bingo-tabs::-webkit-scrollbar-thumb {
+    background-color: #60a5fa;
+    border-radius: 3px;
+  }
+
+  .bingo-tab {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    border-radius: 8px 8px 0 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    box-shadow: none;
+  }
+
+  .bingo-tab:hover {
+    color: #e2e8f0;
+    background: rgba(30, 58, 138, 0.2);
+    transform: none;
+  }
+
+  .bingo-tab[aria-selected="true"] {
+    background: rgba(30, 58, 138, 0.4);
+    color: #60a5fa;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  .bingo-tab[aria-selected="true"]::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #60a5fa;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -2px 10px rgba(96, 165, 250, 0.5);
+  }
+
+  .bingo-content {
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  .bingo-panel {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .bingo-card {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(96, 165, 250, 0.1);
+    padding: 0.75rem;
+  }
+
+  .bingo-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bingo-card-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+  
+  .bingo-card-id {
+    font-size: 0.8rem;
+    background: rgba(96, 165, 250, 0.1);
+    color: #60a5fa;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    margin-left: 0.75rem;
+    vertical-align: middle;
+  }
+
+  .bingo-board-container {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  
+  .bingo-board-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bingo-board {
+    display: grid;
+    /* Grid templates are set via inline styles to handle dynamic rewards track */
+    gap: var(--gap, 0.5rem);
+    
+    /* Calculate max-width based on max-height to preserve aspect ratio without squashing */
+    /* Formula: MaxH * AspectRatio */
+    /* Using 100vh - 290px to provide a safe buffer */
+    width: 100%;
+    max-width: calc((100vh - 290px) * var(--ratio));
+    
+    /* Aspect ratio drives the height */
+    aspect-ratio: var(--ratio);
+    box-sizing: border-box;
+    
+    margin: 0 auto;
+  }
+
+  .bingo-cell {
+    position: relative;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    transition: all 0.2s;
+  }
+
+  .mutant-cell:hover {
+    transform: scale(1.05);
+    border-color: rgba(96, 165, 250, 0.6);
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.2);
+    z-index: 10;
+  }
+
+  .cell-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cell-mutant-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
+  }
+
+  .cell-skin-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #fbbf24;
+    font-size: 1rem;
+    text-shadow: 0 0 5px rgba(251, 191, 36, 0.5);
+  }
+
+  .cell-checkmark {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    display: none; /* Logic to show/hide to be added if tracking implemented */
+  }
+
+  .cell-number {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: monospace;
+  }
+
+  /* Reward Cells */
+  .reward-cell {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+  
+  .reward-cell:hover {
+    background: rgba(16, 185, 129, 0.2);
+  }
+
+  .reward-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .reward-img {
+    width: 70%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 48px;
+    object-fit: contain;
+  }
+
+  .reward-amount {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6ee7b7;
+  }
+
+  .completion-reward {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(180, 83, 9, 0.2));
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+  }
+  
+  .completion-reward:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+    z-index: 5;
+  }
+  
+  .completion-reward .reward-img {
+    width: 70%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 64px;
+  }
+  
+  .completion-star {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: #fbbf24;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.5));
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Fallback */
+  .rewards-fallback {
+     margin-top: 2rem;
+     padding-top: 2rem;
+     border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .rewards-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .reward-card {
+    background: rgba(255,255,255,0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .bingo-sub-grid-wrapper.has-separator {
+    margin-bottom: 2rem;
+  }
+
+  .sub-bingo-title {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    .intro {
+      margin-bottom: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+    
+    .intro-header {
+      gap: 0.5rem;
+    }
+    
+    .bingo-icon {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .intro h1 {
+      font-size: 1.25rem;
+      margin-bottom: 0;
+    }
+    
+    .intro p {
+      font-size: 0.8rem;
+    }
+    
+    .bingo-tab {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+    }
+    
+    .bingo-card {
+      padding: 0.5rem;
+      border-radius: 12px;
+    }
+    
+    .bingo-card-title {
+      font-size: 1.1rem;
+    }
+    
+    .bingo-card-id {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      margin-left: 0.5rem;
+    }
+
+    /* Tighter grid on mobile to maximize cell size */
+    .bingo-board {
+      gap: 0.25rem !important;
+      max-width: calc((100dvh - 220px) * var(--ratio));
+    }
+    
+    /* Even tighter for dense grids on mobile */
+    .bingo-board[style*="--cols: 5"],
+    .bingo-board[style*="--cols: 6"] {
+      gap: 0.15rem !important;
+    }
+    
+    .bingo-cell {
+      border-radius: 6px;
+    }
+    
+    .cell-inner {
+      padding: 0.1rem;
+    }
+    
+    .cell-number {
+      font-size: 0.6rem;
+      bottom: 1px;
+      right: 3px;
+    }
+    
+    .reward-amount {
+      font-size: 0.6rem;
+    }
+    
+    .reward-amount.main {
+      font-size: 0.8rem;
+    }
+    
+    .skin-icon {
+      font-size: 0.6rem;
+    }
+  }
+</style>

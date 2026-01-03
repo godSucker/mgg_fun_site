@@ -76,7 +76,9 @@
   const totalBasicOdds = gacha.basic_elements.reduce((sum, item) => sum + item.odds, 0);
 
   const formatPercent = (item: BasicReward) => {
-    const total = completed && completionReward ? totalBasicOdds + completionReward.odds : totalBasicOdds;
+    // Если награда получена (completionGranted), она добавляется в пул.
+    // Если коллекция просто завершена (completed), но награда еще не добавлена в пул ролла - считаем по базе.
+    const total = (completionGranted && completionReward) ? totalBasicOdds + completionReward.odds : totalBasicOdds;
     if (!total) return '—';
     return `${((item.odds / total) * 100).toFixed(2)}%`;
   };
@@ -112,13 +114,12 @@
 
   function rollToken(): BasicReward {
     const options: BasicReward[] = [...gacha.basic_elements];
-    const weights: number[] = options.map((item) => item.odds);
 
     if (completionGranted && completionReward) {
       options.push(completionReward);
-      weights.push(completionReward.odds);
     }
 
+    const weights: number[] = options.map((item) => item.odds);
     const totalWeight = weights.reduce((sum, value) => sum + value, 0);
     if (!totalWeight) {
       return options[0];

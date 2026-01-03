@@ -74,6 +74,7 @@ export const TYPE_RU: Record<string, string> = {
   Special: 'Особые',
   ZODIAC: 'Зодиаки',
   GACHA: 'Реактор',
+  gacha: 'Реактор',
   COMMUNITY: 'Сообщество',
   default: 'Обычные/Начальные',
   HEROIC: 'Герои',
@@ -134,4 +135,3 @@ export const ABILITY_RU: Record<string, string> = {
   ability_weaken: "Проклятие",
   ability_weaken_plus: "Проклятие",
 };
-

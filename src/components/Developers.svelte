@@ -5,7 +5,7 @@
     {
       name: "がらんの画眉丸", // Твой ник
       role: "Основатель & Lead Dev",
-      desc: "Архитектор кода, повелитель багов и создатель этой вселенной. По поводу найденных багов, предложений и пожеланий обращаться в телеграмм",
+      desc: "Каждый баг на сайте лежит на его совести(ее нет). По поводу найденных багов, предложений и пожеланий обращаться в телеграмм",
       color: "platinum", // gold, platinum, purple, blue, green, red
       avatar: "avatars/my_avatar.jpg", // Ссылка на фото: '/avatars/godsucker.jpg' или оставь пустым
       socials: [
@@ -29,7 +29,7 @@
       role: "Sim helper",
       desc: "Помогал в разработке каждого симулятора на этом сайте и невероятный трудяга",
       color: "gold",
-      avatar: "",
+      avatar: "avatars/blind_avatar.jpg",
       socials: [
         { name: "Telegram", url: "https://t.me/blindpain" }
       ]

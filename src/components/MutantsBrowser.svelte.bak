@@ -5,11 +5,9 @@
   // Пропсы
   export let items: any[] = [];     // normal + bronze + silver + gold + platinum
   export let skins: any[] = [];     // skins.json -> specimens[]
-  export let bingos: any[] = [];    // bingos.json
   export let title = '';
   export let bingoIndex: string[] = [];
-  
-  // Мемо-кэш для фильтрации/сортировки
+  // Мемо-кэш для фильтрации/сортировки (не влияет на UI)
   const _cache = new Map<string, any[]>();
   function memo<T>(key: string, calc: () => T): T {
     if (_cache.has(key)) return _cache.get(key) as T;
@@ -20,7 +18,7 @@
 
 
   // =========================
-  // НОРМАЛИЗАЦИЯ ДАННЫХ
+  // НОРМАЛИЗАЦИЯ ДАННЫХ SKINS
   // =========================
   const baseId = (id: any) =>
     String(id ?? '')
@@ -34,22 +32,10 @@
       const key = baseId(item?.id);
       if (!key) continue;
       const id = String(item?.id ?? '').toLowerCase();
-      // Для базовой карты предпочитаем normal версию, но сохраняем все версии по id для быстрого доступа
       const isNormal = !/_+(?:bronze|silver|gold|platinum|plat)\b/.test(id);
       if (!map.has(key) || isNormal) {
         map.set(key, item);
       }
-    }
-    return map;
-  }
-
-  // Создаем карту всех мутантов по связке (baseId + star) для быстрой подмены версий
-  function buildStarMap(list: any[]) {
-    const map = new Map<string, any>();
-    for (const item of list) {
-        const bid = baseId(item.id);
-        const star = String(item.star ?? 'normal').toLowerCase();
-        map.set(`${bid}:${star}`, item);
     }
     return map;
   }
@@ -131,9 +117,6 @@
   let baseMap: BaseMap = new Map();
   $: baseMap = buildBaseMap(items ?? []);
 
-  let starMap: Map<string, any> = new Map();
-  $: starMap = buildStarMap(items ?? []);
-
   // Создаем кешированные версии списков один раз при изменении входных данных
   $: preparedMutants = (items || []).map(enrichItem);
   $: preparedSkins = (normalizedSkins || []).map(enrichItem);
@@ -143,23 +126,28 @@
   // ===========
   // КОНТРОЛЫ UI
   // ===========
+  // Режимы отображения
   type Mode = 'mutants' | 'skins';
   let mode: Mode = 'mutants';
 
+  // Поиск/фильтры МУТАНТОВ
   let query = '';
   let debouncedQuery = '';
   let searchTimer: any;
 
+  // Магия: обновляем фильтр только если ты перестал печатать на 300мс
   $: {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
       debouncedQuery = query;
-    }, 300);
+    }, 300); // 300мс задержка (глаз не заметит, а процессор скажет спасибо)
   }
   let gene1Sel = '';
   let gene2Sel = '';
-  $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join('');
+  $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join(''); // 'AB' | 'A' | ''
 
+  // Типы/бинго считаем по items (мустантам)
+  function uniq<T>(arr: T[]) { return Array.from(new Set(arr)); }
   $: typeOptions = uniq(items.map(it => it?.type).filter(Boolean))
       .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru'));
   let typeSel = '';
@@ -178,6 +166,7 @@
     ).sort((a,b) => String(bingoLabel?.(a) ?? a).localeCompare(String(bingoLabel?.(b) ?? b), 'ru'));
   let bingoSel = '';
 
+  // ЗВЁЗДЫ (раздельные состояния для разных режимов)
   type StarKey = 'normal'|'bronze'|'silver'|'gold'|'platinum';
   type SkinStarKey = 'any'|'normal'|'bronze'|'silver'|'gold'|'platinum';
 
@@ -197,9 +186,11 @@
     { key: 'platinum', icon: '/stars/star_platinum.webp', label: 'Платина' },
   ];
 
+  // По умолчанию: мутанты = только обычные; скины = любые
   let starSelMutants: StarKey = 'normal';
   let starSelSkins: SkinStarKey = 'any';
 
+  // Переход режимов: подстраиваем дефолты
   function switchTo(next: Mode) {
     mode = next;
     if (mode === 'mutants') {
@@ -209,6 +200,7 @@
     }
   }
 
+  // Гены — иконки (public/genes)
   const geneList = [
     { key: '',  label: 'Все',                   icon: '/genes/icon_gene_all.webp' },
     { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.webp' },
@@ -233,220 +225,194 @@
     return '';
   }
   const geneOrder = new Map<string, number>([
-    ['A', 0], ['B', 1], ['C', 2], ['D', 3], ['E', 4], ['F', 5],
+    ['A', 0],
+    ['B', 1],
+    ['C', 2],
+    ['D', 3],
+    ['E', 4],
+    ['F', 5],
   ]);
+// --- ИСПРАВЛЕННАЯ СОРТИРОВКА ---
+  // Мы убрали сравнение по name. Теперь внутри одного гена
+  // мутанты будут идти в том порядке, в котором они пришли из базы (items).
 
+  function geneSortTuple(it: any) {
+    const code = normalizeGene(readGeneCode(it));
+    const first = code?.[0] ?? '';
+    const rank = first ? geneOrder.get(first) ?? 99 : 199;
+    return { rank, code }; // Имя больше не нужно
+  }
+
+  // СУПЕР-БЫСТРАЯ СОРТИРОВКА (Использует готовые _meta данные)
   function compareByGeneFast(a: any, b: any) {
     const ma = a._meta;
     const mb = b._meta;
+
+    // 1. Ранг гена (A vs B)
     if (ma.rank !== mb.rank) return ma.rank - mb.rank;
+
+    // 2. Код гена (A vs AB)
     if (ma.code !== mb.code) return ma.code.localeCompare(mb.code, 'ru');
+
+    // 3. Сохраняем порядок (как в базе)
     return 0;
   }
-
-  function enrichItem(it: any) {
-    const searchName = String(it?.name ?? '').toLowerCase();
-    const rawCode = readGeneCode(it);
-    const code = normalizeGene(rawCode);
-    const first = code?.[0] ?? '';
-    const rank = first ? geneOrder.get(first) ?? 99 : 199;
-    
-    // Регистронезависимый тип
-    const typeKey = String(it?.type ?? '').toLowerCase();
-
-    const starKey = starOf(it);
-    const bingoKeys = new Set(collectBingoKeys(it).map(String));
-    return {
-      ...it,
-      _meta: { searchName, code, rank, typeKey, starKey, bingoKeys, id: String(it?.id ?? '') }
-    };
-  }
-
-  function uniq<T>(arr: T[]) { return Array.from(new Set(arr)); }
-
-  // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ
-  $: filteredMutants = (() => {
-    const q = debouncedQuery ? debouncedQuery.trim().toLowerCase() : null;
-    const sBingo = bingoSel ? String(bingoSel) : null;
-    const sType = typeSel ? String(typeSel).toLowerCase() : null;
-    
-    // Если есть поисковый запрос, игнорируем фильтры звезд/атрибутов
-    const isSearching = !!q;
-    const checkStars = !isSearching && starSelMutants !== 'normal';
-
-    const bingoData = sBingo ? bingos.find((b: any) => b.id === sBingo) : null;
-
-    const res = preparedMutants.map(it => {
-      let fSkin = null;
-      // Применяем принудительный скин из бинго, если он там указан
-      if (bingoData) {
-          const entry = bingoData.mutants.find((bm: any) => bm.specimenId.toLowerCase() === it._meta.id.toLowerCase());
-          if (entry && entry.skin && entry.skin !== '_any') {
-              fSkin = entry.skin;
-          }
-      }
-      
-      // Если выбран тип Реактор ИЛИ выбран бинго реактор, принудительно ставим gachaboss, если скин еще не задан
-      const isReactorSel = sBingo === 'reactor' || (sType === 'reactor' || sType === 'gacha');
-      if (!fSkin && isReactorSel) {
-          const hasReactorBingo = it._meta.bingoKeys.has('reactor');
-          const isGachaType = it._meta.typeKey === 'reactor' || it._meta.typeKey === 'gacha';
-          if (hasReactorBingo || isGachaType) {
-              fSkin = 'gachaboss';
-          }
-      }
-
-      return { ...it, forceSkin: fSkin };
-    }).filter(it => {
-      const m = it._meta;
-      if (q && !m.searchName.includes(q)) return false;
-      
-      // Если мы ищем по имени, пропускаем остальные фильтры
-      if (isSearching) return true;
-
-      if (geneSel && m.code !== geneSel) return false;
-      
-      // Поиск по типу (с учетом синонимов для Реактора)
-      if (sType) {
-          const isReactorType = (sType === 'reactor' || sType === 'gacha');
-          if (isReactorType) {
-              // Проверяем и type мутанта, и наличие ключа reactor в его бинго
-              const hasReactorBingo = m.bingoKeys.has('reactor');
-              const isGachaType = m.typeKey === 'reactor' || m.typeKey === 'gacha';
-              if (!hasReactorBingo && !isGachaType) return false;
-          } else {
-              if (m.typeKey !== sType) return false;
-          }
-      }
-
-      // Если выбрано Бинго, показываем мутанта, только если у него есть это Бинго.
-      // Фильтр звезд в этом случае игнорируем, так как Бинго само определяет версию.
-      if (sBingo) {
-        if (!m.bingoKeys.has(sBingo)) return false;
-      } else {
-        if (checkStars) {
-          if (m.starKey !== starSelMutants) return false;
-        } else {
-          if (m.starKey !== 'normal') return false;
-        }
-      }
-      return true;
-    });
-
-    // --- МАГИЯ ПОДМЕНЫ ВЕРСИЙ ДЛЯ БИНГО ---
-    // Если выбрано звездное Бинго, подменяем мутанта на его звездную версию из starMap
-    if (sBingo) {
-        let autoStar = '';
-        if (sBingo === 'reactor') autoStar = 'platinum';
-        else if (sBingo.includes('bronze') || sBingo.includes('research_1')) autoStar = 'bronze';
-        else if (sBingo.includes('silver') || sBingo.includes('research_2')) autoStar = 'silver';
-        else if (sBingo.includes('gold') || sBingo.includes('research_3')) autoStar = 'gold';
-        else if (sBingo.includes('platinum') || sBingo.includes('plat') || sBingo.includes('research_4')) autoStar = 'platinum';
-
-        if (autoStar) {
-            return res.map(it => {
-                const bid = baseId(it.id);
-                const version = starMap.get(`${bid}:${autoStar}`);
-                if (version) {
-                  const enriched = enrichItem(version);
-                  if (it.forceSkin) enriched.forceSkin = it.forceSkin;
-                  return enriched;
-                }
-                return it;
-            }).sort(compareByGeneFast);
-        }
-    }
-
-    return res.sort(compareByGeneFast);
-  })();
-
- $: filteredSkins = (() => {
-    const q = debouncedQuery ? debouncedQuery.trim().toLowerCase() : null;
-    const isSearching = !!q;
-    const checkStars = !isSearching && starSelSkins !== 'any';
-    const targetStar = starSelSkins === 'normal' ? 'normal' : starSelSkins;
-    const res = preparedSkins.filter(it => {
-      const m = it._meta;
-      if (q && !m.searchName.includes(q)) return false;
-      if (isSearching) return true;
-      if (geneSel && m.code !== geneSel) return false;
-      if (checkStars) { if (m.starKey !== targetStar) return false; }
-      return true;
-    });
-    return res.sort(compareByGeneFast);
-  })();
-
-  let pageSize = 60;
-  let currentPage = 1;
-  $: {
-    mode; debouncedQuery; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;
-    currentPage = 1;
-  }
-  $: endIndex = pageSize * currentPage;
-  $: shownMutants = filteredMutants.slice(0, endIndex);
-  $: shownSkins = filteredSkins.slice(0, endIndex);
-
-  function pickTexture(it:any): string {
-    const star = String(it?.star ?? 'normal').toLowerCase();
-    const bid = baseId(it.id);
-
-    // Если есть принудительный скин
-    if (it?.forceSkin) {
-        const skinTag = String(it.forceSkin).toLowerCase();
-        
-        // Ищем в глобальном списке скинов (skins.json)
-        if (skins && skins.length > 0) {
-           const skinEntry = skins.find((s: any) => {
-             const sId = baseId(s.id);
-             const sSkin = String(s.skin ?? '').toLowerCase();
-             return sId === bid && (sSkin.includes(skinTag) || skinTag.includes(sSkin));
-           });
-           
-           if (skinEntry && skinEntry.image) {
-             const skinImages = Array.isArray(skinEntry.image) ? skinEntry.image : [skinEntry.image];
-             // Предпочитаем full-char
-             const fullChar = skinImages.find((p: any) => String(p).includes('full-char'));
-             if (fullChar) return fullChar;
-             const semiFull = skinImages.find((p: any) => String(p).includes('semi-full'));
-             if (semiFull) return semiFull;
-             return skinImages[0];
-           }
-        }
-    }
-
-    const list = Array.isArray(it?.image) ? it.image : (it?.image ? [it.image] : []);
-
-    // Ищем текстуру под звезду
-    let pick = list.find((p: string) => {
-        const path = p.toLowerCase();
-        if (star === 'normal') return path.includes('normal') || (!path.includes('bronze') && !path.includes('silver') && !path.includes('gold') && !path.includes('platinum') && !path.includes('plat'));
-        if (star === 'platinum') return path.includes('platinum') || path.includes('plat');
-        return path.includes(star);
-    });
-
-    if (!pick) {
-        pick = list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'))
-               || list[0];
-    }
-    return pick ?? 'placeholder-mutant.webp';
-  }
-  function rarityType(item:any){
-    return (item?.star ?? 'normal').toLowerCase();
-  }
-  
   const isSkin = (it:any) =>
     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
-    
-  const keyOf = (it:any, index?: number) => {
+  const keyOf  = (it:any, index?: number) => {
     if (isSkin(it)) {
       if (typeof it?.__skinKey === 'string') return `skin:${it.__skinKey}`;
       const key = baseId(it?.id);
       const variant = it?.skin ?? index ?? '';
       return `skin:${key}:${variant}:${index ?? 0}`;
     }
-    return `mut:${it?.id ?? index}:${it?.star ?? 'n'}`;
+    return `mut:${it?.id ?? index}`;
   };
 
+   // --- ОПТИМИЗАЦИЯ: ПРЕДВАРИТЕЛЬНЫЙ РАСЧЕТ ---
+  function enrichItem(it: any) {
+    // 1. Готовим имя для быстрого поиска (сразу в нижнем регистре)
+    const searchName = String(it?.name ?? '').toLowerCase();
+
+    // 2. Готовим данные для сортировки (Ген, Ранг, Код)
+    const rawCode = readGeneCode(it);
+    const code = normalizeGene(rawCode);
+    const first = code?.[0] ?? '';
+    const rank = first ? geneOrder.get(first) ?? 99 : 199;
+
+    // 3. Готовим ключи для фильтров
+    const typeKey = String(it?.type ?? '');
+    const starKey = starOf(it);
+
+    // Собираем бинго ключи в Set для мгновенной проверки (O(1))
+    const bingoKeys = new Set(collectBingoKeys(it).map(String));
+
+    // Возвращаем новый объект с кешированными данными в поле _meta
+    return {
+      ...it,
+      _meta: {
+        searchName,
+        code,
+        rank,
+        len: code.length,
+        typeKey,
+        starKey,
+        bingoKeys,
+        id: String(it?.id ?? '')
+      }
+    };
+  }
+
+  // ==========
+  // WORKER и быстрый пересчёт (сокращено для контекста ответа)
+  // ==========
+  let useWorker = false; // твой текущий флаг
+  let worker: Worker | null = null;
+  let computeVersion = 0;
+  let inFlight = false;
+  let queued = false;
+
+  let _workerTotal = 0;
+  let filteredMutantsWorkerSlice: any[] = [];
+
+  // (инициализация воркера/сообщения пропущу — оставляю как в твоём файле)
+  // ...
+
+   // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ (ОДИН ПРОХОД)
+  $: filteredMutants = (() => {
+    if (useWorker) return new Array(_workerTotal);
+
+    // Подготовка переменных для поиска (чтобы не делать это внутри цикла)
+    const q = debouncedQuery ? debouncedQuery.toLowerCase() : null;
+    const sBingo = bingoSel ? String(bingoSel) : null;
+    const checkStars = starSelMutants !== 'normal'; // Если не 'normal', ищем конкретную звезду
+
+    // Бежим по массиву ОДИН раз
+    const res = preparedMutants.filter(it => {
+      const m = it._meta; // Быстрый доступ к кешу
+
+      // 1. Имя (Самое тяжелое - проверяем первым, если есть запрос)
+      if (q && !m.searchName.includes(q)) return false;
+
+      // 2. Ген
+      if (geneSel && m.code !== geneSel) return false;
+
+      // 3. Тип
+      if (typeSel && m.typeKey !== typeSel) return false;
+
+      // 4. Звезды
+      // Если выбрано 'normal' -> показываем только normal
+      // Если выбрано что-то другое -> показываем только это
+      if (checkStars) {
+        if (m.starKey !== starSelMutants) return false;
+      } else {
+        if (m.starKey !== 'normal') return false;
+      }
+
+      // 5. Бинго
+      if (sBingo && !m.bingoKeys.has(sBingo)) return false;
+
+      return true; // Если прошел все проверки
+    });
+
+    // Сортировка в конце (всегда быстрая, т.к. элементов мало)
+    return res.sort(compareByGeneFast);
+  })();
+
+ $: filteredSkins = (() => {
+    const q = debouncedQuery ? debouncedQuery.toLowerCase() : null;
+    const checkStars = starSelSkins !== 'any';
+    const targetStar = starSelSkins === 'normal' ? 'normal' : starSelSkins;
+
+    const res = preparedSkins.filter(it => {
+      const m = it._meta;
+
+      // 1. Имя
+      if (q && !m.searchName.includes(q)) return false;
+
+      // 2. Ген
+      if (geneSel && m.code !== geneSel) return false;
+
+      // 3. Звезды (логика для скинов чуть другая: есть 'any')
+      if (checkStars) {
+        if (m.starKey !== targetStar) return false;
+      }
+
+      return true;
+    });
+
+    return res.sort(compareByGeneFast);
+  })();
+
+
+  // ===== Пагинация «Показать ещё» =====
+  let pageSize = 60;
+  let currentPage = 1;
+  $: {
+    // Мы просто "читаем" переменные, чтобы Svelte понял, что от них зависит этот блок
+    mode; debouncedQuery; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;
+
+    // И выполняем действие
+    currentPage = 1;
+  }
+  $: endIndex = pageSize * currentPage;
+  $: shownMutants = useWorker ? filteredMutantsWorkerSlice : filteredMutants.slice(0, endIndex);
+  $: shownSkins = filteredSkins.slice(0, endIndex);
+
+  // =========
+  // ПРОЧЕЕ
+  // =========
+  function pickTexture(it:any): string {
+    const list = Array.isArray(it?.image) ? it.image : (it?.image ? [it.image] : []);
+    const pick =
+      list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'))
+      || list[0];
+    return pick ?? 'placeholder-mutant.webp';
+  }
+  function rarityType(item:any){
+    const s = (item?.star ?? 'normal').toLowerCase();
+    return ['bronze','silver','gold','platinum'].includes(s) ? s : 'normal';
+  }
   let openItem:any = null;
   const openModal  = (it:any) => { openItem = it; };
   const closeModal = () => { openItem = null; };
@@ -588,7 +554,7 @@
       {#each shownMutants as it, i (keyOf(it, i))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>
@@ -599,7 +565,7 @@
       {#each shownSkins as it, i (keyOf(it, i))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" fetchpriority={i < 12 ? 'high' : 'low'} width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>

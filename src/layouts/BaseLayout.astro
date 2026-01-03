@@ -47,6 +47,33 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         font-style: normal;
         background-color: #0d1117;
         color: #c9d1d9;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/main_page.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: -1;
+        opacity: 0.5;
+        filter: saturate(1.4) brightness(0.7) contrast(1.1);
+      }
+
+      @media (max-width: 767px) {
+        body::before {
+          background-size: contain;
+          background-position: top center;
+          background-repeat: repeat-y;
+          opacity: 0.35;
+        }
       }
       
       /* Header styles */
@@ -55,9 +82,12 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         align-items: center;
         justify-content: space-between;
         padding: 0.75rem 1rem;
-        background-color: #161b22;
-        border-bottom: 1px solid #30363d;
-        position: relative;
+        background-color: rgba(22, 27, 34, 0.8);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+        position: sticky;
+        top: -1px; /* Lift up by 1px to close the gap */
+        z-index: 100;
       }
       
       header .logo a {
@@ -110,12 +140,99 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         text-decoration: none;
         font-size: 0.9rem;
         white-space: nowrap;
-        transition: color 0.2s;
+        transition: all 0.2s;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
       }
       
       header nav a:hover {
-        text-decoration: underline;
+        background-color: rgba(88, 166, 255, 0.1);
         color: #79c0ff;
+      }
+
+      /* Dropdown styles */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-trigger {
+        color: #58a6ff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        transition: all 0.2s;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-weight: 700;
+      }
+
+      .dropdown:hover .dropdown-trigger {
+        background-color: rgba(88, 166, 255, 0.1);
+        color: #79c0ff;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background-color: rgba(22, 27, 34, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        min-width: 200px;
+        padding: 0.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 100;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(5px);
+      }
+
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        color: #c9d1d9;
+        font-size: 0.85rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+
+      .dropdown-menu a:hover {
+        background: linear-gradient(90deg, rgba(88, 166, 255, 0.15) 0%, transparent 100%);
+        color: #58a6ff;
+        text-decoration: none;
+        transform: translateX(5px);
+      }
+
+      .dropdown-menu a i {
+        margin-right: 8px;
+        font-size: 1.1rem;
+      }
+
+      .dropdown-trigger::after {
+        content: '▾';
+        font-size: 0.8rem;
+        transition: transform 0.2s;
+      }
+
+      .dropdown:hover .dropdown-trigger::after {
+        transform: rotate(180deg);
       }
       
       /* Mobile navigation */
@@ -215,10 +332,11 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       
       /* Footer */
       footer {
-        margin-top: 3rem;
-        padding: 1rem;
-        background-color: #161b22;
-        border-top: 1px solid #30363d;
+        margin-top: 8rem; /* Increased margin to move it down */
+        padding: 2rem 1rem;
+        background-color: rgba(22, 27, 34, 0.8);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(48, 54, 61, 0.5);
         text-align: center;
         color: #7d8590;
         font-size: 0.8rem;
@@ -291,14 +409,25 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         <a href="/">Archivist-Library</a>
       </div>
       <nav>
-    <a href="/mutants">Мутанты</a>
-    <a href="/simulators/stats">Калькулятор</a>
-    <a href="/materials">Материалы</a>
-    <a href="/simulators">Симуляторы</a>
-    <a href="/simulators/breeding">Скрещивания</a>
-    <a href="/credits">Разработчики</a>
-    <a href="/top-evo">Топ по эво</a>
-    </nav>
+        <a href="/mutants">Мутанты</a>
+        <div class="dropdown">
+          <button class="dropdown-trigger">Калькуляторы</button>
+          <div class="dropdown-menu">
+            <a href="/evolution/evotech-calculator">
+              <span>🧬 Калькулятор эво</span>
+            </a>
+            <a href="/simulators/stats">
+              <span>📊 Калькулятор статов</span>
+            </a>
+          </div>
+        </div>
+        <a href="/materials">Материалы</a>
+        <a href="/simulators">Симуляторы</a>
+        <a href="/simulators/breeding">Скрещивания</a>
+        <a href="/bingo">Бинго</a>
+        <a href="/credits">Разработчики</a>
+        <a href="/top-evo">Топ по эво</a>
+      </nav>
       <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
         <span></span>
         <span></span>
@@ -320,6 +449,7 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       <a href="/materials">Материалы</a>
       <a href="/simulators">Симуляторы</a>
       <a href="/simulators/breeding">Скрещивания</a>
+      <a href="/bingo">Бинго</a>
       <a href="/credits">Разработчики</a>
       <a href="/top-evo">Топ по эво</a>
     </nav>

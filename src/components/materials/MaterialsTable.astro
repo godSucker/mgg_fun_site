@@ -3,6 +3,7 @@ export interface SourceInfo {
   type: string;
   where?: string;
   note?: string;
+  link?: string;
 }
 
 export interface MaterialRow {
@@ -105,7 +106,13 @@ const toChip = (s: SourceInfo) => {
             <div class="td srcs" role="cell">
               {srcs.length > 0 ? (
                 <div class="chips">
-                  {srcs.map((s) => <span class="chip">{toChip(s)}</span>)}
+                  {srcs.map((s) => (
+                    s.link ? (
+                      <a href={s.link} class="chip linkable" title="Нажмите, чтобы перейти">{toChip(s)}</a>
+                    ) : (
+                      <span class="chip">{toChip(s)}</span>
+                    )
+                  ))}
                 </div>
               ) : (
                 <span class="muted">—</span>
@@ -254,11 +261,29 @@ const toChip = (s: SourceInfo) => {
     background: rgba(34, 197, 94, 0.16); color: #a7f3d0;
     border: 1px solid rgba(16, 185, 129, 0.25);
     padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.78rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .chip.linkable:hover {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: rgba(16, 185, 129, 0.5);
+    color: #ecfdf5;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
   }
 
   /* === Orbs sizing normalization === */
   .materials[data-title="Сферы"] .thumb { width: 84px; height: 84px; }
   .materials[data-title="Сферы"] .thumb img { max-width: 90%; max-height: 90%; }
+
+  /* === Charms (Boosters) sizing normalization === */
+  .materials[data-title="Бустеры"] .thumb { width: 84px; height: 84px; padding: 4px; }
+  .materials[data-title="Бустеры"] .thumb img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;
+  }
 
   /* Shrink ONLY the shield variants to match speed orb visual size */
   .materials[data-title="Сферы"] .thumb img[src*="orb_special_addshield"] {

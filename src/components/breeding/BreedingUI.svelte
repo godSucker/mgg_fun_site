@@ -1,17 +1,22 @@
 <script lang="ts">
   import { secretCombos } from '@/lib/secretCombos';
-  import mutantsData from '@/data/mutants/normal.json';
+  import normalMutants from '@/data/mutants/normal.json';
   import { calculateBreeding, findParentsFor } from '@/lib/breeding/breeding';
   import type { Mutant, BreedingResult, ParentPair } from '@/lib/breeding/breeding';
-  import { fly, fade } from 'svelte/transition';
+  import { fly, fade, slide } from 'svelte/transition';
 
   // --- DATA ---
-  const allMutants: Mutant[] = (mutantsData as any[]).map((m: any) => ({
+  const rawData = [
+    ...normalMutants.map(m => ({ ...m, star: 'normal' }))
+  ];
+
+  const allMutants: Mutant[] = (rawData as any[]).map((m: any) => ({
     id: String(m.id),
     name: m.name,
     genes: m.genes,
     odds: Number(m.odds) || 0,
     type: m.type || 'default',
+    star: m.star,
     incub_time: Number(m.incub_time) || 0,
     image: m.image
   }));
@@ -24,13 +29,13 @@
 
   function getImageSrc(m: Mutant): string {
     const img = m.image;
-    const path = Array.isArray(img) ? (img[1] ?? img[0]) : img;
-    if (!path) return '';
+    const path = Array.isArray(img) ? (img[0] ?? img[1]) : img;
+    if (!path) return '/preview.jpg';
     return path.startsWith('/') ? path : '/' + path;
   }
 
   function getGeneIcon(geneChar: string): string {
-    const char = geneChar.toLowerCase();
+    const char = geneChar.toLowerCase().charAt(0);
     if (['a', 'b', 'c', 'd', 'e', 'f'].includes(char)) {
         return `/genes/gene_${char}.webp`;
     }
@@ -39,7 +44,9 @@
 
   function getTypeIcon(m: Mutant): string {
     const t = (m.type ?? '').toLowerCase();
-    if (t.includes('legend')) return '/mut_icons/icon_legendary.webp';
+    if (t === 'legend') return '/mut_icons/icon_legendary.webp';
+    if (t === 'recipe') return '/mut_icons/icon_recipe.webp';
+    if (t === 'community') return '/mut_icons/icon_special.webp';
     if (!t || t === 'default') return '/mut_icons/icon_morphology.webp';
     return `/mut_icons/icon_${t}.webp`;
   }
@@ -64,7 +71,7 @@
 
   // --- STATE ---
   let mode: 'calc' | 'reverse' = 'calc';
-  let mobileTab: 'lab' | 'list' = 'lab'; // NEW: Для мобильной навигации
+  let mobileTab: 'lab' | 'list' = 'lab';
 
   let p1: Mutant | null = null;
   let p2: Mutant | null = null;
@@ -74,8 +81,13 @@
 
   $: filteredList = allMutants.filter(m => {
     if (filterGene === 'recipe') return secretNames.has(normalize(getName(m)));
-    const geneMatch = filterGene === 'all' || (Array.isArray(m.genes) && m.genes.some((g: string) => g.includes(filterGene)));
-    const nameMatch = getName(m).toLowerCase().includes(search.toLowerCase());
+    
+    const searchLower = search.toLowerCase().trim();
+    const nameMatch = !searchLower || getName(m).toLowerCase().includes(searchLower);
+
+    const mGenes = Array.isArray(m.genes) ? m.genes : [m.genes];
+    const geneMatch = filterGene === 'all' || mGenes.some((g: string) => g.toUpperCase().includes(filterGene.toUpperCase()));
+    
     return geneMatch && nameMatch;
   }).sort((a, b) => {
       const rankA = getPrimaryGeneRank(a);
@@ -109,7 +121,7 @@
         guideResults = res.map(r => ({
             p1: r.p1, p2: r.p2, isSecret: r.isSecret,
             tag: r.isSecret ? 'РЕЦЕПТ' : 'ПАРЫ'
-        }));
+        })).slice(0, 10);
         isSearching = false;
     }, 100);
   }
@@ -117,9 +129,8 @@
   function handleCardClick(m: Mutant) {
     const isSecret = secretNames.has(normalize(getName(m)));
 
-    // Auto Switch Logic
     if (window.innerWidth < 1024) {
-        mobileTab = 'lab'; // На мобилке сразу кидаем в лабу при выборе
+        mobileTab = 'lab';
     }
 
     if (filterGene === 'recipe' || (isSecret && mode === 'reverse')) {
@@ -137,176 +148,165 @@
   }
 </script>
 
-<!-- MAIN LAYOUT CONTAINER -->
-<!-- h-[100dvh] fix for mobile browsers url bar -->
-<div class="flex flex-col lg:flex-row h-[100dvh] max-w-[1600px] mx-auto lg:gap-6 lg:p-4 font-sans text-slate-200 bg-[#0a0f1c] overflow-hidden relative">
-
-  <!-- SECTION 1: LABORATORY (LEFT PANEL) -->
-  <!-- Hidden on mobile if tab is 'list', Visible on Desktop always -->
-  <div class="{mobileTab === 'lab' ? 'flex' : 'hidden'} lg:flex flex-1 flex-col min-h-0 bg-slate-900/40 backdrop-blur-md lg:border border-slate-800/60 lg:rounded-3xl overflow-hidden relative shadow-2xl shadow-black/50">
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-lime-500/50 via-purple-500/50 to-blue-500/50"></div>
-
-    <!-- HEADER -->
-    <div class="shrink-0 p-4 lg:p-6 flex items-center justify-between border-b border-white/5 bg-black/20 z-10">
-        <div class="flex items-center gap-3 lg:gap-4">
-             <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br from-lime-400 to-emerald-600 shadow-[0_0_20px_rgba(132,204,22,0.3)] flex items-center justify-center text-xl lg:text-2xl">🧬</div>
-             <div>
-                 <h1 class="font-black text-lg lg:text-xl tracking-widest text-white uppercase leading-none">MGG <span class="text-lime-400">Mutants</span></h1>
-                 <div class="text-[9px] lg:text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-1">Bio-Lab v5.0</div>
-             </div>
-        </div>
-
-        <!-- DESKTOP MODE SWITCHER (Hidden on mobile, integrated in Bottom Bar) -->
-        <div class="hidden lg:flex bg-black/40 p-1.5 rounded-xl border border-white/5">
-             <button class="relative px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all {mode==='calc' ? 'text-black' : 'text-slate-500 hover:text-white'}" on:click={() => {mode='calc'; target=null}}>
-                 {#if mode==='calc'}<div class="absolute inset-0 bg-lime-500 rounded-lg" in:fade={{duration:200}}></div>{/if}
-                 <span class="relative z-10">Инкубатор</span>
-             </button>
-             <button class="relative px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all {mode==='reverse' ? 'text-white' : 'text-slate-500 hover:text-white'}" on:click={() => {mode='reverse'; p1=null; p2=null}}>
-                 {#if mode==='reverse'}<div class="absolute inset-0 bg-purple-600 rounded-lg" in:fade={{duration:200}}></div>{/if}
-                 <span class="relative z-10">База ДНК</span>
-             </button>
-        </div>
-
-        <!-- MOBILE MODE TOGGLE (Simple text switch) -->
-         <button class="lg:hidden px-3 py-1.5 rounded-lg border border-white/10 bg-slate-800 text-[10px] font-black uppercase tracking-wider text-slate-300"
-            on:click={() => {
-                mode = mode === 'calc' ? 'reverse' : 'calc';
-                target = null; p1 = null; p2 = null;
-            }}>
-            {mode === 'calc' ? 'Включить Гид ➜' : 'Включить Лабу ➜'}
+<div class="main-wrapper">
+  <!-- LEFT PANEL: LABORATORY -->
+  <div class="panel lab-panel {mobileTab === 'lab' ? 'active' : ''}">
+    <div class="panel-header">
+      <div class="logo-area">
+         <div class="logo-icon">🧬</div>
+         <div>
+             <h1>MGG <span class="highlight">Breeder</span></h1>
+             <div class="subtitle">Genetics Simulator</div>
+         </div>
+      </div>
+      
+      <div class="mode-switch-desktop">
+         <button class="mode-btn {mode==='calc' ? 'active' : ''}" on:click={() => {mode='calc'; target=null}}>
+             Инкубатор
          </button>
+         <button class="mode-btn {mode==='reverse' ? 'active' : ''}" on:click={() => {mode='reverse'; p1=null; p2=null}}>
+             Справочник
+         </button>
+      </div>
+
+      <button class="mode-switch-mobile" on:click={() => {
+          mode = mode === 'calc' ? 'reverse' : 'calc';
+          target = null; p1 = null; p2 = null;
+      }}>
+          {mode === 'calc' ? 'В Справочник ➜' : 'В Инкубатор ➜'}
+      </button>
     </div>
 
-    <!-- WORKSPACE (Scrollable) -->
-    <!-- pb-24 on mobile to account for Bottom Nav -->
-    <div class="flex-1 flex flex-col min-h-0 overflow-y-auto custom-scroll p-4 lg:p-6 relative z-0 pb-24 lg:pb-6">
+    <div class="workspace custom-scroll">
         {#if mode === 'calc'}
-            <div class="flex flex-col items-center gap-6 lg:gap-8 py-2" in:fly={{y:20, duration:400}}>
-                <!-- SLOTS -->
-                <div class="flex items-center justify-center gap-3 lg:gap-12 w-full">
-                    <!-- SLOT 1 -->
-                    <button class="group relative w-28 lg:w-48 aspect-square rounded-2xl border-2 border-dashed {p1?'border-lime-500/50 bg-slate-900':'border-slate-700 bg-slate-800/20'} flex flex-col items-center justify-center overflow-hidden transition-all" on:click={() => p1 = null}>
+            <div class="calc-container" in:fly={{y:20, duration:400}}>
+                <!-- PARENT SLOTS -->
+                <div class="slots-area">
+                    <button class="slot {p1 ? 'filled' : 'empty'}" on:click={() => p1 = null}>
                         {#if p1}
-                            <img src={getImageSrc(p1)} class="w-[85%] h-[85%] object-contain drop-shadow-2xl z-10" alt=""/>
-                            <div class="absolute bottom-2 lg:bottom-3 inset-x-0 text-center text-[10px] lg:text-xs font-black uppercase truncate px-1">{getName(p1)}</div>
+                            <img src={getImageSrc(p1)} alt={p1.name} class="mutant-img"/>
+                            <div class="slot-label">{getName(p1)}</div>
+                            <div class="remove-icon">✕</div>
                         {:else}
-                             <div class="text-2xl lg:text-3xl text-slate-600 group-hover:text-lime-500 mb-1 lg:mb-2">+</div>
-                             <span class="text-[9px] lg:text-[10px] font-bold text-slate-600 uppercase">Родитель 1</span>
+                             <div class="plus">+</div>
+                             <span class="label">Родитель 1</span>
                         {/if}
                     </button>
 
-                    <div class="text-slate-600 text-sm lg:text-base">✖</div>
+                    <div class="cross-icon">✕</div>
 
-                    <!-- SLOT 2 -->
-                    <button class="group relative w-28 lg:w-48 aspect-square rounded-2xl border-2 border-dashed {p2?'border-lime-500/50 bg-slate-900':'border-slate-700 bg-slate-800/20'} flex flex-col items-center justify-center overflow-hidden transition-all" on:click={() => p2 = null}>
+                    <button class="slot {p2 ? 'filled' : 'empty'}" on:click={() => p2 = null}>
                         {#if p2}
-                            <img src={getImageSrc(p2)} class="w-[85%] h-[85%] object-contain drop-shadow-2xl z-10" alt=""/>
-                            <div class="absolute bottom-2 lg:bottom-3 inset-x-0 text-center text-[10px] lg:text-xs font-black uppercase truncate px-1">{getName(p2)}</div>
+                            <img src={getImageSrc(p2)} alt={p2.name} class="mutant-img"/>
+                            <div class="slot-label">{getName(p2)}</div>
+                            <div class="remove-icon">✕</div>
                         {:else}
-                             <div class="text-2xl lg:text-3xl text-slate-600 group-hover:text-lime-500 mb-1 lg:mb-2">+</div>
-                             <span class="text-[9px] lg:text-[10px] font-bold text-slate-600 uppercase">Родитель 2</span>
+                             <div class="plus">+</div>
+                             <span class="label">Родитель 2</span>
                         {/if}
                     </button>
                 </div>
 
                 <!-- RESULTS -->
                 {#if p1 && p2}
-                    <div class="w-full max-w-3xl animate-in slide-in-from-bottom-10 fade-in duration-500">
+                    <div class="results-area" in:slide>
                         {#if calcResults.length > 0}
-                            <div class="bg-slate-950/50 border border-slate-800/60 rounded-xl overflow-hidden">
-                                <div class="px-4 lg:px-6 py-3 flex justify-between items-center text-xs uppercase font-bold text-slate-500 border-b border-white/5">
-                                    <span>Результат: <span class="text-lime-400 ml-1">{calcResults.length}</span></span>
-                                    <span>Мин. время: <span class="text-white ml-1">{bestTime}</span></span>
-                                </div>
-                                <div class="divide-y divide-white/5 max-h-[350px] lg:max-h-[400px] overflow-y-auto custom-scroll">
-                                    {#each calcResults as res}
-                                        <div class="flex items-center gap-3 lg:gap-5 p-3 lg:p-4 hover:bg-white/5 transition-colors group relative">
-                                            {#if res.isSecret}<div class="absolute left-0 top-0 bottom-0 w-1 bg-fuchsia-500"></div>{/if}
-
-                                            <div class="w-14 h-14 lg:w-16 lg:h-16 bg-slate-900 rounded-lg border border-white/10 flex items-center justify-center overflow-hidden shrink-0 shadow-lg">
-                                                <img src={getImageSrc(res.child)} class="w-full h-full object-cover group-hover:scale-110 transition-transform" alt=""/>
-                                            </div>
-
-                                            <div class="flex-1 min-w-0 flex flex-col gap-1">
-                                                <div class="flex items-center gap-2">
-                                                    <span class="font-black text-sm lg:text-base text-slate-200 truncate">{getName(res.child)}</span>
-                                                    {#if res.isSecret}
-                                                        <span class="px-1.5 py-0.5 text-[8px] lg:text-[9px] font-bold text-black bg-fuchsia-500 rounded">РЕЦЕПТ</span>
-                                                    {/if}
-                                                </div>
-
-                                                <div class="flex items-center gap-2 lg:gap-3">
-                                                    <div class="flex -space-x-1 items-center">
-                                                        {#each ((Array.isArray(res.child.genes)?res.child.genes[0]:res.child.genes)||'').split('') as g}
-                                                             <img src={getGeneIcon(g)} class="w-6 h-6 lg:w-7 lg:h-7 rounded-full bg-black ring-2 ring-slate-800 z-10 relative" alt={g}/>
-                                                        {/each}
-                                                    </div>
-                                                    <div class="w-px h-4 bg-white/10"></div>
-                                                    <img src={getTypeIcon(res.child)} class="w-7 h-7 lg:w-8 lg:h-8 opacity-100 drop-shadow-lg" alt=""/>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-right self-center">
-                                                 <div class="text-[9px] lg:text-[10px] font-bold uppercase {res.tag==='ВОЗМОЖНО'?'text-lime-500':(res.tag==='РЕЦЕПТ'?'text-fuchsia-400':'text-blue-400')} mb-1">{res.tag}</div>
-                                                 <div class="text-xs lg:text-sm font-mono text-slate-500 bg-slate-900 px-1.5 lg:px-2 py-0.5 rounded">{formatTime(res.child.incub_time)}</div>
+                            <div class="results-header">
+                                <span>Возможные дети: <strong class="text-lime-400">{calcResults.length}</strong></span>
+                                <span>Мин. время: <strong class="text-white">{bestTime}</strong></span>
+                            </div>
+                            
+                            <div class="results-list">
+                                {#each calcResults as res, i}
+                                    <div class="result-card" style="animation-delay: {i * 50}ms">
+                                        <div class="card-left">
+                                            <div class="prob-badge">{res.chance}%</div>
+                                            <div class="mutant-thumb">
+                                                <img src={getImageSrc(res.child)} alt=""/>
                                             </div>
                                         </div>
-                                    {/each}
-                                </div>
+                                        <div class="card-info">
+                                            <div class="card-title">{getName(res.child)}</div>
+                                            <div class="card-meta">
+                                                <span class="time">⏱ {formatTime(res.child.incub_time)}</span>
+                                                {#if secretNames.has(normalize(getName(res.child)))}
+                                                    <span class="secret-tag">★ Секрет</span>
+                                                {/if}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {/each}
                             </div>
                         {:else}
-                            <div class="text-center p-6 lg:p-8 border border-dashed border-slate-800 rounded-xl bg-slate-900/20 text-slate-500 font-medium text-xs lg:text-sm">
-                                Нет совместимых вариантов.
+                            <div class="empty-state">
+                                Нет известных комбинаций для этих родителей.
                             </div>
                         {/if}
                     </div>
+                {:else}
+                    <div class="instruction">
+                        <div class="icon">👆</div>
+                        <p>Выберите двух родителей из списка справа (или снизу на мобильных), чтобы увидеть результат скрещивания.</p>
+                    </div>
                 {/if}
             </div>
-
-        {:else if mode === 'reverse'}
-             <div class="flex flex-col items-center py-4 lg:py-6 px-2" in:fly={{y:20, duration:400}}>
+        {:else}
+            <!-- REVERSE MODE -->
+             <div class="reverse-container" in:fly={{y:20, duration:400}}>
                  {#if !target}
-                     <div class="flex flex-col items-center text-center mt-6 lg:mt-10 opacity-50">
-                         <div class="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-3xl lg:text-4xl mb-4">🔍</div>
-                         <h3 class="text-base lg:text-lg font-bold text-white">Поиск родителей</h3>
-                         <p class="text-[10px] lg:text-xs text-slate-400 max-w-[250px] mt-1">Нажмите "База" и выберите мутанта для анализа.</p>
+                     <div class="empty-search">
+                         <div class="big-icon">🔍</div>
+                         <h3>Поиск рецептов</h3>
+                         <p>Выберите мутанта из базы, чтобы узнать, как его вывести.</p>
                      </div>
                  {:else}
                      {#key target.id}
-                         <div class="w-full max-w-2xl bg-slate-950/50 border border-purple-500/30 rounded-2xl p-4 lg:p-6 flex items-center gap-4 lg:gap-6 mb-6 relative overflow-hidden">
-                             <div class="absolute -right-6 -top-6 opacity-5 pointer-events-none rotate-12"><img src={getTypeIcon(target)} alt="" class="w-40 h-40 lg:w-64 lg:h-64 grayscale"/></div>
-                             <div class="w-20 h-20 lg:w-28 lg:h-28 bg-black rounded-xl border-2 border-slate-800 shadow-xl z-10 shrink-0 overflow-hidden"><img src={getImageSrc(target)} class="w-full h-full object-cover" alt=""/></div>
-                             <div class="z-10 flex-1">
-                                 <div class="flex items-center gap-2 lg:gap-3 mb-1 lg:mb-2">
-                                     <span class="bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[9px] lg:text-[10px] font-bold px-2 py-0.5 rounded uppercase">Цель</span>
-                                     <span class="text-[9px] lg:text-[10px] font-mono text-slate-500">{formatTime(target.incub_time)}</span>
+                         <div class="target-card">
+                             <div class="target-bg" style="background-image: url({getImageSrc(target)})"></div>
+                             <div class="target-content">
+                                 <div class="target-img-wrap">
+                                     <img src={getImageSrc(target)} alt=""/>
                                  </div>
-                                 <h2 class="text-xl lg:text-3xl font-black text-white leading-tight mb-1 lg:mb-2 truncate">{getName(target)}</h2>
-                                 <button class="text-[10px] lg:text-xs font-bold text-slate-500 hover:text-white underline" on:click={() => target=null}>Сбросить</button>
+                                 <div class="target-info">
+                                     <div class="badges">
+                                         <span class="badge">Цель</span>
+                                         <span class="time">{formatTime(target.incub_time)}</span>
+                                     </div>
+                                     <h2>{getName(target)}</h2>
+                                     <button class="reset-btn" on:click={() => target=null}>Выбрать другого</button>
+                                 </div>
                              </div>
                          </div>
                      {/key}
+
                      {#if isSearching}
-                        <div class="text-center py-10"><div class="inline-block w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-2"></div><div class="text-xs font-bold text-purple-500 uppercase">Поиск...</div></div>
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <span>Анализ ДНК...</span>
+                        </div>
                      {:else}
-                        <div class="grid gap-2 lg:gap-3 w-full max-w-2xl">
+                        <div class="pairs-list">
                             {#each guideResults as combo, i}
-                                <div class="bg-slate-900/60 border border-white/5 hover:border-purple-500/40 rounded-xl p-3 lg:p-4 flex items-center justify-between transition-all animate-in slide-in-from-bottom-2" style="animation-delay: {i * 30}ms">
-                                    <div class="flex items-center gap-3 lg:gap-4">
-                                         <div class="flex -space-x-2 lg:-space-x-3">
-                                              <img src={getImageSrc(combo.p1)} class="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-black border border-slate-600 z-10 relative" alt=""/>
-                                              <img src={getImageSrc(combo.p2)} class="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-black border border-slate-600 relative" alt=""/>
+                                <div class="pair-card" style="animation-delay: {i * 30}ms">
+                                    <div class="parents">
+                                         <div class="p-imgs">
+                                              <img src={getImageSrc(combo.p1)} alt=""/>
+                                              <div class="plus">+</div>
+                                              <img src={getImageSrc(combo.p2)} alt=""/>
                                          </div>
-                                         <div class="text-xs text-slate-300 font-medium">
-                                              <div class="font-bold text-[10px] lg:text-xs">{getName(combo.p1)}</div>
-                                              <div class="opacity-50 flex items-center gap-1 text-[9px] lg:text-[10px] uppercase"><span>+</span><span>{getName(combo.p2)}</span></div>
+                                         <div class="p-names">
+                                              <div>{getName(combo.p1)}</div>
+                                              <div>{getName(combo.p2)}</div>
                                          </div>
                                     </div>
-                                    <span class="text-[9px] lg:text-[10px] font-black uppercase px-2 lg:px-3 py-1 rounded border {combo.isSecret ? 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20' : 'bg-lime-500/10 text-lime-400 border-lime-500/20'}">{combo.tag}</span>
+                                    <div class="tag {combo.isSecret ? 'secret' : 'normal'}">
+                                        {combo.tag}
+                                    </div>
                                 </div>
                             {:else}
-                                <div class="text-center py-6 lg:py-8 opacity-50 text-xs lg:text-sm font-bold border border-dashed border-slate-800 rounded-xl">Невозможно вывести (Сезонный/Магазин).</div>
+                                <div class="no-pairs">
+                                    Невозможно вывести (Сезонный, Магазин или нет данных).
+                                </div>
                             {/each}
                         </div>
                      {/if}
@@ -316,74 +316,584 @@
     </div>
   </div>
 
-  <!-- SECTION 2: SIDEBAR / LIST (RIGHT PANEL) -->
-  <!-- Hidden on mobile if tab is 'lab', Visible on Desktop always -->
-  <div class="{mobileTab === 'list' ? 'flex' : 'hidden'} lg:flex w-full lg:w-96 flex-none bg-slate-900/80 backdrop-blur-md lg:border border-slate-800 lg:rounded-3xl flex-col overflow-hidden relative z-10">
-      <div class="p-4 lg:p-5 bg-black/40 border-b border-white/5 shrink-0 space-y-3 lg:space-y-4 z-20">
-          <div class="relative group">
-              <input type="text" bind:value={search} placeholder="Поиск мутанта..." class="w-full bg-slate-800/50 text-sm text-white border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 lg:py-3 outline-none focus:border-lime-500 transition-all" />
-              <span class="absolute left-3 top-3 lg:top-3.5 text-slate-500">🔍</span>
+  <!-- RIGHT PANEL: MUTANT LIST -->
+  <div class="panel list-panel {mobileTab === 'list' ? 'active' : ''}">
+      <div class="list-header">
+          <div class="search-box">
+              <input type="text" bind:value={search} placeholder="Поиск мутанта..." />
+              <span class="icon">🔍</span>
           </div>
-          <!-- FILTERS -->
-          <div class="flex justify-between gap-2 overflow-x-auto no-scrollbar pb-1">
-              <button class="h-9 lg:h-10 px-3 rounded-lg text-[10px] font-black uppercase border {filterGene==='all' ? 'bg-lime-400 text-black border-lime-400' : 'bg-slate-800 border-slate-700 text-slate-400'}" on:click={() => filterGene='all'}>ВСЕ</button>
+          
+          <div class="filters">
+              <button class="filter-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>ВСЕ</button>
               {#each ['A','B','C','D','E','F'] as g}
-                  <button class="h-9 w-9 lg:h-10 lg:w-10 shrink-0 flex items-center justify-center rounded-lg border {filterGene===g ? 'bg-slate-700 border-white text-white scale-110' : 'bg-slate-800 border-slate-700 opacity-60'}" on:click={() => filterGene=g}>
-                      <img src={getGeneIcon(g)} class="w-5 h-5 lg:w-6 lg:h-6" alt={g}/>
+                  <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" on:click={() => filterGene=g}>
+                      <img src={getGeneIcon(g)} alt={g}/>
                   </button>
               {/each}
-               <button class="h-9 w-9 lg:h-10 lg:w-10 shrink-0 flex items-center justify-center rounded-lg border {filterGene==='recipe' ? 'bg-fuchsia-900/50 border-fuchsia-500 text-fuchsia-400 scale-110' : 'bg-slate-800 border-slate-700 opacity-60'}" on:click={() => filterGene='recipe'}>
-                   <img src="/mut_icons/icon_recipe.webp" class="w-5 h-5 lg:w-6 lg:h-6" alt="★"/>
+               <button class="filter-chip secret-chip {filterGene==='recipe' ? 'active' : ''}" on:click={() => filterGene='recipe'}>
+                   <span class="star">★</span>
+                   <span>Секреты</span>
                </button>
           </div>
       </div>
 
-      <!-- GRID List -->
-      <!-- pb-24 for Mobile Nav space -->
-      <div class="flex-1 overflow-y-auto custom-scroll p-3 lg:p-4 pb-24 lg:pb-4">
-           <div class="grid grid-cols-3 lg:grid-cols-3 gap-2 lg:gap-3 pb-10">
-               {#each filteredList as m (m.id)}
-                    <button class="group relative aspect-square w-full bg-slate-800/50 border border-white/5 rounded-xl overflow-hidden hover:border-lime-500/50 hover:scale-[1.02] transition-all" on:click={() => handleCardClick(m)}>
-                        <img loading="lazy" src={getImageSrc(m)} class="w-full h-full object-cover opacity-75 group-hover:opacity-100 transition-opacity" alt=""/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
-                        <div class="absolute bottom-0 inset-x-0 p-1 lg:p-1.5 text-center"><p class="text-[9px] lg:text-[10px] font-bold text-slate-300 truncate group-hover:text-lime-300">{getName(m)}</p></div>
-                        {#if secretNames.has(normalize(getName(m)))}<div class="absolute top-1 left-1 lg:top-1.5 lg:left-1.5 text-[8px] bg-fuchsia-600 text-white px-1 rounded">★</div>{/if}
-                    </button>
-               {/each}
-           </div>
+      <div class="list-grid custom-scroll">
+           {#each filteredList as m (m.id + m.name)}
+                <button class="grid-item" on:click={() => handleCardClick(m)} title={getName(m)}>
+                    <div class="card-badges">
+                        <img src={getTypeIcon(m)} alt="" class="type-icon" />
+                        <div class="gene-icons">
+                            {#each (Array.isArray(m.genes) ? m.genes : [m.genes]) as g}
+                                <img src={getGeneIcon(g)} alt={g} class="gene-icon" />
+                            {/each}
+                        </div>
+                    </div>
+                    <div class="img-wrapper">
+                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="" on:error={(e) => (e.currentTarget as HTMLImageElement).src = '/preview.jpg'}/>
+                    </div>
+                    <div class="item-info-row">
+                        <div class="item-name">{getName(m)}</div>
+                    </div>
+                    {#if secretNames.has(normalize(getName(m)))}<div class="secret-badge">★</div>{/if}
+                </button>
+           {/each}
       </div>
   </div>
 
-  <!-- MOBILE BOTTOM NAVIGATION (Fixed) -->
-  <div class="lg:hidden fixed bottom-0 left-0 right-0 h-20 bg-[#0a0f1c]/90 backdrop-blur-xl border-t border-white/10 z-50 flex items-start pt-2 justify-around pb-safe">
-       <button class="flex flex-col items-center gap-1 p-2 w-1/2 {mobileTab==='lab' ? 'text-lime-400' : 'text-slate-500'}"
-           on:click={() => mobileTab = 'lab'}>
-           <div class="text-2xl mb-1 transition-transform {mobileTab==='lab' ? 'scale-110' : ''}">{mode==='calc' ? '🧬' : '🔍'}</div>
-           <span class="text-[10px] font-black uppercase tracking-widest">Лаборатория</span>
+  <!-- BOTTOM NAV (MOBILE) -->
+  <nav class="mobile-nav">
+       <button class="nav-item {mobileTab==='lab' ? 'active' : ''}" on:click={() => mobileTab = 'lab'}>
+           <span class="icon">{mode==='calc' ? '🧬' : '🔬'}</span>
+           <span class="label">Лаборатория</span>
        </button>
-
-       <div class="w-px h-10 bg-white/10 mt-2"></div>
-
-       <button class="flex flex-col items-center gap-1 p-2 w-1/2 {mobileTab==='list' ? 'text-blue-400' : 'text-slate-500'}"
-           on:click={() => mobileTab = 'list'}>
-           <div class="text-2xl mb-1 transition-transform {mobileTab==='list' ? 'scale-110' : ''}">📋</div>
-           <span class="text-[10px] font-black uppercase tracking-widest">База</span>
+       <div class="divider"></div>
+       <button class="nav-item {mobileTab==='list' ? 'active' : ''}" on:click={() => mobileTab = 'list'}>
+           <span class="icon">📋</span>
+           <span class="label">База ДНК</span>
        </button>
-  </div>
+  </nav>
 
 </div>
 
 <style>
-  :global(body) { background-color: #050505; }
-  .custom-scroll::-webkit-scrollbar { width: 6px; }
-  .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-  .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-  .custom-scroll::-webkit-scrollbar-thumb:hover { background: #334155; }
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  :global(body) { background-color: #050505; color: #e2e8f0; }
 
-  /* Safe area for iPhone X+ home indicator */
-  .pb-safe {
-      padding-bottom: env(safe-area-inset-bottom, 20px);
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Subtract approx header height (65px) + padding to avoid scroll on desktop */
+    height: calc(100dvh - 90px);
+    max-width: 1600px;
+    margin: 0 auto;
+    background: #0a0f1c;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
   }
+
+  @media (max-width: 1023px) {
+    .main-wrapper {
+        /* On mobile, we want full height, header will scroll away or be sticky. 
+           But if header is sticky, we need to subtract it. 
+           BaseLayout header is relative (usually). */
+        height: calc(100dvh - 70px);
+        border-radius: 0;
+        border: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .main-wrapper {
+      flex-direction: row;
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+  }
+
+  /* PANELS */
+  .panel {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+  }
+  
+  .panel.active { display: flex; }
+
+  @media (min-width: 1024px) {
+    .panel {
+        display: flex;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .list-panel {
+        flex: none;
+        width: 400px;
+    }
+  }
+
+  /* HEADER */
+  .panel-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-icon {
+    width: 2.5rem; height: 2.5rem;
+    background: linear-gradient(135deg, #84cc16, #10b981);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 15px rgba(132, 204, 22, 0.4);
+  }
+
+  .logo-area h1 {
+    font-size: 1.1rem; font-weight: 800; line-height: 1;
+    text-transform: uppercase; letter-spacing: 0.05em; margin: 0;
+  }
+  .highlight { color: #84cc16; }
+  .subtitle {
+    font-size: 0.65rem; color: #64748b; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em; margin-top: 2px;
+  }
+
+  .mode-switch-desktop {
+    display: none;
+    background: rgba(0,0,0,0.3);
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .mode-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    color: #64748b;
+    transition: all 0.2s;
+  }
+  .mode-btn:hover { color: #fff; }
+  .mode-btn.active { background: #84cc16; color: #000; box-shadow: 0 2px 10px rgba(132, 204, 22, 0.3); }
+  .mode-btn.active:last-child { background: #a855f7; color: #fff; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4); }
+
+  .mode-switch-mobile {
+    padding: 0.5rem 0.8rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    color: #94a3b8;
+  }
+
+  @media (min-width: 1024px) {
+    .mode-switch-desktop { display: flex; }
+    .mode-switch-mobile { display: none; }
+    .panel-header { padding: 1.5rem; }
+  }
+
+  /* WORKSPACE */
+  .workspace {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    padding-bottom: 6rem; /* Space for mobile nav */
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .workspace { padding: 2rem; padding-bottom: 2rem; }
+  }
+
+  .calc-container, .reverse-container {
+    max-width: 800px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  /* SLOTS */
+  .slots-area {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem;
+  }
+  
+  .slot {
+    width: 100px; height: 100px;
+    border: 2px dashed #334155;
+    border-radius: 20px;
+    background: rgba(30, 41, 59, 0.3);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .slot:hover { border-color: #84cc16; background: rgba(30, 41, 59, 0.5); }
+  .slot.filled { border-style: solid; border-color: rgba(132, 204, 22, 0.5); background: #0f172a; }
+  
+  .slot .plus { font-size: 2rem; color: #475569; margin-bottom: 0.2rem; }
+  .slot .label { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; color: #475569; }
+  
+  .mutant-img { width: 85%; height: 85%; object-fit: contain; z-index: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+  .slot-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.8);
+    color: #fff; font-size: 0.6rem; font-weight: 700;
+    text-transform: uppercase; padding: 4px; text-align: center;
+    z-index: 2;
+  }
+  .remove-icon {
+    position: absolute; top: 4px; right: 4px;
+    color: rgba(255,255,255,0.5); font-size: 0.8rem; z-index: 2;
+  }
+  
+  .cross-icon { font-size: 1.2rem; color: #475569; }
+
+  @media (min-width: 1024px) {
+    .slots-area { gap: 3rem; }
+    .slot { width: 180px; height: 180px; }
+    .slot .plus { font-size: 3rem; }
+    .slot .label { font-size: 0.75rem; }
+    .slot-label { font-size: 0.8rem; padding: 6px; }
+  }
+
+  /* RESULTS */
+  .results-area {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .results-header {
+    background: rgba(0,0,0,0.2);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between;
+    font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #94a3b8;
+  }
+
+  .results-list {
+    /* Removed max-height to avoid nested scrolls within workspace */
+    padding: 0.5rem;
+    display: grid; gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .result-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 0.75rem;
+    display: flex; gap: 0.75rem; align-items: center;
+    animation: fadeIn 0.3s ease-out backwards;
+  }
+
+  .card-left { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
+  .mutant-thumb { width: 100%; height: 100%; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid #334155; display: flex; align-items: center; justify-content: center; }
+  .mutant-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
+  .prob-badge {
+    position: absolute; top: -6px; left: -6px;
+    background: #84cc16; color: #000;
+    font-size: 0.6rem; font-weight: 800;
+    padding: 2px 5px; border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+
+  .card-info { flex: 1; overflow: hidden; }
+  .card-title { font-weight: 700; font-size: 0.9rem; color: #e2e8f0; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-meta { display: flex; gap: 0.5rem; font-size: 0.7rem; color: #64748b; font-weight: 600; }
+  .secret-tag { color: #d946ef; }
+
+  /* REVERSE MODE STYLES */
+  .empty-search, .instruction {
+    text-align: center;
+    padding: 3rem 1rem;
+    opacity: 0.6;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  }
+  .big-icon, .icon { font-size: 3rem; margin-bottom: 0.5rem; filter: grayscale(1); }
+  .instruction p { max-width: 300px; font-size: 0.9rem; line-height: 1.5; }
+
+  .target-card {
+    position: relative;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 1.5rem;
+  }
+  
+  .target-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0.1; filter: blur(20px);
+  }
+
+  .target-content { position: relative; display: flex; gap: 1.5rem; align-items: center; }
+  .target-img-wrap {
+    width: 80px; height: 80px;
+    border-radius: 16px; background: #000;
+    border: 2px solid rgba(168, 85, 247, 0.5);
+    overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+  .target-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  
+  .target-info h2 { margin: 0; font-size: 1.5rem; font-weight: 800; color: #fff; line-height: 1.2; }
+  .badges { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .badge { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .time { font-family: monospace; color: #94a3b8; font-size: 0.8rem; }
+  .reset-btn { margin-top: 0.5rem; font-size: 0.75rem; color: #94a3b8; text-decoration: underline; background: none; border: none; cursor: pointer; padding: 0; }
+
+  .pairs-list { display: grid; gap: 0.75rem; }
+  .pair-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 0.75rem; border-radius: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    animation: slideUp 0.3s ease-out backwards;
+  }
+  .parents { display: flex; gap: 1rem; align-items: center; }
+  .p-imgs { display: flex; align-items: center; gap: 0.5rem; }
+  .p-imgs img { width: 32px; height: 32px; border-radius: 50%; background: #000; border: 1px solid #475569; }
+  .p-imgs .plus { font-size: 0.8rem; color: #64748b; }
+  .p-names { font-size: 0.75rem; color: #cbd5e1; font-weight: 600; line-height: 1.2; }
+  
+  .tag { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; }
+  .tag.normal { background: rgba(132, 204, 22, 0.1); color: #bef264; border: 1px solid rgba(132, 204, 22, 0.2); }
+  .tag.secret { background: rgba(217, 70, 239, 0.1); color: #f0abfc; border: 1px solid rgba(217, 70, 239, 0.2); }
+
+  /* LIST PANEL STYLES */
+  .list-header {
+    padding: 1rem;
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  
+  .search-box { position: relative; }
+  .search-box input {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(51, 65, 85, 0.8);
+    padding: 0.75rem 1rem; padding-right: 2.5rem;
+    border-radius: 12px;
+    color: #fff; font-size: 0.9rem;
+  }
+  .search-box .icon { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  
+  .filter-chip {
+    height: 36px;
+    padding: 0 0.8rem;
+    border-radius: 8px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    font-size: 0.75rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  
+  .filter-chip.active { background: #e2e8f0; color: #0f172a; border-color: #fff; transform: scale(1.05); }
+  
+  .gene-chip { width: 36px; padding: 0; }
+  .gene-chip img { width: 20px; height: 20px; }
+  
+  .secret-chip {
+    gap: 0.3rem;
+    background: rgba(88, 28, 135, 0.3); border-color: rgba(168, 85, 247, 0.4); color: #d8b4fe;
+  }
+  .secret-chip.active { background: #a855f7; color: #fff; }
+  .secret-chip .star { font-size: 1rem; line-height: 1; }
+
+  .list-grid {
+    flex: 1; overflow-y: auto;
+    padding: 0.5rem;
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+    gap: 0.5rem;
+    padding-bottom: 6rem; /* Mobile nav space */
+    align-content: start;
+  }
+  
+  @media (min-width: 1024px) {
+    .list-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+        gap: 0.75rem; padding: 1rem; padding-bottom: 1rem; 
+    }
+  }
+
+  .grid-item {
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.2s;
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0;
+    width: 100%;
+    height: 120px; /* Фиксированная высота для карточки */
+    cursor: pointer;
+  }
+
+  .card-badges {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .type-icon {
+    width: 14px; /* Уменьшил до размера гена */
+    height: 14px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+
+  .gene-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .gene-icon {
+    width: 14px;
+    height: 14px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+  .grid-item:hover { border-color: #84cc16; background: rgba(30, 41, 59, 0.8); transform: translateY(-2px); z-index: 10; }
+  
+  .img-wrapper {
+      width: 100%;
+      height: 70px; /* Больше места для мутанта */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.25rem;
+  }
+
+  .grid-item img.mutant-texture { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain; /* Чтобы не обрезалось */
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
+      opacity: 0.9;
+      transition: 0.2s;
+      transform: scale(1.2); /* Немного увеличим для наглядности, раз теперь есть место */
+  }
+  
+  .grid-item:hover img { opacity: 1; transform: scale(1.05); }
+  
+  .item-info-row {
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .item-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    line-height: 1.1;
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+  }
+  
+  .secret-badge {
+    position: absolute; top: 4px; right: 4px; left: auto;
+    background: #d946ef; color: #fff;
+    font-size: 0.6rem; width: 16px; height: 16px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+
+  /* MOBILE NAV */
+  .mobile-nav {
+    display: flex;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: 80px; /* Safe area included */
+    background: #0f172a;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+  
+  @media (min-width: 1024px) {
+    .mobile-nav { display: none; }
+  }
+
+  .nav-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #64748b;
+    gap: 4px;
+  }
+  .nav-item.active { color: #84cc16; }
+  .nav-item.active:last-child { color: #60a5fa; }
+  
+  .nav-item .icon { font-size: 1.5rem; }
+  .nav-item .label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+  
+  .divider { width: 1px; background: rgba(255,255,255,0.1); height: 60%; align-self: center; }
+
+  /* SCROLLBARS */
+  .custom-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+  }
+  .custom-scroll::-webkit-scrollbar { width: 5px; }
+  .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+  .custom-scroll::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  
+  .loading { text-align: center; padding: 2rem; color: #a855f7; font-weight: 700; font-size: 0.9rem; }
+  .spinner {
+     display: inline-block; width: 30px; height: 30px;
+     border: 3px solid rgba(168, 85, 247, 0.3);
+     border-top-color: #a855f7;
+     border-radius: 50%;
+     animation: spin 1s linear infinite;
+     margin-bottom: 0.5rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
