@@ -54,17 +54,17 @@
         ],
         "rewards": [
             {
-                "name": "Charm_Regenx4_1",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
-                "name": "Material_Energy25",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
                 "name": "Material_XP1000",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Charm_Regenx4_1",
                 "amount": 1,
                 "type": "entity"
             },
@@ -74,7 +74,7 @@
                 "type": "softcurrency"
             },
             {
-                "name": "Material_Energy25",
+                "name": "Material_Jackpot_Token",
                 "amount": 1,
                 "type": "entity"
             },
@@ -84,7 +84,7 @@
                 "type": "entity"
             },
             {
-                "name": "Charm_Regenx4_1",
+                "name": "Material_XP1000",
                 "amount": 1,
                 "type": "entity"
             },
@@ -202,31 +202,6 @@
         ],
         "rewards": [
             {
-                "name": "Material_Jackpot_Token",
-                "amount": 50,
-                "type": "entity"
-            },
-            {
-                "name": "orb_basic_xp_04",
-                "amount": 3,
-                "type": "entity"
-            },
-            {
-                "name": "gold",
-                "amount": 1000,
-                "type": "hardcurrency"
-            },
-            {
-                "name": "Material_Gacha_Token",
-                "amount": 2,
-                "type": "entity"
-            },
-            {
-                "name": "Star_Platinum",
-                "amount": 2,
-                "type": "entity"
-            },
-            {
                 "name": "Star_Silver",
                 "amount": 4,
                 "type": "entity"
@@ -248,6 +223,31 @@
             },
             {
                 "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 50,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_xp_04",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1000,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
                 "amount": 2,
                 "type": "entity"
             },
@@ -370,31 +370,6 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_XP1000",
-                "amount": 50,
-                "type": "entity"
-            },
-            {
-                "name": "Star_Silver",
-                "amount": 5,
-                "type": "entity"
-            },
-            {
-                "name": "Star_Gold",
-                "amount": 2,
-                "type": "entity"
-            },
-            {
-                "name": "Star_Platinum",
-                "amount": 2,
-                "type": "entity"
-            },
-            {
-                "name": "gold",
-                "amount": 1100,
-                "type": "hardcurrency"
-            },
-            {
                 "name": "Material_Gacha_Token",
                 "amount": 3,
                 "type": "entity"
@@ -411,6 +386,31 @@
             },
             {
                 "name": "orb_basic_life_06",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1100,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_XP1000",
+                "amount": 50,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
                 "amount": 2,
                 "type": "entity"
             },
@@ -3371,7 +3371,7 @@
             },
             {
                 "specimenId": "Specimen_CD_01",
-                "skin": "starwars"
+                "skin": "girl"
             },
             {
                 "specimenId": "Specimen_CE_05",
@@ -3742,6 +3742,7 @@
     {
         "title": "-morphology_zodiac",
         "id": "zodiac",
+        "columns": 3,
         "mutants": [
             {
                 "specimenId": "Specimen_BF_03",
@@ -3794,17 +3795,17 @@
         ],
         "rewards": [
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 1,
                 "type": "entity"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 5,
                 "type": "entity"
             },
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 1,
                 "type": "entity"
             },
@@ -3838,6 +3839,7 @@
     {
         "title": "-morphology_zodiac_silver",
         "id": "zodiac_silver",
+        "columns": 3,
         "mutants": [
             {
                 "specimenId": "Specimen_BF_03",
@@ -3890,12 +3892,12 @@
         ],
         "rewards": [
             {
-                "name": "Star_Gold",
+                "name": "Star_Silver",
                 "amount": 3,
                 "type": "entity"
             },
             {
-                "name": "Star_Platinum",
+                "name": "Star_Gold",
                 "amount": 2,
                 "type": "entity"
             },
@@ -3910,7 +3912,7 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 4,
                 "type": "entity"
             },
@@ -3920,14 +3922,15 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 50,
                 "type": "entity"
             },
             {
                 "name": "Specimen_FE_05",
                 "amount": 1,
-                "type": "entity"
+                "type": "entity",
+                "skin": "silver"
             }
         ]
     },
@@ -5403,6 +5406,7 @@
     {
         "title": "-morphology_event_2020",
         "id": "event_2020",
+        "columns": 3,
         "mutants": [
             {
                 "specimenId": "Specimen_DB_07",
@@ -5455,7 +5459,7 @@
         ],
         "rewards": [
             {
-                "name": "Star_Platinum",
+                "name": "Star_Gold",
                 "amount": 2,
                 "type": "entity"
             },
@@ -5465,7 +5469,7 @@
                 "type": "entity"
             },
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 6,
                 "type": "entity"
             },
@@ -5475,7 +5479,7 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 75,
                 "type": "entity"
             },
@@ -5680,70 +5684,6 @@
             {
                 "specimenId": "Specimen_FA_13",
                 "skin": "_any"
-            },
-            {
-                "specimenId": "Specimen_BB_07",
-                "skin": "verdant"
-            },
-            {
-                "specimenId": "Specimen_EE_10",
-                "skin": "school"
-            },
-            {
-                "specimenId": "Specimen_EA_07",
-                "skin": "oktoberfest"
-            },
-            {
-                "specimenId": "Specimen_DA_10",
-                "skin": "halloween"
-            },
-            {
-                "specimenId": "Specimen_CB_10",
-                "skin": "thanksgiving"
-            },
-            {
-                "specimenId": "Specimen_BA_05",
-                "skin": "summer"
-            },
-            {
-                "specimenId": "Specimen_BA_08",
-                "skin": "valentines"
-            },
-            {
-                "specimenId": "Specimen_CD_10",
-                "skin": "worker"
-            },
-            {
-                "specimenId": "Specimen_AE_99",
-                "skin": "_any"
-            },
-            {
-                "specimenId": "Specimen_BA_09",
-                "skin": "winter"
-            },
-            {
-                "specimenId": "Specimen_CB_08",
-                "skin": "autumn"
-            },
-            {
-                "specimenId": "Specimen_BC_06",
-                "skin": "patrick"
-            },
-            {
-                "specimenId": "Specimen_BB_05",
-                "skin": "easter"
-            },
-            {
-                "specimenId": "Specimen_DD_07",
-                "skin": "camo"
-            },
-            {
-                "specimenId": "Specimen_AC_08",
-                "skin": "kings"
-            },
-            {
-                "specimenId": "Specimen_FF_14",
-                "skin": "_any"
             }
         ],
         "rewards": [
@@ -5785,51 +5725,6 @@
             {
                 "name": "Star_Gold",
                 "amount": 4,
-                "type": "entity"
-            },
-            {
-                "name": "gold",
-                "amount": 3000,
-                "type": "hardcurrency"
-            },
-            {
-                "name": "Material_Jackpot_Token",
-                "amount": 75,
-                "type": "entity"
-            },
-            {
-                "name": "Star_Gold",
-                "amount": 4,
-                "type": "entity"
-            },
-            {
-                "name": "gold",
-                "amount": 1600,
-                "type": "hardcurrency"
-            },
-            {
-                "name": "Material_Gacha_Token",
-                "amount": 6,
-                "type": "entity"
-            },
-            {
-                "name": "Material_XP1000",
-                "amount": 40,
-                "type": "entity"
-            },
-            {
-                "name": "gold",
-                "amount": 1400,
-                "type": "hardcurrency"
-            },
-            {
-                "name": "Material_Event_Token",
-                "amount": 30,
-                "type": "entity"
-            },
-            {
-                "name": "Star_Platinum",
-                "amount": 2,
                 "type": "entity"
             },
             {
@@ -5907,8 +5802,8 @@
             {
                 "specimenId": "Specimen_FF_14",
                 "skin": "_any"
-        }
-    ],
+            }
+        ],
         "rewards": [
             {
                 "name": "Material_Jackpot_Token",
@@ -5916,40 +5811,45 @@
                 "type": "entity"
             },
             {
-                "name": "Material_Energy25",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
-                "name": "Material_XP1000",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
-                "name": "Material_Energy25",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
-                "name": "Material_XP1000",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
-                "name": "Charm_Regenx4_1",
-                "amount": 1,
+                "name": "Star_Gold",
+                "amount": 4,
                 "type": "entity"
             },
             {
                 "name": "gold",
-                "amount": 200,
+                "amount": 1600,
                 "type": "hardcurrency"
             },
             {
+                "name": "Material_Jackpot_Token",
+                "amount": 6,
+                "type": "entity"
+            },
+            {
+                "name": "Material_XP1000",
+                "amount": 40,
+                "type": "entity"
+            },
+            {
                 "name": "gold",
-                "amount": 50000,
-                "type": "softcurrency"
-        }
+                "amount": 1400,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 30,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
         ]
     }
 ]

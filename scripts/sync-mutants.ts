@@ -12,6 +12,7 @@ const POKRADEX_IMG_BASE = 'https://pokradex.org/MutantsGG/MGG/';
 
 // Paths
 const DATA_DIR = path.join(process.cwd(), 'src/data/mutants');
+const BACKUP_DIR = '/home/godbtw/site-workspace/123123';
 const TEXTURES_DIR = path.join(process.cwd(), 'public/textures_by_mutant');
 
 const RATINGS = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
@@ -32,11 +33,22 @@ const MULTIPLIERS: Record<string, number> = {
 };
 
 /**
- * Formula for stats: x * (level / 10 + 0.9)
+ * Formula: x * (level / 10 + 0.9)
  */
+function calculateLevelScale(level: number) {
+    return level / 10 + 0.9;
+}
+
 function calculateFinalStat(base: number, rating: string, level: number) {
     const mult = MULTIPLIERS[rating] || 1.0;
-    return Math.round(base * mult * (level / 10 + 0.9));
+    return Math.round(base * mult * calculateLevelScale(level));
+}
+
+function calculateAttackStat(baseAtk1: number, baseAtkPlus: number, level: number, rating: string, attackNumber: number) {
+    const mult = MULTIPLIERS[rating] || 1.0;
+    const threshold = attackNumber === 1 ? 10 : 15;
+    const base = level < threshold ? baseAtk1 : (baseAtkPlus || baseAtk1);
+    return Math.round(base * mult * calculateLevelScale(level));
 }
 
 async function fetchLocalization() {
@@ -47,9 +59,7 @@ async function fetchLocalization() {
     for (const line of lines) {
         const parts = line.split(';');
         if (parts.length >= 2) {
-            const key = parts[0].trim();
-            const value = parts.slice(1).join(';').trim();
-            locMap.set(key, value);
+            locMap.set(parts[0].trim(), parts.slice(1).join(';').trim());
         }
     }
     return locMap;
@@ -58,124 +68,37 @@ async function fetchLocalization() {
 async function fetchGameDefinitions() {
     console.log('Fetching game definitions...');
     const response = await axios.get(GAME_DEFS_URL);
-    const parser = new XMLParser({ 
-        ignoreAttributes: false, 
-        attributeNamePrefix: "",
-        parseAttributeValue: true,
-        trimValues: true
-    });
+    const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "", parseAttributeValue: true, trimValues: true });
     return parser.parse(response.data);
-}
-
-/**
- * Strictly downloads all 10 possible images for a mutant:
- * - 5 Full Textures (Pokradex)
- * - 5 Icons (Kobojo)
- */
-async function downloadMutantTextures(mutantId: string) {
-    const mutantFolder = mutantId.toLowerCase();
-    const targetDir = path.join(TEXTURES_DIR, mutantFolder);
-    try { await fs.mkdir(targetDir, { recursive: true }); } catch (e) {}
-
-    const idUpper = mutantId.toUpperCase();
-    const idLower = mutantId.toLowerCase();
-    
-    let hasAtLeastOne = false;
-
-    for (const rating of RATINGS) {
-        const targetFull = path.join(targetDir, `${idUpper}_${rating}.webp`);
-        const targetIcon = path.join(targetDir, `specimen_${idLower}_${rating === 'platinum' ? 'platinum_platinum' : (rating === 'normal' ? 'normal' : rating + '_' + rating)}.webp`);
-
-        // 1. Full Texture from Pokradex
-        let fullDownloaded = false;
-        try {
-            await fs.access(targetFull);
-            fullDownloaded = true;
-        } catch (e) {
-            let url = "";
-            if (rating === 'normal') url = `${POKRADEX_IMG_BASE}${idUpper}.png`;
-            else if (rating === 'bronze') url = `${POKRADEX_IMG_BASE}V1/${idUpper}.png`;
-            else if (rating === 'silver') url = `${POKRADEX_IMG_BASE}V2/${idUpper}.png`;
-            else if (rating === 'gold') url = `${POKRADEX_IMG_BASE}V3/${idUpper}.png`;
-            else if (rating === 'platinum') url = `${POKRADEX_IMG_BASE}V4/${idUpper}.png`;
-
-            try {
-                const res = await axios.get(url, { responseType: 'arraybuffer', timeout: 5000 });
-                const buf = Buffer.from(res.data);
-                const meta = await sharp(buf).metadata();
-                if (meta.width && meta.width > 200) { // Check for full texture size
-                    await sharp(buf).webp().toFile(targetFull);
-                    console.log(`[FULL] Downloaded ${rating} for ${mutantId}`);
-                    fullDownloaded = true;
-                }
-            } catch (err) {}
-        }
-
-        // 2. Icon from Kobojo (or Pokradex fallback)
-        let iconDownloaded = false;
-        try {
-            await fs.access(targetIcon);
-            iconDownloaded = true;
-        } catch (e) {
-            const urls = [
-                `${KOBOJO_IMG_BASE}specimen_${idLower}${rating === 'normal' ? '' : '_' + rating}.png`,
-                `${POKRADEX_IMG_BASE}specimen_${idLower}${rating === 'normal' ? '' : '_' + rating}.png`
-            ];
-            for (const url of urls) {
-                try {
-                    const res = await axios.get(url, { responseType: 'arraybuffer', timeout: 5000 });
-                    const buf = Buffer.from(res.data);
-                    if ((await sharp(buf).metadata()).width) {
-                        await sharp(buf).webp().toFile(targetIcon);
-                        console.log(`[ICON] Downloaded ${rating} for ${mutantId}`);
-                        iconDownloaded = true;
-                        break;
-                    }
-                } catch (err) {}
-            }
-        }
-
-        if (fullDownloaded || iconDownloaded) hasAtLeastOne = true;
-    }
-
-    return hasAtLeastOne;
-}
-
-function parseTags(descriptor: any) {
-    const tags: Record<string, any> = {};
-    if (descriptor.Tag) {
-        const tagList = Array.isArray(descriptor.Tag) ? descriptor.Tag : [descriptor.Tag];
-        for (const tag of tagList) {
-            tags[tag.key] = tag.value;
-        }
-    }
-    return tags;
 }
 
 async function sync() {
     const locMap = await fetchLocalization();
     const gameDefs = await fetchGameDefinitions();
 
-    const existingData: Record<string, any[]> = {};
-    const existingIds: Record<string, Set<string>> = {};
+    // Загружаем бекапы для путей картинок, атак, описаний и бинго
+    console.log('Loading backups...');
+    const imageBackupMap = new Map<string, string[]>();
+    const attack1BackupMap = new Map<string, string>();
+    const attack2BackupMap = new Map<string, string>();
+    const loreBackupMap = new Map<string, string>();
+    const bingoBackupMap = new Map<string, string[]>();
 
     for (const rating of RATINGS) {
-        existingIds[rating] = new Set();
         try {
-            const filePath = path.join(DATA_DIR, JSON_FILES[rating as keyof typeof JSON_FILES]);
-            const content = await fs.readFile(filePath, 'utf-8');
+            const bPath = path.join(BACKUP_DIR, JSON_FILES[rating as keyof typeof JSON_FILES]);
+            const content = await fs.readFile(bPath, 'utf-8');
             const data = JSON.parse(content);
-            // Deduplicate existing data by ID
-            const seen = new Set();
-            existingData[rating] = data.filter((m: any) => {
-                if (seen.has(m.id)) return false;
-                seen.add(m.id);
-                existingIds[rating].add(m.id);
-                return true;
+            data.forEach((m: any) => {
+                if (m.id) {
+                    if (m.image) imageBackupMap.set(m.id, m.image);
+                    if (m.name_attack1) attack1BackupMap.set(m.id, m.name_attack1);
+                    if (m.name_attack2) attack2BackupMap.set(m.id, m.name_attack2);
+                    if (m.name_lore) loreBackupMap.set(m.id, m.name_lore);
+                    if (m.bingo && Array.isArray(m.bingo)) bingoBackupMap.set(m.id, m.bingo);
+                }
             });
-        } catch (e) {
-            existingData[rating] = [];
-        }
+        } catch (e) { console.warn(`Backup for ${rating} not found`); }
     }
 
     function findAllEntityDescriptors(obj: any): any[] {
@@ -185,10 +108,7 @@ async function sync() {
             const list = Array.isArray(obj.EntityDescriptor) ? obj.EntityDescriptor : [obj.EntityDescriptor];
             results = results.concat(list);
         }
-        for (const key in obj) {
-            if (key === '?xml') continue;
-            results = results.concat(findAllEntityDescriptors(obj[key]));
-        }
+        for (const key in obj) { if (key !== '?xml') results = results.concat(findAllEntityDescriptors(obj[key])); }
         return results;
     }
 
@@ -197,61 +117,31 @@ async function sync() {
         const isSpecimen = d.category === "specimen" || (d.id && d.id.startsWith("Specimen_"));
         if (!isSpecimen) return false;
         const name = locMap.get(d.id) || "";
-        if (name.toLowerCase().includes("слабый") || name.toLowerCase().includes("weak")) return false;
-        return true;
+        return !(name.toLowerCase().includes("слабый") || name.toLowerCase().includes("weak"));
     });
-    
-    console.log(`Found ${specimenDescriptors.length} valid specimen descriptors.`);
 
-    let modifiedCount = 0;
-
-    // Parallelize processing mutants to avoid long hang times
-    const mutantTasks = specimenDescriptors.map(async (desc) => {
-        const fullId = desc.id; 
-        const mutantId = fullId.replace('Specimen_', '');
-        const mutantFolder = mutantId.toLowerCase();
-        const tags = parseTags(desc);
-
-        // Download all possible textures for this mutant once
-        // This check is very fast if files already exist
-        const hasTextures = await downloadMutantTextures(mutantId);
-        
-        // Skip if no textures, UNLESS it is FB_14 which we force update
-        if (!hasTextures && mutantId !== 'FB_14') return;
-
-        for (const rating of RATINGS) {
+    for (const rating of RATINGS) {
+        const resultMutants = [];
+        for (const desc of specimenDescriptors) {
+            const fullId = desc.id; 
+            const mutantId = fullId.replace('Specimen_', '');
+            const mutantFolder = mutantId.toLowerCase();
+            
             const specimenId = `specimen_${mutantFolder}`;
             const finalId = rating === 'normal' ? specimenId : `${specimenId}_${rating === 'platinum' ? 'plat' : rating}`;
             
-            // Check if we need to update this mutant
-            // Update if:
-            // 1. It doesn't exist
-            // 2. It is FB_14 (force update)
-            // 3. Description starts with "Описание для" (placeholder)
-            const exists = existingIds[rating].has(finalId);
-            const currentEntry = existingData[rating].find(m => m.id === finalId);
-            const isPlaceholderLore = currentEntry && currentEntry.name_lore && currentEntry.name_lore.startsWith("Описание для");
-            
-            if (exists && mutantId !== 'FB_14' && !isPlaceholderLore) continue;
+            // Проверяем наличие в бекапе (фильтр мутантов без скинов/картинок)
+            const backupImages = imageBackupMap.get(finalId);
+            if (!backupImages || backupImages.length === 0) continue;
 
-            const targetFull = path.join(TEXTURES_DIR, mutantFolder, `${mutantId.toUpperCase()}_${rating}.webp`);
-            const targetIcon = path.join(TEXTURES_DIR, mutantFolder, `specimen_${mutantFolder}_${rating === 'platinum' ? 'platinum_platinum' : (rating === 'normal' ? 'normal' : rating + '_' + rating)}.webp`);
-            
-            let textureExists = false;
-            try { await fs.access(targetFull); textureExists = true; } catch(e) {
-                try { await fs.access(targetIcon); textureExists = true; } catch(e) {}
+            const tags: Record<string, any> = {};
+            if (desc.Tag) {
+                const tagList = Array.isArray(desc.Tag) ? desc.Tag : [desc.Tag];
+                tagList.forEach((t: any) => { tags[t.key] = t.value; });
             }
-            
-            // For FB_14 we proceed even if textures missing (to update data), otherwise skip
-            if (!textureExists && mutantId !== 'FB_14') continue;
 
             const name = locMap.get(fullId) || mutantId;
-            // Enhanced lore lookup
-            // Try: caption_specimen_id, desc_Specimen_ID, desc_ID
-            const lore = locMap.get(`caption_${specimenId}`) || 
-                        locMap.get(`desc_${fullId}`) || 
-                        locMap.get(`desc_${mutantId}`) || 
-                        `Описание для ${name}`;
+            const lore = loreBackupMap.get(finalId) || locMap.get(`caption_${specimenId}`) || locMap.get(`desc_${fullId}`) || locMap.get(`desc_${mutantId}`) || `Описание для ${name}`;
             
             const hpBase = parseInt(tags.lifePoint || "0");
             const atk1Base = parseInt(tags.atk1 || "0");
@@ -260,10 +150,12 @@ async function sync() {
             const atk2Base = parseInt(tags.atk2 || "0");
             const atk2pBase = parseInt(tags.atk2p || "0");
             const atk2AOE = String(tags.atk2 || "").includes("AOE") || String(tags.atk2p || "").includes("AOE");
-            
             const speedVal = parseFloat(tags.spX100 || "0");
             const speedFinal = speedVal > 0 ? parseFloat((1000 / speedVal).toFixed(3)) : 0;
             const genesChar = String(tags.dna || "");
+            const bankBase = parseInt(tags.bank || "0");
+            const abilityPct1 = parseInt(tags.abilityPct1 || "0");
+            const abilityPct2 = parseInt(tags.abilityPct2 || "0");
             
             const abilitiesRaw = String(tags.abilities || "").split(';');
             const abilities = abilitiesRaw.map(a => {
@@ -271,19 +163,16 @@ async function sync() {
                 if (parts.length < 2) return null;
                 const idx = parts[0];
                 const abilityName = parts[1];
-                const pctLow = parseInt(tags[`abilityPct${idx}`] || "0");
-                const pctHigh = parseInt(tags[`abilityPct${parseInt(idx) + 1}`] || tags[`abilityPct${idx}`] || "0");
                 const isRetaliate = abilityName.includes('retaliate');
 
                 const calcValues = (lvl: number) => {
-                    const pct = lvl >= 25 ? pctHigh : pctLow;
-                    const mult = pct / 100;
-                    const a1 = Math.round(calculateFinalStat(lvl >= 10 ? (atk1pBase || atk1Base) : atk1Base, rating, lvl) * mult);
-                    const a2 = isRetaliate ? 0 : Math.round(calculateFinalStat(lvl >= 15 ? (atk2pBase || atk2Base) : atk2Base, rating, lvl) * mult);
+                    const pct = lvl >= 25 ? abilityPct2 : abilityPct1;
+                    const mult = Math.abs(pct) / 100;
+                    const a1 = Math.round(calculateAttackStat(atk1Base, atk1pBase, lvl, rating, 1) * mult);
+                    const a2 = isRetaliate ? 0 : Math.round(calculateAttackStat(atk2Base, atk2pBase, lvl, rating, 2) * mult);
                     return { a1, a2, pct };
                 };
-                const v1 = calcValues(1);
-                const v30 = calcValues(30);
+                const v1 = calcValues(1); const v30 = calcValues(30);
                 return {
                     name: abilityName, pct: v1.pct,
                     value_atk1_lvl1: v1.a1, value_atk2_lvl1: v1.a2,
@@ -291,78 +180,45 @@ async function sync() {
                 };
             }).filter(Boolean);
 
-            // Rarity fix: CAPTAINPEACE -> SPECIAL
-            let rarity = tags.type || "default";
-            if (rarity === "CAPTAINPEACE") rarity = "SPECIAL";
+            let typeValue = tags.type || "default";
+            if (typeValue === "CAPTAINPEACE") typeValue = "Special";
 
             const entry: any = {
-                id: finalId, name: name, genes: genesChar.split(''), rarity: rarity,
+                id: finalId, name, genes: genesChar.split(''), rarity: typeValue,
                 base_stats: {
+                    hp_base: hpBase, atk1_base: atk1Base, atk1p_base: atk1pBase, atk2_base: atk2Base, atk2p_base: atk2pBase,
+                    speed_base: speedFinal, bank_base: bankBase, abilityPct1, abilityPct2,
                     lvl1: {
                         hp: calculateFinalStat(hpBase, rating, 1),
-                        atk1: calculateFinalStat(atk1Base, rating, 1),
-                        atk2: calculateFinalStat(atk2Base, rating, 1),
-                        spd: speedFinal, atk1_gene: genesChar[0]?.toLowerCase() || 'neutro', atk1_AOE: atk1AOE
+                        atk1: calculateAttackStat(atk1Base, atk1pBase, 1, rating, 1),
+                        atk2: calculateAttackStat(atk2Base, atk2pBase, 1, rating, 2),
+                        spd: speedFinal, atk1_gene: genesChar[0]?.toLowerCase() || 'neutro', atk1_AOE: atk1AOE, bank: bankBase
                     },
                     lvl30: {
                         hp: calculateFinalStat(hpBase, rating, 30),
-                        // Level 30 is >= 10, so use atk1pBase if available
-                        atk1: calculateFinalStat(atk1pBase || atk1Base, rating, 30),
-                        // Level 30 is >= 15, so use atk2pBase if available
-                        atk2: calculateFinalStat(atk2pBase || atk2Base, rating, 30),
+                        atk1: calculateAttackStat(atk1Base, atk1pBase, 30, rating, 1),
+                        atk2: calculateAttackStat(atk2Base, atk2pBase, 30, rating, 2),
                         spd: speedFinal, atk1_gene: genesChar[0]?.toLowerCase() || 'neutro', atk1_AOE: atk1AOE,
-                        atk2_gene: genesChar[1]?.toLowerCase() || (genesChar[0]?.toLowerCase() || 'neutro'), atk2_AOE: atk2AOE
+                        atk2_gene: genesChar[1]?.toLowerCase() || (genesChar[0]?.toLowerCase() || 'neutro'), atk2_AOE: atk2AOE, bank: bankBase * 30
                     }
                 },
-                abilities: abilities,
-                image: [
-                    `textures_by_mutant/${mutantFolder}/${mutantId.toUpperCase()}_${rating}.webp`,
-                    `textures_by_mutant/${mutantFolder}/specimen_${mutantFolder}_${rating === 'platinum' ? 'platinum_platinum' : (rating === 'normal' ? 'normal' : rating + '_' + rating)}.webp`,
-                    `textures_by_mutant/${mutantFolder}/larva_${mutantFolder}.webp`
-                ],
-                type: rarity,
-                incub_time: parseInt(tags.incubMin || "0"),
-                orbs: { 
-                    normal: String(tags.orbSlots || "").split('n').length - 1, 
-                    special: String(tags.orbSlots || "").split('s').length - 1 
-                },
-                bingo: String(tags.bingo || "").split(';').filter(Boolean),
+                abilities,
+                image: backupImages,
+                type: typeValue, incub_time: parseInt(tags.incubMin || "0"),
+                orbs: { normal: String(tags.orbSlots || "").split('n').length - 1, special: String(tags.orbSlots || "").split('s').length - 1 },
+                bingo: bingoBackupMap.get(finalId) || String(tags.bingo || "").split(';').filter(Boolean),
                 chance: parseInt(tags.odds || "0"),
-                name_attack1: locMap.get(`${fullId}_attack_1`) || locMap.get(`${fullId}_attack_1P`) || locMap.get(`${fullId}_attack_1p`) || `Атака 1 (${mutantId})`,
-                name_attack2: locMap.get(`${fullId}_attack_2`) || locMap.get(`${fullId}_attack_2P`) || locMap.get(`${fullId}_attack_2p`) || `Атака 2 (${mutantId})`,
-                name_attack3: locMap.get(`${fullId}_attack_3`) || "",
+                name_attack1: attack1BackupMap.get(finalId) || locMap.get(`${fullId}_attack_1`) || locMap.get(`Specimen_${mutantId}_attack_1`) || `Атака 1`,
+                name_attack2: attack2BackupMap.get(finalId) || locMap.get(`${fullId}_attack_2`) || locMap.get(`Specimen_${mutantId}_attack_2`) || `Атака 2`,
                 name_lore: lore
             };
-
-            if (rating !== 'normal') {
-                entry.star = rating === 'platinum' ? 'platinum' : rating;
-                entry.multiplier = MULTIPLIERS[rating];
-            }
-
-            // Remove existing if updating
-            const existingIdx = existingData[rating].findIndex(m => m.id === finalId);
-            if (existingIdx !== -1) {
-                existingData[rating][existingIdx] = entry;
-            } else {
-                existingData[rating].push(entry);
-            }
-            existingIds[rating].add(finalId);
-            modifiedCount++;
+            if (rating !== 'normal') { entry.star = rating === 'platinum' ? 'platinum' : rating; entry.multiplier = MULTIPLIERS[rating]; }
+            resultMutants.push(entry);
         }
-    });
-
-    await Promise.all(mutantTasks);
-
-    if (modifiedCount > 0) {
-        for (const rating of RATINGS) {
-            const filePath = path.join(DATA_DIR, JSON_FILES[rating as keyof typeof JSON_FILES]);
-            existingData[rating].sort((a, b) => a.id.localeCompare(b.id));
-            await fs.writeFile(filePath, JSON.stringify(existingData[rating], null, 2), 'utf-8');
-            console.log(`Updated ${filePath} (Processed ${modifiedCount} updates)`);
-        }
-    } else {
-        console.log('Sync complete. No changes needed.');
+        const filePath = path.join(DATA_DIR, JSON_FILES[rating as keyof typeof JSON_FILES]);
+        resultMutants.sort((a, b) => a.id.localeCompare(b.id));
+        await fs.writeFile(filePath, JSON.stringify(resultMutants, null, 2), 'utf-8');
+        console.log(`Saved ${filePath} with ${resultMutants.length} mutants`);
     }
 }
-
 sync().catch(console.error);

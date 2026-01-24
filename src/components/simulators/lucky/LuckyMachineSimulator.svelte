@@ -19,6 +19,7 @@
     .map((reward) => getRewardWithChance(reward, machine))
     .sort((a, b) => b.chance - a.chance);
 
+  let showOdds = false;
   let spins = 200;
   let isSimulating = false;
   let error: string | null = null;
@@ -27,162 +28,40 @@
   let completedPaid = 0;
   let controller: AbortController | null = null;
 
-  type ResourceSummaryKey =
-    | 'consumables'
-    | 'stars'
-    | 'spheres'
-    | 'boosters'
-    | 'tokens'
-    | 'mutants'
-    | 'jackpots';
+  type ResourceSummaryKey = 'consumables'|'stars'|'spheres'|'boosters'|'tokens'|'mutants'|'jackpots';
+  interface ResourceSummary { key: ResourceSummaryKey; label: string; icon: string; metaLabel: string; count: number; totalAmount: number; }
 
-  interface ResourceSummaryDefinition {
-    label: string;
-    icon: string;
-    metaLabel: string;
-  }
-
-  interface ResourceSummary extends ResourceSummaryDefinition {
-    key: ResourceSummaryKey;
-    count: number;
-    totalAmount: number;
-  }
-
-  const resourceSummaryConfig: Record<ResourceSummaryKey, ResourceSummaryDefinition> = {
-    consumables: {
-      label: 'Расходники',
-      icon: '/med/normal_med.webp',
-      metaLabel: 'Ресурсов суммарно',
-    },
-    stars: {
-      label: 'Звёзды',
-      icon: '/stars/all_stars.webp',
-      metaLabel: 'Ресурсов суммарно',
-    },
-    spheres: {
-      label: 'Сферы',
-      icon: '/orbs/basic/orb_slot.webp',
-      metaLabel: 'Ресурсов суммарно',
-    },
-    boosters: {
-      label: 'Бустеры',
-      icon: '/boosters/charm_xpx2.webp',
-      metaLabel: 'Ресурсов суммарно',
-    },
-    tokens: {
-      label: 'Жетоны',
-      icon: '/tokens/material_jackpot_token.webp',
-      metaLabel: 'Ресурсов суммарно',
-    },
-    mutants: {
-      label: 'Мутанты',
-      icon: '/etc/icon_larva.webp',
-      metaLabel: 'Выпало суммарно',
-    },
-    jackpots: {
-      label: 'Джекпоты',
-      icon: '/cash/jackpot.webp',
-      metaLabel: 'Выпало суммарно',
-    },
+  const resourceSummaryConfig: Record<ResourceSummaryKey, {label:string, icon:string, metaLabel:string}> = {
+    consumables: { label: 'Расходники', icon: '/med/normal_med.webp', metaLabel: 'Ресурсов суммарно' },
+    stars: { label: 'Звёзды', icon: '/stars/all_stars.webp', metaLabel: 'Ресурсов суммарно' },
+    spheres: { label: 'Сферы', icon: '/orbs/basic/orb_slot.webp', metaLabel: 'Ресурсов суммарно' },
+    boosters: { label: 'Бустеры', icon: '/boosters/charm_xpx2.webp', metaLabel: 'Ресурсов суммарно' },
+    tokens: { label: 'Жетоны', icon: '/tokens/material_jackpot_token.webp', metaLabel: 'Ресурсов суммарно' },
+    mutants: { label: 'Мутанты', icon: '/etc/icon_larva.webp', metaLabel: 'Выпало суммарно' },
+    jackpots: { label: 'Джекпоты', icon: '/cash/jackpot.webp', metaLabel: 'Выпало суммарно' },
   };
 
-  const resourceSummaryOrder: ResourceSummaryKey[] = [
-    'consumables',
-    'stars',
-    'spheres',
-    'boosters',
-    'tokens',
-    'mutants',
-    'jackpots',
-  ];
+  const resourceSummaryOrder: ResourceSummaryKey[] = ['consumables','stars','spheres','boosters','tokens','mutants','jackpots'];
 
   const rewardChanceMap = new Map<number, number>();
-  for (const reward of rewardChances) {
-    rewardChanceMap.set(reward.rewardId, reward.chance);
-  }
+  for (const reward of rewardChances) { rewardChanceMap.set(reward.rewardId, reward.chance); }
 
   function detectResourceSummaryKey(entry: LuckyRewardAggregate): ResourceSummaryKey | null {
     const { reward } = entry;
     const name = reward.name.toLowerCase();
     const slug = reward.id?.toLowerCase?.() ?? '';
-
-    if (reward.isSuperJackpot || reward.category === 'jackpot' || name.includes('джекпот')) {
-      return 'jackpots';
-    }
-
-    if (reward.category === 'mutant' || slug.includes('specimen') || name.includes('мутант')) {
-      return 'mutants';
-    }
-
-    if (
-      reward.category === 'token' ||
-      name.includes('жетон') ||
-      slug.includes('token') ||
-      slug.includes('jackpot') ||
-      slug.includes('reactor')
-    ) {
-      return 'tokens';
-    }
-
-    if (
-      reward.category === 'orb' ||
-      name.includes('сфер') ||
-      name.includes('sphere') ||
-      name.includes('орб') ||
-      slug.includes('orb')
-    ) {
-      return 'spheres';
-    }
-
-    if (
-      reward.category === 'booster' ||
-      name.includes('бустер') ||
-      name.includes('ускорител') ||
-      name.includes('чарм') ||
-      slug.includes('booster') ||
-      slug.includes('charm')
-    ) {
-      return 'boosters';
-    }
-
-    if (
-      reward.category === 'star' ||
-      name.includes('звёзд') ||
-      name.includes('звезд') ||
-      name.includes('звезда') ||
-      name.includes('звезды') ||
-      name.includes('star') ||
-      slug.includes('star')
-    ) {
-      return 'stars';
-    }
-
-    if (
-      reward.category === 'material' ||
-      reward.category === 'special' ||
-      name.includes('апт') ||
-      name.includes('опыт') ||
-      name.includes('мутостерон') ||
-      name.includes('серон') ||
-      name.includes('стерон') ||
-      name.includes('пропуск') ||
-      name.includes('experience') ||
-      slug.includes('med') ||
-      slug.includes('mutoster') ||
-      slug.includes('steroid') ||
-      slug.includes('pass') ||
-      slug.includes('consumable') ||
-      slug.includes('xp')
-    ) {
-      return 'consumables';
-    }
-
+    if (reward.isSuperJackpot || reward.category === 'jackpot' || name.includes('джекпот')) return 'jackpots';
+    if (reward.category === 'mutant' || slug.includes('specimen') || name.includes('мутант')) return 'mutants';
+    if (reward.category === 'token' || name.includes('жетон') || slug.includes('token') || slug.includes('jackpot')) return 'tokens';
+    if (reward.category === 'orb' || name.includes('сфер') || slug.includes('orb')) return 'spheres';
+    if (reward.category === 'booster' || name.includes('бустер') || slug.includes('booster')) return 'boosters';
+    if (reward.category === 'star' || name.includes('звёзд') || slug.includes('star')) return 'stars';
+    if (reward.category === 'material' || name.includes('апт') || name.includes('опыт') || slug.includes('xp') || slug.includes('med')) return 'consumables';
     return null;
   }
 
   function buildResourceSummaries(simulation: LuckySimulation | null): ResourceSummary[] {
     const totals = new Map<ResourceSummaryKey, { count: number; totalAmount: number }>();
-
     if (simulation) {
       for (const entry of simulation.breakdown) {
         const key = detectResourceSummaryKey(entry);
@@ -193,18 +72,10 @@
         totals.set(key, current);
       }
     }
-
     return resourceSummaryOrder.map((key) => {
       const config = resourceSummaryConfig[key];
       const bucket = totals.get(key) ?? { count: 0, totalAmount: 0 };
-      return {
-        key,
-        label: config.label,
-        icon: config.icon,
-        metaLabel: config.metaLabel,
-        count: bucket.count,
-        totalAmount: bucket.totalAmount,
-      };
+      return { key, ...config, ...bucket };
     });
   }
 
@@ -215,6 +86,51 @@
     return `${(value * 100).toFixed(digits)}%`;
   }
 
+  function resetSimulation() {
+    if (controller) controller.abort();
+    result = null; progress = 0; completedPaid = 0; error = null;
+  }
+
+  async function handleSimulate() {
+    error = null;
+    if (!Number.isFinite(spins) || spins <= 0) { error = 'Введите положительное количество прокрутов.'; return; }
+    result = null; progress = 0; completedPaid = 0;
+    isSimulating = true;
+    controller = new AbortController();
+    await tick();
+    try {
+      // Для плавности разбиваем на мелкие пачки и не блокируем поток
+      const simulation = await simulateLuckyMachineAsync(spins, machine, {
+        historySize: 24,
+        batchSize: 200, // Еще меньше батч для частых обновлений
+        signal: controller.signal,
+        onProgress(completed) {
+          completedPaid = completed;
+          const raw = spins > 0 ? completed / spins : 0;
+          // Плавное обновление
+          progress = raw;
+        },
+      });
+      progress = 1;
+      result = simulation;
+    } catch (err) {
+      if (!(err instanceof DOMException && err.name === 'AbortError')) error = 'Ошибка симуляции.';
+    } finally {
+      controller = null; isSimulating = false;
+    }
+  }
+
+  function getFreeSpinRate(sim?: LuckySimulation | null) {
+    if (!sim || sim.totalSpins === 0) return '—';
+    return `${((sim.freeSpins / sim.totalSpins) * 100).toFixed(2)}%`;
+  }
+  function getFreeSpinRatio(sim?: LuckySimulation | null) {
+    if (!sim || sim.freeSpins === 0) return '—';
+    const r = sim.paidSpins / sim.freeSpins;
+    return `1 к ${r.toFixed(2)}`;
+  }
+
+  // --- Helpers for Detailed Results ---
   function getActualShare(entry: LuckyRewardAggregate): string {
     if (!result || result.totalSpins <= 0) return '—';
     return formatPercent(entry.count / result.totalSpins, 2);
@@ -240,87 +156,8 @@
     return '—';
   }
 
-  function resetSimulation() {
-    if (controller) {
-      controller.abort();
-      controller = null;
-    }
-    result = null;
-    progress = 0;
-    completedPaid = 0;
-    error = null;
-  }
-
-  function stopSimulation() {
-    if (controller) {
-      controller.abort();
-      controller = null;
-    }
-  }
-
-  async function handleSimulate() {
-    error = null;
-
-    if (!Number.isFinite(spins) || spins <= 0) {
-      error = 'Введите положительное количество прокрутов.';
-      return;
-    }
-
-    result = null;
-    progress = 0;
-    completedPaid = 0;
-
-    isSimulating = true;
-    controller = new AbortController();
-
-    await tick();
-
-    try {
-      const simulation = await simulateLuckyMachineAsync(spins, machine, {
-        historySize: 24,
-        batchSize: 1800,
-        signal: controller.signal,
-        onProgress(completed) {
-          completedPaid = completed;
-          progress = spins > 0 ? Math.min(completed / spins, 1) : 0;
-        },
-      });
-
-      result = simulation;
-    } catch (err) {
-      if (err instanceof DOMException && err.name === 'AbortError') {
-        error = 'Симуляция остановлена.';
-      } else {
-        console.error(err);
-        error = 'Не удалось выполнить симуляцию. Попробуйте снова.';
-      }
-    } finally {
-      controller = null;
-      isSimulating = false;
-      progress = 0;
-      completedPaid = 0;
-    }
-  }
-
-  function getFreeSpinRate(sim?: LuckySimulation | null): string {
-    if (!sim || sim.totalSpins === 0) return '—';
-    const rate = (sim.freeSpins / sim.totalSpins) * 100;
-    return `${rate.toFixed(2)}%`;
-  }
-
-  function getFreeSpinRatio(sim?: LuckySimulation | null): string {
-    if (!sim || sim.freeSpins === 0) return '—';
-    const ratio = sim.freeSpins > 0 ? sim.paidSpins / sim.freeSpins : 0;
-    if (!Number.isFinite(ratio) || ratio <= 0) return '—';
-    return `1 к ${ratio.toFixed(2)}`;
-  }
-
   $: resourceSummaries = buildResourceSummaries(result);
-  $: jackpotCount = resourceSummaries.find((summary) => summary.key === 'jackpots')?.count ?? 0;
-
-  onDestroy(() => {
-    stopSimulation();
-  });
+  $: jackpotCount = resourceSummaries.find((s) => s.key === 'jackpots')?.count ?? 0;
 </script>
 
 <div class="machine-shell">
@@ -328,140 +165,75 @@
     <div class="machine-header">
       <span class="machine-tag">Lucky Slots</span>
       <h2>{machine.title}</h2>
-      <p>
-        Крутите слот-машину с реальными шансами. Бесплатные прокруты добавляются
-        автоматически, так что можно увидеть, сколько бонусов приносит рулетка.
-      </p>
+      <p>Крутите слот-машину с реальными шансами. Бесплатные прокруты добавляются автоматически.</p>
     </div>
 
-    <form class="control-panel" on:submit|preventDefault={handleSimulate}>
+    <form class="control-panel" on:submit|preventDefault={handleSimulate} style="order: -1;">
       <label class="input-group">
         <span>Количество платных прокрутов</span>
         <div class="input-wrapper">
-          <input
-            type="number"
-            min={1}
-            step={1}
-            bind:value={spins}
-            aria-describedby="spins-hint"
-          />
+          <input type="number" min={1} bind:value={spins} />
           <span class="suffix">спинов</span>
         </div>
-        <small id="spins-hint">Бесплатные спины считаются отдельно и не требуют жетонов джекпота.</small>
       </label>
-
       <div class="actions">
-        <button type="submit" class="primary" disabled={isSimulating}>
-          {isSimulating ? 'Считаем…' : 'Запустить симуляцию'}
-        </button>
-        <button
-          type="button"
-          class={`ghost ${isSimulating ? 'danger' : ''}`}
-          on:click={isSimulating ? stopSimulation : resetSimulation}
-        >
-          {isSimulating ? 'Остановить' : 'Очистить'}
-        </button>
+        <button type="submit" class="primary" disabled={isSimulating}>{isSimulating ? 'Считаем…' : 'Запустить симуляцию'}</button>
+        <button type="button" class="ghost" on:click={isSimulating ? () => controller?.abort() : resetSimulation}>{isSimulating ? 'Остановить' : 'Очистить'}</button>
       </div>
-
       {#if isSimulating}
         <div class="progress">
-          <div class="progress-bar" style={`--progress: ${Math.min(progress * 100, 100)}%`}></div>
-          <div class="progress-label">
-            Выполнено {Math.min(Math.floor(progress * 100), 100)}% —
-            {formatNumber(completedPaid)} из {formatNumber(spins)} платных прокрутов
-          </div>
+          <div class="progress-bar"><div class="progress-fill" style={`width: ${progress * 100}%`}></div></div>
+          <div class="progress-label">Выполнено {Math.floor(progress * 100)}% — {formatNumber(completedPaid)} из {formatNumber(spins)}</div>
         </div>
       {/if}
-
-      {#if error}
-        <p class="error">{error}</p>
-      {/if}
+      {#if error}<p class="error">{error}</p>{/if}
     </form>
 
     {#if result}
       <section class="stats">
-        <div class="stat-card metric total-spins">
-          <div class="metric-icon" aria-hidden="true">
-            <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
-          </div>
-          <div class="metric-body">
-            <span class="label">Всего прокрутов</span>
-            <strong>{formatNumber(result.totalSpins)}</strong>
-          </div>
+        <div class="stat-card">
+          <img class="stat-icon" src="/etc/icon_timer.webp" alt="" />
+          <div class="stat-body"><span class="label">Всего прокрутов</span><strong>{formatNumber(result.totalSpins)}</strong></div>
         </div>
-        <div class="stat-card metric paid-spins">
-          <div class="metric-icon" aria-hidden="true">
-            <img src="/tokens/material_jackpot_token.webp" alt="" loading="lazy" />
-          </div>
-          <div class="metric-body">
-            <span class="label">Платных</span>
-            <strong>{formatNumber(result.paidSpins)}</strong>
-          </div>
+        <div class="stat-card">
+          <img class="stat-icon" src="/tokens/material_jackpot_token.webp" alt="" />
+          <div class="stat-body"><span class="label">Платных</span><strong>{formatNumber(result.paidSpins)}</strong></div>
         </div>
-        <div class="stat-card metric highlight free-spins">
-          <div class="metric-icon" aria-hidden="true">
-            <img src="/etc/freespin.webp" alt="" loading="lazy" />
-          </div>
-          <div class="metric-body">
+        <div class="stat-card highlight">
+          <img class="stat-icon" src="/etc/freespin.webp" alt="" />
+          <div class="stat-body">
             <span class="label">Бесплатных</span>
             <strong>{formatNumber(result.freeSpins)}</strong>
-            <small>Доля: {getFreeSpinRate(result)} • Каждые {getFreeSpinRatio(result)}</small>
+            <small>Доля: {getFreeSpinRate(result)} • {getFreeSpinRatio(result)}</small>
           </div>
         </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src="/cash/g20.webp" alt="Иконка золота" loading="lazy" />
-          <div class="stat-body">
-            <span class="label">Выиграно золота</span>
-            <strong>{formatNumber(result.goldWon)}</strong>
-          </div>
+        <div class="stat-card">
+          <img class="stat-icon" src="/cash/g20.webp" alt="" />
+          <div class="stat-body"><span class="label">Выиграно золота</span><strong>{formatNumber(result.goldWon)}</strong></div>
         </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src="/cash/softcurrency.webp" alt="Иконка серебра" loading="lazy" />
-          <div class="stat-body">
-            <span class="label">Выиграно серебра</span>
-            <strong>{formatNumber(result.silverWon)}</strong>
-          </div>
+        <div class="stat-card">
+          <img class="stat-icon" src="/cash/softcurrency.webp" alt="" />
+          <div class="stat-body"><span class="label">Выиграно серебра</span><strong>{formatNumber(result.silverWon)}</strong></div>
         </div>
-        <div class="stat-card currency">
-          <img
-            class="stat-icon"
-            src="/tokens/material_gacha_token.webp"
-            alt="Иконка жетона джекпота"
-            loading="lazy"
-          />
-          <div class="stat-body">
-            <span class="label">Жетоны</span>
-            <strong>{formatNumber(result.tokenItems)}</strong>
-          </div>
+        <div class="stat-card">
+          <img class="stat-icon" src="/tokens/material_gacha_token.webp" alt="" />
+          <div class="stat-body"><span class="label">Жетоны</span><strong>{formatNumber(result.tokenItems)}</strong></div>
         </div>
       </section>
-      <section class="results">
-        <header class="results-header">
-          <h3>Результаты симуляции</h3>
-          <p>
-            Выполнено {formatNumber(result.totalSpins)} прокрутов: {formatNumber(result.paidSpins)} платных и
-            {formatNumber(result.freeSpins)} бесплатных. Выпало джекпотов: {formatNumber(jackpotCount)}.
-          </p>
-        </header>
+      <section class="resource-summary">
+        {#each resourceSummaries as s (s.key)}
+          <article class="resource-card">
+            <div class="resource-icon"><img src={s.icon} alt="" /></div>
+            <div class="resource-body">
+              <span class="resource-title">{s.label}</span>
+              <strong>{formatNumber(s.count)}</strong>
+              <span class="resource-meta">{s.metaLabel}: {formatNumber(s.totalAmount)}</span>
+            </div>
+          </article>
+        {/each}
+      </section>
 
-        <div class="resource-summary" role="presentation">
-          {#each resourceSummaries as summary (summary.key)}
-            <article class="resource-card">
-              <div class="resource-icon">
-                <img src={summary.icon} alt="" loading="lazy" />
-              </div>
-              <div class="resource-body">
-                <span class="resource-title">{summary.label}</span>
-                <strong>{formatNumber(summary.count)}</strong>
-                <span class="resource-meta">
-                  {summary.metaLabel}: {formatNumber(summary.totalAmount)}
-                </span>
-              </div>
-            </article>
-          {/each}
-        </div>
-
-        <div class="result-grid">
+      <div class="result-grid">
           <section class="result-column">
             <h4>По наградам</h4>
             {#if result.breakdown.length}
@@ -518,745 +290,200 @@
             {/if}
           </section>
         </div>
-      </section>
     {/if}
   </div>
-  <aside class="odds-panel">
-  <h3>Теоретические шансы</h3>
-  <p class="odds-caption">Каждый процент рассчитан из реальных весов наград.</p>
-  <div class="odds-scroll">
-    <ul class="odds-list">
-      {#each rewardChances as reward}
-        <li>
-          <span class="odds-name">
-            <img class="odds-icon" src={reward.icon} alt={reward.name} loading="lazy" />
-            <span class="name">{reward.name}</span>
-          </span>
-          <span class="chance">{(reward.chance * 100).toFixed(4)}%</span>
-        </li>
-      {/each}
-    </ul>
-  </div>
-</aside>
+  <aside class="odds-panel" class:collapsed={!showOdds}>
+    <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
+      <h3>Шансы</h3>
+      <span class="chevron">{showOdds ? '▼' : '▲'}</span>
+    </button>
+    
+    {#if showOdds}
+      <div class="odds-scroll">
+        <ul class="odds-list">
+          {#each rewardChances as r}
+            <li>
+              <span class="odds-name"><img class="odds-icon" src={r.icon} alt="" /><span class="name">{r.name}</span></span>
+              <span class="chance">{(r.chance * 100).toFixed(4)}%</span>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    {/if}
+  </aside>
 </div>
+
 <style>
-  .machine-shell {
-    display: grid;
-    gap: 1.75rem;
-    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
-    align-items: start;
-  }
-
-  .machine-body {
-    background: linear-gradient(150deg, rgba(124, 77, 255, 0.25), rgba(16, 14, 26, 0.92));
-    border: 1px solid rgba(129, 140, 248, 0.35);
-    border-radius: 34px;
-    padding: 2.25rem;
-    box-shadow: 0 28px 46px rgba(92, 107, 192, 0.25);
-    display: flex;
-    flex-direction: column;
-    gap: 2.25rem;
-  }
-
-  .machine-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    color: rgba(226, 232, 240, 0.9);
-  }
-
-  .machine-header h2 {
-    margin: 0;
-    font-size: 2.4rem;
-    color: #e0e7ff;
-  }
-
-  .machine-header p {
-    margin: 0;
-    line-height: 1.7;
-    color: rgba(226, 232, 240, 0.75);
-  }
-
-  .machine-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.45rem 1.1rem;
+  .machine-shell { display: grid; gap: 1.5rem; grid-template-columns: minmax(300px, 1fr) minmax(0, 2fr); align-items: start; }
+  .machine-body { background: linear-gradient(150deg, rgba(124,77,255,0.15), rgba(16,14,26,0.95)); border: 1px solid rgba(129,140,248,0.3); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; gap: 2rem; }
+  .machine-header h2 { margin: 0; font-size: 2rem; color: #e0e7ff; }
+  .machine-tag { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 999px; background: rgba(124,77,255,0.2); color: #c7b8ff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .control-panel { display: grid; gap: 1rem; }
+  .input-wrapper { position: relative; display: flex; align-items: center; }
+  .input-wrapper input { width: 100%; padding: 0.7rem 1rem; border-radius: 12px; border: 1px solid rgba(129,140,248,0.4); background: #0c0a18; color: #fff; font-size: 1.1rem; }
+  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type=number] { -moz-appearance: textfield; }
+  .actions { display: flex; gap: 0.5rem; }
+  button { border: none; border-radius: 999px; padding: 0.7rem 1.5rem; cursor: pointer; font-weight: 700; transition: 0.2s; }
+  button.primary { background: #7c4dff; color: #fff; }
+  button.ghost { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+  .progress-bar { height: 10px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; margin: 0.5rem 0; }
+  
+  /* Плавная анимация изменения ширины */
+  .progress-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, #c7b8ff, #7c4dff); /* Более яркий градиент */
+    box-shadow: 0 0 15px rgba(124, 77, 255, 0.6); /* Более заметная тень */
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Долгая, плавная, нелинейная */
     border-radius: 999px;
-    background: rgba(124, 77, 255, 0.35);
-    color: #c7b8ff;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.78rem;
   }
 
-  .control-panel {
-    display: grid;
-    gap: 1.35rem;
-  }
+  .stats { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 1rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
+  .stat-card.highlight { background: rgba(124,77,255,0.1); border-color: rgba(124,77,255,0.2); }
+  .stat-icon { width: 32px; height: 32px; object-fit: contain; }
+  .stat-body { display: flex; flex-direction: column; align-items: center; }
+  .stat-body .label { font-size: 0.7rem; text-transform: uppercase; color: #64748b; }
+  .stat-body strong { font-size: 1.2rem; color: #fff; }
+  .resource-summary { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .resource-card { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 12px; }
+  .resource-icon img { width: 36px; height: 36px; }
+  .resource-body { display: flex; flex-direction: column; }
+  .resource-title { font-size: 0.8rem; color: #64748b; }
+  .resource-body strong { color: #fff; }
+  .resource-meta { font-size: 0.7rem; color: #475569; }
+  .odds-panel { background: rgba(16,14,26,0.8); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(129,140,248,0.2); transition: all 0.3s ease; }
+  .odds-toggle { background: none; border: none; padding: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: inherit; }
+  .chevron { font-size: 1.2rem; color: rgba(124, 77, 255, 0.5); transition: transform 0.3s ease; }
+  .odds-scroll { max-height: 500px; overflow-y: auto; padding-right: 0.5rem; margin-top: 1rem; }
+  .odds-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .odds-list li { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+  .odds-name { display: flex; align-items: center; gap: 0.5rem; }
+  .odds-icon { width: 32px; height: 32px; }
+  .chance { color: #7c4dff; font-weight: 700; }
 
-  .input-group span {
-    display: block;
-    font-size: 0.95rem;
-    color: #e0e7ff;
-    margin-bottom: 0.4rem;
-  }
+  /* Добавлено для отображения списков наград */
+  .result-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 1.5rem; }
+  .result-column { display: flex; flex-direction: column; gap: 0.8rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 16px; max-height: 400px; overflow: hidden; }
+  .result-column h4 { margin: 0; font-size: 1rem; color: #c7b8ff; }
+  .reward-board, .history-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  
+  .reward-board li, .history-list li { display: flex; align-items: center; gap: 0.8rem; background: rgba(255,255,255,0.05); padding: 0.6rem; border-radius: 8px; }
+  .reward-board li.index-top { background: rgba(124,77,255,0.15); border: 1px solid rgba(124,77,255,0.3); }
 
-  .input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .input-wrapper input {
-    width: 100%;
-    padding: 0.75rem 3.5rem 0.75rem 1rem;
-    border-radius: 16px;
-    border: 1px solid rgba(129, 140, 248, 0.5);
-    background: rgba(12, 10, 24, 0.85);
-    color: #e0e7ff;
-    font-size: 1.05rem;
-    font-weight: 600;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  .input-wrapper input:focus {
-    outline: none;
-    border-color: #c7b8ff;
-    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.3);
-  }
-
-  .suffix {
-    position: absolute;
-    right: 1rem;
-    color: rgba(226, 232, 240, 0.6);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  small {
-    color: rgba(148, 163, 184, 0.7);
-  }
-
-  .actions {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  button {
-    border: none;
-    border-radius: 999px;
-    padding: 0.85rem 1.9rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
-  }
-
-  button:disabled {
-    cursor: progress;
-    opacity: 0.65;
-  }
-
-  button.primary {
-    background: linear-gradient(120deg, #b39ddb, #7c4dff);
-    color: #0f0a18;
-    box-shadow: 0 16px 32px rgba(124, 77, 255, 0.35);
-  }
-
-  button.primary:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 36px rgba(124, 77, 255, 0.4);
-  }
-
-  button.ghost {
-    background: rgba(255, 255, 255, 0.08);
-    color: #e0e7ff;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  button.ghost:hover:not(:disabled) {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.25);
-  }
-
-  button.ghost.danger {
-    border-color: rgba(244, 114, 182, 0.45);
-    color: #f472b6;
-  }
-
-  button.ghost.danger:hover:not(:disabled) {
-    background: rgba(244, 114, 182, 0.15);
-    border-color: rgba(244, 114, 182, 0.6);
-    color: #f9a8d4;
-  }
-
-  .error {
-    margin: 0;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    background: rgba(244, 114, 182, 0.12);
-    border: 1px solid rgba(244, 114, 182, 0.4);
-    color: #f9a8d4;
-  }
-
-  .progress {
-    display: grid;
-    gap: 0.35rem;
-  }
-
-  .progress-bar {
-    position: relative;
-    height: 8px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    overflow: hidden;
-  }
-
-  .progress-bar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, #c7b8ff, #7c4dff);
-    transform-origin: left center;
-    transform: scaleX(calc(var(--progress, 0%) / 100));
-    transition: transform 0.18s ease-out;
-  }
-
-  .progress-label {
-    font-size: 0.85rem;
-    color: rgba(226, 232, 240, 0.75);
-    letter-spacing: 0.02em;
-  }
-
-  .stats {
-    display: grid;
-    gap: 1.15rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  }
-
-  .stat-card {
-    background: rgba(18, 16, 32, 0.85);
-    border-radius: 20px;
-    border: 1px solid rgba(129, 140, 248, 0.25);
-    padding: 1.1rem 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.85rem;
-  }
-
-  .stat-card {
-    background: rgba(17, 24, 39, 0.55);
-    border-radius: 18px;
-    padding: 0.95rem 1.1rem;
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    color: rgba(226, 232, 240, 0.88);
-    min-width: 0;
-    box-shadow: none;
-  }
-
-  .stat-card.metric,
-  .stat-card.currency {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    gap: 1rem;
-}
-
-  .stat-card.highlight {
-    background: rgba(129, 140, 248, 0.16);
-    border-color: rgba(129, 140, 248, 0.32);
-  }
-
-  .stat-card.metric.highlight {
-    background: linear-gradient(160deg, rgba(129, 140, 248, 0.3), rgba(17, 24, 39, 0.9));
-    border-color: rgba(129, 140, 248, 0.45);
-  }
-
-  .metric-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: rgba(14, 11, 26, 0.9);
-    border: 1px solid rgba(129, 140, 248, 0.45);
-    width: 42px;
-    height: 42px;
+  .reward-board .icon,
+  .history-list .history-thumb {
+    width: 50px; /* Увеличил контейнер */
+    height: 50px;
+    display: flex; /* Сделал флекс для центровки */
+    align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px; /* Более мягкие углы */
     flex-shrink: 0;
-    border-radius: 14px;
-    background: rgba(129, 140, 248, 0.15);
-    border: none;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
   }
-
-  .metric-icon img {
-    width: 44px;
-    height: 44px;
-    object-fit: contain;
-  }
-
-  .stat-icon {
-    width: 56px;
-    height: 56px;
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-  }
-
-  .metric-body,
-  .stat-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    min-width: 0;
-    align-items: flex-end;
-    text-align: right;
-  }
-
-  .stat-card .label {
-    display: block;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: rgba(226, 232, 240, 0.6);
-    align-self: flex-start;
-    gap: 0.28rem;
-    color: rgba(226, 232, 240, 0.88);
-    min-width: 0;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .stat-card strong {
-    font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.55rem);
-    color: #f8fafc;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    max-width: 100%;
-  }
-
-  .stat-card.small {
-    width: 100%;
-    font-size: clamp(1rem, 0.9rem + 0.45vw, 1.4rem);
-    color: #f8fafc;
-    line-height: 1.15;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-    overflow-wrap: anywhere;
-  }
-
-  .stat-icon {
-    width: 36px;
-    height: 36px;
-  }
-
-  .stat-card.currency .stat-body {
-    align-items: flex-start;
-  }
-
-  .label {
-    font-size: 0.74rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.72);
-  }
-
-  .stat-card strong {
-    font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.45rem);
-    color: #e0e7ff;
-    line-height: 1.1;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-  }
-
-  .stat-card small {
-    color: rgba(148, 163, 184, 0.75);
-  }
-
-  .resource-summary {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  }
-
-  .resource-card {
-    background: rgba(15, 13, 28, 0.85);
-    border-radius: 18px;
-    border: 1px solid rgba(129, 140, 248, 0.25);
-    padding: 1rem 1.3rem;
-    gap: 0.85rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  .resource-card {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.85rem 1rem;
-    border-radius: 16px;
-    background: rgba(17, 24, 39, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-  }
-
-  .resource-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(30, 41, 59, 0.8);
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 0.85rem;
-    align-items: center;
-  }
-
-  .resource-icon img {
-    width: 52px;
-    height: 52px;
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-  }
-
-  .resource-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    color: rgba(226, 232, 240, 0.85);
-  }
-
-  .resource-title {
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    color: rgba(226, 232, 240, 0.6);
-  }
-
-  .resource-meta {
-    font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.75);
-    gap: 0.25rem;
-    min-width: 0;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .resource-title {
-    font-size: 0.9rem;
-    color: rgba(226, 232, 240, 0.9);
-  }
-
-  .resource-body strong {
-    font-size: 1.1rem;
-    color: #f8fafc;
-    letter-spacing: 0.01em;
-  }
-
-  .resource-meta {
-    font-size: 0.78rem;
-    color: rgba(148, 163, 184, 0.72);
-  }
-
-  .result-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-
-  .result-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background: rgba(15, 13, 28, 0.8);
-    border-radius: 20px;
-    border: 1px solid rgba(129, 140, 248, 0.2);
-    padding: 1.4rem 1.5rem;
-  }
-
-  .result-column h4 {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #e0e7ff;
-  }
-
-  .reward-board,
-  .history-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.85rem;
-    max-height: 360px;
-    overflow-y: auto;
-  }
-
-  .reward-board li,
-  .history-list li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.85rem;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .reward-board li.index-top {
-    background: linear-gradient(150deg, rgba(129, 140, 248, 0.35), rgba(17, 24, 39, 0.9));
-  }
-
   .reward-board .icon img,
   .history-list img {
-    width: 46px;
-    height: 46px;
-    object-fit: contain;
+    max-width: 90%; /* Вписываем в новый контейнер */
+    max-height: 90%;
+    object-fit: contain; 
+    display: block;
+    transform: scale(1.1); /* Слегка увеличим саму иконку, чтобы она казалась полнее */
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
   }
 
-  .reward-board .details,
-  .history-list .history-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+  /* Для элемента в истории, который был history-thumb, теперь он .history-info img, чтобы избежать конфликтов. */
+  .history-list .history-info img {
+    width: 36px; /* Чуть меньше, чем основная награда, для иерархии */
+    height: 36px;
+    border-radius: 8px;
+    padding: 2px;
   }
 
-  .reward-board .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
+  .reward-board .details, .history-list .history-info { flex: 1; min-width: 0; }
+  .reward-board .row { display: flex; justify-content: space-between; align-items: center; }
+  .reward-board .name { font-size: 0.85rem; font-weight: 600; color: #fff; }
+  .count-badge { font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
+  .pills { display: flex; gap: 0.4rem; margin-top: 2px; }
+  .pill { font-size: 0.65rem; padding: 1px 4px; border-radius: 4px; background: rgba(0,0,0,0.3); color: #94a3b8; }
+  .currency, .note { font-size: 0.75rem; color: #64748b; white-space: nowrap; }
 
-  .reward-board .name {
-    font-weight: 600;
-    color: #e0e7ff;
-  }
-
-  .count-badge {
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    background: rgba(124, 77, 255, 0.2);
-    color: #c7b8ff;
-    font-size: 0.82rem;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-
-  .pill {
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba(226, 232, 240, 0.75);
-  }
-
-  .pill.actual {
-    background: rgba(16, 185, 129, 0.18);
-    color: #6ee7b7;
-  }
-
-  .pill.expected {
-    background: rgba(124, 77, 255, 0.18);
-    color: #c7b8ff;
-  }
-
-  .currency,
-  .note {
-    font-size: 0.85rem;
-    color: rgba(226, 232, 240, 0.7);
-  }
-
-  .history-list li {
-    grid-template-columns: auto 1fr auto;
-  }
-
-  .history-list .history-info {
-    padding: 0.65rem 0.85rem;
-    border-radius: 16px;
-    background: rgba(17, 24, 39, 0.5);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-
-  .history-list li.free-spin {
-    border-color: rgba(129, 140, 248, 0.32);
-    background: rgba(129, 140, 248, 0.18);
-  }
-
-  .history-info {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    min-width: 0;
-  }
-
-  .history-info img {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    background: rgba(30, 41, 59, 0.82);
-    padding: 0.25rem;
-  }
-
-  .history-info .title {
-    font-size: 0.95rem;
-    color: #e0e7ff;
-    overflow-wrap: anywhere;
-  }
-
-  .history-list .note {
-    justify-self: end;
-  }
-
-  .muted {
-    color: rgba(148, 163, 184, 0.75);
-    margin: 0;
-  }
-
-  .results-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .results-header h3 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: #e0e7ff;
-  }
-
-  .results-header p {
-    margin: 0;
-    color: rgba(226, 232, 240, 0.75);
-  }
-
-  .odds-panel {
-    background: rgba(16, 14, 26, 0.85);
-    border-radius: 28px;
-    border: 1px solid rgba(129, 140, 248, 0.25);
-    padding: 1.8rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    color: rgba(226, 232, 240, 0.85);
-  }
-
-  .odds-panel h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #c7b8ff;
-  }
-
-  .odds-caption {
-    margin: 0;
-    color: rgba(226, 232, 240, 0.65);
-    font-size: 0.9rem;
-  }
-
-  .odds-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 0.85rem;
-  }
-
-  .odds-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .odds-name {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    min-width: 0;
-  }
-
-  .odds-icon {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-  }
-
-  .odds-name .name {
-    font-weight: 600;
-    color: #e0e7ff;
-  }
-
-  .chance {
-    font-variant-numeric: tabular-nums;
-    color: rgba(226, 232, 240, 0.7);
-  }
-
-  @media (max-width: 980px) {
+  @media (max-width: 1000px) {
     .machine-shell {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 1fr;
     }
-
     .odds-panel {
       order: -1;
     }
   }
 
-  @media (max-width: 720px) {
-    .machine-body {
-      padding: 1.75rem;
-    }
-  }
-
   @media (max-width: 640px) {
-    .machine-body,
     .odds-panel {
-      padding: 1.5rem;
+      padding: 1rem;
     }
-  }
+    .odds-panel.collapsed {
+      gap: 0;
+    }
+    .odds-panel.collapsed .odds-scroll {
+      display: none;
+    }
 
-    .odds-scroll {
-    max-height: 480px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 0.5rem;
-    margin-right: -0.5rem;
-  }
+    .machine-body {
+      padding: 1.25rem 1rem;
+      gap: 1.5rem;
+    }
 
-    .odds-scroll::-webkit-scrollbar {
-    width: 8px;
-  }
+    .machine-header h2 {
+      font-size: 1.5rem;
+    }
 
-    .odds-scroll::-webkit-scrollbar-track {
-    background: rgba(17, 24, 39, 0.4);
-    border-radius: 4px;
-  }
+    .stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
 
-    .odds-scroll::-webkit-scrollbar-thumb {
-    background: rgba(129, 140, 248, 0.3);
-    border-radius: 4px;
-  }
+    .stat-card {
+      padding: 0.75rem;
+    }
 
-    .odds-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(129, 140, 248, 0.5);
+    .stat-body strong {
+      font-size: 1rem;
+    }
+
+    .stat-body .label {
+      font-size: 0.6rem;
+    }
+
+    .resource-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .result-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .result-column {
+      max-height: 300px;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .actions button {
+      width: 100%;
+    }
+
+    .odds-list li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+      padding: 0.6rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+    }
+
+    .odds-list .chance {
+      align-self: flex-end;
+    }
   }
 </style>

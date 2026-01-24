@@ -6,29 +6,42 @@ import CardGrid from '../../components/CardGrid.astro';
   <h1>Симуляторы</h1>
   <p>Выберите симулятор, чтобы протестировать его работу. Каждый симулятор
   рассчитывает награды и шансы в реальном времени.</p>
-  <CardGrid
-    cards={[
-      {
-        title: 'Симулятор скрещивания',
-        desc: 'Твой гид по скрещиванию',
-        href: 'simulators/breeding',
-      },
-      {
-        title: 'Симулятор реактора',
-        desc: 'Все генераторы и шансы выпадения мутантов',
-        href: 'simulators/reactor',
-      },
-      {
-        title: 'Симулятор рулеток',
-        desc: 'Рулетки с реальными шансами',
-        href: 'simulators/roulette',
-      },
-      {
-        title: 'Симулятор крафта',
-        desc: 'Металлзавод, Трансформатрон, Лаборатория & Черная Дыра',
-        href: 'simulators/craft',
-      },
-      // ... остальные карточки ...
-    ]}
-  />
+  <div class="sim-grid-wrapper">
+    <CardGrid
+      cards={[
+        {
+          title: 'Симулятор скрещивания',
+          desc: 'Твой гид по скрещиванию',
+          href: 'simulators/breeding',
+          icon: '/sims/larva.webp'
+        },
+        {
+          title: 'Симулятор реактора',
+          desc: 'Все генераторы и шансы выпадения мутантов',
+          href: 'simulators/reactor',
+          icon: '/sims/reactor.webp'
+        },
+        {
+          title: 'Симулятор рулеток',
+          desc: 'Рулетки с реальными шансами',
+          href: 'simulators/roulette',
+          icon: '/sims/roulette.webp'
+        },
+        {
+          title: 'Симулятор крафта',
+          desc: 'Металлзавод, Трансформатрон, Лаборатория & Черная Дыра',
+          href: 'simulators/craft',
+          icon: '/sims/black_hole.webp'
+        },
+      ]}
+    />
+  </div>
+
+  <style>
+    .sim-grid-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+  </style>
 </BaseLayout>

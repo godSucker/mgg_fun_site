@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { normalizeSearch } from '@/lib/search-normalize';
+
   export let players: { rank: number; name: string; level: number; id: string; tandem: string; atk1: string; atk2: string; socials: any[] }[] = [];
   export let mutantsDb: any[] = [];
 
@@ -6,9 +8,11 @@
   let displayCount = 50;
   let selectedPlayer: any = null;
 
-  $: filteredPlayers = players.filter(p =>
-    p.name.toLowerCase().includes(query.toLowerCase())
-  );
+  $: filteredPlayers = players.filter(p => {
+    const normalizedQuery = normalizeSearch(query);
+    const normalizedName = normalizeSearch(p.name);
+    return normalizedName.includes(normalizedQuery);
+  });
 
   $: visiblePlayers = filteredPlayers.slice(0, displayCount);
 
@@ -39,8 +43,9 @@
     }
 
     // Ищем в базе только ради картинки и скорости
-    const found = mutantsDb.find(m => m.name.toLowerCase() === clean)
-               || mutantsDb.find(m => m.name.toLowerCase().includes(clean));
+    const normalizedClean = normalizeSearch(clean);
+    const found = mutantsDb.find(m => normalizeSearch(m.name) === normalizedClean)
+               || mutantsDb.find(m => normalizeSearch(m.name).includes(normalizedClean));
 
     if (!found) return null;
 
@@ -107,7 +112,11 @@
         tabindex="0"
       >
         <div class="cell rank">
-          <div class="rank-badge">{getRankIcon(player.rank)}</div>
+          {#if player.rank <= 3}
+            <div class="rank-badge">{getRankIcon(player.rank)}</div>
+          {:else}
+            <span>{getRankIcon(player.rank)}</span>
+          {/if}
         </div>
         <div class="cell name">
           {player.name}
@@ -225,13 +234,13 @@
 <style>
   /* СТИЛИ ОСТАЮТСЯ ТЕМИ ЖЕ, ИХ НЕ МЕНЯЕМ */
   .cta-banner { max-width: 800px; margin: 0 auto 2rem; text-align: center; }
-  .cta-banner a { display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), rgba(147, 51, 234, 0.15)); border: 1px solid rgba(147, 51, 234, 0.3); padding: 0.8rem 1.5rem; border-radius: 16px; text-decoration: none; color: #e2e8f0; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .cta-banner a { display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(90deg, rgb(59, 130, 246), rgb(147, 51, 234)); border: 1px solid rgb(147, 51, 234); padding: 0.8rem 1.5rem; border-radius: var(--radius-lg); text-decoration: none; color: #fff; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; font-weight: 600; }
   .cta-banner a:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(147, 51, 234, 0.2); border-color: rgba(147, 51, 234, 0.6); }
   .cta-link { color: #38bdf8; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 
   .leaderboard-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
   .search-bar { position: relative; width: 100%; margin-bottom: 0.5rem; }
-  .search-bar input { width: 100%; padding: 14px 16px 14px 48px; border-radius: 16px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 1rem; outline: none; transition: all 0.2s; box-sizing: border-box; }
+  .search-bar input { width: 100%; padding: 14px 16px 14px 48px; border-radius: var(--radius-lg); background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-size: 1rem; outline: none; transition: all 0.2s; box-sizing: border-box; }
   .search-bar input:focus { background: rgba(30, 41, 59, 0.9); border-color: #3b82f6; }
   .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
@@ -239,23 +248,26 @@
   .list-header { display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; padding: 0 1.5rem; color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
   .col-lvl { text-align: right; }
 
-  .row { display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; align-items: center; background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 1rem 1.5rem; transition: transform 0.2s, background 0.2s; cursor: pointer; }
+  .row { position: relative; display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; align-items: center; background: rgb(30, 41, 59); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); padding: 1rem 1.5rem; transition: transform 0.2s, background 0.2s; cursor: pointer; }
   .row:hover { background: rgba(30, 41, 59, 0.8); transform: scale(1.01); }
 
-  .rank-gold { background: linear-gradient(90deg, rgba(234, 179, 8, 0.15), rgba(30, 41, 59, 0.4)); border-color: rgba(234, 179, 8, 0.5); }
-  .rank-silver { background: linear-gradient(90deg, rgba(148, 163, 184, 0.15), rgba(30, 41, 59, 0.4)); border-color: rgba(148, 163, 184, 0.5); }
-  .rank-bronze { background: linear-gradient(90deg, rgba(217, 119, 6, 0.15), rgba(30, 41, 59, 0.4)); border-color: rgba(217, 119, 6, 0.5); }
+  .rank-gold { background: linear-gradient(90deg, rgb(234, 179, 8), rgb(30, 41, 59)); border-color: rgb(234, 179, 8); transition: background-color 0.3s ease, opacity 0.3s ease; }
+  .rank-silver { background: linear-gradient(90deg, rgb(148, 163, 184), rgb(30, 41, 59)); border-color: rgb(148, 163, 184); transition: background-color 0.3s ease, opacity 0.3s ease; }
+  .rank-bronze { background: linear-gradient(90deg, rgb(217, 119, 6), rgb(30, 41, 59)); border-color: rgb(217, 119, 6); transition: background-color 0.3s ease, opacity 0.3s ease; }
 
-  .cell.rank { font-weight: 800; font-size: 1.2rem; color: #64748b; }
+  .cell.rank { display: flex; align-items: center; font-weight: 800; font-size: 1.2rem; color: #64748b; position: relative; width: 100%; }
   .rank-gold .cell.rank { color: #facc15; }
   .rank-silver .cell.rank { color: #e2e8f0; }
   .rank-bronze .cell.rank { color: #fbbf24; }
 
-  .cell.name { font-weight: 600; color: #f1f5f9; font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .cell.tandem { color: #94a3b8; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-badge { position: absolute; left: -55px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; white-space: nowrap; }
+  .cell.rank span { display: inline-block; padding-left: 15px; }
+
+  .cell.name { font-weight: 600; color: #f1f5f9; font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
+  .cell.tandem { color: #94a3b8; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
   .cell.level { text-align: right; font-family: monospace; font-size: 1.2rem; font-weight: 700; color: #38bdf8; }
 
-  .load-more { width: 100%; padding: 1rem; border-radius: 16px; background: rgba(255,255,255,0.05); border: none; color: #94a3b8; cursor: pointer; font-weight: 600; }
+  .load-more { width: 100%; padding: 1rem; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: none; color: #94a3b8; cursor: pointer; font-weight: 600; }
   .load-more:hover { background: rgba(255,255,255,0.1); color: #fff; }
   .empty-state { text-align: center; padding: 3rem; color: #64748b; }
 
@@ -279,7 +291,7 @@
   .mutant-preview img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
   .no-image { font-size: 2rem; color: #475569; }
 
-  .mutant-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 0.75rem; border-radius: 12px; }
+  .mutant-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; background: rgba(255,255,255,0.05); padding: 0.75rem; border-radius: var(--radius-md); }
   .stat-row { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
   .stat-label { font-size: 0.7rem; color: #94a3b8; }
   .stat-val { color: #fff; font-weight: 700; font-size: 0.95rem; }
@@ -296,7 +308,7 @@
   .socials-section { margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
   .socials-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 0.75rem; text-align: center; }
   .socials-grid { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
-  .social-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; box-sizing: border-box; padding: 0.9rem 1.2rem; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: transform 0.2s, filter 0.2s; color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .social-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; box-sizing: border-box; padding: 0.9rem 1.2rem; border-radius: var(--radius-lg); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: transform 0.2s, filter 0.2s; color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
   .social-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
   .btn-content { display: flex; align-items: center; gap: 0.75rem; }
   .btn-icon { font-size: 1.1rem; width: 24px; text-align: center; }

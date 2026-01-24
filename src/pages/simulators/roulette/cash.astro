@@ -6,7 +6,14 @@ import { cashMachine, getRewardChance } from '../../../lib/cash-machine';
 const jackpotReward = cashMachine.rewards.find((reward) => reward.isSuperJackpot) ?? cashMachine.rewards[0];
 const jackpotChance = jackpotReward ? getRewardChance(jackpotReward, cashMachine) : 0;
 ---
-<BaseLayout title="Cash Frenzy — симулятор рулетки" fullWidth={true} viewport="width=1100, initial-scale=0.5, minimum-scale=0.5, maximum-scale=1.0">
+<BaseLayout title="Cash Frenzy — симулятор рулетки" fullWidth={true}>
+  <div class="back-nav">
+    <a href="/simulators" class="back-button">
+      <span class="icon">←</span>
+      <span class="text">Назад к симуляторам</span>
+    </a>
+  </div>
+
   <section class="hero">
     <div class="hero-card">
       <span class="badge">Sim • Cash Machine</span>
@@ -108,13 +115,58 @@ const jackpotChance = jackpotReward ? getRewardChance(jackpotReward, cashMachine
     font-weight: 600;
   }
 
+  .back-nav {
+    margin-bottom: 1.5rem;
+  }
+
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .back-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #f8fafc;
+    transform: translateX(-4px);
+  }
+
+  .back-button .icon {
+    font-size: 1.1rem;
+  }
+
   @media (max-width: 680px) {
     .hero-card {
-      padding: 2rem;
+      padding: 1.5rem;
+      border-radius: 24px;
     }
 
     h1 {
-      font-size: 2.3rem;
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+
+    .quick-stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .back-button {
+       width: 100%;
+       justify-content: center;
     }
   }
 </style>

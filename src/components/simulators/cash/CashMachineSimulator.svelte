@@ -48,6 +48,7 @@
     return unit ? `${formatNumber(amount)} ${unit}` : formatNumber(amount);
   }
 
+  let showOdds = false;
   let breakdown: RewardAggregate[] = [];
   let history: SpinSummary[] = [];
   let progress = 0;
@@ -128,7 +129,6 @@
       if (err instanceof DOMException && err.name === 'AbortError') {
         error = 'Симуляция остановлена.';
       } else {
-        console.error(err);
         error = 'Не удалось выполнить симуляцию. Попробуйте снова.';
       }
     } finally {
@@ -153,20 +153,19 @@
       <p>Стоимость прокрута — {costPerSpin} золота. Выберите бюджет и посмотрите, какие призы можно собрать.</p>
     </div>
 
-    <form class="control-panel" on:submit|preventDefault={handleSimulate}>
+    <form class="control-panel" on:submit|preventDefault={handleSimulate} style="order: -1;">
       <label class="input-group">
         <span>Бюджет золота</span>
         <div class="input-wrapper">
           <input
             type="number"
             min={costPerSpin}
-            step={costPerSpin}
             bind:value={budget}
             aria-describedby="budget-hint"
           />
           <span class="suffix">золота</span>
         </div>
-        <small id="budget-hint">Кратно {costPerSpin} — столько стоит один прокрут.</small>
+        <small id="budget-hint">Минимум {costPerSpin} — стоимость одного прокрута.</small>
       </label>
 
       <div class="actions">
@@ -183,7 +182,9 @@
       </div>
       {#if isSimulating}
         <div class="progress">
-          <div class="progress-bar" style={`--progress: ${Math.min(progress * 100, 100)}%`}></div>
+          <div class="progress-bar">
+            <div class="progress-fill" style={`width: ${Math.min(progress * 100, 100)}%`}></div>
+          </div>
           <div class="progress-label">
             Выполнено {Math.min(Math.floor(progress * 100), 100)}% — {formatNumber(completedSpins)} из
             {formatNumber(totalSpins)} прокрутов
@@ -279,20 +280,29 @@
     {/if}
   </div>
 
-  <aside class="odds-panel">
-    <h3>Теоретические шансы</h3>
-    <p class="odds-caption">Вероятность выпадения каждого приза на один прокрут.</p>
-    <ul class="odds-list">
-      {#each rewardChances as reward}
-        <li>
-          <span class="odds-name">
-            <img class="odds-icon" src={reward.icon} alt={reward.label} loading="lazy" />
-            <span class="name">{reward.label}</span>
-          </span>
-          <span class="chance">{(reward.chance * 100).toFixed(4)}%</span>
-        </li>
-      {/each}
-    </ul>
+  <aside class="odds-panel" class:collapsed={!showOdds}>
+    <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
+      <div class="odds-toggle__title">
+        <h3>Теоретические шансы</h3>
+        <span class="badge badge--small">{(rewardChances.length)} призов</span>
+      </div>
+      <span class="chevron">{showOdds ? '▼' : '▲'}</span>
+    </button>
+    
+    {#if showOdds}
+      <p class="odds-caption">Вероятность выпадения каждого приза на один прокрут.</p>
+      <ul class="odds-list">
+        {#each rewardChances as reward}
+          <li>
+            <span class="odds-name">
+              <img class="odds-icon" src={reward.icon} alt={reward.label} loading="lazy" />
+              <span class="name">{reward.label}</span>
+            </span>
+            <span class="chance">{(reward.chance * 100).toFixed(4)}%</span>
+          </li>
+        {/each}
+      </ul>
+    {/if}
   </aside>
 </div>
 
@@ -300,8 +310,8 @@
 <style>
   .machine-shell {
     display: grid;
-    gap: 2rem;
-    grid-template-columns: minmax(0, 2.2fr) minmax(320px, 1fr);
+    gap: 1.5rem;
+    grid-template-columns: minmax(320px, 1fr) minmax(0, 2.2fr);
     align-items: start;
   }
 
@@ -382,6 +392,16 @@
     outline: none;
     border-color: #ffd54f;
     box-shadow: 0 0 0 3px rgba(255, 213, 79, 0.25);
+  }
+
+  /* Скрытие стрелочек (spin buttons) для input type="number" */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance: textfield;
   }
 
   .suffix {
@@ -468,20 +488,19 @@
 
   .progress-bar {
     position: relative;
-    height: 8px;
+    height: 10px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     overflow: hidden;
   }
 
-  .progress-bar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, #ffcc80, #ff9100);
-    transform-origin: left center;
-    transform: scaleX(calc(var(--progress, 0%) / 100));
-    transition: transform 0.18s ease-out;
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd54f, #ff9100);
+    box-shadow: 0 0 10px rgba(255, 145, 0, 0.5);
+    transition: width 0.2s ease-out;
+    border-radius: 999px;
   }
 
   .progress-label {
@@ -510,18 +529,17 @@
 
   .stat-card.metric,
   .stat-card.currency {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-    gap: 1rem;
     background: rgba(13, 17, 23, 0.6);
     border-radius: 16px;
     border: 1px solid rgba(255, 213, 79, 0.18);
     padding: 0.95rem 1.1rem;
     display: flex;
+    flex-direction: column; /* Вертикальная компоновка для лучшей центровки */
     align-items: center;
-    gap: 0.85rem;
+    justify-content: center;
+    gap: 0.5rem;
     min-width: 0;
+    text-align: center;
   }
 
   .stat-card.no-icon {
@@ -580,8 +598,9 @@
     flex-direction: column;
     gap: 0.3rem;
     min-width: 0;
-    align-items: flex-end;
-    text-align: right;
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    text-align: center;   /* Центрируем текст */
+    flex: 1;             /* Занимаем всё свободное место */
   }
 
   .stat-card .label {
@@ -770,12 +789,50 @@
     flex-direction: column;
     gap: 1.25rem;
     color: rgba(248, 250, 252, 0.85);
+    transition: all 0.3s ease;
+  }
+
+  .odds-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+  }
+
+  .odds-toggle__title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .odds-panel h3 {
     margin: 0;
     font-size: 1.2rem;
     color: #ffe082;
+  }
+
+  .badge--small {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(255, 213, 79, 0.1);
+    color: rgba(255, 213, 79, 0.7);
+    border-radius: 999px;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .chevron {
+    font-size: 1.2rem;
+    color: rgba(255, 213, 79, 0.5);
+    transition: transform 0.3s ease;
   }
 
   .odds-caption {
@@ -833,12 +890,96 @@
   }
 
   @media (max-width: 640px) {
+    .odds-panel {
+      padding: 1rem;
+    }
+    
+    .odds-panel.collapsed {
+      gap: 0;
+    }
+
     .machine-body {
-      padding: 1.5rem;
+      padding: 1.25rem 1rem;
+      border-radius: 24px;
+      gap: 1.5rem;
+    }
+
+    .machine-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .machine-header p {
+      font-size: 0.9rem;
     }
 
     .odds-panel {
-      padding: 1.5rem;
+      padding: 1.25rem 1rem;
+      border-radius: 24px;
+    }
+
+    .stat-card {
+      padding: 1rem;
+    }
+
+    .stat-card strong {
+      font-size: 1.2rem;
+    }
+
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .panel {
+      padding: 1.25rem 1rem;
+    }
+
+    .table-row {
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+    }
+
+    .table-row.head span:last-child,
+    .table-row span:last-child {
+      grid-column: 1 / -1;
+      text-align: left;
+      padding-left: 3rem;
+      font-size: 0.85rem;
+      color: rgba(248, 250, 252, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .table-row.head span:last-child {
+      display: none;
+    }
+
+    .actions {
+      flex-direction: column;
+    }
+
+    .actions button {
+      width: 100%;
+    }
+
+    .odds-list li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+    }
+
+    .odds-list .chance {
+      align-self: flex-end;
+      font-size: 0.9rem;
+      color: #ffd54f;
     }
   }
 </style>

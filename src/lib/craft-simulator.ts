@@ -11,6 +11,7 @@ import labRaw from '@/data/simulators/CRAFT/lab.txt?raw';
 import orbRaw from '@/data/simulators/CRAFT/orb.txt?raw';
 import starRaw from '@/data/simulators/CRAFT/star.txt?raw';
 import incentiveRaw from '@/data/simulators/CRAFT/incentreward.txt?raw';
+import mutantNamesData from '@/data/mutant_names.json';
 
 export type CraftCategory = 'blackhole' | 'lab' | 'orb' | 'star';
 
@@ -117,6 +118,19 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   Material_Jackpot_Token: 'Жетон джекпота',
   Material_Energy5: '5 пропусков',
   Material_Energy25: '25 пропусков',
+
+  // Buildings
+  Building_HC_1: 'Златокузня',
+  Building_HC_2: 'Золотоплавильня',
+
+  // Habitats (Zones)
+  Habitat_A_3_HC: 'Люкс-зона КИБОРГОВ x4',
+  Habitat_B_3_HC: 'Люкс-зона МЕРТВЯКОВ x4',
+  Habitat_C_3_HC: 'Люкс-зона РУБАК x4',
+  Habitat_D_3_HC: 'Люкс-зона ЗООМОРФОВ x4',
+  Habitat_E_3_HC: 'Люкс-зона ГАЛАКТИКОВ x4',
+  Habitat_F_3_HC: 'Люкс-зона МИФИКОВ x4',
+  Habitat_ABCDEF_3_HC: 'Люкс-зона x4',
 
   // Boosters
   Charm_Xpx3_7: 'Бустер опыта +200% (7д)',
@@ -290,10 +304,18 @@ export const craftRecipesByCategory: Record<CraftCategory, CraftRecipe[]> = {
 export const incentiveRewards = parseIncentives(incentiveRaw);
 
 export function translateItemId(itemId: string): string {
+  // Проверка в словаре предметов
   if (ITEM_TRANSLATIONS[itemId]) {
     return ITEM_TRANSLATIONS[itemId];
   }
 
+  // Проверка в словаре имен мутантов (для Specimen_* ID)
+  const mutantNames = mutantNamesData as Record<string, string>;
+  if (mutantNames[itemId]) {
+    return mutantNames[itemId];
+  }
+
+  // Проверка на варианты предметов с суффиксами
   for (const [baseId, title] of Object.entries(ITEM_TRANSLATIONS)) {
     if (itemId.startsWith(`${baseId}_`)) {
       const suffix = itemId.slice(baseId.length + 1);

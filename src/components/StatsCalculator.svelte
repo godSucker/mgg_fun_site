@@ -7,6 +7,7 @@
   import platinumRaw from '@/data/mutants/platinum.json';
   import orbsRaw from '@/data/materials/orbs.json';
   import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
+  import { normalizeSearch } from '@/lib/search-normalize';
 
   // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
   import domtoimage from 'dom-to-image-more';
@@ -89,7 +90,7 @@
   // --- ЛОГИКА ОБРАБОТКИ ДАННЫХ ---
   function normalizeMutants(raw) {
     return raw.map((m) => {
-      const baseId = baseIdOf(m);
+      const bId = baseIdOf(m);
       const genesRaw = Array.isArray(m.genes) ? m.genes : [m.genes];
       const genes = genesRaw
         .filter(Boolean)
@@ -106,6 +107,10 @@
       const atk2Base = numberOr(baseStats.atk2_base, numberOr(lvl1.atk2, 0));
       const atk2pBase = numberOr(baseStats.atk2p_base, numberOr(lvl30.atk2, atk2Base));
       const speed = numberOr(baseStats.speed_base, numberOr(lvl30.spd, numberOr(lvl1.spd, m.speed)));
+      const bankBase = numberOr(baseStats.bank_base, 0);
+      const abilityPct1 = numberOr(baseStats.abilityPct1, 0);
+      const abilityPct2 = numberOr(baseStats.abilityPct2, 0);
+
       const typeRaw = tag(m, 'type') ?? m.type ?? '';
       const tierRaw = tag(m, 'tier') ?? m.tier ?? '';
       const typeKey = String(typeRaw || '').trim();
@@ -113,16 +118,23 @@
       const typeLabel = readableType(typeRaw);
       const tierLabel = readableTier(tierRaw);
       const basicSlotCount = slotsForType(typeKind);
+      
+      const availableStars = new Set([0]); // 0 (normal) always available for entries in normal.json
+      if (starAux.bronze?.has(bId)) availableStars.add(1);
+      if (starAux.silver?.has(bId)) availableStars.add(2);
+      if (starAux.gold?.has(bId)) availableStars.add(3);
+      if (starAux.platinum?.has(bId)) availableStars.add(4);
+
       const starMultipliers = {
-        0: 1,
-        1: starAux.bronze?.get(baseId)?.multiplier ?? 1,
-        2: starAux.silver?.get(baseId)?.multiplier ?? 1,
-        3: starAux.gold?.get(baseId)?.multiplier ?? 1,
-        4: starAux.platinum?.get(baseId)?.multiplier ?? 1,
+        0: 1.0,
+        1: 1.1,
+        2: 1.3,
+        3: 1.75,
+        4: 2.0,
       };
       return {
-        id: baseId,
-        baseId,
+        id: bId,
+        baseId: bId,
         name: m.name,
         type: typeRaw,
         typeKey,
@@ -138,8 +150,12 @@
         atk2Base,
         atk2PlusBase: atk2pBase,
         speed,
+        bankBase,
+        abilityPct1,
+        abilityPct2,
         abilities: normalizeAbilities(m),
         starMultipliers,
+        availableStars,
         basicSlotCount,
         specialSlotCount: SPECIAL_SLOT_COUNT,
         attackMeta: buildAttackMeta(m),
@@ -433,6 +449,25 @@
     const special = [];
     for (const orb of list) {
       if (isTemporaryOrb(orb)) continue;
+      
+      const id = String(orb.id || '').trim();
+      // Убираем сферы 0-2 лвл (обычные и особые)
+      // Обычные: orb_basic_attack (0), _01 (1), _02 (2)
+      // Особые: orb_special_... (0), _01 (1), _02 (2)
+      if (id.endsWith('attack') || id.endsWith('attack_01') || id.endsWith('attack_02') ||
+          id.endsWith('life') || id.endsWith('life_01') || id.endsWith('life_02') ||
+          id.endsWith('speed') || id.endsWith('speed_01') || id.endsWith('speed_02') ||
+          id.includes('critical') || // По задаче убираем все 0-2, критические обычно тоже имеют уровни, но в коде выше они не типизированы явно под расчет статов, но уберем их тоже если они попадают под паттерн.
+          id.includes('regenerate') || id.includes('retaliate') || id.includes('shield') ||
+          id.includes('slash') || id.includes('strengthen') || id.includes('weaken')) {
+        
+        // Проверяем уровень по суффиксу
+        if (!id.includes('_03') && !id.includes('_04') && !id.includes('_05') && !id.includes('_06') && !id.includes('_07')) {
+           // Если это сфера уровня 0 (без суффикса), 1 (_01) или 2 (_02), пропускаем
+           if (id.match(/(_01|_02)$/) || !id.match(/_\d+$/)) continue;
+        }
+      }
+
       const item = enrichOrb(orb);
       if (!item) continue;
       if (item.category === 'special') special.push(item);
@@ -563,8 +598,9 @@
           if (!m.genes.some(g => geneFilter.has(g))) return false;
         }
         if (query.trim()) {
-          const q = query.trim().toLowerCase();
-          if (!m.name.toLowerCase().includes(q)) return false;
+          const normalizedQuery = normalizeSearch(query);
+          const normalizedName = normalizeSearch(m.name);
+          if (!normalizedName.includes(normalizedQuery)) return false;
         }
         return true;
       })
@@ -744,16 +780,19 @@
     if (speedPct) speed = speed * (1 + speedPct/100);
     const speedRounded = Math.round(speed * 100) / 100;
 
+    const bank = Math.floor(Number(lvl) * (m.bankBase || 0));
+
     return {
       hp:   Math.round(hp),
       atk1: Math.round(atk1),
       atk2: Math.round(atk2),
-      speed: speedRounded
+      speed: speedRounded,
+      bank: bank
     };
   }
 
   $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
-  $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0};
+  $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0, bank: 0};
   $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers, level, specialSlot) : [];
   $: attackRows = buildAttackRows(selected, stats, abilityRows);
   $: typeIconCurrent = selected ? typeIconPath(selected.typeKey || selected.type) : '';
@@ -818,9 +857,16 @@
     for (const [, entries] of grouped) {
       if (!entries.length) continue;
       const sorted = [...entries].sort((a, b) => (a.tier ?? 0) - (b.tier ?? 0));
+      // Formula override for Wiki-sync data
       const ability = level >= 25 ? sorted[sorted.length - 1] : sorted[0];
-      const basePctRaw = ability.pct ?? ability.raw?.pct ?? ability.raw?.percent ?? ability.raw?.percentage;
-      const basePct = toNumber(basePctRaw);
+      
+      let basePct = 0;
+      if (ability.raw?.source === 'special-orb') {
+        basePct = toNumber(ability.pct);
+      } else {
+        basePct = level < 25 ? (mutant.abilityPct1 || 0) : (mutant.abilityPct2 || 0);
+      }
+
       if (!Number.isFinite(basePct)) continue;
       const baseKey = abilityBaseKey(ability.baseCode || ability.code);
       const abilityBoost = Math.abs(abilityBoosts[baseKey] ?? abilityBoosts.__all ?? 0);
@@ -829,29 +875,31 @@
         : -(Math.abs(basePct) + abilityBoost);
 
       const values = [];
+      const isRetaliate = ability.code.toLowerCase().includes('retaliate');
+
       if (ability.hasAtk1) {
         const meta = mutant?.attackMeta?.[1] ?? {};
-        const value = Math.round(Math.abs((atkValues[1] || 0) * signedPct / 100));
+        const value = Math.floor(Math.abs((atkValues[1] || 0) * signedPct / 100));
         values.push({
           attack: 1,
           value,
           label: meta.label ?? `Атака 1`,
           geneIcon: meta.geneIcon || '',
           isAoe: Boolean(meta.isAoe),
-          attackPower: Math.round(Math.abs(atkValues[1] || 0)),
+          attackPower: Math.floor(Math.abs(atkValues[1] || 0)),
         });
       }
       if (ability.hasAtk2) {
         const meta = mutant?.attackMeta?.[2] ?? {};
-        const value = Math.round(Math.abs((atkValues[2] || 0) * signedPct / 100));
-        if (value || ability.hasAtk1 === false || !values.length) {
+        const value = isRetaliate ? 0 : Math.floor(Math.abs((atkValues[2] || 0) * signedPct / 100));
+        if (value || ability.hasAtk1 === false || !values.length || isRetaliate) {
           values.push({
             attack: 2,
             value,
             label: meta.label ?? `Атака 2`,
             geneIcon: meta.geneIcon || '',
             isAoe: Boolean(meta.isAoe),
-            attackPower: Math.round(Math.abs(atkValues[2] || 0)),
+            attackPower: Math.floor(Math.abs(atkValues[2] || 0)),
           });
         }
       }
@@ -941,6 +989,10 @@
   }
   function selectMutant(m){
     selected = m;
+    // Reset stars if not available for new mutant
+    if (!m.availableStars.has(stars)) {
+      stars = 0;
+    }
   }
   function pickBasic(slotIndex, orb){
     const choice = allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null;
@@ -1007,6 +1059,7 @@
 
       // 3. Чистка кнопок
       clone.querySelectorAll('.tool-btn').forEach(b => b.remove());
+      clone.querySelectorAll('.header-tools-row').forEach(r => r.remove());
 
       // 4. Фикс инпута
       const input = clone.querySelector('input.lvl');
@@ -1025,6 +1078,7 @@
         title.style.width = '100%';
         title.style.margin = '0 0 15px 0';
         title.style.flex = 'none';
+        title.style.maxWidth = 'none';
       }
 
       // 6. Anti-squash
@@ -1117,7 +1171,6 @@
           await navigator.clipboard.write([item]);
           setTimeout(() => isCopying = false, 2000);
         } catch (clipboardErr) {
-          console.warn('Clipboard failed, downloading...', clipboardErr);
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
@@ -1133,7 +1186,6 @@
       }, 'image/png');
 
     } catch (error) {
-      console.error('Screenshot failed:', error);
       isCopying = false;
       const sb = document.querySelector('div[style*="fixed"][style*="-9999px"]');
       if(sb) sb.remove();
@@ -1217,18 +1269,17 @@
          </div>
 
          <header class="title">{selected.name}</header>
+      </div>
 
-         <!-- Кнопка скриншота -->
-              <div class="header-right">
-            <!-- Заменили SVG иконку на Текст -->
-            <button class="tool-btn share-btn" on:click={shareScreenshot} disabled={isCopying} title="Сохранить как картинку">
-               {#if isCopying}
-                 <span>Сохраняем...</span>
-               {:else}
-                 <span>Скриншот</span>
-               {/if}
-            </button>
-         </div>
+      <!-- Кнопка скриншота перенесена под заголовок для исключения наложения -->
+      <div class="header-tools-row">
+        <button class="tool-btn share-btn" on:click={shareScreenshot} disabled={isCopying} title="Сохранить как картинку">
+           {#if isCopying}
+             <span>Сохраняем...</span>
+           {:else}
+             <span>Сделать скриншот</span>
+           {/if}
+        </button>
       </div>
 
       <div class="hero-section">
@@ -1287,9 +1338,17 @@
           </div>
 
           <div class="controls">
-            <div class="control">
+              <div class="control">
               <span class="control-label">Уровень:</span>
-              <input class="lvl" type="number" min="1" max="300" bind:value={level} />
+              <input
+                class="lvl"
+                type="number"
+                min="1"
+                max="500"
+                bind:value={level}
+                on:keydown={(e) => { if (e.key === '-' || e.key === 'e' || e.key === '+') e.preventDefault(); }}
+                on:input={(e) => { if (e.target.value < 0) level = 0; }}
+              />
             </div>
             <div class="control">
               <span class="control-label">Звёздность:</span>
@@ -1298,6 +1357,7 @@
                   <button
                     class="star"
                     class:selected={stars === s}
+                    disabled={!selected.availableStars.has(s)}
                     on:click={() => stars = s}
                     aria-pressed={stars === s}
                     title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
@@ -1375,6 +1435,13 @@
             </span>
             <b>{formatSpeed(stats.speed)}</b>
           </div>
+          <div class="row">
+            <span class="label">
+              <img class="label-icon" src="/cash/softcurrency.webp" alt="Серебро" />
+              Серебро
+            </span>
+            <b>{stats.bank.toLocaleString('ru-RU')}</b>
+          </div>
         </div>
       </div>
 
@@ -1413,8 +1480,14 @@
 
   /* Если сайдбар скрыт - одна колонка по центру */
   .stats-page.single-col {
-    grid-template-columns: minmax(0, 660px);
+    display: flex;
     justify-content: center;
+    width: 100%;
+  }
+
+  .stats-page.single-col .panel {
+    width: 100%;
+    max-width: 660px;
   }
 
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
@@ -1446,6 +1519,8 @@
     position: relative;      /* Чтобы кнопки позиционировать абсолютно внутри */
     margin-bottom: 6px;
     min-height: 36px;
+    padding: 0 40px; /* Добавляем отступы по краям, чтобы заголовок не налезал на кнопки */
+    width: 100%;
   }
 
   .header-left {
@@ -1454,11 +1529,13 @@
     top: 50%;
     transform: translateY(-50%);
   }
-  .header-right {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+
+  /* Новая строка для доп. кнопок (скриншот) */
+  .header-tools-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
   }
 
   /* Имя: яркое белое, с подсветкой */
@@ -1471,6 +1548,11 @@
     line-height: 1.2;
     margin: 0;
     z-index: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 480px; /* Ограничиваем ширину текста */
   }
 
   .tool-btn {
@@ -1615,6 +1697,7 @@
     border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; cursor: pointer;
   }
   .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
+  .star:disabled{ cursor: not-allowed; display: none; }
   .star img{ width:100%; height:100%; object-fit:contain; display: block; }
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
 

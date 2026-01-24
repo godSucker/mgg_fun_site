@@ -104,7 +104,6 @@ export function loadEvoTop() {
     return players.map((p, i) => ({ ...p, rank: i + 1 }));
 
   } catch (e) {
-    console.error('Ошибка чтения Excel:', e);
     return [];
   }
 }

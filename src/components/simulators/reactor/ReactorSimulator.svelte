@@ -41,21 +41,17 @@
   let completionGranted = false;
   let completionTrigger: string | null = null;
   let lastResult: SpinResult | null = null;
-  let history: SpinResult[] = [];
+  
+  // STATS
+  let tokensSpent = 0;
+  let goldSpent = 0;
+  let inventory = new Map<string, number>(); 
+  let history: SpinResult[] = []; 
 
   const totalUniqueBaseRewards = baseSpecimenIds.size || baseRewards.length;
 
-  $: progressPercent = totalUniqueBaseRewards
-    ? Math.round((unlockedBaseCount / totalUniqueBaseRewards) * 100)
-    : 0;
-  $: progressSummary = totalUniqueBaseRewards
-    ? `${unlockedBaseCount} / ${totalUniqueBaseRewards}`
-    : '0 / 0';
-  $: generatorStatus = completed
-    ? 'Завершён'
-    : unlockedBaseCount > 0
-      ? 'В процессе'
-      : 'Не начат';
+  $: progressPercent = totalUniqueBaseRewards ? Math.round((unlockedBaseCount / totalUniqueBaseRewards) * 100) : 0;
+  $: progressSummary = totalUniqueBaseRewards ? `${unlockedBaseCount} / ${totalUniqueBaseRewards}` : '0 / 0';
 
   const completionReward: DecoratedReward | null = gacha.completion_reward
     ? {
@@ -73,23 +69,26 @@
     rewardDisplay.set(completionReward.specimen, completionReward);
   }
 
-  const totalBasicOdds = gacha.basic_elements.reduce((sum, item) => sum + item.odds, 0);
+  // --- ЛОГИКА ШАНСОВ ---
+  
+  // Пул наград для расчета (меняется, когда выпадает Зевс)
+  $: currentPool = (() => {
+      let pool = [...gacha.basic_elements];
+      if (completionGranted && completionReward) {
+          pool.push(completionReward);
+      }
+      return pool;
+  })();
 
-  const formatPercent = (item: BasicReward) => {
-    // Если награда получена (completionGranted), она добавляется в пул.
-    // Если коллекция просто завершена (completed), но награда еще не добавлена в пул ролла - считаем по базе.
-    const total = (completionGranted && completionReward) ? totalBasicOdds + completionReward.odds : totalBasicOdds;
-    if (!total) return '—';
-    return `${((item.odds / total) * 100).toFixed(2)}%`;
-  };
-
-  const getRewardName = (specimenId: string) => rewardDisplay.get(specimenId)?.name ?? getMutantName(specimenId);
-  const getRewardTexture = (specimenId: string) => rewardDisplay.get(specimenId)?.texture ?? null;
+  // Сумма весов пула (знаменатель)
+  $: weightDenominator = currentPool.reduce((sum, item) => sum + item.odds, 0);
+  
+  // Хелпер для получения названия и текстуры
+  const getRewardName = (id: string) => rewardDisplay.get(id)?.name ?? getMutantName(id);
+  const getRewardTexture = (id: string) => rewardDisplay.get(id)?.texture ?? null;
 
   function updateUnlocked(specimenId: string): boolean {
-    if (unlocked.has(specimenId)) {
-      return false;
-    }
+    if (unlocked.has(specimenId)) return false;
     const next = new Set(unlocked);
     next.add(specimenId);
     unlocked = next;
@@ -103,90 +102,36 @@
         completionTrigger = getMutantName(specimenId);
       }
     }
-
     return completedNow;
   }
 
   function registerResult(result: SpinResult) {
     lastResult = result;
+    if (result.costType === 'token') tokensSpent += gacha.token_cost;
+    else goldSpent += gacha.hc_cost;
+
+    const key = result.item.specimen;
+    inventory.set(key, (inventory.get(key) || 0) + 1);
+    inventory = new Map(inventory); 
     history = [result, ...history].slice(0, 10);
   }
 
-  function rollToken(): BasicReward {
-    const options: BasicReward[] = [...gacha.basic_elements];
-
-    if (completionGranted && completionReward) {
-      options.push(completionReward);
-    }
-
-    const weights: number[] = options.map((item) => item.odds);
-    const totalWeight = weights.reduce((sum, value) => sum + value, 0);
-    if (!totalWeight) {
-      return options[0];
-    }
-
-    let threshold = Math.random() * totalWeight;
-    for (let i = 0; i < options.length; i += 1) {
-      threshold -= weights[i];
-      if (threshold <= 0) {
-        return options[i];
+  function rollWeighted(pool: BasicReward[], totalW: number): BasicReward {
+      let threshold = Math.random() * totalW;
+      for (const item of pool) {
+          threshold -= item.odds;
+          if (threshold <= 0) return item;
       }
-    }
-
-    return options[options.length - 1];
-  }
-
-  function rollSequential(): { reward: BasicReward; trigger?: string } {
-    for (const item of gacha.basic_elements) {
-      if (!unlocked.has(item.specimen)) {
-        return {
-          reward: item,
-          trigger: item.specimen,
-        };
-      }
-    }
-
-    if (!completed) {
-      completed = true;
-    }
-
-    if (completionReward && !completionGranted) {
-      return { reward: completionReward };
-    }
-
-    const randomIndex = Math.floor(Math.random() * baseRewards.length);
-    return { reward: baseRewards[randomIndex] };
-  }
-
-  function grantCompletionReward(costType: 'token' | 'hc', trigger?: string) {
-    if (!completionReward || completionGranted) {
-      return;
-    }
-
-    completionGranted = true;
-    updateUnlocked(completionReward.specimen);
-
-    const completionResult: SpinResult = {
-      item: completionReward,
-      costType,
-      isCompletionReward: true,
-      completedNow: true,
-      completionTrigger: trigger ?? completionReward.specimen,
-    };
-
-    registerResult(completionResult);
-
-    if (!completionTrigger) {
-      completionTrigger = getMutantName(trigger ?? completionReward.specimen);
-    }
+      return pool[pool.length - 1];
   }
 
   function spin(costType: 'token' | 'hc') {
     if (costType === 'token') {
-      const reward = rollToken();
+      const reward = rollWeighted(currentPool, weightDenominator);
       const wasCompleted = completed;
       const completedNow = updateUnlocked(reward.specimen);
       const completionJustNow = completedNow || (!wasCompleted && completed);
+      
       registerResult({
         item: reward,
         costType: 'token',
@@ -194,17 +139,35 @@
         completedNow: completionJustNow,
         completionTrigger: completionJustNow ? reward.specimen : undefined,
       });
-      if (completionJustNow && !completionTrigger) {
-        completionTrigger = getMutantName(reward.specimen);
-      }
+
       if (completionJustNow) {
         grantCompletionReward('token', reward.specimen);
       }
     } else {
-      const { reward, trigger } = rollSequential();
+      let reward: BasicReward | null = null;
+      let trigger: string | undefined = undefined;
+
+      for (const item of gacha.basic_elements) {
+        if (!unlocked.has(item.specimen)) {
+          reward = item;
+          trigger = item.specimen;
+          break;
+        }
+      }
+
+      if (!reward) {
+          if (!completed) completed = true;
+          if (completionReward && !completionGranted) {
+              reward = completionReward;
+          } else {
+              reward = rollWeighted(currentPool, weightDenominator);
+          }
+      }
+
       const wasCompleted = completed;
       const completedNow = updateUnlocked(reward.specimen);
       const completionJustNow = completedNow || (!wasCompleted && completed);
+      
       registerResult({
         item: reward,
         costType: 'hc',
@@ -212,12 +175,26 @@
         completedNow: completionJustNow,
         completionTrigger: completionJustNow ? trigger ?? reward.specimen : undefined,
       });
-      if (completionJustNow && !completionTrigger) {
-        completionTrigger = getMutantName(trigger ?? reward.specimen);
-      }
+
       if (completionJustNow) {
         grantCompletionReward('hc', trigger ?? reward.specimen);
       }
+    }
+  }
+
+  function grantCompletionReward(costType: 'token' | 'hc', trigger?: string) {
+    if (!completionReward || completionGranted) return;
+    completionGranted = true;
+    updateUnlocked(completionReward.specimen);
+    registerResult({
+      item: completionReward,
+      costType,
+      isCompletionReward: true,
+      completedNow: true,
+      completionTrigger: trigger ?? completionReward.specimen,
+    });
+    if (!completionTrigger) {
+      completionTrigger = getMutantName(trigger ?? completionReward.specimen);
     }
   }
 </script>
@@ -237,29 +214,16 @@
       </div>
     </div>
 
-    <!--
-      ИЗМЕНЕНИЕ: Добавлен класс grid-view для мобилок в CSS
-    -->
-    <div
-      class="slot-track"
-      style={`--slot-count: ${baseRewards.length + (completionReward ? 1 : 0)}`}
-    >
+    <div class="slot-track">
       {#each baseRewards as reward (reward.specimen)}
-        <div
-          class={`slot-card ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${
-            lastResult?.item.specimen === reward.specimen ? 'active' : ''
-          }`}
-        >
+        <div class={`slot-card card-clipped-corners ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${lastResult?.item.specimen === reward.specimen ? 'active' : ''}`}>
           <div class="slot-inner">
             <div class="slot-top">
               {#if STAR_ICON[reward.stars]}
-                <img
-                  class="slot-stars"
-                  src={STAR_ICON[reward.stars]}
-                  alt={STAR_LABEL[reward.stars]}
-                />
+                <img class="slot-stars" src={STAR_ICON[reward.stars]} alt="Звёзды награды" />
               {/if}
-              <span class="slot-odds">{formatPercent(reward)}</span>
+              <!-- ПРЯМОЙ РАСЧЕТ ШАНСА В ВЕРСТКЕ ДЛЯ ГАРАНТИИ ПЕРЕСЧЕТА -->
+              <span class="slot-odds">{(reward.odds / weightDenominator * 100).toFixed(2)}%</span>
             </div>
             <div class="slot-art">
               {#if reward.texture}
@@ -269,31 +233,25 @@
               {/if}
             </div>
             <div class="slot-name">{reward.name}</div>
-
-            <div class="slot-footer mobile-hidden">
-              <span class={`slot-status ${unlocked.has(reward.specimen) ? 'is-unlocked' : ''}`}>
-                {unlocked.has(reward.specimen) ? 'Получен' : 'В пуле'}
-              </span>
-            </div>
           </div>
           {#if unlocked.has(reward.specimen)}
-            <div class="slot-overlay-check">
-              <span class="check-icon">✔</span>
-            </div>
+            <div class="slot-overlay-check"><span class="check-icon">✔</span></div>
           {/if}
         </div>
       {/each}
 
       {#if completionReward}
-        <div
-          class={`slot-card completion ${completed ? 'unlocked' : ''} ${
-            lastResult?.item.specimen === completionReward.specimen ? 'active' : ''
-          }`}
-        >
+        <div class={`slot-card card-clipped-corners completion ${completed ? 'unlocked' : ''} ${lastResult?.item.specimen === completionReward.specimen ? 'active' : ''}`}>
           <div class="slot-inner">
             <div class="slot-top">
               <span class="completion-label">Награда</span>
-              <span class="slot-odds">{completed ? formatPercent(completionReward) : ''}</span>
+              <span class="slot-odds">
+                {#if completionGranted}
+                    {(completionReward.odds / weightDenominator * 100).toFixed(2)}%
+                {:else}
+                    ---
+                {/if}
+              </span>
             </div>
             <div class="slot-art">
               {#if completionReward.texture}
@@ -303,16 +261,9 @@
               {/if}
             </div>
             <div class="slot-name">{completionReward.name}</div>
-            <div class="slot-footer mobile-hidden">
-              <span class={`slot-status ${completed ? 'is-unlocked' : ''}`}>
-                {completed ? 'Получен' : 'Locked'}
-              </span>
-            </div>
           </div>
           {#if completed}
-            <div class="slot-overlay-check">
-              <span class="check-icon">★</span>
-            </div>
+            <div class="slot-overlay-check"><span class="check-icon">★</span></div>
           {/if}
         </div>
       {/if}
@@ -320,53 +271,50 @@
 
     <div class="stage-controls">
       <div class="cost-line">
-        <div class="cost-pill">
-          <span class="pill-label">Жетоны</span>
-          <strong>{gacha.token_cost}</strong>
-        </div>
-        <div class="cost-pill">
-          <span class="pill-label">Золото</span>
-          <strong>{gacha.hc_cost}</strong>
-        </div>
+        <div class="cost-pill"><span>Жетоны</span> <strong>{gacha.token_cost}</strong></div>
+        <div class="cost-pill"><span>Золото</span> <strong>{gacha.hc_cost}</strong></div>
       </div>
       <div class="spin-buttons">
-        <button class="spin token" on:click={() => spin('token')}>
-          Крутить (Жетоны)
-        </button>
-        <button class="spin hc" on:click={() => spin('hc')}>
-          Крутить (Золото)
-        </button>
+        <button class="spin token" on:click={() => spin('token')}>Крутить ({gacha.token_cost} Ж)</button>
+        <button class="spin hc" on:click={() => spin('hc')}>Крутить ({gacha.hc_cost} З)</button>
       </div>
     </div>
   </div>
 
   <aside class="info-panel">
+    <div class="info-card stats-card">
+        <h3>Статистика</h3>
+        <div class="stats-row">
+            <div class="stat-item"><span class="stat-label">Жетонов:</span><span class="stat-val token">{tokensSpent}</span></div>
+            <div class="stat-item"><span class="stat-label">Золота:</span><span class="stat-val hc">{goldSpent}</span></div>
+        </div>
+        {#if inventory.size > 0}
+            <div class="inventory-list custom-scroll">
+                {#each [...inventory.entries()].sort((a,b) => b[1] - a[1]) as [id, count]}
+                    <div class="inv-item">
+                        <div class="inv-thumb"><img src={getRewardTexture(id) || ''} alt="Текстура награды"/></div>
+                        <div class="inv-name">{getRewardName(id)}</div>
+                        <div class="inv-count">x{count}</div>
+                    </div>
+                {/each}
+            </div>
+        {/if}
+    </div>
+
     {#if lastResult}
       <div class="info-card result-card">
         <header>
-          <span class={`badge ${lastResult.costType === 'token' ? 'token' : 'hc'}`}>
-            {lastResult.costType === 'token' ? 'Жетон' : 'Золото'}
-          </span>
-          {#if lastResult.isCompletionReward}
-            <span class="badge completion">🏆</span>
-          {/if}
+          <span class={`badge ${lastResult.costType === 'token' ? 'token' : 'hc'}`}>{lastResult.costType === 'token' ? 'Жетон' : 'Золото'}</span>
+          {#if lastResult.isCompletionReward}<span class="badge completion">🏆</span>{/if}
         </header>
         <div class="result-body">
-          {#if getRewardTexture(lastResult.item.specimen)}
-            <div class="result-art-wrapper">
-               <img
-                 class="result-art"
-                 src={getRewardTexture(lastResult.item.specimen) ?? ''}
-                 alt={getRewardName(lastResult.item.specimen)}
-               />
-            </div>
-          {/if}
+          <div class="result-art-wrapper">
+             <img class="result-art" src={getRewardTexture(lastResult.item.specimen) ?? ''} alt="Итоговая награда"/>
+          </div>
           <div class="result-info">
             <h3>{getRewardName(lastResult.item.specimen)}</h3>
-            <p>Шанс: {formatPercent(lastResult.item)}</p>
-            {#if lastResult.completedNow}
-              <p class="result-complete">Собрано!</p>
-            {/if}
+            <p>Шанс: {(lastResult.item.odds / weightDenominator * 100).toFixed(2)}%</p>
+            {#if lastResult.completedNow}<p class="result-complete">Собрано!</p>{/if}
           </div>
         </div>
       </div>
@@ -379,22 +327,13 @@
           {#each history as entry}
             <li>
               <div class="history-thumb">
-                {#if getRewardTexture(entry.item.specimen)}
-                  <img
-                    src={getRewardTexture(entry.item.specimen) ?? ''}
-                    alt={getRewardName(entry.item.specimen)}
-                  />
-                {/if}
+                 <img src={getRewardTexture(entry.item.specimen) ?? ''} alt="Иконка награды"/>
               </div>
               <div class="history-main">
                 <div class="history-name">{getRewardName(entry.item.specimen)}</div>
                 <div class="history-meta">
-                  <span class={`mini-badge ${entry.costType === 'token' ? 'token' : 'hc'}`}>
-                    {entry.costType === 'token' ? 'Ж' : 'З'}
-                  </span>
-                  {#if entry.isCompletionReward}
-                    <span class="history-flag">🏆</span>
-                  {/if}
+                  <span class={`mini-badge ${entry.costType === 'token' ? 'token' : 'hc'}`}>{entry.costType === 'token' ? 'Ж' : 'З'}</span>
+                  {#if entry.isCompletionReward}<span class="history-flag">🏆</span>{/if}
                 </div>
               </div>
             </li>
@@ -406,288 +345,135 @@
 </div>
 
 <style>
-  /* --- DESKTOP LAYOUT --- */
-  .reactor-layout {
-    display: grid;
-    /*
-       БЫЛО: minmax(0, 2.5fr)
-       СТАЛО: minmax(0, 4fr)
-       Мы даем левой колонке в 4 раза больше веса, чем правой.
-       Теперь она растянется вправо и все влезет без скролла.
-    */
-    grid-template-columns: minmax(0, 5fr) minmax(225px, 1fr);
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .reactor-stage {
-    padding: 2rem;
-    border-radius: 24px;
-    background: radial-gradient(circle at top, rgba(62, 84, 122, 0.35), transparent 60%),
-      linear-gradient(145deg, rgba(14, 23, 42, 0.95), rgba(7, 11, 22, 0.95));
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-  }
-
-  .stage-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-  }
+  .reactor-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(225px, 1fr); gap: 2rem; align-items: start; }
+  .reactor-stage { padding: 2rem; border-radius: 24px; background: radial-gradient(circle at top, rgba(62, 84, 122, 0.35), transparent 60%), linear-gradient(145deg, rgba(14, 23, 42, 0.95), rgba(7, 11, 22, 0.95)); border: 1px solid rgba(59, 130, 246, 0.25); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); }
+  .stage-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
   .stage-header h1 { margin: 0; font-size: 1.8rem; color: #f1f5f9; }
   .stage-header p { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.9rem; }
-
-  .header-progress {
-    min-width: 160px;
-    text-align: right;
-  }
+  .header-progress { min-width: 160px; text-align: right; }
   .header-progress span { color: #cbd5f5; font-size: 0.85rem; display: block; margin-bottom: 4px; }
   .header-meter { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
   .header-fill { height: 100%; background: #3b82f6; transition: width 0.3s; }
-
-  /* SLOTS - Horizontal on Desktop */
-  .slot-track {
-    display: flex;
-    gap: 1rem;
-    padding-bottom: 10px;
-    overflow-x: auto;
-  }
-
-  .slot-card {
-    /* Desktop sizing */
-    flex: 0 0 130px;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    position: relative;
-    transition: all 0.2s;
-  }
-
-  .slot-card.unlocked {
-    background: rgba(16, 185, 129, 0.15);
-    border-color: rgba(16, 185, 129, 0.5);
-  }
-
-  .slot-card.active {
-    transform: translateY(-4px);
-    border-color: #facc15;
-    box-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
-  }
-
-  .slot-inner {
-    padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-  }
-
-  .slot-top {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 6px;
-    font-size: 0.7rem;
-    color: #94a3b8;
-  }
+  .slot-track { display: flex; gap: 1rem; padding-bottom: 10px; overflow-x: auto; }
+  .slot-card { flex: 0 0 130px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); position: relative; transition: all 0.2s; }
+  .slot-card.unlocked { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.5); }
+  .slot-card.active { transform: translateY(-4px); border-color: #facc15; box-shadow: 0 0 15px rgba(250, 204, 21, 0.3); }
+  .slot-inner { padding: 0.75rem; display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%; }
+  .slot-top { display: flex; justify-content: space-between; width: 100%; margin-bottom: 6px; font-size: 0.7rem; color: #94a3b8; }
   .slot-stars { height: 16px; }
   .slot-odds { font-weight: 600; background: rgba(0,0,0,0.3); padding: 1px 4px; border-radius: 4px; }
-
-  .slot-art {
-    width: 100%;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 6px;
-  }
-
-  .slot-art img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5));
-  }
-
+  .slot-art { width: 100%; height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; border-radius: var(--radius-lg); }
+  .slot-art img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5)); }
   .slot-placeholder { color: #475569; font-size: 1.5rem; }
-
-  .slot-name {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #e2e8f0;
-    line-height: 1.2;
-    margin-bottom: auto;
-  }
-
-  .slot-footer { margin-top: 6px; font-size: 0.7rem; text-transform: uppercase; color: #64748b; }
-  .slot-status.is-unlocked { color: #34d399; font-weight: 700; }
-
-  .slot-overlay-check {
-    position: absolute;
-    inset: 0;
-    background: rgba(16, 185, 129, 0.1);
-    border-radius: 12px;
-    pointer-events: none;
-    display: flex;
-    align-items: start;
-    justify-content: end;
-    padding: 6px;
-  }
-  .check-icon {
-    background: #10b981;
-    color: #fff;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-
-  /* Special style for completion reward on Desktop */
-  .slot-card.completion {
-    border-color: #eab308;
-    background: rgba(234, 179, 8, 0.1);
-  }
-
+  .slot-name { font-size: 0.8rem; font-weight: 600; color: #e2e8f0; line-height: 1.2; margin-bottom: auto; }
+  .slot-overlay-check { position: absolute; inset: 0; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); pointer-events: none; display: flex; align-items: start; justify-content: end; padding: 6px; }
+  .check-icon { background: #10b981; color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+  .slot-card.completion { border-color: #eab308; background: rgba(234, 179, 8, 0.1); }
   .stage-controls { margin-top: 2rem; }
   .cost-line { display: flex; gap: 1rem; margin-bottom: 1rem; }
-  .cost-pill {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    color: #cbd5f5;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-  }
+  .cost-pill { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; color: #cbd5f5; display: flex; gap: 0.5rem; align-items: center; }
   .cost-pill strong { color: #fff; font-size: 1rem; }
-
   .spin-buttons { display: flex; gap: 1rem; }
-  .spin {
-    flex: 1;
-    padding: 0.85rem;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    color: #0f172a;
-    transition: filter 0.2s;
-  }
+  .spin { flex: 1; padding: 0.85rem; border: none; border-radius: var(--radius-md); font-weight: 700; font-size: 0.95rem; cursor: pointer; color: #0f172a; transition: filter 0.2s; }
   .spin.token { background: #22d3ee; }
   .spin.hc { background: #fbbf24; }
   .spin:hover { filter: brightness(1.1); }
-
-  /* INFO SIDEBAR */
   .info-panel { display: flex; flex-direction: column; gap: 1rem; }
-  .info-card {
-    background: rgba(30, 41, 59, 0.5);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 16px;
-    padding: 1rem;
-  }
-  .info-card h2, .info-card h3 { margin: 0 0 0.5rem; font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
-
+  .info-card { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1rem; overflow: hidden; }
+  .info-card h2, .info-card h3 { margin: 0 0 0.8rem; font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+  .stats-row { display: flex; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.8rem; }
+  .stat-item { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .stat-label { font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
+  .stat-val { font-size: 1.2rem; font-weight: 700; }
+  .stat-val.token { color: #22d3ee; }
+  .stat-val.hc { color: #fbbf24; }
+  .inventory-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+  .inv-item { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.2); padding: 6px; border-radius: var(--radius-sm); }
+  .inv-thumb { width: 32px; height: 32px; flex-shrink: 0; }
+  .inv-thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .inv-name { flex: 1; font-size: 0.8rem; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .inv-count { font-size: 0.85rem; font-weight: 700; color: #84cc16; }
   .result-card { background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; }
   .result-body { display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem; }
-  .result-art-wrapper {
-    width: 60px; height: 60px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .result-art-wrapper { width: 60px; height: 60px; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
   .result-art { max-width: 90%; max-height: 90%; }
   .result-info h3 { color: #fff; font-size: 1rem; margin-bottom: 0.2rem; }
   .result-info p { margin: 0; font-size: 0.85rem; color: #cbd5f5; }
   .badge { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: #334155; color: #94a3b8; margin-right: 6px; }
-
   .history-card ul { list-style: none; padding: 0; margin: 0; }
-  .history-card li {
-    display: flex; align-items: center; gap: 0.75rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
+  .history-card li { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .history-card li:last-child { border-bottom: none; }
-
-  .history-thumb {
-    width: 40px; height: 40px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+  .history-thumb { width: 40px; height: 40px; background: rgba(0,0,0,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .history-thumb img { max-width: 80%; max-height: 80%; }
   .history-name { font-size: 0.85rem; color: #e2e8f0; font-weight: 500; }
   .history-meta { display: flex; gap: 0.5rem; font-size: 0.75rem; color: #64748b; }
   .mini-badge { font-size: 0.7rem; font-weight: bold; }
   .mini-badge.token { color: #22d3ee; }
   .mini-badge.hc { color: #fbbf24; }
-
-  /* --- MOBILE GRID LAYOUT (KEY CHANGES) --- */
   @media (max-width: 1023px) {
     .reactor-layout {
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
-
-    /* Move history to top */
-    .info-panel { order: -1; }
-
-    .reactor-stage { padding: 1rem; }
-
+    .info-panel {
+      /* Удаляем order: -1, чтобы info-panel следовал за reactor-stage в DOM порядке */
+      flex-direction: column; /* Размещаем элементы info-panel в столбец */
+      gap: 1rem; /* Отступ между элементами */
+    }
+    .info-panel .stats-card { order: 1; }
+    .info-panel .result-card { order: 2; }
+    .info-panel .history-card { order: 3; }
+    
+    .reactor-stage {
+      padding: 1rem;
+    }
     .stage-header {
       flex-direction: column;
       gap: 0.75rem;
     }
-    .header-progress { width: 100%; text-align: left; }
-
-    /* --- THE GRID! --- */
+    .header-progress {
+      width: 100%;
+      text-align: left;
+    }
     .slot-track {
       display: grid;
-      /* 2 columns, auto rows */
       grid-template-columns: 1fr 1fr;
       gap: 0.75rem;
       margin: 1.5rem 0;
-      overflow: visible; /* Show everything */
+      overflow: visible;
       padding-bottom: 0;
     }
-
-    /* Make cards fit the grid */
     .slot-card {
       flex: none;
       max-width: none;
-      width: auto; /* Let grid control width */
+      width: auto;
     }
-
-    /* Make the final reward span full width */
     .slot-card.completion {
       grid-column: 1 / -1;
       background: rgba(234, 179, 8, 0.15);
     }
-
-    .slot-inner { padding: 0.5rem; }
-
-    /* Hide text "Received" on mobile to save space */
-    .mobile-hidden { display: none; }
-
+    .slot-inner {
+      padding: 0.5rem;
+    }
     .slot-name {
       font-size: 0.75rem;
       margin-top: 4px;
     }
-
     .slot-art {
-      height: 80px; /* Slightly shorter */
+      height: 80px;
     }
+    .spin-buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .spin {
+      padding: 1rem;
+    }
+  }
 
-    /* Controls */
-    .spin-buttons { flex-direction: column; gap: 0.75rem; }
-    .spin { padding: 1rem; }
+  /* Класс для эффекта срезанных углов */
+  .card-clipped-corners {
+    -webkit-clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px);
+    clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px);
   }
 </style>

@@ -127,6 +127,14 @@ const toChip = (s: SourceInfo) => {
 
 <script is:inline>
   (function(){
+    // Normalize search string: lowercase + remove special chars
+    function normalizeSearch(text) {
+      if (!text) return '';
+      return text
+        .toLowerCase()
+        .replace(/[^\w\u0400-\u04FF]/g, ''); // Keep only word chars and Cyrillic
+    }
+
     function wire(root){
       if (!root || root.dataset.searchReady === '1') return;
       const input = root.querySelector('.mat-search');
@@ -135,10 +143,10 @@ const toChip = (s: SourceInfo) => {
       const rows  = Array.from(body.querySelectorAll('.tr'));
 
       function apply(){
-        const q = (input.value || '').trim().toLowerCase();
+        const q = normalizeSearch(input.value || '');
         for (const r of rows) {
-          const id = (r.getAttribute('data-id') || '').toLowerCase();
-          const text = (r.textContent || '').toLowerCase();
+          const id = normalizeSearch(r.getAttribute('data-id') || '');
+          const text = normalizeSearch(r.textContent || '');
           const match = !q || id.includes(q) || text.includes(q);
           r.style.display = match ? '' : 'none';
         }
@@ -273,22 +281,25 @@ const toChip = (s: SourceInfo) => {
     box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
   }
 
-  /* === Orbs sizing normalization === */
-  .materials[data-title="Сферы"] .thumb { width: 84px; height: 84px; }
-  .materials[data-title="Сферы"] .thumb img { max-width: 90%; max-height: 90%; }
+  /* === Orbs & Boosters sizing normalization === */
+  /* Все текстуры (сферы, бустеры, материалы) физически нормализованы скриптом normalize-boosters.py 
+     к единому квадратному холсту 256x256 с автообрезкой пустоты. 
+     Это гарантирует 100% одинаковый размер всех элементов. */
+  
+  .materials[data-title="Сферы"] .thumb,
+  .materials[data-title="Бустеры"] .thumb { 
+    width: 84px; 
+    height: 84px; 
+    padding: 8px; 
+    flex-shrink: 0;
+  }
 
-  /* === Charms (Boosters) sizing normalization === */
-  .materials[data-title="Бустеры"] .thumb { width: 84px; height: 84px; padding: 4px; }
+  .materials[data-title="Сферы"] .thumb img,
   .materials[data-title="Бустеры"] .thumb img { 
     width: 100%; 
     height: 100%; 
     object-fit: contain;
-  }
-
-  /* Shrink ONLY the shield variants to match speed orb visual size */
-  .materials[data-title="Сферы"] .thumb img[src*="orb_special_addshield"] {
-    max-width: 82% !important;
-    max-height: 82% !important;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45));
   }
 
   @media (max-width: 980px) {

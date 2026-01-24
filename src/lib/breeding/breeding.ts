@@ -1,4 +1,5 @@
 import { secretCombos } from '@/lib/secretCombos';
+import { normalizeSearch as normalizeName } from '@/lib/search-normalize';
 
 // --- 1. Types ---
 export interface Mutant {
@@ -24,10 +25,6 @@ export interface ParentPair {
 }
 
 // --- 2. Rules Configuration ---
-
-function normalizeName(name: string): string {
-  return name ? name.toLowerCase().replace(/[^a-z0-9а-яё]/g, '') : '';
-}
 
 // ГРУППА 1: СТРОГО ЗАПРЕЩЕНЫ К ВЫПАДЕНИЮ
 // Они не падают НИКОГДА. Даже если скрещивать двух таких же.
@@ -83,6 +80,34 @@ function areGenesCompatible(childGenes: string, p1Genes: string, p2Genes: string
 
 // --- 4. CORE LOGIC ---
 
+// Новая жесткая логика проверки генов
+function isBreedingPossible(childCode: string, p1Code: string, p2Code: string): boolean {
+  // Разбираем гены на массив символов ['A', 'B']
+  const c = childCode.split('');
+  const p1 = p1Code.split('');
+  const p2 = p2Code.split('');
+
+  // 1. Одногеновые дети (A, B...)
+  // Могут получиться ТОЛЬКО если хотя бы один из родителей одногеновый (чистый).
+  // Если оба родителя гибриды (AB + CD), одногеновые дети невозможны.
+  if (c.length === 1) {
+    if (p1.length > 1 && p2.length > 1) return false;
+  }
+
+  // 2. Дети с одинаковыми генами (AA, BB...)
+  // Возможны ТОЛЬКО если этот ген есть у ОБОИХ родителей.
+  // Пример: Human (AA) нужен ген A от папы и ген A от мамы.
+  if (c.length === 2 && c[0] === c[1]) {
+    const gene = c[0];
+    if (!p1.includes(gene) || !p2.includes(gene)) return false;
+  }
+
+  // 3. Базовая проверка состава
+  // Все гены ребенка должны быть в пуле родителей
+  const pool = [...p1, ...p2];
+  return c.every(g => pool.includes(g));
+}
+
 export function calculateBreeding(
   p1: Mutant,
   p2: Mutant,
@@ -113,7 +138,7 @@ export function calculateBreeding(
     }
   }
 
-  // 2. ОБЫЧНОЕ СКРЕЩИВАНИЕ + ПРАВИЛА
+  // 2. ОБЫЧНОЕ СКРЕЩИВАНИЕ
   const p1Genes = getGeneStr(p1.genes);
   const p2Genes = getGeneStr(p2.genes);
 
@@ -125,49 +150,29 @@ export function calculateBreeding(
     const mType = (m.type || 'default').toLowerCase();
     const mGenes = getGeneStr(m.genes);
 
-    // Проверка генов (База)
-    if (!areGenesCompatible(mGenes, p1Genes, p2Genes)) continue;
+    // Новая логика проверки генов
+    if (!isBreedingPossible(mGenes, p1Genes, p2Genes)) continue;
 
-    // --- ЖЕЛЕЗОБЕТОННЫЕ ПРАВИЛА ---
+    // --- ФИЛЬТРЫ ТИПОВ ---
 
-    // 1. Если тип ЗАПРЕЩЕН (Seasonal, Boss...) -> НЕ ВЫВОДИМ.
-    // Исключений нет (даже если родители такие же).
-    if (FORBIDDEN_TYPES.has(mType)) {
-        continue;
-    }
+    // 1. ЗАПРЕЩЕННЫЕ
+    if (FORBIDDEN_TYPES.has(mType)) continue;
 
-    // 2. Если это РЕЦЕПТ (Золотой и т.д.), он не падает рандомно
+    // 2. РЕЦЕПТНЫЕ (Только если это копирование родителя)
     if (mType === 'recipe') {
-        // Исключение: если родитель копия ребенка, то можно (ап звезд)
-        // Но обычно рецепты это отдельная каста. Добавим только если это 100% копия.
         if (p1Id !== mId && p2Id !== mId) continue;
     }
 
-    // 3. Если ОГРАНИЧЕН (PVP, Legend, Heroic)
-    let isRestrictedAllowed = false;
+    // 3. ОГРАНИЧЕННЫЕ (Legend, Heroic, PvP)
     if (RESTRICTED_TYPES.has(mType)) {
-        // Проверка 3.1: Белый список?
-        if (LEGEND_WHITELIST.has(mName)) {
-            isRestrictedAllowed = true;
-        }
-        // Проверка 3.2: Родитель копия? (Апгрейд звезд)
-        else if (p1Id === mId || p2Id === mId) {
-            isRestrictedAllowed = true;
-        }
-
-        if (!isRestrictedAllowed) continue; // Если ни одно условие не прошло - пропускаем
+        // Либо белый список (выводимые легенды), либо копия родителя
+        const isAllowed = LEGEND_WHITELIST.has(mName) || p1Id === mId || p2Id === mId;
+        if (!isAllowed) continue;
     }
 
-    // Если дошли сюда -> Мутант возможен
-    // Определяем тег для красоты
-    let tag = 'ВОЗМОЖНО';
-    if (p1Id === mId || p2Id === mId) tag = 'КОПИЯ'; // Вместо "АПГРЕЙД"
+    let tag = (p1Id === mId || p2Id === mId) ? 'КОПИЯ' : 'ВОЗМОЖНО';
 
-    candidates.push({
-        child: m,
-        isSecret: false,
-        tag: tag
-    });
+    candidates.push({ child: m, isSecret: false, tag });
     seenIds.add(mId);
   }
 

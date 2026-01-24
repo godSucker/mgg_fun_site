@@ -5,6 +5,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 // Simple base layout for the site.
 // It provides a consistent header, footer and sets a dark theme background.
 const { title, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
+const isHome = Astro.url.pathname === "/";
 ---
 
 <!DOCTYPE html>
@@ -49,6 +50,8 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         color: #c9d1d9;
         min-height: 100vh;
         position: relative;
+        display: flex;
+        flex-direction: column; /* Для прибития футера к низу */
       }
 
       body::before {
@@ -58,7 +61,7 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('/main_page.jpg');
+        background-image: url('/main_page.webp');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -67,11 +70,18 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         filter: saturate(1.4) brightness(0.7) contrast(1.1);
       }
 
+      @supports not (background-image: url('data:image/webp;base64,')) {
+        body::before {
+          background-image: url('/main_page.jpg');
+        }
+      }
+
       @media (max-width: 767px) {
         body::before {
-          background-size: contain;
-          background-position: top center;
-          background-repeat: repeat-y;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
           opacity: 0.35;
         }
       }
@@ -94,6 +104,29 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
         color: #58a6ff;
         text-decoration: none;
         font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .global-back-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: rgba(88, 166, 255, 0.1);
+        border: 1px solid rgba(88, 166, 255, 0.2);
+        color: #58a6ff;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        margin-right: 0.5rem;
+      }
+
+      .global-back-button:hover {
+        background: rgba(88, 166, 255, 0.2);
+        transform: translateX(-2px);
       }
       
       /* Hamburger menu button */
@@ -320,26 +353,55 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
       
       /* Main content */
       main {
+        flex: 1 0 auto; /* Позволяет контенту расти и толкать футер */
         padding: 1rem;
-        max-width: 1024px;
+        max-width: 1440px;
+        width: 100%;
         margin: 0 auto;
+        box-sizing: border-box;
       }
 
       main.wide {
-        max-width: none;
-        width: min(1600px, calc(100vw - 2rem));
+        max-width: 1920px;
       }
       
+      /* 2K / 4K Upscaling & Layout adjustments */
+      @media (min-width: 1921px) {
+        html {
+          font-size: 125%; /* Существенное увеличение масштаба для 2K */
+        }
+        main {
+          max-width: 1800px;
+          padding: 2rem;
+        }
+        main.wide {
+          max-width: 2560px;
+        }
+      }
+
+      @media (min-width: 3840px) {
+        html {
+          font-size: 150%; /* Глобальное увеличение масштаба для 4K */
+        }
+        main {
+          max-width: 2800px;
+        }
+        main.wide {
+          max-width: 3600px;
+        }
+      }
+
       /* Footer */
       footer {
-        margin-top: 8rem; /* Increased margin to move it down */
-        padding: 2rem 1rem;
+        flex-shrink: 0; /* Футер не сжимается */
+        margin-top: 4rem;
+        padding: 3rem 1rem;
         background-color: rgba(22, 27, 34, 0.8);
         backdrop-filter: blur(8px);
         border-top: 1px solid rgba(48, 54, 61, 0.5);
         text-align: center;
         color: #7d8590;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
       
       /* Mobile styles */
@@ -406,6 +468,11 @@ const { title, fullWidth = false, viewport = "width=device-width, initial-scale=
   <body>
     <header>
       <div class="logo">
+        {!isHome && (
+          <a href="javascript:history.back()" class="global-back-button" title="Назад">
+            <span style="font-size: 1.2rem; line-height: 1;">←</span>
+          </a>
+        )}
         <a href="/">Archivist-Library</a>
       </div>
       <nav>

@@ -209,6 +209,15 @@
   function formatPercent(value: number): string {
     return `${(value * 100).toFixed(value * 100 < 1 ? 2 : 1)}%`;
   }
+
+  $: regularRecipes =
+    activeFacility.id === 'blackhole'
+      ? activeFacility.recipes.filter((r) => !r.id.startsWith('pot_pourri_'))
+      : activeFacility.recipes;
+  $: potPourriRecipes =
+    activeFacility.id === 'blackhole'
+      ? activeFacility.recipes.filter((r) => r.id.startsWith('pot_pourri_'))
+      : [];
 </script>
 
 <section class="craft-hero">
@@ -229,7 +238,7 @@
         <dd>{uniqueRewardIds.size}</dd>
       </div>
       <div>
-        <dt>Максимальный бонус</dt>
+        <dt>Максимальный бонус за качество</dt>
         <dd>{(maxBonus / 10).toFixed(1)}%</dd>
       </div>
     </dl>
@@ -303,7 +312,6 @@
   {@const rewardDisplay = currentRecipe ? getRewardDisplay(currentRecipe) : []}
   {@const incentiveChance = calculateIncentiveChance(currentRecipe, activeIncentive)}
   {@const bonusRange = getBonusRange(activeFacility.recipes)}
-  {@const okhcRange = getOkhcRange(activeFacility.recipes)}
 
   <section
     class="facility"
@@ -335,50 +343,103 @@
             <dd>{activeFacility.recipes.length}</dd>
           </div>
           <div>
-            <dt>Бонус доп. награды</dt>
+            <dt>Бонус за качество материалов</dt>
             <dd>
               {bonusRange.min === bonusRange.max
                 ? `${(bonusRange.max / 10).toFixed(1)}%`
                 : `${(bonusRange.min / 10).toFixed(1)}–${(bonusRange.max / 10).toFixed(1)}%`}
             </dd>
           </div>
-          {#if okhcRange}
-            <div>
-              <dt>okHC</dt>
-              <dd>
-                {okhcRange.min === okhcRange.max
-                  ? okhcRange.max
-                  : `${okhcRange.min}–${okhcRange.max}`}
-              </dd>
-            </div>
-          {/if}
         </dl>
       </aside>
 
       <div class="facility__content">
-        <div class="recipe-selector" role="tablist" aria-label={`Рецепты ${activeFacility.name}`}>
-          {#each activeFacility.recipes as recipe (recipe.id)}
-            {@const displayReward = recipe.rewards[0]}
-            {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
-            {@const totalIngredients = recipe.ingredients.reduce((sum, ing) => sum + ing.amount, 0)}
-            {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
-              ? `${baseLabel} ×${totalIngredients}`
-              : baseLabel}
-            {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
-            <button
-              type="button"
-              class:selected={recipe.id === currentRecipe?.id}
-              on:click={() => selectRecipe(activeFacility.id, recipe.id)}
-              role="tab"
-              aria-selected={recipe.id === currentRecipe?.id}
-            >
-              {#if rewardIcon}
-                <img src={rewardIcon} alt={rewardLabel} />
-              {/if}
-              <span class="recipe-selector__title">{rewardLabel}</span>
-            </button>
-          {/each}
-        </div>
+        {#if activeFacility.id === 'blackhole'}
+          <div class="recipes-container">
+            <div class="recipes-group">
+              <h4 class="group-title">Рецепты</h4>
+              <div class="recipe-selector">
+                {#each regularRecipes as recipe (recipe.id)}
+                  {@const displayReward = recipe.rewards[0]}
+                  {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+                  {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                  <button
+                    type="button"
+                    class:selected={recipe.id === currentRecipe?.id}
+                    on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                    role="tab"
+                    aria-selected={recipe.id === currentRecipe?.id}
+                  >
+                    {#if rewardIcon}
+                      <img src={rewardIcon} alt={baseLabel} />
+                    {/if}
+                    <span class="recipe-selector__title">{baseLabel}</span>
+                  </button>
+                {/each}
+              </div>
+            </div>
+
+            <div class="recipes-group">
+              <h4 class="group-title">Крафты</h4>
+              <div class="recipe-selector">
+                {#each potPourriRecipes as recipe (recipe.id)}
+                  {@const displayReward = recipe.rewards[0]}
+                  {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+                  {@const totalIngredients = recipe.ingredients.reduce(
+                    (sum, ing) => sum + ing.amount,
+                    0,
+                  )}
+                  {@const rewardLabel = `${baseLabel} ×${totalIngredients}`}
+                  {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                  <button
+                    type="button"
+                    class:selected={recipe.id === currentRecipe?.id}
+                    on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                    role="tab"
+                    aria-selected={recipe.id === currentRecipe?.id}
+                  >
+                    {#if rewardIcon}
+                      <img src={rewardIcon} alt={rewardLabel} />
+                    {/if}
+                    <span class="recipe-selector__title">{rewardLabel}</span>
+                  </button>
+                {/each}
+              </div>
+            </div>
+          </div>
+        {:else}
+          <div
+            class="recipe-selector"
+            role="tablist"
+            aria-label={`Рецепты ${activeFacility.name}`}
+            class:grid-3-4={activeFacility.id !== 'metal'}
+          >
+            {#each activeFacility.recipes as recipe (recipe.id)}
+              {@const displayReward = recipe.rewards[0]}
+              {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+              {@const totalIngredients = recipe.ingredients.reduce(
+                (sum, ing) => sum + ing.amount,
+                0,
+              )}
+              {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
+                ? `${baseLabel} ×${totalIngredients}`
+                : baseLabel}
+              {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+              <button
+                type="button"
+                class:selected={recipe.id === currentRecipe?.id}
+                on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                role="tab"
+                aria-selected={recipe.id === currentRecipe?.id}
+              >
+                {#if rewardIcon}
+                  <img src={rewardIcon} alt={rewardLabel} />
+                {/if}
+                <span class="recipe-selector__title">{rewardLabel}</span>
+              </button>
+            {/each}
+          </div>
+        {/if}
 
         {#if currentRecipe}
           {@const totalIngredientPieces = currentRecipe
@@ -399,15 +460,12 @@
               <div class="recipe-card__meta">
                 {#if currentRecipe.bonusPer1000 > 0}
                   <span class="meta-pill">
-                    Бонус: {(currentRecipe.bonusPer1000 / 10).toFixed(1)}%
+                    Бонус за качество материалов: {(currentRecipe.bonusPer1000 / 10).toFixed(1)}%
                   </span>
-                {/if}
-                {#if currentRecipe.okHC > 0}
-                  <span class="meta-pill">okHC: {currentRecipe.okHC}</span>
                 {/if}
                 {#if incentiveChance > 0}
                   <span class="meta-pill meta-pill--accent">
-                    Доп. награда: {formatPercent(incentiveChance)}
+                    Шанс доп. награды: {formatPercent(incentiveChance)}
                   </span>
                 {/if}
               </div>
@@ -652,13 +710,38 @@
     text-transform: uppercase;
   }
 
-  .badge--soft { background: rgba(139, 92, 246, 0.15); color: #c4b5fd; }
-  .badge--outline { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18); color: rgba(226, 232, 240, 0.85); }
+  .badge--soft {
+    background: rgba(139, 92, 246, 0.15);
+    color: #c4b5fd;
+  }
+  .badge--outline {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(226, 232, 240, 0.85);
+  }
 
-  h1 { margin: 1rem 0 0.8rem; font-size: clamp(2rem, 5vw, 3.4rem); color: #ede9fe; word-wrap: break-word; }
-  h2 { margin: 0.75rem 0; font-size: clamp(1.5rem, 4vw, 2.4rem); color: rgba(248, 250, 252, 0.95); }
-  h3 { margin: 0.35rem 0 0; font-size: clamp(1.2rem, 3vw, 1.9rem); color: rgba(248, 250, 252, 0.92); }
-  p { margin: 0; color: rgba(226, 232, 240, 0.78); line-height: 1.7; max-width: 720px; }
+  h1 {
+    margin: 1rem 0 0.8rem;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: #ede9fe;
+    word-wrap: break-word;
+  }
+  h2 {
+    margin: 0.75rem 0;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    color: rgba(248, 250, 252, 0.95);
+  }
+  h3 {
+    margin: 0.35rem 0 0;
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+    color: rgba(248, 250, 252, 0.92);
+  }
+  p {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.78);
+    line-height: 1.7;
+    max-width: 720px;
+  }
 
   .hero-stats {
     margin: 2.2rem 0 0;
@@ -668,14 +751,34 @@
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
-  dt { margin: 0 0 0.35rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(226, 232, 240, 0.55); }
-  dd { margin: 0; font-size: 1.35rem; color: rgba(248, 250, 252, 0.95); font-weight: 600; }
+  dt {
+    margin: 0 0 0.35rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.55);
+  }
+  dd {
+    margin: 0;
+    font-size: 1.35rem;
+    color: rgba(248, 250, 252, 0.95);
+    font-weight: 600;
+  }
 
   /* --- БОНУСЫ --- */
-  .incentive-panel { display: flex; justify-content: center; width: 100%; box-sizing: border-box; }
+  .incentive-panel {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
   .incentive-card {
-    position: relative; width: 100%; box-sizing: border-box;
-    display: grid; gap: 1.75rem; padding: 2.5rem;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    gap: 1.75rem;
+    padding: 2.5rem;
     border-radius: 28px;
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(17, 24, 39, 0.92));
     border: 1px solid rgba(99, 102, 241, 0.25);
@@ -684,13 +787,51 @@
     align-items: start;
   }
 
-  .incentive-card__controls { min-width: 0; } /* Фикс переполнения */
-  .incentive-card__controls select { width: 100%; padding: 0.75rem 1rem; border-radius: 16px; border: 1px solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.8); color: rgba(226, 232, 240, 0.95); font-size: 1rem; max-width: 100%; }
-  .incentive-card__controls label { display: block; margin-bottom: 0.65rem; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(148, 163, 184, 0.75); }
+  .incentive-card__controls {
+    min-width: 0;
+  } /* Фикс переполнения */
+  .incentive-card__controls select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(15, 23, 42, 0.8);
+    color: rgba(226, 232, 240, 0.95);
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  .incentive-card__controls label {
+    display: block;
+    margin-bottom: 0.65rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.75);
+  }
 
-  .incentive-card__stats { display: grid; gap: 1rem; padding: 1rem 1.4rem; border-radius: 20px; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(96, 165, 250, 0.25); min-width: 0; }
-  .metric-label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(148, 163, 184, 0.75); margin-bottom: 0.35rem; }
-  .metric-value { font-size: 1.05rem; font-weight: 600; color: rgba(248, 250, 252, 0.92); word-break: break-word; }
+  .incentive-card__stats {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem 1.4rem;
+    border-radius: 20px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    min-width: 0;
+  }
+  .metric-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.75);
+    margin-bottom: 0.35rem;
+  }
+  .metric-value {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(248, 250, 252, 0.92);
+    word-break: break-word;
+  }
 
   /* --- ТАБЫ --- */
   .facility-tabs {
@@ -702,18 +843,37 @@
     width: 100%;
   }
   .facility-tabs button {
-    display: grid; gap: 0.25rem; padding: 1rem 1.4rem;
-    border-radius: 18px; border: 1px solid rgba(99, 102, 241, 0.25);
-    background: rgba(30, 41, 59, 0.65); color: rgba(226, 232, 240, 0.82);
-    text-align: left; cursor: pointer;
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem 1.4rem;
+    border-radius: 18px;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(30, 41, 59, 0.65);
+    color: rgba(226, 232, 240, 0.82);
+    text-align: left;
+    cursor: pointer;
     min-width: 200px;
     flex: 1 1 auto;
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
-  .facility-tabs button.active { border-color: rgba(192, 132, 252, 0.45); background: rgba(76, 29, 149, 0.35); box-shadow: 0 18px 30px rgba(76, 29, 149, 0.25); color: rgba(248, 250, 252, 0.95); }
-  .facility-tabs button:hover { transform: translateY(-2px); border-color: rgba(129, 140, 248, 0.5); }
-  .facility-tabs__name { font-weight: 600; font-size: 1.05rem; }
-  .facility-tabs__tagline { font-size: 0.85rem; color: rgba(148, 163, 184, 0.75); }
+  .facility-tabs button.active {
+    border-color: rgba(192, 132, 252, 0.45);
+    background: rgba(76, 29, 149, 0.35);
+    box-shadow: 0 18px 30px rgba(76, 29, 149, 0.25);
+    color: rgba(248, 250, 252, 0.95);
+  }
+  .facility-tabs button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(129, 140, 248, 0.5);
+  }
+  .facility-tabs__name {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .facility-tabs__tagline {
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.75);
+  }
 
   /* --- ОСНОВНОЙ ЛЕЙАУТ --- */
   .facility {
@@ -721,9 +881,15 @@
     border-radius: 40px;
     overflow: hidden;
     box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
-    width: 100%; box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .facility__background { position: absolute; inset: 0; opacity: 0.92; pointer-events: none; }
+  .facility__background {
+    position: absolute;
+    inset: 0;
+    opacity: 0.92;
+    pointer-events: none;
+  }
 
   .facility__inner {
     position: relative;
@@ -735,99 +901,425 @@
 
   /* САЙДБАР */
   .facility__sidebar {
-    position: relative; padding: 2.8rem 2.4rem;
+    position: relative;
+    padding: 2.8rem 2.4rem;
     background: linear-gradient(160deg, rgba(15, 23, 42, 0.85), rgba(15, 15, 18, 0.85));
     border-right: 1px solid rgba(255, 255, 255, 0.08);
-    display: grid; gap: 2rem; align-content: start;
+    display: grid;
+    gap: 2rem;
+    align-content: start;
   }
-  .facility__sidebar::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top, var(--glow), transparent 65%); opacity: 0.7; pointer-events: none; }
+  .facility__sidebar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, var(--glow), transparent 65%);
+    opacity: 0.7;
+    pointer-events: none;
+  }
 
-  .facility__header h2 { margin-bottom: 0.4rem; }
-  .facility__header p { color: rgba(226, 232, 240, 0.75); }
+  .facility__header h2 {
+    margin-bottom: 0.4rem;
+  }
+  .facility__header p {
+    color: rgba(226, 232, 240, 0.75);
+  }
 
-  .facility__featured { display: grid; gap: 1.1rem; }
-  .featured-item { display: grid; grid-template-columns: 48px 1fr; gap: 0.75rem; align-items: center; padding: 0.6rem 0.8rem; border-radius: 18px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148, 163, 184, 0.15); }
-  .featured-item img { width: 48px; height: 48px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4)); }
-  .featured-item__label { font-size: 0.95rem; font-weight: 600; line-height: 1.2; color: #fff; }
-  .facility__stats { display: grid; gap: 1.2rem; }
+  .facility__featured {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .featured-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+  }
+  .featured-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  }
+  .featured-item__label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .facility__stats {
+    display: grid;
+    gap: 1.2rem;
+  }
 
   /* КОНТЕНТ */
-  .facility__content { position: relative; padding: 2.8rem; display: grid; gap: 2rem; width: 100%; box-sizing: border-box; min-width: 0; }
+  .facility__content {
+    position: relative;
+    padding: 2.8rem;
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
 
   .recipe-selector {
-    display: grid; gap: 0.85rem;
+    display: grid;
+    gap: 0.85rem;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   }
   .recipe-selector button {
-    position: relative; display: grid; gap: 0.35rem; align-content: center; justify-items: center;
-    padding: 1rem; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(15, 23, 42, 0.78); color: rgba(226, 232, 240, 0.85); cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.78);
+    color: rgba(226, 232, 240, 0.85);
+    cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     width: 100%;
   }
-  .recipe-selector button img { width: 46px; height: 46px; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45)); }
-  .recipe-selector button.selected { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.35); box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35); }
-  .recipe-selector__title { font-weight: 600; text-align: center; color: rgba(248, 250, 252, 0.92); font-size: 0.9rem; }
+  .recipe-selector button img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  }
+  .recipe-selector button.selected {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+  }
+  .recipe-selector__title {
+    font-weight: 600;
+    text-align: center;
+    color: rgba(248, 250, 252, 0.92);
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
   /* КАРТОЧКА РЕЦЕПТА */
   .recipe-card {
-    position: relative; border-radius: 28px; background: rgba(15, 23, 42, 0.82);
-    border: 1px solid rgba(148, 163, 184, 0.18); box-shadow: 0 18px 32px rgba(0, 0, 0, 0.35);
-    display: grid; gap: 1.75rem; padding: 2.2rem;
-    width: 100%; box-sizing: border-box;
+    position: relative;
+    border-radius: 28px;
+    background: rgba(15, 23, 42, 0.82);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.35);
+    display: grid;
+    gap: 1.75rem;
+    padding: 2.2rem;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .recipe-card__header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
-  .recipe-card__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: flex-end; }
-  .recipe-card__subtitle { margin: 0.3rem 0 0; color: rgba(148, 163, 184, 0.7); font-size: 0.95rem; }
-  .meta-pill { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.45rem 0.9rem; border-radius: 999px; background: rgba(255, 255, 255, 0.08); color: rgba(226, 232, 240, 0.85); font-size: 0.85rem; }
-  .meta-pill--accent { background: rgba(34, 197, 94, 0.15); color: rgba(134, 239, 172, 0.95); }
+  .recipe-card__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+  .recipe-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: flex-end;
+  }
+  .recipe-card__subtitle {
+    margin: 0.3rem 0 0;
+    color: rgba(148, 163, 184, 0.7);
+    font-size: 0.95rem;
+  }
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(226, 232, 240, 0.85);
+    font-size: 0.85rem;
+  }
+  .meta-pill--accent {
+    background: rgba(34, 197, 94, 0.15);
+    color: rgba(134, 239, 172, 0.95);
+  }
 
   /* СЕТКА ИНГРЕДИЕНТОВ И НАГРАД */
-  .recipe-card__body { display: grid; gap: 1.8rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .recipe-section h4 { margin: 0 0 1rem; font-size: 1.1rem; color: rgba(248, 250, 252, 0.92); }
-
-  .ingredient-list, .reward-list, .results-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
-  .ingredient-list li, .reward-list li, .results-grid li {
-    display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 0.9rem;
-    padding: 0.75rem 1rem; border-radius: 18px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148, 163, 184, 0.15);
+  .recipe-card__body {
+    display: grid;
+    gap: 1.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
-  .item-icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 16px; background: rgba(255, 255, 255, 0.05); overflow: hidden; flex-shrink: 0; }
-  .item-icon img { width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45)); }
-  .item-info { display: grid; gap: 0.25rem; min-width: 0; } /* min-width: 0 позволяет тексту сжиматься */
-  .item-title { font-weight: 600; color: rgba(248, 250, 252, 0.92); font-size: 0.95rem; white-space: normal; overflow-wrap: break-word; }
-  .item-sub { font-size: 0.85rem; color: rgba(148, 163, 184, 0.75); }
-  .item-odds { text-align: right; color: rgba(226, 232, 240, 0.9); font-weight: 600; }
-  .item-odds__raw { display: block; margin-top: 0.2rem; font-size: 0.75rem; color: rgba(148, 163, 184, 0.65); }
+  .recipe-section h4 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    color: rgba(248, 250, 252, 0.92);
+  }
 
-  .craft-input { display: grid; gap: 0.45rem; flex: 1; }
-  .craft-input label { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(148, 163, 184, 0.75); }
-  .craft-input input { width: 100%; padding: 0.65rem 0.9rem; border-radius: 14px; border: 1px solid rgba(148, 163, 184, 0.35); background: rgba(15, 23, 42, 0.85); color: rgba(226, 232, 240, 0.95); font-size: 1rem; box-sizing: border-box; }
+  .ingredient-list,
+  .reward-list,
+  .results-grid ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .ingredient-list li,
+  .reward-list li,
+  .results-grid li {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+  }
+  .item-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .item-icon img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.45));
+  }
+  .item-info {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+  } /* min-width: 0 позволяет тексту сжиматься */
+  .item-title {
+    font-weight: 600;
+    color: rgba(248, 250, 252, 0.92);
+    font-size: 0.95rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+  .item-sub {
+    font-size: 0.85rem;
+    color: rgba(148, 163, 184, 0.75);
+  }
+  .item-odds {
+    text-align: right;
+    color: rgba(226, 232, 240, 0.9);
+    font-weight: 600;
+  }
+  .item-odds__raw {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: rgba(148, 163, 184, 0.65);
+  }
+
+  .craft-input {
+    display: grid;
+    gap: 0.45rem;
+    flex: 1;
+  }
+  .craft-input label {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.75);
+  }
+  .craft-input input {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(15, 23, 42, 0.85);
+    color: rgba(226, 232, 240, 0.95);
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
 
   .simulate-btn {
-    padding: 0.8rem 1.8rem; border-radius: 999px; border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 999px;
+    border: none;
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(56, 189, 248, 0.35));
-    color: rgba(248, 250, 252, 0.95); font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease; white-space: nowrap;
+    color: rgba(248, 250, 252, 0.95);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
   }
-  .simulate-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(56, 189, 248, 0.35); }
+  .simulate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(56, 189, 248, 0.35);
+  }
 
   .simulation-controls {
-    display: flex; gap: 1rem; align-items: flex-end; padding: 1.5rem;
-    border-radius: 20px; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(192, 132, 252, 0.2);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(192, 132, 252, 0.2);
     flex-wrap: wrap;
   }
 
-  .results-card { border-radius: 24px; border: 1px solid rgba(148, 163, 184, 0.2); background: rgba(15, 23, 42, 0.7); padding: 1.8rem; display: grid; gap: 1.6rem; width: 100%; box-sizing: border-box; }
-  .results-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .results-log ul { margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.5rem; list-style: none; }
-  .results-log li { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem; color: rgba(226, 232, 240, 0.75); font-size: 0.92rem; word-break: break-word; }
-  .results-log__index { color: rgba(148, 163, 184, 0.65); font-variant-numeric: tabular-nums; }
-  .empty { margin: 0; color: rgba(148, 163, 184, 0.7); }
+  .results-card {
+    border-radius: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.7);
+    padding: 1.8rem;
+    display: grid;
+    gap: 1.6rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .results-grid {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .results-log ul {
+    margin: 0.8rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    list-style: none;
+  }
+  .results-log li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.6rem;
+    color: rgba(226, 232, 240, 0.75);
+    font-size: 0.92rem;
+    word-break: break-word;
+  }
+  .results-log__index {
+    color: rgba(148, 163, 184, 0.65);
+    font-variant-numeric: tabular-nums;
+  }
+  .empty {
+    margin: 0;
+    color: rgba(148, 163, 184, 0.7);
+  }
 
-  .rewards-scroll { max-height: 400px; overflow-y: auto; overflow-x: hidden; padding-right: 0.5rem; margin-right: -0.5rem; }
-  .rewards-scroll::-webkit-scrollbar { width: 8px; }
-  .rewards-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.4); border-radius: 4px; }
-  .rewards-scroll::-webkit-scrollbar-thumb { background: rgba(192, 132, 252, 0.3); border-radius: 4px; }
+  .recipes-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .recipes-group .recipe-selector {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+  }
+
+  .recipes-group .recipe-selector button {
+    padding: 0.5rem;
+    border-radius: 10px;
+    gap: 0.3rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .recipes-group .recipe-selector button img {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .recipes-group .recipe-selector__title {
+    font-size: 0.75rem;
+    line-height: 1.1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Compact grid for Transformatron and others */
+  .recipe-selector.grid-3-4 {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.4rem;
+  }
+
+  .recipe-selector.grid-3-4 button {
+    padding: 0.5rem;
+    border-radius: 12px;
+    gap: 0.3rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .recipe-selector.grid-3-4 button img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Supplies Lab button icon override */
+  .recipe-selector.grid-3-4[aria-label*="Supplies Lab"] button img {
+     width: 38px;
+     height: 38px;
+  }
+
+  .recipe-selector.grid-3-4 .recipe-selector__title {
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+
+  .group-title {
+    margin: 0 0 1.2rem;
+    font-size: 1.2rem;
+    color: rgba(248, 250, 252, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
+
+  .rewards-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+    margin-right: -0.5rem;
+  }
+  .rewards-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  .rewards-scroll::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 4px;
+  }
+  .rewards-scroll::-webkit-scrollbar-thumb {
+    background: rgba(192, 132, 252, 0.3);
+    border-radius: 4px;
+  }
 
   /* --- МОБИЛЬНАЯ АДАПТАЦИЯ (ЖЕЛЕЗОБЕТОННЫЙ ФИКС) --- */
   @media (max-width: 1023px) {
@@ -849,7 +1341,9 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
-    .facility-tabs::-webkit-scrollbar { display: none; }
+    .facility-tabs::-webkit-scrollbar {
+      display: none;
+    }
     .facility-tabs button {
       flex: 0 0 85%; /* Кнопка занимает 85% экрана, видно кусок следующей */
       max-width: 300px;
@@ -872,21 +1366,30 @@
     }
 
     /* 5. Карточки и сетки - тоже в одну */
-    .incentive-card, .recipe-card__body, .results-grid {
+    .incentive-card,
+    .recipe-card__body,
+    .results-grid {
       grid-template-columns: 1fr;
     }
-    .incentive-card { padding: 1.5rem; }
-    .recipe-card { padding: 1.5rem 1rem; }
+    .incentive-card {
+      padding: 1.5rem;
+    }
+    .recipe-card {
+      padding: 1.5rem 1rem;
+    }
 
     /* 6. Список ингредиентов (перенос шансов вниз) */
-    .ingredient-list li, .reward-list li, .results-grid li {
+    .ingredient-list li,
+    .reward-list li,
+    .results-grid li {
       grid-template-columns: 48px 1fr; /* Две колонки: иконка + текст */
       gap: 0.75rem;
       padding: 0.75rem;
     }
 
     /* Шансы и количество переносим под название на отдельную строку */
-    .item-odds, .reward-list li .item-odds {
+    .item-odds,
+    .reward-list li .item-odds {
       grid-column: 1 / -1;
       display: flex;
       justify-content: space-between;
@@ -901,23 +1404,43 @@
       margin: 0;
     }
 
+    .recipes-container {
+      grid-template-columns: 1fr;
+    }
+
     /* 7. Контролы */
     .simulation-controls {
       flex-direction: column;
       align-items: stretch;
       padding: 1rem;
     }
-    .craft-input input { width: 100%; }
-    .simulate-btn { width: 100%; margin-top: 0.5rem; }
+    .craft-input input {
+      width: 100%;
+    }
+    .simulate-btn {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
 
     /* 8. Hero и статистика */
-    .craft-hero__card { padding: 2rem 1rem; border-radius: 24px; }
-    .craft-hero__card h1 { font-size: 1.75rem; }
-    .hero-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .craft-hero__card {
+      padding: 2rem 1rem;
+      border-radius: 24px;
+    }
+    .craft-hero__card h1 {
+      font-size: 1.75rem;
+    }
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
   }
 
   /* Для очень маленьких экранов */
   @media (max-width: 640px) {
-    .badge { font-size: 0.75rem; padding: 0.35rem 0.9rem; }
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.9rem;
+    }
   }
 </style>

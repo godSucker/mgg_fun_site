@@ -1,5 +1,6 @@
 import { getItemTexture, translateItemId } from './craft-simulator';
 import { getMutantTexture, getSkinTexture } from './mutant-textures';
+import { normalizeSearch } from '@/lib/search-normalize';
 import mutantTexturesJson from '@/data/simulators/reactor/mutant-textures.json';
 import skinTexturesJson from '@/data/simulators/reactor/skin-textures.json';
 
@@ -133,6 +134,7 @@ export function getRewardTexturePath(reward: {
   name: string;
   type: 'entity' | 'hardcurrency' | 'softcurrency';
   amount?: number;
+  skin?: string;
 }): string | null {
   // Используем существующую функцию для entity
   if (reward.type === 'entity') {
@@ -141,9 +143,16 @@ export function getRewardTexturePath(reward: {
     // 1. Проверяем, не является ли награда мутантом
     if (name.startsWith('Specimen_') || name.startsWith('specimen_')) {
         // Пытаемся получить текстуру мутанта.
-        // Передаем _any как скин, чтобы сработал дефолтный поиск
-        const mutantTex = getMutantTexturePath(name, '_any');
+        const skin = reward.skin || '_any';
+        const mutantTex = getMutantTexturePath(name, skin);
         if (mutantTex) return mutantTex;
+
+        // Попробуем поиск по нормализованному имени (без апострофов и спецсимволов)
+        const normalizedName = normalizeSearch(name);
+        if (normalizedName && normalizedName !== name.toLowerCase()) {
+          const normTex = getMutantTexturePath(normalizedName, skin);
+          if (normTex) return normTex;
+        }
     }
 
     // 2. Проверяем Orbs

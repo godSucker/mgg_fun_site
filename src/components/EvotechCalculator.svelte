@@ -261,7 +261,6 @@
 
       busy = false;
     } catch (e) {
-      console.error(e);
       errorMsg = 'Ошибка расчёта.';
       busy = false;
     }
@@ -340,5 +339,5 @@
   </div>
 </div>
 <style>
-.evo-pad { padding-left: 16px; } /* нужно ещё правее? поставь 22px; меньше? 18px */
+.evo-pad { padding-left: 16px; }
 </style>

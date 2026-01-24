@@ -79,14 +79,20 @@
   let search = '';
   let filterGene = 'all';
 
+  // Вспомогательная функция для получения массива генов
+  const getGenesArray = (m: Mutant) => {
+      const gStr = Array.isArray(m.genes) ? m.genes[0] : m.genes;
+      return (gStr || '').toUpperCase().split('');
+  };
+
   $: filteredList = allMutants.filter(m => {
     if (filterGene === 'recipe') return secretNames.has(normalize(getName(m)));
     
     const searchLower = search.toLowerCase().trim();
     const nameMatch = !searchLower || getName(m).toLowerCase().includes(searchLower);
 
-    const mGenes = Array.isArray(m.genes) ? m.genes : [m.genes];
-    const geneMatch = filterGene === 'all' || mGenes.some((g: string) => g.toUpperCase().includes(filterGene.toUpperCase()));
+    const mGenes = getGenesArray(m);
+    const geneMatch = filterGene === 'all' || mGenes.includes(filterGene.toUpperCase());
     
     return geneMatch && nameMatch;
   }).sort((a, b) => {
@@ -98,15 +104,11 @@
 
   // --- LOGIC ---
   let calcResults: BreedingResult[] = [];
-  let bestTime = '';
 
   $: if (mode === 'calc' && p1 && p2) {
     calcResults = calculateBreeding(p1, p2, allMutants);
-    const times = calcResults.map(r => Number(r.child.incub_time)).filter(t => t > 0);
-    bestTime = times.length ? formatTime(Math.min(...times)) : '--';
   } else {
     calcResults = [];
-    bestTime = '';
   }
 
   let guideResults: any[] = [];
@@ -182,27 +184,27 @@
             <div class="calc-container" in:fly={{y:20, duration:400}}>
                 <!-- PARENT SLOTS -->
                 <div class="slots-area">
-                    <button class="slot {p1 ? 'filled' : 'empty'}" on:click={() => p1 = null}>
+                    <button class="slot {p1 ? 'filled' : 'empty'}" on:click={() => { p1 = null; mobileTab = 'list'; }}>
                         {#if p1}
                             <img src={getImageSrc(p1)} alt={p1.name} class="mutant-img"/>
                             <div class="slot-label">{getName(p1)}</div>
                             <div class="remove-icon">✕</div>
                         {:else}
                              <div class="plus">+</div>
-                             <span class="label">Родитель 1</span>
+                             <span class="label">Нажмите для выбора</span>
                         {/if}
                     </button>
 
                     <div class="cross-icon">✕</div>
 
-                    <button class="slot {p2 ? 'filled' : 'empty'}" on:click={() => p2 = null}>
+                    <button class="slot {p2 ? 'filled' : 'empty'}" on:click={() => { p2 = null; mobileTab = 'list'; }}>
                         {#if p2}
                             <img src={getImageSrc(p2)} alt={p2.name} class="mutant-img"/>
                             <div class="slot-label">{getName(p2)}</div>
                             <div class="remove-icon">✕</div>
                         {:else}
                              <div class="plus">+</div>
-                             <span class="label">Родитель 2</span>
+                             <span class="label">Нажмите для выбора</span>
                         {/if}
                     </button>
                 </div>
@@ -212,25 +214,33 @@
                     <div class="results-area" in:slide>
                         {#if calcResults.length > 0}
                             <div class="results-header">
-                                <span>Возможные дети: <strong class="text-lime-400">{calcResults.length}</strong></span>
-                                <span>Мин. время: <strong class="text-white">{bestTime}</strong></span>
+                                <span>Возможные варианты разведения: <strong class="text-lime-400">{calcResults.length}</strong></span>
                             </div>
                             
                             <div class="results-list">
                                 {#each calcResults as res, i}
                                     <div class="result-card" style="animation-delay: {i * 50}ms">
                                         <div class="card-left">
-                                            <div class="prob-badge">{res.chance}%</div>
                                             <div class="mutant-thumb">
-                                                <img src={getImageSrc(res.child)} alt=""/>
+                                                <img src={getImageSrc(res.child)} alt="Результат скрещивания"/>
                                             </div>
                                         </div>
                                         <div class="card-info">
-                                            <div class="card-title">{getName(res.child)}</div>
+                                            <div class="card-header-row">
+                                                <div class="card-title">{getName(res.child)}</div>
+                                                <div class="card-genes">
+                                                    {#each getGenesArray(res.child) as g}
+                                                        <img src={getGeneIcon(g)} alt={g} class="gene-mini-icon" />
+                                                    {/each}
+                                                </div>
+                                            </div>
                                             <div class="card-meta">
                                                 <span class="time">⏱ {formatTime(res.child.incub_time)}</span>
-                                                {#if secretNames.has(normalize(getName(res.child)))}
+                                                {#if res.isSecret || secretNames.has(normalize(getName(res.child)))}
                                                     <span class="secret-tag">★ Секрет</span>
+                                                {/if}
+                                                {#if res.tag && res.tag !== 'ВОЗМОЖНО' && res.tag !== 'РЕЦЕПТ'}
+                                                    <span class="info-tag">{res.tag}</span>
                                                 {/if}
                                             </div>
                                         </div>
@@ -246,7 +256,7 @@
                 {:else}
                     <div class="instruction">
                         <div class="icon">👆</div>
-                        <p>Выберите двух родителей из списка справа (или снизу на мобильных), чтобы увидеть результат скрещивания.</p>
+                        <p>Нажмите на слот выше, чтобы выбрать мутанта из Базы ДНК (справа на ПК / снизу на моб.)</p>
                     </div>
                 {/if}
             </div>
@@ -265,7 +275,7 @@
                              <div class="target-bg" style="background-image: url({getImageSrc(target)})"></div>
                              <div class="target-content">
                                  <div class="target-img-wrap">
-                                     <img src={getImageSrc(target)} alt=""/>
+                                     <img src={getImageSrc(target)} alt="Целевой мутант"/>
                                  </div>
                                  <div class="target-info">
                                      <div class="badges">
@@ -290,9 +300,9 @@
                                 <div class="pair-card" style="animation-delay: {i * 30}ms">
                                     <div class="parents">
                                          <div class="p-imgs">
-                                              <img src={getImageSrc(combo.p1)} alt=""/>
+                                              <img src={getImageSrc(combo.p1)} alt="Первый родитель"/>
                                               <div class="plus">+</div>
-                                              <img src={getImageSrc(combo.p2)} alt=""/>
+                                              <img src={getImageSrc(combo.p2)} alt="Второй родитель"/>
                                          </div>
                                          <div class="p-names">
                                               <div>{getName(combo.p1)}</div>
@@ -342,7 +352,7 @@
            {#each filteredList as m (m.id + m.name)}
                 <button class="grid-item" on:click={() => handleCardClick(m)} title={getName(m)}>
                     <div class="card-badges">
-                        <img src={getTypeIcon(m)} alt="" class="type-icon" />
+                        <img src={getTypeIcon(m)} alt="Значок типа мутанта" class="type-icon" />
                         <div class="gene-icons">
                             {#each (Array.isArray(m.genes) ? m.genes : [m.genes]) as g}
                                 <img src={getGeneIcon(g)} alt={g} class="gene-icon" />
@@ -350,7 +360,7 @@
                         </div>
                     </div>
                     <div class="img-wrapper">
-                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="" on:error={(e) => (e.currentTarget as HTMLImageElement).src = '/preview.jpg'}/>
+                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="Текстура мутанта" on:error={(e) => (e.currentTarget as HTMLImageElement).src = '/preview.jpg'}/>
                     </div>
                     <div class="item-info-row">
                         <div class="item-name">{getName(m)}</div>
@@ -560,6 +570,8 @@
   .remove-icon {
     position: absolute; top: 4px; right: 4px;
     color: rgba(255,255,255,0.5); font-size: 0.8rem; z-index: 2;
+    /* Скрываем на мобильных, так как клик по слоту сам переключает */
+    @media (max-width: 1023px) { display: none; }
   }
   
   .cross-icon { font-size: 1.2rem; color: #475569; }
@@ -607,19 +619,20 @@
   .card-left { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
   .mutant-thumb { width: 100%; height: 100%; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid #334155; display: flex; align-items: center; justify-content: center; }
   .mutant-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
-  .prob-badge {
-    position: absolute; top: -6px; left: -6px;
-    background: #84cc16; color: #000;
-    font-size: 0.6rem; font-weight: 800;
-    padding: 2px 5px; border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    z-index: 2;
+  .card-info { flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 4px; }
+  
+  .card-header-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
   }
+  
+  .card-title { font-weight: 700; font-size: 0.9rem; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  
+  .card-genes { display: flex; gap: 2px; }
+  .gene-mini-icon { width: 16px; height: 16px; object-fit: contain; }
 
-  .card-info { flex: 1; overflow: hidden; }
-  .card-title { font-weight: 700; font-size: 0.9rem; color: #e2e8f0; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .card-meta { display: flex; gap: 0.5rem; font-size: 0.7rem; color: #64748b; font-weight: 600; }
-  .secret-tag { color: #d946ef; }
+  .card-meta { display: flex; gap: 0.5rem; font-size: 0.7rem; color: #64748b; font-weight: 600; align-items: center; }
+  .secret-tag { color: #d946ef; background: rgba(217, 70, 239, 0.1); padding: 2px 4px; border-radius: 4px; }
+  .info-tag { color: #60a5fa; background: rgba(96, 165, 250, 0.1); padding: 2px 4px; border-radius: 4px; }
 
   /* REVERSE MODE STYLES */
   .empty-search, .instruction {
@@ -897,3 +910,4 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 </style>
+  

@@ -26,6 +26,7 @@
   let discountValue = '0';
   let discount = 0;
 
+  let showOdds = false;
   let isSimulating = false;
   let error: string | null = null;
   let result: MadnessSimulation | null = null;
@@ -317,7 +318,6 @@
       if (err instanceof DOMException && err.name === 'AbortError') {
         error = 'Симуляция остановлена.';
       } else {
-        console.error(err);
         error = 'Не удалось выполнить симуляцию. Попробуйте ещё раз.';
       }
     } finally {
@@ -347,7 +347,7 @@
 </script>
 
 <div class="madness-shell">
-  <form class="control-panel" on:submit|preventDefault={handleSimulate}>
+  <form class="control-panel" on:submit|preventDefault={handleSimulate} style="order: -1;">
     <div class="inputs">
       <label class="field">
         <span class="label">Уровень славы игрока</span>
@@ -560,33 +560,39 @@
   {/if}
 </div>
 
-  <section class="odds-section">
-    <header>
-      <h3>Шансы наград по исследованиям</h3>
-      <p>Для уровня {level} доступны исследования до {maxResearch}. Всего наград: {rewardChances.length}.</p>
-    </header>
-    <div class="odds-table">
-      {#each researchChances as group}
-        <article class="odds-card">
-          <header>
-            <h4>{group.label}</h4>
-            <span class="chance">{formatPercent(group.chance, 4)}</span>
-          </header>
-          <p class="odds-meta">Наград: {group.rewards.length}</p>
-          <ul>
-            {#each group.rewards.slice(0, 5) as reward}
-              <li>
-                <span>{reward.label}</span>
-                <span class="value">{formatPercent(reward.chance, 4)}</span>
-              </li>
-            {/each}
-            {#if group.rewards.length > 5}
-              <li class="more">…и ещё {group.rewards.length - 5}</li>
-            {/if}
-          </ul>
-        </article>
-      {/each}
-    </div>
+  <section class="odds-section" class:collapsed={!showOdds}>
+    <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
+      <header>
+        <h3>Шансы наград по исследованиям</h3>
+        <p>Для уровня {level} доступны исследования до {maxResearch}.</p>
+      </header>
+      <span class="chevron">{showOdds ? '▼' : '▲'}</span>
+    </button>
+    
+    {#if showOdds}
+      <div class="odds-table">
+        {#each researchChances as group}
+          <article class="odds-card">
+            <header>
+              <h4>{group.label}</h4>
+              <span class="chance">{formatPercent(group.chance, 4)}</span>
+            </header>
+            <p class="odds-meta">Наград: {group.rewards.length}</p>
+            <ul>
+              {#each group.rewards.slice(0, 5) as reward}
+                <li>
+                  <span>{reward.label}</span>
+                  <span class="value">{formatPercent(reward.chance, 4)}</span>
+                </li>
+              {/each}
+              {#if group.rewards.length > 5}
+                <li class="more">…и ещё {group.rewards.length - 5}</li>
+              {/if}
+            </ul>
+          </article>
+        {/each}
+      </div>
+    {/if}
   </section>
 
 <style>
@@ -595,9 +601,10 @@
   }
 
   .madness-shell {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: minmax(320px, 1fr) minmax(0, 2.5fr);
+    align-items: start;
   }
 
   .control-panel {
@@ -871,6 +878,26 @@
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
+    transition: all 0.3s ease;
+  }
+
+  .odds-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: inherit;
+    text-align: left;
+  }
+
+  .chevron {
+    font-size: 1.5rem;
+    color: rgba(244, 114, 182, 0.5);
+    transition: transform 0.3s ease;
   }
 
   .odds-section header h3 {
@@ -1233,27 +1260,30 @@
     border-bottom: none;
   }
 
-  @media (max-width: 900px) {
-    .control-panel {
-      padding: 2rem;
+  @media (max-width: 1000px) {
+    .madness-shell {
+      grid-template-columns: 1fr;
     }
-
-    .summary-grid {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .control-panel {
+      order: 0 !important;
     }
   }
 
   @media (max-width: 720px) {
     .control-panel {
-      padding: 1.8rem;
+      padding: 1.25rem 1rem;
+      border-radius: 24px;
     }
+
     .inputs {
       grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
     .actions {
       flex-direction: column;
       align-items: stretch;
+      gap: 0.75rem;
     }
 
     .actions button {
@@ -1262,18 +1292,46 @@
 
     .summary-grid {
       grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .summary-card {
+      padding: 0.85rem;
+    }
+
+    .summary-card strong {
+      font-size: 1.25rem;
+    }
+
+    .results-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .resource-summary {
+      grid-template-columns: 1fr;
     }
 
     .reward-board li,
     .history-list li {
-      grid-template-columns: 1fr;
-      align-items: flex-start;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      padding: 0.75rem;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
     }
 
     .details .row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .count-badge {
+      font-size: 0.9rem;
+      padding: 0.1rem 0.5rem;
     }
 
     .result-grid {
@@ -1281,7 +1339,20 @@
     }
 
     .result-column {
-      padding: 1.1rem;
+      padding: 1rem;
+      max-height: 350px;
+    }
+
+    .odds-section header h3 {
+      font-size: 1.5rem;
+    }
+    
+    .odds-section.collapsed header p {
+      display: none;
+    }
+
+    .odds-table {
+      grid-template-columns: 1fr;
     }
   }
 </style>

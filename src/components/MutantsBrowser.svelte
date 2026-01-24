@@ -2,6 +2,14 @@
   import MutantModal from './MutantModal.svelte';
   import { TYPE_RU, geneLabel, bingoLabel } from '@/lib/mutant-dicts';
 
+  // Нормализация текста для поиска: приводит к нижнему регистру и удаляет спецсимволы
+  function normalizeForSearch(text: string): string {
+    if (!text) return '';
+    return text
+      .toLowerCase()
+      .replace(/[^\w\u0400-\u04FF]/g, ''); // Оставляем только буквы/цифры и кириллицу
+  }
+
   // Пропсы
   export let items: any[] = [];     // normal + bronze + silver + gold + platinum
   export let skins: any[] = [];     // skins.json -> specimens[]
@@ -245,12 +253,12 @@
   }
 
   function enrichItem(it: any) {
-    const searchName = String(it?.name ?? '').toLowerCase();
+    const searchName = normalizeForSearch(String(it?.name ?? ''));
     const rawCode = readGeneCode(it);
     const code = normalizeGene(rawCode);
     const first = code?.[0] ?? '';
     const rank = first ? geneOrder.get(first) ?? 99 : 199;
-    
+
     // Регистронезависимый тип
     const typeKey = String(it?.type ?? '').toLowerCase();
 
@@ -299,7 +307,7 @@
       return { ...it, forceSkin: fSkin };
     }).filter(it => {
       const m = it._meta;
-      if (q && !m.searchName.includes(q)) return false;
+      if (q && !m.searchName.includes(normalizeForSearch(q))) return false;
       
       // Если мы ищем по имени, пропускаем остальные фильтры
       if (isSearching) return true;
@@ -367,7 +375,7 @@
     const targetStar = starSelSkins === 'normal' ? 'normal' : starSelSkins;
     const res = preparedSkins.filter(it => {
       const m = it._meta;
-      if (q && !m.searchName.includes(q)) return false;
+      if (q && !m.searchName.includes(normalizeForSearch(q))) return false;
       if (isSearching) return true;
       if (geneSel && m.code !== geneSel) return false;
       if (checkStars) { if (m.starKey !== targetStar) return false; }
@@ -588,7 +596,7 @@
       {#each shownMutants as it, i (keyOf(it, i))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>
@@ -599,7 +607,7 @@
       {#each shownSkins as it, i (keyOf(it, i))}
         <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-            <img class="w-full h-48 object-contain bg-slate-900" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>

@@ -163,9 +163,37 @@ $: displayBingo = (() => {
   };
 
   // Base fields
-  $: lvl1 = mutant?.base_stats?.lvl1 ?? {};
-  $: lvl30 = mutant?.base_stats?.lvl30 ?? {};
+  $: baseStats = mutant?.base_stats ?? {};
   $: genes = Array.isArray(mutant?.genes) ? mutant.genes[0] : '';
+
+  // Star Multipliers
+  const STAR_MULT: Record<string, number> = {
+    normal: 1.0,
+    bronze: 1.1,
+    silver: 1.3,
+    gold: 1.75,
+    platinum: 2.0
+  };
+  $: starMult = STAR_MULT[star] ?? 1.0;
+
+  // Calculation Logic
+  const calcHP = (level: number) => Math.floor((baseStats.hp_base || 0) * (level / 10 + 0.9) * starMult);
+  const calcAtk1 = (level: number) => Math.floor((level < 10 ? (baseStats.atk1_base || 0) : (baseStats.atk1p_base || baseStats.atk1_base || 0)) * (level / 10 + 0.9) * starMult);
+  const calcAtk2 = (level: number) => Math.floor((level < 15 ? (baseStats.atk2_base || 0) : (baseStats.atk2p_base || baseStats.atk2_base || 0)) * (level / 10 + 0.9) * starMult);
+  const calcBank = (level: number) => Math.floor(level * (baseStats.bank_base || 0));
+  const calcSpeed = () => {
+    const spX100 = baseStats.speed_base ? (1000 / baseStats.speed_base) : 0;
+    return spX100 ? Math.round(1000 / spX100 * 100) / 100 : 0;
+  };
+
+  const getAbilityValue = (atk: number, level: number) => {
+    const pct = level < 25 ? (baseStats.abilityPct1 || 0) : (baseStats.abilityPct2 || 0);
+    return Math.floor(atk * Math.abs(pct) / 100);
+  };
+
+  const getAbilityPct = (level: number) => {
+    return level < 25 ? (baseStats.abilityPct1 || 0) : (baseStats.abilityPct2 || 0);
+  };
 
   const imgSrc = (m: any) => {
     const list: string[] = m?.image ?? [];
@@ -181,39 +209,6 @@ $: displayBingo = (() => {
     const match = String(val).match(/-?\d*\.?\d+/);
     return match ? parseFloat(match[0]) : NaN;
   };
-
-  // choose pct for levels
-  $: pctLvl1 = (() => {
-    let candidate: number | null = null;
-    const list = Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? []);
-    for (const ab of list) {
-      const p = parsePct(ab?.pct);
-      if (!Number.isFinite(p) || p === 0) continue;
-      const hasVal =
-        (ab?.value_atk1_lvl1 != null && lvl1?.atk1 != null) ||
-        (ab?.value_atk2_lvl1 != null && lvl1?.atk2 != null);
-      if (!hasVal) continue;
-      const absVal = Math.abs(p);
-      if (candidate == null || absVal < candidate) candidate = absVal;
-    }
-    return candidate ?? 20;
-  })();
-
-  $: pctLvl30 = (() => {
-    let candidate = 0;
-    const list = Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? []);
-    for (const ab of list) {
-      const p = parsePct(ab?.pct);
-      if (!Number.isFinite(p)) continue;
-      const hasVal =
-        (ab?.value_atk1_lvl30 != null && lvl30?.atk1 != null) ||
-        (ab?.value_atk2_lvl30 != null && lvl30?.atk2 != null);
-      if (!hasVal) continue;
-      const absVal = Math.abs(p);
-      if (absVal > candidate) candidate = absVal;
-    }
-    return candidate || 50;
-  })();
 
   // formatting
   function fmt(n: any): string {
@@ -239,99 +234,55 @@ $: displayBingo = (() => {
     isAoe?: boolean;
   };
 
-  function rowsForLevel(pctWanted: number) {
-    const base = pctWanted === pctLvl1 ? lvl1 : lvl30;
-    const other = pctWanted === pctLvl1 ? lvl30 : lvl1;
+  function getRows(level: number) {
+    const atk1 = calcAtk1(level);
+    const atk2 = calcAtk2(level);
+    const abilityPct = getAbilityPct(level);
 
-    const gene1 = base?.atk1_gene ?? other?.atk1_gene ?? 'neutro';
-    const gene2 = base?.atk2_gene ?? other?.atk2_gene ?? 'neutro';
-    const aoe1 = Boolean(base?.atk1_AOE ?? other?.atk1_AOE ?? false);
-    const aoe2 = Boolean(base?.atk2_AOE ?? other?.atk2_AOE ?? false);
+    const baseLvl1 = baseStats.lvl1 || {};
+    const baseLvl30 = baseStats.lvl30 || {};
+
+    const gene1 = baseLvl1.atk1_gene || baseLvl30.atk1_gene || 'neutro';
+    const gene2 = baseLvl1.atk2_gene || baseLvl30.atk2_gene || 'neutro';
+    const aoe1 = baseLvl1.atk1_AOE ?? baseLvl30.atk1_AOE ?? false;
+    const aoe2 = baseLvl1.atk2_AOE ?? baseLvl30.atk2_AOE ?? false;
+
+    const list = (Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? [])) as any[];
+    // We pick unique ability names
+    const abilityNames: string[] = [...new Set(list.map((a: any) => String(a.name || '')))].filter(Boolean);
 
     const rows: Row[] = [];
-    const atkLabels: Record<1 | 2, string> = { 1: attackName(mutant, 1), 2: attackName(mutant, 2) };
-    const dmgValues: Record<1 | 2, any> = { 1: base?.atk1, 2: base?.atk2 };
-    const list = Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? []);
+    // Atk 1
+    const ab1 = abilityNames[0] || null;
+    rows.push({
+      atkName: attackName(mutant, 1),
+      dmg: atk1,
+      abCode: ab1,
+      abName: ab1 ? abilityLabel(ab1) : '—',
+      value: ab1 ? getAbilityValue(atk1, level) : '—',
+      pct: abilityPct,
+      gene: gene1,
+      isAoe: aoe1
+    });
 
-    const levelRows: Record<1 | 2, Row[]> = { 1: [], 2: [] };
-    for (const ab of list) {
-      const p = parsePct(ab?.pct);
-      if (!Number.isFinite(p) || Math.abs(p) !== pctWanted) continue;
-
-      if (pctWanted === pctLvl1) {
-        if (ab?.value_atk1_lvl1 != null && dmgValues[1] != null) {
-          levelRows[1].push({
-            atkName: atkLabels[1],
-            dmg: dmgValues[1],
-            abCode: ab?.name ?? null,
-            abName: abilityLabel(ab?.name),
-            value: ab.value_atk1_lvl1,
-            pct: ab?.pct,
-            gene: gene1,
-            isAoe: aoe1
-          });
-        }
-        if (ab?.value_atk2_lvl1 != null && dmgValues[2] != null) {
-          levelRows[2].push({
-            atkName: atkLabels[2],
-            dmg: dmgValues[2],
-            abCode: ab?.name ?? null,
-            abName: abilityLabel(ab?.name),
-            value: ab.value_atk2_lvl1,
-            pct: ab?.pct,
-            gene: gene2,
-            isAoe: aoe2
-          });
-        }
-      } else {
-        if (ab?.value_atk1_lvl30 != null && dmgValues[1] != null) {
-          levelRows[1].push({
-            atkName: atkLabels[1],
-            dmg: dmgValues[1],
-            abCode: ab?.name ?? null,
-            abName: abilityLabel(ab?.name),
-            value: ab.value_atk1_lvl30,
-            pct: ab?.pct,
-            gene: gene1,
-            isAoe: aoe1
-          });
-        }
-        if (ab?.value_atk2_lvl30 != null && dmgValues[2] != null) {
-          levelRows[2].push({
-            atkName: atkLabels[2],
-            dmg: dmgValues[2],
-            abCode: ab?.name ?? null,
-            abName: abilityLabel(ab?.name),
-            value: ab.value_atk2_lvl30,
-            pct: ab?.pct,
-            gene: gene2,
-            isAoe: aoe2
-          });
-        }
-      }
-    }
-
-    ([1, 2] as const).forEach((atk) => {
-      if (levelRows[atk].length === 0 && dmgValues[atk] != null) {
-        levelRows[atk].push({
-          atkName: atkLabels[atk],
-          dmg: dmgValues[atk],
-          abCode: null,
-          abName: '—',
-          value: '—',
-          pct: null,
-          gene: atk === 1 ? gene1 : gene2,
-          isAoe: atk === 1 ? aoe1 : aoe2
-        });
-      }
-      rows.push(...levelRows[atk]);
+    // Atk 2
+    const ab2 = abilityNames[1] || null;
+    rows.push({
+      atkName: attackName(mutant, 2),
+      dmg: atk2,
+      abCode: ab2,
+      abName: ab2 ? abilityLabel(ab2) : '—',
+      value: (ab2 && !ab2.toLowerCase().includes('retaliate')) ? getAbilityValue(atk2, level) : (ab2?.toLowerCase().includes('retaliate') ? 0 : '—'),
+      pct: abilityPct,
+      gene: gene2,
+      isAoe: aoe2
     });
 
     return rows;
   }
 
-  $: rowsLvl1 = rowsForLevel(pctLvl1);
-  $: rowsLvl30 = rowsForLevel(pctLvl30);
+  $: rowsLvl1 = getRows(1);
+  $: rowsLvl30 = getRows(30);
 
   // Misc
   $: incubTime =
@@ -479,9 +430,9 @@ $: displayBingo = (() => {
       <!-- Lvl 1 -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
         <div class="text-xs text-white/60 mb-1.5">Статы на 1 уровне</div>
-        <dl class="grid grid-cols-2 gap-y-[2px] text-sm">
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.hp)}</dd>
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl1.spd)}</dd>
+        <dl class="grid grid-cols-2 gap-y-[2px] text-sm mb-1">
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcHP(1))}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcSpeed())}</dd>
         </dl>
 
         <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
@@ -519,9 +470,9 @@ $: displayBingo = (() => {
       <!-- Lvl 30 -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
         <div class="text-xs text-white/60 mb-1.5">Статы на 30 уровне</div>
-        <dl class="grid grid-cols-2 gap-y-[2px] text-sm">
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.hp)}</dd>
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(lvl30.spd)}</dd>
+        <dl class="grid grid-cols-2 gap-y-[2px] text-sm mb-1">
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcHP(30))}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcSpeed())}</dd>
         </dl>
 
         <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
@@ -574,6 +525,10 @@ $: displayBingo = (() => {
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
         <div class="text-xs text-white/60 mb-1">Прочее</div>
         <div class="text-sm text-white/80 space-y-1">
+          <div class="flex items-center gap-2 leading-tight">
+            <span class="row-icon"><img class="stat-icon" src="/cash/softcurrency.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Серебро (лвл 1):</span>
+            <span class="text-white">{fmt(calcBank(1))}</span>
+          </div>
           <div class="flex items-center gap-2 leading-tight">
             <span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Инкубация:</span>
             <span class="text-white">{incubTime ?? '—'}</span>{#if incubTime != null}<span class="opacity-80"> мин.</span>{/if}

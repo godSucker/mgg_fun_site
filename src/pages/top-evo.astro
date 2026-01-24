@@ -44,25 +44,35 @@ const players = loadEvoTop();
   h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
-    color: #fff;
+    color: #e2e8f0;
     margin: 0.5rem 0;
-    background: linear-gradient(to right, #fff, #38bdf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   p {
-    color: #94a3b8;
+    color: #cbd5f5;
     font-size: 1rem;
+    font-weight: 500;
+    font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
   }
 
   .back-link {
-    display: inline-block;
-    color: #64748b;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    transition: all 0.2s;
   }
-  .back-link:hover { color: #fff; }
+  .back-link:hover {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateX(-3px);
+  }
 </style>

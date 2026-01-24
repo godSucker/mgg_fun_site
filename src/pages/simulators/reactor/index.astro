@@ -3,6 +3,27 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { listGachas } from '../../../lib/reactor-gacha';
 
 const gachas = listGachas();
+
+// --- УПОРЯДОЧИВАНИЕ ГЕНЕРАТОРОВ ---
+const PRIORITY_GACHAS = ['Кровавые игры', 'Боги Арены', 'Фотосинтез'];
+
+const sortedGachas = [...gachas].sort((a, b) => {
+  const nameA = a.name || '';
+  const nameB = b.name || '';
+  
+  const indexA = PRIORITY_GACHAS.indexOf(nameA);
+  const indexB = PRIORITY_GACHAS.indexOf(nameB);
+  
+  // Если оба в приоритетном списке — сортируем по порядку списка
+  if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+  
+  // Если только один в приоритетном списке — он идет выше
+  if (indexA !== -1) return -1;
+  if (indexB !== -1) return 1;
+  
+  // Остальные — в исходном порядке
+  return 0;
+});
 ---
 <BaseLayout title="Реактор — выбор генератора">
   <section class="intro">
@@ -12,7 +33,7 @@ const gachas = listGachas();
 
   <section class="gacha-list" aria-label="Генераторы реактора">
     <div class="list-grid">
-      {gachas.map((gacha) => (
+      {sortedGachas.map((gacha) => (
         <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`} aria-label={gacha.name}>
           {gacha.cover ? (
             <div class="card-cover">
