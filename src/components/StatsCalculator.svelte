@@ -8,6 +8,7 @@
   import orbsRaw from '@/data/materials/orbs.json';
   import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
   import { normalizeSearch } from '@/lib/search-normalize';
+  import { calculateFinalStats } from '@/lib/stats/unified-calculator';
 
   // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
   import domtoimage from 'dom-to-image-more';
@@ -751,43 +752,36 @@
   }
 
   function calcStats(m, lvl, s, mods){
-    const mulStar = starMulOf(m, s);
-    const mulLvl = (Number(lvl)/10 + 0.9);
+    // Use unified smart stats calculator with debug
+    const starMul = starMulOf(m, s);
+    const baseStats = {
+      hp_base: m.hpBase,
+      atk1_base: m.atk1Base,
+      atk1p_base: m.atk1PlusBase,
+      atk2_base: m.atk2Base,
+      atk2p_base: m.atk2PlusBase,
+      speed_base: m.speed,
+      bank_base: m.bankBase,
+      abilityPct1: m.abilityPct1,
+      abilityPct2: m.abilityPct2,
+    };
+    const result = calculateFinalStats(baseStats, lvl, starMul);
 
-    // БАЗА
-    let hp  = (m.hpBase || 0) * mulLvl;
-    let a1b = (Number(lvl) < 10 ? m.atk1Base : (m.atk1PlusBase || m.atk1Base));
-    let a2b = (Number(lvl) < 15 ? m.atk2Base : (m.atk2PlusBase || m.atk2Base));
-    let atk1 = (a1b || 0) * mulLvl;
-    let atk2 = (a2b || 0) * mulLvl;
-
-    // ЗВЕЗДНОСТЬ
-    hp   *= mulStar;
-    atk1 *= mulStar;
-    atk2 *= mulStar;
-
-    // СФЕРЫ (проценты)
-    const hpPct = mods?.hpPct ?? 0;
-    const atk1Pct = mods?.atk1Pct ?? 0;
-    const atk2Pct = mods?.atk2Pct ?? 0;
-    if (hpPct)   hp   *= (1 + hpPct/100);
-    if (atk1Pct) atk1 *= (1 + atk1Pct/100);
-    if (atk2Pct) atk2 *= (1 + atk2Pct/100);
-
-    // ОКРУГЛЕНИЕ
-    let speed = m.speed || 0;
-    const speedPct = mods?.speedPct ?? 0;
-    if (speedPct) speed = speed * (1 + speedPct/100);
-    const speedRounded = Math.round(speed * 100) / 100;
-
-    const bank = Math.floor(Number(lvl) * (m.bankBase || 0));
+    // Apply orb modifiers if present
+    let finalStats = { ...result };
+    if (mods) {
+      if (mods.hpPct) finalStats.hp = Math.round(result.hp * (1 + mods.hpPct / 100));
+      if (mods.atk1Pct) finalStats.atk1 = Math.round(result.atk1 * (1 + mods.atk1Pct / 100));
+      if (mods.atk2Pct) finalStats.atk2 = Math.round(result.atk2 * (1 + mods.atk2Pct / 100));
+      if (mods.speedPct) finalStats.speed = result.speed * (1 + mods.speedPct / 100);
+    }
 
     return {
-      hp:   Math.round(hp),
-      atk1: Math.round(atk1),
-      atk2: Math.round(atk2),
-      speed: speedRounded,
-      bank: bank
+      hp: finalStats.hp,
+      atk1: finalStats.atk1,
+      atk2: finalStats.atk2,
+      speed: finalStats.speed,
+      bank: finalStats.silver,
     };
   }
 
@@ -1627,17 +1621,18 @@
     border:none;
     padding:0;
     cursor: pointer;
+    overflow: hidden;
   }
-  .slot-bg{ width:100%; height:100%; object-fit:contain; display: block; }
-  /* Сфера должна лежать ровно поверх слота */
+  .slot-bg{ width:100%; height:100%; object-fit:cover; display: block; }
+  /* Сфера идеально вписывается в слот (на 2px меньше) */
   .orb {
     position: absolute;
-    top: -1px;
-    left: -1px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transform: scale(1.12); /* Увеличиваем сферу */
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    object-fit: cover;
+    border-radius: 12px;
   }
 
   .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; cursor: pointer; z-index: 2; }

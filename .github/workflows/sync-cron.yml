@@ -1,35 +1,37 @@
-name: Sync Mutants Data
+name: Auto-Sync Mutants
 
 on:
   schedule:
-    # Run every 3 days at 00:00 UTC
     - cron: '0 0 */3 * *'
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  sync:
+  sync-job:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    
+
     steps:
-      - name: Checkout repository
+      - name: 1. Клонирование репозитория
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 2. Установка Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: 3. Установка зависимостей
         run: npm ci
 
-      - name: Run sync script
-        run: npx tsx scripts/sync-mutants.ts
+      - name: 4. Запуск Парсера (Режим FULL)
 
-      - name: Commit and push changes
+        run: npx tsx scripts/sync-mutants.ts full
+
+      - name: 5. Сохранение изменений (Commit & Push)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: sync mutants data [skip ci]"
+          commit_message: "🤖 Auto-Sync: Найдены и добавлены новые мутанты"
+          branch: main
           file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/**'

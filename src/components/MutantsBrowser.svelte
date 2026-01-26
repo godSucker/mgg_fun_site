@@ -272,8 +272,14 @@
 
   function uniq<T>(arr: T[]) { return Array.from(new Set(arr)); }
 
-  // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ
-  $: filteredMutants = (() => {
+  // Генерирует ключ кэша на основе параметров фильтрации
+  function getCacheKey(q: string, gene: string, type: string, bingo: string, star: string): string {
+    return `${q}|${gene}|${type}|${bingo}|${star}`;
+  }
+
+  // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ С КЭШИРОВАНИЕМ
+  $: filteredMutants = memo(getCacheKey(debouncedQuery, geneSel, typeSel, bingoSel, starSelMutants), () => {
+    return (() => {
     const q = debouncedQuery ? debouncedQuery.trim().toLowerCase() : null;
     const sBingo = bingoSel ? String(bingoSel) : null;
     const sType = typeSel ? String(typeSel).toLowerCase() : null;
@@ -316,21 +322,36 @@
       
       // Поиск по типу (с учетом синонимов для Реактора)
       if (sType) {
-          const isReactorType = (sType === 'reactor' || sType === 'gacha');
+          const typeKeyLower = String(sType).toLowerCase();
+          const isReactorType = (typeKeyLower === 'reactor' || typeKeyLower === 'gacha');
           if (isReactorType) {
               // Проверяем и type мутанта, и наличие ключа reactor в его бинго
               const hasReactorBingo = m.bingoKeys.has('reactor');
               const isGachaType = m.typeKey === 'reactor' || m.typeKey === 'gacha';
               if (!hasReactorBingo && !isGachaType) return false;
           } else {
-              if (m.typeKey !== sType) return false;
+              if (m.typeKey !== typeKeyLower) return false;
           }
       }
 
       // Если выбрано Бинго, показываем мутанта, только если у него есть это Бинго.
       // Фильтр звезд в этом случае игнорируем, так как Бинго само определяет версию.
       if (sBingo) {
-        if (!m.bingoKeys.has(sBingo)) return false;
+        // Для reactor: показываем с бинго reactor ИЛИ тип GACHA (будут заменены на platinum версии)
+        if (sBingo === 'reactor') {
+          const hasReactorBingo = m.bingoKeys.has('reactor');
+          const isGachaType = m.typeKey === 'gacha';
+          if (!hasReactorBingo && !isGachaType) return false;
+        } else {
+          if (!m.bingoKeys.has(sBingo)) return false;
+        }
+        // При выборе бинго - игнорируем все остальные фильтры (звезды)
+      } else if (sType && (sType === 'gacha' || sType === 'reactor')) {
+        // Для типа GACHA/reactor - показываем с бинго reactor ИЛИ тип GACHA
+        const hasReactorBingo = m.bingoKeys.has('reactor');
+        const isGachaType = m.typeKey === 'gacha';
+        if (!hasReactorBingo && !isGachaType) return false;
+        // При выборе типа GACHA - игнорируем фильтр звезд
       } else {
         if (checkStars) {
           if (m.starKey !== starSelMutants) return false;
@@ -366,9 +387,12 @@
     }
 
     return res.sort(compareByGeneFast);
-  })();
+    })();
+  });
 
- $: filteredSkins = (() => {
+  // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ СКИНОВ С КЭШИРОВАНИЕМ
+  $: filteredSkins = memo(getCacheKey(debouncedQuery, geneSel, typeSel, '', starSelSkins), () => {
+    return (() => {
     const q = debouncedQuery ? debouncedQuery.trim().toLowerCase() : null;
     const isSearching = !!q;
     const checkStars = !isSearching && starSelSkins !== 'any';
@@ -382,9 +406,10 @@
       return true;
     });
     return res.sort(compareByGeneFast);
-  })();
+    })();
+  });
 
-  let pageSize = 60;
+  let pageSize = 20;
   let currentPage = 1;
   $: {
     mode; debouncedQuery; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;

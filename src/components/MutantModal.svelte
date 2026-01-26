@@ -10,6 +10,7 @@
   } from '@/lib/mutant-dicts';
   import normalData from '@/data/mutants/normal.json';
   import { orbingMap } from '@/lib/orbing-map';
+  import { calculateFinalStats } from '@/lib/stats/unified-calculator';
 
   export let open = false;
   export let mutant: any = null;
@@ -166,33 +167,54 @@ $: displayBingo = (() => {
   $: baseStats = mutant?.base_stats ?? {};
   $: genes = Array.isArray(mutant?.genes) ? mutant.genes[0] : '';
 
-  // Star Multipliers
-  const STAR_MULT: Record<string, number> = {
-    normal: 1.0,
-    bronze: 1.1,
-    silver: 1.3,
-    gold: 1.75,
-    platinum: 2.0
-  };
-  $: starMult = STAR_MULT[star] ?? 1.0;
+  // Display type: show star if it exists (for rated versions), otherwise show original type
+  $: displayType = mutant?.star ? mutant.star : mutant?.type;
 
-  // Calculation Logic
-  const calcHP = (level: number) => Math.floor((baseStats.hp_base || 0) * (level / 10 + 0.9) * starMult);
-  const calcAtk1 = (level: number) => Math.floor((level < 10 ? (baseStats.atk1_base || 0) : (baseStats.atk1p_base || baseStats.atk1_base || 0)) * (level / 10 + 0.9) * starMult);
-  const calcAtk2 = (level: number) => Math.floor((level < 15 ? (baseStats.atk2_base || 0) : (baseStats.atk2p_base || baseStats.atk2_base || 0)) * (level / 10 + 0.9) * starMult);
-  const calcBank = (level: number) => Math.floor(level * (baseStats.bank_base || 0));
+  // Calculation Logic - Use unified calculator with debug
+  const calcHP = (level: number) => {
+    const stats = calculateFinalStats(baseStats, level);
+    return stats.hp;
+  };
+
+  const calcAtk1 = (level: number) => {
+    const stats = calculateFinalStats(baseStats, level);
+    return stats.atk1;
+  };
+
+  const calcAtk2 = (level: number) => {
+    const stats = calculateFinalStats(baseStats, level);
+    return stats.atk2;
+  };
+
+  const calcBank = (level: number) => {
+    const stats = calculateFinalStats(baseStats, level);
+    return Math.round(stats.silver);
+  };
+
   const calcSpeed = () => {
-    const spX100 = baseStats.speed_base ? (1000 / baseStats.speed_base) : 0;
-    return spX100 ? Math.round(1000 / spX100 * 100) / 100 : 0;
+    const stats = calculateFinalStats(baseStats, 1);
+    return stats.speed;
   };
 
-  const getAbilityValue = (atk: number, level: number) => {
-    const pct = level < 25 ? (baseStats.abilityPct1 || 0) : (baseStats.abilityPct2 || 0);
-    return Math.floor(atk * Math.abs(pct) / 100);
+  const getAbilityValue = (level: number, abilityIndex: number): number => {
+    const stats = calculateFinalStats(baseStats, level);
+    // Return pre-calculated ability values from mutant data if available
+    const abilities = mutant?.abilities ?? [];
+    if (abilityIndex < abilities.length && abilities[abilityIndex]) {
+      const ability = abilities[abilityIndex];
+      if (level < 25) {
+        return abilityIndex === 0 ? (ability.value_atk1_lvl1 ?? 0) : (ability.value_atk2_lvl1 ?? 0);
+      } else {
+        return abilityIndex === 0 ? (ability.value_atk1_lvl30 ?? 0) : (ability.value_atk2_lvl30 ?? 0);
+      }
+    }
+    // Fallback to calculated value
+    return abilityIndex === 0 ? stats.ability : 0;
   };
 
   const getAbilityPct = (level: number) => {
-    return level < 25 ? (baseStats.abilityPct1 || 0) : (baseStats.abilityPct2 || 0);
+    // Перед уровнем 25 используем abilityPct1, после 25 - abilityPct2
+    return level < 25 ? (baseStats.abilityPct1 ?? 0) : (baseStats.abilityPct2 ?? 0);
   };
 
   const imgSrc = (m: any) => {
@@ -237,46 +259,49 @@ $: displayBingo = (() => {
   function getRows(level: number) {
     const atk1 = calcAtk1(level);
     const atk2 = calcAtk2(level);
-    const abilityPct = getAbilityPct(level);
 
-    const baseLvl1 = baseStats.lvl1 || {};
-    const baseLvl30 = baseStats.lvl30 || {};
-
-    const gene1 = baseLvl1.atk1_gene || baseLvl30.atk1_gene || 'neutro';
-    const gene2 = baseLvl1.atk2_gene || baseLvl30.atk2_gene || 'neutro';
-    const aoe1 = baseLvl1.atk1_AOE ?? baseLvl30.atk1_AOE ?? false;
-    const aoe2 = baseLvl1.atk2_AOE ?? baseLvl30.atk2_AOE ?? false;
+    const baseLvl = level === 1 ? baseStats.lvl1 : baseStats.lvl30;
+    const gene1 = baseLvl?.atk1_gene || 'neutro';
+    const gene2 = baseLvl?.atk2_gene || 'neutro';
+    const aoe1 = baseLvl?.atk1_AOE ?? false;
+    const aoe2 = baseLvl?.atk2_AOE ?? false;
 
     const list = (Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? [])) as any[];
-    // We pick unique ability names
-    const abilityNames: string[] = [...new Set(list.map((a: any) => String(a.name || '')))].filter(Boolean);
 
     const rows: Row[] = [];
-    // Atk 1
-    const ab1 = abilityNames[0] || null;
-    rows.push({
-      atkName: attackName(mutant, 1),
-      dmg: atk1,
-      abCode: ab1,
-      abName: ab1 ? abilityLabel(ab1) : '—',
-      value: ab1 ? getAbilityValue(atk1, level) : '—',
-      pct: abilityPct,
-      gene: gene1,
-      isAoe: aoe1
-    });
 
-    // Atk 2
-    const ab2 = abilityNames[1] || null;
-    rows.push({
-      atkName: attackName(mutant, 2),
-      dmg: atk2,
-      abCode: ab2,
-      abName: ab2 ? abilityLabel(ab2) : '—',
-      value: (ab2 && !ab2.toLowerCase().includes('retaliate')) ? getAbilityValue(atk2, level) : (ab2?.toLowerCase().includes('retaliate') ? 0 : '—'),
-      pct: abilityPct,
-      gene: gene2,
-      isAoe: aoe2
-    });
+    // Atk 1 - use first ability if exists
+    const ab1 = list[0];
+    if (ab1) {
+      const value1 = getAbilityValue(level, 0);
+      rows.push({
+        atkName: attackName(mutant, 1),
+        dmg: atk1,
+        abCode: ab1.name || null,
+        abName: ab1.name ? abilityLabel(ab1.name) : '—',
+        value: value1,
+        pct: ab1.pct,
+        gene: gene1,
+        isAoe: aoe1
+      });
+    }
+
+    // Atk 2 - use second ability if exists
+    const ab2 = list[1];
+    if (ab2) {
+      const isRetaliate = ab2.name?.toLowerCase().includes('retaliate') ?? false;
+      const value2 = isRetaliate ? 0 : getAbilityValue(level, 1);
+      rows.push({
+        atkName: attackName(mutant, 2),
+        dmg: atk2,
+        abCode: ab2.name || null,
+        abName: ab2.name ? abilityLabel(ab2.name) : '—',
+        value: value2,
+        pct: ab2.pct,
+        gene: gene2,
+        isAoe: aoe2
+      });
+    }
 
     return rows;
   }
@@ -406,13 +431,18 @@ $: displayBingo = (() => {
         <div class="min-w-0">
           <h2 id="mutant-title" class="text-lg md:text-xl font-bold tracking-wide break-words">{mutant?.name}</h2>
           <div class="mt-0.5 text-xs md:text-sm text-white/70 flex items-center gap-2 flex-wrap">
-            {#if typeIcon(mutant?.type)}
+            {#if mutant?.star}
+              <!-- Show star/rating for rated versions -->
+              <span class="break-words">{STAR_LABEL[mutant.star] ?? mutant.star}</span>
+            {:else if typeIcon(displayType)}
+              <!-- Show type icon for non-rated versions -->
               <span class="inline-flex items-center gap-1 break-words">
-                <img class="type-icon opacity-90" src={typeIcon(mutant?.type)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-                {TYPE_RU[mutant?.type] ?? mutant?.type}
+                <img class="type-icon opacity-90" src={typeIcon(displayType)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                {TYPE_RU[displayType] ?? displayType}
               </span>
             {:else}
-              <span class="break-words">{TYPE_RU[mutant?.type] ?? mutant?.type}</span>
+              <!-- Fallback: show type without icon -->
+              <span class="break-words">{TYPE_RU[displayType] ?? displayType}</span>
             {/if}
             {#if genes}
               <span class="opacity-70">•</span>{geneLabel(genes)}
