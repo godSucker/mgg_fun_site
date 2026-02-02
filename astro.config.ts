@@ -8,12 +8,8 @@ import { defineConfig } from 'astro/config';
 const SRC = fileURLToPath(new URL('./src', import.meta.url))
 
 export default defineConfig({
-  site: 'https://archivist-library.com',
   prefetch: true,
   integrations: [svelte()],
-  build: {
-  assetsPrefix: 'https://cdn.archivist-library.com',
-  },
   alias: {
     '@': SRC,
   },
