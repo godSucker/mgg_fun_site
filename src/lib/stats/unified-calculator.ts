@@ -57,14 +57,20 @@ export function calculateFinalStats(
     console.log('✓ Применяем множитель:', multiplier);
   }
 
-  // Normalize input - support both naming conventions
+  // Normalize input - support both naming conventions AND new JSON structure
   const hp = baseStats.hp ?? baseStats.hp_base ?? 0;
   const atk1 = baseStats.atk1 ?? baseStats.atk1_base ?? 0;
   const atk1r = baseStats.atk1r ?? baseStats.atk1p_base ?? atk1;
   const atk2 = baseStats.atk2 ?? baseStats.atk2_base ?? 0;
   const atk2r = baseStats.atk2r ?? baseStats.atk2p_base ?? atk2;
-  const speed = baseStats.speed ?? baseStats.speed_base ?? 0;
-  const silver = baseStats.silver ?? baseStats.bank_base ?? 0;
+
+  // NEW: Support both old (speed) and new (spd) field names
+  const speed = baseStats.speed ?? baseStats.speed_base ??
+                (baseStats as any).spd ??
+                (baseStats as any).lvl1?.spd ??
+                (baseStats as any).lvl30?.spd ?? 0;
+
+  const silver = baseStats.silver ?? baseStats.bank_base ?? 42; // fallback to default
   const abilityPct1 = baseStats.abilityPct1 ?? 0;
   const abilityPct2 = baseStats.abilityPct2 ?? 0;
 

@@ -142,11 +142,23 @@
   let starMap: Map<string, any> = new Map();
   $: starMap = buildStarMap(items ?? []);
 
-  // Создаем кешированные версии списков один раз при изменении входных данных
-  $: preparedMutants = (items || []).map(enrichItem);
-  $: preparedSkins = (normalizedSkins || []).map(enrichItem);
+  // Кэшируем enriched данные - пересчитываем только при изменении items/skins
+  let preparedMutants: any[] = [];
+  let preparedSkins: any[] = [];
+
+  $: {
+    // При изменении items пересоздаем preparedMutants
+    preparedMutants = (items || []).map(enrichItem);
+    _cache.clear(); // Очищаем кэш фильтрации
+  }
 
   $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
+
+  $: {
+    // При изменении normalizedSkins пересоздаем preparedSkins
+    preparedSkins = (normalizedSkins || []).map(enrichItem);
+    _cache.clear(); // Очищаем кэш фильтрации
+  }
 
   // ===========
   // КОНТРОЛЫ UI
@@ -155,15 +167,6 @@
   let mode: Mode = 'mutants';
 
   let query = '';
-  let debouncedQuery = '';
-  let searchTimer: any;
-
-  $: {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      debouncedQuery = query;
-    }, 300);
-  }
   let gene1Sel = '';
   let gene2Sel = '';
   $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join('');
@@ -278,89 +281,86 @@
   }
 
   // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ С КЭШИРОВАНИЕМ
-  $: filteredMutants = memo(getCacheKey(debouncedQuery, geneSel, typeSel, bingoSel, starSelMutants), () => {
+  $: filteredMutants = memo(getCacheKey(query, geneSel, typeSel, bingoSel, starSelMutants), () => {
     return (() => {
-    const q = debouncedQuery ? debouncedQuery.trim().toLowerCase() : null;
+    const q = query ? query.trim().toLowerCase() : null;
+    const normalizedQ = q ? normalizeForSearch(q) : null;
     const sBingo = bingoSel ? String(bingoSel) : null;
     const sType = typeSel ? String(typeSel).toLowerCase() : null;
-    
+
     // Если есть поисковый запрос, игнорируем фильтры звезд/атрибутов
-    const isSearching = !!q;
+    const isSearching = !!normalizedQ;
     const checkStars = !isSearching && starSelMutants !== 'normal';
 
     const bingoData = sBingo ? bingos.find((b: any) => b.id === sBingo) : null;
+    const isReactorSel = sBingo === 'reactor' || (sType === 'reactor' || sType === 'gacha');
+    const sTypeIsReactor = sType === 'reactor' || sType === 'gacha';
 
-    const res = preparedMutants.map(it => {
-      let fSkin = null;
-      // Применяем принудительный скин из бинго, если он там указан
-      if (bingoData) {
-          const entry = bingoData.mutants.find((bm: any) => bm.specimenId.toLowerCase() === it._meta.id.toLowerCase());
-          if (entry && entry.skin && entry.skin !== '_any') {
-              fSkin = entry.skin;
-          }
-      }
-      
-      // Если выбран тип Реактор ИЛИ выбран бинго реактор, принудительно ставим gachaboss, если скин еще не задан
-      const isReactorSel = sBingo === 'reactor' || (sType === 'reactor' || sType === 'gacha');
-      if (!fSkin && isReactorSel) {
-          const hasReactorBingo = it._meta.bingoKeys.has('reactor');
-          const isGachaType = it._meta.typeKey === 'reactor' || it._meta.typeKey === 'gacha';
-          if (hasReactorBingo || isGachaType) {
-              fSkin = 'gachaboss';
-          }
-      }
-
-      return { ...it, forceSkin: fSkin };
-    }).filter(it => {
+    // Объединяем map + filter в один проход для оптимизации
+    const res = [];
+    for (const it of preparedMutants) {
       const m = it._meta;
-      if (q && !m.searchName.includes(normalizeForSearch(q))) return false;
-      
-      // Если мы ищем по имени, пропускаем остальные фильтры
-      if (isSearching) return true;
 
-      if (geneSel && m.code !== geneSel) return false;
-      
-      // Поиск по типу (с учетом синонимов для Реактора)
-      if (sType) {
-          const typeKeyLower = String(sType).toLowerCase();
-          const isReactorType = (typeKeyLower === 'reactor' || typeKeyLower === 'gacha');
-          if (isReactorType) {
-              // Проверяем и type мутанта, и наличие ключа reactor в его бинго
-              const hasReactorBingo = m.bingoKeys.has('reactor');
-              const isGachaType = m.typeKey === 'reactor' || m.typeKey === 'gacha';
-              if (!hasReactorBingo && !isGachaType) return false;
+      // Фильтр поиска
+      if (normalizedQ && !m.searchName.includes(normalizedQ)) continue;
+
+      // Если ищем по имени, пропускаем остальные фильтры
+      if (!isSearching) {
+        // Фильтр генов
+        if (geneSel && m.code !== geneSel) continue;
+
+        // Поиск по типу (с учетом синонимов для Реактора)
+        if (sType) {
+          if (sTypeIsReactor) {
+            const hasReactorBingo = m.bingoKeys.has('reactor');
+            const isGachaType = m.typeKey === 'reactor' || m.typeKey === 'gacha';
+            if (!hasReactorBingo && !isGachaType) continue;
           } else {
-              if (m.typeKey !== typeKeyLower) return false;
+            if (m.typeKey !== sType) continue;
           }
-      }
+        }
 
-      // Если выбрано Бинго, показываем мутанта, только если у него есть это Бинго.
-      // Фильтр звезд в этом случае игнорируем, так как Бинго само определяет версию.
-      if (sBingo) {
-        // Для reactor: показываем с бинго reactor ИЛИ тип GACHA (будут заменены на platinum версии)
-        if (sBingo === 'reactor') {
+        // Фильтр бинго и звезд
+        if (sBingo) {
+          if (sBingo === 'reactor') {
+            const hasReactorBingo = m.bingoKeys.has('reactor');
+            const isGachaType = m.typeKey === 'gacha';
+            if (!hasReactorBingo && !isGachaType) continue;
+          } else {
+            if (!m.bingoKeys.has(sBingo)) continue;
+          }
+        } else if (sTypeIsReactor) {
           const hasReactorBingo = m.bingoKeys.has('reactor');
           const isGachaType = m.typeKey === 'gacha';
-          if (!hasReactorBingo && !isGachaType) return false;
+          if (!hasReactorBingo && !isGachaType) continue;
         } else {
-          if (!m.bingoKeys.has(sBingo)) return false;
-        }
-        // При выборе бинго - игнорируем все остальные фильтры (звезды)
-      } else if (sType && (sType === 'gacha' || sType === 'reactor')) {
-        // Для типа GACHA/reactor - показываем с бинго reactor ИЛИ тип GACHA
-        const hasReactorBingo = m.bingoKeys.has('reactor');
-        const isGachaType = m.typeKey === 'gacha';
-        if (!hasReactorBingo && !isGachaType) return false;
-        // При выборе типа GACHA - игнорируем фильтр звезд
-      } else {
-        if (checkStars) {
-          if (m.starKey !== starSelMutants) return false;
-        } else {
-          if (m.starKey !== 'normal') return false;
+          if (checkStars) {
+            if (m.starKey !== starSelMutants) continue;
+          } else {
+            if (m.starKey !== 'normal') continue;
+          }
         }
       }
-      return true;
-    });
+
+      // Определяем принудительный скин
+      let fSkin = null;
+      if (bingoData) {
+        const entry = bingoData.mutants.find((bm: any) => bm.specimenId.toLowerCase() === m.id.toLowerCase());
+        if (entry && entry.skin && entry.skin !== '_any') {
+          fSkin = entry.skin;
+        }
+      }
+
+      if (!fSkin && isReactorSel) {
+        const hasReactorBingo = m.bingoKeys.has('reactor');
+        const isGachaType = m.typeKey === 'reactor' || m.typeKey === 'gacha';
+        if (hasReactorBingo || isGachaType) {
+          fSkin = 'gachaboss';
+        }
+      }
+
+      res.push({ ...it, forceSkin: fSkin });
+    }
 
     // --- МАГИЯ ПОДМЕНЫ ВЕРСИЙ ДЛЯ БИНГО ---
     // Если выбрано звездное Бинго, подменяем мутанта на его звездную версию из starMap
@@ -391,20 +391,26 @@
   });
 
   // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ СКИНОВ С КЭШИРОВАНИЕМ
-  $: filteredSkins = memo(getCacheKey(debouncedQuery, geneSel, typeSel, '', starSelSkins), () => {
+  $: filteredSkins = memo(getCacheKey(query, geneSel, typeSel, '', starSelSkins), () => {
     return (() => {
-    const q = debouncedQuery ? debouncedQuery.trim().toLowerCase() : null;
-    const isSearching = !!q;
+    const q = query ? query.trim().toLowerCase() : null;
+    const normalizedQ = q ? normalizeForSearch(q) : null;
+    const isSearching = !!normalizedQ;
     const checkStars = !isSearching && starSelSkins !== 'any';
     const targetStar = starSelSkins === 'normal' ? 'normal' : starSelSkins;
-    const res = preparedSkins.filter(it => {
+
+    const res = [];
+    for (const it of preparedSkins) {
       const m = it._meta;
-      if (q && !m.searchName.includes(normalizeForSearch(q))) return false;
-      if (isSearching) return true;
-      if (geneSel && m.code !== geneSel) return false;
-      if (checkStars) { if (m.starKey !== targetStar) return false; }
-      return true;
-    });
+      if (normalizedQ && !m.searchName.includes(normalizedQ)) continue;
+      if (isSearching) {
+        res.push(it);
+        continue;
+      }
+      if (geneSel && m.code !== geneSel) continue;
+      if (checkStars && m.starKey !== targetStar) continue;
+      res.push(it);
+    }
     return res.sort(compareByGeneFast);
     })();
   });
@@ -412,7 +418,7 @@
   let pageSize = 20;
   let currentPage = 1;
   $: {
-    mode; debouncedQuery; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;
+    mode; query; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;
     currentPage = 1;
   }
   $: endIndex = pageSize * currentPage;

@@ -193,7 +193,8 @@ $: displayBingo = (() => {
 
   const calcSpeed = () => {
     const stats = calculateFinalStats(baseStats, 1);
-    return stats.speed;
+    // Round to hundredths (2 decimal places)
+    return Math.round(stats.speed * 100) / 100;
   };
 
   const getAbilityValue = (level: number, abilityIndex: number): number => {
@@ -202,10 +203,21 @@ $: displayBingo = (() => {
     const abilities = mutant?.abilities ?? [];
     if (abilityIndex < abilities.length && abilities[abilityIndex]) {
       const ability = abilities[abilityIndex];
+      // Check if this is a retaliate ability (always uses ATK1 values)
+      const isRetaliate = ability.name?.toLowerCase().includes('retaliate') ?? false;
+
       if (level < 25) {
-        return abilityIndex === 0 ? (ability.value_atk1_lvl1 ?? 0) : (ability.value_atk2_lvl1 ?? 0);
+        if (isRetaliate || abilityIndex === 0) {
+          return ability.value_atk1_lvl1 ?? 0;
+        } else {
+          return ability.value_atk2_lvl1 ?? 0;
+        }
       } else {
-        return abilityIndex === 0 ? (ability.value_atk1_lvl30 ?? 0) : (ability.value_atk2_lvl30 ?? 0);
+        if (isRetaliate || abilityIndex === 0) {
+          return ability.value_atk1_lvl30 ?? 0;
+        } else {
+          return ability.value_atk2_lvl30 ?? 0;
+        }
       }
     }
     // Fallback to calculated value
@@ -270,10 +282,24 @@ $: displayBingo = (() => {
 
     const rows: Row[] = [];
 
-    // Atk 1 - use first ability if exists
-    const ab1 = list[0];
+    // Check if both abilities are retaliate (special case - both apply to ATK1)
+    const bothRetaliate = list.length >= 2 &&
+      list[0]?.name?.toLowerCase().includes('retaliate') &&
+      list[1]?.name?.toLowerCase().includes('retaliate');
+
+    // Atk 1
+    let ab1, abilityIndex1;
+    if (bothRetaliate) {
+      // Both retaliate abilities apply to first attack - select based on level
+      ab1 = level < 25 ? list[0] : list[1];
+      abilityIndex1 = level < 25 ? 0 : 1;
+    } else {
+      ab1 = list[0];
+      abilityIndex1 = 0;
+    }
+
     if (ab1) {
-      const value1 = getAbilityValue(level, 0);
+      const value1 = getAbilityValue(level, abilityIndex1);
       rows.push({
         atkName: attackName(mutant, 1),
         dmg: atk1,
@@ -286,22 +312,18 @@ $: displayBingo = (() => {
       });
     }
 
-    // Atk 2 - use second ability if exists
-    const ab2 = list[1];
-    if (ab2) {
-      const isRetaliate = ab2.name?.toLowerCase().includes('retaliate') ?? false;
-      const value2 = isRetaliate ? 0 : getAbilityValue(level, 1);
-      rows.push({
-        atkName: attackName(mutant, 2),
-        dmg: atk2,
-        abCode: ab2.name || null,
-        abName: ab2.name ? abilityLabel(ab2.name) : '—',
-        value: value2,
-        pct: ab2.pct,
-        gene: gene2,
-        isAoe: aoe2
-      });
-    }
+    // Atk 2 - always show attack, but without ability if both are retaliate
+    const ab2 = bothRetaliate ? null : list[1];
+    rows.push({
+      atkName: attackName(mutant, 2),
+      dmg: atk2,
+      abCode: ab2?.name || null,
+      abName: ab2?.name ? abilityLabel(ab2.name) : '—',
+      value: ab2 ? getAbilityValue(level, 1) : 0,
+      pct: ab2?.pct ?? 0,
+      gene: gene2,
+      isAoe: aoe2
+    });
 
     return rows;
   }

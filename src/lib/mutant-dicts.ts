@@ -72,6 +72,8 @@ export const BINGO_RU: Record<string, string> = {
 export const TYPE_RU: Record<string, string> = {
   Pvp: 'ПВП',
   Special: 'Особые',
+  SPECIAL: 'Особые',
+  special: 'Особые',
   ZODIAC: 'Зодиаки',
   GACHA: 'Реактор',
   gacha: 'Реактор',
