@@ -238,7 +238,9 @@
   const normalizeGene = (s:string) => (s ?? '').toUpperCase().split('').sort().join('');
   const starOf = (it:any) => String(it?.star ?? 'normal').toLowerCase();
   function readGeneCode(it:any): string {
-    if (Array.isArray(it?.genes) && typeof it.genes[0] === 'string') return it.genes[0];
+    if (Array.isArray(it?.genes)) {
+      return it.genes.filter(Boolean).map((g: any) => String(g).toUpperCase()).join('');
+    }
     if (typeof it?.gene === 'string') return it.gene;
     if (typeof it?.gene_code === 'string') return it.gene_code;
     return '';

@@ -984,28 +984,28 @@
           <Filter>Building_Jackpot_2026_01</Filter>
         </InteractiveAction>
         <InteractiveAction x="1829" y="313" target="WORKING_10" id="CONTRACT_10">
-          <Cost amount="100" type="entity" id="Material_Xmas25_Token" />
-          <Filter>Building_Jackpot_Xmas25_1</Filter>
+          <Cost amount="100" type="entity" id="Material_Valentines26_Token" />
+          <Filter>Building_Jackpot_Valentines26</Filter>
         </InteractiveAction>
         <InteractiveAction x="2218" y="308" target="WORKING_11" id="CONTRACT_11">
-          <Cost amount="200" type="entity" id="Material_Xmas25_Token" />
-          <Filter>Building_Jackpot_Xmas25_1</Filter>
+          <Cost amount="250" type="entity" id="Material_Valentines26_Token" />
+          <Filter>Building_Jackpot_Valentines26</Filter>
         </InteractiveAction>
         <InteractiveAction x="2553" y="299" target="WORKING_12" id="CONTRACT_12">
-          <Cost amount="1000" type="entity" id="Material_Xmas25_Token" />
-          <Filter>Building_Jackpot_Xmas25_1</Filter>
+          <Cost amount="900" type="entity" id="Material_Valentines26_Token" />
+          <Filter>Building_Jackpot_Valentines26</Filter>
         </InteractiveAction>
         <InteractiveAction x="2904" y="323" target="WORKING_13" id="CONTRACT_13">
-          <Cost amount="1250" type="entity" id="Material_Xmas25_Token" />
-          <Filter>Building_Jackpot_Xmas25_1</Filter>
+          <Cost amount="1000" type="entity" id="Material_Valentines26_Token" />
+          <Filter>Building_Jackpot_Valentines26</Filter>
         </InteractiveAction>
         <InteractiveAction x="-405" y="1296" target="WORKING_14" id="CONTRACT_14">
-          <Cost amount="2500" type="entity" id="Material_Xmas25_Token" />
-          <Filter>Building_Jackpot_Xmas25_1</Filter>
+          <Cost amount="2100" type="entity" id="Material_Valentines26_Token" />
+          <Filter>Building_Jackpot_Valentines26</Filter>
         </InteractiveAction>
         <InteractiveAction x="-430" y="1545" target="WORKING_15" id="CONTRACT_15">
-          <Cost amount="1000" type="entity" id="Material_Xmas25_Token" />
-          <Filter>Building_Jackpot_Xmas25_2</Filter>
+          <Cost amount="2400" type="entity" id="Material_Valentines26_Token" />
+          <Filter>Building_Jackpot_Valentines26</Filter>
         </InteractiveAction>
         <InteractiveAction x="-476" y="1856" target="WORKING_16" id="CONTRACT_16">
           <Cost amount="1250" type="entity" id="Material_Xmas25_Token" />
@@ -1141,9 +1141,9 @@
       </State>
       <State x="2717" y="287" id="READY_12" caption="$Ready" spriteId="building_jackpot_sink_ready">
         <InteractiveAction x="2556" y="357" target="InitialState" id="RECOLT" caption="collectsqd">
-          <Reward id="Specimen_AF_99" >
+          <Reward id="Specimen_ED_10" >
             <Tag key="stars" value="3" />
-            <Tag key="skin" value="winter" />
+            <Tag key="skin" value="valentines" />
           </Reward>
         </InteractiveAction>
       </State>
@@ -1152,9 +1152,9 @@
       </State>
       <State x="3083" y="220" id="READY_13" caption="$Ready" spriteId="building_jackpot_sink_ready">
         <InteractiveAction x="2899" y="379" target="InitialState" id="RECOLT" caption="collectsqd">
-          <Reward id="Specimen_DD_04">
+          <Reward id="Specimen_AE_09">
             <Tag key="stars" value="3" />
-            <Tag key="skin" value="xmas25" />
+            <Tag key="skin" value="valentines" />
           </Reward>
         </InteractiveAction>
       </State>
@@ -1163,7 +1163,7 @@
       </State>
       <State x="-724" y="1471" id="READY_14" caption="$Ready" spriteId="building_jackpot_sink_ready">
         <InteractiveAction x="-563" y="1480" target="InitialState" id="RECOLT" caption="collectsqd">
-          <Reward id="Specimen_FF_14"/>
+          <Reward id="Specimen_FD_14"/>
         </InteractiveAction>
       </State>
       <State x="-602" y="1623" id="WORKING_15" spriteId="building_jackpot_sink_running">
@@ -1171,10 +1171,7 @@
       </State>
       <State x="-724" y="1763" id="READY_15" caption="$Ready" spriteId="building_jackpot_sink_ready">
         <InteractiveAction x="-558" y="1776" target="InitialState" id="RECOLT" caption="collectsqd">
-          <Reward id="Specimen_FE_09" >
-            <Tag key="stars" value="3" />
-            <Tag key="skin" value="winter" />
-          </Reward>
+          <Reward id="Specimen_AB_15" />
         </InteractiveAction>
       </State>
       <State x="-609" y="1949" id="WORKING_16" spriteId="building_jackpot_sink_running">
@@ -23427,29 +23424,27 @@
     </EntityDescriptor>
     <EntityDescriptor id="Specimen_AB_15" movable="true" storable="true" category="specimen" sizeX="0.01" sizeY="0.01">
       <State y="-1" id="default" spriteId="specimen_AB_15_stand" sellPrice="20000" />
-      <Tag key="spX100" value="200" />
-      <Tag key="odds" value="20" />
+      <Tag key="spX100" value="185" />
+      <Tag key="odds" value="0" />
       <Tag key="dna" value="AB" />
-      <Tag key="lifePoint" value="1130" />
+      <Tag key="lifePoint" value="3865" />
       <Tag key="incubMin" value="60" />
       <Tag key="specimen" value="true" />
-      <Tag key="atk1" value="312" />
-      <Tag key="atk1p" value="468" />
-      <Tag key="atk2" value="312" />
-      <Tag key="atk2p" value="468" />
+      <Tag key="atk1" value="1541" />
+      <Tag key="atk1p" value="2127" />
+      <Tag key="atk2" value="1541" />
+      <Tag key="atk2p" value="2127" />
       <Tag key="bank" value="42" />
       <Tag key="unlockAttack" value="1:1:a;2:5:b;2p:15:b;1p:10:a" />
-      <Tag key="changePrice00" value="540" />
-      <Tag key="changePrice01" value="910" />
-      <Tag key="changePrice02" value="1580" />
-      <Tag key="changePrice03" value="2620" />
-      <Tag key="type" value="LEGEND" />
-      <Tag key="recipes" value="AB_15x[A-F][A-F]_*+AB_15x[A-F]_*" />
-      <Tag key="abilities" value="1:ability_shield;2:ability_shield_plus" />
-      <Tag key="abilityPct1" value="20" />
-      <Tag key="abilityPct2" value="30" />
+      <Tag key="changePrice00" value="99999" />
+      <Tag key="changePrice01" value="99999" />
+      <Tag key="changePrice02" value="99999" />
+      <Tag key="changePrice03" value="99999" />
+      <Tag key="type" value="SEASONAL" />
+      <Tag key="abilities" value="1:ability_retaliate;2:ability_retaliate_plus" />
+      <Tag key="abilityPct1" value="-35" />
+      <Tag key="abilityPct2" value="-50" />
       <Tag key="orbSlots" value="n;n;s" />
-      <Tag key="PNJ" value="true" />
       <CustomScript name="onPlaceOver">
         <Script cmd="PlaceSpecimen">
           <Param>Specimen_A_B</Param>
@@ -24831,6 +24826,9 @@
       <State x="134" y="239" id="InitialState" spriteId="brb_sign" />
     </EntityDescriptor>
     <EntityDescriptor id="Material_Mystery26_Token" category="material" sizeX="1" sizeY="1">
+      <State x="134" y="239" id="InitialState" spriteId="brb_sign" />
+    </EntityDescriptor>
+    <EntityDescriptor id="Material_Valentines26_Token" category="material" sizeX="1" sizeY="1">
       <State x="134" y="239" id="InitialState" spriteId="brb_sign" />
     </EntityDescriptor>
   </DynamicEntities>

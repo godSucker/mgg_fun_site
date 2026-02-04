@@ -20151,3 +20151,145 @@ pack_fe_14_4000_hc_2;Уникальный пакет Серафическое я
 pack_fe_14_4000_hc_2_payment_text;Это уникальное предложение содержит: - 4000 золота - Серафическое ядро
 pack_fe_14_10000_hc_2;Уникальный пакет Серафическое ядро
 pack_fe_14_10000_hc_2_payment_text;Это уникальное предложение содержит: - 10000 золота - Серафическое ядро
+title_generic_screen_building_mystery;Анализатор тайны
+Building_Mystery;Анализатор тайны
+Building_Mystery_description;В этом здании обменяйте свои таинственные жетоны на специальные скины из прошлых таинственных коробок. 
+title_mission_valentines26_1;Странная видеоигра
+title_mission_valentines26_2;Мисси пропала
+title_mission_valentines26_3;Еще один замок
+title_mission_valentines26_4;Босс-раш
+title_mission_valentines26_5;Воскрешение врагов
+title_mission_valentines26_6;Мини-боссы
+title_mission_valentines26_7;Открытые дуэли
+title_mission_valentines26_8;Все против всех
+title_mission_valentines26_9;Королевская битва
+title_mission_valentines26_10;Пиксельное размытие
+title_mission_valentines26_11;Пиксели или воксели?
+title_mission_valentines26_12;Правила выживания
+title_mission_valentines26_13;120 звезд!
+title_mission_valentines26_14;Фарминг уровней 
+title_mission_valentines26_15;Пауэрлевелинг
+title_mission_valentines26_16;Техники разведения
+title_mission_valentines26_17;Стратегии спидрана
+caption_mission_valentines26_1;Дарвин нашел старую видеоигру, и это имеет последствия...
+caption_mission_valentines26_2;Мисси пропала, и нам нужно попытаться ее найти.
+caption_mission_valentines26_3;Судя по всему, Мисси не была в указанном месте. Но мы должны ее найти!
+caption_mission_valentines26_4;Даже после того, как мы их победили, они возвращаются, чтобы защитить своего лидера!
+caption_mission_valentines26_5;Они появляются снова и снова! Что мы можем сделать? 
+caption_mission_valentines26_6;Бывшие мини-боссы становятся обычными врагами!
+caption_mission_valentines26_7;Другие Psy-Captains все увлеклись игрой! 
+caption_mission_valentines26_8;Сражения вокруг этой игры принимают огромные масштабы! 
+caption_mission_valentines26_9;Похоже, только самые сильные смогут продолжить...
+caption_mission_valentines26_10;Когда мы их уничтожаем, они взрываются в кучу пикселей! 
+caption_mission_valentines26_11;Некоторые более странные и умирают в взрыве вокселей! 
+caption_mission_valentines26_12;Как и во всех играх на выживание, нельзя продвигаться без крафта.
+caption_mission_valentines26_13;Правда? 120? Это много, не так ли?
+caption_mission_valentines26_14;По-видимому, существуют передовые техники для продвижения своих мутантов! 
+caption_mission_valentines26_15;Если объединить все техники, можно продвигаться гораздо быстрее! 
+caption_mission_valentines26_16;Знаете ли вы все хорошие техники разведения мутантов? 
+caption_mission_valentines26_17;Есть методы, позволяющие продвигаться быстро. Хорошие и плохие. 
+DialogPVE_Event_valentines26_1_1;Привет всем! Что нового? 
+DialogPVE_Event_valentines26_1_2;Дарвин нашел старую видеоигру на блошином рынке. 
+DialogPVE_Event_valentines26_1_3;И он хочет, чтобы мы все вместе ее протестировали.
+DialogPVE_Event_valentines26_1_4;Да, это совершенно неизвестная игра, ее нет ни в одном официальном каталоге консолей! 
+DialogPVE_Event_valentines26_1_5;О! Как думаешь, это неофициальная игра или что-то, что никогда не выпускалось? 
+DialogPVE_Event_valentines26_1_6;Эм... Мисси? Я не знал, что ты разбираешься в видеоиграх.
+DialogPVE_Event_valentines26_1_7;О, это нормально, я просто не часто об этом говорю! Но у меня дома есть хорошая коллекция! 
+DialogPVE_Event_valentines26_1_8;Я... удивлен. 
+DialogPVE_Event_valentines26_1_9;Судя по твоему выражению лица, я бы сказал, что ты шокирован. 
+DialogPVE_Event_valentines26_1_10;Ладно, я все подключил, все готово! Начнем? 
+DialogPVE_Event_valentines26_1_11;Давай! 
+DialogPVE_Event_valentines26_1_12;Дарвин... Это нормально, что твоя консоль так светится? 
+DialogPVE_Event_valentines26_1_13;Нет, и я не могу это выключить! 
+DialogPVE_Event_valentines26_1_14;Что это была за вспышка света? И почему все было пикселизировано? 
+DialogPVE_Event_valentines26_1_15;Понятия не имею, может, эта игра не просто игра? 
+DialogPVE_Event_valentines26_1_16;В любом случае, нам нужно двигаться дальше! Похоже, на аренах проблемы! 
+DialogPVE_Event_valentines26_2_1;Дарвин, ты можешь объяснить, что происходит? 
+DialogPVE_Event_valentines26_2_2;Я думаю, что игра более или менее слилась с нашей реальностью. 
+DialogPVE_Event_valentines26_2_3;Слилась? Как это возможно? 
+DialogPVE_Event_valentines26_2_4;Возможно, я что-то напутал с подключением, когда пытался настроить консоль...
+DialogPVE_Event_valentines26_2_5;Здорово! Просто здорово! И ты не подумал, что это может быть опасно? 
+DialogPVE_Event_valentines26_2_6;Откуда я мог знать? Это старая игровая консоль, она не должна так себя вести! 
+DialogPVE_Event_valentines26_2_7;В любом случае, я заметил, что с тех пор, как мы переехали, Мисси не сказала ни слова...
+DialogPVE_Event_valentines26_2_8;Это нормально, ее здесь нет. Но на полу лежит листок бумаги. 
+DialogPVE_Event_valentines26_2_9;«Если хочешь снова увидеть свою подругу, приготовься пересечь этот опасный город!»
+DialogPVE_Event_valentines26_2_10;О нет, только не говорите мне, что они используют против нас трюк с похищением принцессы антагонистом!
+DialogPVE_Event_valentines26_2_11;Это клише, но в любом случае мы должны спасти Мисси! Пси-капитан, пошли! 
+DialogPVE_Event_valentines26_3_1;Ну, мы победили врага! 
+DialogPVE_Event_valentines26_3_2;Теперь нам осталось только открыть эту дверь и...
+DialogPVE_Event_valentines26_3_3;Что? Правда? 
+DialogPVE_Event_valentines26_3_4;Дай угадаю, там написано что-то вроде «Принцесса в другом замке»? 
+DialogPVE_Event_valentines26_3_5;В здании, а не в замке, но суть та же. 
+DialogPVE_Event_valentines26_3_6;Мне все становится все яснее и яснее.
+DialogPVE_Event_valentines26_3_7;Можешь пояснить? Я не играю в видеоигры, поэтому мне сложно понять. 
+DialogPVE_Event_valentines26_3_8;Похоже, нас заставили бегать по виртуальному миру, наложенному на реальность. 
+DialogPVE_Event_valentines26_3_9;Как будто мы находимся на уровнях старой видеоигры. 
+DialogPVE_Event_valentines26_3_10;И как только мы победим всех лейтенантов, мы сможем сразиться с настоящим антагонистом. 
+DialogPVE_Event_valentines26_3_11;Тогда давайте сделаем это. Пси-капитан, нам предстоит победить всех лейтенантов! 
+DialogPVE_Event_valentines26_4_1;Мы находимся у подножия большого лифта... Что это значит, Дарвин? 
+DialogPVE_Event_valentines26_4_2;О, я этого и боялся. Вероятно, нам предстоит так называемый «босс-раш». 
+DialogPVE_Event_valentines26_4_3;А проще говоря? 
+DialogPVE_Event_valentines26_4_4;Короче говоря, нам предстоит сразиться с врагами и лейтенантами, которых мы уже победили. 
+DialogPVE_Event_valentines26_4_5;Если мы уже победили их, то это должно быть легко, верно? 
+DialogPVE_Event_valentines26_4_6;Не совсем, потому что они стали сильнее, и нам, возможно, придется сражаться с ними один за другим.
+DialogPVE_Event_valentines26_4_7;Без перерыва? 
+DialogPVE_Event_valentines26_4_8;Да, без перерыва между сражениями. 
+DialogPVE_Event_valentines26_4_9;Ну... Удачи, нам ее понадобится много! 
+DialogPVE_Event_valentines26_5_1;Эй! Вы не крутые, ребята! 
+DialogPVE_Event_valentines26_5_2;Не крутые? Это ты на нас нападаешь, похищаешь нашу подругу, а мы «не крутые»? 
+DialogPVE_Event_valentines26_5_3;Не нужно было так сильно бить! 
+DialogPVE_Event_valentines26_5_4;Я думал, вы просто хотите немного повеселиться!
+DialogPVE_Event_valentines26_5_5;Разрушая город, накладывая пиксельный слой повсюду? 
+DialogPVE_Event_valentines26_5_6;Извини, чувак, но я знаю только такую среду! 
+DialogPVE_Event_valentines26_5_7;По крайней мере, надеюсь, вы хорошо повеселились! Ваша подруга в комнате за моей спиной. 
+DialogPVE_Event_valentines26_5_8;И, поскольку вы победили... я вас отпускаю! 
+DialogPVE_Event_valentines26_5_9;Мисси, ты в порядке? 
+DialogPVE_Event_valentines26_5_10;Да, я просто немного заскучала здесь...
+DialogPVE_Event_valentines26_5_11;Кстати, странно, я не смогла активировать свои пушки. 
+DialogPVE_Event_valentines26_5_12;Может быть, это потому, что «правила», установленные этим мутантом, сделали тебя девушкой в беде? 
+DialogPVE_Event_valentines26_5_13;Не знаю, сейчас они снова работают нормально. 
+DialogPVE_Event_valentines26_5_14;В любом случае, я хорошо провела время, теперь я вас покидаю, у меня запланирован вечер! 
+DialogPVE_Event_valentines26_5_15;Думаю, это касается всех... 
+DialogPVE_Event_valentines26_5_16;Так что с Днем святого Валентина всех! 
+DialogPVE_Event_valentines26_5_17;The End…. ? 
+pack_ed_13_1000_hc;Уникальный пакет Мединозавр
+pack_ed_13_1000_hc_payment_text;Это уникальное предложение содержит: - 1000 золота - Мединозавр
+pack_ed_13_4000_hc;Уникальный пакет Мединозавр
+pack_ed_13_4000_hc_payment_text;Это уникальное предложение содержит: - 4000 золота - Мединозавр
+pack_ed_13_10000_hc;Уникальный пакет Мединозавр
+pack_ed_13_10000_hc_payment_text;Это уникальное предложение содержит: - 10000 золота - Мединозавр
+bundle_orbs_experimental_growth_09;Пакет сфер роста
+Mystery_Xinnian_2026;Таинственная коробка «Китайский Новый год»
+mysterybox_xinnian_2026_description;Отпразднуйте Китайский Новый год с этой таинственной коробкой, доступной в течение ограниченного времени. Шанс 1 к 6 получить Механорог с его скином к Китайскому Новому году! (Присутствует в сетке бинго скинов 2026. Бонусный жетон «Тайна 2026» со всеми другими результатами)
+LuckyBox_Stars_19;Контейнер звезд
+Mystery_Valentines_2026;Таинственный контейнер св. Валентина
+Mystery_Valentines26_description;Отпразднуйте День святого Валентина с этой ограниченной по времени загадочной коробкой. Шанс 1 к 6 получить Короля Лулу с его скином ко Дню святого Валентина! (Представлен в сетке скинов-бинго 2026. Бонусный жетон «Загадка 2026» со всеми другими результатами)
+Specimen_CE_11_Valentines; св. Валентина золотой Чунь Ли
+bundle_orbs_retaliate_5_24;Контратака пакет
+Valentines26_token_pack_1;Пакет Жетон «Пиксельное сердце»
+Valentines26_token_pack_2;Пакет Жетон «Пиксельное сердце»
+Valentines26_token_pack_3;Пакет Жетон «Пиксельное сердце»
+Valentines26_token_pack_description;Жетон «Пиксельное сердце» x200
+pack_conversion_feb_2026_1;Золотой котел
+pack_conversion_feb_2026_1_payment_text;Это уникальное предложение содержит:\n – 5 000 золота
+pack_conversion_feb_2026_2;Большой золотой котел
+pack_conversion_feb_2026_2_payment_text;Это уникальное предложение содержит:\n – 15 000 золота
+bundle_orbs_regenerate_5_22;Пакет вытягивания жизни
+bundle_bank_valentines26_t1;Престижный пакет «День святого Валентина»
+bundle_bank_valentines26_t2;Пакет ветерана «День святого Валентина»
+bundle_bank_valentines26_t3;Пакет ветерана «День святого Валентина»
+bundle_bank_valentines26_t4;Пакет «День святого Валентина»
+bundle_bank_valentines26_t5;Пакет «День святого Валентина»
+bundle_bank_valentines26_t1_payment_text;Этот пакет содержит: - 14000 золота - Жетон «Пиксельное сердце» x2400
+bundle_bank_valentines26_t2_payment_text;Этот пакет содержит: - 6500 золота - Жетон «Пиксельное сердце» x1100
+bundle_bank_valentines26_t3_payment_text;Этот пакет содержит: - 2400 золота - Жетон «Пиксельное сердце» x500
+bundle_bank_valentines26_t4_payment_text;Этот пакет содержит: - 1100 золота - Жетон «Пиксельное сердце» x200
+bundle_bank_valentines26_t5_payment_text;Этот пакет содержит: - 500 золота - Жетон «Пиксельное сердце» x100
+Specimen_AB_15;Глючное сердце
+caption_specimen_ab_15;Финальный босс из старой видеоигры, найденный Дарвином, который укоренился в реальности после некоторых довольно сомнительных связей. У него рефлексы и способы действий, очень похожие на боссов из прошлых дней: похищение принцесс, создание огромных комплексов с лифтами высотой в несколько километров... Все это для того, чтобы быть побежденным героями исключительной храбрости.
+Specimen_AB_15_attack_1;Взрывные сердца
+Specimen_AB_15_attack_1p;Взрывные сердца
+Specimen_AB_15_attack_2;Незначительный глюк
+Specimen_AB_15_attack_2p;Серьезный глюк
+Material_Valentines26_Token;Жетон «Пиксельное сердце»
+Specimen_AB_15_stand;Глючное сердце
