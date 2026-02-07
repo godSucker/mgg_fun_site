@@ -61,6 +61,7 @@ export const GACHA_NAME_RU: Record<string, string> = {
   vegetal: 'Фотосинтез',
   girl: 'Хищницы',
   olympics: 'Кровавые игры',
+  checkmate: 'Шахматы'
 };
 
 export const GACHA_COVERS: Partial<Record<string, string>> = {
@@ -78,11 +79,12 @@ export const GACHA_COVERS: Partial<Record<string, string>> = {
   gothic: '/reactor/gotic.webp',
   olympians: '/reactor/gods.webp',
   fantasy: '/reactor/fantasy.webp',
-  elements: '/reactor/element.webp',
+  elements: '/reactor/elements.webp',
   music: '/reactor/disco.webp',
   olympics: '/reactor/bloody_games.webp',
   gachaboss: '/reactor/bigboss.webp',
   vegetal: '/reactor/photosintez.webp',
+  checkmate: '/reactor/checkmate.webp',
 };
 
 export const mutantNames: Record<string, string> = mutantNamesRaw;

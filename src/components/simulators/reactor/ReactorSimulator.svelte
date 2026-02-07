@@ -216,7 +216,7 @@
 
     <div class="slot-track">
       {#each baseRewards as reward (reward.specimen)}
-        <div class={`slot-card card-clipped-corners ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${lastResult?.item.specimen === reward.specimen ? 'active' : ''}`}>
+        <div class={`slot-card ${unlocked.has(reward.specimen) ? 'unlocked' : ''} ${lastResult?.item.specimen === reward.specimen ? 'active' : ''}`}>
           <div class="slot-inner">
             <div class="slot-top">
               {#if STAR_ICON[reward.stars]}
@@ -241,7 +241,7 @@
       {/each}
 
       {#if completionReward}
-        <div class={`slot-card card-clipped-corners completion ${completed ? 'unlocked' : ''} ${lastResult?.item.specimen === completionReward.specimen ? 'active' : ''}`}>
+        <div class={`slot-card completion ${completed ? 'unlocked' : ''} ${lastResult?.item.specimen === completionReward.specimen ? 'active' : ''}`}>
           <div class="slot-inner">
             <div class="slot-top">
               <span class="completion-label">Награда</span>
@@ -346,7 +346,36 @@
 
 <style>
   .reactor-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(225px, 1fr); gap: 2rem; align-items: start; }
-  .reactor-stage { padding: 2rem; border-radius: 24px; background: radial-gradient(circle at top, rgba(62, 84, 122, 0.35), transparent 60%), linear-gradient(145deg, rgba(14, 23, 42, 0.95), rgba(7, 11, 22, 0.95)); border: 1px solid rgba(59, 130, 246, 0.25); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); }
+  .reactor-stage {
+    padding: 2rem;
+    border-radius: 24px;
+    /* UPDATED: Use gacha_background.webp texture */
+    background-image: url('/reactor/gacha_background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Dark overlay for better text contrast */
+    position: relative;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Dark overlay for better readability */
+  .reactor-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 24px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ensure content is above overlay */
+  .reactor-stage > * {
+    position: relative;
+    z-index: 1;
+  }
   .stage-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
   .stage-header h1 { margin: 0; font-size: 1.8rem; color: #f1f5f9; }
   .stage-header p { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.9rem; }
@@ -469,11 +498,5 @@
     .spin {
       padding: 1rem;
     }
-  }
-
-  /* Класс для эффекта срезанных углов */
-  .card-clipped-corners {
-    -webkit-clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px);
-    clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px);
   }
 </style>

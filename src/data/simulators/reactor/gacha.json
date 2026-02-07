@@ -815,5 +815,48 @@
       "odds": 11,
       "bonus": 10
     }
-  }
-}
+  },
+  "checkmate": {
+    "token_cost": 5,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_checkmate",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_CF_04",
+        "stars": 2,
+        "odds": 32,
+        "bonus": -10
+      },
+      {
+        "specimen": "Specimen_FE_06",
+        "stars": 3,
+        "odds": 23,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_BA_06",
+        "stars": 2,
+        "odds": 20,
+        "bonus": -20
+      },
+      {
+        "specimen": "Specimen_AC_04",
+        "stars": 0,
+        "odds": 15,
+        "bonus": 15
+      },
+      {
+        "specimen": "Specimen_E_03",
+        "stars": 4,
+        "odds": 10,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_CC_14",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 0
+     }
+   }
+ }

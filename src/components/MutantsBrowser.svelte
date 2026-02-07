@@ -169,7 +169,8 @@
   let query = '';
   let gene1Sel = '';
   let gene2Sel = '';
-  $: geneSel = [gene1Sel, gene2Sel].filter(Boolean).sort().join('');
+  // UPDATED: Don't combine genes into string, check each separately for "contains" match
+  $: selectedGenes = [gene1Sel, gene2Sel].filter(Boolean).map(g => g.toUpperCase());
 
   $: typeOptions = uniq(items.map(it => it?.type).filter(Boolean))
       .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru'));
@@ -283,7 +284,7 @@
   }
 
   // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ С КЭШИРОВАНИЕМ
-  $: filteredMutants = memo(getCacheKey(query, geneSel, typeSel, bingoSel, starSelMutants), () => {
+  $: filteredMutants = memo(getCacheKey(query, selectedGenes.join(','), typeSel, bingoSel, starSelMutants), () => {
     return (() => {
     const q = query ? query.trim().toLowerCase() : null;
     const normalizedQ = q ? normalizeForSearch(q) : null;
@@ -308,8 +309,12 @@
 
       // Если ищем по имени, пропускаем остальные фильтры
       if (!isSearching) {
-        // Фильтр генов
-        if (geneSel && m.code !== geneSel) continue;
+        // Фильтр генов: UPDATED to check if mutant HAS selected gene(s)
+        if (selectedGenes.length > 0) {
+          const mutantGenes = m.code.split('');
+          const hasAllSelected = selectedGenes.every(g => mutantGenes.includes(g));
+          if (!hasAllSelected) continue;
+        }
 
         // Поиск по типу (с учетом синонимов для Реактора)
         if (sType) {
@@ -393,7 +398,7 @@
   });
 
   // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ СКИНОВ С КЭШИРОВАНИЕМ
-  $: filteredSkins = memo(getCacheKey(query, geneSel, typeSel, '', starSelSkins), () => {
+  $: filteredSkins = memo(getCacheKey(query, selectedGenes.join(','), typeSel, '', starSelSkins), () => {
     return (() => {
     const q = query ? query.trim().toLowerCase() : null;
     const normalizedQ = q ? normalizeForSearch(q) : null;
@@ -409,7 +414,12 @@
         res.push(it);
         continue;
       }
-      if (geneSel && m.code !== geneSel) continue;
+      // UPDATED: Check if skin HAS selected gene(s)
+      if (selectedGenes.length > 0) {
+        const mutantGenes = m.code.split('');
+        const hasAllSelected = selectedGenes.every(g => mutantGenes.includes(g));
+        if (!hasAllSelected) continue;
+      }
       if (checkStars && m.starKey !== targetStar) continue;
       res.push(it);
     }
@@ -420,7 +430,7 @@
   let pageSize = 20;
   let currentPage = 1;
   $: {
-    mode; query; geneSel; typeSel; bingoSel; starSelMutants; starSelSkins;
+    mode; query; gene1Sel; gene2Sel; typeSel; bingoSel; starSelMutants; starSelSkins;
     currentPage = 1;
   }
   $: endIndex = pageSize * currentPage;

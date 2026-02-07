@@ -1,13 +1,46 @@
 <script lang="ts">
   import { secretCombos } from '@/lib/secretCombos';
   import normalMutants from '@/data/mutants/normal.json';
+  // Bug fix #2: Import all tiers to include unique mutants
+  import bronzeMutants from '@/data/mutants/bronze.json';
+  import silverMutants from '@/data/mutants/silver.json';
+  import goldMutants from '@/data/mutants/gold.json';
+  import platinumMutants from '@/data/mutants/platinum.json';
   import { calculateBreeding, findParentsFor } from '@/lib/breeding/breeding';
   import type { Mutant, BreedingResult, ParentPair } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
 
+  // Bug fix #2: Helper to extract baseId (remove star suffix)
+  const baseIdOf = (id: string) =>
+    String(id ?? '')
+      .toLowerCase()
+      .replace(/_(bronze|silver|gold|platinum|plat)$/i, '');
+
   // --- DATA ---
+  // Bug fix #2: Start with all normal mutants
+  const normalData = normalMutants.map(m => ({ ...m, star: 'normal' }));
+  const normalBaseIds = new Set(normalData.map(m => baseIdOf(String(m.id))));
+
+  // Bug fix #2: Add unique mutants from other tiers (not present in normal.json)
+  const uniqueBronze = bronzeMutants
+    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
+    .map(m => ({ ...m, star: 'bronze' }));
+  const uniqueSilver = silverMutants
+    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
+    .map(m => ({ ...m, star: 'silver' }));
+  const uniqueGold = goldMutants
+    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
+    .map(m => ({ ...m, star: 'gold' }));
+  const uniquePlatinum = platinumMutants
+    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
+    .map(m => ({ ...m, star: 'platinum' }));
+
   const rawData = [
-    ...normalMutants.map(m => ({ ...m, star: 'normal' }))
+    ...normalData,
+    ...uniqueBronze,
+    ...uniqueSilver,
+    ...uniqueGold,
+    ...uniquePlatinum
   ];
 
   const allMutants: Mutant[] = (rawData as any[]).map((m: any) => ({
@@ -77,29 +110,60 @@
   let p2: Mutant | null = null;
   let target: Mutant | null = null;
   let search = '';
-  let filterGene = 'all';
+  // Bug fix #10: Add dual gene filter support
+  let filterGene1 = '';
+  let filterGene2 = '';
+  // Sorting: 'gene' | 'nameAsc' | 'nameDesc'
+  let sortMode: 'gene' | 'nameAsc' | 'nameDesc' = 'gene';
 
   // Вспомогательная функция для получения массива генов
   const getGenesArray = (m: Mutant) => {
-      const gStr = Array.isArray(m.genes) ? m.genes[0] : m.genes;
+      const gStr = Array.isArray(m.genes) ? m.genes.join('') : m.genes;
       return (gStr || '').toUpperCase().split('');
   };
 
+  // Получить все гены для отображения (показываем все, включая дубликаты)
+  const getAllGenes = (m: Mutant): string[] => {
+      const genes = getGenesArray(m);
+      // Для Single (A) - показываем один раз
+      // Для Mono (AA) - показываем ОБА (AA)
+      // Для Hybrid (AB) - показываем оба (AB)
+      if (genes.length === 1) return [genes[0]];
+      return genes; // Возвращаем все гены, включая дубликаты
+  };
+
   $: filteredList = allMutants.filter(m => {
-    if (filterGene === 'recipe') return secretNames.has(normalize(getName(m)));
-    
+    // Check for recipe/secret filter
+    const isRecipeFilter = filterGene1 === 'recipe' || filterGene2 === 'recipe';
+    if (isRecipeFilter) return secretNames.has(normalize(getName(m)));
+
     const searchLower = search.toLowerCase().trim();
     const nameMatch = !searchLower || getName(m).toLowerCase().includes(searchLower);
 
     const mGenes = getGenesArray(m);
-    const geneMatch = filterGene === 'all' || mGenes.includes(filterGene.toUpperCase());
-    
+
+    // UPDATED: Show all mutants that HAVE the selected gene(s)
+    let geneMatch = true;
+    if (filterGene1) {
+      geneMatch = geneMatch && mGenes.includes(filterGene1.toUpperCase());
+    }
+    if (filterGene2) {
+      geneMatch = geneMatch && mGenes.includes(filterGene2.toUpperCase());
+    }
+
     return geneMatch && nameMatch;
   }).sort((a, b) => {
-      const rankA = getPrimaryGeneRank(a);
-      const rankB = getPrimaryGeneRank(b);
-      if (rankA !== rankB) return rankA - rankB;
-      return getName(a).localeCompare(getName(b), 'ru');
+      if (sortMode === 'nameAsc') {
+        return getName(a).localeCompare(getName(b), 'ru');
+      } else if (sortMode === 'nameDesc') {
+        return getName(b).localeCompare(getName(a), 'ru');
+      } else {
+        // sortMode === 'gene'
+        const rankA = getPrimaryGeneRank(a);
+        const rankB = getPrimaryGeneRank(b);
+        if (rankA !== rankB) return rankA - rankB;
+        return getName(a).localeCompare(getName(b), 'ru');
+      }
   });
 
   // --- LOGIC ---
@@ -130,20 +194,29 @@
 
   function handleCardClick(m: Mutant) {
     const isSecret = secretNames.has(normalize(getName(m)));
+    const isRecipeFilter = filterGene1 === 'recipe' || filterGene2 === 'recipe';
 
     if (window.innerWidth < 1024) {
         mobileTab = 'lab';
     }
 
-    if (filterGene === 'recipe' || (isSecret && mode === 'reverse')) {
+    if (isRecipeFilter || (isSecret && mode === 'reverse')) {
         mode = 'reverse'; target = m; return;
     }
     if (mode === 'calc') {
-      if (!p1) p1 = m;
-      else if (!p2 && p1.id !== m.id) p2 = m;
-      else if (p1.id === m.id) p1 = null;
-      else if (p2?.id === m.id) p2 = null;
-      else { p1 = m; p2 = null; }
+      // Bug fix #10: Allow selecting same mutant twice
+      if (!p1) {
+        p1 = m;
+      } else if (!p2) {
+        p2 = m; // Can be same as p1
+      } else if (p1.id === m.id && p1.star === m.star) {
+        p1 = null;
+      } else if (p2?.id === m.id && p2?.star === m.star) {
+        p2 = null;
+      } else {
+        p1 = m;
+        p2 = null;
+      }
     } else {
       target = (target?.id === m.id) ? null : m;
     }
@@ -184,29 +257,47 @@
             <div class="calc-container" in:fly={{y:20, duration:400}}>
                 <!-- PARENT SLOTS -->
                 <div class="slots-area">
-                    <button class="slot {p1 ? 'filled' : 'empty'}" on:click={() => { p1 = null; mobileTab = 'list'; }}>
+                    <div class="parent-slot-wrapper">
+                        <button class="slot {p1 ? 'filled' : 'empty'}" on:click={() => { p1 = null; mobileTab = 'list'; }}>
+                            {#if p1}
+                                <img src={getImageSrc(p1)} alt={p1.name} class="mutant-img"/>
+                                <div class="slot-label">{getName(p1)}</div>
+                                <div class="remove-icon">✕</div>
+                            {:else}
+                                 <div class="plus">+</div>
+                                 <span class="label">Нажмите для выбора</span>
+                            {/if}
+                        </button>
                         {#if p1}
-                            <img src={getImageSrc(p1)} alt={p1.name} class="mutant-img"/>
-                            <div class="slot-label">{getName(p1)}</div>
-                            <div class="remove-icon">✕</div>
-                        {:else}
-                             <div class="plus">+</div>
-                             <span class="label">Нажмите для выбора</span>
+                            <div class="parent-genes" in:fade>
+                                {#each getAllGenes(p1) as g}
+                                    <img src={getGeneIcon(g)} alt={g} class="parent-gene-icon" title="Gene {g}" />
+                                {/each}
+                            </div>
                         {/if}
-                    </button>
+                    </div>
 
                     <div class="cross-icon">✕</div>
 
-                    <button class="slot {p2 ? 'filled' : 'empty'}" on:click={() => { p2 = null; mobileTab = 'list'; }}>
+                    <div class="parent-slot-wrapper">
+                        <button class="slot {p2 ? 'filled' : 'empty'}" on:click={() => { p2 = null; mobileTab = 'list'; }}>
+                            {#if p2}
+                                <img src={getImageSrc(p2)} alt={p2.name} class="mutant-img"/>
+                                <div class="slot-label">{getName(p2)}</div>
+                                <div class="remove-icon">✕</div>
+                            {:else}
+                                 <div class="plus">+</div>
+                                 <span class="label">Нажмите для выбора</span>
+                            {/if}
+                        </button>
                         {#if p2}
-                            <img src={getImageSrc(p2)} alt={p2.name} class="mutant-img"/>
-                            <div class="slot-label">{getName(p2)}</div>
-                            <div class="remove-icon">✕</div>
-                        {:else}
-                             <div class="plus">+</div>
-                             <span class="label">Нажмите для выбора</span>
+                            <div class="parent-genes" in:fade>
+                                {#each getAllGenes(p2) as g}
+                                    <img src={getGeneIcon(g)} alt={g} class="parent-gene-icon" title="Gene {g}" />
+                                {/each}
+                            </div>
                         {/if}
-                    </button>
+                    </div>
                 </div>
 
                 <!-- RESULTS -->
@@ -229,8 +320,8 @@
                                             <div class="card-header-row">
                                                 <div class="card-title">{getName(res.child)}</div>
                                                 <div class="card-genes">
-                                                    {#each getGenesArray(res.child) as g}
-                                                        <img src={getGeneIcon(g)} alt={g} class="gene-mini-icon" />
+                                                    {#each getAllGenes(res.child) as g}
+                                                        <img src={getGeneIcon(g)} alt={g} class="gene-result-icon" title="Gene {g}" />
                                                     {/each}
                                                 </div>
                                             </div>
@@ -333,18 +424,57 @@
               <input type="text" bind:value={search} placeholder="Поиск мутанта..." />
               <span class="icon">🔍</span>
           </div>
-          
-          <div class="filters">
-              <button class="filter-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>ВСЕ</button>
-              {#each ['A','B','C','D','E','F'] as g}
-                  <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" on:click={() => filterGene=g}>
-                      <img src={getGeneIcon(g)} alt={g}/>
-                  </button>
-              {/each}
-               <button class="filter-chip secret-chip {filterGene==='recipe' ? 'active' : ''}" on:click={() => filterGene='recipe'}>
-                   <span class="star">★</span>
-                   <span>Секреты</span>
-               </button>
+
+          <!-- Bug fix #10: Dual gene filter rows -->
+          <div class="gene-filters">
+              <div class="gene-row">
+                  <span class="gene-label">Ген 1:</span>
+                  {#each ['','A','B','C','D','E','F'] as g}
+                      <button
+                          class="filter-chip gene-chip {filterGene1===g ? 'active' : ''}"
+                          on:click={() => { filterGene1 = filterGene1===g ? '' : g; }}
+                          title={g || 'Все'}
+                      >
+                          {#if g}
+                              <img src={getGeneIcon(g)} alt={g}/>
+                          {:else}
+                              <span class="all-text">ВСЕ</span>
+                          {/if}
+                      </button>
+                  {/each}
+              </div>
+
+              <div class="gene-row">
+                  <span class="gene-label">Ген 2:</span>
+                  {#each ['','A','B','C','D','E','F'] as g}
+                      <button
+                          class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}"
+                          on:click={() => { filterGene2 = filterGene2===g ? '' : g; }}
+                          title={g || 'Все'}
+                      >
+                          {#if g}
+                              <img src={getGeneIcon(g)} alt={g}/>
+                          {:else}
+                              <span class="all-text">ВСЕ</span>
+                          {/if}
+                      </button>
+                  {/each}
+              </div>
+
+              <div class="filters">
+                   <button class="filter-chip secret-chip {filterGene1==='recipe' ? 'active' : ''}" on:click={() => { filterGene1='recipe'; filterGene2=''; }}>
+                       <span class="star">★</span>
+                       <span>Секреты</span>
+                   </button>
+              </div>
+
+              <!-- Sort controls -->
+              <div class="sort-controls">
+                  <span class="sort-label">Сортировка:</span>
+                  <button class="sort-btn {sortMode==='gene' ? 'active' : ''}" on:click={() => sortMode='gene'}>Ген</button>
+                  <button class="sort-btn {sortMode==='nameAsc' ? 'active' : ''}" on:click={() => sortMode='nameAsc'}>А-Я</button>
+                  <button class="sort-btn {sortMode==='nameDesc' ? 'active' : ''}" on:click={() => sortMode='nameDesc'}>Я-А</button>
+              </div>
           </div>
       </div>
 
@@ -537,10 +667,40 @@
 
   /* SLOTS */
   .slots-area {
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: flex-start; justify-content: center;
     gap: 1rem;
   }
-  
+
+  .parent-slot-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .parent-genes {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.375rem; /* Reduced from 0.375rem 0.5rem (bug fix #6) */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(132, 204, 22, 0.2);
+  }
+
+  .parent-gene-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    transition: transform 0.2s;
+  }
+
+  .parent-gene-icon:hover {
+    transform: scale(1.1);
+  }
+
   .slot {
     width: 100px; height: 100px;
     border: 2px dashed #334155;
@@ -552,13 +712,13 @@
     transition: all 0.2s;
     cursor: pointer;
   }
-  
+
   .slot:hover { border-color: #84cc16; background: rgba(30, 41, 59, 0.5); }
   .slot.filled { border-style: solid; border-color: rgba(132, 204, 22, 0.5); background: #0f172a; }
-  
+
   .slot .plus { font-size: 2rem; color: #475569; margin-bottom: 0.2rem; }
   .slot .label { font-size: 0.6rem; text-transform: uppercase; font-weight: 700; color: #475569; }
-  
+
   .mutant-img { width: 85%; height: 85%; object-fit: contain; z-index: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
   .slot-label {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -573,8 +733,8 @@
     /* Скрываем на мобильных, так как клик по слоту сам переключает */
     @media (max-width: 1023px) { display: none; }
   }
-  
-  .cross-icon { font-size: 1.2rem; color: #475569; }
+
+  .cross-icon { font-size: 1.2rem; color: #475569; align-self: center; margin-top: 2rem; }
 
   @media (min-width: 1024px) {
     .slots-area { gap: 3rem; }
@@ -582,6 +742,9 @@
     .slot .plus { font-size: 3rem; }
     .slot .label { font-size: 0.75rem; }
     .slot-label { font-size: 0.8rem; padding: 6px; }
+    .parent-gene-icon { width: 40px; height: 40px; }
+    .parent-genes { gap: 0.5rem; padding: 0.5rem 0.75rem; }
+    .cross-icon { margin-top: 3rem; }
   }
 
   /* RESULTS */
@@ -627,8 +790,13 @@
   
   .card-title { font-weight: 700; font-size: 0.9rem; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   
-  .card-genes { display: flex; gap: 2px; }
-  .gene-mini-icon { width: 16px; height: 16px; object-fit: contain; }
+  .card-genes { display: flex; gap: 4px; flex-shrink: 0; }
+  .gene-result-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+  }
 
   .card-meta { display: flex; gap: 0.5rem; font-size: 0.7rem; color: #64748b; font-weight: 600; align-items: center; }
   .secret-tag { color: #d946ef; background: rgba(217, 70, 239, 0.1); padding: 2px 4px; border-radius: 4px; }
@@ -712,10 +880,32 @@
   }
   .search-box .icon { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
+  /* Bug fix #10: Gene filter styles */
+  .gene-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .gene-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .gene-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    min-width: 50px;
+  }
+
   .filters {
     display: flex; flex-wrap: wrap; gap: 0.5rem;
   }
-  
+
   .filter-chip {
     height: 36px;
     padding: 0 0.8rem;
@@ -727,11 +917,52 @@
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
   }
-  
+
   .filter-chip.active { background: #e2e8f0; color: #0f172a; border-color: #fff; transform: scale(1.05); }
-  
+
   .gene-chip { width: 36px; padding: 0; }
   .gene-chip img { width: 20px; height: 20px; }
+  .gene-chip .all-text { font-size: 0.65rem; font-weight: 800; }
+
+  /* Sort controls */
+  .sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .sort-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+  }
+
+  .sort-btn {
+    height: 32px;
+    padding: 0 0.75rem;
+    border-radius: 6px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    font-size: 0.7rem;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .sort-btn.active {
+    background: #84cc16;
+    color: #000;
+    border-color: #84cc16;
+  }
+
+  .sort-btn:hover {
+    background: #334155;
+  }
+
+  .sort-btn.active:hover {
+    background: #65a30d;
+  }
   
   .secret-chip {
     gap: 0.3rem;

@@ -237,6 +237,10 @@
     const lvl1 = base?.lvl1 ?? {};
     const lvl30 = base?.lvl30 ?? {};
     const meta = {};
+    // Bug fix #3: Get mutant's first gene as fallback for attack genes
+    const mutantGenes = Array.isArray(mutant?.genes) ? mutant.genes : [mutant?.genes];
+    const fallbackGene = mutantGenes[0] ? String(mutantGenes[0]).toLowerCase() : 'neutro';
+
     for (const idx of [1, 2]) {
       const geneRaw = firstDefined(
         base?.[`atk${idx}_gene`],
@@ -254,7 +258,10 @@
         lvl30?.[`atk${idx}_name`],
         lvl1?.[`atk${idx}_name`]
       );
-      const gene = normalizeAttackGene(geneRaw);
+      // Bug fix #3: Use mutant gene as fallback if attack gene is not specified at all
+      const normalizedGene = normalizeAttackGene(geneRaw);
+      const gene = normalizedGene || fallbackGene;
+
       meta[idx] = {
         gene,
         geneIcon: attackGeneIconPath(gene),
@@ -380,9 +387,7 @@
   function abilityLabel(code){
     if (!code) return '—';
     const ru = ABILITY_RU[code] || ABILITY_RU[code.toLowerCase()] || niceLabel(code);
-    const lower = code.toLowerCase();
-    if (lower.endsWith('_plus_plus')) return `${ru} ++`;
-    if (lower.endsWith('_plus')) return `${ru} +`;
+    // Removed "+" suffix as per bug fix #4
     return ru;
   }
 
@@ -587,6 +592,7 @@
   // Состояние интерфейса
   let showCatalog = true; // Показывать ли поиск/каталог слева
   let isCopying = false;  // Состояние "Копируется..."
+  let showCopiedToast = false; // Bug fix #1: Show "Copied to clipboard" notification
   let dropdownHost = null;
   let openDropdown = null; // 'basic-i' | 'special' | null
 
@@ -1163,7 +1169,10 @@
         try {
           const item = new ClipboardItem({ 'image/png': blob });
           await navigator.clipboard.write([item]);
-          setTimeout(() => isCopying = false, 2000);
+          isCopying = false;
+          // Bug fix #1: Show success toast
+          showCopiedToast = true;
+          setTimeout(() => showCopiedToast = false, 3000);
         } catch (clipboardErr) {
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
@@ -1189,6 +1198,13 @@
 
 
 <svelte:window on:click={windowClick} />
+
+<!-- Bug fix #1: Toast notification for screenshot copied -->
+{#if showCopiedToast}
+  <div class="toast-notification">
+    ✓ Скриншот сохранен в буфер обмена
+  </div>
+{/if}
 
 <div class="stats-page" class:single-col={!showCatalog}>
 
@@ -1445,6 +1461,42 @@
 
 <style>
 
+/* Bug fix #1: Toast notification styles */
+  .toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 9999;
+    animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
 /* --- ГЕНЫ НАД МУТАНТОМ --- */
   .hero-genes {
     display: flex;
@@ -1624,14 +1676,16 @@
     overflow: hidden;
   }
   .slot-bg{ width:100%; height:100%; object-fit:cover; display: block; }
-  /* Сфера идеально вписывается в слот (на 2px меньше) */
+  /* Сфера идеально вписывается в слот (на 2px меньше) - Bug fix #8: auto-scaling */
   .orb {
     position: absolute;
     top: 2px;
     left: 2px;
     right: 2px;
     bottom: 2px;
-    object-fit: cover;
+    width: calc(100% - 4px); /* Explicit width to prevent overflow */
+    height: calc(100% - 4px); /* Explicit height to prevent overflow */
+    object-fit: contain; /* Changed from cover to contain for auto-scaling */
     border-radius: 12px;
   }
 
@@ -1837,20 +1891,78 @@
 
   @media (max-width: 768px) {
     .stats-page { display: grid; grid-template-columns: 1fr 280px; gap: 12px; padding: 12px; }
-    .stats-page.single-col { grid-template-columns: 1fr; }
-    .panel { order: 1; padding: 14px; }
+    .stats-page.single-col {
+      grid-template-columns: 1fr;
+      /* Bug fix #7: Center panel on mobile */
+      justify-items: center;
+    }
+    .panel {
+      order: 1;
+      padding: 14px;
+      /* Bug fix #7: Center panel content and adjust width */
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
     .catalog { order: 2; padding: 10px; }
 
     .row.attack-row { flex-direction: column; gap: 8px; padding: 10px; }
     .ability-divider { display: none !important; }
-    .mut-figure .texture { width: 160px; height: 160px; transform: translateY(24px); }
-    .mut-figure::after { width: 160px; bottom: -22px; height: 50px; }
+
+    /* Bug fix #7: Scale mutant texture appropriately on mobile */
+    .mut-figure .texture {
+      width: 180px;
+      height: 180px;
+      transform: translateY(24px);
+    }
+    .mut-figure::after { width: 180px; bottom: -22px; height: 50px; }
+
+    /* Bug fix #7: Scale gene icons on mobile */
+    .hero-genes img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Bug fix #7: Scale orb slots on mobile */
+    .slot-btn {
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+    }
+
+    .slots { gap: 12px; }
   }
 
   @media (max-width: 480px) {
     .stats-page { grid-template-columns: 1fr; gap: 8px; padding: 8px; }
-    .stats-page.single-col { grid-template-columns: 1fr; }
+    .stats-page.single-col {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
 
-    .mut-figure .texture { width: 140px; height: 140px; transform: translateY(20px); }
+    .panel {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Bug fix #7: Further scale down on very small screens */
+    .mut-figure .texture { width: 160px; height: 160px; transform: translateY(20px); }
+    .mut-figure::after { width: 160px; bottom: -20px; height: 45px; }
+
+    .hero-genes img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .slot-btn {
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      min-height: 60px;
+    }
+
+    .slots { gap: 10px; }
   }
 </style>

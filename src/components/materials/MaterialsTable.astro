@@ -321,5 +321,21 @@ const toChip = (s: SourceInfo) => {
     .td.name { grid-column: 2 / -1; }
     .td.desc { grid-column: 1 / -1; padding-top: 0; }
     .td.srcs { grid-column: 1 / -1; padding-top: 0; }
+
+    /* Bug fix #9: Fixed orb sizes on mobile to match desktop */
+    .materials[data-title="Сферы"] .thumb,
+    .materials[data-title="Бустеры"] .thumb {
+      width: 84px;
+      height: 84px;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .materials[data-title="Сферы"] .thumb img,
+    .materials[data-title="Бустеры"] .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 </style>

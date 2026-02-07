@@ -273,8 +273,14 @@ $: displayBingo = (() => {
     const atk2 = calcAtk2(level);
 
     const baseLvl = level === 1 ? baseStats.lvl1 : baseStats.lvl30;
-    const gene1 = baseLvl?.atk1_gene || 'neutro';
-    const gene2 = baseLvl?.atk2_gene || 'neutro';
+    // UPDATED: Use mutant genes by index: atk1 = gene[0], atk2 = gene[1]
+    const mutantGenes = Array.isArray(genes) ? genes : [genes];
+    const firstGene = mutantGenes[0] ? String(mutantGenes[0]).toLowerCase() : 'neutro';
+    const secondGene = mutantGenes[1] ? String(mutantGenes[1]).toLowerCase() : firstGene;
+
+    // If explicitly specified in data, use that; otherwise use mutant genes
+    const gene1 = baseLvl?.atk1_gene || firstGene;
+    const gene2 = baseLvl?.atk2_gene || secondGene;
     const aoe1 = baseLvl?.atk1_AOE ?? false;
     const aoe2 = baseLvl?.atk2_AOE ?? false;
 
@@ -585,10 +591,11 @@ $: displayBingo = (() => {
             <span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Инкубация:</span>
             <span class="text-white">{incubTime ?? '—'}</span>{#if incubTime != null}<span class="opacity-80"> мин.</span>{/if}
           </div>
-          <div class="flex items-center gap-2 leading-tight">
+          <!-- REMOVED: Chance field as per bug fix #5 -->
+          <!-- <div class="flex items-center gap-2 leading-tight">
             <span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Шанс:</span>
             <span class="text-white">{chanceVal ?? '—'}</span>{#if chanceVal != null}<span class="opacity-80"> %</span>{/if}
-          </div>
+          </div> -->
         </div>
       </div>
 

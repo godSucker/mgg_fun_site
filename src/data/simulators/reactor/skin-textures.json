@@ -236,5 +236,10 @@
   "Specimen_FF_04": "/textures_by_skins/textures_by_skin/full-char/FF_04_winter.webp",
   "Specimen_FF_06": "/textures_by_skins/textures_by_skin/full-char/FF_06_western.webp",
   "Specimen_FF_08": "/textures_by_skins/textures_by_skin/full-char/FF_08_winter.webp",
-  "Specimen_FF_09": "/textures_by_skins/textures_by_skin/full-char/FF_09_halloween.webp"
+  "Specimen_FF_09": "/textures_by_skins/textures_by_skin/full-char/FF_09_halloween.webp",
+  "Specimen_AC_04": "/textures_by_skins/textures_by_skin/full-char/AC_04_chess.webp",
+  "Specimen_FE_06": "/textures_by_skins/textures_by_skin/full-char/FE_06_chess.webp",
+  "Specimen_BA_06": "/textures_by_skins/textures_by_skin/full-char/BA_06_chess.webp",
+  "Specimen_CF_04": "/textures_by_skins/textures_by_skin/full-char/CF_04_chess.webp",
+  "Specimen_E_03": "/textures_by_skins/textures_by_skin/full-char/E_03_chess.webp"
 }

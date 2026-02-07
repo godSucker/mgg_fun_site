@@ -29,3 +29,10 @@ dist/
 # Misc
 mutants_site/src/assets
 coverage/
+CLAUDE.md
+events.txt
+.venv_orb/
+.claudeskills/
+.claude/
+bot/
+tools/
