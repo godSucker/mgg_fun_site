@@ -5821,7 +5821,7 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 6,
                 "type": "entity"
             },
@@ -5841,7 +5841,7 @@
                 "type": "entity"
             },
             {
-                "name": "Star_Gold",
+                "name": "Star_Platinum",
                 "amount": 2,
                 "type": "entity"
             },

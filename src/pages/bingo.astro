@@ -112,8 +112,8 @@ function getBingoLayout(bingo: Bingo) {
 
   if (bingo.id === 'Starter') {
     topHeaders[1] = GENE_ICONS.A;
-    topHeaders[2] = GENE_ICONS.D;
-    topHeaders[3] = GENE_ICONS.F;
+    topHeaders[2] = GENE_ICONS.B;
+    topHeaders[3] = GENE_ICONS.C;
   } else if (['2025_skins', '2025_mutants', '2025_events'].includes(bingo.id)) {
     for (let i = 0; i < cols; i++) topHeaders[i] = `/bingo/up_${i + 1}.webp`;
     for (let i = 0; i < rows; i++) sideHeaders[i] = `/bingo/up_${i + 1}.webp`;
@@ -140,8 +140,8 @@ function getBingoLayout(bingo: Bingo) {
   } else if (bingo.id === 'starter_plat') {
     // Платиновое бинго - как Базовое (Starter)
     topHeaders[1] = GENE_ICONS.A;
-    topHeaders[2] = GENE_ICONS.D;
-    topHeaders[3] = GENE_ICONS.F;
+    topHeaders[2] = GENE_ICONS.B;
+    topHeaders[3] = GENE_ICONS.C;
   } else if (bingo.id === 'heroic') {
     // Герои - по аналогии с Грохот
     for (let i = 0; i < cols; i++) topHeaders[i] = `/bingo/multi_up_${i + 1}.webp`;

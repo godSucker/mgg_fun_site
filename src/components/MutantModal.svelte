@@ -273,16 +273,40 @@ $: displayBingo = (() => {
     const atk2 = calcAtk2(level);
 
     const baseLvl = level === 1 ? baseStats.lvl1 : baseStats.lvl30;
-    // UPDATED: Use mutant genes by index: atk1 = gene[0], atk2 = gene[1]
-    const mutantGenes = Array.isArray(genes) ? genes : [genes];
-    const firstGene = mutantGenes[0] ? String(mutantGenes[0]).toLowerCase() : 'neutro';
-    const secondGene = mutantGenes[1] ? String(mutantGenes[1]).toLowerCase() : firstGene;
+    const baseAll = baseStats; // Use full base_stats object
+    const baseLvl30 = baseStats.lvl30; // Always reference lvl30 for attack genes and AOE flags
+    
+    // Get attack genes from the correct source - always use lvl30 data for attack genes
+    // Use level-specific data if available, otherwise fall back to general data
+    // For consistency, if the game data doesn't specify attack genes, derive them from the mutant's genes
+    const gene1 = 
+      baseLvl30?.atk1_gene ??  // Always prioritize lvl30 data for attack genes
+      baseLvl?.atk1_gene ?? 
+      baseAll?.atk1_gene ?? 
+      mutant?.atk1_gene ?? 
+      (Array.isArray(genes) && genes[0] ? String(genes[0]).toLowerCase() : 'neutro');
+      
+    const gene2 = 
+      baseLvl30?.atk2_gene ??  // Always prioritize lvl30 data for attack genes
+      baseLvl?.atk2_gene ?? 
+      baseAll?.atk2_gene ?? 
+      mutant?.atk2_gene ?? 
+      // If no specific atk2_gene is defined anywhere, fall back to the second gene in the sequence
+      (Array.isArray(genes) && genes.length > 1 ? String(genes[1]).toLowerCase() : 
+       // For single-gene mutants, if no atk2_gene is defined, use the first gene
+       gene1);
 
-    // If explicitly specified in data, use that; otherwise use mutant genes
-    const gene1 = baseLvl?.atk1_gene || firstGene;
-    const gene2 = baseLvl?.atk2_gene || secondGene;
-    const aoe1 = baseLvl?.atk1_AOE ?? false;
-    const aoe2 = baseLvl?.atk2_AOE ?? false;
+    // Get AOE flags from the correct source - always use lvl30 data for AOE flags
+    const aoe1 = 
+      baseLvl30?.atk1_AOE ??  // Always use lvl30 for AOE flags
+      baseLvl?.atk1_AOE ?? 
+      baseAll?.atk1_AOE ?? 
+      false;
+    const aoe2 = 
+      baseLvl30?.atk2_AOE ??  // Always use lvl30 for AOE flags
+      baseLvl?.atk2_AOE ?? 
+      baseAll?.atk2_AOE ?? 
+      false;
 
     const list = (Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? [])) as any[];
 

@@ -25,7 +25,7 @@
         "silver": 1260,
         "atk1_gene": "a",
         "atk2_gene": "neutro",
-        "atk2_AOE": false
+        "atk1_AOE": true
       },
       "hp_base": 1819,
       "atk1_base": 274,
@@ -30464,7 +30464,7 @@
         "silver": 1260,
         "atk1_gene": "b",
         "atk2_gene": "a",
-        "atk2_AOE": false
+        "atk1_AOE": true
       },
       "hp_base": 2499,
       "atk1_base": 607,
@@ -38260,7 +38260,7 @@
         "speed": 6.06,
         "silver": 1260,
         "atk1_gene": "a",
-        "atk2_gene": "neutro",
+        "atk2_gene": "a",
         "atk2_AOE": true
       },
       "hp_base": 1688,
@@ -38492,7 +38492,7 @@
         "speed": 5.88,
         "silver": 1260,
         "atk1_gene": "f",
-        "atk2_gene": "neutro",
+        "atk2_gene": "f",
         "atk2_AOE": true
       },
       "hp_base": 1691,

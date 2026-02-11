@@ -1,14 +1,10 @@
 <script lang="ts">
   import MutantModal from './MutantModal.svelte';
   import { TYPE_RU, geneLabel, bingoLabel } from '@/lib/mutant-dicts';
+  import { normalizeSearch } from '@/lib/search-normalize';
 
-  // Нормализация текста для поиска: приводит к нижнему регистру и удаляет спецсимволы
-  function normalizeForSearch(text: string): string {
-    if (!text) return '';
-    return text
-      .toLowerCase()
-      .replace(/[^\w\u0400-\u04FF]/g, ''); // Оставляем только буквы/цифры и кириллицу
-  }
+  // Alias for backward compatibility
+  const normalizeForSearch = normalizeSearch;
 
   // Пропсы
   export let items: any[] = [];     // normal + bronze + silver + gold + platinum
@@ -309,7 +305,7 @@
 
       // Если ищем по имени, пропускаем остальные фильтры
       if (!isSearching) {
-        // Фильтр генов: UPDATED to check if mutant HAS selected gene(s)
+        // Фильтр генов: Check if mutant HAS selected gene(s) - similar to breeding simulator
         if (selectedGenes.length > 0) {
           const mutantGenes = m.code.split('');
           const hasAllSelected = selectedGenes.every(g => mutantGenes.includes(g));
@@ -414,7 +410,7 @@
         res.push(it);
         continue;
       }
-      // UPDATED: Check if skin HAS selected gene(s)
+      // UPDATED: Check if skin HAS selected gene(s) - similar to breeding simulator
       if (selectedGenes.length > 0) {
         const mutantGenes = m.code.split('');
         const hasAllSelected = selectedGenes.every(g => mutantGenes.includes(g));

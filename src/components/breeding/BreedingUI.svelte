@@ -1,46 +1,14 @@
 <script lang="ts">
   import { secretCombos } from '@/lib/secretCombos';
   import normalMutants from '@/data/mutants/normal.json';
-  // Bug fix #2: Import all tiers to include unique mutants
-  import bronzeMutants from '@/data/mutants/bronze.json';
-  import silverMutants from '@/data/mutants/silver.json';
-  import goldMutants from '@/data/mutants/gold.json';
-  import platinumMutants from '@/data/mutants/platinum.json';
   import { calculateBreeding, findParentsFor } from '@/lib/breeding/breeding';
   import type { Mutant, BreedingResult, ParentPair } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
-
-  // Bug fix #2: Helper to extract baseId (remove star suffix)
-  const baseIdOf = (id: string) =>
-    String(id ?? '')
-      .toLowerCase()
-      .replace(/_(bronze|silver|gold|platinum|plat)$/i, '');
+  import { normalizeSearch } from '@/lib/search-normalize';
 
   // --- DATA ---
-  // Bug fix #2: Start with all normal mutants
-  const normalData = normalMutants.map(m => ({ ...m, star: 'normal' }));
-  const normalBaseIds = new Set(normalData.map(m => baseIdOf(String(m.id))));
-
-  // Bug fix #2: Add unique mutants from other tiers (not present in normal.json)
-  const uniqueBronze = bronzeMutants
-    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
-    .map(m => ({ ...m, star: 'bronze' }));
-  const uniqueSilver = silverMutants
-    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
-    .map(m => ({ ...m, star: 'silver' }));
-  const uniqueGold = goldMutants
-    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
-    .map(m => ({ ...m, star: 'gold' }));
-  const uniquePlatinum = platinumMutants
-    .filter(m => !normalBaseIds.has(baseIdOf(String(m.id))))
-    .map(m => ({ ...m, star: 'platinum' }));
-
   const rawData = [
-    ...normalData,
-    ...uniqueBronze,
-    ...uniqueSilver,
-    ...uniqueGold,
-    ...uniquePlatinum
+    ...normalMutants.map(m => ({ ...m, star: 'normal' }))
   ];
 
   const allMutants: Mutant[] = (rawData as any[]).map((m: any) => ({
@@ -54,7 +22,7 @@
     image: m.image
   }));
 
-  const normalize = (n: string) => n ? n.toLowerCase().replace(/[^a-z0-9а-яё]/g, '') : '';
+  const normalize = normalizeSearch;
   const secretNames = new Set(secretCombos.map(s => normalize(s.childName)));
 
   // --- HELPERS ---
@@ -110,11 +78,8 @@
   let p2: Mutant | null = null;
   let target: Mutant | null = null;
   let search = '';
-  // Bug fix #10: Add dual gene filter support
-  let filterGene1 = '';
-  let filterGene2 = '';
-  // Sorting: 'gene' | 'nameAsc' | 'nameDesc'
-  let sortMode: 'gene' | 'nameAsc' | 'nameDesc' = 'gene';
+  let filterGene = 'all';
+  let filterGene2 = 'all'; // Added second gene filter
 
   // Вспомогательная функция для получения массива генов
   const getGenesArray = (m: Mutant) => {
@@ -133,37 +98,23 @@
   };
 
   $: filteredList = allMutants.filter(m => {
-    // Check for recipe/secret filter
-    const isRecipeFilter = filterGene1 === 'recipe' || filterGene2 === 'recipe';
-    if (isRecipeFilter) return secretNames.has(normalize(getName(m)));
+    if (filterGene === 'recipe') return secretNames.has(normalize(getName(m)));
 
-    const searchLower = search.toLowerCase().trim();
-    const nameMatch = !searchLower || getName(m).toLowerCase().includes(searchLower);
+    const normalizedSearch = normalizeSearch(search);
+    const nameMatch = !normalizedSearch || normalizeSearch(getName(m)).includes(normalizedSearch);
 
     const mGenes = getGenesArray(m);
+    const geneMatch = filterGene === 'all' || mGenes.includes(filterGene.toUpperCase());
+    
+    // Check second gene filter if it's set
+    const gene2Match = filterGene2 === 'all' || mGenes.includes(filterGene2.toUpperCase());
 
-    // UPDATED: Show all mutants that HAVE the selected gene(s)
-    let geneMatch = true;
-    if (filterGene1) {
-      geneMatch = geneMatch && mGenes.includes(filterGene1.toUpperCase());
-    }
-    if (filterGene2) {
-      geneMatch = geneMatch && mGenes.includes(filterGene2.toUpperCase());
-    }
-
-    return geneMatch && nameMatch;
+    return geneMatch && gene2Match && nameMatch;
   }).sort((a, b) => {
-      if (sortMode === 'nameAsc') {
-        return getName(a).localeCompare(getName(b), 'ru');
-      } else if (sortMode === 'nameDesc') {
-        return getName(b).localeCompare(getName(a), 'ru');
-      } else {
-        // sortMode === 'gene'
-        const rankA = getPrimaryGeneRank(a);
-        const rankB = getPrimaryGeneRank(b);
-        if (rankA !== rankB) return rankA - rankB;
-        return getName(a).localeCompare(getName(b), 'ru');
-      }
+      const rankA = getPrimaryGeneRank(a);
+      const rankB = getPrimaryGeneRank(b);
+      if (rankA !== rankB) return rankA - rankB;
+      return getName(a).localeCompare(getName(b), 'ru');
   });
 
   // --- LOGIC ---
@@ -194,29 +145,20 @@
 
   function handleCardClick(m: Mutant) {
     const isSecret = secretNames.has(normalize(getName(m)));
-    const isRecipeFilter = filterGene1 === 'recipe' || filterGene2 === 'recipe';
 
     if (window.innerWidth < 1024) {
         mobileTab = 'lab';
     }
 
-    if (isRecipeFilter || (isSecret && mode === 'reverse')) {
+    if (filterGene === 'recipe' || (isSecret && mode === 'reverse')) {
         mode = 'reverse'; target = m; return;
     }
     if (mode === 'calc') {
-      // Bug fix #10: Allow selecting same mutant twice
-      if (!p1) {
-        p1 = m;
-      } else if (!p2) {
-        p2 = m; // Can be same as p1
-      } else if (p1.id === m.id && p1.star === m.star) {
-        p1 = null;
-      } else if (p2?.id === m.id && p2?.star === m.star) {
-        p2 = null;
-      } else {
-        p1 = m;
-        p2 = null;
-      }
+      if (!p1) p1 = m;
+      else if (!p2) p2 = m;  // Allow same mutant for both parents
+      else if (p1.id === m.id) p1 = null;
+      else if (p2?.id === m.id) p2 = null;
+      else { p1 = m; p2 = null; }
     } else {
       target = (target?.id === m.id) ? null : m;
     }
@@ -424,57 +366,29 @@
               <input type="text" bind:value={search} placeholder="Поиск мутанта..." />
               <span class="icon">🔍</span>
           </div>
-
-          <!-- Bug fix #10: Dual gene filter rows -->
-          <div class="gene-filters">
-              <div class="gene-row">
-                  <span class="gene-label">Ген 1:</span>
-                  {#each ['','A','B','C','D','E','F'] as g}
-                      <button
-                          class="filter-chip gene-chip {filterGene1===g ? 'active' : ''}"
-                          on:click={() => { filterGene1 = filterGene1===g ? '' : g; }}
-                          title={g || 'Все'}
-                      >
-                          {#if g}
-                              <img src={getGeneIcon(g)} alt={g}/>
-                          {:else}
-                              <span class="all-text">ВСЕ</span>
-                          {/if}
+          
+          <div class="filters">
+              <div class="gene-line">
+                  <button class="filter-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>Ген 1: ВСЕ</button>
+                  {#each ['A','B','C','D','E','F'] as g}
+                      <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" on:click={() => filterGene=g}>
+                          <img src={getGeneIcon(g)} alt={g}/>
                       </button>
                   {/each}
               </div>
-
-              <div class="gene-row">
-                  <span class="gene-label">Ген 2:</span>
-                  {#each ['','A','B','C','D','E','F'] as g}
-                      <button
-                          class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}"
-                          on:click={() => { filterGene2 = filterGene2===g ? '' : g; }}
-                          title={g || 'Все'}
-                      >
-                          {#if g}
-                              <img src={getGeneIcon(g)} alt={g}/>
-                          {:else}
-                              <span class="all-text">ВСЕ</span>
-                          {/if}
+              <div class="gene-line">
+                  <button class="filter-chip {filterGene2==='all' ? 'active' : ''}" on:click={() => filterGene2='all'}>Ген 2: ВСЕ</button>
+                  {#each ['A','B','C','D','E','F'] as g}
+                      <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" on:click={() => filterGene2=g}>
+                          <img src={getGeneIcon(g)} alt={g}/>
                       </button>
                   {/each}
               </div>
-
-              <div class="filters">
-                   <button class="filter-chip secret-chip {filterGene1==='recipe' ? 'active' : ''}" on:click={() => { filterGene1='recipe'; filterGene2=''; }}>
-                       <span class="star">★</span>
-                       <span>Секреты</span>
-                   </button>
-              </div>
-
-              <!-- Sort controls -->
-              <div class="sort-controls">
-                  <span class="sort-label">Сортировка:</span>
-                  <button class="sort-btn {sortMode==='gene' ? 'active' : ''}" on:click={() => sortMode='gene'}>Ген</button>
-                  <button class="sort-btn {sortMode==='nameAsc' ? 'active' : ''}" on:click={() => sortMode='nameAsc'}>А-Я</button>
-                  <button class="sort-btn {sortMode==='nameDesc' ? 'active' : ''}" on:click={() => sortMode='nameDesc'}>Я-А</button>
-              </div>
+              
+               <button class="filter-chip secret-chip {filterGene==='recipe' ? 'active' : ''}" on:click={() => filterGene='recipe'}>
+                   <span class="star">★</span>
+                   <span>Секреты</span>
+               </button>
           </div>
       </div>
 
@@ -683,7 +597,7 @@
     gap: 0.375rem;
     align-items: center;
     justify-content: center;
-    padding: 0.25rem 0.375rem; /* Reduced from 0.375rem 0.5rem (bug fix #6) */
+    padding: 0.375rem 0.5rem;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     border: 1px solid rgba(132, 204, 22, 0.2);
@@ -880,32 +794,10 @@
   }
   .search-box .icon { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
-  /* Bug fix #10: Gene filter styles */
-  .gene-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .gene-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .gene-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #94a3b8;
-    min-width: 50px;
-  }
-
   .filters {
     display: flex; flex-wrap: wrap; gap: 0.5rem;
   }
-
+  
   .filter-chip {
     height: 36px;
     padding: 0 0.8rem;
@@ -917,52 +809,11 @@
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
   }
-
+  
   .filter-chip.active { background: #e2e8f0; color: #0f172a; border-color: #fff; transform: scale(1.05); }
-
+  
   .gene-chip { width: 36px; padding: 0; }
   .gene-chip img { width: 20px; height: 20px; }
-  .gene-chip .all-text { font-size: 0.65rem; font-weight: 800; }
-
-  /* Sort controls */
-  .sort-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .sort-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #94a3b8;
-  }
-
-  .sort-btn {
-    height: 32px;
-    padding: 0 0.75rem;
-    border-radius: 6px;
-    background: #1e293b;
-    border: 1px solid #334155;
-    color: #94a3b8;
-    font-size: 0.7rem;
-    font-weight: 700;
-    transition: all 0.2s;
-  }
-
-  .sort-btn.active {
-    background: #84cc16;
-    color: #000;
-    border-color: #84cc16;
-  }
-
-  .sort-btn:hover {
-    background: #334155;
-  }
-
-  .sort-btn.active:hover {
-    background: #65a30d;
-  }
   
   .secret-chip {
     gap: 0.3rem;
@@ -970,6 +821,13 @@
   }
   .secret-chip.active { background: #a855f7; color: #fff; }
   .secret-chip .star { font-size: 1rem; line-height: 1; }
+  
+  .gene-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 
   .list-grid {
     flex: 1; overflow-y: auto;

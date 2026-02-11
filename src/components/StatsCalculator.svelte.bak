@@ -9,7 +9,6 @@
   import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
-  import { applySpeedSphere } from '@/lib/stats/speed-sphere-table';
 
   // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
   import domtoimage from 'dom-to-image-more';
@@ -238,9 +237,12 @@
     const lvl1 = base?.lvl1 ?? {};
     const lvl30 = base?.lvl30 ?? {};
     const meta = {};
+    // Bug fix #3: Get mutant's first gene as fallback for attack genes
+    const mutantGenes = Array.isArray(mutant?.genes) ? mutant.genes : [mutant?.genes];
+    const fallbackGene = mutantGenes[0] ? String(mutantGenes[0]).toLowerCase() : 'neutro';
+
     for (const idx of [1, 2]) {
       const geneRaw = firstDefined(
-        mutant?.[`atk${idx}_gene`], // Check directly on the mutant object first
         base?.[`atk${idx}_gene`],
         lvl30?.[`atk${idx}_gene`],
         lvl1?.[`atk${idx}_gene`]
@@ -256,7 +258,10 @@
         lvl30?.[`atk${idx}_name`],
         lvl1?.[`atk${idx}_name`]
       );
-      const gene = normalizeAttackGene(geneRaw);
+      // Bug fix #3: Use mutant gene as fallback if attack gene is not specified at all
+      const normalizedGene = normalizeAttackGene(geneRaw);
+      const gene = normalizedGene || fallbackGene;
+
       meta[idx] = {
         gene,
         geneIcon: attackGeneIconPath(gene),
@@ -382,9 +387,7 @@
   function abilityLabel(code){
     if (!code) return '—';
     const ru = ABILITY_RU[code] || ABILITY_RU[code.toLowerCase()] || niceLabel(code);
-    const lower = code.toLowerCase();
-    if (lower.endsWith('_plus_plus')) return `${ru} ++`;
-    if (lower.endsWith('_plus')) return `${ru} +`;
+    // Removed "+" suffix as per bug fix #4
     return ru;
   }
 
@@ -589,6 +592,7 @@
   // Состояние интерфейса
   let showCatalog = true; // Показывать ли поиск/каталог слева
   let isCopying = false;  // Состояние "Копируется..."
+  let showCopiedToast = false; // Bug fix #1: Show "Copied to clipboard" notification
   let dropdownHost = null;
   let openDropdown = null; // 'basic-i' | 'special' | null
 
@@ -775,7 +779,7 @@
       if (mods.hpPct) finalStats.hp = Math.round(result.hp * (1 + mods.hpPct / 100));
       if (mods.atk1Pct) finalStats.atk1 = Math.round(result.atk1 * (1 + mods.atk1Pct / 100));
       if (mods.atk2Pct) finalStats.atk2 = Math.round(result.atk2 * (1 + mods.atk2Pct / 100));
-      if (mods.speedPct) finalStats.speed = applySpeedSphere(result.speed, mods.speedPct);
+      if (mods.speedPct) finalStats.speed = result.speed * (1 + mods.speedPct / 100);
     }
 
     return {
@@ -1016,50 +1020,6 @@
   function toggleCatalog() {
     showCatalog = !showCatalog;
   }
-  
-  // Show notification when screenshot is saved
-  function showNotification(message) {
-    // Remove any existing notifications
-    const existingNotifications = document.querySelectorAll('.notification-toast');
-    existingNotifications.forEach(el => el.remove());
-    
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = 'notification-toast';
-    notification.textContent = message;
-    
-    // Style the notification
-    Object.assign(notification.style, {
-      position: 'fixed',
-      top: '20px',
-      right: '20px',
-      backgroundColor: '#22c55e', // green-500
-      color: 'white',
-      padding: '12px 20px',
-      borderRadius: '8px',
-      zIndex: '9999',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-      fontWeight: '600',
-      fontSize: '14px',
-      maxWidth: '300px',
-      wordWrap: 'break-word',
-      animation: 'slideInRight 0.3s ease-out'
-    });
-    
-    document.body.appendChild(notification);
-    
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.style.animation = 'fadeOut 0.5s ease-out';
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.remove();
-          }
-        }, 500);
-      }
-    }, 3000);
-  }
 
     // --- ФУНКЦИЯ СКРИНШОТА (CROP FIX) ---
   async function shareScreenshot() {
@@ -1134,8 +1094,8 @@
           el.style.objectFit = 'contain';
         });
       };
-      freezeStyles('.slot-btn', '68px', '68px');
-      freezeStyles('.orb', '68px', '68px');
+      freezeStyles('.slot-btn', '76px', '76px');
+      freezeStyles('.orb', '76px', '76px');
       freezeStyles('.star', '32px', '32px');
       freezeStyles('.star img', '32px', '32px');
       freezeStyles('.mut-icon', '44px', '44px');
@@ -1209,8 +1169,10 @@
         try {
           const item = new ClipboardItem({ 'image/png': blob });
           await navigator.clipboard.write([item]);
-          showNotification('Скриншот сохранен в буфер обмена!');
-          setTimeout(() => isCopying = false, 2000);
+          isCopying = false;
+          // Bug fix #1: Show success toast
+          showCopiedToast = true;
+          setTimeout(() => showCopiedToast = false, 3000);
         } catch (clipboardErr) {
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
@@ -1220,7 +1182,6 @@
           link.click();
           document.body.removeChild(link);
           URL.revokeObjectURL(url);
-          showNotification('Скриншот загружен!');
           isCopying = false;
         }
 
@@ -1237,6 +1198,13 @@
 
 
 <svelte:window on:click={windowClick} />
+
+<!-- Bug fix #1: Toast notification for screenshot copied -->
+{#if showCopiedToast}
+  <div class="toast-notification">
+    ✓ Скриншот сохранен в буфер обмена
+  </div>
+{/if}
 
 <div class="stats-page" class:single-col={!showCatalog}>
 
@@ -1493,6 +1461,42 @@
 
 <style>
 
+/* Bug fix #1: Toast notification styles */
+  .toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 9999;
+    animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
 /* --- ГЕНЫ НАД МУТАНТОМ --- */
   .hero-genes {
     display: flex;
@@ -1596,14 +1600,6 @@
     width: 100%;
     max-width: 480px; /* Ограничиваем ширину текста */
   }
-  
-  /* Responsive title for smaller screens */
-  @media (max-width: 768px) {
-    .title {
-      max-width: 90vw; /* Limit title width on small screens */
-      font-size: 22px; /* Smaller font on mobile */
-    }
-  }
 
   .tool-btn {
     background: transparent;
@@ -1666,10 +1662,10 @@
   .slot{ position:relative; }
   .slot-btn{
     position:relative;
-    width:68px;
-    height:68px;
-    min-width: 68px;
-    min-height: 68px;
+    width:76px;
+    height:76px;
+    min-width: 76px;
+    min-height: 76px;
     flex-shrink: 0;
 
     border-radius:12px;
@@ -1678,16 +1674,18 @@
     padding:0;
     cursor: pointer;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   .slot-bg{ width:100%; height:100%; object-fit:cover; display: block; }
-  /* Сфера заполняет 98% слота, центрирована */
+  /* Сфера идеально вписывается в слот (на 2px меньше) - Bug fix #8: auto-scaling */
   .orb {
     position: absolute;
-    inset: 1%;
-    object-fit: contain;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    width: calc(100% - 4px); /* Explicit width to prevent overflow */
+    height: calc(100% - 4px); /* Explicit height to prevent overflow */
+    object-fit: contain; /* Changed from cover to contain for auto-scaling */
     border-radius: 12px;
   }
 
@@ -1892,70 +1890,79 @@
   }
 
   @media (max-width: 768px) {
-    .stats-page { 
-      display: grid; 
-      grid-template-columns: 1fr 280px; 
-      gap: 12px; 
-      padding: 12px; 
-      justify-content: center; /* Center the content */
+    .stats-page { display: grid; grid-template-columns: 1fr 280px; gap: 12px; padding: 12px; }
+    .stats-page.single-col {
+      grid-template-columns: 1fr;
+      /* Bug fix #7: Center panel on mobile */
+      justify-items: center;
     }
-    .stats-page.single-col { 
-      grid-template-columns: 1fr; 
-      justify-content: center; /* Center the content */
-    }
-    .panel { 
-      order: 1; 
-      padding: 14px; 
-      margin: 0 auto; /* Center the panel */
-      max-width: 95vw; /* Prevent from touching edges */
+    .panel {
+      order: 1;
+      padding: 14px;
+      /* Bug fix #7: Center panel content and adjust width */
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
     }
     .catalog { order: 2; padding: 10px; }
 
     .row.attack-row { flex-direction: column; gap: 8px; padding: 10px; }
     .ability-divider { display: none !important; }
-    .mut-figure .texture { width: 160px; height: 160px; transform: translateY(24px); }
-    .mut-figure::after { width: 160px; bottom: -22px; height: 50px; }
+
+    /* Bug fix #7: Scale mutant texture appropriately on mobile */
+    .mut-figure .texture {
+      width: 180px;
+      height: 180px;
+      transform: translateY(24px);
+    }
+    .mut-figure::after { width: 180px; bottom: -22px; height: 50px; }
+
+    /* Bug fix #7: Scale gene icons on mobile */
+    .hero-genes img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Bug fix #7: Scale orb slots on mobile */
+    .slot-btn {
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+    }
+
+    .slots { gap: 12px; }
   }
 
   @media (max-width: 480px) {
-    .stats-page { 
-      grid-template-columns: 1fr; 
-      gap: 8px; 
-      padding: 8px; 
-      justify-content: center; /* Center the content */
-    }
-    .stats-page.single-col { 
-      grid-template-columns: 1fr; 
-      justify-content: center; /* Center the content */
+    .stats-page { grid-template-columns: 1fr; gap: 8px; padding: 8px; }
+    .stats-page.single-col {
+      grid-template-columns: 1fr;
+      justify-items: center;
     }
 
-    .mut-figure .texture { width: 140px; height: 140px; transform: translateY(20px); }
-    
-    /* Fix long name issue - make title responsive */
-    .title {
-      max-width: 90vw; /* Limit title width on small screens */
-      font-size: 22px; /* Smaller font on mobile */
+    .panel {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
     }
-  }
-  
-  /* Notification toast animations */
-  @keyframes slideInRight {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
+
+    /* Bug fix #7: Further scale down on very small screens */
+    .mut-figure .texture { width: 160px; height: 160px; transform: translateY(20px); }
+    .mut-figure::after { width: 160px; bottom: -20px; height: 45px; }
+
+    .hero-genes img {
+      width: 28px;
+      height: 28px;
     }
-    to {
-      transform: translateX(0);
-      opacity: 1;
+
+    .slot-btn {
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      min-height: 60px;
     }
-  }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+
+    .slots { gap: 10px; }
   }
 </style>
