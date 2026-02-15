@@ -21,13 +21,13 @@
     F: 'Рубака',
   };
   const GENE_ICON = {
-    '': '/genes/icon_gene_all.webp',
-    A: '/genes/icon_gene_a.webp',
-    B: '/genes/icon_gene_b.webp',
-    C: '/genes/icon_gene_c.webp',
-    D: '/genes/icon_gene_d.webp',
-    E: '/genes/icon_gene_e.webp',
-    F: '/genes/icon_gene_f.webp',
+    '': '/genes/gene_all.webp',
+    A: '/genes/gene_a.webp',
+    B: '/genes/gene_b.webp',
+    C: '/genes/gene_c.webp',
+    D: '/genes/gene_d.webp',
+    E: '/genes/gene_e.webp',
+    F: '/genes/gene_f.webp',
   };
   const ATTACK_GENE_ICON = {
     a: '/genes/gene_a.webp',
@@ -581,17 +581,40 @@
 
   $: filtered = ALL_MUTANTS
       .filter(m => {
-        if (geneFilter) {
-          const firstGene = m.genes[0];
-          if (firstGene !== geneFilter) return false;
-          if (gene2Filter) {
-            if (gene2Filter === 'neutral') {
-              if (m.genes.length > 1 && m.genes[0] !== m.genes[1]) return false;
-            } else {
-              if (m.genes.length < 2 || m.genes[1] !== gene2Filter) return false;
-            }
+        // If geneFilter is empty (meaning "ALL"), show all mutants that match the search
+        if (!geneFilter) {
+          if (query.trim()) {
+            const normalizedQuery = normalizeSearch(query);
+            const normalizedName = normalizeSearch(m.name);
+            if (!normalizedName.includes(normalizedQuery)) return false;
           }
+          return true;
         }
+        
+        // If geneFilter is set, apply gene filtering
+        const firstGene = m.genes[0];
+        if (firstGene !== geneFilter) return false;
+        
+        // If gene2Filter is empty (meaning "ALL"), show all mutants with the selected primary gene
+        if (!gene2Filter) {
+          if (query.trim()) {
+            const normalizedQuery = normalizeSearch(query);
+            const normalizedName = normalizeSearch(m.name);
+            if (!normalizedName.includes(normalizedQuery)) return false;
+          }
+          return true;
+        }
+        
+        // Apply secondary gene filter
+        if (gene2Filter === 'neutral') {
+          // Show only single-gene mutants (exactly one gene)
+          if (m.genes.length !== 1) return false;
+        } else {
+          // Show only exact gene pairs
+          if (m.genes.length < 2 || m.genes[1] !== gene2Filter) return false;
+        }
+        
+        // Apply search filter
         if (query.trim()) {
           const normalizedQuery = normalizeSearch(query);
           const normalizedName = normalizeSearch(m.name);
@@ -599,9 +622,7 @@
         }
         return true;
       })
-      .sort(sortMode==='nameAsc' ? byNameAsc
-            : sortMode==='nameDesc' ? byNameDesc
-            : byGene);
+      .sort(byGene); // Always use genetic sorting
 
   // смена выбранного мутанта — сбрасываем слоты по его типу
   $: if (selected) {
@@ -975,10 +996,19 @@
 
   // --- ХЭНДЛЕРЫ UI ---
   function toggleGene(letter){
-    geneFilter = geneFilter === letter ? '' : letter;
+    if (letter === 'all') {
+      geneFilter = '';
+      gene2Filter = '';
+    } else {
+      geneFilter = geneFilter === letter ? '' : letter;
+    }
   }
   function toggleGene2(g){
-    gene2Filter = gene2Filter === g ? '' : g;
+    if (g === 'all') {
+      gene2Filter = '';
+    } else {
+      gene2Filter = gene2Filter === g ? '' : g;
+    }
   }
   function selectMutant(m){
     selected = m;
@@ -1243,11 +1273,9 @@
       <!-- Ген 1 -->
       <div class="filters-row">
         <button
-          class="gene-chip"
-          class:active={gene2Filter==='neutral'}
-          on:click={() => toggleGene2('neutral')}
-          title="Нейтральный">
-          <img src="/genes/gene_all.webp" alt="Нейтральный" />
+          class="filter-chip {geneFilter === '' && gene2Filter === '' ? 'active' : ''}"
+          on:click={() => toggleGene('all')}>
+          <span>Ген 1: ВСЕ</span>
         </button>
         {#each ['A','B','C','D','E','F'] as g}
           <button
@@ -1262,6 +1290,12 @@
 
       <!-- Ген 2 -->
       <div class="filters-row gene2-row" class:disabled={!geneFilter}>
+        <button
+          class="filter-chip {gene2Filter === '' && geneFilter ? 'active' : ''}"
+          disabled={!geneFilter}
+          on:click={() => toggleGene2('all')}>
+          <span>Ген 2: ВСЕ</span>
+        </button>
         <button
           class="gene-chip"
           class:active={gene2Filter==='neutral'}
@@ -1280,13 +1314,6 @@
             <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
           </button>
         {/each}
-      </div>
-
-      <!-- Сортировки -->
-      <div class="sort-switch" style="margin-top: 8px;">
-        <button class:active={sortMode==='nameAsc'}  on:click={() => sortMode='nameAsc'}>А-Я</button>
-        <button class:active={sortMode==='nameDesc'} on:click={() => sortMode='nameDesc'}>Я-А</button>
-        <button class:active={sortMode==='gene'}     on:click={() => sortMode='gene'}>Ген</button>
       </div>
 
       <input
@@ -1563,6 +1590,22 @@
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; cursor: pointer; }
   .gene-chip.active{ outline:2px solid #90f36b; }
   .gene-chip img{ width:100%; height:100%; object-fit:contain; }
+  .filter-chip {
+    height: 36px;
+    padding: 0 0.8rem;
+    border-radius: 8px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .filter-chip.active { background: #e2e8f0; color: #0f172a; border-color: #fff; transform: scale(1.05); }
   .gene2-row{ margin-bottom:8px; }
   .gene2-row.disabled{ opacity:0.3; pointer-events:none; }
   .gene2-label{ font-size:10px; color:#aab6c8; font-weight:700; }

@@ -363,8 +363,8 @@
           
           <div class="filters">
               <div class="gene-line">
-                  <button class="filter-chip gene-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>
-                      <img src="/genes/gene_all.webp" alt="Все"/>
+                  <button class="filter-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>
+                      <span>Ген 1: ВСЕ</span>
                   </button>
                   {#each ['A','B','C','D','E','F'] as g}
                       <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" on:click={() => filterGene=g}>
@@ -373,6 +373,9 @@
                   {/each}
               </div>
               <div class="gene-line" class:disabled={filterGene==='all'}>
+                  <button class="filter-chip {filterGene2==='all' ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2='all'}>
+                      <span>Ген 2: ВСЕ</span>
+                  </button>
                   <button class="filter-chip gene-chip {filterGene2==='neutral' ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2='neutral'}>
                       <img src="/genes/gene_all.webp" alt="Нейтральный"/>
                   </button>
@@ -382,7 +385,7 @@
                       </button>
                   {/each}
               </div>
-              
+
                <button class="filter-chip secret-chip {filterGene==='recipe' ? 'active' : ''}" on:click={() => filterGene='recipe'}>
                    <span class="star">★</span>
                    <span>Секреты</span>
