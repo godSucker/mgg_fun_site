@@ -20293,3 +20293,4 @@ Specimen_AB_15_attack_2;Незначительный глюк
 Specimen_AB_15_attack_2p;Серьезный глюк
 Material_Valentines26_Token;Жетон «Пиксельное сердце»
 Specimen_AB_15_stand;Глючное сердце
+Material_Mystery26_Token;Таинственный жетон 2026

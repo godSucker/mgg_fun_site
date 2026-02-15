@@ -1,25 +1,22 @@
 <script lang="ts">
   import { secretCombos } from '@/lib/secretCombos';
-  import normalMutants from '@/data/mutants/normal.json';
+  import mutantsAll from '@/data/mutants/mutants.json';
   import { calculateBreeding, findParentsFor } from '@/lib/breeding/breeding';
   import type { Mutant, BreedingResult, ParentPair } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
   import { normalizeSearch } from '@/lib/search-normalize';
+  import { sortMutantsByGene } from '@/lib/mutant-sort';
 
   // --- DATA ---
-  const rawData = [
-    ...normalMutants.map(m => ({ ...m, star: 'normal' }))
-  ];
-
-  const allMutants: Mutant[] = (rawData as any[]).map((m: any) => ({
+  const allMutants: Mutant[] = (mutantsAll as any[]).map((m: any) => ({
     id: String(m.id),
     name: m.name,
     genes: m.genes,
     odds: Number(m.odds) || 0,
     type: m.type || 'default',
-    star: m.star,
+    star: 'normal',
     incub_time: Number(m.incub_time) || 0,
-    image: m.image
+    image: (() => { const s = m.stars; if (s) { const k = Object.keys(s); if (k.length) return s[k[0]]?.images ?? []; } return m.image ?? []; })()
   }));
 
   const normalize = normalizeSearch;
@@ -61,14 +58,7 @@
     return min > 0 ? `${h}ч ${min}м` : `${h}ч`;
   }
 
-  // --- SORTING ---
-  const geneRank: Record<string, number> = { 'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6 };
-  function getPrimaryGeneRank(m: Mutant): number {
-      const gStr = Array.isArray(m.genes) ? m.genes[0] : m.genes;
-      if (!gStr) return 100;
-      const firstChar = gStr.charAt(0).toLowerCase();
-      return geneRank[firstChar] || 100;
-  }
+  // --- SORTING (using unified sort) ---
 
   // --- STATE ---
   let mode: 'calc' | 'reverse' = 'calc';
@@ -97,6 +87,9 @@
       return genes; // Возвращаем все гены, включая дубликаты
   };
 
+  // Auto-reset Gene2 when Gene1 is "all"
+  $: if (filterGene === 'all') filterGene2 = 'all';
+
   $: filteredList = allMutants.filter(m => {
     if (filterGene === 'recipe') return secretNames.has(normalize(getName(m)));
 
@@ -104,18 +97,19 @@
     const nameMatch = !normalizedSearch || normalizeSearch(getName(m)).includes(normalizedSearch);
 
     const mGenes = getGenesArray(m);
-    const geneMatch = filterGene === 'all' || mGenes.includes(filterGene.toUpperCase());
-    
-    // Check second gene filter if it's set
-    const gene2Match = filterGene2 === 'all' || mGenes.includes(filterGene2.toUpperCase());
 
-    return geneMatch && gene2Match && nameMatch;
-  }).sort((a, b) => {
-      const rankA = getPrimaryGeneRank(a);
-      const rankB = getPrimaryGeneRank(b);
-      if (rankA !== rankB) return rankA - rankB;
-      return getName(a).localeCompare(getName(b), 'ru');
-  });
+    if (filterGene === 'all') return nameMatch;
+
+    const hasPrimaryGene = mGenes[0] === filterGene.toUpperCase();
+
+    if (filterGene2 === 'all') return hasPrimaryGene && nameMatch;
+
+    if (filterGene2 === 'neutral') {
+      return mGenes.length === 1 && mGenes[0] === filterGene.toUpperCase() && nameMatch;
+    }
+
+    return mGenes.length >= 2 && mGenes[0] === filterGene.toUpperCase() && mGenes[1] === filterGene2.toUpperCase() && nameMatch;
+  }).sort(sortMutantsByGene);
 
   // --- LOGIC ---
   let calcResults: BreedingResult[] = [];
@@ -369,17 +363,21 @@
           
           <div class="filters">
               <div class="gene-line">
-                  <button class="filter-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>Ген 1: ВСЕ</button>
+                  <button class="filter-chip gene-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>
+                      <img src="/genes/gene_all.webp" alt="Все"/>
+                  </button>
                   {#each ['A','B','C','D','E','F'] as g}
                       <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" on:click={() => filterGene=g}>
                           <img src={getGeneIcon(g)} alt={g}/>
                       </button>
                   {/each}
               </div>
-              <div class="gene-line">
-                  <button class="filter-chip {filterGene2==='all' ? 'active' : ''}" on:click={() => filterGene2='all'}>Ген 2: ВСЕ</button>
+              <div class="gene-line" class:disabled={filterGene==='all'}>
+                  <button class="filter-chip gene-chip {filterGene2==='neutral' ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2='neutral'}>
+                      <img src="/genes/gene_all.webp" alt="Нейтральный"/>
+                  </button>
                   {#each ['A','B','C','D','E','F'] as g}
-                      <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" on:click={() => filterGene2=g}>
+                      <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2=g}>
                           <img src={getGeneIcon(g)} alt={g}/>
                       </button>
                   {/each}
@@ -827,6 +825,10 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+  .gene-line.disabled {
+    opacity: 0.3;
+    pointer-events: none;
   }
 
   .list-grid {

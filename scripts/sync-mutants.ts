@@ -17,26 +17,19 @@ const CONFIG = {
     TEMP_DIR: path.join(process.cwd(), 'temp'),
 
     RATINGS: ['normal', 'bronze', 'silver', 'gold', 'platinum'] as const,
-    JSON_FILES: {
-        normal: 'normal.json',
-        bronze: 'bronze.json',
-        silver: 'silver.json',
-        gold: 'gold.json',
-        platinum: 'platinum.json'
-    },
     MULTIPLIERS: {
         normal: 1.0,
         bronze: 1.1,
         silver: 1.3,
         gold: 1.75,
         platinum: 2.0
-    },
+    } as Record<string, number>,
     VERSION_MAP: {
         bronze: 'V1',
         silver: 'V2',
         gold: 'V3',
         platinum: 'V4'
-    }
+    } as Record<string, string>
 };
 
 type Rating = typeof CONFIG.RATINGS[number];
@@ -64,18 +57,21 @@ interface StatsResult {
     silver: number;
 }
 
-interface MutantEntry {
+interface StarInfo {
+    images: string[];
+    multiplier?: number;
+}
+
+interface UnifiedMutant {
     id: string;
     name: string;
     genes: string[];
     base_stats: any;
     abilities: any[];
-    image: string[];
+    stars: Record<string, StarInfo>;
     type: string;
     incub_time: number;
     orbs: { normal: number; special: number };
-    star?: string;
-    multiplier?: number;
     bingo: string[];
     chance: number;
     bank: number;
@@ -89,7 +85,7 @@ interface MutantEntry {
 // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
 
 function roundSpeed(speed: number): number {
-    return Math.round(speed * 100) / 100; // Округление до сотой
+    return Math.round(speed * 100) / 100;
 }
 
 async function downloadFile(url: string, targetPath: string): Promise<boolean> {
@@ -143,7 +139,7 @@ async function loadLocalFiles() {
 async function downloadImage(url: string, targetPath: string): Promise<boolean> {
     try {
         await fs.access(targetPath);
-        return true; // Файл уже существует
+        return true;
     } catch (e) {
         try {
             const res = await axios.get(url, {
@@ -164,15 +160,14 @@ async function downloadImage(url: string, targetPath: string): Promise<boolean> 
 async function getAvailableRatingsAndDownload(
     mutantId: string,
     mode: 'full' | 'stats',
-    isGachaOrHeroic: boolean
+    isGacha: boolean
 ): Promise<string[]> {
     const idLower = mutantId.toLowerCase();
     const idUpper = mutantId.toUpperCase();
     const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower);
     const foundRatings = new Set<string>();
 
-    // Для GACHA/HEROIC ищем только _normal текстуры
-    const ratingsToCheck = isGachaOrHeroic ? ['normal'] : CONFIG.RATINGS;
+    const ratingsToCheck = isGacha ? ['normal'] : CONFIG.RATINGS;
 
     for (const rating of ratingsToCheck) {
         const kobojoSuffix = rating === 'normal' ? '' : `_${rating}`;
@@ -242,11 +237,8 @@ function findLocalizedText(locMap: Map<string, string>, id: string, suffix: stri
     const mutantId = id.replace('Specimen_', '').replace('specimen_', '');
 
     const keys = [
-        // КРИТИЧНО: основной формат - "specimen_A_01_attack_1"
         `specimen_${mutantId}${suffix}`,
-        // Для имен (без suffix)
         ...(suffix === '' ? [`Specimen_${mutantId}`, `${id}`] : []),
-        // Остальные варианты
         `${id}${suffix}`,
         `Specimen_${mutantId}${suffix}`,
         `${id.toUpperCase()}${suffix}`,
@@ -285,7 +277,7 @@ function calculateFinalStats(baseStats: BaseStatsCalc, level: number, starMultip
     const abilityPercent = lvl < 25 ? baseStats.abilityPct1 : baseStats.abilityPct2;
     const abilityValue = finalAtk1 * (Math.abs(abilityPercent) / 100);
 
-    const finalSpeed = roundSpeed(speedBase); // Округление до сотой
+    const finalSpeed = roundSpeed(speedBase);
     const finalSilver = bankBase * lvl;
 
     return {
@@ -303,8 +295,7 @@ function calculateFinalStats(baseStats: BaseStatsCalc, level: number, starMultip
 function getTrueRating(type: string, multiplier: number): Rating {
     const typeUpper = type.toUpperCase();
 
-    // GACHA/HEROIC мутанты имеют фиксированную звездность по множителю
-    if (typeUpper === 'GACHA' || typeUpper === 'HEROIC') {
+    if (typeUpper === 'GACHA') {
         if (multiplier >= 2.0) return 'platinum';
         if (multiplier >= 1.75) return 'gold';
         if (multiplier >= 1.3) return 'silver';
@@ -312,12 +303,24 @@ function getTrueRating(type: string, multiplier: number): Rating {
         return 'normal';
     }
 
-    return 'normal'; // Для обычных мутантов вернем normal (они обрабатываются в цикле)
+    return 'normal';
+}
+
+// ==================== ТЕКСТУРЫ ====================
+
+function buildImagePaths(mutantId: string, rating: string): string[] {
+    const idLower = mutantId.toLowerCase();
+    const idUpper = mutantId.toUpperCase();
+    return [
+        `textures_by_mutant/${idLower}/${idUpper}_${rating}.webp`,
+        `textures_by_mutant/${idLower}/specimen_${idLower}_${rating}.webp`,
+        `textures_by_mutant/${idLower}/larva_${idLower}.webp`
+    ];
 }
 
 // ==================== ВАЛИДАЦИЯ ====================
 
-function validateEntry(entry: MutantEntry, mutantId: string): { errors: string[]; warnings: string[]; isValid: boolean } {
+function validateEntry(entry: UnifiedMutant, mutantId: string): { errors: string[]; warnings: string[]; isValid: boolean } {
     const warnings: string[] = [];
     const errors: string[] = [];
 
@@ -385,7 +388,6 @@ async function sync(options: {
     try {
         const bingosPath = path.join(process.cwd(), 'src/data/bingos.json');
         const bingosData = JSON.parse(await fs.readFile(bingosPath, 'utf-8'));
-        // Создаем обратный маппинг: specimenId → [bingo IDs]
         for (const bingo of bingosData) {
             if (!bingo.mutants || !Array.isArray(bingo.mutants)) continue;
             for (const mutant of bingo.mutants) {
@@ -399,17 +401,24 @@ async function sync(options: {
         }
         console.log(`[BINGO] Загружено ${bingoMap.size} мутантов с бинго данными`);
     } catch (e) {
-        console.warn('[BINGO] ⚠️  Не удалось загрузить bingos.json, bingo поля будут пустыми');
+        console.warn('[BINGO] Не удалось загрузить bingos.json, bingo поля будут пустыми');
     }
 
-    const existingData: Record<Rating, any[]> = {
-        normal: [],
-        bronze: [],
-        silver: [],
-        gold: [],
-        platinum: []
-    };
+    // Загрузка существующих данных — единый файл
+    const existingData = new Map<string, UnifiedMutant>();
     const processedIds = new Set<string>();
+
+    try {
+        const data = JSON.parse(
+            await fs.readFile(path.join(CONFIG.DATA_DIR, 'mutants.json'), 'utf-8')
+        );
+        for (const m of data) {
+            existingData.set(m.id, m);
+            processedIds.add(m.id.replace(/^specimen_/, '').toUpperCase());
+        }
+    } catch (e) {
+        console.log('[INFO] mutants.json не найден, создаём с нуля');
+    }
 
     const stats = {
         added: 0,
@@ -420,25 +429,6 @@ async function sync(options: {
         warnings: 0,
         deleted: 0
     };
-
-    // Загрузка существующих данных
-    for (const rating of CONFIG.RATINGS) {
-        try {
-            const data = JSON.parse(
-                await fs.readFile(path.join(CONFIG.DATA_DIR, CONFIG.JSON_FILES[rating]), 'utf-8')
-            );
-            existingData[rating] = data;
-            data.forEach((m: any) => {
-                const mutId = m.id
-                    .replace(/^specimen_/, '')
-                    .replace(/_(?:plat|platinum|gold|silver|bronze)$/, '')
-                    .toUpperCase();
-                processedIds.add(mutId);
-            });
-        } catch (e) {
-            existingData[rating] = [];
-        }
-    }
 
     if (skipExisting) console.log(`[INFO] Режим FULL: Пропуск существующих мутантов`);
     if (compareBeforeUpdate) console.log(`[INFO] Режим REBALANCE: Обновление только изменившихся данных`);
@@ -453,12 +443,12 @@ async function sync(options: {
     let modifiedCount = 0;
     console.log(`[SYNC] Найдено ${specimenDescriptors.length} записей. Обработка...\n`);
 
-    // Сбор всех ID из XML для определения удаленных
     const xmlMutantIds = new Set<string>();
 
     for (const desc of specimenDescriptors) {
         const fullId = desc.id;
         const mutantId = fullId.replace('Specimen_', '');
+        const baseId = `specimen_${mutantId.toLowerCase()}`;
         xmlMutantIds.add(mutantId.toUpperCase());
 
         if (skipExisting && processedIds.has(mutantId.toUpperCase())) continue;
@@ -468,12 +458,12 @@ async function sync(options: {
         if (hpBase === 0) continue;
 
         const typeUpper = (tags.type || "").toUpperCase();
-        const isGachaOrHeroic = typeUpper === 'GACHA' || typeUpper === 'HEROIC';
+        const isGacha = typeUpper === 'GACHA';
 
         const textureRatings = await getAvailableRatingsAndDownload(
             mutantId,
             skipExisting ? 'full' : 'stats',
-            isGachaOrHeroic
+            isGacha
         );
 
         if (textureRatings.length === 0 && mutantId !== 'FB_14') {
@@ -498,227 +488,221 @@ async function sync(options: {
             abilityPct2: parseInt(tags.abilityPct2 || "0")
         };
 
-        // Определение множителя
-        let curMult = 1.0;
+        // Определение множителя для GACHA
+        let gachaMult = 1.0;
         if (xmlMultiplier > 0) {
-            curMult = xmlMultiplier;
-        } else if (isGachaOrHeroic) {
-            curMult = 2.0;
+            gachaMult = xmlMultiplier;
+        } else if (isGacha) {
+            gachaMult = 2.0;
         }
 
-        // Определение истинного рейтинга для GACHA/HEROIC
-        const ratingsToProcess: Rating[] = isGachaOrHeroic
-            ? [getTrueRating(typeUpper, curMult)]
-            : textureRatings as Rating[];
+        // Определяем какие звёзды доступны
+        const starsObj: Record<string, StarInfo> = {};
 
-        for (const rating of ratingsToProcess) {
-            // Пересчитываем множитель для обычных мутантов
-            if (!isGachaOrHeroic) {
-                curMult = CONFIG.MULTIPLIERS[rating];
-            }
-
-            const finalId = rating === 'normal'
-                ? `specimen_${mutantId.toLowerCase()}`
-                : `specimen_${mutantId.toLowerCase()}_${rating === 'platinum' ? 'plat' : rating}`;
-
-            const existingIdx = existingData[rating].findIndex(m => m.id === finalId);
-            const existingEntry = existingData[rating][existingIdx];
-
-            if (skipExisting && existingEntry) continue;
-
-            const statsLvl1 = calculateFinalStats(baseStatsForCalc, 1, curMult);
-            const statsLvl30 = calculateFinalStats(baseStatsForCalc, 30, curMult);
-
-            const abilitiesRaw = String(tags.abilities || "").split(';');
-            const abilities = abilitiesRaw.map(a => {
-                const parts = a.split(':');
-                if (parts.length < 2) return null;
-                const abilityIndex = parseInt(parts[0]) || 1;
-                const abilityName = parts[1];
-                const isRetaliate = abilityName.includes('retaliate');
-                const abilityPct = abilityIndex === 1 ? baseStatsForCalc.abilityPct1 : baseStatsForCalc.abilityPct2;
-
-                const calcValues = (lvl: number) => {
-                    const s = calculateFinalStats(baseStatsForCalc, lvl, curMult);
-                    const val_atk1 = s.atk1 * (Math.abs(abilityPct)/100);
-                    const val_atk2 = s.atk2 * (Math.abs(abilityPct)/100);
-                    return { val_atk1, val_atk2 };
-                };
-                const v1 = calcValues(1);
-                const v30 = calcValues(30);
-
-                return {
-                    name: abilityName,
-                    pct: Math.abs(abilityPct),
-                    value_atk1_lvl1: Math.round(v1.val_atk1),
-                    value_atk2_lvl1: isRetaliate ? 0 : Math.round(v1.val_atk2),
-                    value_atk1_lvl30: Math.round(v30.val_atk1),
-                    value_atk2_lvl30: isRetaliate ? 0 : Math.round(v30.val_atk2)
-                };
-            }).filter(Boolean);
-
-            let rarity = tags.type || "default";
-            if (rarity === "CAPTAINPEACE") rarity = "SPECIAL";
-
-            const name = findLocalizedText(locMap, fullId) || mutantId;
-            const lore = locMap.get(`caption_${fullId.toLowerCase()}`) ||
-                         locMap.get(`desc_${fullId.toLowerCase()}`) ||
-                         findLocalizedText(locMap, fullId, "_description") ||
-                         `Описание для ${name}`;
-
-            const atk1Name = findLocalizedText(locMap, fullId, "_attack_1") || `Атака 1`;
-            const atk2Name = findLocalizedText(locMap, fullId, "_attack_2") || `Атака 2`;
-
-            const genesChar = String(tags.dna || "");
-            const atk1AOE = String(tags.atk1 || "").includes("AOE") || String(tags.atk1p || "").includes("AOE");
-            const atk2AOE = String(tags.atk2 || "").includes("AOE") || String(tags.atk2p || "").includes("AOE");
-
-            // Для GACHA/HEROIC текстуры всегда с суффиксом _normal
-            const imageRating = isGachaOrHeroic ? 'normal' : rating;
-
-            const entry: MutantEntry = {
-                id: finalId,
-                name: name,
-                genes: genesChar.split(''),
-                base_stats: {
-                    lvl1: {
-                        ...statsLvl1,
-                        atk1_gene: genesChar[0]?.toLowerCase() || 'neutro',
-                        atk1_AOE: atk1AOE
-                    },
-                    lvl30: {
-                        ...statsLvl30,
-                        atk1_gene: genesChar[0]?.toLowerCase() || 'neutro',
-                        atk2_gene: genesChar[1]?.toLowerCase() || 'neutro',
-                        atk2_AOE: atk2AOE
-                    },
-                    // Служебные поля для калькулятора
-                    hp_base: Math.round(baseStatsForCalc.hp_base * curMult),
-                    atk1_base: Math.round(baseStatsForCalc.atk1_base * curMult),
-                    atk1p_base: Math.round(baseStatsForCalc.atk1p_base * curMult),
-                    atk2_base: Math.round(baseStatsForCalc.atk2_base * curMult),
-                    atk2p_base: Math.round(baseStatsForCalc.atk2p_base * curMult),
-                    speed_base: baseStatsForCalc.speed_base,
-                    bank_base: baseStatsForCalc.bank_base,
-                    abilityPct1: baseStatsForCalc.abilityPct1,
-                    abilityPct2: baseStatsForCalc.abilityPct2
-                },
-                abilities: abilities,
-                image: [
-                    `textures_by_mutant/${mutantId.toLowerCase()}/${mutantId.toUpperCase()}_${imageRating}.webp`,
-                    `textures_by_mutant/${mutantId.toLowerCase()}/specimen_${mutantId.toLowerCase()}_${imageRating}.webp`,
-                    `textures_by_mutant/${mutantId.toLowerCase()}/larva_${mutantId.toLowerCase()}.webp`
-                ],
-                type: rarity,
-                incub_time: parseInt(tags.incubMin || "0"),
-                orbs: {
-                    normal: String(tags.orbSlots || "").split('n').length - 1,
-                    special: String(tags.orbSlots || "").split('s').length - 1
-                },
-                ...(rating !== 'normal' && { star: rating, multiplier: curMult }),
-                bingo: bingoMap.get(fullId.toUpperCase()) || [],
-                chance: parseInt(tags.odds || "0"),
-                bank: bankVal,
-                tier: "un-tired",
-                name_attack1: atk1Name,
-                name_attack2: atk2Name,
-                name_attack3: "",
-                name_lore: lore
+        if (isGacha) {
+            // GACHA — только одна звезда
+            const trueRating = getTrueRating(typeUpper, gachaMult);
+            const imageRating = 'normal'; // текстуры всегда с суффиксом _normal
+            starsObj[trueRating] = {
+                images: buildImagePaths(mutantId, imageRating),
+                ...(trueRating !== 'normal' && { multiplier: gachaMult })
             };
+        } else {
+            // Обычные мутанты — все доступные звёзды
+            for (const rating of textureRatings) {
+                starsObj[rating] = {
+                    images: buildImagePaths(mutantId, rating),
+                    ...(rating !== 'normal' && { multiplier: CONFIG.MULTIPLIERS[rating] })
+                };
+            }
+        }
 
-            // Валидация
-            const validation = validateEntry(entry, mutantId);
-            if (!validation.isValid) {
-                console.log(`[ERROR] ${finalId}: ${validation.errors.join(', ')}`);
-                stats.errors++;
+        // Статы при множителе 1.0x (raw)
+        const statsLvl1 = calculateFinalStats(baseStatsForCalc, 1, 1.0);
+        const statsLvl30 = calculateFinalStats(baseStatsForCalc, 30, 1.0);
+
+        // Способности при 1.0x
+        const abilitiesRaw = String(tags.abilities || "").split(';');
+        const abilities = abilitiesRaw.map(a => {
+            const parts = a.split(':');
+            if (parts.length < 2) return null;
+            const abilityIndex = parseInt(parts[0]) || 1;
+            const abilityName = parts[1];
+            const isRetaliate = abilityName.includes('retaliate');
+            const abilityPct = abilityIndex === 1 ? baseStatsForCalc.abilityPct1 : baseStatsForCalc.abilityPct2;
+
+            const calcValues = (lvl: number) => {
+                const s = calculateFinalStats(baseStatsForCalc, lvl, 1.0);
+                const val_atk1 = s.atk1 * (Math.abs(abilityPct)/100);
+                const val_atk2 = s.atk2 * (Math.abs(abilityPct)/100);
+                return { val_atk1, val_atk2 };
+            };
+            const v1 = calcValues(1);
+            const v30 = calcValues(30);
+
+            return {
+                name: abilityName,
+                pct: Math.abs(abilityPct),
+                value_atk1_lvl1: Math.round(v1.val_atk1),
+                value_atk2_lvl1: isRetaliate ? 0 : Math.round(v1.val_atk2),
+                value_atk1_lvl30: Math.round(v30.val_atk1),
+                value_atk2_lvl30: isRetaliate ? 0 : Math.round(v30.val_atk2)
+            };
+        }).filter(Boolean);
+
+        let rarity = tags.type || "default";
+        if (rarity === "CAPTAINPEACE") rarity = "SPECIAL";
+
+        const name = findLocalizedText(locMap, fullId) || mutantId;
+        const lore = locMap.get(`caption_${fullId.toLowerCase()}`) ||
+                     locMap.get(`desc_${fullId.toLowerCase()}`) ||
+                     findLocalizedText(locMap, fullId, "_description") ||
+                     `Описание для ${name}`;
+
+        const atk1Name = findLocalizedText(locMap, fullId, "_attack_1") || `Атака 1`;
+        const atk2Name = findLocalizedText(locMap, fullId, "_attack_2") || `Атака 2`;
+
+        const genesChar = String(tags.dna || "");
+        const atk1AOE = String(tags.atk1 || "").includes("AOE") || String(tags.atk1p || "").includes("AOE");
+        const atk2AOE = String(tags.atk2 || "").includes("AOE") || String(tags.atk2p || "").includes("AOE");
+
+        const entry: UnifiedMutant = {
+            id: baseId,
+            name: name,
+            genes: genesChar.split(''),
+            base_stats: {
+                lvl1: {
+                    ...statsLvl1,
+                    atk1_gene: genesChar[0]?.toLowerCase() || 'neutro',
+                    atk1_AOE: atk1AOE
+                },
+                lvl30: {
+                    ...statsLvl30,
+                    atk1_gene: genesChar[0]?.toLowerCase() || 'neutro',
+                    atk2_gene: genesChar[1]?.toLowerCase() || 'neutro',
+                    atk2_AOE: atk2AOE
+                },
+                hp_base: baseStatsForCalc.hp_base,
+                atk1_base: baseStatsForCalc.atk1_base,
+                atk1p_base: baseStatsForCalc.atk1p_base,
+                atk2_base: baseStatsForCalc.atk2_base,
+                atk2p_base: baseStatsForCalc.atk2p_base,
+                speed_base: baseStatsForCalc.speed_base,
+                bank_base: baseStatsForCalc.bank_base,
+                abilityPct1: baseStatsForCalc.abilityPct1,
+                abilityPct2: baseStatsForCalc.abilityPct2
+            },
+            abilities: abilities,
+            stars: starsObj,
+            type: rarity,
+            incub_time: parseInt(tags.incubMin || "0"),
+            orbs: {
+                normal: String(tags.orbSlots || "").split('n').length - 1,
+                special: String(tags.orbSlots || "").split('s').length - 1
+            },
+            bingo: bingoMap.get(fullId.toUpperCase()) || [],
+            chance: parseInt(tags.odds || "0"),
+            bank: bankVal,
+            tier: "un-tired",
+            name_attack1: atk1Name,
+            name_attack2: atk2Name,
+            name_attack3: "",
+            name_lore: lore
+        };
+
+        // Валидация
+        const validation = validateEntry(entry, mutantId);
+        if (!validation.isValid) {
+            console.log(`[ERROR] ${baseId}: ${validation.errors.join(', ')}`);
+            stats.errors++;
+            continue;
+        }
+        if (validation.warnings.length > 0) {
+            stats.warnings += validation.warnings.length;
+        }
+
+        // Обновление/добавление
+        const existingEntry = existingData.get(baseId);
+
+        if (existingEntry) {
+            if (skipExisting) {
+                stats.skipped++;
                 continue;
             }
-            if (validation.warnings.length > 0) {
-                stats.warnings += validation.warnings.length;
-            }
 
-            // Обновление/добавление
-            if (existingIdx !== -1) {
-                if (compareBeforeUpdate) {
-                    const diff = compareStats(existingEntry, entry);
-                    if (!diff.hasChanges) {
-                        stats.skipped++;
-                        continue;
-                    }
-
-                    existingData[rating][existingIdx] = entry;
-                    modifiedCount++;
-
-                    const hasStatsChanges = diff.changes.some(c => !c.startsWith('loc:'));
-                    const hasLocChanges = diff.changes.some(c => c.startsWith('loc:'));
-
-                    if (hasStatsChanges) {
-                        stats.updatedStats++;
-                        console.log(`[REBALANCE] ${finalId}: ${diff.changes.join(', ')}`);
-                    } else if (hasLocChanges) {
-                        stats.updatedLocalization++;
-                        console.log(`[LOC] ${finalId}`);
-                    }
-                } else if (forceStatUpdate) {
-                    existingData[rating][existingIdx] = entry;
-                    modifiedCount++;
-                    stats.updatedStats++;
+            if (compareBeforeUpdate) {
+                const diff = compareStats(existingEntry, entry);
+                if (!diff.hasChanges) {
+                    stats.skipped++;
+                    continue;
                 }
-            } else {
-                existingData[rating].push(entry);
+
+                // Сохраняем существующие звёзды, добавляем новые
+                entry.stars = { ...existingEntry.stars, ...entry.stars };
+                existingData.set(baseId, entry);
                 modifiedCount++;
-                stats.added++;
-                console.log(`[NEW] ✨ ${finalId}`);
+
+                const hasStatsChanges = diff.changes.some(c => !c.startsWith('loc:'));
+                const hasLocChanges = diff.changes.some(c => c.startsWith('loc:'));
+
+                if (hasStatsChanges) {
+                    stats.updatedStats++;
+                    console.log(`[REBALANCE] ${baseId}: ${diff.changes.join(', ')}`);
+                } else if (hasLocChanges) {
+                    stats.updatedLocalization++;
+                    console.log(`[LOC] ${baseId}`);
+                }
+            } else if (forceStatUpdate) {
+                // Сохраняем существующие звёзды, добавляем/обновляем новые
+                entry.stars = { ...existingEntry.stars, ...entry.stars };
+                existingData.set(baseId, entry);
+                modifiedCount++;
+                stats.updatedStats++;
             }
+        } else {
+            existingData.set(baseId, entry);
+            modifiedCount++;
+            stats.added++;
+            console.log(`[NEW] ${baseId}`);
         }
     }
 
     // Удаление мутантов без текстур
     if (!skipExisting) {
-        for (const rating of CONFIG.RATINGS) {
-            existingData[rating] = existingData[rating].filter((m: any) => {
-                // Правильное извлечение ID мутанта
-                const mutId = m.id
-                    .replace(/^specimen_/, '')
-                    .replace(/_(?:plat|platinum|gold|silver|bronze)$/, '')
-                    .toUpperCase();
-                const hasInXML = xmlMutantIds.has(mutId);
-
-                if (!hasInXML) {
-                    console.log(`[DELETE] ${m.id}: отсутствует в XML`);
-                    stats.deleted++;
-                    return false;
-                }
-                return true;
-            });
+        for (const [id, m] of existingData) {
+            const mutId = id.replace(/^specimen_/, '').toUpperCase();
+            if (!xmlMutantIds.has(mutId)) {
+                console.log(`[DELETE] ${id}: отсутствует в XML`);
+                existingData.delete(id);
+                stats.deleted++;
+            }
         }
     }
 
     // Статистика
     console.log('\n' + '='.repeat(60));
-    console.log('📊 ИТОГОВАЯ СТАТИСТИКА:');
+    console.log('ИТОГОВАЯ СТАТИСТИКА:');
     console.log('='.repeat(60));
-    if (stats.added > 0) console.log(`✨ Добавлено: ${stats.added}`);
-    if (stats.updatedStats > 0) console.log(`🔄 Обновлено (статы): ${stats.updatedStats}`);
-    if (stats.updatedLocalization > 0) console.log(`📝 Обновлено (локализация): ${stats.updatedLocalization}`);
-    if (stats.deleted > 0) console.log(`🗑️  Удалено: ${stats.deleted}`);
-    if (stats.skipped > 0) console.log(`⏭️  Пропущено: ${stats.skipped}`);
-    if (stats.warnings > 0) console.log(`⚠️  Предупреждений: ${stats.warnings}`);
-    if (stats.errors > 0) console.log(`❌ Ошибок: ${stats.errors}`);
+    if (stats.added > 0) console.log(`Добавлено: ${stats.added}`);
+    if (stats.updatedStats > 0) console.log(`Обновлено (статы): ${stats.updatedStats}`);
+    if (stats.updatedLocalization > 0) console.log(`Обновлено (локализация): ${stats.updatedLocalization}`);
+    if (stats.deleted > 0) console.log(`Удалено: ${stats.deleted}`);
+    if (stats.skipped > 0) console.log(`Пропущено: ${stats.skipped}`);
+    if (stats.warnings > 0) console.log(`Предупреждений: ${stats.warnings}`);
+    if (stats.errors > 0) console.log(`Ошибок: ${stats.errors}`);
 
     const totalProcessed = stats.added + stats.updatedStats + stats.updatedLocalization + stats.skipped + stats.errors;
-    console.log(`\n📦 Всего обработано: ${totalProcessed} записей`);
+    console.log(`\nВсего обработано: ${totalProcessed} записей`);
     console.log('='.repeat(60) + '\n');
 
     if (modifiedCount > 0) {
-        console.log(`💾 [SAVE] Сохранение ${modifiedCount} изменений...`);
-        for (const rating of CONFIG.RATINGS) {
-            const filePath = path.join(CONFIG.DATA_DIR, CONFIG.JSON_FILES[rating]);
-            await fs.writeFile(filePath, JSON.stringify(existingData[rating], null, 2), 'utf-8');
-        }
-        console.log('✅ [DONE] Файлы обновлены!');
+        console.log(`[SAVE] Сохранение ${modifiedCount} изменений...`);
+        const outputArray = Array.from(existingData.values());
+        const filePath = path.join(CONFIG.DATA_DIR, 'mutants.json');
+        await fs.writeFile(filePath, JSON.stringify(outputArray, null, 2), 'utf-8');
+        console.log(`[DONE] mutants.json обновлён! (${outputArray.length} мутантов)`);
     } else {
-        console.log('✅ [DONE] Нет изменений.');
+        console.log('[DONE] Нет изменений.');
     }
 }
 
@@ -727,30 +711,30 @@ async function sync(options: {
 async function main() {
     const mode = process.argv[2] || 'full';
     console.log(`\n${'='.repeat(60)}`);
-    console.log(`🚀 ПАРСЕР V2 | РЕЖИМ: ${mode.toUpperCase()}`);
+    console.log(`ПАРСЕР V3 | РЕЖИМ: ${mode.toUpperCase()}`);
     console.log('='.repeat(60) + '\n');
 
     switch (mode) {
         case 'full':
-            console.log('📥 Скачивание текстур + добавление новых мутантов');
-            console.log('⏭️  Существующие: пропускаются\n');
+            console.log('Скачивание текстур + добавление новых мутантов');
+            console.log('Существующие: пропускаются\n');
             await sync({ skipExisting: true, forceStatUpdate: false, compareBeforeUpdate: false });
             break;
 
         case 'stats':
-            console.log('🔄 Полное обновление всех мутантов');
-            console.log('📝 Статы и локализация: обновляются\n');
+            console.log('Полное обновление всех мутантов');
+            console.log('Статы и локализация: обновляются\n');
             await sync({ skipExisting: false, forceStatUpdate: true, compareBeforeUpdate: false });
             break;
 
         case 'rebalance':
-            console.log('⚡ Умное обновление (только изменения)');
-            console.log('🎯 Обновляются только измененные данные\n');
+            console.log('Умное обновление (только изменения)');
+            console.log('Обновляются только измененные данные\n');
             await sync({ skipExisting: false, forceStatUpdate: false, compareBeforeUpdate: true });
             break;
 
         default:
-            console.error('❌ Неизвестный режим!');
+            console.error('Неизвестный режим!');
             console.error('\nДоступные режимы:');
             console.error('  full      - Добавление новых + текстуры');
             console.error('  stats     - Полное обновление');
@@ -759,7 +743,7 @@ async function main() {
     }
 
     console.log('\n' + '='.repeat(60));
-    console.log('✅ ЗАВЕРШЕНО');
+    console.log('ЗАВЕРШЕНО');
     console.log('='.repeat(60) + '\n');
 }
 

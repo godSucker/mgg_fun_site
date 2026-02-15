@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import MutantsBrowser from '@/components/MutantsBrowser.svelte';
-import data from '@/data/mutants/normal.json'; // путь как у тебя сейчас
+import mutants from '@/data/mutants/mutants.json';
 
+const data = mutants.filter((m: any) => m.stars?.normal);
 const title = 'Обычные мутанты';
 ---
 

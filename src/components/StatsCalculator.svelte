@@ -1,14 +1,11 @@
 <script>
   // --- ИМПОРТЫ ДАННЫХ ---
-  import mutantsRaw from '@/data/mutants/normal.json';
-  import bronzeRaw from '@/data/mutants/bronze.json';
-  import silverRaw from '@/data/mutants/silver.json';
-  import goldRaw from '@/data/mutants/gold.json';
-  import platinumRaw from '@/data/mutants/platinum.json';
+  import mutantsRaw from '@/data/mutants/mutants.json';
   import orbsRaw from '@/data/materials/orbs.json';
   import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
+  import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { applySpeedSphere } from '@/lib/stats/speed-sphere-table';
 
   // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
@@ -82,12 +79,11 @@
     community: '/mut_icons/icon_special.webp',
   };
 
-  const starAux = buildStarAuxiliary();
   const SPECIAL_SLOT_COUNT = 1;
 
   const byNameAsc  = (a, b) => a.name.localeCompare(b.name, 'ru');
   const byNameDesc = (a, b) => b.name.localeCompare(a.name, 'ru');
-  const byGene     = (a, b) => (a.geneKey||'').localeCompare(b.geneKey||'');
+  const byGene     = sortMutantsByGene;
 
   // --- ЛОГИКА ОБРАБОТКИ ДАННЫХ ---
   function normalizeMutants(raw) {
@@ -99,7 +95,10 @@
         .flatMap((g) => String(g || '').toUpperCase().split(''))
         .filter(Boolean);
       const geneKey = genes.join('');
-      const images = normalizeImages(m.image);
+      // Use stars.normal images first, fallback to old image field
+      const starValues = Object.values(m.stars ?? {});
+      const defaultStarImgs = m.stars?.normal?.images ?? (starValues[0] ? starValues[0].images : undefined);
+      const images = normalizeImages(m.image?.length ? m.image : defaultStarImgs);
       const baseStats = m.base_stats || {};
       const lvl1 = baseStats.lvl1 || {};
       const lvl30 = baseStats.lvl30 || {};
@@ -121,11 +120,14 @@
       const tierLabel = readableTier(tierRaw);
       const basicSlotCount = slotsForType(typeKind);
       
-      const availableStars = new Set([0]); // 0 (normal) always available for entries in normal.json
-      if (starAux.bronze?.has(bId)) availableStars.add(1);
-      if (starAux.silver?.has(bId)) availableStars.add(2);
-      if (starAux.gold?.has(bId)) availableStars.add(3);
-      if (starAux.platinum?.has(bId)) availableStars.add(4);
+      // Build available stars from m.stars object
+      const availableStars = new Set();
+      const mStars = m.stars ?? {};
+      if (mStars.normal) availableStars.add(0);
+      if (mStars.bronze) availableStars.add(1);
+      if (mStars.silver) availableStars.add(2);
+      if (mStars.gold) availableStars.add(3);
+      if (mStars.platinum) availableStars.add(4);
 
       const starMultipliers = {
         0: 1.0,
@@ -161,32 +163,11 @@
         basicSlotCount,
         specialSlotCount: SPECIAL_SLOT_COUNT,
         attackMeta: buildAttackMeta(m),
+        _rawStars: m.stars ?? {},
       };
     });
   }
 
-  function buildStarAuxiliary(){
-    const datasets = {
-      bronze: bronzeRaw,
-      silver: silverRaw,
-      gold: goldRaw,
-      platinum: platinumRaw,
-    };
-    const result = {};
-    for (const [key, list] of Object.entries(datasets)) {
-      const map = new Map();
-      (Array.isArray(list) ? list : []).forEach((entry) => {
-        const baseId = baseIdOf(entry);
-        if (!baseId) return;
-        map.set(baseId, {
-          multiplier: numberOr(entry?.multiplier ?? entry?.star_multiplier, 1),
-          images: normalizeImages(entry?.image),
-        });
-      });
-      result[key] = map;
-    }
-    return result;
-  }
 
   function slotsForType(type){
     const key = String(type || '').trim().toLowerCase();
@@ -571,7 +552,8 @@
 
   // --- РЕАКТИВНОЕ СОСТОЯНИЕ UI ---
   let query = '';                      // строка поиска
-  let geneFilter = new Set();          // активные фильтры генов (A..F)
+  let geneFilter = '';                 // '' = все, 'A'..'F' = конкретный ген (single select!)
+  let gene2Filter = '';                // '' = все, 'A'..'F' = конкретный, 'neutral' = одногенный
   let sortMode = 'gene';               // nameAsc | nameDesc | gene
   let selected = ALL_MUTANTS[0];       // текущий мутант
   let level = 30;                      // уровень из инпута
@@ -594,11 +576,21 @@
 
   // --- РАСЧЕТЫ ---
   // фильтрация + сортировка + поиск
+  // Auto-reset gene2Filter when geneFilter is cleared
+  $: if (!geneFilter) gene2Filter = '';
+
   $: filtered = ALL_MUTANTS
       .filter(m => {
-        if (geneFilter.size) {
-          // mutant имеет хотя бы один из выбранных генов
-          if (!m.genes.some(g => geneFilter.has(g))) return false;
+        if (geneFilter) {
+          const firstGene = m.genes[0];
+          if (firstGene !== geneFilter) return false;
+          if (gene2Filter) {
+            if (gene2Filter === 'neutral') {
+              if (m.genes.length > 1 && m.genes[0] !== m.genes[1]) return false;
+            } else {
+              if (m.genes.length < 2 || m.genes[1] !== gene2Filter) return false;
+            }
+          }
         }
         if (query.trim()) {
           const normalizedQuery = normalizeSearch(query);
@@ -644,14 +636,19 @@
   function starTexture(m, stars){
     if (!m) return '';
     const key = STAR_KEYS[stars] ?? 'normal';
+    // Use stars object from unified data
+    const starData = m._rawStars?.[key];
+    if (starData?.images?.length) {
+      const imgs = normalizeImages(starData.images);
+      const pick = findImageByKeywords(imgs, ['textures_by_mutant/']) || imgs[0];
+      if (pick) return pick;
+    }
     if (key === 'normal') {
       return baseTexture(m);
     }
     const keywords = STAR_IMAGE_KEYWORDS[key] || [key];
-    const info = starAux[key]?.get(m.baseId);
     return (
-      findImageByKeywords(info?.images, keywords)
-      || findImageByKeywords(m.images, keywords)
+      findImageByKeywords(m.images, keywords)
       || baseTexture(m)
     );
   }
@@ -978,10 +975,10 @@
 
   // --- ХЭНДЛЕРЫ UI ---
   function toggleGene(letter){
-    if (geneFilter.has(letter)) geneFilter.delete(letter);
-    else geneFilter.add(letter);
-    // триггерим реактив
-    geneFilter = new Set(geneFilter);
+    geneFilter = geneFilter === letter ? '' : letter;
+  }
+  function toggleGene2(g){
+    gene2Filter = gene2Filter === g ? '' : g;
   }
   function selectMutant(m){
     selected = m;
@@ -1243,24 +1240,53 @@
   <!-- ЛЕВАЯ КОЛОНКА: КАТАЛОГ (Скрывается по условию) -->
   {#if showCatalog}
     <aside class="catalog">
+      <!-- Ген 1 -->
       <div class="filters-row">
-        <!-- фильтры по генам -->
+        <button
+          class="gene-chip"
+          class:active={gene2Filter==='neutral'}
+          on:click={() => toggleGene2('neutral')}
+          title="Нейтральный">
+          <img src="/genes/gene_all.webp" alt="Нейтральный" />
+        </button>
         {#each ['A','B','C','D','E','F'] as g}
           <button
-            class:active={geneFilter.has(g)}
+            class:active={geneFilter===g}
             class="gene-chip"
             on:click={() => toggleGene(g)}
             title={GENE_NAME[g]}>
             <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
           </button>
         {/each}
+      </div>
 
-        <!-- сортировки -->
-        <div class="sort-switch">
-          <button class:active={sortMode==='nameAsc'}  on:click={() => sortMode='nameAsc'}>А-Я</button>
-          <button class:active={sortMode==='nameDesc'} on:click={() => sortMode='nameDesc'}>Я-А</button>
-          <button class:active={sortMode==='gene'}     on:click={() => sortMode='gene'}>Ген</button>
-        </div>
+      <!-- Ген 2 -->
+      <div class="filters-row gene2-row" class:disabled={!geneFilter}>
+        <button
+          class="gene-chip"
+          class:active={gene2Filter==='neutral'}
+          disabled={!geneFilter}
+          on:click={() => toggleGene2('neutral')}
+          title="Нейтральный">
+          <img src="/genes/gene_all.webp" alt="Нейтральный" />
+        </button>
+        {#each ['A','B','C','D','E','F'] as g}
+          <button
+            class="gene-chip"
+            class:active={gene2Filter===g}
+            disabled={!geneFilter}
+            on:click={() => toggleGene2(g)}
+            title={GENE_NAME[g]}>
+            <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+          </button>
+        {/each}
+      </div>
+
+      <!-- Сортировки -->
+      <div class="sort-switch" style="margin-top: 8px;">
+        <button class:active={sortMode==='nameAsc'}  on:click={() => sortMode='nameAsc'}>А-Я</button>
+        <button class:active={sortMode==='nameDesc'} on:click={() => sortMode='nameDesc'}>Я-А</button>
+        <button class:active={sortMode==='gene'}     on:click={() => sortMode='gene'}>Ген</button>
       </div>
 
       <input
@@ -1537,6 +1563,9 @@
   .gene-chip{ width:28px; height:28px; padding:2px; border-radius:6px; background:#2b3442; border:1px solid #364456; cursor: pointer; }
   .gene-chip.active{ outline:2px solid #90f36b; }
   .gene-chip img{ width:100%; height:100%; object-fit:contain; }
+  .gene2-row{ margin-bottom:8px; }
+  .gene2-row.disabled{ opacity:0.3; pointer-events:none; }
+  .gene2-label{ font-size:10px; color:#aab6c8; font-weight:700; }
   .sort-switch{ margin-left:auto; display:flex; gap:6px; }
   .sort-switch button{ background:#2b3442; border:1px solid #3a475a; border-radius:8px; padding:6px 10px; font-size:12px; cursor: pointer; color:#aab6c8; }
   .sort-switch .active{ background:#7a56ff; border-color:#7a56ff; color:white; }

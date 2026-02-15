@@ -8,7 +8,6 @@
     bingoLabel,
     ABILITY_RU
   } from '@/lib/mutant-dicts';
-  import normalData from '@/data/mutants/normal.json';
   import { orbingMap } from '@/lib/orbing-map';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
 
@@ -19,55 +18,68 @@
   const dispatch = createEventDispatcher();
   const close = () => dispatch('close');
 
-   onMount(() => {
-    // Запретим браузеру масштабировать модальное окно
+  const STAR_MULTIPLIERS: Record<string, number> = {
+    normal: 1.0,
+    bronze: 1.1,
+    silver: 1.3,
+    gold: 1.75,
+    platinum: 2.0
+  };
+
+  const STAR_ICONS: Record<string, string> = {
+    normal: '/stars/no_stars.webp',
+    bronze: '/stars/star_bronze.webp',
+    silver: '/stars/star_silver.webp',
+    gold: '/stars/star_gold.webp',
+    platinum: '/stars/star_platinum.webp'
+  };
+
+  onMount(() => {
     document.documentElement.style.fontSize = '16px';
   });
 
-  // ===== helpers / maps =====
+  // ===== Star switching =====
+  let selectedStar = 'normal';
+
+  // Initialize selectedStar from prop or first available
+  $: {
+    if (mutant?.stars) {
+      const available = Object.keys(mutant.stars);
+      if (available.includes(star)) {
+        selectedStar = star;
+      } else if (available.length > 0) {
+        selectedStar = available[0];
+      }
+    } else {
+      selectedStar = star || 'normal';
+    }
+  }
+
+  $: availableStars = mutant?.stars ? (() => {
+    const stars = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
+    return stars.filter(s => mutant.stars?.[s]);
+  })() : [];
+  $: currentMultiplier = mutant?.stars?.[selectedStar]?.multiplier ?? STAR_MULTIPLIERS[selectedStar] ?? 1.0;
+
+  // ===== helpers =====
   const baseId = (id?: string) =>
-  String(id ?? '')
-    .toLowerCase()
-    // ⤵️ добавлен normal
-    .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
+    String(id ?? '')
+      .toLowerCase()
+      .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
 
-  const loreMap: Record<string, string> = {};
-  const bingoMap: Record<string, string[]> = {};
-  const abilitiesMap: Record<string, any[]> = {};
-  const attackNamesMap: Record<string, { name1?: string; name2?: string }> = {};
-
-  // Нормализация бинго из мутанта (string[] | {key}[] | object) с фолбэком на normal.json
-$: displayBingo = (() => {
-  const raw = mutant?.bingo;
-  let arr: string[] = [];
-
-  if (Array.isArray(raw)) {
-    // поддержка string[] и массивов вида [{ key: "..." }]
-    arr = raw.map((x: any) =>
-      typeof x === 'string'
-        ? x
-        : (x && typeof x === 'object' && typeof x.key === 'string' ? x.key : '')
-    ).filter(Boolean);
-  } else if (raw && typeof raw === 'object') {
-    // объект → берём ключи
-    arr = Object.keys(raw);
-  }
-
-  if (arr.length) return arr;
-  return bingoMap[baseId(mutant?.id)] ?? [];
-})();
-
-
-  for (const m of (normalData as any[])) {
-    const key = String((m as any).id ?? '').toLowerCase();
-    loreMap[key] = String((m as any).name_lore ?? '');
-    bingoMap[key] = Array.isArray((m as any).bingo) ? (m as any).bingo as string[] : [];
-    abilitiesMap[key] = Array.isArray((m as any).abilities) ? (m as any).abilities : [];
-    attackNamesMap[key] = {
-      name1: (m as any).name_attack1 ?? undefined,
-      name2: (m as any).name_attack2 ?? undefined
-    };
-  }
+  // Bingo from mutant data directly
+  $: displayBingo = (() => {
+    const raw = mutant?.bingo;
+    let arr: string[] = [];
+    if (Array.isArray(raw)) {
+      arr = raw.map((x: any) =>
+        typeof x === 'string' ? x : (x && typeof x === 'object' && typeof x.key === 'string' ? x.key : '')
+      ).filter(Boolean);
+    } else if (raw && typeof raw === 'object') {
+      arr = Object.keys(raw);
+    }
+    return arr;
+  })();
 
   const TYPE_ICON: Record<string, string> = {
     zodiac: '/mut_icons/icon_zodiac.webp',
@@ -155,93 +167,56 @@ $: displayBingo = (() => {
   const attackName = (m: any, which: 1 | 2): string => {
     const local = which === 1 ? m?.name_attack1 : m?.name_attack2;
     if (local) return String(local);
-    const fb = attackNamesMap[baseId(m?.id)];
-    return String((which === 1 ? fb?.name1 : fb?.name2) ?? (which === 1 ? 'Атака 1' : 'Атака 2'));
+    return which === 1 ? 'Атака 1' : 'Атака 2';
   };
   const abilityLabel = (name?: string) => {
     const raw = String(name ?? '');
     return ABILITY_RU?.[raw] ?? raw.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
-  // Base fields
+  // Base fields - use raw base_stats with star multiplier
   $: baseStats = mutant?.base_stats ?? {};
   $: genes = Array.isArray(mutant?.genes) ? mutant.genes[0] : '';
 
-  // Display type: show star if it exists (for rated versions), otherwise show original type
-  $: displayType = mutant?.star ? mutant.star : mutant?.type;
+  $: displayType = mutant?.type;
 
-  // Calculation Logic - Use unified calculator with debug
-  const calcHP = (level: number) => {
-    const stats = calculateFinalStats(baseStats, level);
-    return stats.hp;
-  };
+  // Reactive stats — recalculated when baseStats or currentMultiplier change
+  $: statsLvl1 = calculateFinalStats(baseStats, 1, currentMultiplier);
+  $: statsLvl30 = calculateFinalStats(baseStats, 30, currentMultiplier);
+  $: speedDisplay = Math.round(statsLvl1.speed * 100) / 100;
+  $: bankLvl1 = Math.round(statsLvl1.silver);
 
-  const calcAtk1 = (level: number) => {
-    const stats = calculateFinalStats(baseStats, level);
-    return stats.atk1;
-  };
-
-  const calcAtk2 = (level: number) => {
-    const stats = calculateFinalStats(baseStats, level);
-    return stats.atk2;
-  };
-
-  const calcBank = (level: number) => {
-    const stats = calculateFinalStats(baseStats, level);
-    return Math.round(stats.silver);
-  };
-
-  const calcSpeed = () => {
-    const stats = calculateFinalStats(baseStats, 1);
-    // Round to hundredths (2 decimal places)
-    return Math.round(stats.speed * 100) / 100;
-  };
-
-  const getAbilityValue = (level: number, abilityIndex: number): number => {
-    const stats = calculateFinalStats(baseStats, level);
-    // Return pre-calculated ability values from mutant data if available
+  const getAbilityValue = (level: number, abilityIndex: number, s1: any, s30: any): number => {
     const abilities = mutant?.abilities ?? [];
     if (abilityIndex < abilities.length && abilities[abilityIndex]) {
       const ability = abilities[abilityIndex];
-      // Check if this is a retaliate ability (always uses ATK1 values)
       const isRetaliate = ability.name?.toLowerCase().includes('retaliate') ?? false;
-
+      const abilityPct = ability.pct ?? 0;
       if (level < 25) {
-        if (isRetaliate || abilityIndex === 0) {
-          return ability.value_atk1_lvl1 ?? 0;
-        } else {
-          return ability.value_atk2_lvl1 ?? 0;
-        }
+        const atk = (isRetaliate || abilityIndex === 0) ? s1.atk1 : s1.atk2;
+        return Math.round(atk * (abilityPct / 100));
       } else {
-        if (isRetaliate || abilityIndex === 0) {
-          return ability.value_atk1_lvl30 ?? 0;
-        } else {
-          return ability.value_atk2_lvl30 ?? 0;
-        }
+        const atk = (isRetaliate || abilityIndex === 0) ? s30.atk1 : s30.atk2;
+        return Math.round(atk * (abilityPct / 100));
       }
     }
-    // Fallback to calculated value
+    const stats = level < 25 ? s1 : s30;
     return abilityIndex === 0 ? stats.ability : 0;
   };
 
-  const getAbilityPct = (level: number) => {
-    // Перед уровнем 25 используем abilityPct1, после 25 - abilityPct2
-    return level < 25 ? (baseStats.abilityPct1 ?? 0) : (baseStats.abilityPct2 ?? 0);
-  };
-
-  const imgSrc = (m: any) => {
+  // Texture from stars
+  const imgSrc = (m: any, starKey: string) => {
+    const starInfo = m?.stars?.[starKey];
+    if (starInfo?.images) {
+      const list = starInfo.images;
+      const pick = list.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
+      if (pick) return pick.startsWith('/') ? pick : `/${pick}`;
+    }
+    // Fallback to old image field
     const list: string[] = m?.image ?? [];
-    const pick =
-      list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
+    const pick = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
     if (!pick) return '/placeholder-mutant.webp';
     return pick.startsWith('/') ? pick : `/${pick}`;
-  };
-
-  // pct parsing
-  const parsePct = (val: any): number => {
-    if (val == null) return NaN;
-    const match = String(val).match(/-?\d*\.?\d+/);
-    return match ? parseFloat(match[0]) : NaN;
   };
 
   // formatting
@@ -268,59 +243,33 @@ $: displayBingo = (() => {
     isAoe?: boolean;
   };
 
-  function getRows(level: number) {
-    const atk1 = calcAtk1(level);
-    const atk2 = calcAtk2(level);
+  function getRows(level: number, s1: any, s30: any) {
+    const s = level < 25 ? s1 : s30;
+    const atk1 = s.atk1;
+    const atk2 = s.atk2;
 
     const baseLvl = level === 1 ? baseStats.lvl1 : baseStats.lvl30;
-    const baseAll = baseStats; // Use full base_stats object
-    const baseLvl30 = baseStats.lvl30; // Always reference lvl30 for attack genes and AOE flags
-    
-    // Get attack genes from the correct source - always use lvl30 data for attack genes
-    // Use level-specific data if available, otherwise fall back to general data
-    // For consistency, if the game data doesn't specify attack genes, derive them from the mutant's genes
-    const gene1 = 
-      baseLvl30?.atk1_gene ??  // Always prioritize lvl30 data for attack genes
-      baseLvl?.atk1_gene ?? 
-      baseAll?.atk1_gene ?? 
-      mutant?.atk1_gene ?? 
+    const baseLvl30 = baseStats.lvl30;
+
+    const gene1 =
+      baseLvl30?.atk1_gene ?? baseLvl?.atk1_gene ??
       (Array.isArray(genes) && genes[0] ? String(genes[0]).toLowerCase() : 'neutro');
-      
-    const gene2 = 
-      baseLvl30?.atk2_gene ??  // Always prioritize lvl30 data for attack genes
-      baseLvl?.atk2_gene ?? 
-      baseAll?.atk2_gene ?? 
-      mutant?.atk2_gene ?? 
-      // If no specific atk2_gene is defined anywhere, fall back to the second gene in the sequence
-      (Array.isArray(genes) && genes.length > 1 ? String(genes[1]).toLowerCase() : 
-       // For single-gene mutants, if no atk2_gene is defined, use the first gene
-       gene1);
 
-    // Get AOE flags from the correct source - always use lvl30 data for AOE flags
-    const aoe1 = 
-      baseLvl30?.atk1_AOE ??  // Always use lvl30 for AOE flags
-      baseLvl?.atk1_AOE ?? 
-      baseAll?.atk1_AOE ?? 
-      false;
-    const aoe2 = 
-      baseLvl30?.atk2_AOE ??  // Always use lvl30 for AOE flags
-      baseLvl?.atk2_AOE ?? 
-      baseAll?.atk2_AOE ?? 
-      false;
+    const gene2 =
+      baseLvl30?.atk2_gene ?? baseLvl?.atk2_gene ?? gene1;
 
-    const list = (Array.isArray(mutant?.abilities) ? mutant.abilities : (abilitiesMap[baseId(mutant?.id)] ?? [])) as any[];
+    const aoe1 = baseLvl30?.atk1_AOE ?? baseLvl?.atk1_AOE ?? false;
+    const aoe2 = baseLvl30?.atk2_AOE ?? baseLvl?.atk2_AOE ?? false;
 
+    const list = (Array.isArray(mutant?.abilities) ? mutant.abilities : []) as any[];
     const rows: Row[] = [];
 
-    // Check if both abilities are retaliate (special case - both apply to ATK1)
     const bothRetaliate = list.length >= 2 &&
       list[0]?.name?.toLowerCase().includes('retaliate') &&
       list[1]?.name?.toLowerCase().includes('retaliate');
 
-    // Atk 1
     let ab1, abilityIndex1;
     if (bothRetaliate) {
-      // Both retaliate abilities apply to first attack - select based on level
       ab1 = level < 25 ? list[0] : list[1];
       abilityIndex1 = level < 25 ? 0 : 1;
     } else {
@@ -329,7 +278,7 @@ $: displayBingo = (() => {
     }
 
     if (ab1) {
-      const value1 = getAbilityValue(level, abilityIndex1);
+      const value1 = getAbilityValue(level, abilityIndex1, s1, s30);
       rows.push({
         atkName: attackName(mutant, 1),
         dmg: atk1,
@@ -342,14 +291,13 @@ $: displayBingo = (() => {
       });
     }
 
-    // Atk 2 - always show attack, but without ability if both are retaliate
     const ab2 = bothRetaliate ? null : list[1];
     rows.push({
       atkName: attackName(mutant, 2),
       dmg: atk2,
       abCode: ab2?.name || null,
       abName: ab2?.name ? abilityLabel(ab2.name) : '—',
-      value: ab2 ? getAbilityValue(level, 1) : 0,
+      value: ab2 ? getAbilityValue(level, 1, s1, s30) : 0,
       pct: ab2?.pct ?? 0,
       gene: gene2,
       isAoe: aoe2
@@ -358,8 +306,8 @@ $: displayBingo = (() => {
     return rows;
   }
 
-  $: rowsLvl1 = getRows(1);
-  $: rowsLvl30 = getRows(30);
+  $: rowsLvl1 = getRows(1, statsLvl1, statsLvl30);
+  $: rowsLvl30 = getRows(30, statsLvl1, statsLvl30);
 
   // Misc
   $: incubTime =
@@ -371,16 +319,13 @@ $: displayBingo = (() => {
     mutant?.hatch_time ??
     null;
 
-  // Orbing ID matching logic
+  // Orbing
   const getOrbingImages = (m: any) => {
     if (!m) return null;
     const id = String(m.id || '');
-    // Try exact ID
     if (orbingMap[id]) return orbingMap[id];
-    // Try Case-insensitive ID
     const entry = Object.entries(orbingMap).find(([k]) => k.toLowerCase() === id.toLowerCase());
     if (entry) return entry[1];
-    // Try baseId
     const bId = baseId(id);
     const entryBase = Object.entries(orbingMap).find(([k]) => k.toLowerCase() === bId.toLowerCase());
     if (entryBase) return entryBase[1];
@@ -388,7 +333,6 @@ $: displayBingo = (() => {
   };
 
   $: orbingImages = getOrbingImages(mutant);
-  $: chanceVal = mutant?.chance ?? mutant?.chance_percent ?? null;
 
   // ===== a11y: focus trap =====
   let modalRef: HTMLElement;
@@ -444,7 +388,6 @@ $: displayBingo = (() => {
   });
   onDestroy(() => window.removeEventListener('keydown', escHandler));
 
- // Открывать верхом и давать фокус
   $: if (open) { (async () => { await tick(); try{ modalRef?.scrollTo({ top: 0, behavior: 'auto' }); }catch{}; focusFirst(); })(); }
 </script>
 
@@ -463,17 +406,33 @@ $: displayBingo = (() => {
     class="modal-2k relative w-full max-w-5xl grid md:grid-cols-[minmax(0,42%)_minmax(0,58%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
     <!-- Left -->
-    <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex items-center justify-center ring-1 ring-white/10 overflow-hidden">
-      <img
-        alt={mutant?.name}
-        src={imgSrc(mutant)}
-        class="max-h-[290px] md:max-h-[480px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
-        loading="lazy"
-        decoding="async"
-        fetchpriority="low"
-        width="640"
-        height="640"
-      />
+    <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
+      <!-- Star switcher -->
+      {#if availableStars.length > 1}
+        <div class="flex gap-2 mb-2">
+          {#each availableStars as s}
+            <button
+              class="star-switch-btn {selectedStar === s ? 'active' : ''}"
+              on:click={() => selectedStar = s}
+              title={STAR_LABEL[s] ?? s}
+            >
+              <img src={STAR_ICONS[s] ?? '/stars/no_stars.webp'} alt={s} class="w-6 h-6 object-contain" />
+            </button>
+          {/each}
+        </div>
+      {/if}
+      <div class="flex-1 flex items-center justify-center">
+        <img
+          alt={mutant?.name}
+          src={imgSrc(mutant, selectedStar)}
+          class="max-h-[290px] md:max-h-[480px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+          width="640"
+          height="640"
+        />
+      </div>
     </div>
 
     <!-- Right -->
@@ -483,17 +442,12 @@ $: displayBingo = (() => {
         <div class="min-w-0">
           <h2 id="mutant-title" class="text-lg md:text-xl font-bold tracking-wide break-words">{mutant?.name}</h2>
           <div class="mt-0.5 text-xs md:text-sm text-white/70 flex items-center gap-2 flex-wrap">
-            {#if mutant?.star}
-              <!-- Show star/rating for rated versions -->
-              <span class="break-words">{STAR_LABEL[mutant.star] ?? mutant.star}</span>
-            {:else if typeIcon(displayType)}
-              <!-- Show type icon for non-rated versions -->
+            {#if typeIcon(displayType)}
               <span class="inline-flex items-center gap-1 break-words">
                 <img class="type-icon opacity-90" src={typeIcon(displayType)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                 {TYPE_RU[displayType] ?? displayType}
               </span>
             {:else}
-              <!-- Fallback: show type without icon -->
               <span class="break-words">{TYPE_RU[displayType] ?? displayType}</span>
             {/if}
             {#if genes}
@@ -505,7 +459,7 @@ $: displayBingo = (() => {
           {#if mutant?.tier}
             <span class="px-2 py-1 rounded-full text-[11px] bg-emerald-500/15 text-emerald-100 ring-1 ring-emerald-500/40">Тир {mutant.tier}</span>
           {/if}
-          <span class={`px-2 py-1 rounded-full text-[10px] ring-1 ${STAR_COLOR[star]}`}>{STAR_LABEL[star] ?? star}</span>
+          <span class={`px-2 py-1 rounded-full text-[10px] ring-1 ${STAR_COLOR[selectedStar]}`}>{STAR_LABEL[selectedStar] ?? selectedStar}</span>
         </div>
       </div>
 
@@ -513,8 +467,8 @@ $: displayBingo = (() => {
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
         <div class="text-xs text-white/60 mb-1.5">Статы на 1 уровне</div>
         <dl class="grid grid-cols-2 gap-y-[2px] text-sm mb-1">
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcHP(1))}</dd>
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcSpeed())}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(statsLvl1.hp)}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(speedDisplay)}</dd>
         </dl>
 
         <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
@@ -553,8 +507,8 @@ $: displayBingo = (() => {
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
         <div class="text-xs text-white/60 mb-1.5">Статы на 30 уровне</div>
         <dl class="grid grid-cols-2 gap-y-[2px] text-sm mb-1">
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcHP(30))}</dd>
-          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(calcSpeed())}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(statsLvl30.hp)}</dd>
+          <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(speedDisplay)}</dd>
         </dl>
 
         <div class="mt-1 grid grid-cols-[26px_minmax(0,1fr)_auto_minmax(0,1fr)_auto] items-center gap-x-2 gap-y-[2px] text-sm min-w-0">
@@ -609,17 +563,12 @@ $: displayBingo = (() => {
         <div class="text-sm text-white/80 space-y-1">
           <div class="flex items-center gap-2 leading-tight">
             <span class="row-icon"><img class="stat-icon" src="/cash/softcurrency.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Серебро (лвл 1):</span>
-            <span class="text-white">{fmt(calcBank(1))}</span>
+            <span class="text-white">{fmt(bankLvl1)}</span>
           </div>
           <div class="flex items-center gap-2 leading-tight">
             <span class="row-icon"><img class="stat-icon" src="/etc/icon_timer.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Инкубация:</span>
             <span class="text-white">{incubTime ?? '—'}</span>{#if incubTime != null}<span class="opacity-80"> мин.</span>{/if}
           </div>
-          <!-- REMOVED: Chance field as per bug fix #5 -->
-          <!-- <div class="flex items-center gap-2 leading-tight">
-            <span class="row-icon"><img class="stat-icon" src="/etc/icon_chance.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Шанс:</span>
-            <span class="text-white">{chanceVal ?? '—'}</span>{#if chanceVal != null}<span class="opacity-80"> %</span>{/if}
-          </div> -->
         </div>
       </div>
 
@@ -627,7 +576,7 @@ $: displayBingo = (() => {
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
         <div class="text-xs text-white/60 mb-1">Описание</div>
         <div class="text-sm text-white/70 leading-relaxed break-words">
-          { (loreMap[baseId(mutant?.id)] ?? mutant?.name_lore ?? '').trim() || '—' }
+          { (mutant?.name_lore ?? '').trim() || '—' }
         </div>
       </div>
 
@@ -714,7 +663,23 @@ $: displayBingo = (() => {
   }
   .group:hover .gene-aoe { opacity: .96; }
 
-  /* Мобильные устройства */
+  /* Star switcher */
+  .star-switch-btn {
+    padding: 4px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s;
+  }
+  .star-switch-btn:hover { opacity: 0.8; background: rgba(255,255,255,0.1); }
+  .star-switch-btn.active {
+    opacity: 1;
+    background: rgba(6,182,212,0.2);
+    border-color: rgba(6,182,212,0.5);
+  }
+
   @media (max-width: 1200px) {
     :root {
       font-size: 16px;
