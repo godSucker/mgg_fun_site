@@ -361,8 +361,10 @@
               <div class="recipe-selector">
                 {#each regularRecipes as recipe (recipe.id)}
                   {@const displayReward = recipe.rewards[0]}
-                  {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
-                  {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                  <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+                  {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+                  {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
+                  {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}
@@ -384,13 +386,15 @@
               <div class="recipe-selector">
                 {#each potPourriRecipes as recipe (recipe.id)}
                   {@const displayReward = recipe.rewards[0]}
-                  {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+                  <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+                  {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+                  {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
                   {@const totalIngredients = recipe.ingredients.reduce(
                     (sum, ing) => sum + ing.amount,
                     0,
                   )}
-                  {@const rewardLabel = `${baseLabel} ×${totalIngredients}`}
-                  {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                  {@const rewardLabel = isSpecialRecipe ? `${translateItemId(recipe.id)} ×${totalIngredients}` : `${baseLabel} ×${totalIngredients}`}
+                  {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}
@@ -407,6 +411,181 @@
               </div>
             </div>
           </div>
+        {:else if activeFacility.id === 'transformatron'}
+          <!-- Group orb recipes by output result level (strict logic) -->
+          {@const allRecipes = activeFacility.recipes}
+          {@const level1Recipes = allRecipes.filter(recipe => 
+            recipe.rewards.some(reward => 
+              reward.id.includes('_01')
+            ) || 
+            recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1'
+          )}
+          {@const level2Recipes = allRecipes.filter(recipe => 
+            recipe.rewards.some(reward => 
+              reward.id.includes('_02')
+            ) || 
+            recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2'
+          )}
+          {@const level3Recipes = allRecipes.filter(recipe => 
+            recipe.rewards.some(reward => 
+              reward.id.includes('_03')
+            ) || 
+            recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'
+          )}
+          {@const level4Recipes = allRecipes.filter(recipe => 
+            recipe.rewards.some(reward => 
+              reward.id.includes('_04')
+            )
+          )}
+          
+          <!-- Apply mutual exclusivity to prevent duplicates -->
+          {@const filteredLevel2Recipes = level2Recipes.filter(recipe => 
+            !level1Recipes.includes(recipe)
+          )}
+          {@const filteredLevel3Recipes = level3Recipes.filter(recipe => 
+            !level1Recipes.includes(recipe) && !filteredLevel2Recipes.includes(recipe)
+          )}
+          {@const filteredLevel4Recipes = level4Recipes.filter(recipe => 
+            !level1Recipes.includes(recipe) && !filteredLevel2Recipes.includes(recipe) && !filteredLevel3Recipes.includes(recipe)
+          )}
+
+          <div class="recipe-groups">
+            {#if level1Recipes.length > 0}
+              <div class="recipes-group">
+                <h4 class="group-title">КРАФТ СФЕР 1 УРОВНЯ</h4>
+                <div class="recipe-selector grid-3-4">
+                  {#each level1Recipes as recipe (recipe.id)}
+                    {@const displayReward = recipe.rewards[0]}
+                    <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+                    {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+                    {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
+                    {@const totalIngredients = recipe.ingredients.reduce(
+                      (sum, ing) => sum + ing.amount,
+                      0,
+                    )}
+                    {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
+                      ? `${baseLabel} ×${totalIngredients}`
+                      : baseLabel}
+                    {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
+                    <button
+                      type="button"
+                      class:selected={recipe.id === currentRecipe?.id}
+                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      role="tab"
+                      aria-selected={recipe.id === currentRecipe?.id}
+                    >
+                      {#if rewardIcon}
+                        <img src={rewardIcon} alt={rewardLabel} />
+                      {/if}
+                      <span class="recipe-selector__title">{rewardLabel}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+
+            {#if filteredLevel2Recipes.length > 0}
+              <div class="recipes-group">
+                <h4 class="group-title">КРАФТ СФЕР 2 УРОВНЯ</h4>
+                <div class="recipe-selector grid-3-4">
+                  {#each filteredLevel2Recipes as recipe (recipe.id)}
+                    {@const displayReward = recipe.rewards[0]}
+                    <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+                    {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+                    {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
+                    {@const totalIngredients = recipe.ingredients.reduce(
+                      (sum, ing) => sum + ing.amount,
+                      0,
+                    )}
+                    {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
+                      ? `${baseLabel} ×${totalIngredients}`
+                      : baseLabel}
+                    {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
+                    <button
+                      type="button"
+                      class:selected={recipe.id === currentRecipe?.id}
+                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      role="tab"
+                      aria-selected={recipe.id === currentRecipe?.id}
+                    >
+                      {#if rewardIcon}
+                        <img src={rewardIcon} alt={rewardLabel} />
+                      {/if}
+                      <span class="recipe-selector__title">{rewardLabel}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+
+            {#if filteredLevel3Recipes.length > 0}
+              <div class="recipes-group">
+                <h4 class="group-title">КРАФТ СФЕР 3 УРОВНЯ</h4>
+                <div class="recipe-selector grid-3-4">
+                  {#each filteredLevel3Recipes as recipe (recipe.id)}
+                    {@const displayReward = recipe.rewards[0]}
+                    <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+                    {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+                    {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
+                    {@const totalIngredients = recipe.ingredients.reduce(
+                      (sum, ing) => sum + ing.amount,
+                      0,
+                    )}
+                    {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
+                      ? `${baseLabel} ×${totalIngredients}`
+                      : baseLabel}
+                    {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
+                    <button
+                      type="button"
+                      class:selected={recipe.id === currentRecipe?.id}
+                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      role="tab"
+                      aria-selected={recipe.id === currentRecipe?.id}
+                    >
+                      {#if rewardIcon}
+                        <img src={rewardIcon} alt={rewardLabel} />
+                      {/if}
+                      <span class="recipe-selector__title">{rewardLabel}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+
+            {#if filteredLevel4Recipes.length > 0}
+              <div class="recipes-group">
+                <h4 class="group-title">КРАФТ СФЕР 4 УРОВНЯ</h4>
+                <div class="recipe-selector grid-3-4">
+                  {#each filteredLevel4Recipes as recipe (recipe.id)}
+                    {@const displayReward = recipe.rewards[0]}
+                    <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+                    {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+                    {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
+                    {@const totalIngredients = recipe.ingredients.reduce(
+                      (sum, ing) => sum + ing.amount,
+                      0,
+                    )}
+                    {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
+                      ? `${baseLabel} ×${totalIngredients}`
+                      : baseLabel}
+                    {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
+                    <button
+                      type="button"
+                      class:selected={recipe.id === currentRecipe?.id}
+                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      role="tab"
+                      aria-selected={recipe.id === currentRecipe?.id}
+                    >
+                      {#if rewardIcon}
+                        <img src={rewardIcon} alt={rewardLabel} />
+                      {/if}
+                      <span class="recipe-selector__title">{rewardLabel}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+          </div>
         {:else}
           <div
             class="recipe-selector"
@@ -416,7 +595,9 @@
           >
             {#each activeFacility.recipes as recipe (recipe.id)}
               {@const displayReward = recipe.rewards[0]}
-              {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+              <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
+              {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
+              {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
               {@const totalIngredients = recipe.ingredients.reduce(
                 (sum, ing) => sum + ing.amount,
                 0,
@@ -424,7 +605,7 @@
               {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
                 ? `${baseLabel} ×${totalIngredients}`
                 : baseLabel}
-              {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+              {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
               <button
                 type="button"
                 class:selected={recipe.id === currentRecipe?.id}
@@ -450,7 +631,9 @@
               <div>
                 <h3>
                   {currentRecipe.rewards.length
-                    ? translateItemId(currentRecipe.rewards[0].id)
+                    ? (currentRecipe.id === 'orb_basic_1' || currentRecipe.id === 'orb_basic_2' || currentRecipe.id === 'orb_basic_3' || currentRecipe.id === 'orb_basic_4' || currentRecipe.id === 'orb_special_1' || currentRecipe.id === 'orb_special_2' || currentRecipe.id === 'orb_special_3' || currentRecipe.id === 'orb_reroll_basic_1' || currentRecipe.id === 'orb_reroll_special_1' || currentRecipe.id === 'orb_reroll_basic_2' || currentRecipe.id === 'orb_reroll_special_2' || currentRecipe.id === 'orb_reroll_basic_3' || currentRecipe.id === 'orb_reroll_special_3'
+                      ? translateItemId(currentRecipe.id)
+                      : translateItemId(currentRecipe.rewards[0].id))
                     : 'Рецепт'}
                 </h3>
                 <p class="recipe-card__subtitle">
@@ -1230,6 +1413,13 @@
     align-items: start;
   }
 
+  .recipe-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
   .recipes-group .recipe-selector {
     grid-template-columns: 1fr 1fr;
     gap: 0.4rem;
@@ -1293,13 +1483,13 @@
   }
 
   .group-title {
-    margin: 0 0 1.2rem;
+    margin: 0 0 0.5rem;
     font-size: 1.2rem;
     color: rgba(248, 250, 252, 0.7);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
   }
 
   .rewards-scroll {

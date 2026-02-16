@@ -208,25 +208,32 @@
   }
 
   const geneList = [
-    { key: '',  label: 'Все',                   icon: '/genes/icon_gene_all.webp' },
-    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.webp' },
-    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/icon_gene_b.webp' },
-    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/icon_gene_c.webp' },
-    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/icon_gene_d.webp' },
-    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.webp' },
-    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.webp' },
+    { key: '',  label: 'Ген 1: ВСЕ',             icon: '/genes/gene_all.webp' },
+    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/gene_a.webp' },
+    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/gene_b.webp' },
+    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/gene_c.webp' },
+    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/gene_d.webp' },
+    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/gene_e.webp' },
+    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/gene_f.webp' },
   ];
   const geneList2 = [
-    { key: '', label:  'Все',                   icon: '/genes/icon_gene_all.webp' },
-    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/icon_gene_a.webp' },
-    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/icon_gene_b.webp' },
-    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/icon_gene_c.webp' },
-    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/icon_gene_d.webp' },
-    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/icon_gene_e.webp' },
-    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/icon_gene_f.webp' },
+    { key: '', label:  'Ген 2: ВСЕ',             icon: '/genes/gene_all.webp' },
+    { key: 'neutral', label: 'Нейтральный',      icon: '/genes/gene_all.webp' },
+    { key: 'A', label: geneLabel?.('A') ?? 'A', icon: '/genes/gene_a.webp' },
+    { key: 'B', label: geneLabel?.('B') ?? 'B', icon: '/genes/gene_b.webp' },
+    { key: 'C', label: geneLabel?.('C') ?? 'C', icon: '/genes/gene_c.webp' },
+    { key: 'D', label: geneLabel?.('D') ?? 'D', icon: '/genes/gene_d.webp' },
+    { key: 'E', label: geneLabel?.('E') ?? 'E', icon: '/genes/gene_e.webp' },
+    { key: 'F', label: geneLabel?.('F') ?? 'F', icon: '/genes/gene_f.webp' },
   ];
   const geneButtonClass = (selected: boolean, disabled: boolean = false) =>
     'p-1 rounded-lg ring-1 ' + (disabled ? 'bg-slate-900 ring-white/5 opacity-30 cursor-not-allowed' : selected ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10');
+    
+  const geneChipClass = (selected: boolean, disabled: boolean = false) =>
+    'h-9 px-3 rounded-lg ring-1 flex items-center justify-center ' + 
+    (disabled ? 'bg-slate-900 ring-white/5 opacity-30 cursor-not-allowed' : 
+     selected ? 'bg-cyan-700 ring-cyan-400 text-white' : 
+     'bg-slate-800 ring-white/10 text-slate-200');
 
   // =================
   // ПОМОЩНИКИ ФИЛЬТРОВ
@@ -304,8 +311,8 @@
           if (firstGene !== gene1Sel.toUpperCase()) continue;
           if (gene2Sel) {
             if (gene2Sel === 'neutral') {
-              // Single-gene only: length 1 or both genes same
-              if (m.code.length > 1 && m.code[0] !== m.code[1]) continue;
+              // Single-gene only: exactly one gene
+              if (m.code.length !== 1) continue;
             } else {
               if (m.code.length < 2 || m.code[1] !== gene2Sel.toUpperCase()) continue;
             }
@@ -411,7 +418,12 @@
         const firstGene = m.code?.[0];
         if (firstGene !== gene1Sel.toUpperCase()) continue;
         if (gene2Sel) {
-          if (m.code.length < 2 || m.code[1] !== gene2Sel.toUpperCase()) continue;
+          if (gene2Sel === 'neutral') {
+            // Single-gene only: exactly one gene
+            if (m.code.length !== 1) continue;
+          } else {
+            if (m.code.length < 2 || m.code[1] !== gene2Sel.toUpperCase()) continue;
+          }
         }
       }
       if (checkStars && m.starKey !== targetStar) continue;
@@ -582,29 +594,64 @@
   <!-- Гены: две строки -->
   <div class="mb-2 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
     <div class="flex flex-col gap-2">
+      <!-- Gene 1 Row -->
       <div class="flex flex-wrap gap-2">
         {#each geneList as g}
-          <button type="button"
-            class={geneButtonClass(gene1Sel===g.key)}
-            on:click={() => { gene1Sel = (g.key==='' ? '' : (gene1Sel===g.key ? '' : g.key)); }}
-            title={g.label}
-            aria-pressed={gene1Sel===g.key}
-          >
-            <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
-          </button>
+          {#if g.key === ''}
+            <button type="button"
+              class={geneChipClass(gene1Sel===g.key)}
+              on:click={() => { gene1Sel = ''; gene2Sel = ''; }}
+              title={g.label}
+              aria-pressed={gene1Sel===g.key}
+            >
+              <span class="text-xs">{g.label}</span>
+            </button>
+          {:else}
+            <button type="button"
+              class={geneButtonClass(gene1Sel===g.key)}
+              on:click={() => { gene1Sel = (gene1Sel===g.key ? '' : g.key); }}
+              title={g.label}
+              aria-pressed={gene1Sel===g.key}
+            >
+              <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+            </button>
+          {/if}
         {/each}
       </div>
+      <!-- Gene 2 Row -->
       <div class="flex flex-wrap gap-2">
         {#each geneList2 as g}
-          <button type="button"
-            class={geneButtonClass(gene2Sel===g.key, !gene1Sel)}
-            on:click={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
-            title={g.label}
-            aria-pressed={gene2Sel===g.key}
-            disabled={!gene1Sel}
-          >
-            <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
-          </button>
+          {#if g.key === ''}
+            <button type="button"
+              class={geneChipClass(gene2Sel===g.key && gene1Sel, !gene1Sel)}
+              on:click={() => { if (gene1Sel) gene2Sel = ''; }}
+              title={g.label}
+              aria-pressed={gene2Sel===g.key}
+              disabled={!gene1Sel}
+            >
+              <span class="text-xs">{g.label}</span>
+            </button>
+          {:else if g.key === 'neutral'}
+            <button type="button"
+              class={geneButtonClass(gene2Sel===g.key, !gene1Sel)}
+              on:click={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
+              title={g.label}
+              aria-pressed={gene2Sel===g.key}
+              disabled={!gene1Sel}
+            >
+              <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+            </button>
+          {:else}
+            <button type="button"
+              class={geneButtonClass(gene2Sel===g.key, !gene1Sel)}
+              on:click={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
+              title={g.label}
+              aria-pressed={gene2Sel===g.key}
+              disabled={!gene1Sel}
+            >
+              <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+            </button>
+          {/if}
         {/each}
       </div>
     </div>

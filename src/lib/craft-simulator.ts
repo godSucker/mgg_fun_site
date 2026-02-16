@@ -103,6 +103,23 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   orb_special_addslash: 'Особая сфера ранения',
   orb_special_speed: 'Особая сфера скорости',
 
+  // Random orb recipes
+  'orb_basic_1': 'Случайная сфера ур.1',
+  'orb_basic_2': 'Случайная сфера ур.2',
+  'orb_basic_3': 'Случайная сфера ур.3',
+  'orb_basic_4': 'Случайная сфера ур.4',
+  'orb_special_1': 'Случайная особая сфера ур.1',
+  'orb_special_2': 'Случайная особая сфера ур.2',
+  'orb_special_3': 'Случайная особая сфера ур.3',
+
+  // Reroll orb recipes
+  'orb_reroll_basic_1': 'Замена сферы ур.1',
+  'orb_reroll_special_1': 'Замена особой сферы ур.1',
+  'orb_reroll_basic_2': 'Замена сферы ур.2',
+  'orb_reroll_special_2': 'Замена особой сферы ур.2',
+  'orb_reroll_basic_3': 'Замена сферы ур.3',
+  'orb_reroll_special_3': 'Замена особой сферы ур.3',
+
   // Materials & supplies
   Material_Muto1: 'Малая доза мутостерона',
   Material_Muto10: 'Доза мутостерона',
@@ -340,6 +357,49 @@ export function translateItemId(itemId: string): string {
 export function getItemTexture(itemId: string): string | null {
   if (ITEM_TEXTURES[itemId]) {
     return ITEM_TEXTURES[itemId];
+  }
+
+  // Handle specific random orb recipes first (before general patterns)
+  if (itemId === 'orb_basic_1') {
+    return `/orbs/orb_basic_empty_01.webp`;
+  }
+  if (itemId === 'orb_basic_2') {
+    return `/orbs/orb_basic_empty_02.webp`;
+  }
+  if (itemId === 'orb_basic_3') {
+    return `/orbs/orb_basic_empty_03.webp`;
+  }
+  if (itemId === 'orb_basic_4') {
+    return `/orbs/orb_basic_empty_04.webp`;
+  }
+  if (itemId === 'orb_special_1') {
+    return `/orbs/orb_special_empty_01.webp`;
+  }
+  if (itemId === 'orb_special_2') {
+    return `/orbs/orb_special_empty_02.webp`;
+  }
+  if (itemId === 'orb_special_3') {
+    return `/orbs/orb_special_empty_03.webp`;
+  }
+
+  // Handle reroll orb recipes
+  if (itemId === 'orb_reroll_basic_1') {
+    return `/orbs/orb_basic_empty_01.webp`;
+  }
+  if (itemId === 'orb_reroll_basic_2') {
+    return `/orbs/orb_basic_empty_02.webp`;
+  }
+  if (itemId === 'orb_reroll_basic_3') {
+    return `/orbs/orb_basic_empty_03.webp`;
+  }
+  if (itemId === 'orb_reroll_special_1') {
+    return `/orbs/orb_special_empty_01.webp`;
+  }
+  if (itemId === 'orb_reroll_special_2') {
+    return `/orbs/orb_special_empty_02.webp`;
+  }
+  if (itemId === 'orb_reroll_special_3') {
+    return `/orbs/orb_special_empty_03.webp`;
   }
 
   if (itemId.startsWith('orb_basic_')) {
