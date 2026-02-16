@@ -3,23 +3,33 @@
  * Provides functions to normalize strings for case-insensitive and special-character-insensitive search
  */
 
+// Latin → Cyrillic map (lowercase, applied after .toLowerCase())
+// Maps ALL Latin letters to closest Cyrillic for Russian-language search
+const LATIN_TO_CYRILLIC: Record<string, string> = {
+  'a': 'а', 'b': 'в', 'c': 'с', 'd': 'д', 'e': 'е', 'f': 'ф',
+  'g': 'г', 'h': 'х', 'i': 'и', 'j': 'й', 'k': 'к', 'l': 'л',
+  'm': 'м', 'n': 'н', 'o': 'о', 'p': 'р', 'q': 'к', 'r': 'р',
+  's': 'с', 't': 'т', 'u': 'у', 'v': 'в', 'w': 'в', 'x': 'х',
+  'y': 'у', 'z': 'з',
+};
+
 /**
  * Normalizes a string for search matching
  * - Converts to lowercase
+ * - Maps Latin lookalikes to Cyrillic (B→В, H→Н, etc.)
  * - Removes special characters (apostrophes, hyphens, dots, etc.)
- * - Keeps alphanumeric characters and Cyrillic letters
- * - Handles special Cyrillic encoding issues
+ * - Keeps Cyrillic letters and digits
  *
  * Examples:
+ * - "Bарвар" → "варвар"       (Latin B → Cyrillic в)
  * - "Д'Аратомис" → "даратомис"
- * - "Крутой-мутант" → "крутойmутант"
- * - "test.123" → "test123"
  * - "Кр€з" → "крез"
+ * - "H.U.M.A.N." → "нуман"
+ * - "Людовик XVI" → "людовикхви"
  */
 export function normalizeSearch(text: string): string {
   if (!text) return '';
 
-  // Handle special Cyrillic character replacements before removing special characters
   let normalized = text
     .toLowerCase()
     // Replace common problematic characters that might appear due to encoding issues
@@ -55,13 +65,21 @@ export function normalizeSearch(text: string): string {
     .replace(/Ў/g, 'у')
     .replace(/Џ/g, 'ч')
     // Remove special symbols/punctuation that shouldn't affect search
-    .replace(/[«»"''„“]/g, '')  // Remove quotes
-    .replace(/[.,;:!?]/g, '')  // Remove punctuation
+    .replace(/[«»"''„"']/g, '')  // Remove quotes and apostrophes
+    .replace(/[.,;:!?$]/g, '')  // Remove punctuation
     .replace(/[()\[\]{}]/g, '') // Remove brackets
-    .replace(/[-–—]/g, ''); // Remove hyphens and dashes
+    .replace(/[-–—/\\]/g, ''); // Remove hyphens, dashes, slashes
 
-  return normalized
-    .replace(/[^\w\u0400-\u04FF]/g, ''); // Keep only word chars and Cyrillic
+  // Remove everything that's not a letter or digit
+  normalized = normalized.replace(/[^\w\u0400-\u04FF]/g, '');
+
+  // Map Latin lookalikes to Cyrillic (handles mixed Latin/Cyrillic names)
+  let result = '';
+  for (const ch of normalized) {
+    result += LATIN_TO_CYRILLIC[ch] || ch;
+  }
+
+  return result;
 }
 
 /**

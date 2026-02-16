@@ -39,6 +39,9 @@ const GENE_ICONS = {
 const BINGO_ICONS: Record<string, string> = {
   "2025_skins": "/bingo/bingo_2025_skins.webp",
   "2025_mutants": "/bingo/bingo_mutants_2025.webp",
+  "2026_events": "/bingo/bingo_2025_events.webp",
+  "2026_skins": "/bingo/bingo_2025_skins.webp",
+  "2026_mutants": "/bingo/bingo_mutants_2025.webp",
   "anniversary_25": "/bingo/bingo_anniversery.webp",
   "cross_mutation": "/bingo/bingo_cross_mutation.webp",
   "research_1": "/bingo/bingo_1.webp",
@@ -51,6 +54,7 @@ const BINGO_ICONS: Record<string, string> = {
   "research_8": "/bingo/bingo_8.webp",
   "research_9": "/bingo/bingo_9.webp",
   "research_10": "/bingo/bingo_10.webp",
+  "research_11": "/bingo/bingo_11.webp",
   "reactor": "/bingo/bingo_reactor.webp",
   "legend": "/bingo/bingo_legendary.webp",
   "rumble": "/bingo/bingo_rumble.webp",
@@ -100,7 +104,9 @@ function getBingoLayout(bingo: Bingo) {
   const rows = Math.ceil(count / cols);
 
   const hasHeaders = [
-    'Starter', '2025_skins', '2025_mutants', '2025_events', 'anniversary_25', 'cross_mutation',
+    'Starter', '2025_skins', '2025_mutants', '2025_events',
+    '2026_events', '2026_skins', '2026_mutants',
+    'anniversary_25', 'cross_mutation',
     'research_1', 'research_2', 'research_3', 'research_4', 'research_5',
     'research_6', 'research_7', 'research_8', 'research_9', 'research_10', 'research_11',
     'reactor', 'legend', 'bingo_bronze', 'bingo_silver', 'bingo_gold', 'bingo_plat',
@@ -114,7 +120,7 @@ function getBingoLayout(bingo: Bingo) {
     topHeaders[1] = GENE_ICONS.A;
     topHeaders[2] = GENE_ICONS.B;
     topHeaders[3] = GENE_ICONS.C;
-  } else if (['2025_skins', '2025_mutants', '2025_events'].includes(bingo.id)) {
+  } else if (['2025_skins', '2025_mutants', '2025_events', '2026_skins', '2026_mutants', '2026_events'].includes(bingo.id)) {
     for (let i = 0; i < cols; i++) topHeaders[i] = `/bingo/up_${i + 1}.webp`;
     for (let i = 0; i < rows; i++) sideHeaders[i] = `/bingo/up_${i + 1}.webp`;
   } else if (bingo.id === 'anniversary_25') {
@@ -716,6 +722,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   .icon-research_8 { background-image: url('/bingo/bingo_8.webp'); }
   .icon-research_9 { background-image: url('/bingo/bingo_9.webp'); }
   .icon-research_10 { background-image: url('/bingo/bingo_10.webp'); }
+  .icon-research_11 { background-image: url('/bingo/bingo_11.webp'); }
   .icon-reactor { background-image: url('/bingo/bingo_reactor.webp'); }
   .icon-legend { background-image: url('/bingo/bingo_legendary.webp'); }
   .icon-rumble { background-image: url('/bingo/bingo_rumble.webp'); }
@@ -726,6 +733,9 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   .icon-event_2022 { background-image: url('/bingo/bingo_special.webp'); }
   .icon-event_2024 { background-image: url('/bingo/bingo_special.webp'); }
   .icon-2025_events { background-image: url('/bingo/bingo_2025_events.webp'); }
+  .icon-2026_events { background-image: url('/bingo/bingo_2025_events.webp'); }
+  .icon-2026_skins { background-image: url('/bingo/bingo_2025_skins.webp'); }
+  .icon-2026_mutants { background-image: url('/bingo/bingo_mutants_2025.webp'); }
   .icon-events { background-image: url('/bingo/bingo_special.webp'); }
   .icon-zodiac { background-image: url('/bingo/bingo_zodiac.webp'); }
   .icon-zodiac_silver { background-image: url('/bingo/bingo_silver_zodiac.webp'); }
@@ -852,5 +862,15 @@ function getSubBingos(bingo: Bingo): Bingo[] {
     .rewards-grid-list {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* QHD upscaling */
+  @media (min-width: 1921px) {
+    .bingo-grid { gap: 10px; }
+    .header-cell .header-icon-img { width: 60px; height: 60px; padding: 10px; }
+    .bingo-icon { width: 50px; height: 50px; }
+    .bingo-header-icon { width: 50px; height: 50px; }
+    .reward-card-simple img { width: 60px; height: 60px; }
+    .bingo-icon-span { width: 35px; height: 35px; }
   }
 </style>

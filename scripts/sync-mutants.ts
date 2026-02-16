@@ -493,7 +493,9 @@ async function sync(options: {
         if (xmlMultiplier > 0) {
             gachaMult = xmlMultiplier;
         } else if (isGacha) {
-            gachaMult = 2.0;
+            // hideSkins="platinum" означает gold (1.75x), иначе platinum (2.0x)
+            const hideSkins = String(tags.hideSkins || "").toLowerCase();
+            gachaMult = hideSkins.includes('platinum') ? 1.75 : 2.0;
         }
 
         // Определяем какие звёзды доступны
@@ -566,6 +568,20 @@ async function sync(options: {
         const atk1AOE = String(tags.atk1 || "").includes("AOE") || String(tags.atk1p || "").includes("AOE");
         const atk2AOE = String(tags.atk2 || "").includes("AOE") || String(tags.atk2p || "").includes("AOE");
 
+        // Парсим unlockAttack для точных генов атак (формат: "1:1:a;2:5:e;1p:10:a;2p:15:e")
+        const unlockAttackStr = String(tags.unlockAttack || "");
+        let parsedAtk1Gene = '';
+        let parsedAtk2Gene = '';
+        if (unlockAttackStr) {
+            for (const part of unlockAttackStr.split(';')) {
+                const [atkType, , gene] = part.split(':');
+                if (atkType === '1' && gene) parsedAtk1Gene = gene === 'neutre' ? 'neutro' : gene.toLowerCase();
+                if (atkType === '2' && gene) parsedAtk2Gene = gene === 'neutre' ? 'neutro' : gene.toLowerCase();
+            }
+        }
+        const atk1Gene = parsedAtk1Gene || genesChar[0]?.toLowerCase() || 'neutro';
+        const atk2Gene = parsedAtk2Gene || genesChar[1]?.toLowerCase() || 'neutro';
+
         const entry: UnifiedMutant = {
             id: baseId,
             name: name,
@@ -573,13 +589,16 @@ async function sync(options: {
             base_stats: {
                 lvl1: {
                     ...statsLvl1,
-                    atk1_gene: genesChar[0]?.toLowerCase() || 'neutro',
-                    atk1_AOE: atk1AOE
+                    atk1_gene: atk1Gene,
+                    atk2_gene: atk2Gene,
+                    atk1_AOE: atk1AOE,
+                    atk2_AOE: atk2AOE
                 },
                 lvl30: {
                     ...statsLvl30,
-                    atk1_gene: genesChar[0]?.toLowerCase() || 'neutro',
-                    atk2_gene: genesChar[1]?.toLowerCase() || 'neutro',
+                    atk1_gene: atk1Gene,
+                    atk2_gene: atk2Gene,
+                    atk1_AOE: atk1AOE,
                     atk2_AOE: atk2AOE
                 },
                 hp_base: baseStatsForCalc.hp_base,

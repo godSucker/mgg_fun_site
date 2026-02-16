@@ -82,7 +82,7 @@
     },
     boosters: {
       label: 'Бустеры',
-      icon: '/boosters/charm_xpx2.webp',
+      icon: '/boosters/charm_xpx2_7.webp',
       metaLabel: 'Ресурсов суммарно',
     },
     tokens: {
@@ -861,6 +861,8 @@
     inset: 0;
     background: linear-gradient(90deg, rgba(248, 113, 113, 0.8), rgba(236, 72, 153, 0.85));
     width: var(--progress, 0%);
+    border-radius: 999px;
+    transition: width 0.15s ease-out;
   }
 
   .progress-label {

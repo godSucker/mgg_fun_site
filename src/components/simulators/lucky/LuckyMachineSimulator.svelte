@@ -27,6 +27,7 @@
   let progress = 0;
   let completedPaid = 0;
   let controller: AbortController | null = null;
+  let showResultsModal = false;
 
   type ResourceSummaryKey = 'consumables'|'stars'|'spheres'|'boosters'|'tokens'|'mutants'|'jackpots';
   interface ResourceSummary { key: ResourceSummaryKey; label: string; icon: string; metaLabel: string; count: number; totalAmount: number; }
@@ -35,7 +36,7 @@
     consumables: { label: 'Расходники', icon: '/med/normal_med.webp', metaLabel: 'Ресурсов суммарно' },
     stars: { label: 'Звёзды', icon: '/stars/all_stars.webp', metaLabel: 'Ресурсов суммарно' },
     spheres: { label: 'Сферы', icon: '/orbs/basic/orb_slot.webp', metaLabel: 'Ресурсов суммарно' },
-    boosters: { label: 'Бустеры', icon: '/boosters/charm_xpx2.webp', metaLabel: 'Ресурсов суммарно' },
+    boosters: { label: 'Бустеры', icon: '/boosters/charm_xpx2_7.webp', metaLabel: 'Ресурсов суммарно' },
     tokens: { label: 'Жетоны', icon: '/tokens/material_jackpot_token.webp', metaLabel: 'Ресурсов суммарно' },
     mutants: { label: 'Мутанты', icon: '/etc/icon_larva.webp', metaLabel: 'Выпало суммарно' },
     jackpots: { label: 'Джекпоты', icon: '/cash/jackpot.webp', metaLabel: 'Выпало суммарно' },
@@ -88,7 +89,11 @@
 
   function resetSimulation() {
     if (controller) controller.abort();
-    result = null; progress = 0; completedPaid = 0; error = null;
+    result = null; progress = 0; completedPaid = 0; error = null; showResultsModal = false;
+  }
+
+  function closeResultsModal() {
+    showResultsModal = false;
   }
 
   async function handleSimulate() {
@@ -113,6 +118,7 @@
       });
       progress = 1;
       result = simulation;
+      showResultsModal = true;
     } catch (err) {
       if (!(err instanceof DOMException && err.name === 'AbortError')) error = 'Ошибка симуляции.';
     } finally {
@@ -182,58 +188,71 @@
       </div>
       {#if isSimulating}
         <div class="progress">
-          <div class="progress-bar"><div class="progress-fill" style={`width: ${progress * 100}%`}></div></div>
-          <div class="progress-label">Выполнено {Math.floor(progress * 100)}% — {formatNumber(completedPaid)} из {formatNumber(spins)}</div>
+          <div class="progress-bar"><div class="progress-fill" style={`width: ${Math.min(progress * 100, 100)}%`}></div></div>
+          <div class="progress-label">Выполнено {Math.min(Math.floor(progress * 100), 100)}% — {formatNumber(completedPaid)} из {formatNumber(spins)}</div>
         </div>
       {/if}
       {#if error}<p class="error">{error}</p>{/if}
     </form>
 
-    {#if result}
-      <section class="stats">
-        <div class="stat-card">
-          <img class="stat-icon" src="/etc/icon_timer.webp" alt="" />
-          <div class="stat-body"><span class="label">Всего прокрутов</span><strong>{formatNumber(result.totalSpins)}</strong></div>
-        </div>
-        <div class="stat-card">
-          <img class="stat-icon" src="/tokens/material_jackpot_token.webp" alt="" />
-          <div class="stat-body"><span class="label">Платных</span><strong>{formatNumber(result.paidSpins)}</strong></div>
-        </div>
-        <div class="stat-card highlight">
-          <img class="stat-icon" src="/etc/freespin.webp" alt="" />
-          <div class="stat-body">
-            <span class="label">Бесплатных</span>
-            <strong>{formatNumber(result.freeSpins)}</strong>
-            <small>Доля: {getFreeSpinRate(result)} • {getFreeSpinRatio(result)}</small>
-          </div>
-        </div>
-        <div class="stat-card">
-          <img class="stat-icon" src="/cash/g20.webp" alt="" />
-          <div class="stat-body"><span class="label">Выиграно золота</span><strong>{formatNumber(result.goldWon)}</strong></div>
-        </div>
-        <div class="stat-card">
-          <img class="stat-icon" src="/cash/softcurrency.webp" alt="" />
-          <div class="stat-body"><span class="label">Выиграно серебра</span><strong>{formatNumber(result.silverWon)}</strong></div>
-        </div>
-        <div class="stat-card">
-          <img class="stat-icon" src="/tokens/material_gacha_token.webp" alt="" />
-          <div class="stat-body"><span class="label">Жетоны</span><strong>{formatNumber(result.tokenItems)}</strong></div>
-        </div>
-      </section>
-      <section class="resource-summary">
-        {#each resourceSummaries as s (s.key)}
-          <article class="resource-card">
-            <div class="resource-icon"><img src={s.icon} alt="" /></div>
-            <div class="resource-body">
-              <span class="resource-title">{s.label}</span>
-              <strong>{formatNumber(s.count)}</strong>
-              <span class="resource-meta">{s.metaLabel}: {formatNumber(s.totalAmount)}</span>
-            </div>
-          </article>
-        {/each}
-      </section>
+    {#if result && !showResultsModal}
+      <button class="primary show-results-btn" on:click={() => showResultsModal = true}>Показать результаты</button>
+    {/if}
+  </div>
 
-      <div class="result-grid">
+  {#if result && showResultsModal}
+    <div class="modal-overlay" on:click|self={closeResultsModal} on:keydown={(e) => e.key === 'Escape' && closeResultsModal()} role="dialog" tabindex="-1">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Результаты симуляции</h3>
+          <button class="modal-close" on:click={closeResultsModal}>✕</button>
+        </div>
+
+        <section class="stats">
+          <div class="stat-card">
+            <img class="stat-icon" src="/etc/icon_timer.webp" alt="" />
+            <div class="stat-body"><span class="label">Всего прокрутов</span><strong>{formatNumber(result.totalSpins)}</strong></div>
+          </div>
+          <div class="stat-card">
+            <img class="stat-icon" src="/tokens/material_jackpot_token.webp" alt="" />
+            <div class="stat-body"><span class="label">Платных</span><strong>{formatNumber(result.paidSpins)}</strong></div>
+          </div>
+          <div class="stat-card highlight">
+            <img class="stat-icon" src="/etc/freespin.webp" alt="" />
+            <div class="stat-body">
+              <span class="label">Бесплатных</span>
+              <strong>{formatNumber(result.freeSpins)}</strong>
+              <small>Доля: {getFreeSpinRate(result)} • {getFreeSpinRatio(result)}</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <img class="stat-icon" src="/cash/g20.webp" alt="" />
+            <div class="stat-body"><span class="label">Выиграно золота</span><strong>{formatNumber(result.goldWon)}</strong></div>
+          </div>
+          <div class="stat-card">
+            <img class="stat-icon" src="/cash/softcurrency.webp" alt="" />
+            <div class="stat-body"><span class="label">Выиграно серебра</span><strong>{formatNumber(result.silverWon)}</strong></div>
+          </div>
+          <div class="stat-card">
+            <img class="stat-icon" src="/tokens/material_jackpot_token.webp" alt="" />
+            <div class="stat-body"><span class="label">Жетоны</span><strong>{formatNumber(result.tokenItems)}</strong></div>
+          </div>
+        </section>
+
+        <section class="resource-summary">
+          {#each resourceSummaries as s (s.key)}
+            <article class="resource-card">
+              <div class="resource-icon"><img src={s.icon} alt="" /></div>
+              <div class="resource-body">
+                <span class="resource-title">{s.label}</span>
+                <strong>{formatNumber(s.count)}</strong>
+                <span class="resource-meta">{s.metaLabel}: {formatNumber(s.totalAmount)}</span>
+              </div>
+            </article>
+          {/each}
+        </section>
+
+        <div class="result-grid">
           <section class="result-column">
             <h4>По наградам</h4>
             {#if result.breakdown.length}
@@ -290,8 +309,11 @@
             {/if}
           </section>
         </div>
-    {/if}
-  </div>
+
+        <button class="primary modal-close-bottom" on:click={closeResultsModal}>Закрыть</button>
+      </div>
+    </div>
+  {/if}
   <aside class="odds-panel" class:collapsed={!showOdds}>
     <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
       <h3>Шансы</h3>
@@ -334,7 +356,7 @@
     height: 100%; 
     background: linear-gradient(90deg, #c7b8ff, #7c4dff); /* Более яркий градиент */
     box-shadow: 0 0 15px rgba(124, 77, 255, 0.6); /* Более заметная тень */
-    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Долгая, плавная, нелинейная */
+    transition: width 0.15s ease-out;
     border-radius: 999px;
   }
 
@@ -364,7 +386,7 @@
 
   /* Добавлено для отображения списков наград */
   .result-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 1.5rem; }
-  .result-column { display: flex; flex-direction: column; gap: 0.8rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 16px; max-height: 400px; overflow: hidden; }
+  .result-column { display: flex; flex-direction: column; gap: 0.8rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 16px; }
   .result-column h4 { margin: 0; font-size: 1rem; color: #c7b8ff; }
   .reward-board, .history-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
   
@@ -416,6 +438,76 @@
     }
   }
 
+  .show-results-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    background: linear-gradient(150deg, rgba(124,77,255,0.12), rgba(13,10,22,0.97));
+    border: 1px solid rgba(129,140,248,0.3);
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #e0e7ff;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .modal-close-bottom {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
   @media (max-width: 640px) {
     .odds-panel {
       padding: 1rem;
@@ -461,10 +553,6 @@
       grid-template-columns: 1fr;
     }
 
-    .result-column {
-      max-height: 300px;
-    }
-
     .actions {
       flex-direction: column;
     }
@@ -484,6 +572,20 @@
 
     .odds-list .chance {
       align-self: flex-end;
+    }
+
+    .modal-overlay {
+      padding: 0.75rem;
+    }
+
+    .modal-content {
+      padding: 1.25rem;
+      border-radius: 20px;
+      max-height: 95vh;
+    }
+
+    .modal-header h3 {
+      font-size: 1.3rem;
     }
   }
 </style>

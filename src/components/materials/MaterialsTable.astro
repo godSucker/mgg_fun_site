@@ -338,4 +338,14 @@ const toChip = (s: SourceInfo) => {
       object-fit: contain;
     }
   }
+
+  /* QHD upscaling */
+  @media (min-width: 1921px) {
+    .thumb { width: 105px; padding: 12px; }
+    .thumb img { max-height: 225px; }
+    .materials[data-title="Здания"] .thumb { width: 175px; padding: 15px; }
+    .materials[data-title="Здания"] .thumb img { max-height: 250px; }
+    .materials[data-title="Сферы"] .thumb,
+    .materials[data-title="Бустеры"] .thumb { width: 105px; height: 105px; padding: 10px; }
+  }
 </style>

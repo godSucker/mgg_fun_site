@@ -1012,9 +1012,9 @@
   }
   function selectMutant(m){
     selected = m;
-    // Reset stars if not available for new mutant
+    // Reset stars if not available for new mutant — pick first available
     if (!m.availableStars.has(stars)) {
-      stars = 0;
+      stars = m.availableStars.values().next().value ?? 0;
     }
   }
   function pickBasic(slotIndex, orb){
@@ -2029,5 +2029,25 @@
     to {
       opacity: 0;
     }
+  }
+
+  /* QHD upscaling */
+  @media (min-width: 1921px) {
+    .mut-icon { width: 55px; height: 55px; }
+    .hero-genes img { width: 45px; height: 45px; }
+    .star { width: 40px; height: 40px; min-width: 40px; }
+    .slot-btn { width: 85px; height: 85px; min-width: 85px; min-height: 85px; }
+    .slots { gap: 20px; }
+    .mut-figure .texture { width: 310px; height: 310px; }
+    .attack-gene { width: 65px; height: 65px; }
+    .attack-gene .gene-icon { width: 50px; height: 50px; }
+    .attack-gene .attack-aoe { width: 65px; height: 65px; }
+    .ability-icon { width: 35px; height: 35px; }
+    .row .label-icon { width: 25px; height: 25px; }
+    .row .type-icon { width: 33px; height: 33px; }
+    .orb-row img { width: 45px; height: 45px; }
+    .dropdown { width: 400px; }
+    .controls { gap: 15px; }
+    .stars { gap: 8px; }
   }
 </style>

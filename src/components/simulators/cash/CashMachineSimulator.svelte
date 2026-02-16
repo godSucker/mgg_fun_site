@@ -55,6 +55,7 @@
   let controller: AbortController | null = null;
   let totalSpins = 0;
   let completedSpins = 0;
+  let showResultsModal = false;
 
   function resetSimulation() {
     if (controller) {
@@ -68,6 +69,11 @@
     totalSpins = 0;
     error = null;
     completedSpins = 0;
+    showResultsModal = false;
+  }
+
+  function closeResultsModal() {
+    showResultsModal = false;
   }
 
   function stopSimulation() {
@@ -125,6 +131,7 @@
       };
 
       history = simulation.history;
+      showResultsModal = true;
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
         error = 'Симуляция остановлена.';
@@ -196,89 +203,104 @@
       {/if}
     </form>
 
-    {#if result}
-      <section class="stats">
-        <div class="stat-card metric spins">
-          <div class="metric-icon" aria-hidden="true">
-            <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
-          </div>
-          <div class="metric-body">
-            <span class="label">Прокрутов</span>
-            <strong>{formatNumber(result.spins)}</strong>
-          </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
-          <div class="stat-body">
-            <span class="label">Потрачено золота</span>
-            <strong>{formatNumber(result.goldSpent)}</strong>
-          </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
-          <div class="stat-body">
-            <span class="label">Выиграно золота</span>
-            <strong>{formatNumber(result.goldWon)}</strong>
-          </div>
-        </div>
-        <div class="stat-card currency">
-          <img class="stat-icon" src={silverIcon} alt="Иконка серебра" loading="lazy" />
-          <div class="stat-body">
-            <span class="label">Выиграно серебра</span>
-            <strong>{formatNumber(result.silverWon)}</strong>
-          </div>
-        </div>
-        <div class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
-          <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
-          <div class="stat-body">
-            <span class="label">Чистый результат</span>
-            <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>
-          </div>
-        </div>
-      </section>
-
-      <section class="results-grid">
-        <div class="panel">
-          <h3>Статистика призов</h3>
-          <div class="table">
-            <div class="table-row head">
-              <span>Награда</span>
-              <span>Выпало</span>
-              <span>Всего ресурсов</span>
-            </div>
-            {#each breakdown as entry}
-              <div class="table-row">
-                <span class="reward-label">
-                  <img class="reward-icon" src={entry.icon} alt={entry.label} loading="lazy" />
-                  <span>{entry.label}</span>
-                </span>
-                <span>x{formatNumber(entry.count)}</span>
-                <span>{formatAmountWithUnit(entry.totalAmount, entry.reward.type)}</span>
-              </div>
-            {/each}
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Последние выигрыши</h3>
-          {#if history.length === 0}
-            <p class="empty">Запустите симуляцию, чтобы увидеть историю.</p>
-          {:else}
-            <ul class="history">
-              {#each history as spin (spin.timestamp)}
-                <li>
-                  <div class="history-info">
-                    <img class="history-icon" src={spin.icon} alt={spin.label} loading="lazy" />
-                    <span class="title">{spin.label}</span>
-                  </div>
-                  <span class="odds">+{formatAmountWithUnit(spin.reward.amount, spin.reward.type)}</span>
-                </li>
-              {/each}
-            </ul>
-          {/if}
-        </div>
-      </section>
+    {#if result && !showResultsModal}
+      <button class="primary show-results-btn" on:click={() => showResultsModal = true}>Показать результаты</button>
     {/if}
   </div>
+
+  {#if result && showResultsModal}
+    <div class="modal-overlay" on:click|self={closeResultsModal} on:keydown={(e) => e.key === 'Escape' && closeResultsModal()} role="dialog" tabindex="-1">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Результаты симуляции</h3>
+          <button class="modal-close" on:click={closeResultsModal}>✕</button>
+        </div>
+
+        <section class="stats">
+          <div class="stat-card metric spins">
+            <div class="metric-icon" aria-hidden="true">
+              <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
+            </div>
+            <div class="metric-body">
+              <span class="label">Прокрутов</span>
+              <strong>{formatNumber(result.spins)}</strong>
+            </div>
+          </div>
+          <div class="stat-card currency">
+            <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+            <div class="stat-body">
+              <span class="label">Потрачено золота</span>
+              <strong>{formatNumber(result.goldSpent)}</strong>
+            </div>
+          </div>
+          <div class="stat-card currency">
+            <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+            <div class="stat-body">
+              <span class="label">Выиграно золота</span>
+              <strong>{formatNumber(result.goldWon)}</strong>
+            </div>
+          </div>
+          <div class="stat-card currency">
+            <img class="stat-icon" src={silverIcon} alt="Иконка серебра" loading="lazy" />
+            <div class="stat-body">
+              <span class="label">Выиграно серебра</span>
+              <strong>{formatNumber(result.silverWon)}</strong>
+            </div>
+          </div>
+          <div class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
+            <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+            <div class="stat-body">
+              <span class="label">Чистый результат</span>
+              <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="results-grid">
+          <div class="panel">
+            <h3>Статистика призов</h3>
+            <div class="table">
+              <div class="table-row head">
+                <span>Награда</span>
+                <span>Выпало</span>
+                <span>Всего ресурсов</span>
+              </div>
+              {#each breakdown as entry}
+                <div class="table-row">
+                  <span class="reward-label">
+                    <img class="reward-icon" src={entry.icon} alt={entry.label} loading="lazy" />
+                    <span>{entry.label}</span>
+                  </span>
+                  <span>x{formatNumber(entry.count)}</span>
+                  <span>{formatAmountWithUnit(entry.totalAmount, entry.reward.type)}</span>
+                </div>
+              {/each}
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Последние выигрыши</h3>
+            {#if history.length === 0}
+              <p class="empty">Запустите симуляцию, чтобы увидеть историю.</p>
+            {:else}
+              <ul class="history">
+                {#each history as spin (spin.timestamp)}
+                  <li>
+                    <div class="history-info">
+                      <img class="history-icon" src={spin.icon} alt={spin.label} loading="lazy" />
+                      <span class="title">{spin.label}</span>
+                    </div>
+                    <span class="odds">+{formatAmountWithUnit(spin.reward.amount, spin.reward.type)}</span>
+                  </li>
+                {/each}
+              </ul>
+            {/if}
+          </div>
+        </section>
+
+        <button class="primary modal-close-bottom" on:click={closeResultsModal}>Закрыть</button>
+      </div>
+    </div>
+  {/if}
 
   <aside class="odds-panel" class:collapsed={!showOdds}>
     <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
@@ -889,11 +911,81 @@
     }
   }
 
+  .show-results-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    background: linear-gradient(160deg, rgba(253, 216, 112, 0.08), rgba(13, 17, 23, 0.97));
+    border: 1px solid rgba(255, 202, 40, 0.25);
+    border-radius: 28px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #fceabb;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .modal-close-bottom {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
   @media (max-width: 640px) {
     .odds-panel {
       padding: 1rem;
     }
-    
+
     .odds-panel.collapsed {
       gap: 0;
     }
@@ -980,6 +1072,20 @@
       align-self: flex-end;
       font-size: 0.9rem;
       color: #ffd54f;
+    }
+
+    .modal-overlay {
+      padding: 0.75rem;
+    }
+
+    .modal-content {
+      padding: 1.25rem;
+      border-radius: 20px;
+      max-height: 95vh;
+    }
+
+    .modal-header h3 {
+      font-size: 1.3rem;
     }
   }
 </style>

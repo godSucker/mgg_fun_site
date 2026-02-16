@@ -782,7 +782,11 @@
 
 <style>
   /* Апскейл на ≥2K */
-  @media (min-width: 2048px){ .page-2k { font-size: 1.0625rem; } }
+  @media (min-width: 1921px){ .page-2k { font-size: 1.0625rem; } }
+  @media (min-width: 1921px){
+    .page-2k :global(img[style*="height: 195px"]) { height: 244px !important; }
+    .heads-name { padding: 3px 5px; font-size: 13px; }
+  }
 
   /* Heads mode */
   .heads-card {

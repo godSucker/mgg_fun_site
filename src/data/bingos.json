@@ -100,8 +100,8 @@
         "id": "2025_skins",
         "mutants": [
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_BE_07",
+                "skin": "halloween"
             },
             {
                 "specimenId": "Specimen_EF_05",
@@ -120,12 +120,12 @@
                 "skin": "masks"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_BD_01",
+                "skin": "thanksgiving"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_DD_09",
+                "skin": "xmas25"
             },
             {
                 "specimenId": "Specimen_CB_09",
@@ -152,32 +152,32 @@
                 "skin": "valentines"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_AE_06",
+                "skin": "cyberweek"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_CE_06",
+                "skin": "autumn"
             },
             {
                 "specimenId": "Specimen_CA_05",
                 "skin": "worker"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_AB_10",
+                "skin": "science"
             },
             {
                 "specimenId": "Specimen_ED_11",
                 "skin": "carnival"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_CD_11",
+                "skin": "xmas25"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_CD_08",
+                "skin": "oktoberfest"
             },
             {
                 "specimenId": "Specimen_FE_10",
@@ -188,8 +188,8 @@
                 "skin": "kings"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_DA_04",
+                "skin": "winter"
             },
             {
                 "specimenId": "Specimen_DD_08",
@@ -271,7 +271,7 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_BA_14",
                 "skin": "_any"
             },
             {
@@ -279,7 +279,7 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_FB_14",
                 "skin": "_any"
             },
             {
@@ -287,11 +287,11 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_AB_14",
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_B_14",
                 "skin": "_any"
             },
             {
@@ -307,7 +307,7 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_BE_13",
                 "skin": "_any"
             },
             {
@@ -315,11 +315,11 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_CF_14",
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_CD_14",
                 "skin": "_any"
             },
             {
@@ -327,7 +327,7 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_F_14",
                 "skin": "_any"
             },
             {
@@ -335,7 +335,7 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_DE_15",
                 "skin": "_any"
             },
             {
@@ -343,7 +343,7 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_EA_14",
                 "skin": "_any"
             },
             {
@@ -355,11 +355,11 @@
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_BD_13",
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_CC_14",
                 "skin": "_any"
             }
         ],
@@ -426,8 +426,8 @@
         "id": "2025_events",
         "mutants": [
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_CD_11",
+                "skin": "xmas25"
             },
             {
                 "specimenId": "Specimen_FD_14",
@@ -450,44 +450,44 @@
                 "skin": "masks"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_BE_07",
+                "skin": "halloween"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_FA_09",
+                "skin": "xmas25"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_AB_08",
+                "skin": "xmas25"
             },
             {
                 "specimenId": "Specimen_EE_03",
                 "skin": "easter"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_BA_04",
+                "skin": "halloween"
             },
             {
                 "specimenId": "Specimen_FF_99",
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_FC_10",
+                "skin": "advent"
             },
             {
                 "specimenId": "Specimen_CF_05",
                 "skin": "valentines"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_DE_15",
                 "skin": "_any"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_DD_04",
+                "skin": "xmas25"
             },
             {
                 "specimenId": "Specimen_BE_08",
@@ -498,7 +498,7 @@
                 "skin": "valentines"
             },
             {
-                "specimenId": "Specimen_FF_98",
+                "specimenId": "Specimen_AB_14",
                 "skin": "_any"
             },
             {
@@ -510,8 +510,8 @@
                 "skin": "valentines"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_DD_09",
+                "skin": "xmas25"
             },
             {
                 "specimenId": "Specimen_DA_14",
@@ -522,8 +522,8 @@
                 "skin": "masks"
             },
             {
-                "specimenId": "Specimen_FF_98",
-                "skin": "_any"
+                "specimenId": "Specimen_FB_09",
+                "skin": "halloween"
             }
         ],
         "rewards": [
@@ -582,6 +582,138 @@
                 "amount": 2000,
                 "type": "hardcurrency"
             }
+        ]
+    },
+    {
+        "title": "----morphology_2026_events",
+        "id": "2026_events",
+        "mutants": [
+            { "specimenId": "Specimen_BC_10", "skin": "valentines" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_AE_09", "skin": "valentines" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_CE_11", "skin": "valentines" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_AB_15", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" }
+        ],
+        "rewards": [
+            { "name": "Material_Gacha_Token", "amount": 2, "type": "entity" },
+            { "name": "Star_Silver", "amount": 5, "type": "entity" },
+            { "name": "orb_basic_life_06", "amount": 2, "type": "entity" },
+            { "name": "gold", "amount": 500, "type": "hardcurrency" },
+            { "name": "Star_Platinum", "amount": 1, "type": "entity" },
+            { "name": "Material_Event_Token", "amount": 15, "type": "entity" },
+            { "name": "Star_Gold", "amount": 1, "type": "entity" },
+            { "name": "Material_Jackpot_Token", "amount": 40, "type": "entity" },
+            { "name": "gold", "amount": 500, "type": "hardcurrency" },
+            { "name": "Material_Mystery26_Token", "amount": 5, "type": "entity" },
+            { "name": "gold", "amount": 2000, "type": "hardcurrency" }
+        ]
+    },
+    {
+        "title": "----morphology_2026_skins",
+        "id": "2026_skins",
+        "mutants": [
+            { "specimenId": "Specimen_EC_05", "skin": "kings" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_BC_10", "skin": "valentines" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_AD_02", "skin": "xinnian" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" }
+        ],
+        "rewards": [
+            { "name": "Star_Silver", "amount": 4, "type": "entity" },
+            { "name": "Material_Event_Token", "amount": 20, "type": "entity" },
+            { "name": "gold", "amount": 1000, "type": "hardcurrency" },
+            { "name": "orb_basic_attack_06", "amount": 2, "type": "entity" },
+            { "name": "Star_Gold", "amount": 2, "type": "entity" },
+            { "name": "Material_Jackpot_Token", "amount": 50, "type": "entity" },
+            { "name": "orb_basic_xp_04", "amount": 3, "type": "entity" },
+            { "name": "gold", "amount": 1000, "type": "hardcurrency" },
+            { "name": "Material_Gacha_Token", "amount": 2, "type": "entity" },
+            { "name": "Star_Platinum", "amount": 2, "type": "entity" },
+            { "name": "gold", "amount": 3200, "type": "hardcurrency" }
+        ]
+    },
+    {
+        "title": "----morphology_2026_mutants",
+        "id": "2026_mutants",
+        "mutants": [
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_AD_14", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_AB_15", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" },
+            { "specimenId": "Specimen_FF_98", "skin": "_any" }
+        ],
+        "rewards": [
+            { "name": "gold", "amount": 1100, "type": "hardcurrency" },
+            { "name": "Material_Gacha_Token", "amount": 3, "type": "entity" },
+            { "name": "Material_Event_Token", "amount": 20, "type": "entity" },
+            { "name": "Material_Jackpot_Token", "amount": 75, "type": "entity" },
+            { "name": "orb_basic_life_06", "amount": 2, "type": "entity" },
+            { "name": "gold", "amount": 1100, "type": "hardcurrency" },
+            { "name": "Material_XP1000", "amount": 50, "type": "entity" },
+            { "name": "Star_Silver", "amount": 5, "type": "entity" },
+            { "name": "Star_Gold", "amount": 2, "type": "entity" },
+            { "name": "Star_Platinum", "amount": 2, "type": "entity" },
+            { "name": "gold", "amount": 3800, "type": "hardcurrency" }
         ]
     },
     {

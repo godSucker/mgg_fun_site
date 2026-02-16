@@ -44,7 +44,7 @@
     result: DetailedSimulationResult | null;
   }
 
-  const MAX_SIMULATIONS = 10000;
+  const MAX_SIMULATIONS = 1000000;
 
   const allRecipes: CraftRecipe[] = [
     ...craftRecipesByCategory.star,
@@ -586,6 +586,51 @@
               </div>
             {/if}
           </div>
+        {:else if activeFacility.id === 'blackhole'}
+          {@const craftRecipeIds = ['little_rewards_01', 'big_rewards_01', 'big_rewards_02', 'token_sink_03', 'token_sink_06']}
+          {@const bhRecipes = activeFacility.recipes.filter(r => !craftRecipeIds.includes(r.id))}
+          {@const bhCraft = activeFacility.recipes.filter(r => craftRecipeIds.includes(r.id))}
+
+          <div class="recipe-groups">
+            <div class="recipes-group">
+              <h4 class="group-title">РЕЦЕПТЫ</h4>
+              <div class="recipe-selector grid-3-4">
+                {#each bhRecipes as recipe (recipe.id)}
+                  {@const displayReward = recipe.rewards[0]}
+                  {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+                  {@const totalIngredients = recipe.ingredients.reduce((sum, ing) => sum + ing.amount, 0)}
+                  {@const rewardLabel = recipe.id.startsWith('pot_pourri_') ? `${baseLabel} ×${totalIngredients}` : baseLabel}
+                  {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                  <button type="button" class:selected={recipe.id === currentRecipe?.id}
+                    on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                    role="tab" aria-selected={recipe.id === currentRecipe?.id}>
+                    {#if rewardIcon}<img src={rewardIcon} alt={rewardLabel} />{/if}
+                    <span class="recipe-selector__title">{rewardLabel}</span>
+                  </button>
+                {/each}
+              </div>
+            </div>
+
+            {#if bhCraft.length > 0}
+              <div class="recipes-group">
+                <h4 class="group-title">КРАФТ</h4>
+                <div class="recipe-selector grid-3-4">
+                  {#each bhCraft as recipe (recipe.id)}
+                    {@const displayReward = recipe.rewards[0]}
+                    {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
+                    {@const rewardLabel = baseLabel}
+                    {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                    <button type="button" class:selected={recipe.id === currentRecipe?.id}
+                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      role="tab" aria-selected={recipe.id === currentRecipe?.id}>
+                      {#if rewardIcon}<img src={rewardIcon} alt={rewardLabel} />{/if}
+                      <span class="recipe-selector__title">{rewardLabel}</span>
+                    </button>
+                  {/each}
+                </div>
+              </div>
+            {/if}
+          </div>
         {:else}
           <div
             class="recipe-selector"
@@ -703,7 +748,6 @@
                         </div>
                         <div class="item-odds">
                           <span>{formatPercent(reward.chance)}</span>
-                          <span class="item-odds__raw">{reward.odds}/1000</span>
                         </div>
                       </li>
                     {/each}
@@ -1467,14 +1511,8 @@
   }
 
   .recipe-selector.grid-3-4 button img {
-    width: 32px;
-    height: 32px;
-  }
-  
-  /* Supplies Lab button icon override */
-  .recipe-selector.grid-3-4[aria-label*="Supplies Lab"] button img {
-     width: 38px;
-     height: 38px;
+    width: 38px;
+    height: 38px;
   }
 
   .recipe-selector.grid-3-4 .recipe-selector__title {
@@ -1632,5 +1670,16 @@
       font-size: 0.75rem;
       padding: 0.35rem 0.9rem;
     }
+  }
+
+  /* QHD upscaling */
+  @media (min-width: 1921px) {
+    .featured-item { grid-template-columns: 60px 1fr; }
+    .featured-item img { width: 60px; height: 60px; }
+    .item-icon { width: 65px; height: 65px; }
+    .item-icon img { width: 55px; height: 55px; }
+    .recipe-selector button img { width: 48px; height: 48px; }
+    .recipe-selector.grid-3-4 button img { width: 48px; height: 48px; }
+    .recipes-group .recipe-selector button img { width: 60px; height: 60px; }
   }
 </style>
