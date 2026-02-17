@@ -1,23 +1,15 @@
+import type { APIRoute } from 'astro';
 import { parseTierData } from '../../lib/tier-parser';
 
 // Valid tier values
 const VALID_TIERS = ['1+', '1-', '2+', '2', '2-', '3+', '3', '3-', '4'];
 
 // Telegram bot token
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const API_TOKEN = process.env.API_UPDATE_TOKEN;
+const BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN;
+const API_TOKEN = import.meta.env.API_UPDATE_TOKEN;
 
-export async function POST({ request }) {
+export const POST: APIRoute = async ({ request }) => {
   try {
-    // Verify this is coming from Telegram (optional for testing)
-    // const token = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
-    // if (token !== API_TOKEN) {
-    //   return new Response(
-    //     JSON.stringify({ error: 'Unauthorized' }),
-    //     { status: 401, headers: { 'Content-Type': 'application/json' } }
-    //   );
-    // }
-
     // Properly handle the request body
     const rawBody = await request.text();
     const body = JSON.parse(rawBody);
@@ -60,14 +52,11 @@ export async function POST({ request }) {
             }
           }
 
-          // Store the updates in a temporary storage (for demo purposes, we'll use a simple approach)
-          // In a real implementation, you would use a database or other persistent storage
-
           // For now, we'll update the mutants.json file directly using GitHub API
           // This requires a GitHub token with appropriate permissions
-          const githubToken = process.env.GITHUB_TOKEN;
-          const owner = process.env.REPO_OWNER; // e.g., 'your-username'
-          const repo = process.env.REPO_NAME; // e.g., 'your-repo-name'
+          const githubToken = import.meta.env.GITHUB_TOKEN;
+          const owner = import.meta.env.REPO_OWNER;
+          const repo = import.meta.env.REPO_NAME;
 
           if (githubToken && owner && repo) {
             try {
@@ -91,7 +80,7 @@ export async function POST({ request }) {
               }
 
               const fileData = await fileResponse.json();
-              const currentContent = atob(fileData.content); // Use atob instead of Buffer for base64 decoding
+              const currentContent = atob(fileData.content);
               const currentMutants = JSON.parse(currentContent);
 
               // Apply the tier updates
@@ -118,9 +107,9 @@ export async function POST({ request }) {
                   },
                   body: JSON.stringify({
                     message: `Auto-update: ${updatedCount} mutant tier updates from Telegram bot`,
-                    content: btoa(updatedContent), // Use btoa instead of Buffer for base64 encoding
-                    sha: fileData.sha, // Required to update the file
-                    branch: 'main' // or whatever your default branch is
+                    content: btoa(updatedContent),
+                    sha: fileData.sha,
+                    branch: 'main'
                   })
                 }
               );
@@ -139,7 +128,7 @@ export async function POST({ request }) {
           return new Response(
             JSON.stringify({
               success: true,
-              message: `Received ${Object.keys(parsedTiers).length} tier updates. GitHub Action will process them shortly.`
+              message: `Received ${Object.keys(parsedTiers).length} tier updates.`
             }),
             { status: 200, headers: { 'Content-Type': 'application/json' } }
           );
@@ -153,13 +142,12 @@ export async function POST({ request }) {
       } else if (body.message.text) {
         // Handle text commands
         const text = body.message.text;
-
         let responseText = '';
 
         if (text === '/start') {
           responseText = 'Welcome! Send me a file with tier data to update mutants.';
         } else if (text === '/help') {
-          responseText = 'Send me a .txt file with tier data in the format: "Russian_Name,Tier"';
+          responseText = 'Send me a .txt file with tier data.';
         } else {
           responseText = 'Send me a file with tier data to update mutants.';
         }
@@ -182,41 +170,22 @@ export async function POST({ request }) {
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
-}
+};
 
-// For setting up webhook
-export async function GET({ url }) {
+export const GET: APIRoute = async ({ url }) => {
   const params = new URLSearchParams(url.search);
   const action = params.get('action');
 
-  // Debug: Check if environment variables are accessible
-  console.log('BOT_TOKEN exists:', !!BOT_TOKEN);
-  console.log('API_TOKEN exists:', !!API_TOKEN);
-  console.log('Full BOT_TOKEN (first 5 chars):', BOT_TOKEN ? BOT_TOKEN.substring(0, 5) : 'undefined');
-  console.log('Action parameter:', action);
-
   if (action === 'setWebhook') {
-    console.log('Processing setWebhook action');
-
     if (!BOT_TOKEN) {
       return new Response(
-        JSON.stringify({
-          error: 'BOT_TOKEN not configured',
-          debug: {
-            botTokenExists: !!BOT_TOKEN,
-            apiTokenExists: !!API_TOKEN,
-            action: action
-          }
-        }),
+        JSON.stringify({ error: 'BOT_TOKEN not configured' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
     const webhookUrl = `${url.origin}/api/telegram-webhook`;
     const telegramApiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/setWebhook`;
-
-    console.log('Attempting to set webhook for URL:', webhookUrl);
-    console.log('Using API URL:', telegramApiUrl);
 
     try {
       const response = await fetch(telegramApiUrl, {
@@ -229,41 +198,21 @@ export async function GET({ url }) {
         })
       });
 
-      console.log('Telegram API response status:', response.status);
       const result = await response.json();
-      console.log('Telegram API response:', result);
-
       return new Response(
         JSON.stringify(result),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     } catch (error) {
-      console.error('Error setting webhook:', error);
       return new Response(
-        JSON.stringify({
-          error: error.message,
-          debug: {
-            botTokenExists: !!BOT_TOKEN,
-            apiTokenExists: !!API_TOKEN,
-            webhookUrl: `${url.origin}/api/telegram-webhook`,
-            action: action
-          }
-        }),
+        JSON.stringify({ error: error.message }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
   }
 
   return new Response(
-    JSON.stringify({
-      message: 'Telegram webhook endpoint',
-      setup: 'Send GET request with ?action=setWebhook to configure webhook',
-      debug: {
-        botTokenExists: !!BOT_TOKEN,
-        apiTokenExists: !!API_TOKEN,
-        action: action
-      }
-    }),
+    JSON.stringify({ message: 'Telegram webhook endpoint' }),
     { status: 200, headers: { 'Content-Type': 'application/json' } }
   );
-}
+};
