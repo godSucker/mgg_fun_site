@@ -34,8 +34,24 @@ export const POST: APIRoute = async ({ request }) => {
         `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/src/data/mutants/mutants.json`,
         { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` } }
       );
+      
+      console.log(`Mutants API response: ${mutantsRes.status}`);
+      
+      if (!mutantsRes.ok) {
+        const errorText = await mutantsRes.text();
+        console.error(`GitHub API error: ${errorText}`);
+        throw new Error(`Failed to load mutants.json: ${mutantsRes.status} - ${errorText}`);
+      }
+      
       const mutantsData = await mutantsRes.json();
+      console.log(`Mutants data keys: ${Object.keys(mutantsData)}`);
+      
+      if (!mutantsData.content) {
+        throw new Error('No content in mutants.json response');
+      }
+      
       const mutantsJson = atob(mutantsData.content);
+      console.log(`Mutants JSON length: ${mutantsJson.length}`);
 
       // Parse tiers
       const { parseTierData } = await import('../../lib/tier-parser');
