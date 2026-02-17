@@ -220,8 +220,7 @@ export async function GET({ url }) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          url: webhookUrl,
-          secret_token: API_TOKEN
+          url: webhookUrl
         })
       });
       
