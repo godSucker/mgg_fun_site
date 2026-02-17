@@ -71,6 +71,9 @@ export const POST: APIRoute = async ({ request }) => {
       const { parseTierData } = await import('../../lib/tier-parser');
       console.log(`Calling parseTierData with fileContent length: ${fileContent.length}, mutantsJson length: ${mutantsJson.length}`);
       const parsedTiers = parseTierData(fileContent, mutantsJson);
+      
+      console.log(`Parsed tiers: ${JSON.stringify(parsedTiers, null, 2).slice(0, 1000)}`);
+      console.log(`Total parsed: ${Object.keys(parsedTiers).length}`);
 
       // Validate
       const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4'];
@@ -136,6 +139,17 @@ export const POST: APIRoute = async ({ request }) => {
         }
 
         console.log(`Updated ${count} tiers`);
+        
+        // Send success message to Telegram
+        const chatId = body.message.chat.id;
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: `✅ Успех! Обновлено ${count} тиров мутантов.`
+          })
+        });
       }
 
       return new Response(JSON.stringify({ success: true, count: Object.keys(parsedTiers).length }), {
