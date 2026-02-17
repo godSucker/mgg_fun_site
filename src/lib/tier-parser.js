@@ -7,11 +7,11 @@
  */
 
 // Valid tier values
-const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4'];
+const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired'];
 
 /**
  * Normalize tier value to accepted format
- * Valid tiers: 1, 1+, 1-, 2, 2+, 2-, 3, 3+, 3-, 4
+ * Valid tiers: 1, 1+, 1-, 2, 2+, 2-, 3, 3+, 3-, 4, un-tired
  */
 function normalizeTierValue(tier) {
   tier = tier.trim();
@@ -23,6 +23,7 @@ function normalizeTierValue(tier) {
     '2': '2', '2+': '2+', '2-': '2-',
     '3': '3', '3+': '3+', '3-': '3-',
     '4': '4',
+    'UN-TIRED': 'un-tired',
     // Russian variations
     '1ПЛЮС': '1+', '1МИНУС': '1-',
     '2ПЛЮС': '2+', '2НОРМ': '2', '2МИНУС': '2-',
@@ -33,6 +34,7 @@ function normalizeTierValue(tier) {
   const normalizedTier = tierMapping[tierUpper] || tier;
   
   // Validate tier format
+  const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired'];
   if (!VALID_TIERS.includes(normalizedTier)) {
     throw new Error(`Invalid tier value: ${normalizedTier}. Valid tiers are: ${VALID_TIERS.join(', ')}`);
   }

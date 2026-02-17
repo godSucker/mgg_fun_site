@@ -76,7 +76,7 @@ export const POST: APIRoute = async ({ request }) => {
       console.log(`Total parsed: ${Object.keys(parsedTiers).length}`);
 
       // Validate
-      const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4'];
+      const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired'];
       for (const [mutantId, tier] of Object.entries(parsedTiers)) {
         if (!VALID_TIERS.includes(tier)) {
           return new Response(JSON.stringify({ error: `Invalid tier: ${tier}` }), { status: 400 });
