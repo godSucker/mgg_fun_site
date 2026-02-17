@@ -1,4 +1,4 @@
-import { parseTierData } from '../../../lib/tier-parser';
+import { parseTierData } from '../../lib/tier-parser';
 
 // Valid tier values
 const VALID_TIERS = ['1+', '1-', '2+', '2', '2-', '3+', '3', '3-', '4'];
@@ -7,7 +7,7 @@ const VALID_TIERS = ['1+', '1-', '2+', '2', '2-', '3+', '3', '3-', '4'];
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const API_TOKEN = process.env.API_UPDATE_TOKEN;
 
-export async function POST(request: Request) {
+export async function POST({ request }) {
   try {
     // Verify this is coming from Telegram (optional for testing)
     // const token = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
@@ -185,8 +185,7 @@ export async function POST(request: Request) {
 }
 
 // For setting up webhook
-export async function GET(request: Request) {
-  const url = new URL(request.url);
+export async function GET({ url }) {
   const params = new URLSearchParams(url.search);
   const action = params.get('action');
 
