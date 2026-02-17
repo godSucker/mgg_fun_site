@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/svelte": "^7.1.0",
+    "@astrojs/vercel": "^9.0.4",
     "@sveltejs/vite-plugin-svelte": "^6.1.4",
     "@vercel/analytics": "^1.5.0",
     "@vercel/kv": "^3.0.0",
