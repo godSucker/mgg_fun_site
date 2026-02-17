@@ -7,29 +7,30 @@
  */
 
 // Valid tier values
-const VALID_TIERS = ['1+', '1-', '2+', '2', '2-', '3+', '3', '3-', '4'];
+const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4'];
 
 /**
  * Normalize tier value to accepted format
- * Valid tiers: 1+, 1-, 2+, 2, 2-, 3+, 3, 3-, 4
+ * Valid tiers: 1, 1+, 1-, 2, 2+, 2-, 3, 3+, 3-, 4
  */
 function normalizeTierValue(tier) {
-  tier = tier.trim().toUpperCase();
+  tier = tier.trim();
   
-  // Map common variations to standard format
+  // Direct mapping (case-insensitive for Russian text)
+  const tierUpper = tier.toUpperCase();
   const tierMapping = {
-    '1+': '1+', '1ПЛЮС': '1+', '1 ПЛЮС': '1+',
-    '1-': '1-', '1МИНУС': '1-', '1 МИНУС': '1-',
-    '2+': '2+', '2ПЛЮС': '2+', '2 ПЛЮС': '2+',
-    '2': '2', '2НОРМАЛЬНЫЙ': '2', '2 НОРМ': '2',
-    '2-': '2-', '2МИНУС': '2-', '2 МИНУС': '2-',
-    '3+': '3+', '3ПЛЮС': '3+', '3 ПЛЮС': '3+',
-    '3': '3', '3НОРМАЛЬНЫЙ': '3', '3 НОРМ': '3',
-    '3-': '3-', '3МИНУС': '3-', '3 МИНУС': '3-',
-    '4': '4', '4НОРМАЛЬНЫЙ': '4', '4 НОРМ': '4'
+    '1': '1', '1+': '1+', '1-': '1-',
+    '2': '2', '2+': '2+', '2-': '2-',
+    '3': '3', '3+': '3+', '3-': '3-',
+    '4': '4',
+    // Russian variations
+    '1ПЛЮС': '1+', '1МИНУС': '1-',
+    '2ПЛЮС': '2+', '2НОРМ': '2', '2МИНУС': '2-',
+    '3ПЛЮС': '3+', '3НОРМ': '3', '3МИНУС': '3-',
+    '4НОРМ': '4'
   };
   
-  const normalizedTier = tierMapping[tier] || tier;
+  const normalizedTier = tierMapping[tierUpper] || tier;
   
   // Validate tier format
   if (!VALID_TIERS.includes(normalizedTier)) {
