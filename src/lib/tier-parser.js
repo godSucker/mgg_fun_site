@@ -190,7 +190,7 @@ function parseTierData(content, mutantsJson) {
       if (mutantId) {
         tiers[mutantId] = tier;
       } else {
-        console.log(`Warning: Could not find mutant ID for "${mutantName}"`);
+        console.log(`NOT FOUND: "${mutantName}" (tier: ${tier})`);
       }
       continue;
     }
