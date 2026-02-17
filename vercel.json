@@ -1,6 +1,6 @@
 {
   "functions": {
-    "src/pages/api/update-tiers.ts": {
+    "src/pages/api/telegram-webhook.ts": {
       "includeFiles": "temp/**"
     }
   }
