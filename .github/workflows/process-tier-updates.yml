@@ -27,7 +27,8 @@ jobs:
           # Устанавливаем зависимости
           npm ci
           
-          # Запускаем скрипт для обновления mutants.json
+          # В настоящее время обновления происходят напрямую через вебхук
+          # Этот шаг просто проверяет, что все работает
           node scripts/process-tier-updates.mjs
 
       - name: Commit and push if changes

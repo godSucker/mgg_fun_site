@@ -61,7 +61,7 @@ export async function POST({ request }) {
           // Store the updates in a temporary storage (for demo purposes, we'll use a simple approach)
           // In a real implementation, you would use a database or other persistent storage
           
-          // For now, we'll trigger the GitHub Action via the GitHub API
+          // For now, we'll update the mutants.json file directly using GitHub API
           // This requires a GitHub token with appropriate permissions
           const githubToken = process.env.GITHUB_TOKEN;
           const owner = process.env.REPO_OWNER; // e.g., 'your-username'
@@ -69,31 +69,64 @@ export async function POST({ request }) {
           
           if (githubToken && owner && repo) {
             try {
-              // Trigger the workflow using GitHub API
-              const workflowDispatchResponse = await fetch(
-                `https://api.github.com/repos/${owner}/${repo}/actions/workflows/process-tier-updates.yml/dispatches`,
+              // Read the current mutants.json file
+              const fileResponse = await fetch(
+                `https://api.github.com/repos/${owner}/${repo}/contents/src/data/mutants/mutants.json`,
                 {
-                  method: 'POST',
+                  headers: {
+                    'Authorization': `Bearer ${githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                  }
+                }
+              );
+              
+              if (!fileResponse.ok) {
+                console.error('Failed to fetch current mutants.json:', await fileResponse.text());
+                return;
+              }
+              
+              const fileData = await fileResponse.json();
+              const currentContent = Buffer.from(fileData.content, 'base64').toString('utf-8');
+              const currentMutants = JSON.parse(currentContent);
+              
+              // Apply the tier updates
+              let updatedCount = 0;
+              for (const [mutantId, newTier] of Object.entries(parsedTiers)) {
+                const mutantIndex = currentMutants.findIndex(m => m.id === mutantId);
+                
+                if (mutantIndex !== -1) {
+                  currentMutants[mutantIndex].tier = newTier;
+                  updatedCount++;
+                }
+              }
+              
+              // Update the file in the repository
+              const updatedContent = JSON.stringify(currentMutants, null, 2);
+              const updateResponse = await fetch(
+                `https://api.github.com/repos/${owner}/${repo}/contents/src/data/mutants/mutants.json`,
+                {
+                  method: 'PUT',
                   headers: {
                     'Authorization': `Bearer ${githubToken}`,
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                    ref: 'main', // or whatever your default branch is
-                    inputs: {
-                      // Pass the tier updates as inputs if needed
-                      // This depends on how you want to handle the data in the workflow
-                    }
+                    message: `Auto-update: ${updatedCount} mutant tier updates from Telegram bot`,
+                    content: Buffer.from(updatedContent).toString('base64'),
+                    sha: fileData.sha, // Required to update the file
+                    branch: 'main' // or whatever your default branch is
                   })
                 }
               );
               
-              if (!workflowDispatchResponse.ok) {
-                console.error('Failed to trigger GitHub Action:', await workflowDispatchResponse.text());
+              if (!updateResponse.ok) {
+                console.error('Failed to update mutants.json:', await updateResponse.text());
+              } else {
+                console.log(`Successfully updated ${updatedCount} mutant tiers in mutants.json`);
               }
-            } catch (workflowError) {
-              console.error('Error triggering GitHub Action:', workflowError);
+            } catch (updateError) {
+              console.error('Error updating mutants.json:', updateError);
             }
           }
           
