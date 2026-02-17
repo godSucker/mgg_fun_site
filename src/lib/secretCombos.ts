@@ -22,7 +22,11 @@ export interface SecretCombo {
  */
 export const secretCombos: SecretCombo[] = [
   // Страхолюдочка (Secret Recipe)
-  { childName: "Страхолюдочка", parents: ["Зомби", "Робот"] },
+  { childName: "Страхолюдочка", parents: ["Ниндзябот", "Буши"] },
+  { childName: "Страхолюдочка", parents: ["Драконежить", "Рептоид"] },
+  // Гор (Horus) — Secret Recipe
+  { childName: "Гор", parents: ["Ктулху", "Ксенос"] },
+  { childName: "Гор", parents: ["Лорд Преисподней", "Благородный дракон"] },
   // Буши: два возможных рецепта
   { childName: "Буши", parents: ["Зомборг", "Ниндзябот"] },
   { childName: "Буши", parents: ["Прилипала", "Марсианский Воин"] },

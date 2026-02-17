@@ -210,13 +210,16 @@
     return `${(value * 100).toFixed(value * 100 < 1 ? 2 : 1)}%`;
   }
 
+  // Рецепты для перемещения из "Рецепты" в "Крафты"
+  const RECIPES_TO_MOVE = new Set(['little_rewards_01', 'big_rewards_01', 'big_rewards_02']);
+
   $: regularRecipes =
     activeFacility.id === 'blackhole'
-      ? activeFacility.recipes.filter((r) => !r.id.startsWith('pot_pourri_'))
+      ? activeFacility.recipes.filter((r) => !r.id.startsWith('pot_pourri_') && !RECIPES_TO_MOVE.has(r.id))
       : activeFacility.recipes;
   $: potPourriRecipes =
     activeFacility.id === 'blackhole'
-      ? activeFacility.recipes.filter((r) => r.id.startsWith('pot_pourri_'))
+      ? activeFacility.recipes.filter((r) => r.id.startsWith('pot_pourri_') || RECIPES_TO_MOVE.has(r.id))
       : [];
 </script>
 
@@ -388,13 +391,15 @@
                   {@const displayReward = recipe.rewards[0]}
                   <!-- For specific recipe IDs, use the recipe ID for translation instead of the first reward -->
                   {@const isSpecialRecipe = recipe.id === 'orb_basic_1' || recipe.id === 'orb_basic_2' || recipe.id === 'orb_basic_3' || recipe.id === 'orb_basic_4' || recipe.id === 'orb_special_1' || recipe.id === 'orb_special_2' || recipe.id === 'orb_special_3' || recipe.id === 'orb_reroll_basic_1' || recipe.id === 'orb_reroll_special_1' || recipe.id === 'orb_reroll_basic_2' || recipe.id === 'orb_reroll_special_2' || recipe.id === 'orb_reroll_basic_3' || recipe.id === 'orb_reroll_special_3'}
-                  {@const baseLabel = isSpecialRecipe ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
+                  {@const isMovedRecipe = RECIPES_TO_MOVE.has(recipe.id)}
+                  {@const useRecipeIdLabel = isSpecialRecipe || isMovedRecipe}
+                  {@const baseLabel = useRecipeIdLabel ? translateItemId(recipe.id) : (displayReward ? translateItemId(displayReward.id) : 'Рецепт')}
                   {@const totalIngredients = recipe.ingredients.reduce(
                     (sum, ing) => sum + ing.amount,
                     0,
                   )}
-                  {@const rewardLabel = isSpecialRecipe ? `${translateItemId(recipe.id)} ×${totalIngredients}` : `${baseLabel} ×${totalIngredients}`}
-                  {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
+                  {@const rewardLabel = useRecipeIdLabel ? `${translateItemId(recipe.id)} ×${totalIngredients}` : `${baseLabel} ×${totalIngredients}`}
+                  {@const rewardIcon = useRecipeIdLabel ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}
