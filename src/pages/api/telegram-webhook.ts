@@ -86,7 +86,7 @@ export async function POST({ request }) {
               }
               
               const fileData = await fileResponse.json();
-              const currentContent = Buffer.from(fileData.content, 'base64').toString('utf-8');
+              const currentContent = atob(fileData.content); // Use atob instead of Buffer for base64 decoding
               const currentMutants = JSON.parse(currentContent);
               
               // Apply the tier updates
@@ -113,7 +113,7 @@ export async function POST({ request }) {
                   },
                   body: JSON.stringify({
                     message: `Auto-update: ${updatedCount} mutant tier updates from Telegram bot`,
-                    content: Buffer.from(updatedContent).toString('base64'),
+                    content: btoa(updatedContent), // Use btoa instead of Buffer for base64 encoding
                     sha: fileData.sha, // Required to update the file
                     branch: 'main' // or whatever your default branch is
                   })
