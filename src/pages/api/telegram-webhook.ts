@@ -82,13 +82,25 @@ export const POST: APIRoute = async ({ request }) => {
 
       // Update via GitHub API
       if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
+        // Get current file with sha
         const fileRes = await fetch(
           `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/src/data/mutants/mutants.json`,
           { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` } }
         );
 
         const fileData = await fileRes.json();
-        const currentMutants = JSON.parse(atob(fileData.content));
+        
+        // For large files, download the content from download_url
+        let currentMutants;
+        if (fileData.content && fileData.content.length > 0) {
+          currentMutants = JSON.parse(atob(fileData.content));
+        } else if (fileData.download_url) {
+          const downloadRes = await fetch(fileData.download_url);
+          const text = await downloadRes.text();
+          currentMutants = JSON.parse(text);
+        } else {
+          throw new Error('Cannot get mutants.json content');
+        }
 
         let count = 0;
         for (const [mutantId, newTier] of Object.entries(parsedTiers)) {
@@ -99,7 +111,8 @@ export const POST: APIRoute = async ({ request }) => {
           }
         }
 
-        await fetch(
+        // Update the file
+        const updateRes = await fetch(
           `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/src/data/mutants/mutants.json`,
           {
             method: 'PUT',
@@ -112,6 +125,11 @@ export const POST: APIRoute = async ({ request }) => {
             })
           }
         );
+
+        if (!updateRes.ok) {
+          const errorText = await updateRes.text();
+          throw new Error(`Failed to update: ${updateRes.status} - ${errorText}`);
+        }
 
         console.log(`Updated ${count} tiers`);
       }
