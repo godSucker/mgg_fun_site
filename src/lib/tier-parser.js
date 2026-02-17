@@ -123,64 +123,93 @@ function parseTierFromTxt(txtContent, nameToId) {
 
 /**
  * Load mapping from Russian names to mutant IDs
+ * @param {string} mutantsJson - JSON string of mutants data
  */
-async function loadMutantMapping() {
-  // In a real implementation, this would fetch from your data
-  // For now, we'll simulate loading from a JSON file
-  try {
-    // This would normally be: const mutantsData = await fetchMutantsData();
-    // But we'll use a simplified approach for the demo
-    const response = await fetch('/data/mutants/mutants.json');
-    const mutantsData = await response.json();
+function loadMutantMapping(mutantsJson) {
+  const mutantsData = JSON.parse(mutantsJson);
+  
+  const nameToId = {};
+  for (const mutant of mutantsData) {
+    const name = mutant.name.trim().toLowerCase();
+    const mutantId = mutant.id;
+    nameToId[name] = mutantId;
     
-    const nameToId = {};
-    for (const mutant of mutantsData) {
-      const name = mutant.name.trim().toLowerCase();
-      const mutantId = mutant.id;
-      nameToId[name] = mutantId;
-      
-      // Also add variations without special characters for flexibility
-      const cleanName = mutant.name.replace(/[^\w\s]/g, '').trim().toLowerCase();
-      if (cleanName !== name) {
-        nameToId[cleanName] = mutantId;
-      }
+    // Also add variations without special characters
+    const cleanName = mutant.name.replace(/[^\w\s'-]/g, '').trim().toLowerCase();
+    if (cleanName !== name) {
+      nameToId[cleanName] = mutantId;
     }
-    
-    return nameToId;
-  } catch (error) {
-    console.error('Error loading mutant mapping:', error);
-    // Return a minimal mapping for testing
-    return {
-      'робот': 'specimen_a_01',
-      'андроид': 'specimen_aa_01',
-      'ксеноморф': 'specimen_ab_01',
-      'зомби': 'specimen_ac_01',
-      'вампир': 'specimen_ad_01',
-      'голем': 'specimen_ae_01',
-      'скелет': 'specimen_af_01',
-      'феникс': 'specimen_b_01',
-      'дракон': 'specimen_ba_01'
-    };
   }
+  
+  return nameToId;
 }
 
 /**
  * Parse tier data from text content (main function)
+ * @param {string} content - Text content with tier data
+ * @param {string} mutantsJson - JSON string of mutants data
  */
-async function parseTierData(content) {
-  // Determine if content is binary (likely Excel) or text
-  // Simple heuristic: if content contains many null bytes, it's likely binary
-  if (content.includes('\x00')) {
-    // This is likely an Excel file, but we can't process it in browser/server environment
-    // without a library like SheetJS which is too complex for this demo
-    throw new Error('Excel files are not supported in this environment. Please send a text file.');
+function parseTierData(content, mutantsJson) {
+  // Load the name to ID mapping from mutants data
+  const nameToId = loadMutantMapping(mutantsJson);
+  
+  const tiers = {};
+  const lines = content.split('\n');
+  
+  for (const line of lines) {
+    let processedLine = line.trim();
+    if (!processedLine || processedLine.startsWith('#') || processedLine.startsWith('//')) {
+      continue;
+    }
+    
+    // Try to match format: "Mutant Name (tier)"
+    const parenMatch = processedLine.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+    if (parenMatch) {
+      const mutantName = parenMatch[1].trim().toLowerCase();
+      const tier = normalizeTierValue(parenMatch[2].trim());
+      
+      // Find matching mutant ID
+      const mutantId = findMutantIdByName(mutantName, nameToId);
+      if (mutantId) {
+        tiers[mutantId] = tier;
+      } else {
+        console.log(`Warning: Could not find mutant ID for "${mutantName}"`);
+      }
+      continue;
+    }
+    
+    // Try comma-separated format
+    if (processedLine.includes(',')) {
+      const parts = processedLine.split(',');
+      if (parts.length >= 2) {
+        const mutantName = parts[0].trim().toLowerCase();
+        const tier = normalizeTierValue(parts[1].trim());
+        
+        const mutantId = findMutantIdByName(mutantName, nameToId);
+        if (mutantId) {
+          tiers[mutantId] = tier;
+        }
+      }
+      continue;
+    }
+    
+    // Try space-separated format with colon
+    if (processedLine.includes(':')) {
+      const parts = processedLine.split(':');
+      if (parts.length >= 2) {
+        const mutantName = parts[0].trim().toLowerCase();
+        const tier = normalizeTierValue(parts[1].trim());
+        
+        const mutantId = findMutantIdByName(mutantName, nameToId);
+        if (mutantId) {
+          tiers[mutantId] = tier;
+        }
+      }
+      continue;
+    }
   }
   
-  // Load the name to ID mapping
-  const nameToId = await loadMutantMapping();
-  
-  // Parse the tier data
-  return parseTierFromTxt(content, nameToId);
+  return tiers;
 }
 
 // Export functions for use in other modules
