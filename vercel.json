@@ -1,7 +1,1 @@
-{
-  "functions": {
-    "src/pages/api/telegram-webhook.ts": {
-      "includeFiles": "temp/**"
-    }
-  }
-}
+{}
