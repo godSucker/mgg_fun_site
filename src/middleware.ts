@@ -1,5 +1,5 @@
 import { defineMiddleware } from 'astro/middleware';
-import { parseTierData } from '../lib/tier-parser';
+import { parseTierData } from './lib/tier-parser';
 
 // Valid tier values
 const VALID_TIERS = ['1+', '1-', '2+', '2', '2-', '3+', '3', '3-', '4'];
