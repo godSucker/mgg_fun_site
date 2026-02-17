@@ -188,15 +188,19 @@ export async function GET({ url }) {
   console.log('BOT_TOKEN exists:', !!BOT_TOKEN);
   console.log('API_TOKEN exists:', !!API_TOKEN);
   console.log('Full BOT_TOKEN (first 5 chars):', BOT_TOKEN ? BOT_TOKEN.substring(0, 5) : 'undefined');
+  console.log('Action parameter:', action);
   
   if (action === 'setWebhook') {
+    console.log('Processing setWebhook action');
+    
     if (!BOT_TOKEN) {
       return new Response(
         JSON.stringify({ 
           error: 'BOT_TOKEN not configured',
           debug: {
             botTokenExists: !!BOT_TOKEN,
-            apiTokenExists: !!API_TOKEN
+            apiTokenExists: !!API_TOKEN,
+            action: action
           }
         }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
@@ -237,7 +241,8 @@ export async function GET({ url }) {
           debug: {
             botTokenExists: !!BOT_TOKEN,
             apiTokenExists: !!API_TOKEN,
-            webhookUrl: `${url.origin}/api/telegram-webhook`
+            webhookUrl: `${url.origin}/api/telegram-webhook`,
+            action: action
           }
         }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
@@ -251,7 +256,8 @@ export async function GET({ url }) {
       setup: 'Send GET request with ?action=setWebhook to configure webhook',
       debug: {
         botTokenExists: !!BOT_TOKEN,
-        apiTokenExists: !!API_TOKEN
+        apiTokenExists: !!API_TOKEN,
+        action: action
       }
     }),
     { status: 200, headers: { 'Content-Type': 'application/json' } }
