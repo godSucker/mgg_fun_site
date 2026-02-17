@@ -46,11 +46,18 @@ export const POST: APIRoute = async ({ request }) => {
       const mutantsData = await mutantsRes.json();
       console.log(`Mutants data keys: ${Object.keys(mutantsData)}`);
       
-      if (!mutantsData.content) {
-        throw new Error('No content in mutants.json response');
+      // For large files, GitHub returns empty content - use download_url instead
+      let mutantsJson;
+      if (mutantsData.content && mutantsData.content.length > 0) {
+        mutantsJson = atob(mutantsData.content);
+      } else if (mutantsData.download_url) {
+        console.log(`Using download_url for large file`);
+        const downloadRes = await fetch(mutantsData.download_url);
+        mutantsJson = await downloadRes.text();
+      } else {
+        throw new Error('No content or download_url available for mutants.json');
       }
       
-      const mutantsJson = atob(mutantsData.content);
       console.log(`Mutants JSON length: ${mutantsJson.length}`);
 
       // Parse tiers
