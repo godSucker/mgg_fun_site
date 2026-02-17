@@ -155,7 +155,7 @@ function loadMutantMapping(mutantsJson) {
     }
   }
   
-  console.log(`Loaded ${Object.keys(nameToId)} mutant mappings`);
+  console.log(`Loaded ${Object.keys(nameToId).length} mutant mappings`);
   return nameToId;
 }
 

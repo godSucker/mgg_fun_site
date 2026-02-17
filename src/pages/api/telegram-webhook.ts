@@ -49,11 +49,18 @@ export const POST: APIRoute = async ({ request }) => {
       // For large files, GitHub returns empty content - use download_url instead
       let mutantsJson;
       if (mutantsData.content && mutantsData.content.length > 0) {
+        console.log(`Using content from API response`);
         mutantsJson = atob(mutantsData.content);
       } else if (mutantsData.download_url) {
         console.log(`Using download_url for large file`);
         const downloadRes = await fetch(mutantsData.download_url);
+        if (!downloadRes.ok) {
+          throw new Error(`Failed to download mutants.json: ${downloadRes.status}`);
+        }
         mutantsJson = await downloadRes.text();
+        console.log(`Downloaded ${mutantsJson.length} bytes`);
+        console.log(`First 100 chars: ${mutantsJson.slice(0, 100)}`);
+        console.log(`Last 100 chars: ${mutantsJson.slice(-100)}`);
       } else {
         throw new Error('No content or download_url available for mutants.json');
       }
@@ -62,6 +69,7 @@ export const POST: APIRoute = async ({ request }) => {
 
       // Parse tiers
       const { parseTierData } = await import('../../lib/tier-parser');
+      console.log(`Calling parseTierData with fileContent length: ${fileContent.length}, mutantsJson length: ${mutantsJson.length}`);
       const parsedTiers = parseTierData(fileContent, mutantsJson);
 
       // Validate
