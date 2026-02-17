@@ -18,7 +18,9 @@ export async function POST({ request }) {
     //   );
     // }
 
-    const body = await request.json();
+    // Properly handle the request body
+    const rawBody = await request.text();
+    const body = JSON.parse(rawBody);
     
     // Handle different types of updates
     if (body.message) {
