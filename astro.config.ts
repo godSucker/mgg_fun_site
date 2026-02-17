@@ -9,6 +9,8 @@ const SRC = fileURLToPath(new URL('./src', import.meta.url))
 
 export default defineConfig({
   site: 'https://archivist-library.com',
+  output: 'server',
+  adapter: undefined,
   prefetch: true,
   integrations: [svelte()],
   build: {
