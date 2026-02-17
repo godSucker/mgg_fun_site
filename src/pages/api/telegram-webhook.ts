@@ -1,6 +1,4 @@
 import type { APIRoute } from 'astro';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
 export const POST: APIRoute = async ({ request }) => {
   const BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN;
@@ -31,9 +29,13 @@ export const POST: APIRoute = async ({ request }) => {
       const fileUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${filePath}`;
       const fileContent = await (await fetch(fileUrl)).text();
 
-      // Load mutants.json for mapping
-      const mutantsPath = join(process.cwd(), 'src/data/mutants/mutants.json');
-      const mutantsJson = readFileSync(mutantsPath, 'utf-8');
+      // Load mutants.json from GitHub
+      const mutantsRes = await fetch(
+        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/src/data/mutants/mutants.json`,
+        { headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}` } }
+      );
+      const mutantsData = await mutantsRes.json();
+      const mutantsJson = atob(mutantsData.content);
 
       // Parse tiers
       const { parseTierData } = await import('../../lib/tier-parser');
