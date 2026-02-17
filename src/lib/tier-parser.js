@@ -127,7 +127,20 @@ function parseTierFromTxt(txtContent, nameToId) {
  * @param {string} mutantsJson - JSON string of mutants data
  */
 function loadMutantMapping(mutantsJson) {
-  const mutantsData = JSON.parse(mutantsJson);
+  console.log(`loadMutantMapping: received ${mutantsJson ? mutantsJson.length : 0} chars`);
+  
+  if (!mutantsJson || mutantsJson.length === 0) {
+    throw new Error('Empty mutantsJson received');
+  }
+  
+  let mutantsData;
+  try {
+    mutantsData = JSON.parse(mutantsJson);
+  } catch (e) {
+    console.error(`JSON parse error: ${e.message}`);
+    console.error(`First 500 chars: ${mutantsJson.slice(0, 500)}`);
+    throw new Error(`Invalid JSON: ${e.message}`);
+  }
   
   const nameToId = {};
   for (const mutant of mutantsData) {
@@ -142,6 +155,7 @@ function loadMutantMapping(mutantsJson) {
     }
   }
   
+  console.log(`Loaded ${Object.keys(nameToId)} mutant mappings`);
   return nameToId;
 }
 
