@@ -184,10 +184,21 @@ export async function GET({ url }) {
   const params = new URLSearchParams(url.search);
   const action = params.get('action');
   
+  // Debug: Check if environment variables are accessible
+  console.log('BOT_TOKEN exists:', !!BOT_TOKEN);
+  console.log('API_TOKEN exists:', !!API_TOKEN);
+  console.log('Full BOT_TOKEN (first 5 chars):', BOT_TOKEN ? BOT_TOKEN.substring(0, 5) : 'undefined');
+  
   if (action === 'setWebhook') {
     if (!BOT_TOKEN) {
       return new Response(
-        JSON.stringify({ error: 'BOT_TOKEN not configured' }),
+        JSON.stringify({ 
+          error: 'BOT_TOKEN not configured',
+          debug: {
+            botTokenExists: !!BOT_TOKEN,
+            apiTokenExists: !!API_TOKEN
+          }
+        }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -224,7 +235,11 @@ export async function GET({ url }) {
   return new Response(
     JSON.stringify({ 
       message: 'Telegram webhook endpoint',
-      setup: 'Send GET request with ?action=setWebhook to configure webhook'
+      setup: 'Send GET request with ?action=setWebhook to configure webhook',
+      debug: {
+        botTokenExists: !!BOT_TOKEN,
+        apiTokenExists: !!API_TOKEN
+      }
     }),
     { status: 200, headers: { 'Content-Type': 'application/json' } }
   );
