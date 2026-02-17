@@ -112,6 +112,10 @@ export const POST: APIRoute = async ({ request }) => {
         }
 
         // Update the file
+        const updatedContent = JSON.stringify(currentMutants, null, 2);
+        // Use TextEncoder for proper Unicode handling
+        const encoded = Buffer.from(updatedContent, 'utf-8').toString('base64');
+        
         const updateRes = await fetch(
           `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/src/data/mutants/mutants.json`,
           {
@@ -119,7 +123,7 @@ export const POST: APIRoute = async ({ request }) => {
             headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({
               message: `Update: ${count} tiers from Telegram`,
-              content: btoa(JSON.stringify(currentMutants, null, 2)),
+              content: encoded,
               sha: fileData.sha,
               branch: 'main'
             })
