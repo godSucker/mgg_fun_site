@@ -48,6 +48,7 @@ def normalize_tier_value(tier: str) -> str:
     
     # Map common variations to standard format
     tier_mapping = {
+        '1': '1', '1НОРМАЛЬНЫЙ': '1', '1 НОРМ': '1',
         '1+': '1+', '1ПЛЮС': '1+', '1 ПЛЮС': '1+',
         '1-': '1-', '1МИНУС': '1-', '1 МИНУС': '1-',
         '2+': '2+', '2ПЛЮС': '2+', '2 ПЛЮС': '2+',
