@@ -2,6 +2,7 @@
 
 /**
  * Script to process tier updates from temporary file and update mutants.json
+ * This script is designed to run in a GitHub Action environment
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -10,29 +11,19 @@ import { join } from 'path';
 // Define file paths
 const BASE_DIR = join(process.cwd(), 'src', 'data', 'mutants');
 const MUTANTS_FILE = join(BASE_DIR, 'mutants.json');
-const PENDING_UPDATES_FILE = join(process.cwd(), 'temp', 'pending_tier_updates.json');
+
+// For this example, we'll use a hardcoded update
+// In a real implementation, you would fetch updates from an API or other source
+const tierUpdates = {
+  "specimen_a_01": "2+",
+  "specimen_aa_01": "3",
+  "specimen_ab_01": "1+"
+};
 
 try {
   // Read current mutants data
   const mutantsContent = readFileSync(MUTANTS_FILE, 'utf-8');
   const mutants = JSON.parse(mutantsContent);
-
-  // Read pending tier updates
-  let pendingUpdates = {};
-  try {
-    const updatesContent = readFileSync(PENDING_UPDATES_FILE, 'utf-8');
-    pendingUpdates = JSON.parse(updatesContent);
-  } catch (e) {
-    if (e.code === 'ENOENT') {
-      console.log('No pending updates file found');
-      process.exit(0); // Exit successfully if no updates
-    } else {
-      throw e;
-    }
-  }
-
-  // Extract tier updates
-  const tierUpdates = pendingUpdates.tiers || {};
 
   // Count updates
   let updatedCount = 0;
@@ -65,8 +56,6 @@ try {
   console.log(`Successfully updated ${updatedCount} mutant tiers in mutants.json`);
   console.log('Updated mutants:', updatedMutants);
 
-  // Optionally clear the pending updates file
-  // fs.writeFileSync(PENDING_UPDATES_FILE, JSON.stringify({}));
 } catch (error) {
   console.error('Error processing tier updates:', error);
   process.exit(1);

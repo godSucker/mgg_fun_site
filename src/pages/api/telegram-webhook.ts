@@ -1,9 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
 import { parseTierData } from '../../lib/tier-parser';
-
-// Path to pending tier updates file
-const PENDING_UPDATES_FILE = join(process.cwd(), 'temp', 'pending_tier_updates.json');
 
 // Valid tier values
 const VALID_TIERS = ['1+', '1-', '2+', '2', '2-', '3+', '3', '3-', '4'];
@@ -63,14 +58,44 @@ export async function POST({ request }) {
             }
           }
           
-          // Create/update pending updates file
-          const updateData = {
-            timestamp: Date.now(),
-            source: 'telegram_bot',
-            tiers: parsedTiers
-          };
+          // Store the updates in a temporary storage (for demo purposes, we'll use a simple approach)
+          // In a real implementation, you would use a database or other persistent storage
           
-          writeFileSync(PENDING_UPDATES_FILE, JSON.stringify(updateData, null, 2));
+          // For now, we'll trigger the GitHub Action via the GitHub API
+          // This requires a GitHub token with appropriate permissions
+          const githubToken = process.env.GITHUB_TOKEN;
+          const owner = process.env.REPO_OWNER; // e.g., 'your-username'
+          const repo = process.env.REPO_NAME; // e.g., 'your-repo-name'
+          
+          if (githubToken && owner && repo) {
+            try {
+              // Trigger the workflow using GitHub API
+              const workflowDispatchResponse = await fetch(
+                `https://api.github.com/repos/${owner}/${repo}/actions/workflows/process-tier-updates.yml/dispatches`,
+                {
+                  method: 'POST',
+                  headers: {
+                    'Authorization': `Bearer ${githubToken}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    ref: 'main', // or whatever your default branch is
+                    inputs: {
+                      // Pass the tier updates as inputs if needed
+                      // This depends on how you want to handle the data in the workflow
+                    }
+                  })
+                }
+              );
+              
+              if (!workflowDispatchResponse.ok) {
+                console.error('Failed to trigger GitHub Action:', await workflowDispatchResponse.text());
+              }
+            } catch (workflowError) {
+              console.error('Error triggering GitHub Action:', workflowError);
+            }
+          }
           
           // Respond to Telegram
           return new Response(
@@ -96,7 +121,7 @@ export async function POST({ request }) {
         if (text === '/start') {
           responseText = 'Welcome! Send me a file with tier data to update mutants.';
         } else if (text === '/help') {
-          responseText = 'Send me a .txt or .xlsx file with tier data in the format: "Russian_Name,Tier"';
+          responseText = 'Send me a .txt file with tier data in the format: "Russian_Name,Tier"';
         } else {
           responseText = 'Send me a file with tier data to update mutants.';
         }
