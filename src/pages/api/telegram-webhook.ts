@@ -206,6 +206,9 @@ export async function GET({ url }) {
     const webhookUrl = `${url.origin}/api/telegram-webhook`;
     const telegramApiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/setWebhook`;
     
+    console.log('Attempting to set webhook for URL:', webhookUrl);
+    console.log('Using API URL:', telegramApiUrl);
+    
     try {
       const response = await fetch(telegramApiUrl, {
         method: 'POST',
@@ -218,15 +221,25 @@ export async function GET({ url }) {
         })
       });
       
+      console.log('Telegram API response status:', response.status);
       const result = await response.json();
+      console.log('Telegram API response:', result);
       
       return new Response(
         JSON.stringify(result),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     } catch (error) {
+      console.error('Error setting webhook:', error);
       return new Response(
-        JSON.stringify({ error: error.message }),
+        JSON.stringify({ 
+          error: error.message,
+          debug: {
+            botTokenExists: !!BOT_TOKEN,
+            apiTokenExists: !!API_TOKEN,
+            webhookUrl: `${url.origin}/api/telegram-webhook`
+          }
+        }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
     }
