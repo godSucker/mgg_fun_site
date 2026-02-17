@@ -1,2 +1,52 @@
-# Temp directory for pending tier updates
-/temp/pending_tier_updates.json
+# Dependencies
+node_modules/
+.backend/
+venv/
+.env
+
+# Build outputs
+dist/
+.output/
+.build/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+tmp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.lib/
+.nyc_output/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Temporary file for tier updates (important to not commit)
+temp/pending_tier_updates.json
