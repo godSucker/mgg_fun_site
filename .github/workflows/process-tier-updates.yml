@@ -1,0 +1,66 @@
+name: Process Tier Updates
+
+on:
+  workflow_dispatch:  # Можно запускать вручную
+  schedule:
+    - cron: '*/10 * * * *'  # Проверять каждые 10 минут
+  push:
+    paths:
+      - 'temp/pending_tier_updates.json'  # Следить за файлом обновлений
+
+jobs:
+  process-updates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Необходимо для коммитов
+      pull-requests: write  # Если планируется создание PR
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Check for pending updates
+        id: check_updates
+        run: |
+          if [ -f "temp/pending_tier_updates.json" ]; then
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+            echo "Processing tier updates..."
+            cat temp/pending_tier_updates.json
+          else
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+            echo "No pending updates found"
+          fi
+
+      - name: Process tier updates if available
+        if: steps.check_updates.outputs.has_updates == 'true'
+        run: |
+          # Устанавливаем зависимости
+          npm ci
+          
+          # Запускаем скрипт для обновления mutants.json
+          node scripts/process-tier-updates.mjs
+          
+          # Удаляем временный файл после обработки
+          rm temp/pending_tier_updates.json
+
+      - name: Commit and push if changes
+        if: steps.check_updates.outputs.has_updates == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-update: Mutant tier updates from Telegram bot"
+            git push
+            echo "Changes committed and pushed"
+          else
+            echo "No changes to commit"
+          fi
