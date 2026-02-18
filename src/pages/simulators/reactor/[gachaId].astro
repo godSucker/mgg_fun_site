@@ -4,6 +4,8 @@ import ReactorSimulator from '../../../components/simulators/reactor/ReactorSimu
 import { getGachaMeta, listGachas } from '../../../lib/reactor-gacha';
 import { getMutantTexture, getSkinTextures } from '../../../lib/mutant-textures';
 
+export const prerender = true;
+
 interface Props {
   gacha: ReturnType<typeof getGachaMeta> extends infer T ? Exclude<T, null> : never;
   baseTextures: Record<string, string | null>;
@@ -11,18 +13,20 @@ interface Props {
 }
 
 export function getStaticPaths() {
-  return listGachas().map((gacha) => {
-    const baseIds = gacha.basic_elements.map((reward) => reward.specimen);
-    const baseTextures = getSkinTextures(baseIds);
-    const completionTexture = gacha.completion_reward
-      ? getMutantTexture(gacha.completion_reward.specimen)
-      : null;
+  return listGachas()
+    .filter((gacha): gacha is NonNullable<typeof gacha> => gacha !== null)
+    .map((gacha) => {
+      const baseIds = gacha.basic_elements.map((reward) => reward.specimen);
+      const baseTextures = getSkinTextures(baseIds);
+      const completionTexture = gacha.completion_reward
+        ? getMutantTexture(gacha.completion_reward.specimen)
+        : null;
 
-    return {
-      params: { gachaId: gacha.id },
-      props: { gacha, baseTextures, completionTexture },
-    };
-  });
+      return {
+        params: { gachaId: gacha.id },
+        props: { gacha, baseTextures, completionTexture },
+      };
+    });
 }
 
 const { gacha, baseTextures, completionTexture } = Astro.props as Props;

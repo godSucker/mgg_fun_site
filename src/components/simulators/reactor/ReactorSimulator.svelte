@@ -384,18 +384,18 @@
   .header-meter { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
   .header-fill { height: 100%; background: #3b82f6; transition: width 0.3s; }
   .slot-track { display: flex; gap: 1rem; padding-bottom: 10px; overflow-x: auto; }
-  .slot-card { flex: 0 0 130px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); position: relative; transition: all 0.2s; }
+  .slot-card { flex: 0 0 130px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); position: relative; transition: all 0.2s; overflow: hidden; }
   .slot-card.unlocked { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.5); }
   .slot-card.active { transform: translateY(-4px); border-color: #facc15; box-shadow: 0 0 15px rgba(250, 204, 21, 0.3); }
   .slot-inner { padding: 0.75rem; display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%; }
   .slot-top { display: flex; justify-content: space-between; width: 100%; margin-bottom: 6px; font-size: 0.7rem; color: #94a3b8; }
   .slot-stars { height: 16px; }
   .slot-odds { font-weight: 600; background: rgba(0,0,0,0.3); padding: 1px 4px; border-radius: 4px; }
-  .slot-art { width: 100%; height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; border-radius: var(--radius-lg); }
+  .slot-art { width: 100%; height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
   .slot-art img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5)); }
   .slot-placeholder { color: #475569; font-size: 1.5rem; }
   .slot-name { font-size: 0.8rem; font-weight: 600; color: #e2e8f0; line-height: 1.2; margin-bottom: auto; }
-  .slot-overlay-check { position: absolute; inset: 0; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); pointer-events: none; display: flex; align-items: start; justify-content: end; padding: 6px; }
+  .slot-overlay-check { position: absolute; inset: 0; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-lg); pointer-events: none; display: flex; align-items: start; justify-content: end; padding: 6px; }
   .check-icon { background: #10b981; color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
   .slot-card.completion { border-color: #eab308; background: rgba(234, 179, 8, 0.1); }
   .stage-controls { margin-top: 2rem; }
@@ -409,7 +409,7 @@
   .spin:hover { filter: brightness(1.1); }
   .info-panel { display: flex; flex-direction: column; gap: 1rem; }
   .info-card { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1rem; overflow: hidden; }
-  .info-card h2, .info-card h3 { margin: 0 0 0.8rem; font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+  .info-card h3 { margin: 0 0 0.8rem; font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
   .stats-row { display: flex; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.8rem; }
   .stat-item { flex: 1; display: flex; flex-direction: column; gap: 2px; }
   .stat-label { font-size: 0.7rem; color: #64748b; text-transform: uppercase; }

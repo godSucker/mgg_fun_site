@@ -1,0 +1,64 @@
+name: Parser - Stats Mode
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stats-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 1. Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: 2. Установка Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 3. Установка зависимостей
+        run: npm ci
+
+      - name: 4. Запуск Парсера (Режим STATS)
+        run: npx tsx scripts/sync-mutants.ts stats
+
+      - name: 5. Проверка изменений
+        id: check-changes
+        run: |
+          if git diff --quiet src/data/mutants/*.json 2>/dev/null; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  Изменений не обнаружено"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Обнаружены изменения в данных"
+          fi
+
+      - name: 6. Сохранение изменений (Commit & Push)
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Parser Stats: Обновление статов мутантов"
+          commit_user_name: "MGG Parser Bot"
+          commit_user_email: "bot@archivist-library.com"
+          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          branch: main
+          file_pattern: 'src/data/mutants/*.json'
+
+      - name: 7. Итоги работы
+        if: always()
+        run: |
+          echo "## 📊 Итоги парсера (STATS)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ **Статус:** Обнаружены изменения, данные обновлены" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ **Статус:** Изменений не обнаружено" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🕐 **Время запуска:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "⏱️ **Режим парсера:** STATS (полное обновление статов и локализации)" >> $GITHUB_STEP_SUMMARY
