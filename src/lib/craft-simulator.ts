@@ -168,6 +168,11 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   Charm_Regenx2_1: 'Бустер восстановления +100% (1д)',
   Charm_Critical_1: 'Бустер крит. ударов (1д)',
   Charm_Anticritical_1: 'Бустер щита (1д)',
+
+  // Переименованные рецепты для Black Hole (перемещены в "Крафты")
+  'little_rewards_01': 'Крафт из 2 предметов',
+  'big_rewards_01': 'Серебряная звезда ×3',
+  'big_rewards_02': 'Крафт жетона генератора (шанс 15%)',
 };
 
 const ITEM_TEXTURES: Record<string, string> = {
@@ -181,6 +186,8 @@ const ITEM_TEXTURES: Record<string, string> = {
   Material_Gacha_Token: '/tokens/material_gacha_token.webp',
   Material_Event_Token: '/tokens/material_event_token.webp',
   Material_Jackpot_Token: '/tokens/material_jackpot_token.webp',
+  Material_Mystery25_Token: '/tokens/material_mystery25_token.webp',
+  Material_Mystery26_Token: '/tokens/material_mystery26_token.webp',
 
   // Supplies
   Material_Muto1: '/materials/mini_muto.webp',
@@ -195,6 +202,11 @@ const ITEM_TEXTURES: Record<string, string> = {
   Material_Energy5: '/materials/ticket_5.webp',
   Material_Energy25: '/materials/ticket_25.webp',
   Material_Energy1: '/materials/ticket_1.webp',
+
+  // Текстуры для перемещённых рецептов Black Hole
+  'little_rewards_01': '/med/mini_med.webp',  // Material_LP10
+  'big_rewards_01': '/stars/star_silver.webp',  // Star_Silver x3
+  'big_rewards_02': '/boosters/charm_xpx3_7.webp',  // Charm_Xpx3_7
 };
 
 const SPECIAL_ORB_TEXTURE_BLACKLIST = new Set([
