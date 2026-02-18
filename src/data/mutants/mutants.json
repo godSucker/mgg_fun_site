@@ -58693,5 +58693,120 @@
     "name_attack2": "Созвездие-атака",
     "name_attack3": "",
     "name_lore": "Этот мутант с друидскими чертами стал обладателем странного посоха, изготовленного из метеоритных материалов, которые путешествовали по галактике. Благодаря этому технологически продвинутому предмету он смог манипулировать звездами и созвездиями, что было непостижимо для человеческого разума. К сожалению, он не знал, что, делая это, он повлияет на реальность, изменив саму структуру нашей вселенной, чтобы создать мутантов на основе этих звезд."
+  },
+  {
+    "id": "specimen_e_14",
+    "name": "Спираксия",
+    "genes": [
+      "E"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 2055,
+        "atk1": 944,
+        "atk2": 654,
+        "ability": 189,
+        "speed": 4.08,
+        "silver": 42,
+        "atk1_gene": "e",
+        "atk2_gene": "neutro",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "lvl30": {
+        "hp": 8015,
+        "atk1": 5331,
+        "atk2": 3806,
+        "ability": 1599,
+        "speed": 4.08,
+        "silver": 1260,
+        "atk1_gene": "e",
+        "atk2_gene": "neutro",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "hp_base": 2055,
+      "atk1_base": 944,
+      "atk1p_base": 1367,
+      "atk2_base": 654,
+      "atk2p_base": 976,
+      "speed_base": 4.08,
+      "bank_base": 42,
+      "abilityPct1": 20,
+      "abilityPct2": 30
+    },
+    "abilities": [
+      {
+        "name": "ability_regen",
+        "pct": 20,
+        "value_atk1_lvl1": 189,
+        "value_atk2_lvl1": 131,
+        "value_atk1_lvl30": 1066,
+        "value_atk2_lvl30": 761
+      },
+      {
+        "name": "ability_regen_plus",
+        "pct": 30,
+        "value_atk1_lvl1": 283,
+        "value_atk2_lvl1": 196,
+        "value_atk1_lvl30": 1599,
+        "value_atk2_lvl30": 1142
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/e_14/E_14_normal.webp",
+          "textures_by_mutant/e_14/specimen_e_14_normal.webp",
+          "textures_by_mutant/e_14/larva_e_14.webp"
+        ]
+      },
+      "bronze": {
+        "images": [
+          "textures_by_mutant/e_14/E_14_bronze.webp",
+          "textures_by_mutant/e_14/specimen_e_14_bronze.webp",
+          "textures_by_mutant/e_14/larva_e_14.webp"
+        ],
+        "multiplier": 1.1
+      },
+      "silver": {
+        "images": [
+          "textures_by_mutant/e_14/E_14_silver.webp",
+          "textures_by_mutant/e_14/specimen_e_14_silver.webp",
+          "textures_by_mutant/e_14/larva_e_14.webp"
+        ],
+        "multiplier": 1.3
+      },
+      "gold": {
+        "images": [
+          "textures_by_mutant/e_14/E_14_gold.webp",
+          "textures_by_mutant/e_14/specimen_e_14_gold.webp",
+          "textures_by_mutant/e_14/larva_e_14.webp"
+        ],
+        "multiplier": 1.75
+      },
+      "platinum": {
+        "images": [
+          "textures_by_mutant/e_14/E_14_platinum.webp",
+          "textures_by_mutant/e_14/specimen_e_14_platinum.webp",
+          "textures_by_mutant/e_14/larva_e_14.webp"
+        ],
+        "multiplier": 2
+      }
+    },
+    "type": "LEGEND",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 0,
+    "bank": 42,
+    "tier": "un-tired",
+    "name_attack1": "Звездная проекция",
+    "name_attack2": "Гравитационный коллайдер",
+    "name_attack3": "",
+    "name_lore": "Сырая мощь звезд, сконцентрированная в человекоподобной форме, способной взаимодействовать с остальной частью Вселенной. Таков был лозунг ученых и астрономов, создавших этого мутанта на основе данных радиотелескопов, расположенных по всему миру. И результаты превзошли их ожидания во многих отношениях. Что будет, когда он окажется на арене Гентик-Сити?"
   }
 ]
