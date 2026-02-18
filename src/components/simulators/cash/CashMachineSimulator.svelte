@@ -720,6 +720,7 @@
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: flex-start;
   }
 
   .panel {
@@ -730,6 +731,21 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: auto;
+    flex: 0 0 auto;
+    max-height: none;
+  }
+
+  .panel > h3 {
+    flex-shrink: 0;
+  }
+
+  .panel > .table,
+  .panel > .history,
+  .panel > .empty {
+    flex: 0 0 auto;
+    max-height: none;
+    overflow-y: visible;
   }
 
   .panel h3 {
@@ -777,8 +793,6 @@
     gap: 0.65rem;
     padding: 0;
     margin: 0;
-    max-height: 360px;
-    overflow-y: auto;
   }
 
   .history li {

@@ -1,38 +1,53 @@
-# Node
+# Dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-package-lock.json # (если используем yarn/pnpm; если npm — убери эту строку)
-
-# Astro/Vite
-.astro/
-.dist/
-dist/
-.vite/
-.vite-inspect/
-
-# IDE / OS
-.DS_Store
-.idea/
-.vscode/*        # но оставим рекомендации расширений:
-!.vscode/extensions.json
-!.vscode/settings.json
-
-# Env
+.backend/
+venv/
 .env
-.env.local
-.env.*.local
-!/.env.example
 
-# Misc
-mutants_site/src/assets
+# Build outputs
+dist/
+.output/
+.build/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+tmp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
 coverage/
-CLAUDE.md
-events.txt
-.venv_orb/
-.claudeskills/
-.claude/
-bot/
-tools/
+.lib/
+.nyc_output/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Temporary file for tier updates (important to not commit)
+temp/pending_tier_updates.json
+node_modules/@vercel/kv/
