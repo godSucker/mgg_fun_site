@@ -125,3 +125,6 @@ The application pulls data from multiple sources:
 - **Vercel Speed Insights**: Performance monitoring
 - **Tailwind CSS**: Styling framework
 - **dom-to-image-more**: Image generation capabilities
+
+## Qwen Added Memories
+- Проект: Archivist Library (MGG Hub) - сайт для игры Mutants Genetic Gladiators. Реализовано: 1) Telegram бот для автообновления тиров мутантов (файл → бот → GitHub API → mutants.json), 2) Google Sheets интеграция для top-evo страницы с 5-минутным кэшированием, 3) Исправлено отображение картинок мутантов из всех редкостей (normal→platinum), 4) Sad-mode для пустых тандемов (гифка с грустным смайлом), 5) Раздел "Справочник" в симуляторе скрещиваний закрыт с креативной 404-заглушкой (замок 🔒, анимации ДНК, кнопка возврата в Инкубатор). Технологии: Astro, Svelte, Vercel, GitHub Actions, Telegram Bot API.

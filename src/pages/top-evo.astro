@@ -1,15 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EvoLeaderboard from '../components/EvoLeaderboard.svelte';
-import { loadEvoTop } from '../lib/xlsx-loader';
+import { loadEvoTop } from '../lib/google-sheets-loader';
 // Импортируем базу мутантов
 import mutantsRaw from '../data/mutants/mutants.json';
 
-const players = loadEvoTop();
+export const prerender = false;
+
+const players = await loadEvoTop();
 ---
 
 <BaseLayout
-  title="Топ по Эволюции | Archivist-Library"
+  title="Топ по Эво | Archivist-Library"
   fullWidth
   viewport="width=device-width, initial-scale=1"
 >

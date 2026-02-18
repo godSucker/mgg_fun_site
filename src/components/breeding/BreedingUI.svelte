@@ -175,16 +175,20 @@
          <button class="mode-btn {mode==='calc' ? 'active' : ''}" on:click={() => {mode='calc'; target=null}}>
              Инкубатор
          </button>
-         <button class="mode-btn {mode==='reverse' ? 'active' : ''}" on:click={() => {mode='reverse'; p1=null; p2=null}}>
-             Справочник
+         <button class="mode-btn disabled" title="Справочник временно закрыт">
+             Справочник 🔒
          </button>
       </div>
 
       <button class="mode-switch-mobile" on:click={() => {
-          mode = mode === 'calc' ? 'reverse' : 'calc';
-          target = null; p1 = null; p2 = null;
+          if (mode === 'reverse') {
+              mode = 'calc';
+              target = null; p1 = null; p2 = null;
+          }
+          // Справочник закрыт - показываем уведомление
+          alert('🔒 Справочник временно закрыт по техническим причинам.\n\nМы работаем над улучшением базы данных рецептов.');
       }}>
-          {mode === 'calc' ? 'В Справочник ➜' : 'В Инкубатор ➜'}
+          {mode === 'calc' ? 'Справочник 🔒' : 'В Инкубатор ➜'}
       </button>
     </div>
 
@@ -288,66 +292,27 @@
                 {/if}
             </div>
         {:else}
-            <!-- REVERSE MODE -->
-             <div class="reverse-container" in:fly={{y:20, duration:400}}>
-                 {#if !target}
-                     <div class="empty-search">
-                         <div class="big-icon">🔍</div>
-                         <h3>Поиск рецептов</h3>
-                         <p>Выберите мутанта из базы, чтобы узнать, как его вывести.</p>
-                     </div>
-                 {:else}
-                     {#key target.id}
-                         <div class="target-card">
-                             <div class="target-bg" style="background-image: url({getImageSrc(target)})"></div>
-                             <div class="target-content">
-                                 <div class="target-img-wrap">
-                                     <img src={getImageSrc(target)} alt="Целевой мутант"/>
-                                 </div>
-                                 <div class="target-info">
-                                     <div class="badges">
-                                         <span class="badge">Цель</span>
-                                         <span class="time">{formatTime(target.incub_time)}</span>
-                                     </div>
-                                     <h2>{getName(target)}</h2>
-                                     <button class="reset-btn" on:click={() => target=null}>Выбрать другого</button>
-                                 </div>
-                             </div>
+            <!-- REVERSE MODE - CLOSED -->
+             <div class="closed-section" in:fly={{y:20, duration:400}}>
+                 <div class="closed-content">
+                     <div class="closed-icon">🔒</div>
+                     <h1>Раздел закрыт</h1>
+                     <p class="closed-reason">Справочник временно недоступен по техническим причинам</p>
+                     <p class="closed-text">Мы работаем над улучшением базы данных рецептов.<br/>Раздел откроется в ближайшее время.</p>
+                     <button class="back-btn" on:click={() => {mode='calc'; target=null}}>
+                         ← Вернуться в Инкубатор
+                     </button>
+                     <div class="decorator">
+                         <div class="dna-strand">
+                             <span class="base">A</span>
+                             <span class="base">T</span>
+                             <span class="base">G</span>
+                             <span class="base">C</span>
+                             <span class="base">A</span>
+                             <span class="base">T</span>
                          </div>
-                     {/key}
-
-                     {#if isSearching}
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <span>Анализ ДНК...</span>
-                        </div>
-                     {:else}
-                        <div class="pairs-list">
-                            {#each guideResults as combo, i}
-                                <div class="pair-card" style="animation-delay: {i * 30}ms">
-                                    <div class="parents">
-                                         <div class="p-imgs">
-                                              <img src={getImageSrc(combo.p1)} alt="Первый родитель"/>
-                                              <div class="plus">+</div>
-                                              <img src={getImageSrc(combo.p2)} alt="Второй родитель"/>
-                                         </div>
-                                         <div class="p-names">
-                                              <div>{getName(combo.p1)}</div>
-                                              <div>{getName(combo.p2)}</div>
-                                         </div>
-                                    </div>
-                                    <div class="tag {combo.isSecret ? 'secret' : 'normal'}">
-                                        {combo.tag}
-                                    </div>
-                                </div>
-                            {:else}
-                                <div class="no-pairs">
-                                    Невозможно вывести (Сезонный, Магазин или нет данных).
-                                </div>
-                            {/each}
-                        </div>
-                     {/if}
-                 {/if}
+                     </div>
+                 </div>
              </div>
         {/if}
     </div>
@@ -546,6 +511,7 @@
   .mode-btn:hover { color: #fff; }
   .mode-btn.active { background: #84cc16; color: #000; box-shadow: 0 2px 10px rgba(132, 204, 22, 0.3); }
   .mode-btn.active:last-child { background: #a855f7; color: #fff; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4); }
+  .mode-btn.disabled { background: rgba(239, 68, 68, 0.2); color: #ef4444; cursor: not-allowed; border: 1px solid rgba(239, 68, 68, 0.3); }
 
   .mode-switch-mobile {
     padding: 0.5rem 0.8rem;
@@ -990,9 +956,112 @@
   .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
   .custom-scroll::-webkit-scrollbar-thumb:hover { background: #475569; }
 
+  /* CLOSED SECTION */
+  .closed-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    padding: 2rem;
+  }
+
+  .closed-content {
+    text-align: center;
+    max-width: 500px;
+    position: relative;
+  }
+
+  .closed-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.5));
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  .closed-content h1 {
+    font-size: 2rem;
+    color: #ef4444;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+  }
+
+  .closed-reason {
+    font-size: 1.1rem;
+    color: #f87171;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .closed-text {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .back-btn {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+  }
+
+  .decorator {
+    margin-top: 3rem;
+    opacity: 0.3;
+  }
+
+  .dna-strand {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: monospace;
+  }
+
+  .dna-strand .base {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .dna-strand .base:nth-child(1) { animation-delay: 0s; }
+  .dna-strand .base:nth-child(2) { animation-delay: 0.2s; }
+  .dna-strand .base:nth-child(3) { animation-delay: 0.4s; }
+  .dna-strand .base:nth-child(4) { animation-delay: 0.6s; }
+  .dna-strand .base:nth-child(5) { animation-delay: 0.8s; }
+  .dna-strand .base:nth-child(6) { animation-delay: 1s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  
+
   .loading { text-align: center; padding: 2rem; color: #a855f7; font-weight: 700; font-size: 0.9rem; }
   .spinner {
      display: inline-block; width: 30px; height: 30px;

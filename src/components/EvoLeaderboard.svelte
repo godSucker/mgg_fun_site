@@ -34,27 +34,60 @@
 
   // --- ПОИСК КАРТИНКИ И СКОРОСТИ ---
   function findMutantVisuals(mutantName: string) {
-    if (!mutantName || mutantName === 'undefined') return null;
+    // Проверка на пустую строку или null/undefined
+    if (!mutantName || mutantName === '' || mutantName === 'undefined') {
+      return { isDisabled: true };
+    }
+    
     const clean = mutantName.trim().toLowerCase();
 
-    const stopWords = ['отключен', 'нет', '—', '-', '?', 'none', 'off', 'disabled', '—','Низкое Эво для тандема'];
-    if (stopWords.includes(clean) || stopWords.some(s => clean === s)) {
+    const stopWords = ['отключен', 'нет', '—', '-', '?', 'none', 'off', 'disabled', '—', 'низкое эво для тандема', 'слишком низкое', 'too low', 'empty', 'пусто'];
+    if (stopWords.includes(clean) || stopWords.some(s => clean.includes(s))) {
       return { isDisabled: true };
     }
 
     // Ищем в базе только ради картинки и скорости
     const normalizedClean = normalizeSearch(clean);
-    const found = mutantsDb.find(m => normalizeSearch(m.name) === normalizedClean)
-               || mutantsDb.find(m => normalizeSearch(m.name).includes(normalizedClean));
+    
+    // Пробуем несколько вариантов поиска
+    const found = mutantsDb.find(m => {
+      const dbNormalized = normalizeSearch(m.name);
+      return dbNormalized === normalizedClean;
+    }) || mutantsDb.find(m => {
+      const dbNormalized = normalizeSearch(m.name);
+      return dbNormalized.includes(normalizedClean) || normalizedClean.includes(dbNormalized);
+    });
 
     if (!found) return null;
 
     let image = '';
-    if (Array.isArray(found.image)) {
+    
+    // Извлекаем картинку из stars.*.images - пробуем все редкости
+    if (found.stars) {
+      const rarities = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
+      
+      for (const rarity of rarities) {
+        if (found.stars[rarity] && Array.isArray(found.stars[rarity].images)) {
+          const images = found.stars[rarity].images;
+          // Ищем картинку со specimen или portrait
+          image = images.find((img: string) => img.includes('specimen') || img.includes('portrait')) || images[0];
+          if (image) {
+            break;
+          }
+        }
+      }
+    }
+    
+    // Fallback: проверяем старые поля
+    if (!image && Array.isArray(found.image)) {
       image = found.image.find((img: string) => img.includes('specimen') || img.includes('portrait')) || found.image[0];
-    } else {
+    } else if (!image && found.images && Array.isArray(found.images)) {
+      image = found.images.find((img: string) => img.includes('specimen') || img.includes('portrait')) || found.images[0];
+    } else if (!image && typeof found.image === 'string') {
       image = found.image;
     }
+    
+    
     if (image && image.startsWith('/')) image = image.substring(1);
 
     // Достаем скорость из базы
