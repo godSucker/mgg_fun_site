@@ -3927,17 +3927,17 @@
         ],
         "rewards": [
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 1,
                 "type": "entity"
             },
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 5,
                 "type": "entity"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 1,
                 "type": "entity"
             },
@@ -4024,12 +4024,12 @@
         ],
         "rewards": [
             {
-                "name": "Star_Silver",
+                "name": "Star_Gold",
                 "amount": 3,
                 "type": "entity"
             },
             {
-                "name": "Star_Gold",
+                "name": "Star_Platinum",
                 "amount": 2,
                 "type": "entity"
             },
@@ -4044,7 +4044,7 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 4,
                 "type": "entity"
             },
@@ -4054,7 +4054,7 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 50,
                 "type": "entity"
             },
@@ -5591,7 +5591,7 @@
         ],
         "rewards": [
             {
-                "name": "Star_Gold",
+                "name": "Star_Platinum",
                 "amount": 2,
                 "type": "entity"
             },
@@ -5601,7 +5601,7 @@
                 "type": "entity"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Gacha_Token",
                 "amount": 6,
                 "type": "entity"
             },
@@ -5611,7 +5611,7 @@
                 "type": "hardcurrency"
             },
             {
-                "name": "Material_Gacha_Token",
+                "name": "Material_Jackpot_Token",
                 "amount": 75,
                 "type": "entity"
             },

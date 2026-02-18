@@ -1,127 +1,210 @@
-# Archivist Library (MGG Hub) - Project Context
+# 🧬 Archivist Library (MGG Hub) — Проект документации
 
-## Project Overview
+## Обзор проекта
 
-This is an Astro-based static site generator project called "Archivist Library" (MGG Hub) - a comprehensive knowledge base and toolset for the game "Mutants Genetic Gladiators". The site provides:
+**Archivist Library** — это главная база знаний и набор инструментов для игры **Mutants Genetic Gladiators**. Сайт предоставляет сообществу игроков следующие возможности:
 
-- **Mutant Wiki**: Database of mutants and skins
-- **Simulators**: Roulette, breeding, reactor, and crafting simulators with real odds
-- **Calculators**: Stats calculator and evolution resource calculator
-- **Materials**: Resources, tokens, boosters, spheres, buildings, and zones
-- **Bingo**: Complete list of in-game bingo events
+- 📚 **Вики мутантов и скинов** — полная база данных с характеристиками
+- 🎰 **Симуляторы** — рулеток, скрещивания, реактора, крафта
+- 🧮 **Калькуляторы** — статов, эволюции, evotech
+- 🎯 **Бинго** — система достижений
 
-The project uses modern web technologies including Astro, Svelte 5, Tailwind CSS, and is deployed on Vercel.
+### Стек технологий
 
-## Technology Stack
+| Категория | Технологии |
+| :--- | :--- |
+| **Фреймворк** | Astro 5.x (SSG) |
+| **UI Components** | Svelte 5.x |
+| **Стилизация** | Tailwind CSS 4.x |
+| **Язык** | TypeScript 5.x |
+| **Хостинг** | Vercel |
+| **Утилиты** | sharp, dom-to-image-more, xlsx |
 
-- **Framework**: [Astro](https://astro.build/) (v5.13.5) - Static Site Generator
-- **UI Components**: [Svelte 5](https://svelte.dev/) - Interactive components
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom configurations
-- **Deployment**: [Vercel](https://vercel.com/) with analytics and speed insights
-- **Image Processing**: [Sharp](https://sharp.pixelplumbing.com/) for image optimization
-- **Data Handling**: Excel files (xlsx), JSON, and text files for game data
+---
 
-## Project Structure
+## Структура проекта
 
 ```
-mutants_site/
-├── public/                 # Static assets (images, fonts, textures)
-├── src/
-│   ├── assets/            # Source assets
-│   ├── components/        # Reusable UI components (Astro & Svelte)
-│   ├── data/              # Game data (JSON, Excel, text files)
-│   ├── layouts/           # Page layouts
-│   ├── lib/               # Utility functions
-│   ├── pages/             # Route definitions
-│   ├── styles/            # Global styles and CSS
-│   └── workers/           # Web workers
-├── astro.config.ts        # Astro configuration
-├── package.json           # Dependencies and scripts
-└── vercel.json            # Vercel deployment configuration
+mgg_fun_site/
+├── src/                      # Исходный код
+│   ├── components/           # Svelte и Astro компоненты
+│   │   ├── breeding/         # Компоненты скрещивания
+│   │   ├── materials/        # Компоненты материалов
+│   │   ├── simulators/       # Компоненты симуляторов
+│   │   ├── Card.astro        # Базовая карточка
+│   │   ├── Developers.svelte # Команда проекта
+│   │   ├── EvoLeaderboard.svelte
+│   │   ├── MutantsGrid.svelte
+│   │   └── ...
+│   ├── data/                 # Данные и конфиги
+│   │   ├── mutants/          # mutants.json, skins.json
+│   │   ├── breeding/         # Данные скрещивания
+│   │   ├── materials/        # Материалы
+│   │   ├── simulators/       # Конфиги симуляторов
+│   │   ├── bingos.json       # Бинго данные
+│   │   └── localisation_*.txt
+│   ├── layouts/              # Astro layout'ы
+│   ├── lib/                  # Утилиты и хелперы
+│   │   ├── breeding/         # Логика скрещивания
+│   │   ├── stats/            # Расчёт статов
+│   │   ├── mutant-sort.ts    # Сортировка мутантов
+│   │   ├── mutant-textures.ts
+│   │   ├── xlsx-loader.ts
+│   │   └── ...
+│   ├── pages/                # Astro страницы (роутинг)
+│   │   ├── mutants/          # Страницы мутантов
+│   │   ├── simulators/       # Симуляторы
+│   │   ├── evolution/        # Эволюция
+│   │   ├── index.astro       # Главная
+│   │   └── 404.astro
+│   ├── styles/               # Глобальные стили
+│   │   └── global.css        # Tailwind + CSS переменные
+│   └── workers/              # Web Workers
+├── public/                   # Статические файлы
+│   ├── textures_by_mutant/   # Текстуры мутантов
+│   ├── textures_by_skins/    # Текстуры скинов
+│   ├── ability/              # Иконки способностей
+│   ├── genes/                # Иконки генов
+│   └── ...
+├── bot/                      # Telegram бот (отдельный проект)
+├── scripts/                  # Скрипты синхронизации данных
+│   ├── sync-mutants.ts       # Синхронизация с CDN игры
+│   ├── bingo.ts
+│   └── ...
+├── tools/                    # Инструменты разработки
+├── temp/                     # Временные файлы
+└── dist/                     # Сборка (build output)
 ```
 
-### Key Directories
+---
 
-- **`src/pages/`**: Contains route definitions for all major sections (mutants, simulators, evolution, materials, etc.)
-- **`src/components/`**: Reusable UI elements including breeding tools, calculators, and data tables
-- **`src/data/`**: Game-related data organized by category (breeding, materials, mutants, simulators)
-- **`public/textures_by_mutant/`**: Image assets organized by mutant ID
+## Сборка и запуск
 
-## Building and Running
+### Требования
 
-### Development
+- Node.js 18+
+- npm
+
+### Установка зависимостей
+
 ```bash
-npm run dev
-# Runs Astro development server with hot reload
+npm install
 ```
 
-### Production Build
-```bash
-npm run build
-# Generates static site in dist/ directory
+### Команды разработки
+
+| Команда | Описание |
+| :--- | :--- |
+| `npm run dev` | Запуск dev-сервера (локально) |
+| `npm run build` | Продакшн сборка |
+| `npm run preview` | Предпросмотр сборки |
+| `npm run astro` | Astro CLI |
+
+### Конфигурация dev-сервера
+
+Dev-сервер настроен в `astro.config.ts`:
+- Хост: `true` (доступ из сети)
+- Polling: включён для совместимости с некоторыми окружениями
+- Allowed hosts: `.ru.tuna.am`, `.nl.tuna.am`, `.manus.computer`
+
+---
+
+## Разработка
+
+### Соглашения по коду
+
+#### Форматирование (Prettier)
+
+```json
+{
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 100
+}
 ```
 
-### Preview Production Build
-```bash
-npm run preview
-# Locally preview production build
-```
+#### ESLint
 
-### Additional Scripts
-```bash
-npm run astro    # Direct access to Astro CLI
-```
+Используется flat config с плагинами:
+- `eslint-plugin-astro` — для `.astro` файлов
+- `eslint-plugin-svelte` — для `.svelte` файлов
+- `typescript-eslint` — для TypeScript
 
-## Development Conventions
+Основные правила:
+- `no-unused-vars`: warn (игнорирует переменные с `_`)
+- `astro/no-unused-css-selector`: warn
+- `svelte/no-reactive-reassign`: error
 
-### File Naming
-- Pages: Use kebab-case for routes (e.g., `evotech-calculator.astro`)
-- Components: PascalCase for Svelte components, kebab-case for Astro components
-- Data files: Descriptive names with appropriate extensions
+#### TypeScript
 
-### Styling
-- Primary: Tailwind CSS utility classes
-- Custom properties defined in `src/styles/global.css`
-- Responsive design using Tailwind's breakpoints
-- Dark theme as default with carefully chosen color palette
+- `tsconfig.json` расширяет `astro/tsconfigs/strict`
+- Алиас `@` указывает на `src/`
 
-### Component Architecture
-- Astro pages for static content and layout
-- Svelte components for interactive elements
-- Shared components in `src/components/`
-- Data fetching done via Astro's static generation
+#### Архитектурные паттерны
 
-### Internationalization
-- Russian as primary language (with some English localization)
-- Localization files in `src/data/` (localisation_ru.txt, localisation_en.txt)
+1. **Компоненты**: Svelte для интерактивных элементов, Astro для статических страниц
+2. **Данные**: JSON файлы в `src/data/`, загружаются на этапе сборки
+3. **Стили**: Tailwind CSS + CSS переменные в `global.css`
+4. **Алиасы**: Используйте `@/` для импортов из `src/`
 
-## Deployment Configuration
+### Синхронизация данных
 
-- Deployed on Vercel with CDN asset prefixing
-- Caching headers configured for static assets (1 year cache)
-- CORS headers enabled for cross-origin requests
-- Analytics and speed insights integration
+Скрипт `scripts/sync-mutants.ts` загружает данные из CDN игры:
+- `localisation_ru.txt` — локализация
+- `gamedefinitions.xml` — характеристики мутантов
+- Текстуры с `pokradex.org` и `kobojo.com`
 
-## Special Features
+Режимы синхронизации:
+- `--skip-existing` — пропуск существующих мутантов
+- `--force-stat-update` — принудительное обновление статов
+- `--compare-before-update` — обновление только изменившихся данных
 
-- **3D Card Effects**: Interactive mutant cards with 3D tilt effects
-- **Real-time Calculators**: Evolution and stats calculators
-- **Simulators**: Accurate game simulation tools
-- **Responsive Design**: Optimized for mobile, tablet, and desktop
-- **High-DPI Support**: Automatic scaling for 2K/4K displays
-- **Image Fallbacks**: Smart image format fallback (PNG → JPG)
+---
 
-## Data Sources
+## Ключевые файлы
 
-The application pulls data from multiple sources:
-- Excel files (.xlsx) for complex game data
-- JSON files for structured information
-- Text files for localization and base data
-- Static image assets organized by game entity
+| Файл | Описание |
+| :--- | :--- |
+| `astro.config.ts` | Конфигурация Astro, Vite, алиасы |
+| `package.json` | Зависимости и скрипты |
+| `tsconfig.json` | Настройки TypeScript |
+| `vercel.json` | Заголовки CORS и кэширование |
+| `.eslint.config.js` | Правила линтинга |
+| `.prettierrc` | Настройки форматирования |
+| `src/data/mutants/mutants.json` | ~60k строк, база всех мутантов |
+| `src/lib/mutant-sort.ts` | Логика сортировки и фильтрации |
+| `src/lib/breed-map.ts` | Механика скрещивания |
 
-## Key Integrations
+---
 
-- **Vercel Analytics**: Usage tracking
-- **Vercel Speed Insights**: Performance monitoring
-- **Tailwind CSS**: Styling framework
-- **dom-to-image-more**: Image generation capabilities
+## Деплой
+
+Проект развёртывается на **Vercel**:
+- CDN для ассетов: `https://cdn.archivist-library.com`
+- Основной сайт: `https://www.archivist-library.com`
+
+### Vercel конфигурация
+
+`vercel.json` настраивает:
+- CORS заголовки для всех роутов
+- Кэширование статики (1 год, immutable)
+
+---
+
+## Команда проекта
+
+| Роль | Участник |
+| :--- | :--- |
+| **Dev Lead** | [がらんの画眉丸](https://t.me/absolutely_poxuy) |
+| **Data helper** | [Евгений aka DonutSafe](https://t.me/Donut_Safe) |
+| **Sim Helper** | [imashio aka blindpain](https://t.me/blindpain) |
+| **Special thanks** | [Meeggee](https://t.me/meeggee) |
+
+---
+
+## Полезные ссылки
+
+- [Документация Astro](https://docs.astro.build/)
+- [Документация Svelte 5](https://svelte.dev/docs)
+- [Документация Tailwind CSS](https://tailwindcss.com/docs)
+- [Игровое CDN](https://s-beta.kobojo.com/mutants/gameconfig/)
