@@ -1738,10 +1738,10 @@
   .slot{ position:relative; }
   .slot-btn{
     position:relative;
-    width:68px;
-    height:68px;
-    min-width: 68px;
-    min-height: 68px;
+    width: var(--orb-size-container-large);
+    height: var(--orb-size-container-large);
+    min-width: var(--orb-size-container-large);
+    min-height: var(--orb-size-container-large);
     flex-shrink: 0;
 
     border-radius:12px;
@@ -2045,7 +2045,7 @@
     .ability-icon { width: 35px; height: 35px; }
     .row .label-icon { width: 25px; height: 25px; }
     .row .type-icon { width: 33px; height: 33px; }
-    .orb-row img { width: 45px; height: 45px; }
+    .orb-row img { width: var(--orb-size-img); height: var(--orb-size-img); }
     .dropdown { width: 400px; }
     .controls { gap: 15px; }
     .stars { gap: 8px; }

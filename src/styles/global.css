@@ -43,6 +43,12 @@
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
+
+  /* Orb/Sphere sizes - единый стандарт для всех компонентов */
+  --orb-size-container: 52px;
+  --orb-size-img: 44px;
+  --orb-size-container-large: 84px;
+  --orb-size-img-large: 70px;
 }
 
 body { font-family: var(--font-ui); }

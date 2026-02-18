@@ -369,7 +369,7 @@
   .stat-body strong { font-size: 1.2rem; color: #fff; }
   .resource-summary { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
   .resource-card { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 12px; }
-  .resource-icon img { width: 36px; height: 36px; }
+  .resource-icon img { width: var(--orb-size-img); height: var(--orb-size-img); }
   .resource-body { display: flex; flex-direction: column; }
   .resource-title { font-size: 0.8rem; color: #64748b; }
   .resource-body strong { color: #fff; }
