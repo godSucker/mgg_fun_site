@@ -5,7 +5,8 @@ import { listGachas } from '../../../lib/reactor-gacha';
 const gachas = listGachas();
 
 // --- УПОРЯДОЧИВАНИЕ ГЕНЕРАТОРОВ ---
-const PRIORITY_GACHAS = ['Кровавые игры', 'Боги Арены', 'Фотосинтез'];
+// Checkmate (Шахматы) — первый, так как это последний релиз
+const PRIORITY_GACHAS = ['Шахматы', 'Кровавые игры', 'Боги Арены', 'Фотосинтез'];
 
 const sortedGachas = [...gachas].sort((a, b) => {
   const nameA = a.name || '';
