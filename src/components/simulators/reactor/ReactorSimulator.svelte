@@ -391,7 +391,7 @@
   }
   .stage-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
   .stage-header h1 { margin: 0; font-size: 1.8rem; color: #f1f5f9; }
-  .stage-header p { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.9rem; }
+  .stage-header p { margin: 0.25rem 0 0; color: #e5e7eb; font-size: 0.9rem; }
   .header-progress { min-width: 160px; text-align: right; }
   .header-progress span { color: #cbd5f5; font-size: 0.85rem; display: block; margin-bottom: 4px; }
   .header-meter { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }

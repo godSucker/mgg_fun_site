@@ -978,9 +978,10 @@
   }
   p {
     margin: 0;
-    color: rgba(226, 232, 240, 0.78);
+    color: rgba(226, 232, 240, 0.9);
     line-height: 1.7;
     max-width: 720px;
+    font-size: 1.05rem;
   }
 
   .hero-stats {
@@ -996,7 +997,7 @@
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(226, 232, 240, 0.55);
+    color: #e5e7eb;
   }
   dd {
     margin: 0;
@@ -1046,7 +1047,7 @@
     font-size: 0.85rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
+    color: #e5e7eb;
   }
 
   .incentive-card__stats {
@@ -1063,7 +1064,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(148, 163, 184, 0.75);
+    color: #e5e7eb;
     margin-bottom: 0.35rem;
   }
   .metric-value {
@@ -1112,7 +1113,7 @@
   }
   .facility-tabs__tagline {
     font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.75);
+    color: #e5e7eb;
   }
 
   /* --- ОСНОВНОЙ ЛЕЙАУТ --- */
@@ -1279,7 +1280,7 @@
   }
   .recipe-card__subtitle {
     margin: 0.3rem 0 0;
-    color: rgba(148, 163, 184, 0.7);
+    color: #e5e7eb;
     font-size: 0.95rem;
   }
   .meta-pill {
@@ -1360,7 +1361,7 @@
   }
   .item-sub {
     font-size: 0.85rem;
-    color: rgba(148, 163, 184, 0.75);
+    color: #e5e7eb;
   }
   .item-odds {
     text-align: right;

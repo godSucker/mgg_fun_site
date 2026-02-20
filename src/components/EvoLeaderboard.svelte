@@ -278,7 +278,7 @@
   .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
   .list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .list-header { display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; padding: 0 1.5rem; color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  .list-header { display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; padding: 0 1.5rem; color: #e5e7eb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
   .col-lvl { text-align: right; }
 
   .row { position: relative; display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; align-items: center; background: rgb(30, 41, 59); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); padding: 1rem 1.5rem; transition: transform 0.2s, background 0.2s; cursor: pointer; }
@@ -297,7 +297,7 @@
   .cell.rank span { display: inline-block; padding-left: 15px; }
 
   .cell.name { font-weight: 600; color: #f1f5f9; font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
-  .cell.tandem { color: #94a3b8; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
+  .cell.tandem { color: #e5e7eb; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
   .cell.level { text-align: right; font-family: monospace; font-size: 1.2rem; font-weight: 700; color: #38bdf8; }
 
   .load-more { width: 100%; padding: 1rem; border-radius: var(--radius-lg); background: rgba(255,255,255,0.05); border: none; color: #94a3b8; cursor: pointer; font-weight: 600; }
