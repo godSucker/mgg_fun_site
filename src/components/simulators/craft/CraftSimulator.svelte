@@ -11,6 +11,7 @@
     getBonusRange,
     getOkhcRange,
     getFeaturedRewardIds,
+    RECIPE_HEADER_TITLES,
     type CraftRecipe,
     type DetailedSimulationResult,
     type IncentiveReward,
@@ -398,7 +399,16 @@
                     (sum, ing) => sum + ing.amount,
                     0,
                   )}
-                  {@const rewardLabel = useRecipeIdLabel ? `${translateItemId(recipe.id)} ×${totalIngredients}` : `${baseLabel} ×${totalIngredients}`}
+                  <!-- Для pot_pourri_* используем формат "Средняя аптечка xN", для token_sink_* убираем множитель -->
+                  {@const isPotPourriRecipe = recipe.id.startsWith('pot_pourri_')}
+                  {@const isTokenSinkRecipe = recipe.id.startsWith('token_sink_')}
+                  {@const rewardLabel = isPotPourriRecipe
+                    ? `Средняя аптечка x${totalIngredients}`
+                    : isTokenSinkRecipe
+                      ? baseLabel
+                      : useRecipeIdLabel
+                        ? `${translateItemId(recipe.id)} ×${totalIngredients}`
+                        : `${baseLabel} ×${totalIngredients}`}
                   {@const rewardIcon = useRecipeIdLabel ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                   <button
                     type="button"
@@ -469,7 +479,7 @@
                       0,
                     )}
                     {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
-                      ? `${baseLabel} ×${totalIngredients}`
+                      ? `Средняя аптечка x${totalIngredients}`
                       : baseLabel}
                     {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                     <button
@@ -503,7 +513,7 @@
                       0,
                     )}
                     {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
-                      ? `${baseLabel} ×${totalIngredients}`
+                      ? `Средняя аптечка x${totalIngredients}`
                       : baseLabel}
                     {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                     <button
@@ -537,7 +547,7 @@
                       0,
                     )}
                     {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
-                      ? `${baseLabel} ×${totalIngredients}`
+                      ? `Средняя аптечка x${totalIngredients}`
                       : baseLabel}
                     {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                     <button
@@ -571,7 +581,7 @@
                       0,
                     )}
                     {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
-                      ? `${baseLabel} ×${totalIngredients}`
+                      ? `Средняя аптечка x${totalIngredients}`
                       : baseLabel}
                     {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
                     <button
@@ -604,7 +614,7 @@
                   {@const displayReward = recipe.rewards[0]}
                   {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
                   {@const totalIngredients = recipe.ingredients.reduce((sum, ing) => sum + ing.amount, 0)}
-                  {@const rewardLabel = recipe.id.startsWith('pot_pourri_') ? `${baseLabel} ×${totalIngredients}` : baseLabel}
+                  {@const rewardLabel = recipe.id.startsWith('pot_pourri_') ? `Средняя аптечка x${totalIngredients}` : baseLabel}
                   {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
                   <button type="button" class:selected={recipe.id === currentRecipe?.id}
                     on:click={() => selectRecipe(activeFacility.id, recipe.id)}
@@ -653,7 +663,7 @@
                 0,
               )}
               {@const rewardLabel = recipe.id.startsWith('pot_pourri_')
-                ? `${baseLabel} ×${totalIngredients}`
+                ? `Средняя аптечка x${totalIngredients}`
                 : baseLabel}
               {@const rewardIcon = isSpecialRecipe ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
               <button
@@ -681,9 +691,7 @@
               <div>
                 <h3>
                   {currentRecipe.rewards.length
-                    ? (currentRecipe.id === 'orb_basic_1' || currentRecipe.id === 'orb_basic_2' || currentRecipe.id === 'orb_basic_3' || currentRecipe.id === 'orb_basic_4' || currentRecipe.id === 'orb_special_1' || currentRecipe.id === 'orb_special_2' || currentRecipe.id === 'orb_special_3' || currentRecipe.id === 'orb_reroll_basic_1' || currentRecipe.id === 'orb_reroll_special_1' || currentRecipe.id === 'orb_reroll_basic_2' || currentRecipe.id === 'orb_reroll_special_2' || currentRecipe.id === 'orb_reroll_basic_3' || currentRecipe.id === 'orb_reroll_special_3'
-                      ? translateItemId(currentRecipe.id)
-                      : translateItemId(currentRecipe.rewards[0].id))
+                    ? (RECIPE_HEADER_TITLES[currentRecipe.id] ?? translateItemId(currentRecipe.id))
                     : 'Рецепт'}
                 </h3>
                 <p class="recipe-card__subtitle">

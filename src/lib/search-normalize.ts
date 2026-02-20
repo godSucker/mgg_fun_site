@@ -32,6 +32,8 @@ export function normalizeSearch(text: string): string {
 
   let normalized = text
     .toLowerCase()
+    // Replace zero (0) with Cyrillic 'о' for fuzzy search (e.g., "Ан0малия" → "аномалия")
+    .replace(/0/g, 'о')
     // Replace common problematic characters that might appear due to encoding issues
     .replace(/€/g, 'е')  // € often represents 'е'
     .replace(/‚/g, 'г')  // ‚ often represents 'г'

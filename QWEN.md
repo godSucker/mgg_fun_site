@@ -8,6 +8,7 @@
 - 🎰 **Симуляторы** — рулеток, скрещивания, реактора, крафта
 - 🧮 **Калькуляторы** — статов, эволюции, evotech
 - 🎯 **Бинго** — система достижений
+- 📊 **Материалы** — расходники, жетоны, бустеры, сферы, здания и зоны
 
 ### Стек технологий
 
@@ -66,7 +67,8 @@ mgg_fun_site/
 │   ├── ability/              # Иконки способностей
 │   ├── genes/                # Иконки генов
 │   └── ...
-├── bot/                      # Telegram бот (отдельный проект)
+├── backend/                  # Backend-скрипты
+│   └── tier_updater/         # Обновление тиров (Python)
 ├── scripts/                  # Скрипты синхронизации данных
 │   ├── sync-mutants.ts       # Синхронизация с CDN игры
 │   ├── bingo.ts
@@ -155,9 +157,21 @@ Dev-сервер настроен в `astro.config.ts`:
 - Текстуры с `pokradex.org` и `kobojo.com`
 
 Режимы синхронизации:
+- `full` — полное обновление (добавление новых мутантов)
 - `--skip-existing` — пропуск существующих мутантов
 - `--force-stat-update` — принудительное обновление статов
 - `--compare-before-update` — обновление только изменившихся данных
+
+### GitHub Actions
+
+Автоматизация настроена в `.github/workflows/`:
+- `sync-cron.yml` — ежедневная синхронизация данных (16:30 МСК)
+- `process-tier-updates.yml` — обработка обновлений тиров
+- `parser-rebalance.yml` / `parser-stats.yml` — парсинг изменений
+
+### Backend (Python)
+
+В `backend/tier_updater/` находится Python-скрипт `parser.py` для обработки данных о тирах мутантов из TXT/XLSX файлов.
 
 ---
 
@@ -177,15 +191,46 @@ Dev-сервер настроен в `astro.config.ts`:
 
 ---
 
-<<<<<<< HEAD
-- **Vercel Analytics**: Usage tracking
-- **Vercel Speed Insights**: Performance monitoring
-- **Tailwind CSS**: Styling framework
-- **dom-to-image-more**: Image generation capabilities
+## Основные страницы и компоненты
 
-## Qwen Added Memories
-- Проект: Archivist Library (MGG Hub) - сайт для игры Mutants Genetic Gladiators. Реализовано: 1) Telegram бот для автообновления тиров мутантов (файл → бот → GitHub API → mutants.json), 2) Google Sheets интеграция для top-evo страницы с 5-минутным кэшированием, 3) Исправлено отображение картинок мутантов из всех редкостей (normal→platinum), 4) Sad-mode для пустых тандемов (гифка с грустным смайлом), 5) Раздел "Справочник" в симуляторе скрещиваний закрыт с креативной 404-заглушкой (замок 🔒, анимации ДНК, кнопка возврата в Инкубатор). Технологии: Astro, Svelte, Vercel, GitHub Actions, Telegram Bot API.
-=======
+### Главная страница (`/`)
+- `src/pages/index.astro` — навигация по разделам
+- `src/components/CardGrid.astro` — сетка карточек
+
+### Мутанты (`/mutants`)
+- `src/pages/mutants/[tier].astro` — страницы по тирам (normal, bronze, silver, gold, platinum)
+- `src/components/MutantsBrowser.svelte` — браузер мутантов
+- `src/components/MutantCard.svelte` — карточка мутанта
+- `src/components/MutantModal.svelte` — модальное окно с деталями
+
+### Симуляторы (`/simulators`)
+- **Скрещивание**: `src/components/breeding/BreedingUI.svelte` + `src/lib/breeding/`
+- **Реактор**: `src/components/simulators/reactor/ReactorSimulator.svelte` + `src/lib/reactor-gacha.ts`
+- **Рулетки**:
+  - Cash Machine: `src/lib/cash-machine.ts`
+  - Lucky Slots: `src/lib/lucky-machine.ts`
+  - Madness: `src/lib/madness-machine.ts`
+- **Крафт**: `src/components/simulators/craft/CraftSimulator.svelte` + `src/lib/craft-simulator.ts`
+
+### Калькуляторы
+- **Статы**: `src/components/StatsCalculator.svelte` + `src/lib/stats/`
+- **Эво**: `src/components/EvotechCalculator.svelte` + `src/data/evotech-data.js`
+
+### Материалы (`/materials`)
+- `src/components/materials/MaterialsTable.astro`
+- Данные: `src/data/materials/*.json`
+
+### Бинго (`/bingo`)
+- `src/pages/bingo.astro`
+- Данные: `src/data/bingos.json`
+
+### Топ Эво (`/top-evo`)
+- `src/pages/top-evo.astro`
+- `src/components/EvoLeaderboard.svelte`
+- Данные: `src/data/evo_top.xlsx`
+
+---
+
 ## Деплой
 
 Проект развёртывается на **Vercel**:
@@ -217,4 +262,17 @@ Dev-сервер настроен в `astro.config.ts`:
 - [Документация Svelte 5](https://svelte.dev/docs)
 - [Документация Tailwind CSS](https://tailwindcss.com/docs)
 - [Игровое CDN](https://s-beta.kobojo.com/mutants/gameconfig/)
->>>>>>> 351bce0b3d8e01e88b173c27fcb420b39afae1e5
+- [Pokradex](https://pokradex.org/MutantsGG/MGG/)
+
+---
+
+## Qwen Added Memories
+
+- Проект: Archivist Library (MGG Hub) — сайт для игры Mutants Genetic Gladiators
+- Реализовано:
+  1. Telegram бот для автообновления тиров мутантов (файл → бот → GitHub API → mutants.json)
+  2. Google Sheets интеграция для top-evo страницы с 5-минутным кэшированием
+  3. Исправлено отображение картинок мутантов из всех редкостей (normal→platinum)
+  4. Sad-mode для пустых тандемов (гифка с грустным смайлом)
+  5. Раздел "Справочник" в симуляторе скрещиваний закрыт с креативной 404-заглушкой (замок 🔒, анимации ДНК, кнопка возврата в Инкубатор)
+- Технологии: Astro, Svelte, Vercel, GitHub Actions, Telegram Bot API

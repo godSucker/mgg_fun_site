@@ -624,11 +624,19 @@
       })
       .sort(byGene); // Always use genetic sorting
 
-  // смена выбранного мутанта — сбрасываем слоты по его типу
+  // смена выбранного мутанта — сбрасываем слоты по его типу и выбираем макс. звезду
   $: if (selected) {
     const count = Number.isFinite(selected.basicSlotCount) ? selected.basicSlotCount : 3;
     basicSlots = Array(count).fill(null);
     specialSlot = null;
+    // Auto-select max available star for the selected mutant
+    const availableArray = Array.from(selected.availableStars);
+    if (availableArray.length > 0) {
+      const maxStar = Math.max(...availableArray);
+      if (stars !== maxStar) {
+        stars = maxStar;
+      }
+    }
   }
 
   $: allowedAbilityBases = buildAllowedAbilityBases(selected, specialSlot);
@@ -1012,10 +1020,6 @@
   }
   function selectMutant(m){
     selected = m;
-    // Reset stars if not available for new mutant — pick first available
-    if (!m.availableStars.has(stars)) {
-      stars = m.availableStars.values().next().value ?? 0;
-    }
   }
   function pickBasic(slotIndex, orb){
     const choice = allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null;
