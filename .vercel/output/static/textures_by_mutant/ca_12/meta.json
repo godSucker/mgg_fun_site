@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ca_12",
+  "code": "ca_12",
+  "name": "Терракотовый генерал",
+  "created_at": "2025-09-02T01:35:06.582046Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_cyber/bronze/CA_12_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_12/CA_12_bronze.webp",
+      "filename": "CA_12_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/gold/CA_12_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_12/CA_12_gold.webp",
+      "filename": "CA_12_gold.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/normal/CA_12_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_12/CA_12_normal.webp",
+      "filename": "CA_12_normal.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/platinum/CA_12_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_12/CA_12_platinum.webp",
+      "filename": "CA_12_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/silver/CA_12_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_12/CA_12_silver.webp",
+      "filename": "CA_12_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/silver/specimen_ca_12_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_12/specimen_ca_12_silver_silver.webp",
+      "filename": "specimen_ca_12_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/platinum/specimen_ca_12_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_12/specimen_ca_12_platinum_platinum.webp",
+      "filename": "specimen_ca_12_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/normal/specimen_ca_12_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_12/specimen_ca_12_normal.webp",
+      "filename": "specimen_ca_12_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/gold/specimen_ca_12_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_12/specimen_ca_12_gold_gold.webp",
+      "filename": "specimen_ca_12_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/bronze/specimen_ca_12_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_12/specimen_ca_12_bronze_bronze.webp",
+      "filename": "specimen_ca_12_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_cyber/larva_ca_12.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ca_12/larva_ca_12.webp",
+      "filename": "larva_ca_12.webp"
+    }
+  ],
+  "tier": "3",
+  "bingo": [
+    "research_11"
+  ]
+}

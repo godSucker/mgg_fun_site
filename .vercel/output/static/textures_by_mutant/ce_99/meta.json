@@ -1,0 +1,28 @@
+{
+  "id": "specimen_ce_99",
+  "code": "ce_99",
+  "name": "колосс",
+  "created_at": "2025-09-02T01:35:07.320304Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_galactic/normal/CE_99_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_99/CE_99_normal.webp",
+      "filename": "CE_99_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_E/normal/specimen_ce_99_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_99/specimen_ce_99_normal.webp",
+      "filename": "specimen_ce_99_normal.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_galactic/larva_ce_99.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ce_99/larva_ce_99.webp",
+      "filename": "larva_ce_99.webp"
+    }
+  ],
+  "tier": "3+",
+  "bingo": []
+}

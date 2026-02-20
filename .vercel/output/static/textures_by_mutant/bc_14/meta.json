@@ -1,0 +1,28 @@
+{
+  "id": "specimen_bc_14",
+  "code": "bc_14",
+  "name": "Трикина тыква",
+  "created_at": "2025-09-02T01:35:07.810909Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_saber/normal/BC_14_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_14/BC_14_normal.webp",
+      "filename": "BC_14_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_C/normal/specimen_bc_14_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_14/specimen_bc_14_normal.webp",
+      "filename": "specimen_bc_14_normal.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necro_saber/larva_bc_14.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bc_14/larva_bc_14.webp",
+      "filename": "larva_bc_14.webp"
+    }
+  ],
+  "tier": "3",
+  "bingo": []
+}

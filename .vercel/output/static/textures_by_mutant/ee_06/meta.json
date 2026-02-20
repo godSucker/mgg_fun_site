@@ -1,0 +1,80 @@
+{
+  "id": "specimen_ee_06",
+  "code": "ee_06",
+  "name": "Королева Раккти",
+  "created_at": "2025-09-02T01:35:03.647918Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_galactic/bronze/EE_06_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_06/EE_06_bronze.webp",
+      "filename": "EE_06_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/gold/EE_06_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_06/EE_06_gold.webp",
+      "filename": "EE_06_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/normal/EE_06_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_06/EE_06_normal.webp",
+      "filename": "EE_06_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/platinum/EE_06_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_06/EE_06_platinum.webp",
+      "filename": "EE_06_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/silver/EE_06_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_06/EE_06_silver.webp",
+      "filename": "EE_06_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/silver/specimen_ee_06_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_06/specimen_ee_06_silver_silver.webp",
+      "filename": "specimen_ee_06_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/platinum/specimen_ee_06_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_06/specimen_ee_06_platinum_platinum.webp",
+      "filename": "specimen_ee_06_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/normal/specimen_ee_06_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_06/specimen_ee_06_normal.webp",
+      "filename": "specimen_ee_06_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/gold/specimen_ee_06_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_06/specimen_ee_06_gold_gold.webp",
+      "filename": "specimen_ee_06_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/bronze/specimen_ee_06_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_06/specimen_ee_06_bronze_bronze.webp",
+      "filename": "specimen_ee_06_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_galactic/larva_ee_06.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ee_06/larva_ee_06.webp",
+      "filename": "larva_ee_06.webp"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "2025_events",
+    "anniversary_25",
+    "research_5"
+  ]
+}

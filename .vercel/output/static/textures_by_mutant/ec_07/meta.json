@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ec_07",
+  "code": "ec_07",
+  "name": "Инквизитор",
+  "created_at": "2025-09-02T01:35:04.246255Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_saber/bronze/EC_07_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_07/EC_07_bronze.webp",
+      "filename": "EC_07_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_saber/gold/EC_07_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_07/EC_07_gold.webp",
+      "filename": "EC_07_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_saber/normal/EC_07_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_07/EC_07_normal.webp",
+      "filename": "EC_07_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_saber/platinum/EC_07_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_07/EC_07_platinum.webp",
+      "filename": "EC_07_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_saber/silver/EC_07_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ec_07/EC_07_silver.webp",
+      "filename": "EC_07_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_C/silver/specimen_ec_07_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_07/specimen_ec_07_silver_silver.webp",
+      "filename": "specimen_ec_07_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_C/platinum/specimen_ec_07_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_07/specimen_ec_07_platinum_platinum.webp",
+      "filename": "specimen_ec_07_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_C/normal/specimen_ec_07_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_07/specimen_ec_07_normal.webp",
+      "filename": "specimen_ec_07_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_C/gold/specimen_ec_07_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_07/specimen_ec_07_gold_gold.webp",
+      "filename": "specimen_ec_07_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_C/bronze/specimen_ec_07_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ec_07/specimen_ec_07_bronze_bronze.webp",
+      "filename": "specimen_ec_07_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_saber/larva_ec_07.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ec_07/larva_ec_07.webp",
+      "filename": "larva_ec_07.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_6"
+  ]
+}

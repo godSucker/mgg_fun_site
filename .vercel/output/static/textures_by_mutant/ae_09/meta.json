@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ae_09",
+  "code": "ae_09",
+  "name": "Центавр",
+  "created_at": "2025-09-02T01:35:05.093955Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_galactic/bronze/AE_09_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_09/AE_09_bronze.webp",
+      "filename": "AE_09_bronze.webp"
+    },
+    {
+      "src": "full-char/cyber_galactic/gold/AE_09_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_09/AE_09_gold.webp",
+      "filename": "AE_09_gold.webp"
+    },
+    {
+      "src": "full-char/cyber_galactic/normal/AE_09_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_09/AE_09_normal.webp",
+      "filename": "AE_09_normal.webp"
+    },
+    {
+      "src": "full-char/cyber_galactic/platinum/AE_09_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_09/AE_09_platinum.webp",
+      "filename": "AE_09_platinum.webp"
+    },
+    {
+      "src": "full-char/cyber_galactic/silver/AE_09_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_09/AE_09_silver.webp",
+      "filename": "AE_09_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_E/silver/specimen_ae_09_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_09/specimen_ae_09_silver_silver.webp",
+      "filename": "specimen_ae_09_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_E/platinum/specimen_ae_09_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_09/specimen_ae_09_platinum_platinum.webp",
+      "filename": "specimen_ae_09_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/A/A_E/normal/specimen_ae_09_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_09/specimen_ae_09_normal.webp",
+      "filename": "specimen_ae_09_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A_E/gold/specimen_ae_09_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_09/specimen_ae_09_gold_gold.webp",
+      "filename": "specimen_ae_09_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/A/A_E/bronze/specimen_ae_09_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_09/specimen_ae_09_bronze_bronze.webp",
+      "filename": "specimen_ae_09_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_galactic/larva_ae_09.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ae_09/larva_ae_09.webp",
+      "filename": "larva_ae_09.webp"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_8"
+  ]
+}

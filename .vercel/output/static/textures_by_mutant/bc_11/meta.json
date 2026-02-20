@@ -1,0 +1,80 @@
+{
+  "id": "specimen_bc_11",
+  "code": "bc_11",
+  "name": "Клык Ярости",
+  "created_at": "2025-09-02T01:35:06.127651Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_saber/bronze/BC_11_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_11/BC_11_bronze.webp",
+      "filename": "BC_11_bronze.webp"
+    },
+    {
+      "src": "full-char/necro_saber/gold/BC_11_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_11/BC_11_gold.webp",
+      "filename": "BC_11_gold.webp"
+    },
+    {
+      "src": "full-char/necro_saber/normal/BC_11_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_11/BC_11_normal.webp",
+      "filename": "BC_11_normal.webp"
+    },
+    {
+      "src": "full-char/necro_saber/platinum/BC_11_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_11/BC_11_platinum.webp",
+      "filename": "BC_11_platinum.webp"
+    },
+    {
+      "src": "full-char/necro_saber/silver/BC_11_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bc_11/BC_11_silver.webp",
+      "filename": "BC_11_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_C/silver/specimen_bc_11_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_11/specimen_bc_11_silver_silver.webp",
+      "filename": "specimen_bc_11_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_C/platinum/specimen_bc_11_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_11/specimen_bc_11_platinum_platinum.webp",
+      "filename": "specimen_bc_11_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/B/B_C/normal/specimen_bc_11_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_11/specimen_bc_11_normal.webp",
+      "filename": "specimen_bc_11_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_C/gold/specimen_bc_11_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_11/specimen_bc_11_gold_gold.webp",
+      "filename": "specimen_bc_11_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/B/B_C/bronze/specimen_bc_11_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bc_11/specimen_bc_11_bronze_bronze.webp",
+      "filename": "specimen_bc_11_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necro_saber/larva_bc_11.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bc_11/larva_bc_11.webp",
+      "filename": "larva_bc_11.webp"
+    }
+  ],
+  "tier": "3",
+  "bingo": [
+    "2025_events",
+    "anniversary_25",
+    "research_10"
+  ]
+}

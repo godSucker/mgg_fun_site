@@ -1,0 +1,84 @@
+{
+  "id": "specimen_cc_01",
+  "code": "cc_01",
+  "name": "Кошмарыцарь Севера",
+  "created_at": "2025-09-02T01:34:59.852885Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_saber/bronze/CC_01_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_01/CC_01_bronze.webp",
+      "filename": "CC_01_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_saber/gold/CC_01_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_01/CC_01_gold.webp",
+      "filename": "CC_01_gold.webp"
+    },
+    {
+      "src": "full-char/saber_saber/normal/CC_01_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_01/CC_01_normal.webp",
+      "filename": "CC_01_normal.webp"
+    },
+    {
+      "src": "full-char/saber_saber/platinum/CC_01_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_01/CC_01_platinum.webp",
+      "filename": "CC_01_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_saber/silver/CC_01_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_01/CC_01_silver.webp",
+      "filename": "CC_01_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/silver/specimen_cc_01_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_01/specimen_cc_01_silver_silver.webp",
+      "filename": "specimen_cc_01_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/platinum/specimen_cc_01_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_01/specimen_cc_01_platinum_platinum.webp",
+      "filename": "specimen_cc_01_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/normal/specimen_cc_01_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_01/specimen_cc_01_normal.webp",
+      "filename": "specimen_cc_01_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/gold/specimen_cc_01_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_01/specimen_cc_01_gold_gold.webp",
+      "filename": "specimen_cc_01_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/bronze/specimen_cc_01_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_01/specimen_cc_01_bronze_bronze.webp",
+      "filename": "specimen_cc_01_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_saber/larva_cc_01.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cc_01/larva_cc_01.webp",
+      "filename": "larva_cc_01.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "Starter",
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat",
+    "starter_plat"
+  ]
+}

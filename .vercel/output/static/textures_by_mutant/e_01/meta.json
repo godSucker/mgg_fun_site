@@ -1,0 +1,77 @@
+{
+  "id": "specimen_e_01",
+  "code": "e_01",
+  "name": "Пришелец",
+  "created_at": "2025-09-02T01:35:00.071158Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_galactic/bronze/E_01_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_01/E_01_bronze.webp",
+      "filename": "E_01_bronze.webp"
+    },
+    {
+      "src": "full-char/monogen_galactic/gold/E_01_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_01/E_01_gold.webp",
+      "filename": "E_01_gold.webp"
+    },
+    {
+      "src": "full-char/monogen_galactic/normal/E_01_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_01/E_01_normal.webp",
+      "filename": "E_01_normal.webp"
+    },
+    {
+      "src": "full-char/monogen_galactic/platinum/E_01_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_01/E_01_platinum.webp",
+      "filename": "E_01_platinum.webp"
+    },
+    {
+      "src": "full-char/monogen_galactic/silver/E_01_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/e_01/E_01_silver.webp",
+      "filename": "E_01_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E/silver/specimen_e_01_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_01/specimen_e_01_silver_silver.webp",
+      "filename": "specimen_e_01_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E/platinum/specimen_e_01_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_01/specimen_e_01_platinum_platinum.webp",
+      "filename": "specimen_e_01_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E/normal/specimen_e_01_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_01/specimen_e_01_normal.webp",
+      "filename": "specimen_e_01_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E/gold/specimen_e_01_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_01/specimen_e_01_gold_gold.webp",
+      "filename": "specimen_e_01_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E/bronze/specimen_e_01_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/e_01/specimen_e_01_bronze_bronze.webp",
+      "filename": "specimen_e_01_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/monogen_galactic/larva_e_01.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/e_01/larva_e_01.webp",
+      "filename": "larva_e_01.webp"
+    }
+  ],
+  "bingo": [
+    "reactor"
+  ]
+}

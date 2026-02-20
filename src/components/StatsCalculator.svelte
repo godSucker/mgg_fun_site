@@ -1091,7 +1091,7 @@
     }, 3000);
   }
 
-    // --- ФУНКЦИЯ СКРИНШОТА (CROP FIX) ---
+    // --- ФУНКЦИЯ СКРИНШОТА (MOBILE + DESKTOP) ---
   async function shareScreenshot() {
     if (!selected || isCopying) return;
     const panelEl = document.querySelector('.panel');
@@ -1100,9 +1100,49 @@
     isCopying = true;
 
     try {
+      // Определяем тип устройства по ширине окна
+      const isMobile = window.innerWidth < 768;
+
+      // Конфигурация размеров для мобильных и десктопов
+      const config = isMobile ? {
+        // МОБИЛЬНЫЕ: компактные размеры для предотвращения переполнения
+        sandboxWidth: 420,
+        mutantTexture: '200px',
+        mutantFigureHeight: '240px',
+        mutantFigureAfterWidth: '240px',
+        mutantFigureAfterHeight: '65px',
+        mutantFigureAfterBottom: '-28px',
+        heroGene: '40px',
+        attackGeneContainer: '42px',
+        attackGeneIcon: '28px',
+        attackAoe: '36px',
+        slotBtn: '56px',
+        orb: '56px',
+        star: '28px',
+        mutIcon: '36px',
+        shadowScale: 0.85,
+      } : {
+        // ДЕСКТОП: большие размеры для чёткости
+        sandboxWidth: 700,
+        mutantTexture: '340px',
+        mutantFigureHeight: '380px',
+        mutantFigureAfterWidth: '380px',
+        mutantFigureAfterHeight: '110px',
+        mutantFigureAfterBottom: '-45px',
+        heroGene: '56px',
+        attackGeneContainer: '52px',
+        attackGeneIcon: '44px',
+        attackAoe: '64px',
+        slotBtn: '68px',
+        orb: '68px',
+        star: '32px',
+        mutIcon: '44px',
+        shadowScale: 1.0,
+      };
+
       // 1. Песочница
       const sandbox = document.createElement('div');
-      sandbox.style.width = '600px';
+      sandbox.style.width = `${config.sandboxWidth}px`;
       sandbox.style.height = 'auto';
       sandbox.style.position = 'fixed';
       sandbox.style.left = '-9999px';
@@ -1151,7 +1191,7 @@
         title.style.maxWidth = 'none';
       }
 
-      // 6. Anti-squash
+      // 6. Anti-squash + масштабирование для мобильных/десктопов
       const freezeStyles = (selector, width, height) => {
         clone.querySelectorAll(selector).forEach(el => {
           el.style.width = width;
@@ -1164,14 +1204,58 @@
           el.style.objectFit = 'contain';
         });
       };
-      freezeStyles('.slot-btn', '68px', '68px');
-      freezeStyles('.orb', '68px', '68px');
-      freezeStyles('.star', '32px', '32px');
-      freezeStyles('.star img', '32px', '32px');
-      freezeStyles('.mut-icon', '44px', '44px');
-      freezeStyles('.hero-genes img', '36px', '36px');
-      freezeStyles('.attack-gene .gene-icon', '22px', '22px');
-      freezeStyles('.attack-gene .attack-aoe', '46px', '46px');
+      freezeStyles('.slot-btn', config.slotBtn, config.slotBtn);
+      freezeStyles('.orb', config.orb, config.orb);
+      freezeStyles('.star', config.star, config.star);
+      freezeStyles('.star img', config.star, config.star);
+      freezeStyles('.mut-icon', config.mutIcon, config.mutIcon);
+      // Мутант, гены, иконки атак - точные размеры
+      freezeStyles('.mut-figure .texture', config.mutantTexture, config.mutantTexture);
+      freezeStyles('.hero-genes img', config.heroGene, config.heroGene);
+      freezeStyles('.attack-gene', config.attackGeneContainer, config.attackGeneContainer);
+      freezeStyles('.attack-gene .gene-icon', config.attackGeneIcon, config.attackGeneIcon);
+      freezeStyles('.attack-gene .attack-aoe', config.attackAoe, config.attackAoe);
+      
+      // Фиксация размера контейнера мутанта и тени
+      clone.querySelectorAll('.mut-figure').forEach(el => {
+        el.style.height = config.mutantFigureHeight;
+        el.style.minHeight = config.mutantFigureHeight;
+      });
+
+      // Вертикальное смещение мутанта для мобильных — чтобы "стоял" на тени
+      // Используем marginTop вместо transform, чтобы избежать конфликта с CSS
+      if (isMobile) {
+        const mutantTexture = clone.querySelector('.mut-figure .texture');
+        if (mutantTexture) {
+          mutantTexture.style.marginTop = '18px';
+        }
+      }
+
+      // Добавляем стиль для увеличения тени (псевдоэлемент ::after)
+      const styleEl = document.createElement('style');
+      styleEl.textContent = `
+        .mut-figure::after {
+          width: ${config.mutantFigureAfterWidth} !important;
+          height: ${config.mutantFigureAfterHeight} !important;
+          bottom: ${config.mutantFigureAfterBottom} !important;
+        }
+        /* Фикс для attack-side на мобильных - предотвращаем сжатие */
+        .attack-side {
+          min-width: ${isMobile ? '140px' : '180px'} !important;
+        }
+        /* Фикс для attack-info - разрешаем перенос текста */
+        .attack-info {
+          min-width: 0 !important;
+          flex-shrink: 1 !important;
+        }
+        .attack-label {
+          max-width: ${isMobile ? '120px' : '200px'};
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      `;
+      clone.appendChild(styleEl);
 
       // 7. Зачистка внутренних рамок
       clone.querySelectorAll('*').forEach(el => {
@@ -1203,7 +1287,7 @@
 
       // 9. ГЕНЕРАЦИЯ (Получаем Base64 URL)
       const dataUrl = await domtoimage.toPng(sandbox, {
-        width: 600,
+        width: config.sandboxWidth,
         height: sandbox.offsetHeight,
         bgcolor: '#2a313c',
         style: { transform: 'scale(1)', transformOrigin: 'top left' },
@@ -1553,17 +1637,30 @@
   .hero-genes {
     display: flex;
     justify-content: center;
-    gap: 6px; /* Расстояние между генами */
-    margin-bottom: -15px; /* Подтягиваем ближе к голове мутанта */
-    z-index: 5; /* Чтобы были поверх текстуры, если что */
+    gap: 4px;
+    margin-bottom: -8px;
+    z-index: 10;
     position: relative;
+  }
+  @media (min-width: 768px) {
+    .hero-genes {
+      gap: 6px;
+      margin-bottom: -12px;
+    }
   }
 
   .hero-genes img {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.6)); /* Тень для объема */
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.6));
+    z-index: 10;
+  }
+  @media (min-width: 768px) {
+    .hero-genes img {
+      width: 36px;
+      height: 36px;
+    }
   }
 
   .stats-page{
@@ -1626,7 +1723,10 @@
   .mut-meta .genes img{ width:20px; height:20px; }
   .rar{ font-size:11px; color:#aab6c8; }
 
-  .panel{ background:#2a313c; border-radius:16px; padding:20px 22px; display:flex; flex-direction:column; gap:12px; position: relative; }
+  .panel{ background:#2a313c; border-radius:16px; padding:10px 12px; display:flex; flex-direction:column; gap:6px; position: relative; }
+  @media (min-width: 768px) {
+    .panel { padding: 20px 22px; gap: 12px; }
+  }
 
   /* Заголовок панели с кнопками */
   .panel-header {
@@ -1634,10 +1734,17 @@
     align-items: center;
     justify-content: center; /* Центрируем контент (заголовок) */
     position: relative;      /* Чтобы кнопки позиционировать абсолютно внутри */
-    margin-bottom: 6px;
-    min-height: 36px;
-    padding: 0 40px; /* Добавляем отступы по краям, чтобы заголовок не налезал на кнопки */
+    margin-bottom: 2px;
+    min-height: 28px;
+    padding: 0 24px; /* Добавляем отступы по краям, чтобы заголовок не налезал на кнопки */
     width: 100%;
+  }
+  @media (min-width: 768px) {
+    .panel-header {
+      margin-bottom: 6px;
+      min-height: 36px;
+      padding: 0 40px;
+    }
   }
 
   .header-left {
@@ -1652,7 +1759,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
+  }
+  @media (min-width: 768px) {
+    .header-tools-row { margin-bottom: 12px; }
   }
 
   /* Имя: яркое белое, с подсветкой */
@@ -1729,25 +1839,37 @@
     transform: translateY(0);
   }
 
-  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:12px; }
-  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 24px; width:100%; }
-  .mut-figure::after{ content:""; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
-  .mut-figure .texture{ width:248px; height:248px; object-fit:contain; image-rendering:auto; transform:translateY(44px); }
+  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+  @media (min-width: 768px) {
+    .hero-section { gap: 8px; }
+  }
+  .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 12px; width:100%; }
+  @media (min-width: 768px) {
+    .mut-figure { padding: 0 0 16px; }
+  }
+  .mut-figure::after{ content:""; position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
+  .mut-figure .texture{ width:220px; height:220px; object-fit:contain; image-rendering:auto; transform:translateY(36px); }
 
-  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  @media (min-width: 768px) {
+    .hero-controls { gap: 8px; }
+  }
 
   /* СЛОТЫ: защита от сплющивания + фикс сфер */
-  .slots{ display:flex; gap:16px; justify-content:center; margin:4px 0 0; position:relative; flex-wrap:wrap; }
+  .slots{ display:flex; gap:10px; justify-content:center; margin:0 0 0; position:relative; flex-wrap:wrap; }
+  @media (min-width: 768px) {
+    .slots { gap: 12px; }
+  }
   .slot{ position:relative; }
   .slot-btn{
     position:relative;
-    width: var(--orb-size-container-large);
-    height: var(--orb-size-container-large);
-    min-width: var(--orb-size-container-large);
-    min-height: var(--orb-size-container-large);
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
     flex-shrink: 0;
 
-    border-radius:12px;
+    border-radius:10px;
     background:transparent;
     border:none;
     padding:0;
@@ -1757,16 +1879,33 @@
     align-items: center;
     justify-content: center;
   }
+  @media (min-width: 768px) {
+    .slot-btn {
+      width: var(--orb-size-container-large);
+      height: var(--orb-size-container-large);
+      min-width: var(--orb-size-container-large);
+      min-height: var(--orb-size-container-large);
+      border-radius: 12px;
+    }
+  }
   .slot-bg{ width:100%; height:100%; object-fit:cover; display: block; }
   /* Сфера заполняет 98% слота, центрирована */
   .orb {
     position: absolute;
     inset: 1%;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 10px;
+  }
+  @media (min-width: 768px) {
+    .orb {
+      border-radius: 12px;
+    }
   }
 
-  .x{ position:absolute; right:-8px; top:-8px; width:22px; height:22px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:14px; cursor: pointer; z-index: 2; }
+  .x{ position:absolute; right:-6px; top:-6px; width:18px; height:18px; border-radius:50%; border:none; background:#ff6464; color:white; font-size:12px; cursor: pointer; z-index: 2; }
+  @media (min-width: 768px) {
+    .x { right: -8px; top: -8px; width: 22px; height: 22px; font-size: 14px; }
+  }
 
    /* --- ИСПРАВЛЕННОЕ МЕНЮ СФЕР (ПО ЦЕНТРУ) --- */
   .dropdown {
@@ -1791,10 +1930,16 @@
   }
   .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
   .orb-row:hover { background: #2e3948; }
-  .orb-row img{ width:36px; height:36px; object-fit:contain; flex-shrink: 0; }
+  .orb-row img{ width:28px; height:28px; object-fit:contain; flex-shrink: 0; }
+  @media (min-width: 768px) {
+    .orb-row img { width: 36px; height: 36px; }
+  }
 
-  .controls{ display:flex; gap:12px; justify-content:center; margin:0; flex-wrap:wrap; }
-  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:8px 12px; }
+  .controls{ display:flex; gap:6px; justify-content:center; margin:0; flex-wrap:wrap; }
+  @media (min-width: 768px) {
+    .controls { gap: 8px; }
+  }
+  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:6px 10px; }
   .control .control-label{ white-space:nowrap; }
 
   .lvl{ width:64px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
@@ -1814,13 +1959,23 @@
   }
 
   /* ЗВЕЗДЫ: защита от сплющивания */
-  .stars{ display:flex; gap:6px; }
+  .stars{ display:flex; gap:4px; }
+  @media (min-width: 768px) {
+    .stars { gap: 6px; }
+  }
   .star{
-    width:32px; height:32px;
-    min-width: 32px;
+    width:26px; height:26px;
+    min-width: 26px;
     flex-shrink: 0;
 
     border-radius:50%; background:transparent; border:none; padding:0; opacity:.45; transition:transform .15s ease, opacity .15s ease; cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    .star {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+    }
   }
   .star.selected{ opacity:1; transform:scale(1.06); filter:drop-shadow(0 0 8px rgba(255,255,255,0.45)); }
   .star:disabled{ cursor: not-allowed; display: none; }
@@ -1828,7 +1983,10 @@
   .star:not(.selected) img{ filter:grayscale(1) brightness(0.6); }
 
   /* --- СТАТЫ (УПЛОТНЕННЫЕ) --- */
-  .stats{ margin-top:0; display:flex; flex-direction:column; gap:8px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
+  .stats{ margin-top:0; display:flex; flex-direction:column; gap:4px; width:100%; max-width:520px; margin-left:auto; margin-right:auto; }
+  @media (min-width: 768px) {
+    .stats { gap: 6px; }
+  }
 
   .row{
     display:flex;
@@ -1837,10 +1995,17 @@
     background:#1b212a;
     border:1px solid #2e3948;
     border-radius:12px;
-    padding:8px 16px; /* Уменьшили вертикальный паддинг */
+    padding:4px 10px;
     color:#dfe7f3;
-    font-size:14px;
-    min-height:50px; /* Чуть уменьшили высоту */
+    font-size:13px;
+    min-height:38px;
+  }
+  @media (min-width: 768px) {
+    .row {
+      padding: 6px 14px;
+      min-height: 44px;
+      font-size: 14px;
+    }
   }
 
   .row b {
@@ -1852,23 +2017,41 @@
     font-variant-numeric: tabular-nums; /* Чтобы цифры стояли ровно */
   }
 
-  .row .label{ display:flex; align-items:center; gap:10px; color:#aab6c8; font-size:13px; }
-  .row .label-icon{ width:20px; height:20px; object-fit:contain; flex-shrink: 0; }
-  .row .type-icon{ width:26px; height:26px; flex-shrink: 0; }
+  .row .label{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:13px; }
+  @media (min-width: 768px) {
+    .row .label { gap: 10px; }
+  }
+  .row .label-icon{ width:18px; height:18px; object-fit:contain; flex-shrink: 0; }
+  @media (min-width: 768px) {
+    .row .label-icon { width: 20px; height: 20px; }
+  }
+  .row .type-icon{ width:22px; height:22px; flex-shrink: 0; }
+  @media (min-width: 768px) {
+    .row .type-icon { width: 26px; height: 26px; }
+  }
 
   /* --- ОБНОВЛЕННЫЙ ДИЗАЙН АТАКИ --- */
   .row.attack-row{
     align-items: stretch;
-    gap: 14px;
-    padding: 10px 16px;
+    gap: 6px;
+    padding: 6px 10px;
+  }
+  @media (min-width: 768px) {
+    .row.attack-row {
+      gap: 10px;
+      padding: 8px 14px;
+    }
   }
 
   .attack-side {
     display: flex;
     align-items: center;
-    gap: 8px; /* Уменьшил отступ между иконкой и текстом (было 10-12px) */
+    gap: 6px; /* Уменьшил отступ между иконкой и текстом (было 10-12px) */
     flex: 1 1 0;
     min-width: 0;
+  }
+  @media (min-width: 768px) {
+    .attack-side { gap: 8px; }
   }
 
  /* --- ФИКС АТАКИ (МАКСИМАЛЬНЫЙ РАЗМЕР) --- */
@@ -1877,20 +2060,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 52px;  /* Делаем область больше */
-    height: 52px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
+  }
+  @media (min-width: 768px) {
+    .attack-gene {
+      width: 52px;
+      height: 52px;
+    }
   }
 
   /* Иконка гена - маленькая точка в центре */
   .attack-gene .gene-icon {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     object-fit: contain;
     display: block;
     position: relative;
-    z-index: 2; /* Сверху */
-    filter: drop-shadow(0 0 2px rgba(0,0,0,0.8)); /* Контраст, чтобы не сливался */
+    z-index: 2;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));
+  }
+  @media (min-width: 768px) {
+    .attack-gene .gene-icon {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   /* Иконка АОЕ - ОГРОМНАЯ на весь слот */
@@ -1899,12 +2094,18 @@
     top: 45%;
     left: 75%;
     transform: translate(-50%, -50%);
-    width: 52px; /* На всю ширину */
-    height: 52px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
     pointer-events: none;
-    z-index: 1; /* Снизу */
+    z-index: 1;
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  }
+  @media (min-width: 768px) {
+    .attack-gene .attack-aoe {
+      width: 52px;
+      height: 52px;
+    }
   }
 
   .attack-gene.empty { opacity: 0; }
@@ -1944,12 +2145,24 @@
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); flex-shrink: 0; }
   .ability-divider.empty{ display:none; }
 
-  .effect-side{ display:flex; flex-direction:column; gap:6px; min-width:0; flex:1 1 0; align-items:stretch; }
-  .effect-row{ display:flex; align-items:center; gap:8px; background:rgba(15,19,25,0.35); padding:6px 10px; border-radius:10px; width:100%; }
+  .effect-side{ display:flex; flex-direction:column; gap:4px; min-width:0; flex:1 1 0; align-items:stretch; }
+  @media (min-width: 768px) {
+    .effect-side { gap: 6px; }
+  }
+  .effect-row{ display:flex; align-items:center; gap:6px; background:rgba(15,19,25,0.35); padding:4px 8px; border-radius:10px; width:100%; }
+  @media (min-width: 768px) {
+    .effect-row { gap: 8px; padding: 6px 10px; }
+  }
 
-  .ability-icon{ width:28px; height:28px; object-fit:contain; flex-shrink: 0; }
+  .ability-icon{ width:24px; height:24px; object-fit:contain; flex-shrink: 0; }
+  @media (min-width: 768px) {
+    .ability-icon { width: 28px; height: 28px; }
+  }
 
-  .effect-name{ display:flex; align-items:center; gap:6px; font-weight:600; color:#f0f6ff; flex:1 1 auto; font-size: 13px; }
+  .effect-name{ display:flex; align-items:center; gap:4px; font-weight:600; color:#f0f6ff; flex:1 1 auto; font-size: 13px; }
+  @media (min-width: 768px) {
+    .effect-name { gap: 6px; }
+  }
   .effect-percent{ font-size:13px; color:#90f36b; font-weight:600; white-space: nowrap; }
   .effect-value{ font-size:16px; color:#90f36b; font-weight:700; white-space: nowrap; }
   .effect-empty{ color:#94a2b9; font-size:13px; text-align:center; }
@@ -1967,50 +2180,74 @@
   }
 
   @media (max-width: 768px) {
-    .stats-page { 
-      display: grid; 
-      grid-template-columns: 1fr 280px; 
-      gap: 12px; 
-      padding: 12px; 
+    .stats-page {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 8px;
+      padding: 8px;
       justify-content: center; /* Center the content */
     }
-    .stats-page.single-col { 
-      grid-template-columns: 1fr; 
+    .stats-page.single-col {
+      grid-template-columns: 1fr;
       justify-content: center; /* Center the content */
     }
-    .panel { 
-      order: 1; 
-      padding: 14px; 
+    .panel {
+      order: 1;
+      padding: 8px 10px;
       margin: 0 auto; /* Center the panel */
       max-width: 95vw; /* Prevent from touching edges */
     }
-    .catalog { order: 2; padding: 10px; }
+    .catalog { order: 2; padding: 8px; }
 
-    .row.attack-row { flex-direction: column; gap: 8px; padding: 10px; }
+    .row.attack-row { flex-direction: column; gap: 6px; padding: 8px; }
     .ability-divider { display: none !important; }
-    .mut-figure .texture { width: 160px; height: 160px; transform: translateY(24px); }
-    .mut-figure::after { width: 160px; bottom: -22px; height: 50px; }
+    .mut-figure .texture { width: 140px; height: 140px; transform: translateY(20px); }
+    .mut-figure::after { width: 140px; bottom: -18px; height: 45px; }
+    .mut-figure { padding: 0 0 10px; }
+    
+    /* Увеличиваем иконки для мобильных для лучшей видимости */
+    .hero-genes img { width: 28px; height: 28px; }
+    .hero-genes { gap: 6px; margin-bottom: -10px; }
+    .slot-btn { width: 48px; height: 48px; min-width: 48px; min-height: 48px; }
+    .star { width: 26px; height: 26px; min-width: 26px; }
+    .attack-gene { width: 40px; height: 40px; }
+    .attack-gene .gene-icon { width: 30px; height: 30px; }
+    .attack-gene .attack-aoe { width: 40px; height: 40px; }
+    .ability-icon { width: 22px; height: 22px; }
+    .row .label-icon { width: 18px; height: 18px; }
+    .row .type-icon { width: 22px; height: 22px; }
   }
 
   @media (max-width: 480px) {
-    .stats-page { 
-      grid-template-columns: 1fr; 
-      gap: 8px; 
-      padding: 8px; 
+    .stats-page {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 6px;
       justify-content: center; /* Center the content */
     }
-    .stats-page.single-col { 
-      grid-template-columns: 1fr; 
+    .stats-page.single-col {
+      grid-template-columns: 1fr;
       justify-content: center; /* Center the content */
     }
 
-    .mut-figure .texture { width: 140px; height: 140px; transform: translateY(20px); }
-    
+    .mut-figure .texture { width: 120px; height: 120px; transform: translateY(16px); }
+
     /* Fix long name issue - make title responsive */
     .title {
       max-width: 90vw; /* Limit title width on small screens */
-      font-size: 22px; /* Smaller font on mobile */
+      font-size: 20px; /* Smaller font on mobile */
     }
+    
+    /* Увеличиваем иконки для очень маленьких экранов */
+    .hero-genes img { width: 26px; height: 26px; }
+    .hero-genes { gap: 5px; margin-bottom: -8px; }
+    .slot-btn { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+    .star { width: 24px; height: 24px; min-width: 24px; }
+    .attack-gene { width: 36px; height: 36px; }
+    .attack-gene .gene-icon { width: 28px; height: 28px; }
+    .attack-gene .attack-aoe { width: 36px; height: 36px; }
+    .ability-icon { width: 20px; height: 20px; }
+    .mut-figure { padding: 0 0 8px; }
   }
   
   /* Notification toast animations */
@@ -2038,6 +2275,7 @@
   @media (min-width: 1921px) {
     .mut-icon { width: 55px; height: 55px; }
     .hero-genes img { width: 45px; height: 45px; }
+    .hero-genes { gap: 8px; margin-bottom: -16px; }
     .star { width: 40px; height: 40px; min-width: 40px; }
     .slot-btn { width: 85px; height: 85px; min-width: 85px; min-height: 85px; }
     .slots { gap: 20px; }

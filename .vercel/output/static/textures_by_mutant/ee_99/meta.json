@@ -1,0 +1,30 @@
+{
+  "id": "specimen_ee_99",
+  "code": "ee_99",
+  "name": "Ирреальный анимус",
+  "created_at": "2025-09-02T01:35:07.402308Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_galactic/normal/EE_99_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_99/EE_99_normal.webp",
+      "filename": "EE_99_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/normal/specimen_ee_99_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_99/specimen_ee_99_normal.webp",
+      "filename": "specimen_ee_99_normal.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_galactic/larva_ee_99.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ee_99/larva_ee_99.webp",
+      "filename": "larva_ee_99.webp"
+    }
+  ],
+  "tier": "2-",
+  "bingo": [
+    "event_2019"
+  ]
+}

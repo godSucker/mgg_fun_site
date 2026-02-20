@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ac_11",
+  "code": "ac_11",
+  "name": "Яростный волчок",
+  "created_at": "2025-09-02T01:35:06.065665Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_saber/bronze/AC_11_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_11/AC_11_bronze.webp",
+      "filename": "AC_11_bronze.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/gold/AC_11_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_11/AC_11_gold.webp",
+      "filename": "AC_11_gold.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/normal/AC_11_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_11/AC_11_normal.webp",
+      "filename": "AC_11_normal.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/platinum/AC_11_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_11/AC_11_platinum.webp",
+      "filename": "AC_11_platinum.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/silver/AC_11_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_11/AC_11_silver.webp",
+      "filename": "AC_11_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/silver/specimen_ac_11_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_11/specimen_ac_11_silver_silver.webp",
+      "filename": "specimen_ac_11_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/platinum/specimen_ac_11_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_11/specimen_ac_11_platinum_platinum.webp",
+      "filename": "specimen_ac_11_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/normal/specimen_ac_11_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_11/specimen_ac_11_normal.webp",
+      "filename": "specimen_ac_11_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/gold/specimen_ac_11_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_11/specimen_ac_11_gold_gold.webp",
+      "filename": "specimen_ac_11_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/bronze/specimen_ac_11_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_11/specimen_ac_11_bronze_bronze.webp",
+      "filename": "specimen_ac_11_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_saber/larva_ac_11.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ac_11/larva_ac_11.webp",
+      "filename": "larva_ac_11.webp"
+    }
+  ],
+  "tier": "3+",
+  "bingo": [
+    "research_10",
+    "event_2022"
+  ]
+}

@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EvoLeaderboard from '../components/EvoLeaderboard.svelte';
+import { loadEvoTop } from '../lib/google-sheets-loader';
+// Импортируем базу мутантов
+import mutantsRaw from '../data/mutants/mutants.json';
+
+export const prerender = false;
+
+const players = await loadEvoTop();
+---
+
+<BaseLayout
+  title="Топ по Эво | Archivist-Library"
+  fullWidth
+  viewport="width=device-width, initial-scale=1"
+>
+  <div class="top-page">
+    <div class="header-section">
+      <a class="back-link" href="/">← На главную</a>
+      <h1>Топ по эво</h1>
+      <p>Игроки с самым высоким эво.</p>
+    </div>
+
+    <!-- Передаем игроков И базу мутантов -->
+    <EvoLeaderboard client:load players={players} mutantsDb={mutantsRaw} />
+  </div>
+</BaseLayout>
+
+<style>
+  .top-page {
+    min-height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .header-section {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #e2e8f0;
+    margin: 0.5rem 0;
+  }
+
+  p {
+    color: #cbd5f5;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s;
+  }
+  .back-link:hover {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateX(-3px);
+  }
+</style>

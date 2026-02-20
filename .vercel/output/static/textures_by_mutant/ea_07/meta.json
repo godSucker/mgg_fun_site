@@ -1,0 +1,81 @@
+{
+  "id": "specimen_ea_07",
+  "code": "ea_07",
+  "name": "Капитан Патриот",
+  "created_at": "2025-09-02T01:35:04.217291Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_cyber/bronze/EA_07_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_07/EA_07_bronze.webp",
+      "filename": "EA_07_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_cyber/gold/EA_07_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_07/EA_07_gold.webp",
+      "filename": "EA_07_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_cyber/normal/EA_07_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_07/EA_07_normal.webp",
+      "filename": "EA_07_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_cyber/platinum/EA_07_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_07/EA_07_platinum.webp",
+      "filename": "EA_07_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_cyber/silver/EA_07_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_07/EA_07_silver.webp",
+      "filename": "EA_07_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_A/silver/specimen_ea_07_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_07/specimen_ea_07_silver_silver.webp",
+      "filename": "specimen_ea_07_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_A/platinum/specimen_ea_07_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_07/specimen_ea_07_platinum_platinum.webp",
+      "filename": "specimen_ea_07_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_A/normal/specimen_ea_07_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_07/specimen_ea_07_normal.webp",
+      "filename": "specimen_ea_07_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_A/gold/specimen_ea_07_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_07/specimen_ea_07_gold_gold.webp",
+      "filename": "specimen_ea_07_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_A/bronze/specimen_ea_07_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_07/specimen_ea_07_bronze_bronze.webp",
+      "filename": "specimen_ea_07_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_cyber/larva_ea_07.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ea_07/larva_ea_07.webp",
+      "filename": "larva_ea_07.webp"
+    }
+  ],
+  "tier": "3-",
+  "bingo": [
+    "research_6",
+    "rumble",
+    "event_2022",
+    "event_2024"
+  ]
+}

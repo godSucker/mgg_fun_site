@@ -1,0 +1,31 @@
+{
+  "id": "specimen_fc_04",
+  "code": "fc_04",
+  "name": "Мексикоатль",
+  "created_at": "2025-09-02T01:35:02.379832Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_saber/normal/FC_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fc_04/FC_04_normal.webp",
+      "filename": "FC_04_normal.webp"
+    },
+    {
+      "src": "semi-full/F/F_C/normal/specimen_fc_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fc_04/specimen_fc_04_normal.webp",
+      "filename": "specimen_fc_04_normal.webp"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_saber/larva_fc_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fc_04/larva_fc_04.webp",
+      "filename": "larva_fc_04.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_3",
+    "events"
+  ]
+}

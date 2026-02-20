@@ -1,0 +1,28 @@
+{
+  "id": "specimen_ea_99",
+  "code": "ea_99",
+  "name": "Термодроид Сельсия",
+  "created_at": "2025-09-02T01:35:07.374262Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_cyber/normal/EA_99_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ea_99/EA_99_normal.webp",
+      "filename": "EA_99_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_A/normal/specimen_ea_99_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ea_99/specimen_ea_99_normal.webp",
+      "filename": "specimen_ea_99_normal.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_cyber/larva_ea_99.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ea_99/larva_ea_99.webp",
+      "filename": "larva_ea_99.webp"
+    }
+  ],
+  "tier": "2-",
+  "bingo": []
+}
