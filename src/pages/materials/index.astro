@@ -11,6 +11,9 @@ import bingosData from '../../data/bingos.json';
 import { bingoLabel } from '../../lib/mutant-dicts';
 import { getItemTexture } from '../../lib/craft-simulator';
 
+// Запрет масштабирования на мобильных для страницы материалов
+const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+
 // ---------- нормализация материалов/бустеров/сфер ----------
 const normRow = (item) => {
   const id = String(item?.id || '').trim();
@@ -174,7 +177,7 @@ const TABS = [
 ];
 ---
 
-<BaseLayout title="Материалы и ресурсы">
+<BaseLayout title="Материалы и ресурсы" viewport={NO_ZOOM_VIEWPORT}>
   <section class="intro">
     <h1>Материалы и ресурсы</h1>
     <p>Тут находятся все материалы, сферы, бустеры, здания и зоны.</p>

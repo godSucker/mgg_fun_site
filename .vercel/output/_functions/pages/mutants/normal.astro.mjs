@@ -1,7 +1,7 @@
 import { f as createComponent, k as renderComponent, r as renderTemplate } from '../../chunks/astro/server_C9fxJ0Ab.mjs';
 import 'piccolore';
 import { $ as $$BaseLayout } from '../../chunks/BaseLayout_7drcn5tv.mjs';
-import { M as MutantsBrowser } from '../../chunks/MutantsBrowser_DTQXy4yo.mjs';
+import { M as MutantsBrowser } from '../../chunks/MutantsBrowser_CQD8f4XU.mjs';
 import { m as mutantsRaw } from '../../chunks/mutants_CTe2pNBk.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DtO3kaqa.mjs';
 

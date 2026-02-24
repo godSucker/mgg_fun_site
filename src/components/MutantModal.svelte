@@ -204,17 +204,31 @@
     return abilityIndex === 0 ? stats.ability : 0;
   };
 
-  // Texture from stars
+  // Texture from stars с fallback на иконку (specimen)
   const imgSrc = (m: any, starKey: string) => {
     const starInfo = m?.stars?.[starKey];
     if (starInfo?.images) {
       const list = starInfo.images;
-      const pick = list.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
+      // Сначала ищем полную текстуру
+      const fullTexture = list.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+      if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
+      // Если нет полной текстуры, ищем иконку
+      const specimen = list.find((p: string) => p.includes('specimen'));
+      if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
+      // Иначе первую доступную
+      const pick = list[0];
       if (pick) return pick.startsWith('/') ? pick : `/${pick}`;
     }
     // Fallback to old image field
     const list: string[] = m?.image ?? [];
-    const pick = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
+    // Сначала ищем полную текстуру
+    const fullTexture = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+    if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
+    // Если нет, ищем иконку
+    const specimen = list.find((p) => p.includes('specimen'));
+    if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
+    // Иначе первую доступную или placeholder
+    const pick = list[0];
     if (!pick) return '/placeholder-mutant.webp';
     return pick.startsWith('/') ? pick : `/${pick}`;
   };

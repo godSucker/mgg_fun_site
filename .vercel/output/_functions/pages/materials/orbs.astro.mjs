@@ -6,8 +6,9 @@ import { o as orbsDataRaw } from '../../chunks/orbs_Bs2vuxVS.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DtO3kaqa.mjs';
 
 const $$Orbs = createComponent(($$result, $$props, $$slots) => {
+  const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
   const orbsColumns = orbsDataRaw && orbsDataRaw.length > 0 ? Object.keys(orbsDataRaw[0]).map((key) => ({ key, label: key })) : [];
-  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "\u0421\u0444\u0435\u0440\u044B (Orbs)" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<h1>Сферы</h1> <p>Сферы дают уникальные бонусы при установке на мутантов.</p> ${renderComponent($$result2, "DataTable", $$DataTable, { "columns": orbsColumns, "rows": orbsDataRaw, "title": "\u0421\u043F\u0438\u0441\u043E\u043A \u0441\u0444\u0435\u0440" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "\u0421\u0444\u0435\u0440\u044B (Orbs)", "viewport": NO_ZOOM_VIEWPORT }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<h1>Сферы</h1> <p>Сферы дают уникальные бонусы при установке на мутантов.</p> ${renderComponent($$result2, "DataTable", $$DataTable, { "columns": orbsColumns, "rows": orbsDataRaw, "title": "\u0421\u043F\u0438\u0441\u043E\u043A \u0441\u0444\u0435\u0440" })} ` })}`;
 }, "/home/godbtw/site-workspace/mutants_site/src/pages/materials/orbs.astro", void 0);
 
 const $$file = "/home/godbtw/site-workspace/mutants_site/src/pages/materials/orbs.astro";

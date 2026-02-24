@@ -668,24 +668,39 @@
     const starData = m._rawStars?.[key];
     if (starData?.images?.length) {
       const imgs = normalizeImages(starData.images);
-      const pick = findImageByKeywords(imgs, ['textures_by_mutant/']) || imgs[0];
-      if (pick) return pick;
+      // Сначала ищем полную текстуру
+      const fullTexture = findImageByKeywords(imgs, ['textures_by_mutant/']);
+      if (fullTexture) return fullTexture;
+      // Если нет, ищем иконку
+      const specimen = findImageByKeywords(imgs, ['specimen']);
+      if (specimen) return specimen;
+      // Иначе первую доступную
+      return imgs[0];
     }
     if (key === 'normal') {
       return baseTexture(m);
     }
     const keywords = STAR_IMAGE_KEYWORDS[key] || [key];
-    return (
-      findImageByKeywords(m.images, keywords)
-      || baseTexture(m)
-    );
+    // Сначала ищем полную текстуру
+    const fullTexture = findImageByKeywords(m.images, keywords);
+    if (fullTexture) return fullTexture;
+    // Если нет, ищем иконку
+    const specimen = findImageByKeywords(m.images, ['specimen']);
+    if (specimen) return specimen;
+    return baseTexture(m);
   }
 
   function baseTexture(m){
     if (!m) return '';
+    // Сначала ищем полную текстуру
+    const fullTexture = findImageByKeywords(m.images, STAR_IMAGE_KEYWORDS.normal);
+    if (fullTexture) return fullTexture;
+    // Если нет, ищем иконку
+    const specimen = findImageByKeywords(m.images, ['specimen']);
+    if (specimen) return specimen;
+    // Иначе любую доступную
     return (
-      findImageByKeywords(m.images, STAR_IMAGE_KEYWORDS.normal)
-      || findImageByKeywords(m.images, ['normal', 'default', 'full'])
+      findImageByKeywords(m.images, ['normal', 'default', 'full'])
       || firstTexture(m.images)
     );
   }

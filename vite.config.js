@@ -11,5 +11,14 @@ export default defineConfig({
   ],
   server: {
     allowedHosts: ['4321-ia309369isrgz2n7iwbsj-18e8148a.manus.computer'],
+    watch: {
+      ignored: [
+        '**/textures_by_mutant/**',
+        '**/public/textures/**',
+        '**/*.webp',
+        '**/*.png',
+        '**/*.jpg',
+      ],
+    },
   },
 });

@@ -491,8 +491,14 @@
                 const specimen = imgs.find((p: string) => p.includes('specimen'));
                 if (specimen) return specimen;
             }
-            const pick = imgs.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || imgs[0];
-            return pick;
+            // Сначала ищем полную текстуру
+            const fullTexture = imgs.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+            if (fullTexture) return fullTexture;
+            // Если нет, ищем иконку
+            const specimen = imgs.find((p: string) => p.includes('specimen'));
+            if (specimen) return specimen;
+            // Иначе первую доступную
+            return imgs[0];
         }
     }
 
@@ -508,8 +514,16 @@
     });
 
     if (!pick) {
-        pick = list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'))
-               || list[0];
+        // Сначала ищем полную текстуру
+        pick = list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+        // Если нет, ищем иконку
+        if (!pick) {
+            pick = list.find((p:string) => p.includes('specimen'));
+        }
+        // Иначе первую доступную
+        if (!pick) {
+            pick = list[0];
+        }
     }
     return pick ?? 'placeholder-mutant.webp';
   }

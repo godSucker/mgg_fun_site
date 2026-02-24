@@ -438,9 +438,18 @@ function MutantsBrowser($$renderer, $$props) {
 						if (specimen) return specimen;
 					}
 
-					const pick = imgs.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || imgs[0];
+					// Сначала ищем полную текстуру
+					const fullTexture = imgs.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
 
-					return pick;
+					if (fullTexture) return fullTexture;
+
+					// Если нет, ищем иконку
+					const specimen = imgs.find((p) => p.includes('specimen'));
+
+					if (specimen) return specimen;
+
+					// Иначе первую доступную
+					return imgs[0];
 				}
 			}
 
@@ -459,7 +468,18 @@ function MutantsBrowser($$renderer, $$props) {
 			});
 
 			if (!pick) {
-				pick = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva')) || list[0];
+				// Сначала ищем полную текстуру
+				pick = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+
+				// Если нет, ищем иконку
+				if (!pick) {
+					pick = list.find((p) => p.includes('specimen'));
+				}
+
+				// Иначе первую доступную
+				if (!pick) {
+					pick = list[0];
+				}
 			}
 
 			return pick ?? 'placeholder-mutant.webp';
@@ -574,7 +594,13 @@ function MutantsBrowser($$renderer, $$props) {
 		if (// Если есть принудительный скин
 		// Ищем в глобальном списке скинов (skins.json)
 		// Unified mutants: use stars object
+		// Сначала ищем полную текстуру
+		// Если нет, ищем иконку
+		// Иначе первую доступную
 		// Fallback for skins (old image field)
+		// Сначала ищем полную текстуру
+		// Если нет, ищем иконку
+		// Иначе первую доступную
 		title) {
 			$$renderer.push('<!--[-->');
 			$$renderer.push(`<h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">${escape_html(title)}</h1>`);

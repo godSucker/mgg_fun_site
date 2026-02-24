@@ -37,7 +37,15 @@ export default defineConfig({
       },
       watch: {
         usePolling: false,
-        ignored: ['**/.venv_orb/**', '**/.venv/**', '**/node_modules/**'],
+        ignored: [
+          '**/.venv_orb/**',
+          '**/.venv/**',
+          '**/node_modules/**',
+          '**/textures_by_mutant/**',
+          '**/*.webp',
+          '**/*.png',
+          '**/*.jpg',
+        ],
       },
     },
   },

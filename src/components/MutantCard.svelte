@@ -24,19 +24,34 @@
   $: suffix = SUFFIX[variant] ?? 'normal'
   $: rarityLabel = RUS[variant] ?? '—'
 
-  // базовый src и умный fallback на .jpg
-  let srcExt = 'png'
-  $: baseSrc = `/textures_by_mutant/${folder}/${fileId}_${suffix}.${srcExt}`
-  let imgSrc = baseSrc
+  // базовый src и умный fallback: полная текстура -> иконка (specimen) -> placeholder
+  let srcExt = 'webp'
+  
+  function buildSpecimenSrc() {
+    const specSuffix = suffix === 'normal' ? '' : `_${suffix}`
+    return `/textures_by_mutant/${folder}/specimen_${folder}${specSuffix}.${srcExt}`
+  }
+  
+  $: fullTextureSrc = `/textures_by_mutant/${folder}/${fileId}_${suffix}.${srcExt}`
+  $: specimenSrc = buildSpecimenSrc()
+  
+  let imgSrc = fullTextureSrc
+  let triedSpecimen = false
   let triedJpg = false
   let broken = false
 
   function onError() {
-    if (!triedJpg) {
+    if (!triedSpecimen) {
+      // Пробуем иконку (голову) мутанта
+      triedSpecimen = true
+      imgSrc = specimenSrc
+    } else if (!triedJpg) {
+      // Пробуем .jpg версию полной текстуры
       triedJpg = true
       srcExt = 'jpg'
       imgSrc = `/textures_by_mutant/${folder}/${fileId}_${suffix}.${srcExt}`
     } else {
+      // Всё плохо, показываем placeholder
       broken = true
     }
   }

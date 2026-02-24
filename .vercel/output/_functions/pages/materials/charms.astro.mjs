@@ -6,8 +6,9 @@ import { c as charmsData } from '../../chunks/charms_CfAtwPUt.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_DtO3kaqa.mjs';
 
 const $$Charms = createComponent(($$result, $$props, $$slots) => {
+  const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
   const charmsColumns = charmsData && charmsData.length > 0 ? Object.keys(charmsData[0]).map((key) => ({ key, label: key })) : [];
-  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "\u0427\u0430\u0440\u044B (Charms)" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<h1>Чары</h1> <p>Бустеры, увеличивающие статы и возможности мутантов.</p> ${renderComponent($$result2, "DataTable", $$DataTable, { "columns": charmsColumns, "rows": charmsData, "title": "\u0421\u043F\u0438\u0441\u043E\u043A \u0447\u0430\u0440\u043E\u0432" })} ` })}`;
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "\u0427\u0430\u0440\u044B (Charms)", "viewport": NO_ZOOM_VIEWPORT }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<h1>Чары</h1> <p>Бустеры, увеличивающие статы и возможности мутантов.</p> ${renderComponent($$result2, "DataTable", $$DataTable, { "columns": charmsColumns, "rows": charmsData, "title": "\u0421\u043F\u0438\u0441\u043E\u043A \u0447\u0430\u0440\u043E\u0432" })} ` })}`;
 }, "/home/godbtw/site-workspace/mutants_site/src/pages/materials/charms.astro", void 0);
 
 const $$file = "/home/godbtw/site-workspace/mutants_site/src/pages/materials/charms.astro";

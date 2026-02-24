@@ -1,0 +1,64 @@
+name: Parser - Textures Only Mode
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  textures-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 1. Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: 2. Установка Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 3. Установка зависимостей
+        run: npm ci
+
+      - name: 4. Запуск Парсера (Режим TEXTURES-ONLY)
+        run: npx tsx scripts/sync-mutants.ts textures-only
+
+      - name: 5. Проверка изменений
+        id: check-changes
+        run: |
+          if git diff --quiet public/textures_by_mutant/ 2>/dev/null; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  Изменений не обнаружено"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Обнаружены новые текстуры"
+          fi
+
+      - name: 6. Сохранение изменений (Commit & Push)
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Parser Textures: Докачка недостающих текстур"
+          commit_user_name: "MGG Parser Bot"
+          commit_user_email: "bot@archivist-library.com"
+          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          branch: main
+          file_pattern: 'public/textures_by_mutant/**/*.webp'
+
+      - name: 7. Итоги работы
+        if: always()
+        run: |
+          echo "## 📊 Итоги парсера (TEXTURES-ONLY)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ **Статус:** Обнаружены новые текстуры, файлы загружены" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ **Статус:** Все текстуры на месте, изменений нет" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🕐 **Время запуска:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "⏱️ **Режим парсера:** TEXTURES-ONLY (проверка и докачка текстур у всех мутантов)" >> $GITHUB_STEP_SUMMARY

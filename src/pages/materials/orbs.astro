@@ -3,12 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import DataTable from '../../components/DataTable.astro';
 import orbsData from '../../data/materials/orbs.json';
 
+// Запрет масштабирования на мобильных для страницы материалов
+const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+
 const orbsColumns = orbsData && orbsData.length > 0
   ? Object.keys(orbsData[0]).map((key) => ({ key, label: key }))
   : [];
 ---
 
-<BaseLayout title="Сферы (Orbs)">
+<BaseLayout title="Сферы (Orbs)" viewport={NO_ZOOM_VIEWPORT}>
   <h1>Сферы</h1>
   <p>Сферы дают уникальные бонусы при установке на мутантов.</p>
   <DataTable columns={orbsColumns} rows={orbsData} title="Список сфер" />
