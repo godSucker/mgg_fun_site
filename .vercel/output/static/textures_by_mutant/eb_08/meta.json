@@ -1,0 +1,30 @@
+{
+  "id": "specimen_eb_08",
+  "code": "eb_08",
+  "name": "Доктор Нуклеус",
+  "created_at": "2025-09-02T01:35:04.812120Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_necro/normal/EB_08_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_08/EB_08_normal.webp",
+      "filename": "EB_08_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_B/normal/specimen_eb_08_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_08/specimen_eb_08_normal.webp",
+      "filename": "specimen_eb_08_normal.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_necro/larva_eb_08.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/eb_08/larva_eb_08.webp",
+      "filename": "larva_eb_08.webp"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_7"
+  ]
+}

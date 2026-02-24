@@ -1,0 +1,29 @@
+{
+  "id": "specimen_b_03",
+  "code": "b_03",
+  "name": "Джек Скеллингтон",
+  "created_at": "2025-09-02T01:35:01.749340Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_necro/normal/B_03_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_03/B_03_normal.webp",
+      "filename": "B_03_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B/normal/specimen_b_03_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_03/specimen_b_03_normal.webp",
+      "filename": "specimen_b_03_normal.webp"
+    },
+    {
+      "src": "larva/2) NECRO/monogen_necro/larva_b_03.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/b_03/larva_b_03.webp",
+      "filename": "larva_b_03.webp"
+    }
+  ],
+  "bingo": [
+    "events"
+  ]
+}

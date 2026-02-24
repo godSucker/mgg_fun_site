@@ -1,0 +1,76 @@
+{
+  "id": "specimen_cc_13",
+  "code": "cc_13",
+  "name": "Безграничная дружба",
+  "created_at": "2025-09-02T01:35:06.979753Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_saber/bronze/CC_13_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_13/CC_13_bronze.webp",
+      "filename": "CC_13_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_saber/gold/CC_13_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_13/CC_13_gold.webp",
+      "filename": "CC_13_gold.webp"
+    },
+    {
+      "src": "full-char/saber_saber/normal/CC_13_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_13/CC_13_normal.webp",
+      "filename": "CC_13_normal.webp"
+    },
+    {
+      "src": "full-char/saber_saber/platinum/CC_13_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_13/CC_13_platinum.webp",
+      "filename": "CC_13_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_saber/silver/CC_13_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cc_13/CC_13_silver.webp",
+      "filename": "CC_13_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/silver/specimen_cc_13_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_13/specimen_cc_13_silver_silver.webp",
+      "filename": "specimen_cc_13_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/platinum/specimen_cc_13_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_13/specimen_cc_13_platinum_platinum.webp",
+      "filename": "specimen_cc_13_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/normal/specimen_cc_13_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_13/specimen_cc_13_normal.webp",
+      "filename": "specimen_cc_13_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/gold/specimen_cc_13_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_13/specimen_cc_13_gold_gold.webp",
+      "filename": "specimen_cc_13_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_C/bronze/specimen_cc_13_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cc_13/specimen_cc_13_bronze_bronze.webp",
+      "filename": "specimen_cc_13_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_saber/larva_cc_13.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cc_13/larva_cc_13.webp",
+      "filename": "larva_cc_13.webp"
+    }
+  ],
+  "tier": "2",
+  "bingo": []
+}

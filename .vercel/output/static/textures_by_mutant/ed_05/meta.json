@@ -1,0 +1,76 @@
+{
+  "id": "specimen_ed_05",
+  "code": "ed_05",
+  "name": "Инсектрон",
+  "created_at": "2025-09-02T01:35:02.985145Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_zoo/bronze/ED_05_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_05/ED_05_bronze.webp",
+      "filename": "ED_05_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/gold/ED_05_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_05/ED_05_gold.webp",
+      "filename": "ED_05_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/normal/ED_05_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_05/ED_05_normal.webp",
+      "filename": "ED_05_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/platinum/ED_05_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_05/ED_05_platinum.webp",
+      "filename": "ED_05_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/silver/ED_05_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_05/ED_05_silver.webp",
+      "filename": "ED_05_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/silver/specimen_ed_05_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_05/specimen_ed_05_silver_silver.webp",
+      "filename": "specimen_ed_05_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/platinum/specimen_ed_05_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_05/specimen_ed_05_platinum_platinum.webp",
+      "filename": "specimen_ed_05_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/normal/specimen_ed_05_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_05/specimen_ed_05_normal.webp",
+      "filename": "specimen_ed_05_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/gold/specimen_ed_05_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_05/specimen_ed_05_gold_gold.webp",
+      "filename": "specimen_ed_05_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/bronze/specimen_ed_05_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_05/specimen_ed_05_bronze_bronze.webp",
+      "filename": "specimen_ed_05_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_zoo/larva_ed_05.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ed_05/larva_ed_05.webp",
+      "filename": "larva_ed_05.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": []
+}

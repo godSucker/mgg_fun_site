@@ -207,6 +207,97 @@ async function getAvailableRatingsAndDownload(
     return Array.from(foundRatings);
 }
 
+/**
+ * Проверяет наличие всех текстур у существующего мутанта и докачивает недостающие
+ * Возвращает { allComplete, missingRatings, downloadedRatings }
+ * - allComplete: true если все текстуры на месте (или были докачаны)
+ * - missingRatings: список рейтингов которые не удалось докачать
+ * - downloadedRatings: список рейтингов которые были успешно докачаны
+ */
+async function checkAndDownloadMissingTextures(
+    mutantId: string,
+    isGacha: boolean
+): Promise<{ allComplete: boolean; missingRatings: string[]; downloadedRatings: string[] }> {
+    const idLower = mutantId.toLowerCase();
+    const idUpper = mutantId.toUpperCase();
+    const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower);
+    
+    const ratingsToCheck = isGacha ? ['normal'] : CONFIG.RATINGS;
+    const missingRatings: string[] = [];
+    const downloadedRatings: string[] = [];
+    
+    for (const rating of ratingsToCheck) {
+        const kobojoSuffix = rating === 'normal' ? '' : `_${rating}`;
+        const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${kobojoSuffix}.png`;
+        
+        const pokradexVersionPath = rating === 'normal' ? '' : `${CONFIG.VERSION_MAP[rating as keyof typeof CONFIG.VERSION_MAP]}/`;
+        const pokradexUrl = `${CONFIG.POKRADEX_ROOT_URL}${pokradexVersionPath}${idUpper}.png`;
+        
+        const fullArtName = `${idUpper}_${rating}.webp`;
+        const iconName = `specimen_${idLower}_${rating}.webp`;
+        
+        const fullArtPath = path.join(targetDir, fullArtName);
+        const iconPath = path.join(targetDir, iconName);
+        
+        // Проверяем наличие ОБЕИХ текстур (полная + иконка)
+        let hasFullArt = false;
+        let hasIcon = false;
+        
+        try {
+            await fs.access(fullArtPath);
+            hasFullArt = true;
+        } catch (e) {}
+        
+        try {
+            await fs.access(iconPath);
+            hasIcon = true;
+        } catch (e) {}
+        
+        // Если чего-то не хватает — докачиваем
+        if (!hasFullArt || !hasIcon) {
+            let downloaded = false;
+            
+            // Докачиваем полную текстуру если нет
+            if (!hasFullArt) {
+                const d1 = await downloadImage(pokradexUrl, fullArtPath);
+                if (d1) downloaded = true;
+            }
+            
+            // Докачиваем иконку если нет
+            if (!hasIcon) {
+                const d2 = await downloadImage(kobojoUrl, iconPath);
+                if (d2) downloaded = true;
+            }
+            
+            if (downloaded) {
+                downloadedRatings.push(rating);
+            }
+            
+            // Проверяем ещё раз после скачивания
+            try {
+                await fs.access(fullArtPath);
+                hasFullArt = true;
+            } catch (e) {}
+            
+            try {
+                await fs.access(iconPath);
+                hasIcon = true;
+            } catch (e) {}
+            
+            // Если всё ещё чего-то не хватает — добавляем в missing
+            if (!hasFullArt || !hasIcon) {
+                missingRatings.push(rating);
+            }
+        }
+    }
+    
+    return {
+        allComplete: missingRatings.length === 0,
+        missingRatings,
+        downloadedRatings
+    };
+}
+
 function findAllEntityDescriptors(obj: any): any[] {
     let results: any[] = [];
     if (!obj || typeof obj !== 'object') return results;
@@ -451,14 +542,31 @@ async function sync(options: {
         const baseId = `specimen_${mutantId.toLowerCase()}`;
         xmlMutantIds.add(mutantId.toUpperCase());
 
-        if (skipExisting && processedIds.has(mutantId.toUpperCase())) continue;
-
         const tags = parseTags(desc);
         const hpBase = parseInt(tags.lifePoint || "0");
         if (hpBase === 0) continue;
 
         const typeUpper = (tags.type || "").toUpperCase();
         const isGacha = typeUpper === 'GACHA';
+
+        // Режим FULL: проверяем наличие текстур у существующих мутантов
+        if (skipExisting && processedIds.has(mutantId.toUpperCase())) {
+            const { allComplete, missingRatings, downloadedRatings } = await checkAndDownloadMissingTextures(
+                mutantId,
+                isGacha
+            );
+            if (allComplete) {
+                // Все текстуры на месте или успешно докачаны
+                if (downloadedRatings.length > 0) {
+                    console.log(`[TEXTURES ADDED] ${mutantId}: докачаны ${downloadedRatings.join(', ')}`);
+                }
+                stats.skipped++;
+                continue;
+            } else {
+                // Есть текстуры которые не удалось найти
+                console.log(`[TEXTURES MISSING] ${mutantId}: не найдены текстуры для ${missingRatings.join(', ')}`);
+            }
+        }
 
         const textureRatings = await getAvailableRatingsAndDownload(
             mutantId,
@@ -622,7 +730,7 @@ async function sync(options: {
             bingo: bingoMap.get(fullId.toUpperCase()) || [],
             chance: parseInt(tags.odds || "0"),
             bank: bankVal,
-            tier: "un-tired",
+            tier: "",
             name_attack1: atk1Name,
             name_attack2: atk2Name,
             name_attack3: "",
@@ -725,6 +833,83 @@ async function sync(options: {
     }
 }
 
+// ==================== TEXTURES ONLY РЕЖИМ ====================
+
+async function syncTexturesOnly() {
+    console.log('[TEXTURES ONLY] Проверка и докачка недостающих текстур у всех мутантов...\n');
+    
+    const { gameDefs, locMap } = await loadLocalFiles();
+    
+    // Загружаем существующие данные для определения GACHA мутантов
+    const existingData = new Map<string, UnifiedMutant>();
+    try {
+        const data = JSON.parse(
+            await fs.readFile(path.join(CONFIG.DATA_DIR, 'mutants.json'), 'utf-8')
+        );
+        for (const m of data) {
+            existingData.set(m.id, m);
+        }
+        console.log(`[INFO] Загружено ${existingData.size} мутантов из mutants.json`);
+    } catch (e) {
+        console.error('[ERROR] Не удалось загрузить mutants.json');
+        return;
+    }
+    
+    const descriptors = findAllEntityDescriptors(gameDefs);
+    const specimenDescriptors = descriptors.filter(d =>
+        d.id && d.id.startsWith("Specimen_") &&
+        !(locMap.get(d.id) || "").toLowerCase().includes("слабый") &&
+        !(locMap.get(d.id) || "").toLowerCase().includes("weak")
+    );
+    
+    const stats = {
+        checked: 0,
+        downloaded: 0,
+        complete: 0,
+        errors: 0
+    };
+    
+    for (const desc of specimenDescriptors) {
+        const fullId = desc.id;
+        const mutantId = fullId.replace('Specimen_', '');
+        
+        const tags = parseTags(desc);
+        const hpBase = parseInt(tags.lifePoint || "0");
+        if (hpBase === 0) continue;
+        
+        const typeUpper = (tags.type || "").toUpperCase();
+        const isGacha = typeUpper === 'GACHA';
+        
+        stats.checked++;
+        
+        const { allComplete, missingRatings, downloadedRatings } = await checkAndDownloadMissingTextures(
+            mutantId,
+            isGacha
+        );
+        
+        if (allComplete) {
+            if (downloadedRatings.length > 0) {
+                stats.downloaded++;
+                console.log(`[ADDED] ${mutantId}: докачаны текстуры ${downloadedRatings.join(', ')}`);
+            } else {
+                stats.complete++;
+            }
+        } else {
+            stats.errors++;
+            console.log(`[MISSING] ${mutantId}: не найдены текстуры для ${missingRatings.join(', ')}`);
+        }
+    }
+    
+    console.log('\n' + '='.repeat(60));
+    console.log('ИТОГИ ПРОВЕРКИ ТЕКСТУР:');
+    console.log('='.repeat(60));
+    console.log(`Проверено: ${stats.checked}`);
+    console.log(`Полные: ${stats.complete}`);
+    console.log(`Докачано: ${stats.downloaded}`);
+    console.log(`Проблемные: ${stats.errors}`);
+    console.log('='.repeat(60) + '\n');
+}
+
 // ==================== MAIN ====================
 
 async function main() {
@@ -736,7 +921,7 @@ async function main() {
     switch (mode) {
         case 'full':
             console.log('Скачивание текстур + добавление новых мутантов');
-            console.log('Существующие: пропускаются\n');
+            console.log('Существующие: пропускаются (с проверкой текстур)\n');
             await sync({ skipExisting: true, forceStatUpdate: false, compareBeforeUpdate: false });
             break;
 
@@ -752,12 +937,19 @@ async function main() {
             await sync({ skipExisting: false, forceStatUpdate: false, compareBeforeUpdate: true });
             break;
 
+        case 'textures-only':
+            console.log('Проверка и докачка текстур у всех мутантов');
+            console.log('mutants.json не изменяется\n');
+            await syncTexturesOnly();
+            break;
+
         default:
             console.error('Неизвестный режим!');
             console.error('\nДоступные режимы:');
-            console.error('  full      - Добавление новых + текстуры');
-            console.error('  stats     - Полное обновление');
-            console.error('  rebalance - Быстрое обновление');
+            console.error('  full          - Добавление новых + текстуры (существующие с проверкой)');
+            console.error('  stats         - Полное обновление статов и локализации');
+            console.error('  rebalance     - Быстрое обновление (только изменения)');
+            console.error('  textures-only - Проверка и докачка текстур у всех мутантов');
             process.exit(1);
     }
 

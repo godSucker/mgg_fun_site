@@ -1,0 +1,80 @@
+{
+  "id": "specimen_cb_10",
+  "code": "cb_10",
+  "name": "Франкендворф",
+  "created_at": "2025-09-02T01:35:05.719223Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_necro/bronze/CB_10_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_10/CB_10_bronze.webp",
+      "filename": "CB_10_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_necro/gold/CB_10_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_10/CB_10_gold.webp",
+      "filename": "CB_10_gold.webp"
+    },
+    {
+      "src": "full-char/saber_necro/normal/CB_10_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_10/CB_10_normal.webp",
+      "filename": "CB_10_normal.webp"
+    },
+    {
+      "src": "full-char/saber_necro/platinum/CB_10_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_10/CB_10_platinum.webp",
+      "filename": "CB_10_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_necro/silver/CB_10_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_10/CB_10_silver.webp",
+      "filename": "CB_10_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/silver/specimen_cb_10_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_10/specimen_cb_10_silver_silver.webp",
+      "filename": "specimen_cb_10_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/platinum/specimen_cb_10_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_10/specimen_cb_10_platinum_platinum.webp",
+      "filename": "specimen_cb_10_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/normal/specimen_cb_10_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_10/specimen_cb_10_normal.webp",
+      "filename": "specimen_cb_10_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/gold/specimen_cb_10_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_10/specimen_cb_10_gold_gold.webp",
+      "filename": "specimen_cb_10_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/bronze/specimen_cb_10_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_10/specimen_cb_10_bronze_bronze.webp",
+      "filename": "specimen_cb_10_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_necro/larva_cb_10.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cb_10/larva_cb_10.webp",
+      "filename": "larva_cb_10.webp"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_9",
+    "event_2022",
+    "event_2024"
+  ]
+}

@@ -1,0 +1,8 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import EvotechCalculator from '@/components/EvotechCalculator.svelte';
+---
+<BaseLayout title="Калькулятор эво">
+  <!-- Загрузка Svelte-компонента на клиенте -->
+  <EvotechCalculator client:load />
+</BaseLayout>

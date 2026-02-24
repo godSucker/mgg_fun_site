@@ -1,0 +1,28 @@
+{
+  "id": "specimen_ef_14",
+  "code": "ef_14",
+  "name": "К'Ю Т'ипай",
+  "created_at": "2025-09-02T01:35:07.948287Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_mythic/normal/EF_14_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_14/EF_14_normal.webp",
+      "filename": "EF_14_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_F/normal/specimen_ef_14_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_14/specimen_ef_14_normal.webp",
+      "filename": "specimen_ef_14_normal.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_14.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ef_14/larva_ef_14.webp",
+      "filename": "larva_ef_14.webp"
+    }
+  ],
+  "tier": "4_",
+  "bingo": []
+}

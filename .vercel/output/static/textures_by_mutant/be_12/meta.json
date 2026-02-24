@@ -1,0 +1,78 @@
+{
+  "id": "specimen_be_12",
+  "code": "be_12",
+  "name": "Гнилостная слизь",
+  "created_at": "2025-09-02T01:35:06.562599Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_galactic/bronze/BE_12_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_12/BE_12_bronze.webp",
+      "filename": "BE_12_bronze.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/gold/BE_12_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_12/BE_12_gold.webp",
+      "filename": "BE_12_gold.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/normal/BE_12_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_12/BE_12_normal.webp",
+      "filename": "BE_12_normal.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/platinum/BE_12_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_12/BE_12_platinum.webp",
+      "filename": "BE_12_platinum.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/silver/BE_12_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_12/BE_12_silver.webp",
+      "filename": "BE_12_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/silver/specimen_be_12_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_12/specimen_be_12_silver_silver.webp",
+      "filename": "specimen_be_12_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/platinum/specimen_be_12_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_12/specimen_be_12_platinum_platinum.webp",
+      "filename": "specimen_be_12_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/normal/specimen_be_12_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_12/specimen_be_12_normal.webp",
+      "filename": "specimen_be_12_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/gold/specimen_be_12_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_12/specimen_be_12_gold_gold.webp",
+      "filename": "specimen_be_12_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/bronze/specimen_be_12_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_12/specimen_be_12_bronze_bronze.webp",
+      "filename": "specimen_be_12_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necro_galactic/larva_be_12.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/be_12/larva_be_12.webp",
+      "filename": "larva_be_12.webp"
+    }
+  ],
+  "tier": "2-",
+  "bingo": [
+    "research_11"
+  ]
+}

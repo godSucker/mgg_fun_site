@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MaterialsTable from '../../components/materials/MaterialsTable.astro';
+import materials from '../../data/materials/material.json';
+import sourcesMap from '../../data/materials/sources.json';
+
+const rows = materials;
+---
+
+<BaseLayout title="Материалы">
+  <section class="intro">
+    <h1>Материалы</h1>
+    <p>Красивый каталог материалов с текстурами, описаниями и местами добычи. Данные берутся из <code>src/data/materials/material.json</code>, пути к текстурам — из <code>public</code> по ID, а источники — из <code>src/data/materials/sources.json</code>.</p>
+  </section>
+
+  <MaterialsTable rows={rows} sourcesMap={sourcesMap} title="Каталог материалов" texturePrefix="/materials/" textureExt=".webp" />
+</BaseLayout>
+
+<style>
+  .intro { margin-bottom: 1.25rem; }
+  .intro h1 {
+    margin: 0 0 0.4rem;
+    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+    color: #f8fafc;
+  }
+  .intro p { margin: 0; color: #94a3b8; }
+</style>

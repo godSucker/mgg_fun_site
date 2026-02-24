@@ -1,0 +1,78 @@
+{
+  "id": "specimen_eb_05",
+  "code": "eb_05",
+  "name": "Мертвый солдат",
+  "created_at": "2025-09-02T01:35:02.952852Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_necro/bronze/EB_05_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_05/EB_05_bronze.webp",
+      "filename": "EB_05_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_necro/gold/EB_05_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_05/EB_05_gold.webp",
+      "filename": "EB_05_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_necro/normal/EB_05_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_05/EB_05_normal.webp",
+      "filename": "EB_05_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_necro/platinum/EB_05_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_05/EB_05_platinum.webp",
+      "filename": "EB_05_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_necro/silver/EB_05_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/eb_05/EB_05_silver.webp",
+      "filename": "EB_05_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_B/silver/specimen_eb_05_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_05/specimen_eb_05_silver_silver.webp",
+      "filename": "specimen_eb_05_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_B/platinum/specimen_eb_05_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_05/specimen_eb_05_platinum_platinum.webp",
+      "filename": "specimen_eb_05_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_B/normal/specimen_eb_05_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_05/specimen_eb_05_normal.webp",
+      "filename": "specimen_eb_05_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_B/gold/specimen_eb_05_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_05/specimen_eb_05_gold_gold.webp",
+      "filename": "specimen_eb_05_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_B/bronze/specimen_eb_05_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/eb_05/specimen_eb_05_bronze_bronze.webp",
+      "filename": "specimen_eb_05_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_necro/larva_eb_05.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/eb_05/larva_eb_05.webp",
+      "filename": "larva_eb_05.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_4"
+  ]
+}

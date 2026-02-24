@@ -1,0 +1,79 @@
+{
+  "id": "specimen_b_01",
+  "code": "b_01",
+  "name": "Зомби",
+  "created_at": "2025-09-02T01:34:59.633926Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_necro/bronze/B_01_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_bronze.webp",
+      "filename": "B_01_bronze.webp"
+    },
+    {
+      "src": "full-char/monogen_necro/gold/B_01_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_gold.webp",
+      "filename": "B_01_gold.webp"
+    },
+    {
+      "src": "full-char/monogen_necro/normal/B_01_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_normal.webp",
+      "filename": "B_01_normal.webp"
+    },
+    {
+      "src": "full-char/monogen_necro/platinum/B_01_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_platinum.webp",
+      "filename": "B_01_platinum.webp"
+    },
+    {
+      "src": "full-char/monogen_necro/silver/B_01_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/b_01/B_01_silver.webp",
+      "filename": "B_01_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B/silver/specimen_b_01_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_silver_silver.webp",
+      "filename": "specimen_b_01_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B/platinum/specimen_b_01_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_platinum_platinum.webp",
+      "filename": "specimen_b_01_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/B/B/normal/specimen_b_01_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_normal.webp",
+      "filename": "specimen_b_01_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B/gold/specimen_b_01_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_gold_gold.webp",
+      "filename": "specimen_b_01_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/B/B/bronze/specimen_b_01_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/b_01/specimen_b_01_bronze_bronze.webp",
+      "filename": "specimen_b_01_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/2) NECRO/monogen_necro/larva_b_01.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/b_01/larva_b_01.webp",
+      "filename": "larva_b_01.webp"
+    }
+  ],
+  "bingo": [
+    "Starter",
+    "reactor",
+    "starter_plat"
+  ]
+}

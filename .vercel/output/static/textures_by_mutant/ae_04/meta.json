@@ -1,0 +1,29 @@
+{
+  "id": "specimen_ae_04",
+  "code": "ae_04",
+  "name": "Супрамен Х",
+  "created_at": "2025-09-02T01:35:01.904411Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_galactic/normal/AE_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ae_04/AE_04_normal.webp",
+      "filename": "AE_04_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A_E/normal/specimen_ae_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ae_04/specimen_ae_04_normal.webp",
+      "filename": "specimen_ae_04_normal.webp"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_galactic/larva_ae_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ae_04/larva_ae_04.webp",
+      "filename": "larva_ae_04.webp"
+    }
+  ],
+  "bingo": [
+    "research_3"
+  ]
+}

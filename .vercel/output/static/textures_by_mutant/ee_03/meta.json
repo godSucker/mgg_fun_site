@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ee_03",
+  "code": "ee_03",
+  "name": "Мастер Йоуда",
+  "created_at": "2025-09-02T01:35:01.592643Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_galactic/bronze/EE_03_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_03/EE_03_bronze.webp",
+      "filename": "EE_03_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/gold/EE_03_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_03/EE_03_gold.webp",
+      "filename": "EE_03_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/normal/EE_03_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_03/EE_03_normal.webp",
+      "filename": "EE_03_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/platinum/EE_03_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_03/EE_03_platinum.webp",
+      "filename": "EE_03_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_galactic/silver/EE_03_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ee_03/EE_03_silver.webp",
+      "filename": "EE_03_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/silver/specimen_ee_03_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_03/specimen_ee_03_silver_silver.webp",
+      "filename": "specimen_ee_03_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/platinum/specimen_ee_03_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_03/specimen_ee_03_platinum_platinum.webp",
+      "filename": "specimen_ee_03_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/normal/specimen_ee_03_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_03/specimen_ee_03_normal.webp",
+      "filename": "specimen_ee_03_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/gold/specimen_ee_03_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_03/specimen_ee_03_gold_gold.webp",
+      "filename": "specimen_ee_03_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_E/bronze/specimen_ee_03_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ee_03/specimen_ee_03_bronze_bronze.webp",
+      "filename": "specimen_ee_03_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_galactic/larva_ee_03.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ee_03/larva_ee_03.webp",
+      "filename": "larva_ee_03.webp"
+    }
+  ],
+  "bingo": [
+    "2025_events",
+    "research_2",
+    "legend"
+  ]
+}

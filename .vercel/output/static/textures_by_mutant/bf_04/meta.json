@@ -1,0 +1,30 @@
+{
+  "id": "specimen_bf_04",
+  "code": "bf_04",
+  "name": "Император галактики",
+  "created_at": "2025-09-02T01:35:02.023783Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_mythic/normal/BF_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bf_04/BF_04_normal.webp",
+      "filename": "BF_04_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_F/normal/specimen_bf_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bf_04/specimen_bf_04_normal.webp",
+      "filename": "specimen_bf_04_normal.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necro_mythic/larva_bf_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bf_04/larva_bf_04.webp",
+      "filename": "larva_bf_04.webp"
+    }
+  ],
+  "bingo": [
+    "research_3",
+    "reactor"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "specimen_bd_04",
+  "code": "bd_04",
+  "name": "Леди Гарпия",
+  "created_at": "2025-09-02T01:35:01.990310Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_zoo/bronze/BD_04_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_04/BD_04_bronze.webp",
+      "filename": "BD_04_bronze.webp"
+    },
+    {
+      "src": "full-char/necro_zoo/gold/BD_04_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_04/BD_04_gold.webp",
+      "filename": "BD_04_gold.webp"
+    },
+    {
+      "src": "full-char/necro_zoo/normal/BD_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_04/BD_04_normal.webp",
+      "filename": "BD_04_normal.webp"
+    },
+    {
+      "src": "full-char/necro_zoo/platinum/BD_04_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_04/BD_04_platinum.webp",
+      "filename": "BD_04_platinum.webp"
+    },
+    {
+      "src": "full-char/necro_zoo/silver/BD_04_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/bd_04/BD_04_silver.webp",
+      "filename": "BD_04_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_D/silver/specimen_bd_04_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_04/specimen_bd_04_silver_silver.webp",
+      "filename": "specimen_bd_04_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_D/platinum/specimen_bd_04_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_04/specimen_bd_04_platinum_platinum.webp",
+      "filename": "specimen_bd_04_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/B/B_D/normal/specimen_bd_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_04/specimen_bd_04_normal.webp",
+      "filename": "specimen_bd_04_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_D/gold/specimen_bd_04_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_04/specimen_bd_04_gold_gold.webp",
+      "filename": "specimen_bd_04_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/B/B_D/bronze/specimen_bd_04_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/bd_04/specimen_bd_04_bronze_bronze.webp",
+      "filename": "specimen_bd_04_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necrco_zoo/larva_bd_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/bd_04/larva_bd_04.webp",
+      "filename": "larva_bd_04.webp"
+    }
+  ],
+  "bingo": [
+    "research_3",
+    "amazons"
+  ]
+}

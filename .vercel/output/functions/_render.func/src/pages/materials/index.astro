@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MaterialsTable from '../../components/materials/MaterialsTable.astro';
+import materialData from '../../data/materials/material.json';
+import charmsData from '../../data/materials/charms.json';
+import orbsDataRaw from '../../data/materials/orbs.json';
+import buildingsData from '../../data/materials/buildings.json';
+import zonesData from '../../data/materials/zones.json';
+import sourcesMap from '../../data/materials/sources.json';
+import bingosData from '../../data/bingos.json';
+import { bingoLabel } from '../../lib/mutant-dicts';
+import { getItemTexture } from '../../lib/craft-simulator';
+
+// ---------- нормализация материалов/бустеров/сфер ----------
+const normRow = (item) => {
+  const id = String(item?.id || '').trim();
+  const name = item?.name || id;
+  const description = item?.description || '';
+  const percent = item?.percent ?? item?.pct ?? null;
+  const value = item?.value ?? null;
+  const rarity = item?.rarity ?? null;
+
+  let texture = getItemTexture?.(id);
+
+  // точечные подмены по названию
+  const lname = String(name).trim().toLowerCase();
+  if (!texture) {
+    if (lname === 'баночка опыта') texture = '/materials/normal_xp.webp';
+    if (lname === 'банка спирта')  texture = '/materials/bigbig_med.webp';
+  }
+
+  if (!texture) texture = `/materials/${id}.webp`;
+
+  return { id, name, description, percent, value, rarity, texture };
+};
+
+function formatBingoTitle(title, id) {
+  const labelById = bingoLabel(id);
+  if (labelById && labelById !== id) return labelById;
+  const labelByTitle = bingoLabel(title);
+  if (labelByTitle && labelByTitle !== title) return labelByTitle;
+  return title
+    .replace(/^--------/, '')
+    .replace(/_/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
+// Map internal bingo reward names to building IDs
+const REWARD_TO_BUILDING = {
+  'Building_HC_1': 'Building_Forge',
+  'Building_HC_2': 'Building_Gold_Smelter'
+};
+
+const buildingSources = {};
+
+(bingosData || []).forEach(bingo => {
+  if (!bingo.rewards) return;
+  bingo.rewards.forEach(reward => {
+    const targetId = REWARD_TO_BUILDING[reward.name];
+    if (targetId) {
+      if (!buildingSources[targetId]) buildingSources[targetId] = [];
+      
+      const title = formatBingoTitle(bingo.title, bingo.id);
+      
+      // Avoid duplicates
+      if (!buildingSources[targetId].some(s => s.link === `/bingo?id=${bingo.id}`)) {
+        buildingSources[targetId].push({
+          type: 'bingo',
+          where: title,
+          link: `/bingo?id=${bingo.id}`
+        });
+      }
+    }
+  });
+});
+
+// Merge into sourcesMap
+Object.keys(buildingSources).forEach(id => {
+  const existing = (sourcesMap[id] || []).filter(s => s.type !== 'bingo');
+  sourcesMap[id] = [...existing, ...buildingSources[id]];
+});
+
+const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
+  const id = String(o?.id || '').toLowerCase();
+  return id && !id.includes('ephemeral');
+});
+
+const materialsRows = (Array.isArray(materialData) ? materialData : []).map(normRow);
+const charmsRows    = (Array.isArray(charmsData) ? charmsData : []).map(normRow);
+const orbsRows      = (Array.isArray(orbsData) ? orbsData : []).map(normRow);
+const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b) => ({
+  id: String(b?.id || '').trim(),
+  name: b?.name || (b?.id || ''),
+  description: b?.description || '',
+  texture: b?.texture || `/buildings/${b?.id}.webp`
+}));
+
+// ---------- зоны: поддержка строк/объектов из zones.json ----------
+const geneMap = { a:'Киборг', b:'Нежить', c:'Рубака', d:'Зооморф', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
+const capMap  = { 1:2, 2:3, 3:4 };
+
+function parseStem(stem) {
+  // stem уже без расширения, например 'habitat_f_3_hc'
+  const lux = /_hc$/i.test(stem);
+  const m = /^habitat_([a-f]+|abcdef)_(\d)(?:_hc)?$/i.exec(stem);
+  if (!m) return { geneKey: '', level: null, isLuxe: lux };
+  return {
+    geneKey: String(m[1] || '').toLowerCase(),
+    level: Number(m[2]),
+    isLuxe: lux
+  };
+}
+
+function metaFromStem(stem) {
+  const { geneKey, level, isLuxe } = parseStem(stem);
+  const cap = capMap[level] ?? '?';
+  const geneName = geneMap[geneKey] ?? (geneKey ? geneKey.toUpperCase() : '—');
+  const title = geneKey === 'abcdef' ? `Общая зона · вместимость ${cap}` : `Зона ${geneName} · вместимость ${cap}`;
+  const desc  = geneKey
+    ? `Ген: ${geneKey === 'abcdef' ? 'Любые гены' : geneName} • Вместимость: ${cap}`
+    : '';
+  return { title, desc, geneKey, isLuxe };
+}
+
+// правила хранения серебра
+function calcStorage(geneKey, isLuxe) {
+  if (isLuxe) {
+    // Люкс: универсальные (abcdef) = 400000, остальные = 320000
+    return geneKey === 'abcdef' ? 400000 : 320000;
+  }
+  // Обычные по гену
+  if (geneKey === 'a' || geneKey === 'b' || geneKey === 'c') return 9000;     // киборг/нежить/рубака
+  if (geneKey === 'd') return 30000;                                          // зооморф
+  if (geneKey === 'e') return 80000;                                          // галактик
+  if (geneKey === 'f') return 160000;                                         // мифик
+  return null;
+}
+
+const fmt = (n) => new Intl.NumberFormat('ru-RU').format(n ?? 0);
+
+function normalizeZone(list, base) {
+  const rows = [];
+  for (const it of (list || [])) {
+    const file = typeof it === 'string' ? it : it.file;
+    if (!file) continue;
+    const stem = file.replace(/\.[^.]+$/, '');
+    const meta = metaFromStem(stem);
+    const store = calcStorage(meta.geneKey, meta.isLuxe);
+    rows.push({
+      id: stem,
+      name: (typeof it === 'object' && it.name) ? it.name : meta.title,
+      description: (typeof it === 'object' && it.description) ? it.description : meta.desc,
+      storage: store,
+      texture: `${base}/${file}`
+    });
+  }
+  const map = new Map(rows.map(r => [r.id, r]));
+  return Array.from(map.values());
+}
+
+const zonesCfg = (zonesData && typeof zonesData === 'object') ? zonesData : { normal: [], luxe: [] };
+const zonesNormal = normalizeZone(zonesCfg.normal || [], '/zones/normal');
+const zonesLuxe   = normalizeZone(zonesCfg.luxe   || [], '/zones/luxe');
+
+const TABS = [
+  { key: 'orbs',      label: 'Сферы' },
+  { key: 'charms',    label: 'Бустеры' },
+  { key: 'materials', label: 'Материалы' },
+  { key: 'buildings', label: 'Здания' },
+  { key: 'zones',     label: 'Зоны' },
+];
+---
+
+<BaseLayout title="Материалы и ресурсы">
+  <section class="intro">
+    <h1>Материалы и ресурсы</h1>
+    <p>Тут находятся все материалы, сферы, бустеры, здания и зоны.</p>
+  </section>
+
+  <nav class="tabs" aria-label="Разделы материалов">
+    {TABS.map((t) => (
+      <button class="tab-btn" type="button" data-tab={t.key} aria-controls={`section-${t.key}`}>{t.label}</button>
+    ))}
+  </nav>
+
+  <section id="section-orbs" class="tab-section" data-tab="orbs" hidden>
+    <MaterialsTable rows={orbsRows} sourcesMap={sourcesMap} title="Сферы" />
+  </section>
+
+  <section id="section-charms" class="tab-section" data-tab="charms" hidden>
+    <MaterialsTable rows={charmsRows} sourcesMap={sourcesMap} title="Бустеры" />
+  </section>
+
+  <section id="section-materials" class="tab-section" data-tab="materials" hidden>
+    <MaterialsTable rows={materialsRows} sourcesMap={sourcesMap} title="Материалы" />
+  </section>
+
+  <section id="section-buildings" class="tab-section" data-tab="buildings" hidden>
+    <MaterialsTable rows={buildingsRows} sourcesMap={sourcesMap} title="Здания" texturePrefix="/buildings/" textureExt=".webp" />
+  </section>
+
+  <section id="section-zones" class="tab-section" data-tab="zones" hidden>
+    <div class="zone-toggle" role="tablist" aria-label="Тип зон">
+      <button type="button" class="zbtn active" data-kind="normal" role="tab" aria-selected="true">Обычные</button>
+      <button type="button" class="zbtn" data-kind="luxe" role="tab" aria-selected="false">Люкс</button>
+    </div>
+
+    <div id="zones-normal" class="zones-grid" data-kind="normal">
+      {zonesNormal.map((z) => (
+        <div class="zone-card" aria-label={z.name} title={z.name}>
+          <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
+          <div class="zone-title">{z.name}</div>
+          {z.description && <div class="zone-desc">{z.description}</div>}
+          {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
+        </div>
+      ))}
+      {zonesNormal.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет обычных зон.</div>}
+    </div>
+
+    <div id="zones-luxe" class="zones-grid" data-kind="luxe" hidden>
+      {zonesLuxe.map((z) => (
+        <div class="zone-card" aria-label={z.name} title={z.name}>
+          <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
+          <div class="zone-title">{z.name}</div>
+          {z.description && <div class="zone-desc">{z.description}</div>}
+          {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
+        </div>
+      ))}
+      {zonesLuxe.length === 0 && <div class="zone-empty">В <code>zones.json</code> пока нет люкс‑зон.</div>}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  (function(){
+    const qsa = (s,d=document)=>Array.from(d.querySelectorAll(s));
+
+    // --- tabs ---
+    const tabs = qsa('.tab-btn');
+    const sections = qsa('.tab-section');
+    function showTab(key){
+      for(const b of tabs){ const on = b.dataset.tab===key; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); }
+      for(const s of sections){ const on = s.dataset.tab===key; s.hidden = !on; }
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', key);
+      history.replaceState(null, '', url.toString());
+    }
+    tabs.forEach((b)=>b.addEventListener('click', ()=>showTab(b.dataset.tab)));
+    showTab(new URL(window.location.href).searchParams.get('tab') || 'materials');
+
+    // --- zones toggle ---
+    const zbtns = qsa('.zbtn');
+    const grids = qsa('.zones-grid');
+    function showZones(kind){
+      for(const b of zbtns){
+        const on = b.dataset.kind===kind;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', String(on));
+      }
+      for(const g of grids){ g.hidden = g.dataset.kind!==kind; }
+    }
+    zbtns.forEach((b)=>b.addEventListener('click', ()=>showZones(b.dataset.kind)));
+    showZones('normal');
+  })();
+</script>
+
+<style>
+  .intro { margin-bottom: 1rem; }
+  .intro h1 { margin: 0 0 0.5rem; font-size: clamp(1.5rem, 1.1rem + 1.1vw, 2.2rem); color: #f8fafc; }
+  .intro p { margin: 0; color: #e5e7eb; }
+
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+  .tab-btn { appearance: none; border: 1px solid rgba(96, 165, 250, 0.28); background: rgba(15, 23, 42, 0.92); color: #e2e8f0; border-radius: 999px; padding: 0.5rem 0.9rem; font-size: 0.95rem; letter-spacing: 0.03em; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+  .tab-btn:hover { transform: translateY(-2px); border-color: rgba(96, 165, 250, 0.6); box-shadow: 0 10px 18px rgba(37, 99, 235, 0.22); }
+  .tab-btn.active { background: linear-gradient(180deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.92)); border-color: rgba(96, 165, 250, 0.65); box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22); }
+  .tab-section { margin-top: 0.5rem; }
+
+  /* переключатель Обычные/Люкс */
+  .zone-toggle{ display:inline-flex; gap:0.5rem; margin-bottom:0.8rem; }
+  .zbtn{ appearance:none; border:1px solid rgba(96,165,250,.28); background:rgba(15,23,42,.92); color:#e2e8f0; border-radius:999px; padding:.35rem .8rem; font-size:.92rem; font-weight:700; letter-spacing:.02em; cursor:pointer; line-height:1; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease; }
+  .zbtn:hover{ transform:translateY(-1px); border-color:rgba(96,165,250,.6); box-shadow:0 10px 18px rgba(37,99,235,.22); }
+  .zbtn.active{ background:linear-gradient(180deg, rgba(30,58,138,.3), rgba(15,23,42,.92)); border-color:rgba(96,165,250,.65); }
+  .zbtn:focus-visible{ outline:2px solid rgba(96,165,250,.8); outline-offset:2px; border-color:rgba(96,165,250,.8); }
+
+  /* ЗОНЫ */
+  .zones-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .zone-card {
+    display: grid; gap: 0.4rem;
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    border-radius: 16px; padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.92);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .zone-card:hover { transform: translateY(-3px); border-color: rgba(96,165,250,0.6); box-shadow: 0 12px 24px rgba(37,99,235,.22); }
+
+  /* витрина изображения — фикс. высота, картинка целиком; без клиппинга */
+  .zone-cover {
+    height: 240px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(2,6,23,0.6);
+    display: grid; place-items: center;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+  .zone-cover img {
+    max-width: 100%; max-height: 100%;
+    width: auto; height: auto;
+    object-fit: contain; object-position: center; display: block;
+  }
+
+  .zone-title { color: #e2e8f0; font-size: 0.95rem; font-weight: 700; }
+  .zone-desc  { color: #94a3b8; font-size: 0.85rem; line-height: 1.25; }
+  .zone-cap   { color: #a7f3d0; font-size: 0.86rem; line-height: 1.25; }
+
+  @media (max-width: 800px) {
+    .zones-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .zone-cover { height: 200px; }
+  }
+</style>

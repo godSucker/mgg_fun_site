@@ -188,6 +188,7 @@ Dev-сервер настроен в `astro.config.ts`:
 =======
 - Проект Archivist Library (MGG Hub) — Astro 5.x + Svelte 5 + Vercel. Важные настройки: 1) .vercel/ и dist/ НЕ должны быть в .gitignore (нужны для деплоя), 2) output: 'server' для SSR, 3) CSS переменные для текста: --color-text-primary: #f1f5f9, --color-text-secondary: #cbd5f5, 4) Глобальный фон: blur(10px), brightness(0.5), opacity: 0.35, scale(1.05) для компенсации размытия.
 - Astro dev server config: usePolling: false, hmr: { overlay: false } — это предотвращает мерцание и исчезновение контента при локальной разработке.
+- QWEN_BASE_URL should be: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
 
 ## Деплой
 

@@ -1,0 +1,79 @@
+{
+  "id": "specimen_ef_04",
+  "code": "ef_04",
+  "name": "Мефистофель",
+  "created_at": "2025-09-02T01:35:02.330367Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_mythic/bronze/EF_04_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_04/EF_04_bronze.webp",
+      "filename": "EF_04_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_mythic/gold/EF_04_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_04/EF_04_gold.webp",
+      "filename": "EF_04_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_mythic/normal/EF_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_04/EF_04_normal.webp",
+      "filename": "EF_04_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_mythic/platinum/EF_04_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_04/EF_04_platinum.webp",
+      "filename": "EF_04_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_mythic/silver/EF_04_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ef_04/EF_04_silver.webp",
+      "filename": "EF_04_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_F/silver/specimen_ef_04_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_04/specimen_ef_04_silver_silver.webp",
+      "filename": "specimen_ef_04_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_F/platinum/specimen_ef_04_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_04/specimen_ef_04_platinum_platinum.webp",
+      "filename": "specimen_ef_04_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_F/normal/specimen_ef_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_04/specimen_ef_04_normal.webp",
+      "filename": "specimen_ef_04_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_F/gold/specimen_ef_04_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_04/specimen_ef_04_gold_gold.webp",
+      "filename": "specimen_ef_04_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_F/bronze/specimen_ef_04_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ef_04/specimen_ef_04_bronze_bronze.webp",
+      "filename": "specimen_ef_04_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_mythic/larva_ef_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ef_04/larva_ef_04.webp",
+      "filename": "larva_ef_04.webp"
+    }
+  ],
+  "tier": "хзЧ",
+  "bingo": [
+    "research_3",
+    "legend"
+  ]
+}

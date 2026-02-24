@@ -1,0 +1,79 @@
+{
+  "id": "specimen_da_04",
+  "code": "da_04",
+  "name": "Эскадрилья «Носорог»",
+  "created_at": "2025-09-02T01:35:02.144117Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_cyber/bronze/DA_04_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_04/DA_04_bronze.webp",
+      "filename": "DA_04_bronze.webp"
+    },
+    {
+      "src": "full-char/zoo_cyber/gold/DA_04_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_04/DA_04_gold.webp",
+      "filename": "DA_04_gold.webp"
+    },
+    {
+      "src": "full-char/zoo_cyber/normal/DA_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_04/DA_04_normal.webp",
+      "filename": "DA_04_normal.webp"
+    },
+    {
+      "src": "full-char/zoo_cyber/platinum/DA_04_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_04/DA_04_platinum.webp",
+      "filename": "DA_04_platinum.webp"
+    },
+    {
+      "src": "full-char/zoo_cyber/silver/DA_04_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/da_04/DA_04_silver.webp",
+      "filename": "DA_04_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_A/silver/specimen_da_04_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_04/specimen_da_04_silver_silver.webp",
+      "filename": "specimen_da_04_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_A/platinum/specimen_da_04_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_04/specimen_da_04_platinum_platinum.webp",
+      "filename": "specimen_da_04_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/D/D_A/normal/specimen_da_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_04/specimen_da_04_normal.webp",
+      "filename": "specimen_da_04_normal.webp"
+    },
+    {
+      "src": "semi-full/D/D_A/gold/specimen_da_04_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_04/specimen_da_04_gold_gold.webp",
+      "filename": "specimen_da_04_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/D/D_A/bronze/specimen_da_04_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/da_04/specimen_da_04_bronze_bronze.webp",
+      "filename": "specimen_da_04_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_cyber/larva_da_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/da_04/larva_da_04.webp",
+      "filename": "larva_da_04.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_3",
+    "legend"
+  ]
+}

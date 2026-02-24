@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ca_07",
+  "code": "ca_07",
+  "name": "Рокки Болтбоа",
+  "created_at": "2025-09-02T01:35:04.041414Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_cyber/bronze/CA_07_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_07/CA_07_bronze.webp",
+      "filename": "CA_07_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/gold/CA_07_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_07/CA_07_gold.webp",
+      "filename": "CA_07_gold.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/normal/CA_07_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_07/CA_07_normal.webp",
+      "filename": "CA_07_normal.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/platinum/CA_07_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_07/CA_07_platinum.webp",
+      "filename": "CA_07_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_cyber/silver/CA_07_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ca_07/CA_07_silver.webp",
+      "filename": "CA_07_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/silver/specimen_ca_07_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_07/specimen_ca_07_silver_silver.webp",
+      "filename": "specimen_ca_07_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/platinum/specimen_ca_07_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_07/specimen_ca_07_platinum_platinum.webp",
+      "filename": "specimen_ca_07_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/normal/specimen_ca_07_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_07/specimen_ca_07_normal.webp",
+      "filename": "specimen_ca_07_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/gold/specimen_ca_07_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_07/specimen_ca_07_gold_gold.webp",
+      "filename": "specimen_ca_07_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_A/bronze/specimen_ca_07_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ca_07/specimen_ca_07_bronze_bronze.webp",
+      "filename": "specimen_ca_07_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_cyber/larva_ca_07.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ca_07/larva_ca_07.webp",
+      "filename": "larva_ca_07.webp"
+    }
+  ],
+  "bingo": [
+    "research_6"
+  ]
+}
