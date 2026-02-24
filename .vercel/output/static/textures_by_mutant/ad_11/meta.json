@@ -1,0 +1,30 @@
+{
+  "id": "specimen_ad_11",
+  "code": "ad_11",
+  "name": "Яйцевидный мехарахнид",
+  "created_at": "2025-09-02T01:35:06.075611Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_zoo/normal/AD_11_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_11/AD_11_normal.webp",
+      "filename": "AD_11_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A_D/normal/specimen_ad_11_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_11/specimen_ad_11_normal.webp",
+      "filename": "specimen_ad_11_normal.webp"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_zoo/larva_ad_11.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ad_11/larva_ad_11.webp",
+      "filename": "larva_ad_11.webp"
+    }
+  ],
+  "bingo": [
+    "research_10",
+    "event_2020"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ce_11",
+  "code": "ce_11",
+  "name": "Чунь Ли",
+  "created_at": "2025-09-02T01:35:06.211494Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_galactic/bronze/CE_11_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_11/CE_11_bronze.webp",
+      "filename": "CE_11_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_galactic/gold/CE_11_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_11/CE_11_gold.webp",
+      "filename": "CE_11_gold.webp"
+    },
+    {
+      "src": "full-char/saber_galactic/normal/CE_11_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_11/CE_11_normal.webp",
+      "filename": "CE_11_normal.webp"
+    },
+    {
+      "src": "full-char/saber_galactic/platinum/CE_11_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_11/CE_11_platinum.webp",
+      "filename": "CE_11_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_galactic/silver/CE_11_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ce_11/CE_11_silver.webp",
+      "filename": "CE_11_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_E/silver/specimen_ce_11_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_11/specimen_ce_11_silver_silver.webp",
+      "filename": "specimen_ce_11_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_E/platinum/specimen_ce_11_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_11/specimen_ce_11_platinum_platinum.webp",
+      "filename": "specimen_ce_11_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_E/normal/specimen_ce_11_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_11/specimen_ce_11_normal.webp",
+      "filename": "specimen_ce_11_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_E/gold/specimen_ce_11_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_11/specimen_ce_11_gold_gold.webp",
+      "filename": "specimen_ce_11_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_E/bronze/specimen_ce_11_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ce_11/specimen_ce_11_bronze_bronze.webp",
+      "filename": "specimen_ce_11_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_galactic/larva_ce_11.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ce_11/larva_ce_11.webp",
+      "filename": "larva_ce_11.webp"
+    }
+  ],
+  "tier": "3-",
+  "bingo": [
+    "research_10"
+  ]
+}

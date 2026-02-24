@@ -87,8 +87,8 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   orb_basic_life: 'Сфера HP',
   orb_basic_critical: 'Сфера крит. урона',
   orb_basic_strengthen: 'Сфера усиления',
-  orb_basic_weaken: 'Сфера проклятья',
-  orb_basic_regenerate: 'Сфера вампиризма',
+  orb_basic_weaken: 'Сфера понижения',
+  orb_basic_regenerate: 'Сфера регенерации',
   orb_basic_shield: 'Сфера щита',
   orb_basic_retaliate: 'Сфера отражения',
   orb_basic_slash: 'Сфера ранения',
@@ -96,8 +96,8 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
 
   // Special orbs
   orb_special_addstrengthen: 'Особая сфера усиления',
-  orb_special_addweaken: 'Особая сфера проклятья',
-  orb_special_addregenerate: 'Особая сфера вампиризма',
+  orb_special_addweaken: 'Особая сфера понижения',
+  orb_special_addregenerate: 'Особая сфера регенерации',
   orb_special_addshield: 'Особая сфера щита',
   orb_special_addretaliate: 'Особая сфера отражения',
   orb_special_addslash: 'Особая сфера ранения',
@@ -171,8 +171,43 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
 
   // Переименованные рецепты для Black Hole (перемещены в "Крафты")
   'little_rewards_01': 'Крафт из 2 предметов',
-  'big_rewards_01': 'Серебряная звезда ×3',
+  'big_rewards_01': 'Крафт звёзд и жетонов испытаний',
   'big_rewards_02': 'Крафт жетона генератора (шанс 15%)',
+
+  // Рецепты для левой колонки (token_sink)
+  'token_sink_01': 'Платиновая звезда',
+  'token_sink_02': 'Золотая звезда',
+  'token_sink_03': 'Серебряная звезда',
+  'token_sink_04': 'Бронзовая звезда',
+  'token_sink_05': 'Золотая звезда',
+  'token_sink_06': 'Серебряная звезда',
+};
+
+// Кастомные заголовки для detail view
+export const RECIPE_HEADER_TITLES: Record<string, string> = {
+  // Crafts (правая колонка)
+  'big_rewards_01': 'Крафт на получение звёзд, жетонов испытаний и особых сфер 3 уровня',
+  'pot_pourri_03': 'Крафт 3 аптечек',
+  'pot_pourri_04': 'Крафт 4 аптечек',
+  'pot_pourri_05': 'Крафт 5 аптечек',
+  'pot_pourri_06': 'Крафт 6 аптечек',
+  'pot_pourri_07': 'Крафт 7 аптечек',
+  'little_rewards_01': 'Крафт из 2 предметов для задания',
+  'big_rewards_02': 'Шанс скрафтить жетон генератора (не советуем)',
+
+  // Recipes (левая колонка)
+  'token_sink_01': 'Крафт платиновой звезды',
+  'token_sink_02': 'Крафт золотой звезды',
+  'token_sink_03': 'Крафт серебряной звезды',
+  'token_sink_04': 'Крафт бронзовой звезды',
+  'token_sink_05': 'Крафт золотой звезды',
+  'token_sink_06': 'Крафт серебряной звезды х3',
+  'chronoshifted_addshield': 'Крафт особой сферы щита 4 уровня',
+  'chronoshifted_addslash': 'Крафт особой сферы ранения 4 уровня',
+  'chronoshifted_addregen': 'Крафт особой сферы регенерации 4 уровня',
+  'chronoshifted_addweaken': 'Крафт особой сферы понижения 4 уровня',
+  'chronoshifted_addstrengthen': 'Крафт особой сферы усиления 4 уровня',
+  'chronoshifted_retaliate': 'Крафт особой сферы отражения 4 уровня',
 };
 
 const ITEM_TEXTURES: Record<string, string> = {
@@ -204,9 +239,9 @@ const ITEM_TEXTURES: Record<string, string> = {
   Material_Energy1: '/materials/ticket_1.webp',
 
   // Текстуры для перемещённых рецептов Black Hole
-  'little_rewards_01': '/med/mini_med.webp',  // Material_LP10
-  'big_rewards_01': '/stars/star_silver.webp',  // Star_Silver x3
-  'big_rewards_02': '/boosters/charm_xpx3_7.webp',  // Charm_Xpx3_7
+  'little_rewards_01': '/materials/big_xp.webp',
+  'big_rewards_01': '/stars/star_silver.webp',  // Star_Silver
+  'big_rewards_02': '/tokens/material_gacha_token.webp',  // Generator Token Craft
 };
 
 const SPECIAL_ORB_TEXTURE_BLACKLIST = new Set([

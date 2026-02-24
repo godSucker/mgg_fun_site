@@ -45,8 +45,12 @@
   // STATS
   let tokensSpent = 0;
   let goldSpent = 0;
-  let inventory = new Map<string, number>(); 
-  let history: SpinResult[] = []; 
+  let tokenSpins = 0;
+  let goldSpins = 0;
+  let inventory = new Map<string, number>();
+  let history: SpinResult[] = [];
+
+  $: totalSpins = tokenSpins + goldSpins;
 
   const totalUniqueBaseRewards = baseSpecimenIds.size || baseRewards.length;
 
@@ -107,12 +111,17 @@
 
   function registerResult(result: SpinResult) {
     lastResult = result;
-    if (result.costType === 'token') tokensSpent += gacha.token_cost;
-    else goldSpent += gacha.hc_cost;
+    if (result.costType === 'token') {
+      tokensSpent += gacha.token_cost;
+      tokenSpins += 1;
+    } else {
+      goldSpent += gacha.hc_cost;
+      goldSpins += 1;
+    }
 
     const key = result.item.specimen;
     inventory.set(key, (inventory.get(key) || 0) + 1);
-    inventory = new Map(inventory); 
+    inventory = new Map(inventory);
     history = [result, ...history].slice(0, 10);
   }
 
@@ -283,7 +292,11 @@
 
   <aside class="info-panel">
     <div class="info-card stats-card">
-        <h3>Статистика</h3>
+        <h3 class="stats-title">Статистика</h3>
+        <div class="stats-total">
+            <span class="total-label">Сделано прокрутов:</span>
+            <span class="total-val">{totalSpins}</span>
+        </div>
         <div class="stats-row">
             <div class="stat-item"><span class="stat-label">Жетонов:</span><span class="stat-val token">{tokensSpent}</span></div>
             <div class="stat-item"><span class="stat-label">Золота:</span><span class="stat-val hc">{goldSpent}</span></div>
@@ -378,24 +391,24 @@
   }
   .stage-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
   .stage-header h1 { margin: 0; font-size: 1.8rem; color: #f1f5f9; }
-  .stage-header p { margin: 0.25rem 0 0; color: #94a3b8; font-size: 0.9rem; }
+  .stage-header p { margin: 0.25rem 0 0; color: #e5e7eb; font-size: 0.9rem; }
   .header-progress { min-width: 160px; text-align: right; }
   .header-progress span { color: #cbd5f5; font-size: 0.85rem; display: block; margin-bottom: 4px; }
   .header-meter { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
   .header-fill { height: 100%; background: #3b82f6; transition: width 0.3s; }
-  .slot-track { display: flex; gap: 1rem; padding-bottom: 10px; overflow-x: auto; }
-  .slot-card { flex: 0 0 130px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); position: relative; transition: all 0.2s; overflow: hidden; }
+  .slot-track { display: flex; gap: 0.5rem; padding-bottom: 10px; flex-wrap: nowrap; }
+  .slot-card { flex: 0 0 130px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); position: relative; transition: all 0.2s; }
   .slot-card.unlocked { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.5); }
   .slot-card.active { transform: translateY(-4px); border-color: #facc15; box-shadow: 0 0 15px rgba(250, 204, 21, 0.3); }
-  .slot-inner { padding: 0.75rem; display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%; }
-  .slot-top { display: flex; justify-content: space-between; width: 100%; margin-bottom: 6px; font-size: 0.7rem; color: #94a3b8; }
-  .slot-stars { height: 16px; }
+  .slot-inner { padding: 0.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%; }
+  .slot-top { display: flex; justify-content: space-between; width: 100%; margin-bottom: 4px; font-size: 0.65rem; color: #94a3b8; }
+  .slot-stars { height: 14px; }
   .slot-odds { font-weight: 600; background: rgba(0,0,0,0.3); padding: 1px 4px; border-radius: 4px; }
-  .slot-art { width: 100%; height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+  .slot-art { width: 100%; height: 95px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; border-radius: var(--radius-lg); }
   .slot-art img { max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5)); }
   .slot-placeholder { color: #475569; font-size: 1.5rem; }
   .slot-name { font-size: 0.8rem; font-weight: 600; color: #e2e8f0; line-height: 1.2; margin-bottom: auto; }
-  .slot-overlay-check { position: absolute; inset: 0; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-lg); pointer-events: none; display: flex; align-items: start; justify-content: end; padding: 6px; }
+  .slot-overlay-check { position: absolute; inset: 0; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); pointer-events: none; display: flex; align-items: start; justify-content: end; padding: 6px; }
   .check-icon { background: #10b981; color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
   .slot-card.completion { border-color: #eab308; background: rgba(234, 179, 8, 0.1); }
   .stage-controls { margin-top: 2rem; }
@@ -407,24 +420,28 @@
   .spin.token { background: #22d3ee; }
   .spin.hc { background: #fbbf24; }
   .spin:hover { filter: brightness(1.1); }
-  .info-panel { display: flex; flex-direction: column; gap: 1rem; }
-  .info-card { background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1rem; overflow: hidden; }
-  .info-card h3 { margin: 0 0 0.8rem; font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
-  .stats-row { display: flex; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.8rem; }
+  .info-panel { display: flex; flex-direction: column; gap: 0.75rem; }
+  .info-card { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 0.75rem; overflow: hidden; }
+  .info-card h2, .info-card h3 { margin: 0 0 0.6rem; font-size: 0.75rem; color: #e2e8f0; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+  .stats-title { text-align: center; display: block; margin-bottom: 0.5rem; font-size: 0.75rem; }
+  .stats-total { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; margin-bottom: 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .total-label { font-size: 0.8rem; color: #cbd5f5; font-weight: 500; }
+  .total-val { font-size: 1rem; font-weight: 700; color: #f1f5f9; }
+  .stats-row { display: flex; gap: 1rem; margin-bottom: 0.75rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
   .stat-item { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-  .stat-label { font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
+  .stat-label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; font-weight: 500; }
   .stat-val { font-size: 1.2rem; font-weight: 700; }
   .stat-val.token { color: #22d3ee; }
   .stat-val.hc { color: #fbbf24; }
-  .inventory-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+  .inventory-list { display: flex; flex-direction: column; gap: 6px; }
   .inv-item { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.2); padding: 6px; border-radius: var(--radius-sm); }
-  .inv-thumb { width: 32px; height: 32px; flex-shrink: 0; }
+  .inv-thumb { width: 40px; height: 40px; flex-shrink: 0; }
   .inv-thumb img { width: 100%; height: 100%; object-fit: contain; }
   .inv-name { flex: 1; font-size: 0.8rem; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .inv-count { font-size: 0.85rem; font-weight: 700; color: #84cc16; }
-  .result-card { background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; }
-  .result-body { display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem; }
-  .result-art-wrapper { width: 60px; height: 60px; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+  .result-card { background: rgba(15, 23, 42, 0.8); border-color: #3b82f6; padding: 0.6rem; }
+  .result-body { display: flex; gap: 0.6rem; align-items: center; margin-top: 0.3rem; }
+  .result-art-wrapper { width: 72px; height: 72px; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
   .result-art { max-width: 90%; max-height: 90%; }
   .result-info h3 { color: #fff; font-size: 1rem; margin-bottom: 0.2rem; }
   .result-info p { margin: 0; font-size: 0.85rem; color: #cbd5f5; }
@@ -432,8 +449,8 @@
   .history-card ul { list-style: none; padding: 0; margin: 0; }
   .history-card li { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .history-card li:last-child { border-bottom: none; }
-  .history-thumb { width: 40px; height: 40px; background: rgba(0,0,0,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .history-thumb img { max-width: 80%; max-height: 80%; }
+  .history-thumb { width: 48px; height: 48px; background: rgba(0,0,0,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .history-thumb img { max-width: 85%; max-height: 85%; }
   .history-name { font-size: 0.85rem; color: #e2e8f0; font-weight: 500; }
   .history-meta { display: flex; gap: 0.5rem; font-size: 0.75rem; color: #64748b; }
   .mini-badge { font-size: 0.7rem; font-weight: bold; }
@@ -452,7 +469,7 @@
     .info-panel .stats-card { order: 1; }
     .info-panel .result-card { order: 2; }
     .info-panel .history-card { order: 3; }
-    
+
     .reactor-stage {
       padding: 1rem;
     }

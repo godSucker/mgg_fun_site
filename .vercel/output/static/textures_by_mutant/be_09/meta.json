@@ -1,0 +1,80 @@
+{
+  "id": "specimen_be_09",
+  "code": "be_09",
+  "name": "Пиротроп",
+  "created_at": "2025-09-02T01:35:05.177792Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_galactic/bronze/BE_09_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_09/BE_09_bronze.webp",
+      "filename": "BE_09_bronze.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/gold/BE_09_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_09/BE_09_gold.webp",
+      "filename": "BE_09_gold.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/normal/BE_09_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_09/BE_09_normal.webp",
+      "filename": "BE_09_normal.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/platinum/BE_09_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_09/BE_09_platinum.webp",
+      "filename": "BE_09_platinum.webp"
+    },
+    {
+      "src": "full-char/necro_galactic/silver/BE_09_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/be_09/BE_09_silver.webp",
+      "filename": "BE_09_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/silver/specimen_be_09_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_09/specimen_be_09_silver_silver.webp",
+      "filename": "specimen_be_09_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/platinum/specimen_be_09_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_09/specimen_be_09_platinum_platinum.webp",
+      "filename": "specimen_be_09_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/normal/specimen_be_09_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_09/specimen_be_09_normal.webp",
+      "filename": "specimen_be_09_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/gold/specimen_be_09_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_09/specimen_be_09_gold_gold.webp",
+      "filename": "specimen_be_09_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/B/B_E/bronze/specimen_be_09_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/be_09/specimen_be_09_bronze_bronze.webp",
+      "filename": "specimen_be_09_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necro_galactic/larva_be_09.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/be_09/larva_be_09.webp",
+      "filename": "larva_be_09.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "2025_events",
+    "anniversary_25",
+    "research_8"
+  ]
+}

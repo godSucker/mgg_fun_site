@@ -1,0 +1,21 @@
+{
+  "id": "specimen_a_02",
+  "code": "a_02",
+  "name": "Слабый Робот",
+  "created_at": "2025-09-02T01:35:00.352957Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_cyber/normal/A_02_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_02/A_02_normal.webp",
+      "filename": "A_02_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A/normal/specimen_a_02_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_02/specimen_a_02_normal.webp",
+      "filename": "specimen_a_02_normal.webp"
+    }
+  ],
+  "bingo": []
+}

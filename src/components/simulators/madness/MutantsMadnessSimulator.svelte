@@ -631,7 +631,7 @@
 
   .label {
     font-size: 0.9rem;
-    color: rgba(226, 232, 240, 0.8);
+    color: #e5e7eb;
   }
 
   input,
@@ -653,7 +653,7 @@
   }
 
   small {
-    color: rgba(148, 163, 184, 0.7);
+    color: #e5e7eb;
     font-size: 0.78rem;
   }
 
@@ -743,11 +743,11 @@
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(203, 213, 225, 0.7);
+    color: #e5e7eb;
   }
 
   .summary-card.highlight .title {
-    color: rgba(221, 214, 254, 0.82);
+    color: rgba(221, 214, 254, 0.9);
   }
 
   .summary-card strong {
@@ -785,11 +785,11 @@
 
   .summary-card .meta {
     font-size: 0.78rem;
-    color: rgba(203, 213, 225, 0.7);
+    color: #e5e7eb;
   }
 
   .summary-card.highlight .meta {
-    color: rgba(221, 214, 254, 0.75);
+    color: rgba(221, 214, 254, 0.85);
   }
 
   .summary-card .meta.odds {

@@ -1,0 +1,31 @@
+{
+  "id": "specimen_dc_03",
+  "code": "dc_03",
+  "name": "Гаргантус",
+  "created_at": "2025-09-02T01:35:01.449753Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_saber/normal/DC_03_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dc_03/DC_03_normal.webp",
+      "filename": "DC_03_normal.webp"
+    },
+    {
+      "src": "semi-full/D/D_C/normal/specimen_dc_03_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dc_03/specimen_dc_03_normal.webp",
+      "filename": "specimen_dc_03_normal.webp"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_saber/larva_dc_03.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/dc_03/larva_dc_03.webp",
+      "filename": "larva_dc_03.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_2",
+    "reactor"
+  ]
+}

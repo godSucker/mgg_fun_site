@@ -1,0 +1,81 @@
+{
+  "id": "specimen_ed_01",
+  "code": "ed_01",
+  "name": "Ксенос",
+  "created_at": "2025-09-02T01:35:00.149616Z",
+  "found_files": [
+    {
+      "src": "full-char/galactic_zoo/bronze/ED_01_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_01/ED_01_bronze.webp",
+      "filename": "ED_01_bronze.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/gold/ED_01_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_01/ED_01_gold.webp",
+      "filename": "ED_01_gold.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/normal/ED_01_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_01/ED_01_normal.webp",
+      "filename": "ED_01_normal.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/platinum/ED_01_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_01/ED_01_platinum.webp",
+      "filename": "ED_01_platinum.webp"
+    },
+    {
+      "src": "full-char/galactic_zoo/silver/ED_01_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ed_01/ED_01_silver.webp",
+      "filename": "ED_01_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/silver/specimen_ed_01_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_01/specimen_ed_01_silver_silver.webp",
+      "filename": "specimen_ed_01_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/platinum/specimen_ed_01_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_01/specimen_ed_01_platinum_platinum.webp",
+      "filename": "specimen_ed_01_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/normal/specimen_ed_01_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_01/specimen_ed_01_normal.webp",
+      "filename": "specimen_ed_01_normal.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/gold/specimen_ed_01_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_01/specimen_ed_01_gold_gold.webp",
+      "filename": "specimen_ed_01_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/E/E_D/bronze/specimen_ed_01_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ed_01/specimen_ed_01_bronze_bronze.webp",
+      "filename": "specimen_ed_01_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/5) GALACTIC/galactic_zoo/larva_ed_01.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ed_01/larva_ed_01.webp",
+      "filename": "larva_ed_01.webp"
+    }
+  ],
+  "bingo": [
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat"
+  ]
+}

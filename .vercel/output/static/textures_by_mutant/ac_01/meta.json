@@ -1,0 +1,84 @@
+{
+  "id": "specimen_ac_01",
+  "code": "ac_01",
+  "name": "Ниндзябот",
+  "created_at": "2025-09-02T01:34:59.551066Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_saber/bronze/AC_01_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_01/AC_01_bronze.webp",
+      "filename": "AC_01_bronze.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/gold/AC_01_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_01/AC_01_gold.webp",
+      "filename": "AC_01_gold.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/normal/AC_01_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_01/AC_01_normal.webp",
+      "filename": "AC_01_normal.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/platinum/AC_01_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_01/AC_01_platinum.webp",
+      "filename": "AC_01_platinum.webp"
+    },
+    {
+      "src": "full-char/cyber_saber/silver/AC_01_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ac_01/AC_01_silver.webp",
+      "filename": "AC_01_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/silver/specimen_ac_01_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_01/specimen_ac_01_silver_silver.webp",
+      "filename": "specimen_ac_01_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/platinum/specimen_ac_01_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_01/specimen_ac_01_platinum_platinum.webp",
+      "filename": "specimen_ac_01_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/normal/specimen_ac_01_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_01/specimen_ac_01_normal.webp",
+      "filename": "specimen_ac_01_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/gold/specimen_ac_01_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_01/specimen_ac_01_gold_gold.webp",
+      "filename": "specimen_ac_01_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/A/A_C/bronze/specimen_ac_01_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ac_01/specimen_ac_01_bronze_bronze.webp",
+      "filename": "specimen_ac_01_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_saber/larva_ac_01.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ac_01/larva_ac_01.webp",
+      "filename": "larva_ac_01.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "Starter",
+    "cross_mutation",
+    "bingo_bronze",
+    "bingo_silver",
+    "bingo_gold",
+    "bingo_plat",
+    "starter_plat"
+  ]
+}

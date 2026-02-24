@@ -1,0 +1,78 @@
+{
+  "id": "specimen_cb_04",
+  "code": "cb_04",
+  "name": "Леонид",
+  "created_at": "2025-09-02T01:35:02.058517Z",
+  "found_files": [
+    {
+      "src": "full-char/saber_necro/bronze/CB_04_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_04/CB_04_bronze.webp",
+      "filename": "CB_04_bronze.webp"
+    },
+    {
+      "src": "full-char/saber_necro/gold/CB_04_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_04/CB_04_gold.webp",
+      "filename": "CB_04_gold.webp"
+    },
+    {
+      "src": "full-char/saber_necro/normal/CB_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_04/CB_04_normal.webp",
+      "filename": "CB_04_normal.webp"
+    },
+    {
+      "src": "full-char/saber_necro/platinum/CB_04_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_04/CB_04_platinum.webp",
+      "filename": "CB_04_platinum.webp"
+    },
+    {
+      "src": "full-char/saber_necro/silver/CB_04_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/cb_04/CB_04_silver.webp",
+      "filename": "CB_04_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/silver/specimen_cb_04_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_04/specimen_cb_04_silver_silver.webp",
+      "filename": "specimen_cb_04_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/platinum/specimen_cb_04_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_04/specimen_cb_04_platinum_platinum.webp",
+      "filename": "specimen_cb_04_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/normal/specimen_cb_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_04/specimen_cb_04_normal.webp",
+      "filename": "specimen_cb_04_normal.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/gold/specimen_cb_04_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_04/specimen_cb_04_gold_gold.webp",
+      "filename": "specimen_cb_04_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/C/C_B/bronze/specimen_cb_04_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/cb_04/specimen_cb_04_bronze_bronze.webp",
+      "filename": "specimen_cb_04_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/3) SABER/saber_necro/larva_cb_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/cb_04/larva_cb_04.webp",
+      "filename": "larva_cb_04.webp"
+    }
+  ],
+  "tier": "un-tired",
+  "bingo": [
+    "research_3"
+  ]
+}

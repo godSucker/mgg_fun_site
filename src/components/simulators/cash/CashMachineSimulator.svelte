@@ -388,7 +388,7 @@
   .input-group span {
     display: block;
     font-size: 0.95rem;
-    color: #fceabb;
+    color: #e5e7eb;
     margin-bottom: 0.45rem;
   }
 
@@ -436,7 +436,7 @@
   }
 
   small {
-    color: rgba(248, 250, 252, 0.6);
+    color: #e5e7eb;
   }
 
   .actions {

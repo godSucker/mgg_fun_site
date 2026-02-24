@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import MutantsBrowser from '@/components/MutantsBrowser.svelte';
+import mutants from '@/data/mutants/mutants.json';
+
+export function getStaticPaths() {
+  const tiers = ['all','normal','bronze','silver','gold','platinum'];
+  return tiers.map(tier => ({ params: { tier } }));
+}
+
+const { tier } = Astro.params;
+
+let rows = [];
+let pageTitle = '';
+
+if (tier === 'all') {
+  rows = mutants;
+  pageTitle = 'Все мутанты';
+} else {
+  rows = mutants.filter((m: any) => m.stars && m.stars[tier]);
+  pageTitle = { normal:'Обычные мутанты', bronze:'Бронза', silver:'Серебро', gold:'Золото', platinum:'Платина' }[tier];
+  if (!pageTitle) throw new Error(`Неизвестный путь: /mutants/${tier}`);
+}
+---
+
+<BaseLayout title={pageTitle}>
+  <section style="display:grid;gap:12px">
+    <h1>{pageTitle}</h1>
+    <MutantsBrowser client:load rows={rows} initialTier={tier} />
+  </section>
+</BaseLayout>

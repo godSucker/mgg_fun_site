@@ -1,0 +1,42 @@
+{
+  "id": "specimen_fe_05",
+  "code": "fe_05",
+  "name": "Небулус",
+  "created_at": "2025-09-02T01:35:03.096221Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_galactic/normal/FE_05_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_05/FE_05_normal.webp",
+      "filename": "FE_05_normal.webp"
+    },
+    {
+      "src": "full-char/mythic_galactic/silver/FE_05_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_05/FE_05_silver.webp",
+      "filename": "FE_05_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/silver/specimen_fe_05_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_05/specimen_fe_05_silver_silver.webp",
+      "filename": "specimen_fe_05_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/normal/specimen_fe_05_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_05/specimen_fe_05_normal.webp",
+      "filename": "specimen_fe_05_normal.webp"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_galactic/larva_fe_05.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fe_05/larva_fe_05.webp",
+      "filename": "larva_fe_05.webp"
+    }
+  ],
+  "tier": "3-",
+  "bingo": [
+    "research_4"
+  ]
+}

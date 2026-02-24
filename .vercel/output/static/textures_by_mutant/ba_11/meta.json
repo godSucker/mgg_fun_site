@@ -1,0 +1,78 @@
+{
+  "id": "specimen_ba_11",
+  "code": "ba_11",
+  "name": "Повелитель дорог",
+  "created_at": "2025-09-02T01:35:06.107317Z",
+  "found_files": [
+    {
+      "src": "full-char/necro_cyber/bronze/BA_11_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_11/BA_11_bronze.webp",
+      "filename": "BA_11_bronze.webp"
+    },
+    {
+      "src": "full-char/necro_cyber/gold/BA_11_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_11/BA_11_gold.webp",
+      "filename": "BA_11_gold.webp"
+    },
+    {
+      "src": "full-char/necro_cyber/normal/BA_11_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_11/BA_11_normal.webp",
+      "filename": "BA_11_normal.webp"
+    },
+    {
+      "src": "full-char/necro_cyber/platinum/BA_11_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_11/BA_11_platinum.webp",
+      "filename": "BA_11_platinum.webp"
+    },
+    {
+      "src": "full-char/necro_cyber/silver/BA_11_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ba_11/BA_11_silver.webp",
+      "filename": "BA_11_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_A/silver/specimen_ba_11_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_11/specimen_ba_11_silver_silver.webp",
+      "filename": "specimen_ba_11_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/B/B_A/platinum/specimen_ba_11_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_11/specimen_ba_11_platinum_platinum.webp",
+      "filename": "specimen_ba_11_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/B/B_A/normal/specimen_ba_11_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_11/specimen_ba_11_normal.webp",
+      "filename": "specimen_ba_11_normal.webp"
+    },
+    {
+      "src": "semi-full/B/B_A/gold/specimen_ba_11_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_11/specimen_ba_11_gold_gold.webp",
+      "filename": "specimen_ba_11_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/B/B_A/bronze/specimen_ba_11_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ba_11/specimen_ba_11_bronze_bronze.webp",
+      "filename": "specimen_ba_11_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/2) NECRO/necro_cyber/larva_ba_11.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ba_11/larva_ba_11.webp",
+      "filename": "larva_ba_11.webp"
+    }
+  ],
+  "tier": "3-",
+  "bingo": [
+    "research_10"
+  ]
+}

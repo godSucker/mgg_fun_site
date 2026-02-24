@@ -1,0 +1,77 @@
+{
+  "id": "specimen_db_09",
+  "code": "db_09",
+  "name": "Хоракс",
+  "created_at": "2025-09-02T01:35:05.289226Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_necro/bronze/DB_09_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_09/DB_09_bronze.webp",
+      "filename": "DB_09_bronze.webp"
+    },
+    {
+      "src": "full-char/zoo_necro/gold/DB_09_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_09/DB_09_gold.webp",
+      "filename": "DB_09_gold.webp"
+    },
+    {
+      "src": "full-char/zoo_necro/normal/DB_09_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_09/DB_09_normal.webp",
+      "filename": "DB_09_normal.webp"
+    },
+    {
+      "src": "full-char/zoo_necro/platinum/DB_09_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_09/DB_09_platinum.webp",
+      "filename": "DB_09_platinum.webp"
+    },
+    {
+      "src": "full-char/zoo_necro/silver/DB_09_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/db_09/DB_09_silver.webp",
+      "filename": "DB_09_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_B/silver/specimen_db_09_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_09/specimen_db_09_silver_silver.webp",
+      "filename": "specimen_db_09_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_B/platinum/specimen_db_09_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_09/specimen_db_09_platinum_platinum.webp",
+      "filename": "specimen_db_09_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/D/D_B/normal/specimen_db_09_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_09/specimen_db_09_normal.webp",
+      "filename": "specimen_db_09_normal.webp"
+    },
+    {
+      "src": "semi-full/D/D_B/gold/specimen_db_09_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_09/specimen_db_09_gold_gold.webp",
+      "filename": "specimen_db_09_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/D/D_B/bronze/specimen_db_09_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/db_09/specimen_db_09_bronze_bronze.webp",
+      "filename": "specimen_db_09_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_necro/larva_db_09.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/db_09/larva_db_09.webp",
+      "filename": "larva_db_09.webp"
+    }
+  ],
+  "bingo": [
+    "research_8"
+  ]
+}

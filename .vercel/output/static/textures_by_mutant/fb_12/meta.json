@@ -1,0 +1,78 @@
+{
+  "id": "specimen_fb_12",
+  "code": "fb_12",
+  "name": "Дева сумрака",
+  "created_at": "2025-09-02T01:35:06.760020Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_necro/bronze/FB_12_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_12/FB_12_bronze.webp",
+      "filename": "FB_12_bronze.webp"
+    },
+    {
+      "src": "full-char/mythic_necro/gold/FB_12_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_12/FB_12_gold.webp",
+      "filename": "FB_12_gold.webp"
+    },
+    {
+      "src": "full-char/mythic_necro/normal/FB_12_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_12/FB_12_normal.webp",
+      "filename": "FB_12_normal.webp"
+    },
+    {
+      "src": "full-char/mythic_necro/platinum/FB_12_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_12/FB_12_platinum.webp",
+      "filename": "FB_12_platinum.webp"
+    },
+    {
+      "src": "full-char/mythic_necro/silver/FB_12_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fb_12/FB_12_silver.webp",
+      "filename": "FB_12_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_B/silver/specimen_fb_12_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_12/specimen_fb_12_silver_silver.webp",
+      "filename": "specimen_fb_12_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_B/platinum/specimen_fb_12_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_12/specimen_fb_12_platinum_platinum.webp",
+      "filename": "specimen_fb_12_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/F/F_B/normal/specimen_fb_12_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_12/specimen_fb_12_normal.webp",
+      "filename": "specimen_fb_12_normal.webp"
+    },
+    {
+      "src": "semi-full/F/F_B/gold/specimen_fb_12_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_12/specimen_fb_12_gold_gold.webp",
+      "filename": "specimen_fb_12_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/F/F_B/bronze/specimen_fb_12_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fb_12/specimen_fb_12_bronze_bronze.webp",
+      "filename": "specimen_fb_12_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_necro/larva_fb_12.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fb_12/larva_fb_12.webp",
+      "filename": "larva_fb_12.webp"
+    }
+  ],
+  "tier": "2-",
+  "bingo": [
+    "research_11"
+  ]
+}

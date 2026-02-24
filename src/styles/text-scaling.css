@@ -1,0 +1,415 @@
+/* 
+ * Text-Only Scaling for QHD and Larger Displays
+ * Увеличивает ТОЛЬКО размер текста, не затрагивая изображения, иконки и макет
+ */
+
+/* 
+ * Брейкпоинт для больших мониторов (1400px+)
+ * Увеличение текста на ~15%
+ */
+@media (min-width: 1400px) {
+  /* Текстовые элементы */
+  p,
+  span,
+  a:not([class*="button"]):not([role="button"]),
+  li,
+  label,
+  input:not([type="image"]),
+  textarea,
+  select,
+  button:not([class*="icon"]):not(:has(img)):not(:has(svg)),
+  
+  /* Заголовки */
+  h1, h2, h3, h4, h5, h6,
+  
+  /* Элементы с явными текстовыми классами */
+  [class*="text"],
+  [class*="title"],
+  [class*="label"],
+  [class*="caption"],
+  [class*="description"],
+  [class*="content"],
+  
+  /* Таблицы */
+  td, th,
+  
+  /* Навигация */
+  nav a,
+  nav span,
+  
+  /* Footer */
+  footer p,
+  footer a,
+  
+  /* Header */
+  header a:not(:has(img)),
+  header span,
+  
+  /* Dropdown меню */
+  .dropdown-menu a,
+  .dropdown-trigger,
+  
+  /* Mobile nav */
+  .mobile-nav a,
+  .mobile-nav-header h2,
+  
+  /* Карточки и гриды */
+  .card p,
+  .card a,
+  .card span,
+  .card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+  .grid p,
+  .grid a,
+  .grid span,
+  
+  /* Модальные окна */
+  .modal p,
+  .modal a,
+  .modal span,
+  .modal h1, .modal h2, .modal h3, .modal h4, .modal h5, .modal h6,
+  
+  /* Формы */
+  .form-group label,
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  
+  /* Таблицы материалов и мутантов */
+  .materials-table td,
+  .materials-table th,
+  .mutants-table td,
+  .mutants-table th,
+  
+  /* Калькуляторы и симуляторы */
+  .calculator label,
+  .calculator input,
+  .calculator span,
+  .simulator label,
+  .simulator input,
+  .simulator span,
+  
+  /* Breadcrumbs и навигационные элементы */
+  .breadcrumb,
+  .breadcrumb a,
+  .pagination,
+  .pagination a,
+  .pagination span,
+  
+  /* Прочие текстовые контейнеры */
+  .description,
+  .stats,
+  .info,
+  .tooltip,
+  .hint
+  {
+    font-size: 1.15em !important;
+  }
+  
+  /* Исключения: элементы, которые НЕ должны масштабироваться */
+  img,
+  svg,
+  svg *,
+  [class*="icon"],
+  [class*="Icon"],
+  [class*="orb"],
+  [class*="Orb"],
+  [class*="image"],
+  [class*="Image"],
+  [class*="avatar"],
+  [class*="logo"]:has(img),
+  [class*="texture"],
+  [class*="sprite"],
+  canvas,
+  video,
+  iframe,
+  
+  /* Кнопки с иконками */
+  button:has(img),
+  button:has(svg),
+  [role="button"]:has(img),
+  [role="button"]:has(svg),
+  
+  /* Элементы с фиксированными размерами */
+  [style*="width:"],
+  [style*="height:"]
+  {
+    width: auto !important;
+    height: auto !important;
+    max-width: unset !important;
+    font-size: inherit !important; /* Наследуем, но не увеличиваем */
+  }
+  
+  /* Принудительное сохранение размеров для иконок и изображений */
+  img[src*=".png"],
+  img[src*=".jpg"],
+  img[src*=".webp"],
+  img[src*=".gif"],
+  img[src*=".jpeg"],
+  .texture-img,
+  .mutant-img,
+  .skin-img,
+  .gene-img,
+  .ability-img,
+  .material-img,
+  [class*="texture"],
+  [class*="img"],
+  [class*="icon"] i,
+  i[class*="icon"]
+  {
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    min-width: unset !important;
+    min-height: unset !important;
+  }
+}
+
+/* 
+ * Брейкпоинт для QHD/2K мониторов (2000px+)
+ * Увеличение текста на ~25%
+ */
+@media (min-width: 2000px) {
+  p,
+  span,
+  a:not([class*="button"]):not([role="button"]),
+  li,
+  label,
+  input:not([type="image"]),
+  textarea,
+  select,
+  button:not([class*="icon"]):not(:has(img)):not(:has(svg)),
+  h1, h2, h3, h4, h5, h6,
+  [class*="text"],
+  [class*="title"],
+  [class*="label"],
+  [class*="caption"],
+  [class*="description"],
+  [class*="content"],
+  td, th,
+  nav a,
+  nav span,
+  footer p,
+  footer a,
+  header a:not(:has(img)),
+  header span,
+  .dropdown-menu a,
+  .dropdown-trigger,
+  .mobile-nav a,
+  .mobile-nav-header h2,
+  .card p,
+  .card a,
+  .card span,
+  .card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+  .grid p,
+  .grid a,
+  .grid span,
+  .modal p,
+  .modal a,
+  .modal span,
+  .modal h1, .modal h2, .modal h3, .modal h4, .modal h5, .modal h6,
+  .form-group label,
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .materials-table td,
+  .materials-table th,
+  .mutants-table td,
+  .mutants-table th,
+  .calculator label,
+  .calculator input,
+  .calculator span,
+  .simulator label,
+  .simulator input,
+  .simulator span,
+  .breadcrumb,
+  .breadcrumb a,
+  .pagination,
+  .pagination a,
+  .pagination span,
+  .description,
+  .stats,
+  .info,
+  .tooltip,
+  .hint
+  {
+    font-size: 1.25em !important;
+  }
+  
+  /* Исключения для изображений и иконок */
+  img,
+  svg,
+  svg *,
+  [class*="icon"],
+  [class*="Icon"],
+  [class*="orb"],
+  [class*="Orb"],
+  [class*="image"],
+  [class*="Image"],
+  [class*="avatar"],
+  [class*="logo"]:has(img),
+  [class*="texture"],
+  [class*="sprite"],
+  canvas,
+  video,
+  iframe,
+  button:has(img),
+  button:has(svg),
+  [role="button"]:has(img),
+  [role="button"]:has(svg),
+  [style*="width:"],
+  [style*="height:"]
+  {
+    width: auto !important;
+    height: auto !important;
+    max-width: unset !important;
+    font-size: inherit !important;
+  }
+  
+  img[src*=".png"],
+  img[src*=".jpg"],
+  img[src*=".webp"],
+  img[src*=".gif"],
+  img[src*=".jpeg"],
+  .texture-img,
+  .mutant-img,
+  .skin-img,
+  .gene-img,
+  .ability-img,
+  .material-img,
+  [class*="texture"],
+  [class*="img"],
+  [class*="icon"] i,
+  i[class*="icon"]
+  {
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    min-width: unset !important;
+    min-height: unset !important;
+  }
+}
+
+/* 
+ * Брейкпоинт для 4K мониторов (2560px+)
+ * Увеличение текста на ~35%
+ */
+@media (min-width: 2560px) {
+  p,
+  span,
+  a:not([class*="button"]):not([role="button"]),
+  li,
+  label,
+  input:not([type="image"]),
+  textarea,
+  select,
+  button:not([class*="icon"]):not(:has(img)):not(:has(svg)),
+  h1, h2, h3, h4, h5, h6,
+  [class*="text"],
+  [class*="title"],
+  [class*="label"],
+  [class*="caption"],
+  [class*="description"],
+  [class*="content"],
+  td, th,
+  nav a,
+  nav span,
+  footer p,
+  footer a,
+  header a:not(:has(img)),
+  header span,
+  .dropdown-menu a,
+  .dropdown-trigger,
+  .mobile-nav a,
+  .mobile-nav-header h2,
+  .card p,
+  .card a,
+  .card span,
+  .card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+  .grid p,
+  .grid a,
+  .grid span,
+  .modal p,
+  .modal a,
+  .modal span,
+  .modal h1, .modal h2, .modal h3, .modal h4, .modal h5, .modal h6,
+  .form-group label,
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .materials-table td,
+  .materials-table th,
+  .mutants-table td,
+  .mutants-table th,
+  .calculator label,
+  .calculator input,
+  .calculator span,
+  .simulator label,
+  .simulator input,
+  .simulator span,
+  .breadcrumb,
+  .breadcrumb a,
+  .pagination,
+  .pagination a,
+  .pagination span,
+  .description,
+  .stats,
+  .info,
+  .tooltip,
+  .hint
+  {
+    font-size: 1.35em !important;
+  }
+  
+  /* Исключения для изображений и иконок */
+  img,
+  svg,
+  svg *,
+  [class*="icon"],
+  [class*="Icon"],
+  [class*="orb"],
+  [class*="Orb"],
+  [class*="image"],
+  [class*="Image"],
+  [class*="avatar"],
+  [class*="logo"]:has(img),
+  [class*="texture"],
+  [class*="sprite"],
+  canvas,
+  video,
+  iframe,
+  button:has(img),
+  button:has(svg),
+  [role="button"]:has(img),
+  [role="button"]:has(svg),
+  [style*="width:"],
+  [style*="height:"]
+  {
+    width: auto !important;
+    height: auto !important;
+    max-width: unset !important;
+    font-size: inherit !important;
+  }
+  
+  img[src*=".png"],
+  img[src*=".jpg"],
+  img[src*=".webp"],
+  img[src*=".gif"],
+  img[src*=".jpeg"],
+  .texture-img,
+  .mutant-img,
+  .skin-img,
+  .gene-img,
+  .ability-img,
+  .material-img,
+  [class*="texture"],
+  [class*="img"],
+  [class*="icon"] i,
+  i[class*="icon"]
+  {
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    min-width: unset !important;
+    min-height: unset !important;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "specimen_a_03",
+  "code": "a_03",
+  "name": "Гаруда",
+  "created_at": "2025-09-02T01:35:01.732364Z",
+  "found_files": [
+    {
+      "src": "full-char/monogen_cyber/normal/A_03_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/a_03/A_03_normal.webp",
+      "filename": "A_03_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A/normal/specimen_a_03_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/a_03/specimen_a_03_normal.webp",
+      "filename": "specimen_a_03_normal.webp"
+    },
+    {
+      "src": "larva/1) CYBER/monogen_cyber/larva_a_03.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/a_03/larva_a_03.webp",
+      "filename": "larva_a_03.webp"
+    }
+  ],
+  "bingo": [
+    "events"
+  ]
+}

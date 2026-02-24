@@ -1,0 +1,78 @@
+{
+  "id": "specimen_dd_02",
+  "code": "dd_02",
+  "name": "Мастер Коготь",
+  "created_at": "2025-09-02T01:35:00.802877Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_zoo/bronze/DD_02_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_02/DD_02_bronze.webp",
+      "filename": "DD_02_bronze.webp"
+    },
+    {
+      "src": "full-char/zoo_zoo/gold/DD_02_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_02/DD_02_gold.webp",
+      "filename": "DD_02_gold.webp"
+    },
+    {
+      "src": "full-char/zoo_zoo/normal/DD_02_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_02/DD_02_normal.webp",
+      "filename": "DD_02_normal.webp"
+    },
+    {
+      "src": "full-char/zoo_zoo/platinum/DD_02_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_02/DD_02_platinum.webp",
+      "filename": "DD_02_platinum.webp"
+    },
+    {
+      "src": "full-char/zoo_zoo/silver/DD_02_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/dd_02/DD_02_silver.webp",
+      "filename": "DD_02_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_D/silver/specimen_dd_02_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_02/specimen_dd_02_silver_silver.webp",
+      "filename": "specimen_dd_02_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_D/platinum/specimen_dd_02_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_02/specimen_dd_02_platinum_platinum.webp",
+      "filename": "specimen_dd_02_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/D/D_D/normal/specimen_dd_02_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_02/specimen_dd_02_normal.webp",
+      "filename": "specimen_dd_02_normal.webp"
+    },
+    {
+      "src": "semi-full/D/D_D/gold/specimen_dd_02_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_02/specimen_dd_02_gold_gold.webp",
+      "filename": "specimen_dd_02_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/D/D_D/bronze/specimen_dd_02_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/dd_02/specimen_dd_02_bronze_bronze.webp",
+      "filename": "specimen_dd_02_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_zoo/larva_dd_02.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/dd_02/larva_dd_02.webp",
+      "filename": "larva_dd_02.webp"
+    }
+  ],
+  "tier": "4_",
+  "bingo": [
+    "research_1"
+  ]
+}

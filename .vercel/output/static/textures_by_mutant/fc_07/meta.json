@@ -1,0 +1,78 @@
+{
+  "id": "specimen_fc_07",
+  "code": "fc_07",
+  "name": "Амарок",
+  "created_at": "2025-09-02T01:35:04.333965Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_saber/bronze/FC_07_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fc_07/FC_07_bronze.webp",
+      "filename": "FC_07_bronze.webp"
+    },
+    {
+      "src": "full-char/mythic_saber/gold/FC_07_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fc_07/FC_07_gold.webp",
+      "filename": "FC_07_gold.webp"
+    },
+    {
+      "src": "full-char/mythic_saber/normal/FC_07_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fc_07/FC_07_normal.webp",
+      "filename": "FC_07_normal.webp"
+    },
+    {
+      "src": "full-char/mythic_saber/platinum/FC_07_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fc_07/FC_07_platinum.webp",
+      "filename": "FC_07_platinum.webp"
+    },
+    {
+      "src": "full-char/mythic_saber/silver/FC_07_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fc_07/FC_07_silver.webp",
+      "filename": "FC_07_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_C/silver/specimen_fc_07_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fc_07/specimen_fc_07_silver_silver.webp",
+      "filename": "specimen_fc_07_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_C/platinum/specimen_fc_07_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fc_07/specimen_fc_07_platinum_platinum.webp",
+      "filename": "specimen_fc_07_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/F/F_C/normal/specimen_fc_07_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fc_07/specimen_fc_07_normal.webp",
+      "filename": "specimen_fc_07_normal.webp"
+    },
+    {
+      "src": "semi-full/F/F_C/gold/specimen_fc_07_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fc_07/specimen_fc_07_gold_gold.webp",
+      "filename": "specimen_fc_07_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/F/F_C/bronze/specimen_fc_07_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fc_07/specimen_fc_07_bronze_bronze.webp",
+      "filename": "specimen_fc_07_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_saber/larva_fc_07.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fc_07/larva_fc_07.webp",
+      "filename": "larva_fc_07.webp"
+    }
+  ],
+  "bingo": [
+    "research_6",
+    "legend"
+  ]
+}

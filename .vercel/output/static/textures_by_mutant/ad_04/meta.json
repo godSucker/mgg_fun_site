@@ -1,0 +1,77 @@
+{
+  "id": "specimen_ad_04",
+  "code": "ad_04",
+  "name": "Смертожук 1",
+  "created_at": "2025-09-02T01:35:01.887695Z",
+  "found_files": [
+    {
+      "src": "full-char/cyber_zoo/bronze/AD_04_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_04/AD_04_bronze.webp",
+      "filename": "AD_04_bronze.webp"
+    },
+    {
+      "src": "full-char/cyber_zoo/gold/AD_04_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_04/AD_04_gold.webp",
+      "filename": "AD_04_gold.webp"
+    },
+    {
+      "src": "full-char/cyber_zoo/normal/AD_04_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_04/AD_04_normal.webp",
+      "filename": "AD_04_normal.webp"
+    },
+    {
+      "src": "full-char/cyber_zoo/platinum/AD_04_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_04/AD_04_platinum.webp",
+      "filename": "AD_04_platinum.webp"
+    },
+    {
+      "src": "full-char/cyber_zoo/silver/AD_04_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/ad_04/AD_04_silver.webp",
+      "filename": "AD_04_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_D/silver/specimen_ad_04_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_04/specimen_ad_04_silver_silver.webp",
+      "filename": "specimen_ad_04_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/A/A_D/platinum/specimen_ad_04_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_04/specimen_ad_04_platinum_platinum.webp",
+      "filename": "specimen_ad_04_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/A/A_D/normal/specimen_ad_04_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_04/specimen_ad_04_normal.webp",
+      "filename": "specimen_ad_04_normal.webp"
+    },
+    {
+      "src": "semi-full/A/A_D/gold/specimen_ad_04_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_04/specimen_ad_04_gold_gold.webp",
+      "filename": "specimen_ad_04_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/A/A_D/bronze/specimen_ad_04_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/ad_04/specimen_ad_04_bronze_bronze.webp",
+      "filename": "specimen_ad_04_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/1) CYBER/cyber_zoo/larva_ad_04.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/ad_04/larva_ad_04.webp",
+      "filename": "larva_ad_04.webp"
+    }
+  ],
+  "bingo": [
+    "research_3"
+  ]
+}

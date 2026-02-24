@@ -1,0 +1,80 @@
+{
+  "id": "specimen_fe_10",
+  "code": "fe_10",
+  "name": "Бахамут",
+  "created_at": "2025-09-02T01:35:05.961239Z",
+  "found_files": [
+    {
+      "src": "full-char/mythic_galactic/bronze/FE_10_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_10/FE_10_bronze.webp",
+      "filename": "FE_10_bronze.webp"
+    },
+    {
+      "src": "full-char/mythic_galactic/gold/FE_10_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_10/FE_10_gold.webp",
+      "filename": "FE_10_gold.webp"
+    },
+    {
+      "src": "full-char/mythic_galactic/normal/FE_10_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_10/FE_10_normal.webp",
+      "filename": "FE_10_normal.webp"
+    },
+    {
+      "src": "full-char/mythic_galactic/platinum/FE_10_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_10/FE_10_platinum.webp",
+      "filename": "FE_10_platinum.webp"
+    },
+    {
+      "src": "full-char/mythic_galactic/silver/FE_10_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/fe_10/FE_10_silver.webp",
+      "filename": "FE_10_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/silver/specimen_fe_10_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_10/specimen_fe_10_silver_silver.webp",
+      "filename": "specimen_fe_10_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/platinum/specimen_fe_10_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_10/specimen_fe_10_platinum_platinum.webp",
+      "filename": "specimen_fe_10_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/normal/specimen_fe_10_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_10/specimen_fe_10_normal.webp",
+      "filename": "specimen_fe_10_normal.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/gold/specimen_fe_10_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_10/specimen_fe_10_gold_gold.webp",
+      "filename": "specimen_fe_10_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/F/F_E/bronze/specimen_fe_10_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/fe_10/specimen_fe_10_bronze_bronze.webp",
+      "filename": "specimen_fe_10_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/6) MYTHIC/mythic_galactic/larva_fe_10.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/fe_10/larva_fe_10.webp",
+      "filename": "larva_fe_10.webp"
+    }
+  ],
+  "bingo": [
+    "2025_skins",
+    "2025_events",
+    "anniversary_25",
+    "research_9"
+  ]
+}

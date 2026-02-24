@@ -365,15 +365,15 @@
   .stat-card.highlight { background: rgba(124,77,255,0.1); border-color: rgba(124,77,255,0.2); }
   .stat-icon { width: 32px; height: 32px; object-fit: contain; }
   .stat-body { display: flex; flex-direction: column; align-items: center; }
-  .stat-body .label { font-size: 0.7rem; text-transform: uppercase; color: #64748b; }
+  .stat-body .label { font-size: 0.7rem; text-transform: uppercase; color: #e5e7eb; }
   .stat-body strong { font-size: 1.2rem; color: #fff; }
   .resource-summary { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
   .resource-card { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.03); padding: 0.8rem; border-radius: 12px; }
   .resource-icon img { width: var(--orb-size-img); height: var(--orb-size-img); }
   .resource-body { display: flex; flex-direction: column; }
-  .resource-title { font-size: 0.8rem; color: #64748b; }
+  .resource-title { font-size: 0.8rem; color: #e5e7eb; }
   .resource-body strong { color: #fff; }
-  .resource-meta { font-size: 0.7rem; color: #475569; }
+  .resource-meta { font-size: 0.7rem; color: #e5e7eb; }
   .odds-panel { background: rgba(16,14,26,0.8); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(129,140,248,0.2); transition: all 0.3s ease; }
   .odds-toggle { background: none; border: none; padding: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: inherit; }
   .chevron { font-size: 1.2rem; color: rgba(124, 77, 255, 0.5); transition: transform 0.3s ease; }
@@ -387,7 +387,7 @@
   /* Добавлено для отображения списков наград */
   .result-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 1.5rem; }
   .result-column { display: flex; flex-direction: column; gap: 0.8rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 16px; }
-  .result-column h4 { margin: 0; font-size: 1rem; color: #c7b8ff; }
+  .result-column h4 { margin: 0; font-size: 1rem; color: #e5e7eb; }
   .reward-board, .history-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
   
   .reward-board li, .history-list li { display: flex; align-items: center; gap: 0.8rem; background: rgba(255,255,255,0.05); padding: 0.6rem; border-radius: 8px; }
@@ -426,8 +426,8 @@
   .reward-board .name { font-size: 0.85rem; font-weight: 600; color: #fff; }
   .count-badge { font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
   .pills { display: flex; gap: 0.4rem; margin-top: 2px; }
-  .pill { font-size: 0.65rem; padding: 1px 4px; border-radius: 4px; background: rgba(0,0,0,0.3); color: #94a3b8; }
-  .currency, .note { font-size: 0.75rem; color: #64748b; white-space: nowrap; }
+  .pill { font-size: 0.65rem; padding: 1px 4px; border-radius: 4px; background: rgba(0,0,0,0.3); color: #e5e7eb; }
+  .currency, .note { font-size: 0.75rem; color: #e5e7eb; white-space: nowrap; }
 
   @media (max-width: 1000px) {
     .machine-shell {

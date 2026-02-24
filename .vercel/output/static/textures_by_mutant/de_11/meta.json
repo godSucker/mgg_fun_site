@@ -1,0 +1,78 @@
+{
+  "id": "specimen_de_11",
+  "code": "de_11",
+  "name": "Дрей, космический корги",
+  "created_at": "2025-09-02T01:35:06.273954Z",
+  "found_files": [
+    {
+      "src": "full-char/zoo_galactic/bronze/DE_11_bronze.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_11/DE_11_bronze.webp",
+      "filename": "DE_11_bronze.webp"
+    },
+    {
+      "src": "full-char/zoo_galactic/gold/DE_11_gold.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_11/DE_11_gold.webp",
+      "filename": "DE_11_gold.webp"
+    },
+    {
+      "src": "full-char/zoo_galactic/normal/DE_11_normal.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_11/DE_11_normal.webp",
+      "filename": "DE_11_normal.webp"
+    },
+    {
+      "src": "full-char/zoo_galactic/platinum/DE_11_platinum.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_11/DE_11_platinum.webp",
+      "filename": "DE_11_platinum.webp"
+    },
+    {
+      "src": "full-char/zoo_galactic/silver/DE_11_silver.webp",
+      "found_in": "full-char",
+      "dst": "textures_by_mutant/de_11/DE_11_silver.webp",
+      "filename": "DE_11_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_E/silver/specimen_de_11_silver_silver.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_11/specimen_de_11_silver_silver.webp",
+      "filename": "specimen_de_11_silver_silver.webp"
+    },
+    {
+      "src": "semi-full/D/D_E/platinum/specimen_de_11_platinum_platinum.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_11/specimen_de_11_platinum_platinum.webp",
+      "filename": "specimen_de_11_platinum_platinum.webp"
+    },
+    {
+      "src": "semi-full/D/D_E/normal/specimen_de_11_normal.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_11/specimen_de_11_normal.webp",
+      "filename": "specimen_de_11_normal.webp"
+    },
+    {
+      "src": "semi-full/D/D_E/gold/specimen_de_11_gold_gold.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_11/specimen_de_11_gold_gold.webp",
+      "filename": "specimen_de_11_gold_gold.webp"
+    },
+    {
+      "src": "semi-full/D/D_E/bronze/specimen_de_11_bronze_bronze.webp",
+      "found_in": "semi-full",
+      "dst": "textures_by_mutant/de_11/specimen_de_11_bronze_bronze.webp",
+      "filename": "specimen_de_11_bronze_bronze.webp"
+    },
+    {
+      "src": "larva/4) ZOO/zoo_galactic/larva_de_11.webp",
+      "found_in": "larva",
+      "dst": "textures_by_mutant/de_11/larva_de_11.webp",
+      "filename": "larva_de_11.webp"
+    }
+  ],
+  "tier": "3+",
+  "bingo": [
+    "research_10"
+  ]
+}
