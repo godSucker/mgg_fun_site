@@ -46,18 +46,49 @@ function normalizeTierValue(tier) {
  * Find mutant ID by Russian name with fuzzy matching
  */
 function findMutantIdByName(name, nameToId) {
+  // Clean up the input name - remove quotes and special characters
+  let cleanedName = name
+    .replace(/[«»"'`]/g, '')  // Remove all types of quotes
+    .replace(/\s+/g, ' ')     // Normalize multiple spaces
+    .trim()
+    .toLowerCase();
+  
   // Direct match
+  if (nameToId[cleanedName]) {
+    return nameToId[cleanedName];
+  }
+  
+  // Direct match with original name (in case it has quotes)
   if (nameToId[name]) {
     return nameToId[name];
   }
+
+  // Create a normalized version for comparison (remove special chars except spaces and hyphens)
+  const normalizeForComparison = (str) => {
+    return str
+      .replace(/[^\w\s'-]/g, '')  // Remove special chars except letters, numbers, spaces, hyphens, apostrophes
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+  };
   
-  // Partial match
+  const normalizedInput = normalizeForComparison(cleanedName);
+  
+  // Try partial match with cleaned names
   for (const [storedName, mutantId] of Object.entries(nameToId)) {
-    if (name.includes(storedName) || storedName.includes(name)) {
+    const normalizedStored = normalizeForComparison(storedName);
+    
+    // Check if one contains the other
+    if (normalizedInput.includes(normalizedStored) || normalizedStored.includes(normalizedInput)) {
+      return mutantId;
+    }
+    
+    // Check if cleaned input contains stored name (for cases like "ДЭР, зомби-властитель")
+    if (cleanedName.includes(storedName) || storedName.includes(cleanedName)) {
       return mutantId;
     }
   }
-  
+
   // If no match found, return null
   return null;
 }
@@ -130,11 +161,11 @@ function parseTierFromTxt(txtContent, nameToId) {
  */
 function loadMutantMapping(mutantsJson) {
   console.log(`loadMutantMapping: received ${mutantsJson ? mutantsJson.length : 0} chars`);
-  
+
   if (!mutantsJson || mutantsJson.length === 0) {
     throw new Error('Empty mutantsJson received');
   }
-  
+
   let mutantsData;
   try {
     mutantsData = JSON.parse(mutantsJson);
@@ -143,20 +174,34 @@ function loadMutantMapping(mutantsJson) {
     console.error(`First 500 chars: ${mutantsJson.slice(0, 500)}`);
     throw new Error(`Invalid JSON: ${e.message}`);
   }
-  
+
   const nameToId = {};
   for (const mutant of mutantsData) {
     const name = mutant.name.trim().toLowerCase();
     const mutantId = mutant.id;
-    nameToId[name] = mutantId;
     
-    // Also add variations without special characters
+    // Add original name
+    nameToId[name] = mutantId;
+
+    // Add variation without quotes
+    const noQuotesName = mutant.name.replace(/[«»"'`]/g, '').trim().toLowerCase();
+    if (noQuotesName !== name) {
+      nameToId[noQuotesName] = mutantId;
+    }
+    
+    // Add variation without special characters (except letters, numbers, spaces, hyphens)
     const cleanName = mutant.name.replace(/[^\w\s'-]/g, '').trim().toLowerCase();
     if (cleanName !== name) {
       nameToId[cleanName] = mutantId;
     }
+    
+    // Add variation with normalized spaces
+    const normalizedSpacesName = mutant.name.replace(/\s+/g, ' ').trim().toLowerCase();
+    if (normalizedSpacesName !== name) {
+      nameToId[normalizedSpacesName] = mutantId;
+    }
   }
-  
+
   console.log(`Loaded ${Object.keys(nameToId).length} mutant mappings`);
   return nameToId;
 }
