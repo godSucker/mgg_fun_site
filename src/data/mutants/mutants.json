@@ -60495,5 +60495,121 @@
     "name_attack2": "Гравитационный коллайдер",
     "name_attack3": "",
     "name_lore": "Сырая мощь звезд, сконцентрированная в человекоподобной форме, способной взаимодействовать с остальной частью Вселенной. Таков был лозунг ученых и астрономов, создавших этого мутанта на основе данных радиотелескопов, расположенных по всему миру. И результаты превзошли их ожидания во многих отношениях. Что будет, когда он окажется на арене Гентик-Сити?"
+  },
+  {
+    "id": "specimen_bf_14",
+    "name": "Иррадиация",
+    "genes": [
+      "B",
+      "F"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 1861,
+        "atk1": 1514,
+        "atk2": 1514,
+        "ability": 908,
+        "speed": 3.45,
+        "silver": 42,
+        "atk1_gene": "b",
+        "atk2_gene": "f",
+        "atk1_AOE": false,
+        "atk2_AOE": false
+      },
+      "lvl30": {
+        "hp": 7258,
+        "atk1": 8518,
+        "atk2": 8518,
+        "ability": 8518,
+        "speed": 3.45,
+        "silver": 1260,
+        "atk1_gene": "b",
+        "atk2_gene": "f",
+        "atk1_AOE": false,
+        "atk2_AOE": false
+      },
+      "hp_base": 1861,
+      "atk1_base": 1514,
+      "atk1p_base": 2184,
+      "atk2_base": 1514,
+      "atk2p_base": 2184,
+      "speed_base": 3.45,
+      "bank_base": 42,
+      "abilityPct1": -60,
+      "abilityPct2": -100
+    },
+    "abilities": [
+      {
+        "name": "ability_slash",
+        "pct": 60,
+        "value_atk1_lvl1": 908,
+        "value_atk2_lvl1": 908,
+        "value_atk1_lvl30": 5111,
+        "value_atk2_lvl30": 5111
+      },
+      {
+        "name": "ability_slash_plus",
+        "pct": 100,
+        "value_atk1_lvl1": 1514,
+        "value_atk2_lvl1": 1514,
+        "value_atk1_lvl30": 8518,
+        "value_atk2_lvl30": 8518
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/bf_14/BF_14_normal.webp",
+          "textures_by_mutant/bf_14/specimen_bf_14_normal.webp",
+          "textures_by_mutant/bf_14/larva_bf_14.webp"
+        ]
+      },
+      "bronze": {
+        "images": [
+          "textures_by_mutant/bf_14/BF_14_bronze.webp",
+          "textures_by_mutant/bf_14/specimen_bf_14_bronze.webp",
+          "textures_by_mutant/bf_14/larva_bf_14.webp"
+        ],
+        "multiplier": 1.1
+      },
+      "silver": {
+        "images": [
+          "textures_by_mutant/bf_14/BF_14_silver.webp",
+          "textures_by_mutant/bf_14/specimen_bf_14_silver.webp",
+          "textures_by_mutant/bf_14/larva_bf_14.webp"
+        ],
+        "multiplier": 1.3
+      },
+      "gold": {
+        "images": [
+          "textures_by_mutant/bf_14/BF_14_gold.webp",
+          "textures_by_mutant/bf_14/specimen_bf_14_gold.webp",
+          "textures_by_mutant/bf_14/larva_bf_14.webp"
+        ],
+        "multiplier": 1.75
+      },
+      "platinum": {
+        "images": [
+          "textures_by_mutant/bf_14/BF_14_platinum.webp",
+          "textures_by_mutant/bf_14/specimen_bf_14_platinum.webp",
+          "textures_by_mutant/bf_14/larva_bf_14.webp"
+        ],
+        "multiplier": 2
+      }
+    },
+    "type": "LEGEND",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 20,
+    "bank": 42,
+    "tier": "",
+    "name_attack1": "Стеклянные осколки",
+    "name_attack2": "Искаженный свет",
+    "name_attack3": "",
+    "name_lore": "Существо, обладающее силой, сравнимой с силой бога, на протяжении веков запечатанное в витражном окне, излучающее силу и свет. Витражное окно было освобождено во время реконструкции собора, что позволило этому существу сбежать, но впоследствии оно было вновь поймано и вынуждено сражаться на аренах Генетического города. Не поддавайтесь его сладким обещаниям; единственное, что оно вам предложит, если вы ему поможете, — это мучительная смерть."
   }
 ]
