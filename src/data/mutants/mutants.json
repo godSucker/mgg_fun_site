@@ -53638,7 +53638,7 @@
     ],
     "base_stats": {
       "lvl1": {
-        "hp": 18,
+        "hp": 1872,
         "atk1": 761,
         "atk2": 761,
         "ability": 114,
@@ -53650,7 +53650,7 @@
         "atk2_AOE": true
       },
       "lvl30": {
-        "hp": 70,
+        "hp": 7301,
         "atk1": 4852,
         "atk2": 3838,
         "ability": 1553,
@@ -53661,7 +53661,7 @@
         "atk1_AOE": false,
         "atk2_AOE": true
       },
-      "hp_base": 18,
+      "hp_base": 1872,
       "atk1_base": 761,
       "atk1p_base": 1244,
       "atk2_base": 761,
