@@ -60927,5 +60927,204 @@
     "name_attack2": "Подводные мины",
     "name_attack3": "",
     "name_lore": "Описание для Кереон из бездны"
+  },
+  {
+    "id": "specimen_d_14",
+    "name": "Апиархия",
+    "genes": [
+      "D"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 425,
+        "atk1": 655,
+        "atk2": 524,
+        "ability": 458,
+        "speed": 11.11,
+        "silver": 42,
+        "atk1_gene": "d",
+        "atk2_gene": "neutro",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "lvl30": {
+        "hp": 1658,
+        "atk1": 3592,
+        "atk2": 3249,
+        "ability": 3951,
+        "speed": 11.11,
+        "silver": 1260,
+        "atk1_gene": "d",
+        "atk2_gene": "neutro",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "hp_base": 425,
+      "atk1_base": 655,
+      "atk1p_base": 921,
+      "atk2_base": 524,
+      "atk2p_base": 833,
+      "speed_base": 11.11,
+      "bank_base": 42,
+      "abilityPct1": -70,
+      "abilityPct2": -110
+    },
+    "abilities": [
+      {
+        "name": "ability_retaliate",
+        "pct": 70,
+        "value_atk1_lvl1": 458,
+        "value_atk2_lvl1": 0,
+        "value_atk1_lvl30": 2514,
+        "value_atk2_lvl30": 0
+      },
+      {
+        "name": "ability_retaliate_plus",
+        "pct": 110,
+        "value_atk1_lvl1": 721,
+        "value_atk2_lvl1": 0,
+        "value_atk1_lvl30": 3951,
+        "value_atk2_lvl30": 0
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/d_14/D_14_normal.webp",
+          "textures_by_mutant/d_14/specimen_d_14_normal.webp",
+          "textures_by_mutant/d_14/larva_d_14.webp"
+        ]
+      },
+      "bronze": {
+        "images": [
+          "textures_by_mutant/d_14/D_14_bronze.webp",
+          "textures_by_mutant/d_14/specimen_d_14_bronze.webp",
+          "textures_by_mutant/d_14/larva_d_14.webp"
+        ],
+        "multiplier": 1.1
+      },
+      "silver": {
+        "images": [
+          "textures_by_mutant/d_14/D_14_silver.webp",
+          "textures_by_mutant/d_14/specimen_d_14_silver.webp",
+          "textures_by_mutant/d_14/larva_d_14.webp"
+        ],
+        "multiplier": 1.3
+      },
+      "gold": {
+        "images": [
+          "textures_by_mutant/d_14/D_14_gold.webp",
+          "textures_by_mutant/d_14/specimen_d_14_gold.webp",
+          "textures_by_mutant/d_14/larva_d_14.webp"
+        ],
+        "multiplier": 1.75
+      },
+      "platinum": {
+        "images": [
+          "textures_by_mutant/d_14/D_14_platinum.webp",
+          "textures_by_mutant/d_14/specimen_d_14_platinum.webp",
+          "textures_by_mutant/d_14/larva_d_14.webp"
+        ],
+        "multiplier": 2
+      }
+    },
+    "type": "LEGEND",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 20,
+    "bank": 42,
+    "tier": "",
+    "name_attack1": "Жужжащие пчелы",
+    "name_attack2": "Боевой рой",
+    "name_attack3": "",
+    "name_lore": "В каждом улье есть матка, и она тесно связана со своим роем. Когда-то она была простой рабочей пчелой, но после несчастного случая на производстве стала маткой и взяла судьбу своего улья в свои руки, поведя его в бой."
+  },
+  {
+    "id": "specimen_dd_15",
+    "name": "Утконос",
+    "genes": [
+      "D",
+      "D"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 3731,
+        "atk1": 1241,
+        "atk2": 1011,
+        "ability": 248,
+        "speed": 5.88,
+        "silver": 42,
+        "atk1_gene": "d",
+        "atk2_gene": "d",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "lvl30": {
+        "hp": 14551,
+        "atk1": 7016,
+        "atk2": 5191,
+        "ability": 2806,
+        "speed": 5.88,
+        "silver": 1260,
+        "atk1_gene": "d",
+        "atk2_gene": "d",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "hp_base": 3731,
+      "atk1_base": 1241,
+      "atk1p_base": 1799,
+      "atk2_base": 1011,
+      "atk2p_base": 1331,
+      "speed_base": 5.88,
+      "bank_base": 42,
+      "abilityPct1": -20,
+      "abilityPct2": -40
+    },
+    "abilities": [
+      {
+        "name": "ability_weaken",
+        "pct": 20,
+        "value_atk1_lvl1": 248,
+        "value_atk2_lvl1": 202,
+        "value_atk1_lvl30": 1403,
+        "value_atk2_lvl30": 1038
+      },
+      {
+        "name": "ability_weaken_plus",
+        "pct": 40,
+        "value_atk1_lvl1": 496,
+        "value_atk2_lvl1": 404,
+        "value_atk1_lvl30": 2806,
+        "value_atk2_lvl30": 2076
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/dd_15/DD_15_normal.webp",
+          "textures_by_mutant/dd_15/specimen_dd_15_normal.webp",
+          "textures_by_mutant/dd_15/larva_dd_15.webp"
+        ]
+      }
+    },
+    "type": "SPECIAL",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 0,
+    "bank": 42,
+    "tier": "",
+    "name_attack1": "Ядовитый шпор",
+    "name_attack2": "Электролокация",
+    "name_attack3": "",
+    "name_lore": "На протяжении последних четырех столетий многие ученые размышляли о природе этого странного существа: настоящее животное, живая химера, видоизмененное существо или, как считается в последнее время, мутант? В конце концов был достигнут консенсус, и научное сообщество вынесло окончательный вердикт: это мутант со всеми вытекающими отсюда преимуществами и недостатками. Но мутант, давно приспособившийся к наземным экосистемам — факт, вызывающий множество сомнений."
   }
 ]
