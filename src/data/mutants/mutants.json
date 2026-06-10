@@ -61126,5 +61126,121 @@
     "name_attack2": "Электролокация",
     "name_attack3": "",
     "name_lore": "На протяжении последних четырех столетий многие ученые размышляли о природе этого странного существа: настоящее животное, живая химера, видоизмененное существо или, как считается в последнее время, мутант? В конце концов был достигнут консенсус, и научное сообщество вынесло окончательный вердикт: это мутант со всеми вытекающими отсюда преимуществами и недостатками. Но мутант, давно приспособившийся к наземным экосистемам — факт, вызывающий множество сомнений."
+  },
+  {
+    "id": "specimen_aa_14",
+    "name": "Арбитратор",
+    "genes": [
+      "A",
+      "A"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 2026,
+        "atk1": 1033,
+        "atk2": 624,
+        "ability": 155,
+        "speed": 5.41,
+        "silver": 42,
+        "atk1_gene": "a",
+        "atk2_gene": "a",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "lvl30": {
+        "hp": 7901,
+        "atk1": 5585,
+        "atk2": 3179,
+        "ability": 1396,
+        "speed": 5.41,
+        "silver": 1260,
+        "atk1_gene": "a",
+        "atk2_gene": "a",
+        "atk1_AOE": false,
+        "atk2_AOE": true
+      },
+      "hp_base": 2026,
+      "atk1_base": 1033,
+      "atk1p_base": 1432,
+      "atk2_base": 624,
+      "atk2p_base": 815,
+      "speed_base": 5.41,
+      "bank_base": 42,
+      "abilityPct1": -15,
+      "abilityPct2": -25
+    },
+    "abilities": [
+      {
+        "name": "ability_weaken",
+        "pct": 15,
+        "value_atk1_lvl1": 155,
+        "value_atk2_lvl1": 94,
+        "value_atk1_lvl30": 838,
+        "value_atk2_lvl30": 477
+      },
+      {
+        "name": "ability_weaken_plus",
+        "pct": 25,
+        "value_atk1_lvl1": 258,
+        "value_atk2_lvl1": 156,
+        "value_atk1_lvl30": 1396,
+        "value_atk2_lvl30": 795
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/aa_14/AA_14_normal.webp",
+          "textures_by_mutant/aa_14/specimen_aa_14_normal.webp",
+          "textures_by_mutant/aa_14/larva_aa_14.webp"
+        ]
+      },
+      "bronze": {
+        "images": [
+          "textures_by_mutant/aa_14/AA_14_bronze.webp",
+          "textures_by_mutant/aa_14/specimen_aa_14_bronze.webp",
+          "textures_by_mutant/aa_14/larva_aa_14.webp"
+        ],
+        "multiplier": 1.1
+      },
+      "silver": {
+        "images": [
+          "textures_by_mutant/aa_14/AA_14_silver.webp",
+          "textures_by_mutant/aa_14/specimen_aa_14_silver.webp",
+          "textures_by_mutant/aa_14/larva_aa_14.webp"
+        ],
+        "multiplier": 1.3
+      },
+      "gold": {
+        "images": [
+          "textures_by_mutant/aa_14/AA_14_gold.webp",
+          "textures_by_mutant/aa_14/specimen_aa_14_gold.webp",
+          "textures_by_mutant/aa_14/larva_aa_14.webp"
+        ],
+        "multiplier": 1.75
+      },
+      "platinum": {
+        "images": [
+          "textures_by_mutant/aa_14/AA_14_platinum.webp",
+          "textures_by_mutant/aa_14/specimen_aa_14_platinum.webp",
+          "textures_by_mutant/aa_14/larva_aa_14.webp"
+        ],
+        "multiplier": 2
+      }
+    },
+    "type": "LEGEND",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 20,
+    "bank": 42,
+    "tier": "",
+    "name_attack1": "Жёлтая карточка",
+    "name_attack2": "Голо-ВАР",
+    "name_attack3": "",
+    "name_lore": "Описание для Арбитратор"
   }
 ]
