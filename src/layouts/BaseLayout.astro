@@ -51,7 +51,8 @@ const isHome = Astro.url.pathname === "/";
         min-height: 100vh;
         position: relative;
         display: flex;
-        flex-direction: column; /* Для прибития футера к низу */
+        flex-direction: column;
+        overflow-x: hidden;
       }
 
       body::before {
@@ -413,30 +414,49 @@ const isHome = Astro.url.pathname === "/";
         .menu-toggle {
           display: flex;
         }
-        
+
         header nav {
           display: none;
         }
-        
+
         .mobile-nav {
           display: block;
         }
-        
+
         .overlay {
           display: block;
         }
-        
+
         main {
-          padding: 1rem 0.75rem;
+          padding: 0.75rem 0.5rem;
         }
-        
+
         main.wide {
-          width: calc(100vw - 1.5rem);
+          width: calc(100vw - 1rem);
         }
-        
+
         footer {
-          padding: 1rem 0.75rem;
+          padding: 1rem 0.5rem;
           font-size: 0.75rem;
+        }
+
+        header {
+          padding: 0.5rem 0.6rem;
+        }
+
+        header .logo a {
+          font-size: 1rem;
+        }
+
+        .global-back-button {
+          width: 44px;
+          height: 44px;
+          margin-right: 0.35rem;
+        }
+
+        .close-btn {
+          width: 44px;
+          height: 44px;
         }
       }
       

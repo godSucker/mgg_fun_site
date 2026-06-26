@@ -204,29 +204,29 @@
     return abilityIndex === 0 ? stats.ability : 0;
   };
 
-  // Texture from stars с fallback на иконку (specimen)
+  // Texture from specimen (голова) с fallback на полную текстуру
   const imgSrc = (m: any, starKey: string) => {
     const starInfo = m?.stars?.[starKey];
     if (starInfo?.images) {
       const list = starInfo.images;
-      // Сначала ищем полную текстуру
-      const fullTexture = list.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
-      if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
-      // Если нет полной текстуры, ищем иконку
+      // Сначала ищем specimen (голову)
       const specimen = list.find((p: string) => p.includes('specimen'));
       if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
+      // Если нет specimen, ищем полную текстуру
+      const fullTexture = list.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+      if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
       // Иначе первую доступную
       const pick = list[0];
       if (pick) return pick.startsWith('/') ? pick : `/${pick}`;
     }
     // Fallback to old image field
     const list: string[] = m?.image ?? [];
-    // Сначала ищем полную текстуру
-    const fullTexture = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
-    if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
-    // Если нет, ищем иконку
+    // Сначала ищем specimen (голову)
     const specimen = list.find((p) => p.includes('specimen'));
     if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
+    // Если нет specimen, ищем полную текстуру
+    const fullTexture = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+    if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
     // Иначе первую доступную или placeholder
     const pick = list[0];
     if (!pick) return '/placeholder-mutant.webp';

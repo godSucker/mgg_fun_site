@@ -409,13 +409,13 @@ function getSubBingos(bingo: Bingo): Bingo[] {
 </script>
 
 <style>
-  .intro { margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(96, 165, 250, 0.25); }
+  .intro { margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(96, 165, 250, 0.25); display: flex; flex-direction: column; align-items: center; }
   .intro-header { display: flex; align-items: center; gap: 0.75rem; }
   .bingo-icon { width: 40px; height: 40px; filter: drop-shadow(0 4px 16px rgba(96, 165, 250, 0.4)); }
   .intro h1 { margin: 0; font-size: clamp(1.5rem, 5vw, 2rem); color: #e2e8f0; font-weight: 800; text-shadow: 0 3px 10px rgba(96, 165, 250, 0.4); }
   .intro p { margin: 0; color: #e5e7eb; font-size: 0.9rem; }
 
-  .bingo-tabs { display: flex; overflow-x: auto; gap: 0.25rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(96, 165, 250, 0.25); scrollbar-width: thin; }
+  .bingo-tabs { display: flex; overflow-x: auto; gap: 0.25rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(96, 165, 250, 0.25); scrollbar-width: thin; justify-content: flex-start; }
   .bingo-tabs::-webkit-scrollbar { height: 4px; }
   .bingo-tabs::-webkit-scrollbar-track { background: transparent; }
   .bingo-tabs::-webkit-scrollbar-thumb { background: rgba(96, 165, 250, 0.2); border-radius: 10px; }
@@ -438,7 +438,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
     width: 100%;
   }
 
-  .bingo-card { background: rgba(15, 23, 42, 0.7); border-radius: 24px; border: 1px solid rgba(96, 165, 250, 0.15); padding: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; max-width: 100%; }
+  .bingo-card { background: rgba(15, 23, 42, 0.7); border-radius: 24px; border: 1px solid rgba(96, 165, 250, 0.15); padding: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; width: 100%; box-sizing: border-box; }
   .bingo-card-header { display: flex; justify-content: center; }
   .bingo-card-title-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 1.5rem; }
   .bingo-card-title { margin: 0; font-size: 1.8rem; color: #f8fafc; font-weight: 800; }

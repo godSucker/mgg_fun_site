@@ -358,6 +358,7 @@
     .mobile-only { display: inline; }
     .row { display: flex; gap: 1rem; padding: 0.75rem 1rem; }
     .cell.rank { width: 40px; font-size: 1rem; }
+    .rank-badge { display: none; }
     .cell.name { flex: 1; }
     .cell.level { display: flex; flex-direction: column; align-items: flex-end; line-height: 1; }
     .lvl-label { font-size: 0.65rem; color: #64748b; margin-bottom: 2px; }

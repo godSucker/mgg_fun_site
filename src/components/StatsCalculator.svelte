@@ -668,12 +668,12 @@
     const starData = m._rawStars?.[key];
     if (starData?.images?.length) {
       const imgs = normalizeImages(starData.images);
-      // Сначала ищем полную текстуру
-      const fullTexture = findImageByKeywords(imgs, ['textures_by_mutant/']);
-      if (fullTexture) return fullTexture;
-      // Если нет, ищем иконку
+      // Сначала ищем specimen (голову)
       const specimen = findImageByKeywords(imgs, ['specimen']);
       if (specimen) return specimen;
+      // Если нет, ищем полную текстуру
+      const fullTexture = findImageByKeywords(imgs, ['textures_by_mutant/']);
+      if (fullTexture) return fullTexture;
       // Иначе первую доступную
       return imgs[0];
     }
@@ -681,23 +681,23 @@
       return baseTexture(m);
     }
     const keywords = STAR_IMAGE_KEYWORDS[key] || [key];
-    // Сначала ищем полную текстуру
-    const fullTexture = findImageByKeywords(m.images, keywords);
-    if (fullTexture) return fullTexture;
-    // Если нет, ищем иконку
+    // Сначала ищем specimen (голову)
     const specimen = findImageByKeywords(m.images, ['specimen']);
     if (specimen) return specimen;
+    // Если нет, ищем полную текстуру
+    const fullTexture = findImageByKeywords(m.images, keywords);
+    if (fullTexture) return fullTexture;
     return baseTexture(m);
   }
 
   function baseTexture(m){
     if (!m) return '';
-    // Сначала ищем полную текстуру
-    const fullTexture = findImageByKeywords(m.images, STAR_IMAGE_KEYWORDS.normal);
-    if (fullTexture) return fullTexture;
-    // Если нет, ищем иконку
+    // Сначала ищем specimen (голову)
     const specimen = findImageByKeywords(m.images, ['specimen']);
     if (specimen) return specimen;
+    // Если нет, ищем полную текстуру
+    const fullTexture = findImageByKeywords(m.images, STAR_IMAGE_KEYWORDS.normal);
+    if (fullTexture) return fullTexture;
     // Иначе любую доступную
     return (
       findImageByKeywords(m.images, ['normal', 'default', 'full'])
@@ -2197,14 +2197,14 @@
   @media (max-width: 768px) {
     .stats-page {
       display: grid;
-      grid-template-columns: 1fr 280px;
+      grid-template-columns: 1fr;
       gap: 8px;
       padding: 8px;
-      justify-content: center; /* Center the content */
+      justify-content: center;
     }
     .stats-page.single-col {
       grid-template-columns: 1fr;
-      justify-content: center; /* Center the content */
+      justify-content: center;
     }
     .panel {
       order: 1;
@@ -2288,6 +2288,7 @@
 
   /* QHD upscaling */
   @media (min-width: 1921px) {
+    .stats-page { grid-template-columns: 320px minmax(0, 900px); }
     .mut-icon { width: 55px; height: 55px; }
     .hero-genes img { width: 45px; height: 45px; }
     .hero-genes { gap: 8px; margin-bottom: -16px; }

@@ -75,8 +75,8 @@
   .form-group textarea,
   
   /* Таблицы материалов и мутантов */
-  .materials-table td,
-  .materials-table th,
+  .materials .td,
+  .materials .th,
   .mutants-table td,
   .mutants-table th,
   
@@ -102,9 +102,9 @@
   .tooltip,
   .hint
   {
-    font-size: 1.15em !important;
+    font-size: 1.15rem !important;
   }
-  
+
   /* Исключения: элементы, которые НЕ должны масштабироваться */
   img,
   svg,
@@ -122,21 +122,15 @@
   canvas,
   video,
   iframe,
-  
-  /* Кнопки с иконками */
   button:has(img),
   button:has(svg),
   [role="button"]:has(img),
-  [role="button"]:has(svg),
-  
-  /* Элементы с фиксированными размерами */
-  [style*="width:"],
-  [style*="height:"]
+  [role="button"]:has(svg)
   {
     width: auto !important;
     height: auto !important;
     max-width: unset !important;
-    font-size: inherit !important; /* Наследуем, но не увеличиваем */
+    font-size: inherit !important;
   }
   
   /* Принудительное сохранение размеров для иконок и изображений */
@@ -211,8 +205,8 @@
   .form-group input,
   .form-group select,
   .form-group textarea,
-  .materials-table td,
-  .materials-table th,
+  .materials .td,
+  .materials .th,
   .mutants-table td,
   .mutants-table th,
   .calculator label,
@@ -232,9 +226,9 @@
   .tooltip,
   .hint
   {
-    font-size: 1.25em !important;
+    font-size: 1.25rem !important;
   }
-  
+
   /* Исключения для изображений и иконок */
   img,
   svg,
@@ -255,9 +249,7 @@
   button:has(img),
   button:has(svg),
   [role="button"]:has(img),
-  [role="button"]:has(svg),
-  [style*="width:"],
-  [style*="height:"]
+  [role="button"]:has(svg)
   {
     width: auto !important;
     height: auto !important;
@@ -336,8 +328,8 @@
   .form-group input,
   .form-group select,
   .form-group textarea,
-  .materials-table td,
-  .materials-table th,
+  .materials .td,
+  .materials .th,
   .mutants-table td,
   .mutants-table th,
   .calculator label,
@@ -357,9 +349,9 @@
   .tooltip,
   .hint
   {
-    font-size: 1.35em !important;
+    font-size: 1.35rem !important;
   }
-  
+
   /* Исключения для изображений и иконок */
   img,
   svg,
@@ -380,9 +372,7 @@
   button:has(img),
   button:has(svg),
   [role="button"]:has(img),
-  [role="button"]:has(svg),
-  [style*="width:"],
-  [style*="height:"]
+  [role="button"]:has(svg)
   {
     width: auto !important;
     height: auto !important;

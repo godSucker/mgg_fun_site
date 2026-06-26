@@ -69,12 +69,11 @@ export function getMutantImageWithFallback(
     return buildSpecimenUrl(mutantId, variant);
   }
   
-  const fullTexture = buildFullTextureUrl(mutantId, variant);
   const specimen = buildSpecimenUrl(mutantId, variant);
+  const fullTexture = buildFullTextureUrl(mutantId, variant);
   
-  // Возвращаем полную текстуру, а если её нет — иконку
-  // Проверка происходит на стороне клиента через on:error
-  return fullTexture;
+  // Возвращаем specimen (голову), а если его нет — полную текстуру
+  return specimen || fullTexture;
 }
 
 /**

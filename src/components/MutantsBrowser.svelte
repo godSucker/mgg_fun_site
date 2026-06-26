@@ -152,7 +152,7 @@
   type Mode = 'mutants' | 'skins';
   let mode: Mode = 'mutants';
   type ViewMode = 'full' | 'heads';
-  let viewMode: ViewMode = 'full';
+  let viewMode: ViewMode = 'heads';
 
   let query = '';
   let gene1Sel = '';
@@ -491,12 +491,12 @@
                 const specimen = imgs.find((p: string) => p.includes('specimen'));
                 if (specimen) return specimen;
             }
-            // Сначала ищем полную текстуру
-            const fullTexture = imgs.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
-            if (fullTexture) return fullTexture;
-            // Если нет, ищем иконку
+            // Сначала ищем specimen (голову)
             const specimen = imgs.find((p: string) => p.includes('specimen'));
             if (specimen) return specimen;
+            // Если нет, ищем полную текстуру
+            const fullTexture = imgs.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
+            if (fullTexture) return fullTexture;
             // Иначе первую доступную
             return imgs[0];
         }
@@ -514,11 +514,11 @@
     });
 
     if (!pick) {
-        // Сначала ищем полную текстуру
-        pick = list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
-        // Если нет, ищем иконку
+        // Сначала ищем specimen (голову)
+        pick = list.find((p:string) => p.includes('specimen'));
+        // Если нет, ищем полную текстуру
         if (!pick) {
-            pick = list.find((p:string) => p.includes('specimen'));
+            pick = list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
         }
         // Иначе первую доступную
         if (!pick) {
@@ -574,8 +574,9 @@
       SKINS
     </button>
 
+    <!-- FULL/HEADS toggle — temporarily hidden -->
+    <!--
     <span class="w-px h-6 bg-white/10 mx-1"></span>
-
     <button type="button"
       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
         + (viewMode==='full' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
@@ -594,6 +595,7 @@
     >
       HEADS
     </button>
+    -->
   </div>
 
   <!-- Поиск -->

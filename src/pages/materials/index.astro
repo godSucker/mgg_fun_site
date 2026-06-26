@@ -11,8 +11,7 @@ import bingosData from '../../data/bingos.json';
 import { bingoLabel } from '../../lib/mutant-dicts';
 import { getItemTexture } from '../../lib/craft-simulator';
 
-// Запрет масштабирования на мобильных для страницы материалов
-const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1";
 
 // ---------- нормализация материалов/бустеров/сфер ----------
 const normRow = (item) => {
@@ -275,10 +274,17 @@ const TABS = [
   .intro h1 { margin: 0 0 0.5rem; font-size: clamp(1.5rem, 1.1rem + 1.1vw, 2.2rem); color: #f8fafc; }
   .intro p { margin: 0; color: #e5e7eb; }
 
-  .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-  .tab-btn { appearance: none; border: 1px solid rgba(96, 165, 250, 0.28); background: rgba(15, 23, 42, 0.92); color: #e2e8f0; border-radius: 999px; padding: 0.5rem 0.9rem; font-size: 0.95rem; letter-spacing: 0.03em; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .tab-btn { appearance: none; border: 1px solid rgba(96, 165, 250, 0.28); background: rgba(15, 23, 42, 0.92); color: #e2e8f0; border-radius: 999px; padding: 0.45rem 0.75rem; font-size: 0.88rem; letter-spacing: 0.03em; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease; white-space: nowrap; }
   .tab-btn:hover { transform: translateY(-2px); border-color: rgba(96, 165, 250, 0.6); box-shadow: 0 10px 18px rgba(37, 99, 235, 0.22); }
   .tab-btn.active { background: linear-gradient(180deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.92)); border-color: rgba(96, 165, 250, 0.65); box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22); }
+
+  @media (max-width: 480px) {
+    .tabs { gap: 0.3rem; }
+    .tab-btn { padding: 0.35rem 0.6rem; font-size: 0.82rem; }
+    .intro h1 { font-size: 1.3rem; }
+    .intro p { font-size: 0.85rem; }
+  }
   .tab-section { margin-top: 0.5rem; }
 
   /* переключатель Обычные/Люкс */
@@ -301,7 +307,7 @@ const TABS = [
 
   /* витрина изображения — фикс. высота, картинка целиком; без клиппинга */
   .zone-cover {
-    height: 240px;
+    height: clamp(180px, 20vw, 360px);
     padding: 12px;
     border-radius: 12px;
     background: rgba(2,6,23,0.6);
@@ -320,7 +326,20 @@ const TABS = [
   .zone-cap   { color: #a7f3d0; font-size: 0.86rem; line-height: 1.25; }
 
   @media (max-width: 800px) {
-    .zones-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-    .zone-cover { height: 200px; }
+    .zones-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; }
+    .zone-cover { height: 180px; padding: 8px; }
+    .zone-card { padding: 0.6rem; border-radius: 12px; }
+    .zone-title { font-size: 0.88rem; }
+    .zone-desc { font-size: 0.78rem; }
+    .zone-cap { font-size: 0.8rem; }
+  }
+
+  @media (max-width: 480px) {
+    .zones-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
+    .zone-cover { height: 150px; padding: 6px; }
+    .zone-card { padding: 0.5rem; }
+    .zone-title { font-size: 0.82rem; }
+    .zone-desc { font-size: 0.72rem; }
+    .zone-cap { font-size: 0.75rem; }
   }
 </style>
