@@ -54,17 +54,17 @@
         ],
         "rewards": [
             {
-                "name": "Material_XP1000",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
-                "name": "Material_Jackpot_Token",
-                "amount": 1,
-                "type": "entity"
-            },
-            {
                 "name": "Charm_Regenx4_1",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Energy25",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_XP1000",
                 "amount": 1,
                 "type": "entity"
             },
@@ -74,7 +74,7 @@
                 "type": "softcurrency"
             },
             {
-                "name": "Material_Jackpot_Token",
+                "name": "Material_Energy25",
                 "amount": 1,
                 "type": "entity"
             },
@@ -84,7 +84,7 @@
                 "type": "entity"
             },
             {
-                "name": "Material_XP1000",
+                "name": "Charm_Regenx4_1",
                 "amount": 1,
                 "type": "entity"
             },
