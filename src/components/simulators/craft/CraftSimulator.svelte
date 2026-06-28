@@ -399,12 +399,13 @@
                     (sum, ing) => sum + ing.amount,
                     0,
                   )}
-                  <!-- Для pot_pourri_* используем формат "Средняя аптечка xN", для token_sink_* убираем множитель -->
+                  <!-- Для pot_pourri_* используем формат "Средняя аптечка xN", для token_sink_* и big_rewards_* убираем множитель -->
                   {@const isPotPourriRecipe = recipe.id.startsWith('pot_pourri_')}
                   {@const isTokenSinkRecipe = recipe.id.startsWith('token_sink_')}
+                  {@const skipMultiplier = isTokenSinkRecipe || recipe.id === 'big_rewards_01' || recipe.id === 'big_rewards_02' || recipe.id === 'little_rewards_01'}
                   {@const rewardLabel = isPotPourriRecipe
                     ? `Средняя аптечка x${totalIngredients}`
-                    : isTokenSinkRecipe
+                    : skipMultiplier
                       ? baseLabel
                       : useRecipeIdLabel
                         ? `${translateItemId(recipe.id)} ×${totalIngredients}`
@@ -756,7 +757,7 @@
                         <div class="item-info">
                           <span class="item-title">{label}</span>
                           <span class="item-sub">
-                            {reward.amount > 1 ? `×${reward.amount}` : 'ед.'}
+                            ×{reward.amount}
                           </span>
                         </div>
                         <div class="item-odds">
@@ -1164,6 +1165,10 @@
   }
   .facility__header p {
     color: rgba(226, 232, 240, 0.75);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
   }
 
   .facility__featured {
@@ -1683,6 +1688,29 @@
     .badge {
       font-size: 0.75rem;
       padding: 0.35rem 0.9rem;
+    }
+  }
+
+  /* Desktop layout boundary fix (2K/QHD) */
+  @media (min-width: 1440px) {
+    .facility__inner {
+      grid-template-columns: 340px 1fr;
+    }
+    .facility__sidebar {
+      min-width: 0;
+      overflow: visible;
+    }
+    .facility__header {
+      min-width: 0;
+    }
+    .facility__header h2 {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+    }
+    .facility__header p {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: normal;
+      hyphens: none;
     }
   }
 

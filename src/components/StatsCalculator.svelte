@@ -118,7 +118,7 @@
       const typeKind = typeKey.toLowerCase();
       const typeLabel = readableType(typeRaw);
       const tierLabel = readableTier(tierRaw);
-      const basicSlotCount = slotsForType(typeKind);
+      const basicSlotCount = Number.isFinite(m.orbs?.normal) ? m.orbs.normal : slotsForType(typeKind);
       
       // Build available stars from m.stars object
       const availableStars = new Set();
@@ -161,7 +161,7 @@
         starMultipliers,
         availableStars,
         basicSlotCount,
-        specialSlotCount: SPECIAL_SLOT_COUNT,
+        specialSlotCount: Number.isFinite(m.orbs?.special) ? m.orbs.special : SPECIAL_SLOT_COUNT,
         attackMeta: buildAttackMeta(m),
         _rawStars: m.stars ?? {},
       };
@@ -1514,6 +1514,7 @@
             {/each}
 
             <!-- спец-слот -->
+            {#if selected.specialSlotCount > 0}
             <div class="slot">
               <button class="slot-btn" on:click={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
                 <img class="slot-bg" src="/orbs/special/orb_slot_spe.webp" alt="special" />
@@ -1532,6 +1533,7 @@
                 </div>
               {/if}
             </div>
+            {/if}
           </div>
 
           <div class="controls">

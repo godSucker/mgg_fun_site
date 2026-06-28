@@ -175,7 +175,17 @@
   $: bingoOptions = (bingoIndex?.length
       ? [...bingoIndex]
       : uniq(flatten(items.map(collectBingoKeys)))
-    ).sort((a,b) => String(bingoLabel?.(a) ?? a).localeCompare(String(bingoLabel?.(b) ?? b), 'ru'));
+    ).sort((a,b) => {
+      const la = String(bingoLabel?.(a) ?? a);
+      const lb = String(bingoLabel?.(b) ?? b);
+      const aIsResearch = /^Исследование\s/.test(la);
+      const bIsResearch = /^Исследование\s/.test(lb);
+      if (aIsResearch && !bIsResearch) return -1;
+      if (!aIsResearch && bIsResearch) return 1;
+      const na = la.replace(/\d+/g, m => m.padStart(6, '0'));
+      const nb = lb.replace(/\d+/g, m => m.padStart(6, '0'));
+      return na.localeCompare(nb, 'ru');
+    });
   let bingoSel = '';
 
   type StarKey = 'normal'|'bronze'|'silver'|'gold'|'platinum';
@@ -293,7 +303,6 @@
 
     const bingoData = sBingo ? bingos.find((b: any) => b.id === sBingo) : null;
     const isReactorSel = sBingo === 'reactor' || (sType === 'reactor' || sType === 'gacha');
-    const sTypeIsReactor = sType === 'reactor' || sType === 'gacha';
 
     // Объединяем map + filter в один проход для оптимизации
     const res = [];
@@ -319,30 +328,14 @@
           }
         }
 
-        // Поиск по типу (с учетом синонимов для Реактора)
+        // Поиск по типу (строгое совпадение по атрибуту type)
         if (sType) {
-          if (sTypeIsReactor) {
-            const hasReactorBingo = m.bingoKeys.has('reactor');
-            const isGachaType = m.typeKey === 'reactor' || m.typeKey === 'gacha';
-            if (!hasReactorBingo && !isGachaType) continue;
-          } else {
-            if (m.typeKey !== sType) continue;
-          }
+          if (m.typeKey !== sType) continue;
         }
 
-        // Фильтр бинго и звезд
+        // Фильтр бинго: строгое членство в коллекции
         if (sBingo) {
-          if (sBingo === 'reactor') {
-            const hasReactorBingo = m.bingoKeys.has('reactor');
-            const isGachaType = m.typeKey === 'gacha';
-            if (!hasReactorBingo && !isGachaType) continue;
-          } else {
-            if (!m.bingoKeys.has(sBingo)) continue;
-          }
-        } else if (sTypeIsReactor) {
-          const hasReactorBingo = m.bingoKeys.has('reactor');
-          const isGachaType = m.typeKey === 'gacha';
-          if (!hasReactorBingo && !isGachaType) continue;
+          if (!m.bingoKeys.has(sBingo)) continue;
         }
       }
 

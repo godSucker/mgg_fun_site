@@ -80,9 +80,10 @@ export function getMutantTexturePath(
   // Fallback: строим путь вручную (для вариантов или если normal не найден)
   const { folder, fileId } = normalizeMutantId(specimenId);
   if (!folder || !fileId) return '';
-  
+
   const suffix = effectiveVariant === 'normal' ? 'normal' : effectiveVariant;
-  return `/textures_by_mutant/${folder}/${fileId}_${suffix}.webp`;
+  const specimenPath = `/textures_by_mutant/${folder}/specimen_${folder}_${suffix}.webp`;
+  return specimenPath;
 }
 
 /**

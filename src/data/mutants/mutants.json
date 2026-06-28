@@ -40474,38 +40474,6 @@
           "textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
           "textures_by_mutant/ce_10/larva_ce_10.webp"
         ]
-      },
-      "bronze": {
-        "images": [
-          "textures_by_mutant/ce_10/CE_10_bronze.webp",
-          "textures_by_mutant/ce_10/specimen_ce_10_bronze.webp",
-          "textures_by_mutant/ce_10/larva_ce_10.webp"
-        ],
-        "multiplier": 1.1
-      },
-      "silver": {
-        "images": [
-          "textures_by_mutant/ce_10/CE_10_silver.webp",
-          "textures_by_mutant/ce_10/specimen_ce_10_silver.webp",
-          "textures_by_mutant/ce_10/larva_ce_10.webp"
-        ],
-        "multiplier": 1.3
-      },
-      "gold": {
-        "images": [
-          "textures_by_mutant/ce_10/CE_10_gold.webp",
-          "textures_by_mutant/ce_10/specimen_ce_10_gold.webp",
-          "textures_by_mutant/ce_10/larva_ce_10.webp"
-        ],
-        "multiplier": 1.75
-      },
-      "platinum": {
-        "images": [
-          "textures_by_mutant/ce_10/CE_10_platinum.webp",
-          "textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
-          "textures_by_mutant/ce_10/larva_ce_10.webp"
-        ],
-        "multiplier": 2
       }
     },
     "type": "SPECIAL",
@@ -43988,14 +43956,6 @@
           "textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
           "textures_by_mutant/bf_11/larva_bf_11.webp"
         ]
-      },
-      "platinum": {
-        "images": [
-          "textures_by_mutant/bf_11/BF_11_platinum.webp",
-          "textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
-          "textures_by_mutant/bf_11/larva_bf_11.webp"
-        ],
-        "multiplier": 2
       }
     },
     "type": "SPECIAL",

@@ -27,9 +27,12 @@
 
   function getImageSrc(m: Mutant): string {
     const img = m.image;
-    const path = Array.isArray(img) ? (img[0] ?? img[1]) : img;
-    if (!path) return '/preview.jpg';
-    return path.startsWith('/') ? path : '/' + path;
+    const list = Array.isArray(img) ? img : (img ? [img] : []);
+    if (!list.length) return '/preview.jpg';
+    const specimen = list.find((p: string) => p.includes('specimen'));
+    if (specimen) return specimen.startsWith('/') ? specimen : '/' + specimen;
+    const first = list[0];
+    return first.startsWith('/') ? first : '/' + first;
   }
 
   function getGeneIcon(geneChar: string): string {

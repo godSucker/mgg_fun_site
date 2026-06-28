@@ -39,6 +39,7 @@
   });
 
   // ===== Star switching =====
+  const STAR_SWITCHER_BLOCKED = new Set(['specimen_bf_11', 'specimen_ce_10']);
   let selectedStar = 'normal';
 
   // Initialize selectedStar from prop or first available
@@ -422,7 +423,7 @@
     <!-- Left -->
     <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
       <!-- Star switcher -->
-      {#if availableStars.length > 1}
+      {#if availableStars.length > 1 && !STAR_SWITCHER_BLOCKED.has(mutant?.id)}
         <div class="flex gap-2 mb-2">
           {#each availableStars as s}
             <button
