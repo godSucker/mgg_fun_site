@@ -1,178 +1,122 @@
-# CLAUDE.md
+# MGG Hub — MiMo Code Instructions
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
-
-**Archivist-Library (MGG Hub)** is a Russian-language knowledge base and toolset for the game "Mutants Genetic Gladiators" (MGG). The site provides:
-- Wiki for mutants and skins
-- Simulators for roulettes, breeding, reactor, and crafting
-- Calculators for stats and evolution resources
-- Materials database
-
-**Live site:** https://www.archivist-library.com (CDN: https://cdn.archivist-library.com)
-
-## Tech Stack
-
-- **Astro 5** (SSG framework) with TypeScript
-- **Svelte 5** for interactive components
-- **Tailwind CSS 4** via Vite plugin
-- **XLSX** for Excel data parsing
-- **Sharp** for image optimization
-- **Vercel Analytics & Speed Insights**
-
-## Development Commands
+## Quick Start
 
 ```bash
-# Start dev server (accessible on local network)
-npm run dev
-
-# Build for production (assets prefixed with CDN URL)
-npm run build
-
-# Preview production build
-npm run preview
-
-# Run Astro CLI
-npm run astro
-
-# Lint code (ESLint with Astro & Svelte support)
-npx eslint .
+npm run dev        # Dev server (local network)
+npm run build      # Production build (CDN prefix)
+npm run preview    # Preview production build
+npx eslint .       # Lint (Astro + Svelte + TS)
 ```
 
-The dev server runs with polling enabled and ignores Python venv directories (`.venv_orb`, `.venv`).
+Dev server uses polling (1s), ignores `.venv*` dirs.
 
-## Project Structure
+## Architecture (30-sec)
 
-### Entry Points & Layouts
-- `src/pages/index.astro` — Homepage with navigation cards
-- `src/layouts/BaseLayout.astro` — Global layout with header, mobile menu, and footer (Russian language)
+- **Astro 5** (SSG) + **Svelte 5** (interactive) + **Tailwind 4** (Vite plugin)
+- **XLSX** for Excel parsing, **Sharp** for images, **Vercel Analytics**
+- Site: `archivist-library.com` | CDN: `cdn.archivist-library.com`
+- All UI text in **Russian**
 
-### Core Features
+```
+src/
+  pages/          # Astro routes (*.astro)
+  layouts/        # BaseLayout.astro (global shell)
+  components/     # UI (Svelte for interactive, Astro for static)
+    simulators/   # craft/, reactor/, cash/, lucky/, madness/
+    breeding/     # BreedingUI.svelte
+    materials/    # MaterialsTable.astro
+  lib/            # Shared logic, NO UI
+  data/           # Static data: JSON, TXT, XLSX
+  styles/         # global.css
+```
 
-**Mutants Browser** (`/mutants`)
-- Tier-based pages: `/mutants/[tier].astro` (bronze, silver, gold, platinum, normal)
-- Components: `MutantsBrowser.svelte`, `MutantCard.svelte`, `MutantModal.svelte`
-- Data: `src/data/mutants/*.json`, `src/data/mutant_names.json`
-- Textures: CDN-based URLs via `src/lib/mutant-textures.ts`
+Alias: `@` → `./src`
 
-**Breeding Simulator** (`/simulators/breeding`)
-- UI: `src/components/breeding/BreedingUI.svelte`
-- Logic: `src/lib/breeding/` (engine, logic, breeding)
-- XML settings: `src/data/breeding/settings.xml`
-- Gene-based prediction algorithm with weighted outcomes
+## File Conventions
 
-**Reactor/Gacha Simulator** (`/simulators/reactor`)
-- Dynamic routes: `/simulators/reactor/[gachaId].astro`
-- Component: `src/components/simulators/reactor/ReactorSimulator.svelte`
-- Logic: `src/lib/reactor-gacha.ts`
-- Data: `src/data/simulators/reactor/gacha.json`, texture mappings
+- **`.astro`** — pages, layouts, static components (MaterialsTable)
+- **`.svelte`** — interactive UI (simulators, calculators, browsers)
+- **`.ts` in `lib/`** — pure logic, types, parsers (no DOM)
+- **`?raw` import** — `.txt` files loaded as strings
 
-**Roulette Simulators** (`/simulators/roulette`)
-- Cash Machine: `src/components/simulators/cash/CashMachineSimulator.svelte` + `src/lib/cash-machine.ts`
-- Lucky Slots: `src/components/simulators/lucky/LuckyMachineSimulator.svelte` + `src/lib/lucky-machine.ts`
-- Madness: `src/components/simulators/madness/MutantsMadnessSimulator.svelte` + `src/lib/madness-machine.ts`
+Simulator pattern: `src/components/simulators/{name}/{Name}.svelte` + `src/lib/{name}.ts`
+Data pattern: `src/data/simulators/{name}/` or `src/data/{feature}/`
 
-**Craft Simulator** (`/simulators/craft`)
-- Component: `src/components/simulators/craft/CraftSimulator.svelte`
-- Logic: `src/lib/craft-simulator.ts`
-- Python reference: `src/data/simulators/CRAFT/craft.py`
-- Data files: `orb.txt`, `lab.txt`, `star.txt`, `blackhole.txt`, `incentreward.txt`
+## Code Style
 
-**Calculators**
-- Stats: `/simulators/stats` → `src/components/StatsCalculator.svelte`
-  - Logic: `src/lib/stats/unified-calculator.ts`, `calculate-stats.ts`, `orbs.ts`
-- Evo: `/evolution/evotech-calculator` → `src/components/EvotechCalculator.svelte`
-  - Data: `src/data/evotech-data.js`
-
-**Materials** (`/materials`)
-- Pages: `index.astro`, `charms.astro`, `orbs.astro`, `material.astro`
-- Component: `src/components/materials/MaterialsTable.astro`
-- Data: `src/data/materials/*.json` (material, charms, orbs, buildings, zones, sources)
-- Text data: `mut_orbs.txt`
-
-**Other Features**
-- Bingo: `/bingo` → data in `src/data/bingos.json`
-- Top Evo: `/top-evo` → `src/components/EvoLeaderboard.svelte`, data in `src/data/evo_top.xlsx`
-- Credits: `/credits` → `src/components/Developers.svelte`
-
-### Data Layer
-- Game data stored in `src/data/` as JSON, TXT, and XLSX files
-- Localization: `localisation_ru.txt`, `localisation_en.txt`
-- Mutant tier data: `mut_tier.xlsx`
-- Base game data: `base.txt`
-
-### Utility Libraries
-- `src/lib/breed-map.ts` — Breeding combinations
-- `src/lib/orbing-map.ts` — Orb mappings
-- `src/lib/mutant-dicts.ts` — Mutant dictionaries
-- `src/lib/secretCombos.ts` — Secret breeding combos
-- `src/lib/xlsx-loader.ts` — Excel file parsing
-- `src/lib/search-normalize.ts` — Search utilities
-- `src/lib/bingo-textures.ts` — Bingo image mappings
-
-## Configuration Files
-
-### Astro (`astro.config.ts`)
-- Site URL: `https://archivist-library.com`
-- Assets prefix: `https://cdn.archivist-library.com`
-- Prefetch enabled for faster navigation
-- Svelte integration
-- Alias: `@` → `./src`
-- Raw text plugin for `.txt` files
-
-### Vite (in astro.config.ts)
-- Tailwind CSS plugin
-- Dev server exposed on network (hosts: `.ru.tuna.am`, `.nl.tuna.am`, `.manus.computer`)
-- File watching with polling (1s interval)
-
-### ESLint (`.eslint.config.js`)
-- Flat config format
-- Astro parser for `.astro` files
-- Svelte parser for `.svelte` files
-- TypeScript support
-- Rules:
-  - `astro/no-set-html-directive`: error
-  - `svelte/no-reactive-reassign`: error
-  - No unused vars (warn, ignore `_` prefix)
-
-### Prettier (`.prettierrc`)
 ```json
+// .prettierrc
 { "semi": false, "singleQuote": true, "printWidth": 100 }
 ```
 
-## Architecture Notes
+- No semicolons, single quotes, 100 char width
+- Follow existing style in each file (some files differ)
+- `@const` blocks in Svelte for derived values
+- Responsive: mobile < 768px, tablet 768-1023px, desktop 1024px+, QHD 1921px+
+- Dark theme: `#0d1117` bg, `#c9d1d9` text
+- Font: TT Supermolot Neue
 
-### Component Patterns
-- **Astro components** (`.astro`) for static layouts and pages
-- **Svelte components** (`.svelte`) for interactive UI (simulators, calculators, browsers)
-- Global styles in `src/styles/global.css`
-- Component-scoped styles with responsive breakpoints (mobile < 768px, tablet 768-1023px, desktop 1024px+, 2K/4K upscaling)
+## Rules
 
-### Data Flow
-- Static data loaded at build time in Astro components
-- Client-side data fetched/processed in Svelte components
-- Simulators use TypeScript logic modules for game mechanics
-- XLSX files parsed with custom loader (`xlsx-loader.ts`)
+1. **Never add comments** unless explicitly asked
+2. **Never add error handling** for impossible scenarios
+3. **Check `package.json`** before assuming a library exists
+4. **Run `npx eslint .`** after changes
+5. **No test files** in `src/` (project has none)
+6. **Don't create documentation** unless asked
+7. **Don't commit** unless asked
+8. **Use existing patterns** — check neighboring files before writing new code
 
-### Styling Approach
-- Custom CSS in BaseLayout for header/footer/navigation
-- Tailwind utilities for component styling
-- Dark theme (#0d1117 background, #c9d1d9 text)
-- Background image overlay with fixed positioning
-- Mobile-first responsive design
-- Custom font: TT Supermolot Neue
+## Key Modules
 
-### CDN & Asset Management
-- Production assets served from `cdn.archivist-library.com`
-- Images: `/mutants/`, `/stars/`, `/materials/`, `/fonts/`
-- Texture mappings handle dynamic URLs for mutants/skins
+| Module | Location | Purpose |
+|--------|----------|---------|
+| Breeding | `src/lib/breeding/` | Gene prediction, weighted outcomes |
+| Reactor | `src/lib/reactor-gacha.ts` | Gacha simulation |
+| Craft | `src/lib/craft-simulator.ts` | Recipe parsing, simulation |
+| Cash Machine | `src/lib/cash-machine.ts` | Roulette logic |
+| Lucky Slots | `src/lib/lucky-machine.ts` | Slots logic |
+| Madness | `src/lib/madness-machine.ts` | Madness roulette |
+| Stats | `src/lib/stats/` | Stat calculators, orbs |
+| Mutants | `src/lib/mutant-textures.ts` | Texture resolution |
+| Bingo | `src/lib/bingo-textures.ts` | Bingo texture mappings |
+| Search | `src/lib/search-normalize.ts` | Text normalization |
+| XLSX | `src/lib/xlsx-loader.ts` | Excel file parsing |
 
-## Important Notes
+## Data Files
 
-- All user-facing content is in **Russian**
-- No test files in src/ (only in node_modules)
-- Python scripts in `src/data/simulators/CRAFT/` are reference implementations
-- Telegram bot code in `bot/` directory (separate from web app)
-- The site simulates real game mechanics with accurate probabilities
-- Git history cleaned with filter-repo (evidence in `.git/filter-repo/`)
+- `src/data/mutants/*.json` — mutant definitions by tier
+- `src/data/mutant_names.json` — specimen ID → Russian name
+- `src/data/materials/*.json` — orbs, charms, materials, buildings, zones, sources
+- `src/data/bingos.json` — bingo grid definitions (~6000 lines)
+- `src/data/simulators/CRAFT/*.txt` — XML recipe files (Python ref: `craft.py`)
+- `src/data/simulators/reactor/` — gacha configs, texture maps
+- `src/data/breeding/settings.xml` — breeding rules
+- `src/data/localisation_ru.txt` — Russian translations
+
+## Configuration
+
+- `astro.config.ts` — site URL, CDN prefix, aliases, Svelte/Tailwind plugins
+- `.eslint.config.js` — flat config, Astro + Svelte parsers
+  - `astro/no-set-html-directive`: error
+  - `svelte/no-reactive-reassign`: error
+  - No unused vars: warn (ignore `_` prefix)
+
+## What NOT to Do
+
+- Don't assume a library is installed — check `package.json` first
+- Don't add features beyond what's asked
+- Don't refactor working code unless asked
+- Don't create new files unless necessary
+- Don't add `console.log` or debug statements
+- Don't change the dark theme colors or fonts
+- Don't modify `public/` assets without reason
+- Don't touch Python scripts in `src/data/simulators/CRAFT/` (reference only)
+
+## Current Context
+
+> Update this section as the project evolves.
+
+- No active blockers
+- No known critical bugs
