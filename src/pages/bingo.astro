@@ -252,6 +252,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
         <div
           class="bingo-panel"
           data-bingo-index={bingoIdx}
+          data-bingo-id={originalBingo.id}
           hidden={bingoIdx !== 0}
         >
           <div class="bingo-card">
@@ -451,6 +452,15 @@ function getSubBingos(bingo: Bingo): Bingo[] {
     margin: 0 auto;
     padding: 0;
     overflow: visible;
+    transform: translateX(-15px);
+  }
+
+  .bingo-panel:not([data-bingo-id="Starter"]) .bingo-board-wrapper {
+    transform: translateX(-30px);
+  }
+
+  .bingo-panel[data-bingo-id="Starter"] .bingo-board-wrapper {
+    transform: translateX(-50px);
   }
 
   .bingo-grid {
@@ -751,6 +761,15 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   @media (max-width: 768px) {
     .bingo-board-wrapper {
       max-width: 100%;
+      transform: none;
+    }
+
+    .bingo-panel[data-bingo-id="Starter"] .bingo-board-wrapper {
+      transform: translateX(-25px);
+    }
+
+    .bingo-panel:not([data-bingo-id="Starter"]) .bingo-board-wrapper {
+      transform: none;
     }
 
     .bingo-grid {

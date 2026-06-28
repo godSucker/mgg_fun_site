@@ -1165,6 +1165,10 @@
   }
   .facility__header p {
     color: rgba(226, 232, 240, 0.75);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
   }
 
   .facility__featured {
@@ -1684,6 +1688,29 @@
     .badge {
       font-size: 0.75rem;
       padding: 0.35rem 0.9rem;
+    }
+  }
+
+  /* Desktop layout boundary fix (2K/QHD) */
+  @media (min-width: 1440px) {
+    .facility__inner {
+      grid-template-columns: 340px 1fr;
+    }
+    .facility__sidebar {
+      min-width: 0;
+      overflow: visible;
+    }
+    .facility__header {
+      min-width: 0;
+    }
+    .facility__header h2 {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+    }
+    .facility__header p {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: normal;
+      hyphens: none;
     }
   }
 
