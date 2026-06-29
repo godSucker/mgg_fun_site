@@ -7,6 +7,7 @@
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { applySpeedSphere } from '@/lib/stats/speed-sphere-table';
+  import { textureUrl } from '@/lib/texture-cdn';
 
   // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
   import domtoimage from 'dom-to-image-more';
@@ -1410,7 +1411,7 @@
       <div class="list">
         {#each filtered as m (m.id)}
           <button class="mut-row {selected?.id===m.id ? 'active' : ''}" onclick={() => selectMutant(m)}>
-            <img class="mut-icon" src={listThumbnail(m) || ''} alt={m.name} />
+            <img class="mut-icon" src={textureUrl(listThumbnail(m) || '')} alt={m.name} loading="lazy" decoding="async" />
             <div class="mut-meta">
               <div class="name">{m.name}</div>
               <div class="genes">
@@ -1468,7 +1469,7 @@
           {/each}
         </div>
         <div class="mut-figure">
-          <img class="texture" src={figureImage(selected, stars)} alt={selected.name} />
+          <img class="texture" src={textureUrl(figureImage(selected, stars))} alt={selected.name} />
         </div>
 
         <div class="hero-controls" bind:this={dropdownHost}>

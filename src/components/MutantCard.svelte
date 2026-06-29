@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { textureUrl } from '@/lib/texture-cdn';
+
   let { id = '', name = '', variant = 'normal', tier = null, type = '' } = $props()
 
   function normalizeId(raw: string): string {
@@ -22,7 +24,7 @@
 
   function buildSpecimenSrc(): string {
     const specSuffix = suffix === 'normal' ? '' : `_${suffix}`
-    return `/textures_by_mutant/${folder}/thumb_specimen_${folder}${specSuffix}.${srcExt}`
+    return textureUrl(`textures_by_mutant/${folder}/thumb_specimen_${folder}${specSuffix}.${srcExt}`)
   }
 
   const specimenSrc = $derived(buildSpecimenSrc())
@@ -35,7 +37,7 @@
     if (!triedJpg) {
       triedJpg = true
       srcExt = 'jpg'
-      imgSrc = `/textures_by_mutant/${folder}/specimen_${folder}${suffix === 'normal' ? '' : `_${suffix}`}.jpg`
+      imgSrc = textureUrl(`textures_by_mutant/${folder}/specimen_${folder}${suffix === 'normal' ? '' : `_${suffix}`}.jpg`)
     } else {
       broken = true
     }

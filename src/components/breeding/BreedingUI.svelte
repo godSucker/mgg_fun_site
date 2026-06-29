@@ -6,6 +6,7 @@
   import { fly, fade, slide } from 'svelte/transition';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
+  import { textureUrl } from '@/lib/texture-cdn';
 
   // --- DATA ---
   const allMutants: Mutant[] = (mutantsAll as any[]).map((m: any) => ({
@@ -28,11 +29,11 @@
   function getImageSrc(m: Mutant): string {
     const img = m.image;
     const list = Array.isArray(img) ? img : (img ? [img] : []);
-    if (!list.length) return '/preview.jpg';
+    if (!list.length) return textureUrl('/preview.jpg');
     const specimen = list.find((p: string) => p.includes('specimen'));
-    if (specimen) return specimen.startsWith('/') ? specimen : '/' + specimen;
+    if (specimen) return textureUrl(specimen);
     const first = list[0];
-    return first.startsWith('/') ? first : '/' + first;
+    return textureUrl(first);
   }
 
   function getGeneIcon(geneChar: string): string {

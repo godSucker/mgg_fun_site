@@ -10,6 +10,7 @@
   } from '@/lib/mutant-dicts';
   import { orbingMap } from '@/lib/orbing-map';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
+  import { textureUrl } from '@/lib/texture-cdn';
 
   let { open = false, mutant = null, star = 'normal', onclose = undefined }: {
     open?: boolean;
@@ -447,7 +448,7 @@
         <div class="w-full max-w-[320px] md:max-w-[400px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
           <img
             alt={mutant?.name}
-            src={imgSrc(mutant, selectedStar)}
+            src={textureUrl(imgSrc(mutant, selectedStar))}
             class="w-full h-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
             loading="lazy"
             decoding="async"

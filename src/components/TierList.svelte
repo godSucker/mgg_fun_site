@@ -117,7 +117,7 @@
                       src={specimenSrc(m)}
                       alt={m.name}
                       class="w-full h-full object-contain p-0.5 sm:p-1"
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                     />
                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent

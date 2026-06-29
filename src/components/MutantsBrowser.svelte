@@ -3,6 +3,7 @@
   import { TYPE_RU, geneLabel, bingoLabel } from '@/lib/mutant-dicts';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
+  import { textureUrl } from '@/lib/texture-cdn';
 
   const normalizeForSearch = normalizeSearch;
 
@@ -685,12 +686,12 @@
         <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
           {#if viewMode === 'heads'}
             <div class="heads-card">
-              <img class="heads-img specimen" src={'/' + pickTexture(it, true)} alt={it.name} loading="eager" decoding="async" width="128" height="128" />
+              <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" />
               <div class="heads-name">{it.name}</div>
             </div>
           {:else}
             <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
-              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="eager" decoding="async" width="512" height="512" />
+              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
               <div class="px-3 pt-2 pb-3">
                 <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
               </div>
@@ -704,12 +705,12 @@
         <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
           {#if viewMode === 'heads'}
             <div class="heads-card">
-              <img class="heads-img specimen" src={'/' + pickTexture(it, true)} alt={it.name} loading="eager" decoding="async" width="128" height="128" />
+              <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" />
               <div class="heads-name">{it.name}</div>
             </div>
           {:else}
             <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
-              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="eager" decoding="async" width="512" height="512" />
+              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
               <div class="px-3 pt-2 pb-3">
                 <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
               </div>
