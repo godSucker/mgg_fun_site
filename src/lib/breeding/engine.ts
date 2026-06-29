@@ -1,5 +1,16 @@
 // src/lib/breeding/engine.ts
-import type { M3Settings } from './m3-xml';
+
+type M3Settings = {
+  hybrid: Record<string, { one: number; two: number; three: number }>;
+  stars: {
+    heuristicNeeded: number;
+    itemNeeded: string;
+    lvlCreatureMin: number;
+    result: number;
+    timerMalus: number;
+    useFusionRules?: boolean;
+  }[];
+};
 
 export type Gene = 'A'|'B'|'C'|'D'|'E'|'F';
 export type Code = string; // 'A', 'AA', 'AB', 'AC', ... (pairs sorted lexicographically)

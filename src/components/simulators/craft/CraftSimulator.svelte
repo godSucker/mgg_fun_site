@@ -127,17 +127,19 @@
     },
   ];
 
-  let activeFacilityId: FacilityId = facilities[0]?.id ?? 'metal';
+  let activeFacilityId: FacilityId = $state(facilities[0]?.id ?? 'metal');
 
-  let activeIncentiveId: string = incentiveRewards[0]?.id ?? '';
-  $: activeIncentive =
+  let activeIncentiveId: string = $state(incentiveRewards[0]?.id ?? '');
+  let activeIncentive = $derived(
     activeIncentiveId === ''
       ? null
-      : incentiveRewards.find((reward) => reward.id === activeIncentiveId) ?? null;
-  $: activeFacility =
-    facilities.find((facility) => facility.id === activeFacilityId) ?? facilities[0] ?? null;
+      : incentiveRewards.find((reward) => reward.id === activeIncentiveId) ?? null,
+  );
+  let activeFacility = $derived(
+    facilities.find((facility) => facility.id === activeFacilityId) ?? facilities[0] ?? null,
+  );
 
-  let facilityStates: Record<FacilityId, FacilityState> = facilities.reduce(
+  let facilityStates: Record<FacilityId, FacilityState> = $state(facilities.reduce(
     (acc, facility) => {
       acc[facility.id] = {
         selectedRecipeId: facility.recipes[0]?.id ?? '',
@@ -147,7 +149,7 @@
       return acc;
     },
     {} as Record<FacilityId, FacilityState>,
-  );
+  ));
 
   function setActiveFacility(id: FacilityId) {
     activeFacilityId = id;
@@ -214,14 +216,16 @@
   // Рецепты для перемещения из "Рецепты" в "Крафты"
   const RECIPES_TO_MOVE = new Set(['little_rewards_01', 'big_rewards_01', 'big_rewards_02']);
 
-  $: regularRecipes =
+  let regularRecipes = $derived(
     activeFacility.id === 'blackhole'
       ? activeFacility.recipes.filter((r) => !r.id.startsWith('pot_pourri_') && !RECIPES_TO_MOVE.has(r.id))
-      : activeFacility.recipes;
-  $: potPourriRecipes =
+      : activeFacility.recipes,
+  );
+  let potPourriRecipes = $derived(
     activeFacility.id === 'blackhole'
       ? activeFacility.recipes.filter((r) => r.id.startsWith('pot_pourri_') || RECIPES_TO_MOVE.has(r.id))
-      : [];
+      : [],
+  );
 </script>
 
 <section class="craft-hero">
@@ -298,7 +302,7 @@
     <button
       type="button"
       class:active={facility.id === activeFacilityId}
-      on:click={() => setActiveFacility(facility.id)}
+      onclick={() => setActiveFacility(facility.id)}
       role="tab"
       aria-selected={facility.id === activeFacilityId}
     >
@@ -372,7 +376,7 @@
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}
-                    on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                    onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                     role="tab"
                     aria-selected={recipe.id === currentRecipe?.id}
                   >
@@ -414,7 +418,7 @@
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}
-                    on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                    onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                     role="tab"
                     aria-selected={recipe.id === currentRecipe?.id}
                   >
@@ -486,7 +490,7 @@
                     <button
                       type="button"
                       class:selected={recipe.id === currentRecipe?.id}
-                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                       role="tab"
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
@@ -520,7 +524,7 @@
                     <button
                       type="button"
                       class:selected={recipe.id === currentRecipe?.id}
-                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                       role="tab"
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
@@ -554,7 +558,7 @@
                     <button
                       type="button"
                       class:selected={recipe.id === currentRecipe?.id}
-                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                       role="tab"
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
@@ -588,58 +592,13 @@
                     <button
                       type="button"
                       class:selected={recipe.id === currentRecipe?.id}
-                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                      onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                       role="tab"
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
                       {#if rewardIcon}
                         <img src={rewardIcon} alt={rewardLabel} />
                       {/if}
-                      <span class="recipe-selector__title">{rewardLabel}</span>
-                    </button>
-                  {/each}
-                </div>
-              </div>
-            {/if}
-          </div>
-        {:else if activeFacility.id === 'blackhole'}
-          {@const craftRecipeIds = ['little_rewards_01', 'big_rewards_01', 'big_rewards_02', 'token_sink_03', 'token_sink_06']}
-          {@const bhRecipes = activeFacility.recipes.filter(r => !craftRecipeIds.includes(r.id))}
-          {@const bhCraft = activeFacility.recipes.filter(r => craftRecipeIds.includes(r.id))}
-
-          <div class="recipe-groups">
-            <div class="recipes-group">
-              <h4 class="group-title">РЕЦЕПТЫ</h4>
-              <div class="recipe-selector grid-3-4">
-                {#each bhRecipes as recipe (recipe.id)}
-                  {@const displayReward = recipe.rewards[0]}
-                  {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
-                  {@const totalIngredients = recipe.ingredients.reduce((sum, ing) => sum + ing.amount, 0)}
-                  {@const rewardLabel = recipe.id.startsWith('pot_pourri_') ? `Средняя аптечка x${totalIngredients}` : baseLabel}
-                  {@const rewardIcon = recipe.id.startsWith('pot_pourri_') ? '/med/normal_med.webp' : (displayReward ? getItemTexture(displayReward.id) : null)}
-                  <button type="button" class:selected={recipe.id === currentRecipe?.id}
-                    on:click={() => selectRecipe(activeFacility.id, recipe.id)}
-                    role="tab" aria-selected={recipe.id === currentRecipe?.id}>
-                    {#if rewardIcon}<img src={rewardIcon} alt={rewardLabel} />{/if}
-                    <span class="recipe-selector__title">{rewardLabel}</span>
-                  </button>
-                {/each}
-              </div>
-            </div>
-
-            {#if bhCraft.length > 0}
-              <div class="recipes-group">
-                <h4 class="group-title">КРАФТ</h4>
-                <div class="recipe-selector grid-3-4">
-                  {#each bhCraft as recipe (recipe.id)}
-                    {@const displayReward = recipe.rewards[0]}
-                    {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
-                    {@const rewardLabel = baseLabel}
-                    {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
-                    <button type="button" class:selected={recipe.id === currentRecipe?.id}
-                      on:click={() => selectRecipe(activeFacility.id, recipe.id)}
-                      role="tab" aria-selected={recipe.id === currentRecipe?.id}>
-                      {#if rewardIcon}<img src={rewardIcon} alt={rewardLabel} />{/if}
                       <span class="recipe-selector__title">{rewardLabel}</span>
                     </button>
                   {/each}
@@ -670,7 +629,7 @@
               <button
                 type="button"
                 class:selected={recipe.id === currentRecipe?.id}
-                on:click={() => selectRecipe(activeFacility.id, recipe.id)}
+                onclick={() => selectRecipe(activeFacility.id, recipe.id)}
                 role="tab"
                 aria-selected={recipe.id === currentRecipe?.id}
               >
@@ -780,14 +739,14 @@
                   min="1"
                   max={MAX_SIMULATIONS}
                   value={state.craftCount}
-                  on:input={(event) =>
+                  oninput={(event) =>
                     updateCraftCount(activeFacility.id, Number(event.currentTarget.value))}
                 />
               </div>
               <button
                 type="button"
                 class="simulate-btn"
-                on:click={() => runSimulation(activeFacility.id)}
+                onclick={() => runSimulation(activeFacility.id)}
               >
                 🎲 Симулировать
               </button>
@@ -899,11 +858,9 @@
 {/if}
 
 <style>
-  /* --- ГЛОБАЛЬНЫЕ СТИЛИ --- */
   :global(body) {
     background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.95));
     margin: 0;
-    /* Важно: предотвращаем горизонтальный скролл на уровне тела */
     overflow-x: hidden;
   }
 

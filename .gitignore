@@ -51,4 +51,5 @@ coverage/
 
 # Temporary file for tier updates (important to not commit)
 temp/pending_tier_updates.json
-node_modules/@vercel/kv/
+# API keys
+settings.json

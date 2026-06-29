@@ -1,5 +1,4 @@
 
-// @ts-nocheck
 /**
  * Parser for m3guide-like breeding CSV and helpers.
  * Expected columns (header names can vary; we match loosely):

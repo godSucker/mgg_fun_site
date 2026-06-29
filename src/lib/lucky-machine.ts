@@ -137,9 +137,7 @@ export function getTotalWeight(machine: LuckyMachineDefinition = luckyMachine): 
   return getValidRewards(machine).reduce((sum, reward) => sum + reward.odds, 0);
 }
 
-export function formatNumber(value: number): string {
-  return value.toLocaleString('ru-RU');
-}
+export { formatNumber } from '@/lib/utils'
 
 export function getRewardWithChance(
   reward: LuckyReward,

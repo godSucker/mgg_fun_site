@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // --- ИМПОРТЫ ДАННЫХ ---
   import mutantsRaw from '@/data/mutants/mutants.json';
   import orbsRaw from '@/data/materials/orbs.json';
@@ -551,36 +551,30 @@
   const ALL_MUTANTS = normalizeMutants(mutantsRaw);
 
   // --- РЕАКТИВНОЕ СОСТОЯНИЕ UI ---
-  let query = '';                      // строка поиска
-  let geneFilter = '';                 // '' = все, 'A'..'F' = конкретный ген (single select!)
-  let gene2Filter = '';                // '' = все, 'A'..'F' = конкретный, 'neutral' = одногенный
-  let sortMode = 'gene';               // nameAsc | nameDesc | gene
-  let selected = ALL_MUTANTS[0];       // текущий мутант
-  let level = 30;                      // уровень из инпута
-  let stars = 0;                       // 0..4
+  let query = $state('');                      // строка поиска
+  let geneFilter = $state('');                 // '' = все, 'A'..'F' = конкретный ген (single select!)
+  let gene2Filter = $state('');                // '' = все, 'A'..'F' = конкретный, 'neutral' = одногенный
+  let sortMode = 'gene';                       // nameAsc | nameDesc | gene
+  let selected = $state(ALL_MUTANTS[0]);       // текущий мутант
+  let level = $state(30);                      // уровень из инпута
+  let stars = $state(0);                       // 0..4
   // выбранные сферы: массив из N базовых и 1 спец
-  let basicSlots = [];                 // длина = selected.basicSlotCount
-  let specialSlot = null;
-  let orbModifiers = { hpPct: 0, atk1Pct: 0, atk2Pct: 0, speedPct: 0, abilityBonus: {} };
-  let abilityRows = [];
-  let attackRows = [];
-  let typeIconCurrent = '';
-  let allowedAbilityBases = new Set();
-  let basicOrbOptions = ORBS.basic;
+  let basicSlots = $state([]);                 // длина = selected.basicSlotCount
+  let specialSlot = $state(null);
 
   // Состояние интерфейса
-  let showCatalog = true; // Показывать ли поиск/каталог слева
-  let isCopying = false;  // Состояние "Копируется..."
-  let dropdownHost = null;
-  let openDropdown = null; // 'basic-i' | 'special' | null
-  let lastMutantId = null; // Для отслеживания смены мутанта
+  let showCatalog = $state(true); // Показывать ли поиск/каталог слева
+  let isCopying = $state(false);  // Состояние "Копируется..."
+  let dropdownHost = $state(null as HTMLElement | null);
+  let openDropdown = $state(null as string | null); // 'basic-i' | 'special' | null
+  let lastMutantId = $state(null as string | null); // Для отслеживания смены мутанта
 
   // --- РАСЧЕТЫ ---
   // фильтрация + сортировка + поиск
   // Auto-reset gene2Filter when geneFilter is cleared
-  $: if (!geneFilter) gene2Filter = '';
+  $effect(() => { if (!geneFilter) gene2Filter = ''; });
 
-  $: filtered = ALL_MUTANTS
+  let filtered = $derived(ALL_MUTANTS
       .filter(m => {
         // If geneFilter is empty (meaning "ALL"), show all mutants that match the search
         if (!geneFilter) {
@@ -623,10 +617,10 @@
         }
         return true;
       })
-      .sort(byGene); // Always use genetic sorting
+      .sort(byGene)); // Always use genetic sorting
 
   // смена выбранного мутанта — сбрасываем слоты по его типу и выбираем макс. звезду
-  $: if (selected && selected.id !== lastMutantId) {
+  $effect(() => { if (selected && selected.id !== lastMutantId) {
     const count = Number.isFinite(selected.basicSlotCount) ? selected.basicSlotCount : 3;
     basicSlots = Array(count).fill(null);
     specialSlot = null;
@@ -636,16 +630,16 @@
       stars = Math.max(...availableArray);
       lastMutantId = selected.id;
     }
-  }
+  }});
 
-  $: allowedAbilityBases = buildAllowedAbilityBases(selected, specialSlot);
-  $: basicOrbOptions = filterBasicOrbs(ORBS.basic, allowedAbilityBases);
-  $: if (Array.isArray(basicSlots)) {
+  let allowedAbilityBases = $derived(buildAllowedAbilityBases(selected, specialSlot));
+  let basicOrbOptions = $derived(filterBasicOrbs(ORBS.basic, allowedAbilityBases));
+  $effect(() => { if (Array.isArray(basicSlots)) {
     const sanitized = basicSlots.map((orb) => allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null);
     if (!arraysEqual(sanitized, basicSlots)) {
       basicSlots = sanitized;
     }
-  }
+  }});
 
   function figureImage(m, stars){
     if (!m) return '';
@@ -658,49 +652,37 @@
   }
 
   function listThumbnail(m){
-    return portraitImage(m) || firstTexture(m.images);
+    const img = portraitImage(m) || firstTexture(m.images);
+    if (img && img.includes('/textures_by_mutant/') && img.includes('specimen_')) {
+      return img.replace('/textures_by_mutant/', '/textures_by_mutant/').replace('specimen_', 'thumb_specimen_');
+    }
+    return img;
   }
 
   function starTexture(m, stars){
     if (!m) return '';
     const key = STAR_KEYS[stars] ?? 'normal';
-    // Use stars object from unified data
     const starData = m._rawStars?.[key];
     if (starData?.images?.length) {
       const imgs = normalizeImages(starData.images);
-      // Сначала ищем specimen (голову)
       const specimen = findImageByKeywords(imgs, ['specimen']);
       if (specimen) return specimen;
-      // Если нет, ищем полную текстуру
-      const fullTexture = findImageByKeywords(imgs, ['textures_by_mutant/']);
-      if (fullTexture) return fullTexture;
-      // Иначе первую доступную
       return imgs[0];
     }
     if (key === 'normal') {
       return baseTexture(m);
     }
-    const keywords = STAR_IMAGE_KEYWORDS[key] || [key];
-    // Сначала ищем specimen (голову)
     const specimen = findImageByKeywords(m.images, ['specimen']);
     if (specimen) return specimen;
-    // Если нет, ищем полную текстуру
-    const fullTexture = findImageByKeywords(m.images, keywords);
-    if (fullTexture) return fullTexture;
     return baseTexture(m);
   }
 
   function baseTexture(m){
     if (!m) return '';
-    // Сначала ищем specimen (голову)
     const specimen = findImageByKeywords(m.images, ['specimen']);
     if (specimen) return specimen;
-    // Если нет, ищем полную текстуру
-    const fullTexture = findImageByKeywords(m.images, STAR_IMAGE_KEYWORDS.normal);
-    if (fullTexture) return fullTexture;
-    // Иначе любую доступную
     return (
-      findImageByKeywords(m.images, ['normal', 'default', 'full'])
+      findImageByKeywords(m.images, ['normal', 'default'])
       || firstTexture(m.images)
     );
   }
@@ -827,11 +809,11 @@
     };
   }
 
-  $: orbModifiers = calcOrbModifiers(basicSlots, specialSlot);
-  $: stats = selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0, bank: 0};
-  $: abilityRows = selected ? calcAbilityRows(selected, stats, orbModifiers, level, specialSlot) : [];
-  $: attackRows = buildAttackRows(selected, stats, abilityRows);
-  $: typeIconCurrent = selected ? typeIconPath(selected.typeKey || selected.type) : '';
+  let orbModifiers = $derived(calcOrbModifiers(basicSlots, specialSlot));
+  let stats = $derived(selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0, bank: 0});
+  let abilityRows = $derived(selected ? calcAbilityRows(selected, stats, orbModifiers, level, specialSlot) : []);
+  let attackRows = $derived(buildAttackRows(selected, stats, abilityRows));
+  let typeIconCurrent = $derived(selected ? typeIconPath(selected.typeKey || selected.type) : '');
 
   function buildAttackRows(mutant, statLine, abilityList){
     if (!mutant) return [];
@@ -1365,7 +1347,7 @@
 </script>
 
 
-<svelte:window on:click={windowClick} />
+<svelte:window onclick={windowClick} />
 
 <div class="stats-page" class:single-col={!showCatalog}>
 
@@ -1376,14 +1358,14 @@
       <div class="filters-row">
         <button
           class="filter-chip {geneFilter === '' && gene2Filter === '' ? 'active' : ''}"
-          on:click={() => toggleGene('all')}>
+          onclick={() => toggleGene('all')}>
           <span>Ген 1: ВСЕ</span>
         </button>
         {#each ['A','B','C','D','E','F'] as g}
           <button
             class="gene-chip"
             class:active={geneFilter===g}
-            on:click={() => toggleGene(g)}
+            onclick={() => toggleGene(g)}
             title={GENE_NAME[g]}>
             <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
           </button>
@@ -1395,14 +1377,14 @@
         <button
           class="filter-chip {gene2Filter === '' && geneFilter ? 'active' : ''}"
           disabled={!geneFilter}
-          on:click={() => toggleGene2('all')}>
+          onclick={() => toggleGene2('all')}>
           <span>Ген 2: ВСЕ</span>
         </button>
         <button
           class="gene-chip"
           class:active={gene2Filter==='neutral'}
           disabled={!geneFilter}
-          on:click={() => toggleGene2('neutral')}
+          onclick={() => toggleGene2('neutral')}
           title="Нейтральный">
           <img src="/genes/gene_all.webp" alt="Нейтральный" />
         </button>
@@ -1411,7 +1393,7 @@
             class="gene-chip"
             class:active={gene2Filter===g}
             disabled={!geneFilter}
-            on:click={() => toggleGene2(g)}
+            onclick={() => toggleGene2(g)}
             title={GENE_NAME[g]}>
             <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
           </button>
@@ -1427,7 +1409,7 @@
 
       <div class="list">
         {#each filtered as m (m.id)}
-          <button class="mut-row {selected?.id===m.id ? 'active' : ''}" on:click={() => selectMutant(m)}>
+          <button class="mut-row {selected?.id===m.id ? 'active' : ''}" onclick={() => selectMutant(m)}>
             <img class="mut-icon" src={listThumbnail(m) || ''} alt={m.name} />
             <div class="mut-meta">
               <div class="name">{m.name}</div>
@@ -1451,7 +1433,7 @@
       <div class="panel-header">
          <!-- Кнопка показа/скрытия каталога -->
          <div class="header-left">
-            <button class="tool-btn" on:click={toggleCatalog} title={showCatalog ? "Скрыть поиск" : "Показать поиск"}>
+            <button class="tool-btn" onclick={toggleCatalog} title={showCatalog ? "Скрыть поиск" : "Показать поиск"}>
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                  {#if showCatalog}
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1470,7 +1452,7 @@
 
       <!-- Кнопка скриншота перенесена под заголовок для исключения наложения -->
       <div class="header-tools-row">
-        <button class="tool-btn share-btn" on:click={shareScreenshot} disabled={isCopying} title="Сохранить как картинку">
+        <button class="tool-btn share-btn" onclick={shareScreenshot} disabled={isCopying} title="Сохранить как картинку">
            {#if isCopying}
              <span>Сохраняем...</span>
            {:else}
@@ -1494,17 +1476,17 @@
             <!-- базовые -->
             {#each basicSlots as orb, i}
               <div class="slot">
-                <button class="slot-btn" on:click={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
+                <button class="slot-btn" onclick={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
                   <img class="slot-bg" src="/orbs/basic/orb_slot.webp" alt="slot" />
                   {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
                 </button>
                 {#if orb}
-                  <button class="x" title="убрать" on:click={() => clearSlot('basic', i)}>×</button>
+                  <button class="x" title="убрать" onclick={() => clearSlot('basic', i)}>×</button>
                 {/if}
                 {#if openDropdown === `basic-${i}`}
                   <div class="dropdown">
                     {#each basicOrbOptions as o}
-                      <button class="orb-row" on:click={() => pickBasic(i, o)}>
+                      <button class="orb-row" onclick={() => pickBasic(i, o)}>
                         <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
                       </button>
                     {/each}
@@ -1516,17 +1498,17 @@
             <!-- спец-слот -->
             {#if selected.specialSlotCount > 0}
             <div class="slot">
-              <button class="slot-btn" on:click={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
+              <button class="slot-btn" onclick={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
                 <img class="slot-bg" src="/orbs/special/orb_slot_spe.webp" alt="special" />
                 {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
               </button>
               {#if specialSlot}
-                <button class="x" title="убрать" on:click={() => clearSlot('special')}>×</button>
+                <button class="x" title="убрать" onclick={() => clearSlot('special')}>×</button>
               {/if}
               {#if openDropdown === 'special'}
                 <div class="dropdown">
                   {#each ORBS.special as o}
-                    <button class="orb-row" on:click={() => pickSpecial(o)}>
+                    <button class="orb-row" onclick={() => pickSpecial(o)}>
                       <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
                     </button>
                   {/each}
@@ -1545,8 +1527,8 @@
                 min="1"
                 max="500"
                 bind:value={level}
-                on:keydown={(e) => { if (e.key === '-' || e.key === 'e' || e.key === '+') e.preventDefault(); }}
-                on:input={(e) => { if (e.target.value < 0) level = 0; }}
+                onkeydown={(e) => { if (e.key === '-' || e.key === 'e' || e.key === '+') e.preventDefault(); }}
+                oninput={(e) => { if (e.target.value < 0) level = 0; }}
               />
             </div>
             <div class="control">
@@ -1557,7 +1539,7 @@
                     class="star"
                     class:selected={stars === s}
                     disabled={!selected.availableStars.has(s)}
-                    on:click={() => stars = s}
+                    onclick={() => stars = s}
                     aria-pressed={stars === s}
                     title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
                     <img src={STAR_ICON[s]} alt="*" />
@@ -1865,7 +1847,7 @@
     .mut-figure { padding: 0 0 16px; }
   }
   .mut-figure::after{ content:""; position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
-  .mut-figure .texture{ width:220px; height:220px; object-fit:contain; image-rendering:auto; transform:translateY(36px); }
+  .mut-figure .texture{ width:220px; height:220px; object-fit:contain; image-rendering:auto; }
 
   .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:6px; }
   @media (min-width: 768px) {
@@ -2218,7 +2200,7 @@
 
     .row.attack-row { flex-direction: column; gap: 6px; padding: 8px; }
     .ability-divider { display: none !important; }
-    .mut-figure .texture { width: 140px; height: 140px; transform: translateY(20px); }
+    .mut-figure .texture { width: 160px; height: 160px; }
     .mut-figure::after { width: 140px; bottom: -18px; height: 45px; }
     .mut-figure { padding: 0 0 10px; }
     
@@ -2247,7 +2229,7 @@
       justify-content: center; /* Center the content */
     }
 
-    .mut-figure .texture { width: 120px; height: 120px; transform: translateY(16px); }
+    .mut-figure .texture { width: 130px; height: 130px; }
 
     /* Fix long name issue - make title responsive */
     .title {

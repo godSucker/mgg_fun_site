@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   // ВАЖНО: Импорт без alias. Файл должен существовать: src/data/evotech-data.js
   // Формат ожидается как default export массива: [ null, {id:1,gold:...,silver:...}, ... ]
   import EvoRows from '../data/evotech-data.js';
@@ -8,22 +8,22 @@
   const PRICE_CONST_FROM_LEVEL = 328;
 
   // UI
-  let startLevel = '';
-  let silver = '';
-  let gold = '';
-  let discount = '70'; // 0 | 60 | 70 | 80
+  let startLevel = $state('');
+  let silver = $state('');
+  let gold = $state('');
+  let discount = $state('70'); // 0 | 60 | 70 | 80
 
-  let errorMsg = '';
-  let busy = false;
+  let errorMsg = $state('');
+  let busy = $state(false);
 
   // Результаты
-  let endLevel = '—';
-  let upgrades = '—';
-  let spentSilver = '—';
-  let spentGold = '—';
-  let leftSilver = '—';
-  let leftGold = '—';
-  let hitCap = false;
+  let endLevel = $state('—');
+  let upgrades = $state('—');
+  let spentSilver = $state('—');
+  let spentGold = $state('—');
+  let leftSilver = $state('—');
+  let leftGold = $state('—');
+  let hitCap = $state(false);
 
   // =======================
   // Утилиты чисел/строк
@@ -227,8 +227,8 @@
     };
   }
 
-  let spentS = 0n;
-  let spentG = 0n;
+  let spentS = $state(0n);
+  let spentG = $state(0n);
 
   async function calculate() {
     errorMsg = '';
@@ -277,19 +277,19 @@
       <div class="space-y-3">
         <label class="block">
           <span class="text-sky-300/80 text-sm">Стартовый уровень (≥ 5)</span>
-          <input type="text" bind:value={startLevel} on:input={onInputStartLevel} inputmode="numeric" placeholder="Например, 120"
+          <input type="text" bind:value={startLevel} oninput={onInputStartLevel} inputmode="numeric" placeholder="Например, 120"
             class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Серебро</span>
-           <input type="text" bind:value={silver} on:input={onInputSilver} inputmode="numeric" placeholder="Можно оставить пустым"
+           <input type="text" bind:value={silver} oninput={onInputSilver} inputmode="numeric" placeholder="Можно оставить пустым"
             class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Золото</span>
-           <input type="text" bind:value={gold} on:input={onInputGold} inputmode="numeric" placeholder="Можно оставить пустым"
+           <input type="text" bind:value={gold} oninput={onInputGold} inputmode="numeric" placeholder="Можно оставить пустым"
               class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
@@ -305,7 +305,7 @@
         </label>
 
         <div class="pt-2">
-          <button on:click={calculate}
+          <button onclick={calculate}
                   class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white ring-1 ring-white/10 disabled:opacity-60"
                   disabled={busy}>
             {busy ? 'Считаю…' : 'Рассчитать'}

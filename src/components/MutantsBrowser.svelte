@@ -4,18 +4,10 @@
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
 
-  // Alias for backward compatibility
   const normalizeForSearch = normalizeSearch;
 
-  // Пропсы
-  export let items: any[] = [];     // unified mutants.json
-  export let skins: any[] = [];     // skins.json -> specimens[]
-  export let bingos: any[] = [];    // bingos.json
-  export let title = '';
-  export let bingoIndex: string[] = [];
-  export let star: string = '';
-  
-  // Мемо-кэш для фильтрации/сортировки
+  let { items = [], skins = [], bingos = [], title = '', bingoIndex = [], star = '' } = $props();
+
   const _cache = new Map<string, any[]>();
   function memo<T>(key: string, calc: () => T): T {
     if (_cache.has(key)) return _cache.get(key) as T;
@@ -24,10 +16,6 @@
     return v;
   }
 
-
-  // =========================
-  // НОРМАЛИЗАЦИЯ ДАННЫХ
-  // =========================
   const baseId = (id: any) =>
     String(id ?? '')
       .toLowerCase()
@@ -40,7 +28,6 @@
       const key = baseId(item?.id);
       if (!key) continue;
       const id = String(item?.id ?? '').toLowerCase();
-      // Для базовой карты предпочитаем normal версию, но сохраняем все версии по id для быстрого доступа
       const isNormal = !/_+(?:bronze|silver|gold|platinum|plat)\b/.test(id);
       if (!map.has(key) || isNormal) {
         map.set(key, item);
@@ -48,7 +35,6 @@
     }
     return map;
   }
-
 
   function hasBingo(val: any): boolean {
     if (!val) return false;
@@ -124,45 +110,39 @@
     return merged;
   }
 
-  let baseMap: BaseMap = new Map();
-  $: baseMap = buildBaseMap(items ?? []);
+  let baseMap: BaseMap = $derived(buildBaseMap(items ?? []));
 
+  let preparedMutants: any[] = $state([]);
+  let preparedSkins: any[] = $state([]);
 
-  // Кэшируем enriched данные - пересчитываем только при изменении items/skins
-  let preparedMutants: any[] = [];
-  let preparedSkins: any[] = [];
-
-  $: {
-    // При изменении items пересоздаем preparedMutants
+  $effect(() => {
     preparedMutants = (items || []).map(enrichItem);
-    _cache.clear(); // Очищаем кэш фильтрации
-  }
+    _cache.clear();
+  });
 
-  $: normalizedSkins = (Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index));
+  let normalizedSkins = $derived((Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index)));
 
-  $: {
-    // При изменении normalizedSkins пересоздаем preparedSkins
+  $effect(() => {
     preparedSkins = (normalizedSkins || []).map(enrichItem);
-    _cache.clear(); // Очищаем кэш фильтрации
-  }
+    _cache.clear();
+  });
 
-  // ===========
-  // КОНТРОЛЫ UI
-  // ===========
   type Mode = 'mutants' | 'skins';
-  let mode: Mode = 'mutants';
+  let mode: Mode = $state('mutants');
   type ViewMode = 'full' | 'heads';
-  let viewMode: ViewMode = 'heads';
+  let viewMode: ViewMode = $state('heads');
 
-  let query = '';
-  let gene1Sel = '';
-  let gene2Sel = '';
-  // Gene2 is blocked when Gene1 is "Все" (empty)
-  $: if (!gene1Sel) gene2Sel = '';
+  let query = $state('');
+  let gene1Sel = $state('');
+  let gene2Sel = $state('');
 
-  $: typeOptions = uniq(items.map(it => it?.type).filter(Boolean))
-      .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru'));
-  let typeSel = '';
+  $effect(() => {
+    if (!gene1Sel) gene2Sel = '';
+  });
+
+  let typeOptions = $derived(uniq(items.map(it => it?.type).filter(Boolean))
+      .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru')));
+  let typeSel = $state('');
 
   function collectBingoKeys(it:any): string[] {
     const b = it?.bingo;
@@ -172,7 +152,7 @@
     return [];
   }
   function flatten<T>(arr: T[][]): T[] { const out:T[]=[]; for (let i=0;i<arr.length;i++) out.push(...arr[i]); return out; }
-  $: bingoOptions = (bingoIndex?.length
+  let bingoOptions = $derived((bingoIndex?.length
       ? [...bingoIndex]
       : uniq(flatten(items.map(collectBingoKeys)))
     ).sort((a,b) => {
@@ -185,8 +165,8 @@
       const na = la.replace(/\d+/g, m => m.padStart(6, '0'));
       const nb = lb.replace(/\d+/g, m => m.padStart(6, '0'));
       return na.localeCompare(nb, 'ru');
-    });
-  let bingoSel = '';
+    }));
+  let bingoSel = $state('');
 
   type StarKey = 'normal'|'bronze'|'silver'|'gold'|'platinum';
   type SkinStarKey = 'any'|'normal'|'bronze'|'silver'|'gold'|'platinum';
@@ -208,7 +188,7 @@
   ];
 
   const starSelMutants: StarKey = 'normal';
-  let starSelSkins: SkinStarKey = 'any';
+  let starSelSkins: SkinStarKey = $state('any');
 
   function switchTo(next: Mode) {
     mode = next;
@@ -238,16 +218,13 @@
   ];
   const geneButtonClass = (selected: boolean, disabled: boolean = false) =>
     'p-1 rounded-lg ring-1 ' + (disabled ? 'bg-slate-900 ring-white/5 opacity-30 cursor-not-allowed' : selected ? 'bg-cyan-700 ring-cyan-400' : 'bg-slate-800 ring-white/10');
-    
+
   const geneChipClass = (selected: boolean, disabled: boolean = false) =>
-    'h-9 px-3 rounded-lg ring-1 flex items-center justify-center ' + 
-    (disabled ? 'bg-slate-900 ring-white/5 opacity-30 cursor-not-allowed' : 
-     selected ? 'bg-cyan-700 ring-cyan-400 text-white' : 
+    'h-9 px-3 rounded-lg ring-1 flex items-center justify-center ' +
+    (disabled ? 'bg-slate-900 ring-white/5 opacity-30 cursor-not-allowed' :
+     selected ? 'bg-cyan-700 ring-cyan-400 text-white' :
      'bg-slate-800 ring-white/10 text-slate-200');
 
-  // =================
-  // ПОМОЩНИКИ ФИЛЬТРОВ
-  // =================
   const normalizeGene = (s:string) => (s ?? '').toUpperCase();
   const starOf = (it:any) => String(it?.star ?? 'normal').toLowerCase();
   function readGeneCode(it:any): string {
@@ -269,10 +246,8 @@
     const first = code?.[0] ?? '';
     const rank = first ? geneOrder.get(first) ?? 99 : 199;
 
-    // Secondary gene weight (for sorting)
     const secondaryWeight = code.length <= 1 ? 0 : (geneOrder.get(code[1]) ?? 99) + 1;
 
-    // Регистронезависимый тип
     const typeKey = String(it?.type ?? '').toLowerCase();
 
     const starKey = starOf(it);
@@ -285,42 +260,34 @@
 
   function uniq<T>(arr: T[]) { return Array.from(new Set(arr)); }
 
-  // Генерирует ключ кэша на основе параметров фильтрации
   function getCacheKey(q: string, gene: string, type: string, bingo: string, star: string): string {
     return `${q}|${gene}|${type}|${bingo}|${star}`;
   }
 
-  // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ С КЭШИРОВАНИЕМ
-  $: filteredMutants = memo(getCacheKey(query, `${gene1Sel},${gene2Sel}`, typeSel, bingoSel, starSelMutants), () => {
+  let filteredMutants = $derived(memo(getCacheKey(query, `${gene1Sel},${gene2Sel}`, typeSel, bingoSel, starSelMutants), () => {
     return (() => {
     const q = query ? query.trim().toLowerCase() : null;
     const normalizedQ = q ? normalizeForSearch(q) : null;
     const sBingo = bingoSel ? String(bingoSel) : null;
     const sType = typeSel ? String(typeSel).toLowerCase() : null;
 
-    // Если есть поисковый запрос, игнорируем фильтры звезд/атрибутов
     const isSearching = !!normalizedQ;
 
     const bingoData = sBingo ? bingos.find((b: any) => b.id === sBingo) : null;
     const isReactorSel = sBingo === 'reactor' || (sType === 'reactor' || sType === 'gacha');
 
-    // Объединяем map + filter в один проход для оптимизации
     const res = [];
     for (const it of preparedMutants) {
       const m = it._meta;
 
-      // Фильтр поиска
       if (normalizedQ && !m.searchName.includes(normalizedQ)) continue;
 
-      // Если ищем по имени, пропускаем остальные фильтры
       if (!isSearching) {
-        // Фильтр генов: Gene1 = first gene strictly, Gene2 = second gene strictly
         if (gene1Sel) {
           const firstGene = m.code?.[0];
           if (firstGene !== gene1Sel.toUpperCase()) continue;
           if (gene2Sel) {
             if (gene2Sel === 'neutral') {
-              // Single-gene only: exactly one gene
               if (m.code.length !== 1) continue;
             } else {
               if (m.code.length < 2 || m.code[1] !== gene2Sel.toUpperCase()) continue;
@@ -328,18 +295,15 @@
           }
         }
 
-        // Поиск по типу (строгое совпадение по атрибуту type)
         if (sType) {
           if (m.typeKey !== sType) continue;
         }
 
-        // Фильтр бинго: строгое членство в коллекции
         if (sBingo) {
           if (!m.bingoKeys.has(sBingo)) continue;
         }
       }
 
-      // Определяем принудительный скин
       let fSkin = null;
       if (bingoData) {
         const entry = bingoData.mutants.find((bm: any) => bm.specimenId.toLowerCase() === m.id.toLowerCase());
@@ -359,8 +323,6 @@
       res.push(fSkin ? { ...it, forceSkin: fSkin } : it);
     }
 
-    // --- МАГИЯ ПОДМЕНЫ ВЕРСИЙ ДЛЯ БИНГО ---
-    // Если выбрано звездное Бинго, подменяем мутанта на его звездную версию из starMap
     if (sBingo) {
         let autoStar = '';
         if (sBingo === 'reactor') autoStar = 'platinum';
@@ -374,7 +336,6 @@
         }
     }
 
-    // Sort using pre-computed ranks from _meta
     return res.sort((a, b) => {
       const rankA = a._meta?.rank ?? 199;
       const rankB = b._meta?.rank ?? 199;
@@ -387,10 +348,9 @@
       return (a._meta?.id || '').localeCompare(b._meta?.id || '');
     });
     })();
-  });
+  }));
 
-  // МЕГА-БЫСТРАЯ ФИЛЬТРАЦИЯ СКИНОВ С КЭШИРОВАНИЕМ
-  $: filteredSkins = memo(getCacheKey(query, `${gene1Sel},${gene2Sel}`, typeSel, '', starSelSkins), () => {
+  let filteredSkins = $derived(memo(getCacheKey(query, `${gene1Sel},${gene2Sel}`, typeSel, '', starSelSkins), () => {
     return (() => {
     const q = query ? query.trim().toLowerCase() : null;
     const normalizedQ = q ? normalizeForSearch(q) : null;
@@ -406,13 +366,11 @@
         res.push(it);
         continue;
       }
-      // Strict gene filter: Gene1 = first gene, Gene2 = second gene
       if (gene1Sel) {
         const firstGene = m.code?.[0];
         if (firstGene !== gene1Sel.toUpperCase()) continue;
         if (gene2Sel) {
           if (gene2Sel === 'neutral') {
-            // Single-gene only: exactly one gene
             if (m.code.length !== 1) continue;
           } else {
             if (m.code.length < 2 || m.code[1] !== gene2Sel.toUpperCase()) continue;
@@ -422,7 +380,6 @@
       if (checkStars && m.starKey !== targetStar) continue;
       res.push(it);
     }
-    // Sort using pre-computed ranks from _meta
     return res.sort((a, b) => {
       const rankA = a._meta?.rank ?? 199;
       const rankB = b._meta?.rank ?? 199;
@@ -435,26 +392,26 @@
       return (a._meta?.id || '').localeCompare(b._meta?.id || '');
     });
     })();
-  });
+  }));
 
-  $: pageSize = viewMode === 'heads' ? 60 : 20;
-  let currentPage = 1;
-  $: {
+  let pageSize = $derived(viewMode === 'heads' ? 60 : 20);
+  let currentPage = $state(1);
+
+  $effect(() => {
     mode; query; gene1Sel; gene2Sel; typeSel; bingoSel; starSelMutants; starSelSkins; viewMode;
     currentPage = 1;
-  }
-  $: endIndex = pageSize * currentPage;
-  $: shownMutants = filteredMutants.slice(0, endIndex);
-  $: shownSkins = filteredSkins.slice(0, endIndex);
+  });
+
+  let endIndex = $derived(pageSize * currentPage);
+  let shownMutants = $derived(filteredMutants.slice(0, endIndex));
+  let shownSkins = $derived(filteredSkins.slice(0, endIndex));
 
   function pickTexture(it:any, headsMode: boolean = false): string {
     const bid = baseId(it.id);
 
-    // Если есть принудительный скин
     if (it?.forceSkin) {
         const skinTag = String(it.forceSkin).toLowerCase();
 
-        // Ищем в глобальном списке скинов (skins.json)
         if (skins && skins.length > 0) {
            const skinEntry = skins.find((s: any) => {
              const sId = baseId(s.id);
@@ -473,7 +430,6 @@
         }
     }
 
-    // Unified mutants: use stars object
     if (it?.stars) {
         const displayStar = it._displayStar || starSelMutants;
         const starKeys = Object.keys(it.stars);
@@ -482,52 +438,52 @@
             const imgs = starData.images;
             if (headsMode) {
                 const specimen = imgs.find((p: string) => p.includes('specimen'));
-                if (specimen) return specimen;
+                if (specimen) return toThumbPath(specimen);
             }
-            // Сначала ищем specimen (голову)
             const specimen = imgs.find((p: string) => p.includes('specimen'));
             if (specimen) return specimen;
-            // Если нет, ищем полную текстуру
             const fullTexture = imgs.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
             if (fullTexture) return fullTexture;
-            // Иначе первую доступную
             return imgs[0];
         }
     }
 
-    // Fallback for skins (old image field)
     const list = Array.isArray(it?.image) ? it.image : (it?.image ? [it.image] : []);
-    const star = String(it?.star ?? 'normal').toLowerCase();
+    const starVal = String(it?.star ?? 'normal').toLowerCase();
 
     let pick = list.find((p: string) => {
         const path = p.toLowerCase();
-        if (star === 'normal') return path.includes('normal') || (!path.includes('bronze') && !path.includes('silver') && !path.includes('gold') && !path.includes('platinum') && !path.includes('plat'));
-        if (star === 'platinum') return path.includes('platinum') || path.includes('plat');
-        return path.includes(star);
+        if (starVal === 'normal') return path.includes('normal') || (!path.includes('bronze') && !path.includes('silver') && !path.includes('gold') && !path.includes('platinum') && !path.includes('plat'));
+        if (starVal === 'platinum') return path.includes('platinum') || path.includes('plat');
+        return path.includes(starVal);
     });
 
     if (!pick) {
-        // Сначала ищем specimen (голову)
         pick = list.find((p:string) => p.includes('specimen'));
-        // Если нет, ищем полную текстуру
         if (!pick) {
             pick = list.find((p:string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
         }
-        // Иначе первую доступную
         if (!pick) {
             pick = list[0];
         }
     }
+    if (headsMode && pick && pick.includes('specimen_')) {
+        return toThumbPath(pick);
+    }
     return pick ?? 'placeholder-mutant.webp';
+  }
+
+  function toThumbPath(p: string): string {
+    return p.replace('/textures_by_mutant/', '/textures_by_mutant/').replace('specimen_', 'thumb_specimen_');
   }
   function rarityType(item:any){
     if (isSkin(item)) return (item?.star ?? 'normal').toLowerCase();
     return item?._displayStar || starSelMutants;
   }
-  
+
   const isSkin = (it:any) =>
     it?.__source === 'skin' || typeof it?.skin !== 'undefined';
-    
+
   const keyOf = (it:any, index?: number) => {
     if (isSkin(it)) {
       if (typeof it?.__skinKey === 'string') return `skin:${it.__skinKey}`;
@@ -538,7 +494,7 @@
     return `mut:${it?.id ?? index}`;
   };
 
-  let openItem:any = null;
+  let openItem:any = $state(null);
   const openModal  = (it:any) => { openItem = it; };
   const closeModal = () => { openItem = null; };
 </script>
@@ -553,7 +509,7 @@
     <button type="button"
       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
         + (mode==='mutants' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      on:click={() => switchTo('mutants')}
+      onclick={() => switchTo('mutants')}
       aria-pressed={mode==='mutants'}
     >
       MUTANTS
@@ -561,7 +517,7 @@
     <button type="button"
       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
         + (mode==='skins' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      on:click={() => switchTo('skins')}
+      onclick={() => switchTo('skins')}
       aria-pressed={mode==='skins'}
     >
       SKINS
@@ -573,7 +529,7 @@
     <button type="button"
       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
         + (viewMode==='full' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      on:click={() => viewMode = 'full'}
+      onclick={() => viewMode = 'full'}
       aria-pressed={viewMode==='full'}
       title="Полные карточки"
     >
@@ -582,7 +538,7 @@
     <button type="button"
       class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
         + (viewMode==='heads' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      on:click={() => viewMode = 'heads'}
+      onclick={() => viewMode = 'heads'}
       aria-pressed={viewMode==='heads'}
       title="Режим голов"
     >
@@ -609,7 +565,7 @@
           {#if g.key === ''}
             <button type="button"
               class={geneChipClass(gene1Sel===g.key)}
-              on:click={() => { gene1Sel = ''; gene2Sel = ''; }}
+              onclick={() => { gene1Sel = ''; gene2Sel = ''; }}
               title={g.label}
               aria-pressed={gene1Sel===g.key}
             >
@@ -618,7 +574,7 @@
           {:else}
             <button type="button"
               class={geneButtonClass(gene1Sel===g.key)}
-              on:click={() => { gene1Sel = (gene1Sel===g.key ? '' : g.key); }}
+              onclick={() => { gene1Sel = (gene1Sel===g.key ? '' : g.key); }}
               title={g.label}
               aria-pressed={gene1Sel===g.key}
             >
@@ -633,7 +589,7 @@
           {#if g.key === ''}
             <button type="button"
               class={geneChipClass(gene2Sel===g.key && gene1Sel, !gene1Sel)}
-              on:click={() => { if (gene1Sel) gene2Sel = ''; }}
+              onclick={() => { if (gene1Sel) gene2Sel = ''; }}
               title={g.label}
               aria-pressed={gene2Sel===g.key}
               disabled={!gene1Sel}
@@ -643,7 +599,7 @@
           {:else if g.key === 'neutral'}
             <button type="button"
               class={geneButtonClass(gene2Sel===g.key, !gene1Sel)}
-              on:click={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
+              onclick={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
               title={g.label}
               aria-pressed={gene2Sel===g.key}
               disabled={!gene1Sel}
@@ -653,7 +609,7 @@
           {:else}
             <button type="button"
               class={geneButtonClass(gene2Sel===g.key, !gene1Sel)}
-              on:click={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
+              onclick={() => { if (gene1Sel) gene2Sel = (gene2Sel===g.key ? '' : g.key); }}
               title={g.label}
               aria-pressed={gene2Sel===g.key}
               disabled={!gene1Sel}
@@ -674,7 +630,7 @@
           <button type="button"
             class={'px-2 h-8 rounded-lg ring-1 flex items-center gap-2 '
               + (starSelSkins===s.key ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-            on:click={() => (starSelSkins = s.key)}
+            onclick={() => (starSelSkins = s.key)}
             aria-pressed={starSelSkins===s.key}
           >
             {#if s.icon}<img src={s.icon} alt={s.label} class="h-5 w-5 object-contain" />{/if}
@@ -720,21 +676,21 @@
 
   <!-- Сетка карточек -->
   <div class={viewMode === 'heads'
-    ? 'grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 [content-visibility:auto]'
-    : 'grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 [content-visibility:auto]'}
-    style="contain-intrinsic-size: 1200px;"
+    ? 'grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10'
+    : 'grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5'}
   >
     {#if mode === 'mutants'}
       {#each shownMutants as it, i (keyOf(it, i))}
-        <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
+        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+        <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
           {#if viewMode === 'heads'}
             <div class="heads-card">
-              <img class="heads-img specimen" src={'/' + pickTexture(it, true)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+              <img class="heads-img specimen" src={'/' + pickTexture(it, true)} alt={it.name} loading="eager" decoding="async" width="128" height="128" />
               <div class="heads-name">{it.name}</div>
             </div>
           {:else}
-            <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
+              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="eager" decoding="async" width="512" height="512" />
               <div class="px-3 pt-2 pb-3">
                 <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
               </div>
@@ -744,15 +700,16 @@
       {/each}
     {:else}
       {#each shownSkins as it, i (keyOf(it, i))}
-        <div role="button" tabindex="0" class="cursor-pointer" on:click={() => openModal(it)}>
+        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+        <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
           {#if viewMode === 'heads'}
             <div class="heads-card">
-              <img class="heads-img specimen" src={'/' + pickTexture(it, true)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+              <img class="heads-img specimen" src={'/' + pickTexture(it, true)} alt={it.name} loading="eager" decoding="async" width="128" height="128" />
               <div class="heads-name">{it.name}</div>
             </div>
           {:else}
-            <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10" style="content-visibility:auto; contain-intrinsic-size: 260px 340px;">
-              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
+              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={'/' + pickTexture(it)} alt={it.name} loading="eager" decoding="async" width="512" height="512" />
               <div class="px-3 pt-2 pb-3">
                 <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
               </div>
@@ -768,7 +725,7 @@
     {#if shownMutants.length < filteredMutants.length}
       <div class="mt-3 flex justify-center">
         <button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10 text-white"
-                on:click={() => { currentPage = currentPage + 1; }}>
+                onclick={() => { currentPage = currentPage + 1; }}>
           Показать ещё
         </button>
       </div>
@@ -777,7 +734,7 @@
     {#if shownSkins.length < filteredSkins.length}
       <div class="mt-3 flex justify-center">
         <button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10 text-white"
-                on:click={() => { currentPage = currentPage + 1; }}>
+                onclick={() => { currentPage = currentPage + 1; }}>
           Показать ещё
         </button>
       </div>
@@ -785,7 +742,7 @@
   {/if}
 
   {#if openItem}
-    <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} on:close={closeModal} />
+    <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} onclose={closeModal} />
   {/if}
 </div>
 

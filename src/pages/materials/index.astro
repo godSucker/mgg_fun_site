@@ -79,10 +79,11 @@ const buildingSources = {};
   });
 });
 
-// Merge into sourcesMap
+// Merge into sourcesMap (clone to avoid mutating imported module)
+const sourcesMapMerged = Object.assign({}, sourcesMap);
 Object.keys(buildingSources).forEach(id => {
-  const existing = (sourcesMap[id] || []).filter(s => s.type !== 'bingo');
-  sourcesMap[id] = [...existing, ...buildingSources[id]];
+  const existing = (sourcesMapMerged[id] || []).filter(s => s.type !== 'bingo');
+  sourcesMapMerged[id] = [...existing, ...buildingSources[id]];
 });
 
 const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
@@ -189,19 +190,19 @@ const TABS = [
   </nav>
 
   <section id="section-orbs" class="tab-section" data-tab="orbs" hidden>
-    <MaterialsTable rows={orbsRows} sourcesMap={sourcesMap} title="Сферы" />
+    <MaterialsTable rows={orbsRows} sourcesMap={sourcesMapMerged} title="Сферы" />
   </section>
 
   <section id="section-charms" class="tab-section" data-tab="charms" hidden>
-    <MaterialsTable rows={charmsRows} sourcesMap={sourcesMap} title="Бустеры" />
+    <MaterialsTable rows={charmsRows} sourcesMap={sourcesMapMerged} title="Бустеры" />
   </section>
 
   <section id="section-materials" class="tab-section" data-tab="materials" hidden>
-    <MaterialsTable rows={materialsRows} sourcesMap={sourcesMap} title="Материалы" />
+    <MaterialsTable rows={materialsRows} sourcesMap={sourcesMapMerged} title="Материалы" />
   </section>
 
   <section id="section-buildings" class="tab-section" data-tab="buildings" hidden>
-    <MaterialsTable rows={buildingsRows} sourcesMap={sourcesMap} title="Здания" texturePrefix="/buildings/" textureExt=".webp" />
+    <MaterialsTable rows={buildingsRows} sourcesMap={sourcesMapMerged} title="Здания" texturePrefix="/buildings/" textureExt=".webp" />
   </section>
 
   <section id="section-zones" class="tab-section" data-tab="zones" hidden>

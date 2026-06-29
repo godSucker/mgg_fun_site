@@ -7,7 +7,7 @@
     getMutantName,
   } from '@/lib/reactor-gacha';
 
-  export interface DecoratedReward extends BasicReward {
+  interface DecoratedReward extends BasicReward {
     name: string;
     texture: string | null;
   }
@@ -20,10 +20,12 @@
     completionTrigger?: string;
   }
 
-  export let gachaId: string;
-  export let gacha: GachaDefinition;
-  export let baseTextures: Record<string, string | null>;
-  export let completionTexture: string | null;
+  let { gachaId, gacha, baseTextures, completionTexture } = $props<{
+    gachaId: string;
+    gacha: GachaDefinition;
+    baseTextures: Record<string, string | null>;
+    completionTexture: string | null;
+  }>();
 
   const gachaName = GACHA_NAME_RU[gachaId] ?? gachaId;
 
@@ -35,27 +37,27 @@
 
   const baseSpecimenIds = new Set(baseRewards.map((reward) => reward.specimen));
 
-  let unlocked = new Set<string>();
-  let unlockedBaseCount = 0;
-  let completed = false;
-  let completionGranted = false;
-  let completionTrigger: string | null = null;
-  let lastResult: SpinResult | null = null;
-  
-  // STATS
-  let tokensSpent = 0;
-  let goldSpent = 0;
-  let tokenSpins = 0;
-  let goldSpins = 0;
-  let inventory = new Map<string, number>();
-  let history: SpinResult[] = [];
+  let unlocked = $state(new Set<string>());
+  let unlockedBaseCount = $state(0);
+  let completed = $state(false);
+  let completionGranted = $state(false);
+  let completionTrigger: string | null = $state(null);
+  let lastResult: SpinResult | null = $state(null);
 
-  $: totalSpins = tokenSpins + goldSpins;
+  // STATS
+  let tokensSpent = $state(0);
+  let goldSpent = $state(0);
+  let tokenSpins = $state(0);
+  let goldSpins = $state(0);
+  let inventory = $state(new Map<string, number>());
+  let history: SpinResult[] = $state([]);
+
+  let totalSpins = $derived(tokenSpins + goldSpins);
 
   const totalUniqueBaseRewards = baseSpecimenIds.size || baseRewards.length;
 
-  $: progressPercent = totalUniqueBaseRewards ? Math.round((unlockedBaseCount / totalUniqueBaseRewards) * 100) : 0;
-  $: progressSummary = totalUniqueBaseRewards ? `${unlockedBaseCount} / ${totalUniqueBaseRewards}` : '0 / 0';
+  let progressPercent = $derived(totalUniqueBaseRewards ? Math.round((unlockedBaseCount / totalUniqueBaseRewards) * 100) : 0);
+  let progressSummary = $derived(totalUniqueBaseRewards ? `${unlockedBaseCount} / ${totalUniqueBaseRewards}` : '0 / 0');
 
   const completionReward: DecoratedReward | null = gacha.completion_reward
     ? {
@@ -76,16 +78,16 @@
   // --- ЛОГИКА ШАНСОВ ---
   
   // Пул наград для расчета (меняется, когда выпадает Зевс)
-  $: currentPool = (() => {
+  let currentPool = $derived.by(() => {
       let pool = [...gacha.basic_elements];
       if (completionGranted && completionReward) {
           pool.push(completionReward);
       }
       return pool;
-  })();
+  });
 
   // Сумма весов пула (знаменатель)
-  $: weightDenominator = currentPool.reduce((sum, item) => sum + item.odds, 0);
+  let weightDenominator = $derived(currentPool.reduce((sum, item) => sum + item.odds, 0));
   
   // Хелпер для получения названия и текстуры
   const getRewardName = (id: string) => rewardDisplay.get(id)?.name ?? getMutantName(id);
@@ -284,8 +286,8 @@
         <div class="cost-pill"><span>Золото</span> <strong>{gacha.hc_cost}</strong></div>
       </div>
       <div class="spin-buttons">
-        <button class="spin token" on:click={() => spin('token')}>Крутить ({gacha.token_cost} Ж)</button>
-        <button class="spin hc" on:click={() => spin('hc')}>Крутить ({gacha.hc_cost} З)</button>
+        <button class="spin token" onclick={() => spin('token')}>Крутить ({gacha.token_cost} Ж)</button>
+        <button class="spin hc" onclick={() => spin('hc')}>Крутить ({gacha.hc_cost} З)</button>
       </div>
     </div>
   </div>

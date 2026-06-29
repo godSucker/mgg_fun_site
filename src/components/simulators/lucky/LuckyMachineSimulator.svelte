@@ -10,24 +10,24 @@
     getRewardWithChance,
     simulateLuckyMachineAsync,
   } from '@/lib/lucky-machine';
-  import { onDestroy, tick } from 'svelte';
+  import { tick } from 'svelte';
 
-  export let machine: LuckyMachineDefinition;
+  let { machine }: { machine: LuckyMachineDefinition } = $props();
 
   const rewardChances: LuckyRewardChance[] = machine.rewards
     .filter((reward) => reward.odds > 0)
     .map((reward) => getRewardWithChance(reward, machine))
     .sort((a, b) => b.chance - a.chance);
 
-  let showOdds = false;
-  let spins = 200;
-  let isSimulating = false;
-  let error: string | null = null;
-  let result: LuckySimulation | null = null;
-  let progress = 0;
-  let completedPaid = 0;
-  let controller: AbortController | null = null;
-  let showResultsModal = false;
+  let showOdds = $state(false);
+  let spins = $state(200);
+  let isSimulating = $state(false);
+  let error = $state<string | null>(null);
+  let result = $state<LuckySimulation | null>(null);
+  let progress = $state(0);
+  let completedPaid = $state(0);
+  let controller = $state<AbortController | null>(null);
+  let showResultsModal = $state(false);
 
   type ResourceSummaryKey = 'consumables'|'stars'|'spheres'|'boosters'|'tokens'|'mutants'|'jackpots';
   interface ResourceSummary { key: ResourceSummaryKey; label: string; icon: string; metaLabel: string; count: number; totalAmount: number; }
@@ -80,8 +80,8 @@
     });
   }
 
-  let resourceSummaries: ResourceSummary[] = [];
-  let jackpotCount = 0;
+  let resourceSummaries = $derived(buildResourceSummaries(result));
+  let jackpotCount = $derived(resourceSummaries.find((s) => s.key === 'jackpots')?.count ?? 0);
 
   function formatPercent(value: number, digits = 2): string {
     return `${(value * 100).toFixed(digits)}%`;
@@ -96,7 +96,8 @@
     showResultsModal = false;
   }
 
-  async function handleSimulate() {
+  async function handleSimulate(e: Event) {
+    e.preventDefault();
     error = null;
     if (!Number.isFinite(spins) || spins <= 0) { error = 'Введите положительное количество прокрутов.'; return; }
     result = null; progress = 0; completedPaid = 0;
@@ -161,9 +162,6 @@
     }
     return '—';
   }
-
-  $: resourceSummaries = buildResourceSummaries(result);
-  $: jackpotCount = resourceSummaries.find((s) => s.key === 'jackpots')?.count ?? 0;
 </script>
 
 <div class="machine-shell">
@@ -174,7 +172,7 @@
       <p>Крутите слот-машину с реальными шансами. Бесплатные прокруты добавляются автоматически.</p>
     </div>
 
-    <form class="control-panel" on:submit|preventDefault={handleSimulate} style="order: -1;">
+    <form class="control-panel" onsubmit={handleSimulate} style="order: -1;">
       <label class="input-group">
         <span>Количество платных прокрутов</span>
         <div class="input-wrapper">
@@ -184,7 +182,7 @@
       </label>
       <div class="actions">
         <button type="submit" class="primary" disabled={isSimulating}>{isSimulating ? 'Считаем…' : 'Запустить симуляцию'}</button>
-        <button type="button" class="ghost" on:click={isSimulating ? () => controller?.abort() : resetSimulation}>{isSimulating ? 'Остановить' : 'Очистить'}</button>
+        <button type="button" class="ghost" onclick={isSimulating ? () => controller?.abort() : resetSimulation}>{isSimulating ? 'Остановить' : 'Очистить'}</button>
       </div>
       {#if isSimulating}
         <div class="progress">
@@ -196,16 +194,17 @@
     </form>
 
     {#if result && !showResultsModal}
-      <button class="primary show-results-btn" on:click={() => showResultsModal = true}>Показать результаты</button>
+      <button class="primary show-results-btn" onclick={() => showResultsModal = true}>Показать результаты</button>
     {/if}
   </div>
 
   {#if result && showResultsModal}
-    <div class="modal-overlay" on:click|self={closeResultsModal} on:keydown={(e) => e.key === 'Escape' && closeResultsModal()} role="dialog" tabindex="-1">
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
+    <div class="modal-overlay" onclick={(e) => { if (e.target === e.currentTarget) closeResultsModal(); }} onkeydown={(e) => e.key === 'Escape' && closeResultsModal()} role="dialog" tabindex="-1">
       <div class="modal-content">
         <div class="modal-header">
           <h3>Результаты симуляции</h3>
-          <button class="modal-close" on:click={closeResultsModal}>✕</button>
+          <button class="modal-close" onclick={closeResultsModal}>✕</button>
         </div>
 
         <section class="stats">
@@ -310,12 +309,12 @@
           </section>
         </div>
 
-        <button class="primary modal-close-bottom" on:click={closeResultsModal}>Закрыть</button>
+        <button class="primary modal-close-bottom" onclick={closeResultsModal}>Закрыть</button>
       </div>
     </div>
   {/if}
   <aside class="odds-panel" class:collapsed={!showOdds}>
-    <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
+    <button class="odds-toggle" onclick={() => showOdds = !showOdds}>
       <h3>Шансы</h3>
       <span class="chevron">{showOdds ? '▼' : '▲'}</span>
     </button>

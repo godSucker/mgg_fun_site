@@ -61,39 +61,44 @@
     return min > 0 ? `${h}ч ${min}м` : `${h}ч`;
   }
 
-  // --- SORTING (using unified sort) ---
-
   // --- STATE ---
-  let mode: 'calc' | 'reverse' = 'calc';
-  let mobileTab: 'lab' | 'list' = 'lab';
+  let mode: 'calc' | 'reverse' = $state('calc');
+  let mobileTab: 'lab' | 'list' = $state('lab');
 
-  let p1: Mutant | null = null;
-  let p2: Mutant | null = null;
-  let target: Mutant | null = null;
-  let search = '';
-  let filterGene = 'all';
-  let filterGene2 = 'all'; // Added second gene filter
+  let p1: Mutant | null = $state(null);
+  let p2: Mutant | null = $state(null);
+  let target: Mutant | null = $state(null);
+  let search = $state('');
+  let filterGene = $state('all');
+  let filterGene2 = $state('all');
 
-  // Вспомогательная функция для получения массива генов
+  let notificationMessage = $state('');
+  let showNotification = $state(false);
+  let notificationTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  function notify(msg: string) {
+    notificationMessage = msg;
+    showNotification = true;
+    if (notificationTimeout) clearTimeout(notificationTimeout);
+    notificationTimeout = setTimeout(() => { showNotification = false; }, 4000);
+  }
+
   const getGenesArray = (m: Mutant) => {
       const gStr = Array.isArray(m.genes) ? m.genes.join('') : m.genes;
       return (gStr || '').toUpperCase().split('');
   };
 
-  // Получить все гены для отображения (показываем все, включая дубликаты)
   const getAllGenes = (m: Mutant): string[] => {
       const genes = getGenesArray(m);
-      // Для Single (A) - показываем один раз
-      // Для Mono (AA) - показываем ОБА (AA)
-      // Для Hybrid (AB) - показываем оба (AB)
       if (genes.length === 1) return [genes[0]];
-      return genes; // Возвращаем все гены, включая дубликаты
+      return genes;
   };
 
-  // Auto-reset Gene2 when Gene1 is "all"
-  $: if (filterGene === 'all') filterGene2 = 'all';
+  $effect(() => {
+    if (filterGene === 'all') filterGene2 = 'all';
+  });
 
-  $: filteredList = allMutants.filter(m => {
+  let filteredList = $derived(allMutants.filter(m => {
     if (filterGene === 'recipe') return secretNames.has(normalize(getName(m)));
 
     const normalizedSearch = normalizeSearch(search);
@@ -112,33 +117,37 @@
     }
 
     return mGenes.length >= 2 && mGenes[0] === filterGene.toUpperCase() && mGenes[1] === filterGene2.toUpperCase() && nameMatch;
-  }).sort(sortMutantsByGene);
+  }).sort(sortMutantsByGene));
 
   // --- LOGIC ---
-  let calcResults: BreedingResult[] = [];
+  let calcResults: BreedingResult[] = $state([]);
 
-  $: if (mode === 'calc' && p1 && p2) {
-    calcResults = calculateBreeding(p1, p2, allMutants);
-  } else {
-    calcResults = [];
-  }
+  $effect(() => {
+    if (mode === 'calc' && p1 && p2) {
+      calcResults = calculateBreeding(p1, p2, allMutants);
+    } else {
+      calcResults = [];
+    }
+  });
 
-  let guideResults: any[] = [];
-  let isSearching = false;
+  let guideResults: any[] = $state([]);
+  let isSearching = $state(false);
 
-  $: if (mode === 'reverse' && target) {
-    isSearching = true;
-    guideResults = [];
-    setTimeout(() => {
-        if (!target) return;
-        const res = findParentsFor(target, allMutants);
-        guideResults = res.map(r => ({
-            p1: r.p1, p2: r.p2, isSecret: r.isSecret,
-            tag: r.isSecret ? 'РЕЦЕПТ' : 'ПАРЫ'
-        })).slice(0, 10);
-        isSearching = false;
-    }, 100);
-  }
+  $effect(() => {
+    if (mode === 'reverse' && target) {
+      isSearching = true;
+      guideResults = [];
+      setTimeout(() => {
+          if (!target) return;
+          const res = findParentsFor(target, allMutants);
+          guideResults = res.map(r => ({
+              p1: r.p1, p2: r.p2, isSecret: r.isSecret,
+              tag: r.isSecret ? 'РЕЦЕПТ' : 'ПАРЫ'
+          })).slice(0, 10);
+          isSearching = false;
+      }, 100);
+    }
+  });
 
   function handleCardClick(m: Mutant) {
     const isSecret = secretNames.has(normalize(getName(m)));
@@ -152,7 +161,7 @@
     }
     if (mode === 'calc') {
       if (!p1) p1 = m;
-      else if (!p2) p2 = m;  // Allow same mutant for both parents
+      else if (!p2) p2 = m;
       else if (p1.id === m.id) p1 = null;
       else if (p2?.id === m.id) p2 = null;
       else { p1 = m; p2 = null; }
@@ -175,7 +184,7 @@
       </div>
       
       <div class="mode-switch-desktop">
-         <button class="mode-btn {mode==='calc' ? 'active' : ''}" on:click={() => {mode='calc'; target=null}}>
+         <button class="mode-btn {mode==='calc' ? 'active' : ''}" onclick={() => {mode='calc'; target=null}}>
              Инкубатор
          </button>
          <button class="mode-btn disabled" title="Справочник временно закрыт">
@@ -183,13 +192,12 @@
          </button>
       </div>
 
-      <button class="mode-switch-mobile" on:click={() => {
+      <button class="mode-switch-mobile" onclick={() => {
           if (mode === 'reverse') {
               mode = 'calc';
               target = null; p1 = null; p2 = null;
           }
-          // Справочник закрыт - показываем уведомление
-          alert('🔒 Справочник временно закрыт по техническим причинам.\n\nМы работаем над улучшением базы данных рецептов.');
+          notify('🔒 Справочник временно закрыт по техническим причинам.\n\nМы работаем над улучшением базы данных рецептов.');
       }}>
           {mode === 'calc' ? 'Справочник 🔒' : 'В Инкубатор ➜'}
       </button>
@@ -201,7 +209,7 @@
                 <!-- PARENT SLOTS -->
                 <div class="slots-area">
                     <div class="parent-slot-wrapper">
-                        <button class="slot {p1 ? 'filled' : 'empty'}" on:click={() => { p1 = null; mobileTab = 'list'; }}>
+                        <button class="slot {p1 ? 'filled' : 'empty'}" onclick={() => { p1 = null; mobileTab = 'list'; }}>
                             {#if p1}
                                 <img src={getImageSrc(p1)} alt={p1.name} class="mutant-img"/>
                                 <div class="slot-label">{getName(p1)}</div>
@@ -223,7 +231,7 @@
                     <div class="cross-icon">✕</div>
 
                     <div class="parent-slot-wrapper">
-                        <button class="slot {p2 ? 'filled' : 'empty'}" on:click={() => { p2 = null; mobileTab = 'list'; }}>
+                        <button class="slot {p2 ? 'filled' : 'empty'}" onclick={() => { p2 = null; mobileTab = 'list'; }}>
                             {#if p2}
                                 <img src={getImageSrc(p2)} alt={p2.name} class="mutant-img"/>
                                 <div class="slot-label">{getName(p2)}</div>
@@ -302,7 +310,7 @@
                      <h1>Раздел закрыт</h1>
                      <p class="closed-reason">Справочник временно недоступен по техническим причинам</p>
                      <p class="closed-text">Мы работаем над улучшением базы данных рецептов.<br/>Раздел откроется в ближайшее время.</p>
-                     <button class="back-btn" on:click={() => {mode='calc'; target=null}}>
+                     <button class="back-btn" onclick={() => {mode='calc'; target=null}}>
                          ← Вернуться в Инкубатор
                      </button>
                      <div class="decorator">
@@ -331,30 +339,30 @@
           
           <div class="filters">
               <div class="gene-line">
-                  <button class="filter-chip {filterGene==='all' ? 'active' : ''}" on:click={() => filterGene='all'}>
+                  <button class="filter-chip {filterGene==='all' ? 'active' : ''}" onclick={() => filterGene='all'}>
                       <span>Ген 1: ВСЕ</span>
                   </button>
                   {#each ['A','B','C','D','E','F'] as g}
-                      <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" on:click={() => filterGene=g}>
+                      <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" onclick={() => filterGene=g}>
                           <img src={getGeneIcon(g)} alt={g}/>
                       </button>
                   {/each}
               </div>
               <div class="gene-line" class:disabled={filterGene==='all'}>
-                  <button class="filter-chip {filterGene2==='all' ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2='all'}>
+                  <button class="filter-chip {filterGene2==='all' ? 'active' : ''}" disabled={filterGene==='all'} onclick={() => filterGene2='all'}>
                       <span>Ген 2: ВСЕ</span>
                   </button>
-                  <button class="filter-chip gene-chip {filterGene2==='neutral' ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2='neutral'}>
+                  <button class="filter-chip gene-chip {filterGene2==='neutral' ? 'active' : ''}" disabled={filterGene==='all'} onclick={() => filterGene2='neutral'}>
                       <img src="/genes/gene_all.webp" alt="Нейтральный"/>
                   </button>
                   {#each ['A','B','C','D','E','F'] as g}
-                      <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" disabled={filterGene==='all'} on:click={() => filterGene2=g}>
+                      <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" disabled={filterGene==='all'} onclick={() => filterGene2=g}>
                           <img src={getGeneIcon(g)} alt={g}/>
                       </button>
                   {/each}
               </div>
 
-               <button class="filter-chip secret-chip {filterGene==='recipe' ? 'active' : ''}" on:click={() => filterGene='recipe'}>
+               <button class="filter-chip secret-chip {filterGene==='recipe' ? 'active' : ''}" onclick={() => filterGene='recipe'}>
                    <span class="star">★</span>
                    <span>Секреты</span>
                </button>
@@ -363,7 +371,7 @@
 
       <div class="list-grid custom-scroll">
            {#each filteredList as m (m.id + m.name)}
-                <button class="grid-item" on:click={() => handleCardClick(m)} title={getName(m)}>
+                <button class="grid-item" onclick={() => handleCardClick(m)} title={getName(m)}>
                     <div class="card-badges">
                         <img src={getTypeIcon(m)} alt="Значок типа мутанта" class="type-icon" />
                         <div class="gene-icons">
@@ -373,7 +381,7 @@
                         </div>
                     </div>
                     <div class="img-wrapper">
-                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="Текстура мутанта" on:error={(e) => (e.currentTarget as HTMLImageElement).src = '/preview.jpg'}/>
+                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="Текстура мутанта" onerror={(e) => (e.currentTarget as HTMLImageElement).src = '/preview.jpg'}/>
                     </div>
                     <div class="item-info-row">
                         <div class="item-name">{getName(m)}</div>
@@ -386,12 +394,12 @@
 
   <!-- BOTTOM NAV (MOBILE) -->
   <nav class="mobile-nav">
-       <button class="nav-item {mobileTab==='lab' ? 'active' : ''}" on:click={() => mobileTab = 'lab'}>
+       <button class="nav-item {mobileTab==='lab' ? 'active' : ''}" onclick={() => mobileTab = 'lab'}>
            <span class="icon">{mode==='calc' ? '🧬' : '🔬'}</span>
            <span class="label">Лаборатория</span>
        </button>
        <div class="divider"></div>
-       <button class="nav-item {mobileTab==='list' ? 'active' : ''}" on:click={() => mobileTab = 'list'}>
+       <button class="nav-item {mobileTab==='list' ? 'active' : ''}" onclick={() => mobileTab = 'list'}>
            <span class="icon">📋</span>
            <span class="label">База ДНК</span>
        </button>
@@ -399,8 +407,15 @@
 
 </div>
 
+{#if showNotification}
+  <div class="notification-toast" in:fly={{y: 40, duration: 300}} out:fade={{duration: 200}}>
+    <span class="notification-text">{notificationMessage}</span>
+    <button class="notification-close" onclick={() => { showNotification = false; if (notificationTimeout) clearTimeout(notificationTimeout); }}>✕</button>
+  </div>
+{/if}
+
 <style>
-  :global(body) { background-color: #050505; color: #e2e8f0; }
+  :global(body) { background-color: #050505; }
 
   .main-wrapper {
     display: flex;
@@ -1075,5 +1090,58 @@
      margin-bottom: 0.5rem;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* NOTIFICATION TOAST */
+  .notification-toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90vw;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 200;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  .notification-text {
+    font-size: 0.8rem;
+    color: #e2e8f0;
+    font-weight: 500;
+    white-space: pre-line;
+    line-height: 1.4;
+  }
+
+  .notification-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .notification-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  @media (min-width: 1024px) {
+    .notification-toast {
+      bottom: 40px;
+    }
+  }
 </style>
-  

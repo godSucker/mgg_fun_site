@@ -64,8 +64,6 @@ export function normalizeSearch(text: string): string {
     .replace(/Ј/g, 'й')
     .replace(/І/g, 'и')
     .replace(/Ї/g, 'и')
-    .replace(/Ў/g, 'у')
-    .replace(/Џ/g, 'ч')
     // Remove special symbols/punctuation that shouldn't affect search
     .replace(/[«»"''„"']/g, '')  // Remove quotes and apostrophes
     .replace(/[.,;:!?$]/g, '')  // Remove punctuation

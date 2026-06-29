@@ -1,6 +1,3 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
 // Google Sheets ID из вашего URL
 const SHEET_ID = '10hJePm-VDoM-fywzgHx8bPMcGfMoOJKQ2aFy99t0NKs';
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;

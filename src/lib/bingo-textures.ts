@@ -1,31 +1,9 @@
 import { getItemTexture, translateItemId } from './craft-simulator';
 import { getMutantTexture, getSkinTexture } from './mutant-textures';
 import { normalizeSearch } from '@/lib/search-normalize';
-import mutantTexturesJson from '@/data/simulators/reactor/mutant-textures.json';
-import skinTexturesJson from '@/data/simulators/reactor/skin-textures.json';
 
-const mutantTextureMap = new Map(Object.entries(mutantTexturesJson as Record<string, string>));
-const skinTextureMap = new Map(Object.entries(skinTexturesJson as Record<string, string>));
 
-/**
- * Нормализует specimenId для получения пути к текстуре
- */
-function normalizeMutantId(specimenId: string): { folder: string; fileId: string; baseId: string } {
-  if (!specimenId) return { folder: '', fileId: '', baseId: '' };
-  
-  let base = String(specimenId).trim();
-  // Убираем префикс Specimen_ или specimen_
-  base = base.replace(/^specimen[_-]/i, '');
-  // Убираем суффиксы вариантов
-  base = base.replace(/_(normal|bronze|silver|gold|platinum)$/i, '');
-  base = base.replace(/_(plat|platinum)$/i, '');
-  
-  return {
-    folder: base.toLowerCase(),
-    fileId: base.toUpperCase(),
-    baseId: base,
-  };
-}
+import { normalizeMutantId } from '@/lib/utils'
 
 /**
  * Получает путь к текстуре мутанта с правильными fallback'ами
@@ -118,7 +96,7 @@ export function getMutantTextureFallbacks(
   
   // Fallback на текстуру с вариантом
   const suffix = effectiveVariant === 'normal' ? 'normal' : effectiveVariant;
-  fallbacks.push(`/textures_by_mutant/${folder}/${fileId}_${suffix}.webp`);
+  fallbacks.push(`/textures_by_mutant/${folder}/specimen_${folder}_${suffix}.webp`);
   
   // Если вариант не normal, добавляем normal как самый последний fallback
   if (effectiveVariant !== 'normal') {

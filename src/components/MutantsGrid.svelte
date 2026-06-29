@@ -1,19 +1,10 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import MutantCard from './MutantCard.svelte';
+  import MutantCard from './MutantCard.svelte'
 
-  // Список объектов для отображения
-  export let items: any[] = [];
-  // Текущая выбранная звёздная редкость (normal | bronze | silver | gold | platinum)
-  export let variant: string = 'normal';
+  let { items = [], variant = 'normal', onSelect }: { items: any[]; variant?: string; onSelect?: (m: any) => void } = $props()
 
-  const dispatch = createEventDispatcher<{ select: any }>();
-
-  /**
-   * Обработка клика по карточке. Отправляем событие select с объектом мутанта.
-   */
   function selectMutant(m: any) {
-    dispatch('select', m);
+    onSelect?.(m)
   }
 </script>
 
@@ -23,13 +14,13 @@
       role="button"
       tabindex="0"
       class="cursor-pointer"
-      on:click={() => selectMutant(m)}
-      on:keydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectMutant(m); } }}
+      onclick={() => selectMutant(m)}
+      onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectMutant(m); } }}
     >
       <MutantCard
         id={m.id}
         name={m.name}
-        variant={variant}
+        {variant}
         tier={m.tier ?? m.rank ?? null}
         type={m.type}
       />

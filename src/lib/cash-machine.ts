@@ -37,9 +37,8 @@ export function getTotalWeight(machine: CashMachineDefinition = cashMachine): nu
   return getValidRewards(machine).reduce((sum, reward) => sum + reward.odds, 0);
 }
 
-export function formatNumber(value: number): string {
-  return value.toLocaleString('ru-RU');
-}
+import { formatNumber } from '@/lib/utils'
+export { formatNumber }
 
 export function getRewardLabel(reward: CashReward): string {
   if (reward.type === 'hardcurrency') {

@@ -16,9 +16,6 @@ export default defineConfig({
   build: {
     assetsPrefix: 'https://cdn.archivist-library.com',
   },
-  alias: {
-    '@': SRC,
-  },
   vite: {
     plugins: [
       tailwindcss(),

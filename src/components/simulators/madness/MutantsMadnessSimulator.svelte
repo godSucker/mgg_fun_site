@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tick, onDestroy } from 'svelte';
+  import { tick } from 'svelte';
   import type {
     MadnessMachineDefinition,
     MadnessResearchChance,
@@ -16,26 +16,23 @@
     simulateMadnessAsync,
   } from '@/lib/madness-machine';
 
-  export let machine: MadnessMachineDefinition = madnessMachine;
+  let { machine = madnessMachine }: { machine?: MadnessMachineDefinition } = $props();
 
   const discountOptions = [0, 50, 55, 60, 65, 70, 75, 80, 85, 90];
 
-  let level = 1;
-  let gold = 0;
-  let tokens = 0;
-  let discountValue = '0';
-  let discount = 0;
+  let level = $state(1);
+  let gold = $state(0);
+  let tokens = $state(0);
+  let discountValue = $state('0');
 
-  let showOdds = false;
-  let isSimulating = false;
-  let error: string | null = null;
-  let result: MadnessSimulation | null = null;
-  let researchChances: MadnessResearchChance[] = getResearchChanceBreakdown(level, machine);
-  let rewardChances = getRewardChances(level, machine);
+  let showOdds = $state(false);
+  let isSimulating = $state(false);
+  let error: string | null = $state(null);
+  let result: MadnessSimulation | null = $state(null);
 
-  let progress = 0;
-  let completedSpins = 0;
-  let controller: AbortController | null = null;
+  let progress = $state(0);
+  let completedSpins = $state(0);
+  let controller: AbortController | null = $state(null);
 
   const numberFormatter = new Intl.NumberFormat('ru-RU');
 
@@ -223,37 +220,34 @@
     });
   }
 
-  let resourceSummaries: ResourceSummary[] = [];
-  let displayedResourceSummaries: ResourceSummary[] = [];
-
   function formatPercent(value: number, digits = 3): string {
     return `${(value * 100).toFixed(digits)}%`;
   }
 
-  $: discount = Number(discountValue);
-  $: multiplier = Math.max(0, (100 - discount) / 100);
-  $: goldCostPerSpin = Math.ceil(machine.cost * multiplier);
-  $: tokenCostPerSpin = Math.ceil(machine.tokenCost * multiplier);
+  let discount = $derived(Number(discountValue));
+  let multiplier = $derived(Math.max(0, (100 - discount) / 100));
+  let goldCostPerSpin = $derived(Math.ceil(machine.cost * multiplier));
+  let tokenCostPerSpin = $derived(Math.ceil(machine.tokenCost * multiplier));
 
-  $: maxResearch = getMaxResearchForLevel(level);
-  $: rewardChances = getRewardChances(level, machine);
-  $: researchChances = getResearchChanceBreakdown(level, machine);
+  let maxResearch = $derived(getMaxResearchForLevel(level));
+  let rewardChances = $derived(getRewardChances(level, machine));
+  let researchChances = $derived(getResearchChanceBreakdown(level, machine));
 
-  $: tokenSpins = tokenCostPerSpin > 0 ? Math.floor(tokens / tokenCostPerSpin) : 0;
-  $: goldSpins = goldCostPerSpin > 0 ? Math.floor(gold / goldCostPerSpin) : 0;
-  $: totalSpins = tokenSpins + goldSpins;
+  let tokenSpins = $derived(tokenCostPerSpin > 0 ? Math.floor(tokens / tokenCostPerSpin) : 0);
+  let goldSpins = $derived(goldCostPerSpin > 0 ? Math.floor(gold / goldCostPerSpin) : 0);
+  let totalSpins = $derived(tokenSpins + goldSpins);
 
-  $: tokenSpent = tokenSpins * tokenCostPerSpin;
-  $: goldSpent = goldSpins * goldCostPerSpin;
-  $: tokenRemaining = Math.max(tokens - tokenSpent, 0);
-  $: goldRemaining = Math.max(gold - goldSpent, 0);
+  let tokenSpent = $derived(tokenSpins * tokenCostPerSpin);
+  let goldSpent = $derived(goldSpins * goldCostPerSpin);
+  let tokenRemaining = $derived(Math.max(tokens - tokenSpent, 0));
+  let goldRemaining = $derived(Math.max(gold - goldSpent, 0));
 
-  $: jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
-  $: jackpotOddsRatio = jackpotChance > 0 ? 1 / jackpotChance : null;
-  $: resourceSummaries = buildResourceSummaries(result);
-  $: displayedResourceSummaries = resourceSummaries.filter((summary) =>
+  let jackpotChance = $derived(researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0);
+  let jackpotOddsRatio = $derived(jackpotChance > 0 ? 1 / jackpotChance : null);
+  let resourceSummaries = $derived(buildResourceSummaries(result));
+  let displayedResourceSummaries = $derived(resourceSummaries.filter((summary) =>
     summary.key === 'mutants' || summary.key === 'jackpots',
-  );
+  ));
 
   function resetSimulation() {
     if (controller) {
@@ -341,13 +335,15 @@
     return parts.join(' · ');
   }
 
-  onDestroy(() => {
-    stopSimulation();
+  $effect(() => {
+    return () => {
+      stopSimulation();
+    };
   });
 </script>
 
 <div class="madness-shell">
-  <form class="control-panel" on:submit|preventDefault={handleSimulate} style="order: -1;">
+  <form class="control-panel" onsubmit={(e) => { e.preventDefault(); handleSimulate(); }} style="order: -1;">
     <div class="inputs">
       <label class="field">
         <span class="label">Уровень славы игрока</span>
@@ -428,7 +424,7 @@
       <button
         type="button"
         class={`ghost ${isSimulating ? 'danger' : ''}`}
-        on:click={isSimulating ? stopSimulation : resetSimulation}
+        onclick={isSimulating ? stopSimulation : resetSimulation}
       >
         {isSimulating ? 'Остановить' : 'Очистить'}
       </button>
@@ -561,7 +557,7 @@
 </div>
 
   <section class="odds-section" class:collapsed={!showOdds}>
-    <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
+    <button class="odds-toggle" onclick={() => showOdds = !showOdds}>
       <header>
         <h3>Шансы наград по исследованиям</h3>
         <p>Для уровня {level} доступны исследования до {maxResearch}.</p>

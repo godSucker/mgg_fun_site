@@ -1,117 +1,103 @@
 <script lang="ts">
-  import { normalizeSearch } from '@/lib/search-normalize';
+  import { normalizeSearch } from '@/lib/search-normalize'
 
-  export let players: { rank: number; name: string; level: number; id: string; tandem: string; atk1: string; atk2: string; socials: any[] }[] = [];
-  export let mutantsDb: any[] = [];
+  let { players = [], mutantsDb = [] }: { players: { rank: number; name: string; level: number; id: string; tandem: string; atk1: string; atk2: string; socials: any[] }[]; mutantsDb: any[] } = $props()
 
-  let query = '';
-  let displayCount = 50;
-  let selectedPlayer: any = null;
+  let query = $state('')
+  let displayCount = $state(50)
+  let selectedPlayer: any = $state(null)
 
-  $: filteredPlayers = players.filter(p => {
-    const normalizedQuery = normalizeSearch(query);
-    const normalizedName = normalizeSearch(p.name);
-    return normalizedName.includes(normalizedQuery);
-  });
+  const filteredPlayers = $derived(players.filter(p => {
+    const normalizedQuery = normalizeSearch(query)
+    const normalizedName = normalizeSearch(p.name)
+    return normalizedName.includes(normalizedQuery)
+  }))
 
-  $: visiblePlayers = filteredPlayers.slice(0, displayCount);
+  const visiblePlayers = $derived(filteredPlayers.slice(0, displayCount))
 
-  function loadMore() { displayCount += 50; }
+  function loadMore() { displayCount += 50 }
 
   function getRankIcon(rank: number) {
-    if (rank === 1) return '🥇';
-    if (rank === 2) return '🥈';
-    if (rank === 3) return '🥉';
-    return `#${rank}`;
+    if (rank === 1) return '🥇'
+    if (rank === 2) return '🥈'
+    if (rank === 3) return '🥉'
+    return `#${rank}`
   }
 
   function getRankClass(rank: number) {
-    if (rank === 1) return 'rank-gold';
-    if (rank === 2) return 'rank-silver';
-    if (rank === 3) return 'rank-bronze';
-    return 'rank-normal';
+    if (rank === 1) return 'rank-gold'
+    if (rank === 2) return 'rank-silver'
+    if (rank === 3) return 'rank-bronze'
+    return 'rank-normal'
   }
 
-  // --- ПОИСК КАРТИНКИ И СКОРОСТИ ---
   function findMutantVisuals(mutantName: string) {
-    // Проверка на пустую строку или null/undefined
     if (!mutantName || mutantName === '' || mutantName === 'undefined') {
-      return { isDisabled: true };
+      return { isDisabled: true }
     }
-    
-    const clean = mutantName.trim().toLowerCase();
 
-    const stopWords = ['отключен', 'нет', '—', '-', '?', 'none', 'off', 'disabled', '—', 'низкое эво для тандема', 'слишком низкое', 'too low', 'empty', 'пусто'];
+    const clean = mutantName.trim().toLowerCase()
+
+    const stopWords = ['отключен', 'нет', '—', '-', '?', 'none', 'off', 'disabled', 'низкое эво для тандема', 'слишком низкое', 'too low', 'empty', 'пусто']
     if (stopWords.includes(clean) || stopWords.some(s => clean.includes(s))) {
-      return { isDisabled: true };
+      return { isDisabled: true }
     }
 
-    // Ищем в базе только ради картинки и скорости
-    const normalizedClean = normalizeSearch(clean);
-    
-    // Пробуем несколько вариантов поиска
+    const normalizedClean = normalizeSearch(clean)
+
     const found = mutantsDb.find(m => {
-      const dbNormalized = normalizeSearch(m.name);
-      return dbNormalized === normalizedClean;
+      const dbNormalized = normalizeSearch(m.name)
+      return dbNormalized === normalizedClean
     }) || mutantsDb.find(m => {
-      const dbNormalized = normalizeSearch(m.name);
-      return dbNormalized.includes(normalizedClean) || normalizedClean.includes(dbNormalized);
-    });
+      const dbNormalized = normalizeSearch(m.name)
+      return dbNormalized.includes(normalizedClean) || normalizedClean.includes(dbNormalized)
+    })
 
-    if (!found) return null;
+    if (!found) return null
 
-    let image = '';
-    
-    // Извлекаем картинку из stars.*.images - пробуем все редкости
+    let image = ''
+
     if (found.stars) {
-      const rarities = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
-      
+      const rarities = ['normal', 'bronze', 'silver', 'gold', 'platinum']
       for (const rarity of rarities) {
         if (found.stars[rarity] && Array.isArray(found.stars[rarity].images)) {
-          const images = found.stars[rarity].images;
-          // Ищем картинку со specimen или portrait
-          image = images.find((img: string) => img.includes('specimen') || img.includes('portrait')) || images[0];
-          if (image) {
-            break;
-          }
+          const images = found.stars[rarity].images
+          image = images.find((img: string) => img.includes('specimen') || img.includes('portrait')) || images[0]
+          if (image) break
         }
       }
     }
-    
-    // Fallback: проверяем старые поля
-    if (!image && Array.isArray(found.image)) {
-      image = found.image.find((img: string) => img.includes('specimen') || img.includes('portrait')) || found.image[0];
-    } else if (!image && found.images && Array.isArray(found.images)) {
-      image = found.images.find((img: string) => img.includes('specimen') || img.includes('portrait')) || found.images[0];
-    } else if (!image && typeof found.image === 'string') {
-      image = found.image;
-    }
-    
-    
-    if (image && image.startsWith('/')) image = image.substring(1);
 
-    // Достаем скорость из базы
-    const speed = Number(found.base_stats?.speed_base ?? found.base_stats?.lvl30?.spd ?? found.speed ?? 0);
+    if (!image && Array.isArray(found.image)) {
+      image = found.image.find((img: string) => img.includes('specimen') || img.includes('portrait')) || found.image[0]
+    } else if (!image && found.images && Array.isArray(found.images)) {
+      image = found.images.find((img: string) => img.includes('specimen') || img.includes('portrait')) || found.images[0]
+    } else if (!image && typeof found.image === 'string') {
+      image = found.image
+    }
+
+    if (image && image.startsWith('/')) image = image.substring(1)
+
+    const speed = Number(found.base_stats?.speed_base ?? found.base_stats?.lvl30?.spd ?? found.speed ?? 0)
 
     return {
       isDisabled: false,
       name: found.name,
       image: image ? `/${image}` : null,
-      speed: Math.round(speed * 100) / 100 // Округляем скорость
-    };
+      speed: Math.round(speed * 100) / 100
+    }
   }
 
   function openPlayer(player: any) {
-    const mutantData = findMutantVisuals(player.tandem);
-    selectedPlayer = { ...player, mutantData };
+    const mutantData = findMutantVisuals(player.tandem)
+    selectedPlayer = { ...player, mutantData }
   }
 
   function closePlayer() {
-    selectedPlayer = null;
+    selectedPlayer = null
   }
 </script>
 
-<!-- БАННЕР -->
 <div class="cta-banner">
   <a href="https://t.me/absolutely_poxuy" target="_blank" rel="noopener noreferrer">
     <span class="cta-icon">🚀</span>
@@ -137,10 +123,10 @@
     </div>
 
     {#each visiblePlayers as player (player.id)}
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div
         class="row {getRankClass(player.rank)}"
-        on:click={() => openPlayer(player)}
+        onclick={() => openPlayer(player)}
+        onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPlayer(player) } }}
         role="button"
         tabindex="0"
       >
@@ -170,17 +156,16 @@
   </div>
 
   {#if visiblePlayers.length < filteredPlayers.length}
-    <button class="load-more" on:click={loadMore}>Показать еще</button>
+    <button class="load-more" onclick={loadMore}>Показать еще</button>
   {/if}
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО -->
 {#if selectedPlayer}
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <div class="modal-overlay" on:click={closePlayer} role="button" tabindex="0">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="modal-card {getRankClass(selectedPlayer.rank)}" on:click|stopPropagation role="presentation">
-      <button class="modal-close" on:click={closePlayer}>×</button>
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <div class="modal-overlay" onclick={closePlayer}>
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
+    <div class="modal-card {getRankClass(selectedPlayer.rank)}" onclick={(e) => e.stopPropagation()}>
+      <button class="modal-close" onclick={closePlayer}>×</button>
 
       <div class="modal-header">
         <div class="modal-rank">{getRankIcon(selectedPlayer.rank)}</div>
@@ -191,7 +176,6 @@
       <div class="modal-divider"></div>
 
       {#if selectedPlayer.mutantData}
-
         {#if selectedPlayer.mutantData.isDisabled}
           <div class="tandem-section">
             <h3 class="sad-title">Тандем отключен</h3>
@@ -203,7 +187,6 @@
         {:else}
           <div class="tandem-section">
             <h3>Тандем: <span class="tandem-name">{selectedPlayer.mutantData.name}</span></h3>
-
             <div class="mutant-preview">
               {#if selectedPlayer.mutantData.image}
                 <img src={selectedPlayer.mutantData.image} alt={selectedPlayer.mutantData.name} />
@@ -211,19 +194,15 @@
                 <div class="no-image">?</div>
               {/if}
             </div>
-
             <div class="mutant-stats">
-              <!-- АТАКА 1 (Из таблицы) -->
               <div class="stat-row">
                 <span class="stat-label">⚔️ ATK 1</span>
                 <span class="stat-val">{selectedPlayer.atk1}</span>
               </div>
-              <!-- АТАКА 2 (Из таблицы) -->
               <div class="stat-row">
                 <span class="stat-label">⚔️ ATK 2</span>
                 <span class="stat-val">{selectedPlayer.atk2}</span>
               </div>
-              <!-- СКОРОСТЬ (Из базы) -->
               <div class="stat-row">
                 <span class="stat-label">⚡ SPD</span>
                 <span class="stat-val">{selectedPlayer.mutantData.speed}</span>
@@ -231,7 +210,6 @@
             </div>
           </div>
         {/if}
-
       {:else}
         <div class="no-tandem">
           <p>Мутант "{selectedPlayer.tandem}" не найден в базе.</p>
@@ -259,13 +237,11 @@
           </div>
         </div>
       {/if}
-
     </div>
   </div>
 {/if}
 
 <style>
-  /* СТИЛИ ОСТАЮТСЯ ТЕМИ ЖЕ, ИХ НЕ МЕНЯЕМ */
   .cta-banner { max-width: 800px; margin: 0 auto 2rem; text-align: center; }
   .cta-banner a { display: inline-flex; align-items: center; gap: 0.75rem; background: linear-gradient(90deg, rgb(59, 130, 246), rgb(147, 51, 234)); border: 1px solid rgb(147, 51, 234); padding: 0.8rem 1.5rem; border-radius: var(--radius-lg); text-decoration: none; color: #fff; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; font-weight: 600; }
   .cta-banner a:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(147, 51, 234, 0.2); border-color: rgba(147, 51, 234, 0.6); }
@@ -304,7 +280,6 @@
   .load-more:hover { background: rgba(255,255,255,0.1); color: #fff; }
   .empty-state { text-align: center; padding: 3rem; color: #64748b; }
 
-  /* MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
   .modal-card { background: #1e293b; width: 100%; max-width: 400px; border-radius: 24px; padding: 2rem; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255,255,255,0.1); animation: popIn 0.2s ease-out; }
   @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
@@ -331,13 +306,11 @@
 
   .no-tandem { text-align: center; color: #64748b; font-style: italic; }
 
-  /* SAD MODE */
   .sad-title { color: #f87171; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; margin-bottom: 1rem; text-align: center; }
   .sad-preview { border-color: rgba(248, 113, 113, 0.3); background: rgba(248, 113, 113, 0.05); }
   .sad-icon { width: 64px !important; height: 64px !important; opacity: 0.8; }
   .sad-text { text-align: center; color: #94a3b8; font-size: 0.9rem; font-style: italic; }
 
-  /* SOCIALS */
   .socials-section { margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
   .socials-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 0.75rem; text-align: center; }
   .socials-grid { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
@@ -351,7 +324,6 @@
   .social-btn.tg { background: #24A1DE; }
   .social-btn.link { background: #475569; }
 
-  /* MOBILE */
   .mobile-only { display: none; }
   @media (max-width: 640px) {
     .mobile-hidden { display: none; }

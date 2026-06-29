@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount, onDestroy, tick } from 'svelte';
+  import { onMount, onDestroy, tick } from 'svelte';
   import {
     STAR_LABEL,
     STAR_COLOR,
@@ -11,12 +11,14 @@
   import { orbingMap } from '@/lib/orbing-map';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
 
-  export let open = false;
-  export let mutant: any = null;
-  export let star: string = 'normal';
+  let { open = false, mutant = null, star = 'normal', onclose = undefined }: {
+    open?: boolean;
+    mutant?: any;
+    star?: string;
+    onclose?: () => void;
+  } = $props();
 
-  const dispatch = createEventDispatcher();
-  const close = () => dispatch('close');
+  const close = () => onclose?.();
 
   const STAR_MULTIPLIERS: Record<string, number> = {
     normal: 1.0,
@@ -34,16 +36,20 @@
     platinum: '/stars/star_platinum.webp'
   };
 
+  let originalFontSize = '';
   onMount(() => {
+    originalFontSize = document.documentElement.style.fontSize;
     document.documentElement.style.fontSize = '16px';
+  });
+  onDestroy(() => {
+    document.documentElement.style.fontSize = originalFontSize;
   });
 
   // ===== Star switching =====
   const STAR_SWITCHER_BLOCKED = new Set(['specimen_bf_11', 'specimen_ce_10']);
-  let selectedStar = 'normal';
+  let selectedStar = $state('normal');
 
-  // Initialize selectedStar from prop or first available
-  $: {
+  $effect(() => {
     if (mutant?.stars) {
       const available = Object.keys(mutant.stars);
       if (available.includes(star)) {
@@ -54,22 +60,22 @@
     } else {
       selectedStar = star || 'normal';
     }
-  }
+  });
 
-  $: availableStars = mutant?.stars ? (() => {
+  let availableStars = $derived(mutant?.stars ? (() => {
     const stars = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
     return stars.filter(s => mutant.stars?.[s]);
-  })() : [];
-  $: currentMultiplier = mutant?.stars?.[selectedStar]?.multiplier ?? STAR_MULTIPLIERS[selectedStar] ?? 1.0;
+  })() : []);
+  let currentMultiplier = $derived(mutant?.stars?.[selectedStar]?.multiplier ?? STAR_MULTIPLIERS[selectedStar] ?? 1.0);
 
   // ===== helpers =====
   const baseId = (id?: string) =>
     String(id ?? '')
       .toLowerCase()
-      .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
+      .replace(/_+(?:normal|bronze|silver|gold|plat).*$/i, '');
 
   // Bingo from mutant data directly
-  $: displayBingo = (() => {
+  let displayBingo = $derived((() => {
     const raw = mutant?.bingo;
     let arr: string[] = [];
     if (Array.isArray(raw)) {
@@ -80,7 +86,7 @@
       arr = Object.keys(raw);
     }
     return arr;
-  })();
+  })());
 
   const TYPE_ICON: Record<string, string> = {
     zodiac: '/mut_icons/icon_zodiac.webp',
@@ -176,16 +182,16 @@
   };
 
   // Base fields - use raw base_stats with star multiplier
-  $: baseStats = mutant?.base_stats ?? {};
-  $: genes = Array.isArray(mutant?.genes) ? mutant.genes[0] : '';
+  let baseStats = $derived(mutant?.base_stats ?? {});
+  let genes = $derived(Array.isArray(mutant?.genes) ? mutant.genes[0] : '');
 
-  $: displayType = mutant?.type;
+  let displayType = $derived(mutant?.type);
 
   // Reactive stats — recalculated when baseStats or currentMultiplier change
-  $: statsLvl1 = calculateFinalStats(baseStats, 1, currentMultiplier);
-  $: statsLvl30 = calculateFinalStats(baseStats, 30, currentMultiplier);
-  $: speedDisplay = Math.round(statsLvl1.speed * 100) / 100;
-  $: bankLvl1 = Math.round(statsLvl1.silver);
+  let statsLvl1 = $derived(calculateFinalStats(baseStats, 1, currentMultiplier));
+  let statsLvl30 = $derived(calculateFinalStats(baseStats, 30, currentMultiplier));
+  let speedDisplay = $derived(Math.round(statsLvl1.speed * 100) / 100);
+  let bankLvl1 = $derived(Math.round(statsLvl1.silver));
 
   const getAbilityValue = (level: number, abilityIndex: number, s1: any, s30: any): number => {
     const abilities = mutant?.abilities ?? [];
@@ -205,30 +211,19 @@
     return abilityIndex === 0 ? stats.ability : 0;
   };
 
-  // Texture from specimen (голова) с fallback на полную текстуру
+  // Texture — specimen (head) only
   const imgSrc = (m: any, starKey: string) => {
     const starInfo = m?.stars?.[starKey];
     if (starInfo?.images) {
       const list = starInfo.images;
-      // Сначала ищем specimen (голову)
       const specimen = list.find((p: string) => p.includes('specimen'));
       if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
-      // Если нет specimen, ищем полную текстуру
-      const fullTexture = list.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
-      if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
-      // Иначе первую доступную
       const pick = list[0];
       if (pick) return pick.startsWith('/') ? pick : `/${pick}`;
     }
-    // Fallback to old image field
     const list: string[] = m?.image ?? [];
-    // Сначала ищем specimen (голову)
     const specimen = list.find((p) => p.includes('specimen'));
     if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
-    // Если нет specimen, ищем полную текстуру
-    const fullTexture = list.find((p) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
-    if (fullTexture) return fullTexture.startsWith('/') ? fullTexture : `/${fullTexture}`;
-    // Иначе первую доступную или placeholder
     const pick = list[0];
     if (!pick) return '/placeholder-mutant.webp';
     return pick.startsWith('/') ? pick : `/${pick}`;
@@ -321,18 +316,19 @@
     return rows;
   }
 
-  $: rowsLvl1 = getRows(1, statsLvl1, statsLvl30);
-  $: rowsLvl30 = getRows(30, statsLvl1, statsLvl30);
+  let rowsLvl1 = $derived(getRows(1, statsLvl1, statsLvl30));
+  let rowsLvl30 = $derived(getRows(30, statsLvl1, statsLvl30));
 
   // Misc
-  $: incubTime =
+  let incubTime = $derived(
     mutant?.incub_time ??
     mutant?.incubation ??
     mutant?.incubation_time ??
     mutant?.incubationTime ??
     mutant?.incubation_hours ??
     mutant?.hatch_time ??
-    null;
+    null
+  );
 
   // Orbing
   const getOrbingImages = (m: any) => {
@@ -347,11 +343,11 @@
     return null;
   };
 
-  $: orbingImages = getOrbingImages(mutant);
+  let orbingImages = $derived(getOrbingImages(mutant));
 
   // ===== a11y: focus trap =====
-  let modalRef: HTMLElement;
-  let closeBtn: HTMLButtonElement;
+  let modalRef: HTMLElement = $state() as HTMLElement;
+  let closeBtn: HTMLButtonElement = $state() as HTMLButtonElement;
 
   function focusFirst() {
     if (!modalRef) return;
@@ -403,13 +399,23 @@
   });
   onDestroy(() => window.removeEventListener('keydown', escHandler));
 
-  $: if (open) { (async () => { await tick(); try{ modalRef?.scrollTo({ top: 0, behavior: 'auto' }); }catch{}; focusFirst(); })(); }
+  $effect(() => {
+    if (open) {
+      (async () => {
+        await tick();
+        try { modalRef?.scrollTo({ top: 0, behavior: 'auto' }); } catch {}
+        focusFirst();
+      })();
+    }
+  });
 </script>
 
 {#if open}
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
   class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-start md:items-center justify-center p-2 md:p-3 overflow-y-auto overscroll-contain"
-  on:click|self={close}
+  onclick={(e) => { if (e.target === e.currentTarget) close(); }}
   aria-hidden="false"
 >
   <div
@@ -417,8 +423,9 @@
     role="dialog"
     aria-modal="true"
     aria-labelledby="mutant-title"
-    on:keydown={onKeydownTrap}
-    class="modal-2k relative w-full max-w-5xl grid md:grid-cols-[minmax(0,42%)_minmax(0,58%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
+    onkeydown={onKeydownTrap}
+    tabindex="-1"
+    class="modal-2k relative w-full max-w-5xl grid md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
     <!-- Left -->
     <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
@@ -428,7 +435,7 @@
           {#each availableStars as s}
             <button
               class="star-switch-btn {selectedStar === s ? 'active' : ''}"
-              on:click={() => selectedStar = s}
+              onclick={() => selectedStar = s}
               title={STAR_LABEL[s] ?? s}
             >
               <img src={STAR_ICONS[s] ?? '/stars/no_stars.webp'} alt={s} class="w-6 h-6 object-contain" />
@@ -436,17 +443,19 @@
           {/each}
         </div>
       {/if}
-      <div class="flex-1 flex items-center justify-center">
-        <img
-          alt={mutant?.name}
-          src={imgSrc(mutant, selectedStar)}
-          class="max-h-[290px] md:max-h-[480px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
-          loading="lazy"
-          decoding="async"
-          fetchpriority="low"
-          width="640"
-          height="640"
-        />
+      <div class="flex-1 flex items-center justify-center w-full">
+        <div class="w-full max-w-[320px] md:max-w-[400px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
+          <img
+            alt={mutant?.name}
+            src={imgSrc(mutant, selectedStar)}
+            class="w-full h-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+            width="512"
+            height="512"
+          />
+        </div>
       </div>
     </div>
 
@@ -633,7 +642,7 @@
         <button
           bind:this={closeBtn}
           class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 ring-1 ring-indigo-400/50"
-          on:click={close}
+          onclick={close}
         >
           Закрыть
         </button>

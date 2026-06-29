@@ -11,9 +11,9 @@
     getRewardWithChance,
     simulateMachineAsync,
   } from '@/lib/cash-machine';
-  import { onDestroy, tick } from 'svelte';
+  import { tick } from 'svelte';
 
-  export interface SimulationResult {
+  interface SimulationResult {
     spins: number;
     budget: number;
     goldSpent: number;
@@ -22,7 +22,7 @@
     netGold: number;
   }
 
-  export let machine: CashMachineDefinition;
+  let { machine }: { machine: CashMachineDefinition } = $props();
 
   const costPerSpin = machine.cost;
   const rewardChances: RewardChance[] = machine.rewards
@@ -30,10 +30,10 @@
     .map((reward) => getRewardWithChance(reward, machine))
     .sort((a, b) => b.chance - a.chance);
 
-  let budget = 1000;
-  let isSimulating = false;
-  let error: string | null = null;
-  let result: SimulationResult | null = null;
+  let budget = $state(1000);
+  let isSimulating = $state(false);
+  let error: string | null = $state(null);
+  let result: SimulationResult | null = $state(null);
   const goldIcon = getCurrencyIcon('hardcurrency');
   const silverIcon = getCurrencyIcon('softcurrency');
 
@@ -48,14 +48,14 @@
     return unit ? `${formatNumber(amount)} ${unit}` : formatNumber(amount);
   }
 
-  let showOdds = false;
-  let breakdown: RewardAggregate[] = [];
-  let history: SpinSummary[] = [];
-  let progress = 0;
-  let controller: AbortController | null = null;
-  let totalSpins = 0;
-  let completedSpins = 0;
-  let showResultsModal = false;
+  let showOdds = $state(false);
+  let breakdown: RewardAggregate[] = $state([]);
+  let history: SpinSummary[] = $state([]);
+  let progress = $state(0);
+  let controller: AbortController | null = $state(null);
+  let totalSpins = $state(0);
+  let completedSpins = $state(0);
+  let showResultsModal = $state(false);
 
   function resetSimulation() {
     if (controller) {
@@ -83,7 +83,8 @@
     }
   }
 
-  async function handleSimulate() {
+  async function handleSimulate(e: Event) {
+    e.preventDefault();
     error = null;
     const spins = Math.floor(budget / costPerSpin);
 
@@ -147,8 +148,10 @@
     }
   }
 
-  onDestroy(() => {
-    stopSimulation();
+  $effect(() => {
+    return () => {
+      stopSimulation();
+    };
   });
 </script>
 
@@ -160,7 +163,7 @@
       <p>Стоимость прокрута — {costPerSpin} золота. Выберите бюджет и посмотрите, какие призы можно собрать.</p>
     </div>
 
-    <form class="control-panel" on:submit|preventDefault={handleSimulate} style="order: -1;">
+    <form class="control-panel" onsubmit={handleSimulate} style="order: -1;">
       <label class="input-group">
         <span>Бюджет золота</span>
         <div class="input-wrapper">
@@ -182,7 +185,7 @@
         <button
           type="button"
           class={`ghost ${isSimulating ? 'danger' : ''}`}
-          on:click={isSimulating ? stopSimulation : resetSimulation}
+          onclick={isSimulating ? stopSimulation : resetSimulation}
         >
           {isSimulating ? 'Остановить' : 'Очистить'}
         </button>
@@ -204,16 +207,16 @@
     </form>
 
     {#if result && !showResultsModal}
-      <button class="primary show-results-btn" on:click={() => showResultsModal = true}>Показать результаты</button>
+      <button class="primary show-results-btn" onclick={() => showResultsModal = true}>Показать результаты</button>
     {/if}
   </div>
 
   {#if result && showResultsModal}
-    <div class="modal-overlay" on:click|self={closeResultsModal} on:keydown={(e) => e.key === 'Escape' && closeResultsModal()} role="dialog" tabindex="-1">
+    <div class="modal-overlay" onclick={(e) => { if (e.target === e.currentTarget) closeResultsModal(); }} onkeydown={(e) => e.key === 'Escape' && closeResultsModal()} role="dialog" tabindex="-1">
       <div class="modal-content">
         <div class="modal-header">
           <h3>Результаты симуляции</h3>
-          <button class="modal-close" on:click={closeResultsModal}>✕</button>
+          <button class="modal-close" onclick={closeResultsModal}>✕</button>
         </div>
 
         <section class="stats">
@@ -297,20 +300,20 @@
           </div>
         </section>
 
-        <button class="primary modal-close-bottom" on:click={closeResultsModal}>Закрыть</button>
+        <button class="primary modal-close-bottom" onclick={closeResultsModal}>Закрыть</button>
       </div>
     </div>
   {/if}
 
   <aside class="odds-panel" class:collapsed={!showOdds}>
-    <button class="odds-toggle" on:click={() => showOdds = !showOdds}>
+    <button class="odds-toggle" onclick={() => showOdds = !showOdds}>
       <div class="odds-toggle__title">
         <h3>Теоретические шансы</h3>
         <span class="badge badge--small">{(rewardChances.length)} призов</span>
       </div>
       <span class="chevron">{showOdds ? '▼' : '▲'}</span>
     </button>
-    
+
     {#if showOdds}
       <p class="odds-caption">Вероятность выпадения каждого приза на один прокрут.</p>
       <ul class="odds-list">

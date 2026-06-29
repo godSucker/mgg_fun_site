@@ -2,9 +2,48 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import TierList from '@/components/TierList.svelte'
 import mutants from '@/data/mutants/mutants.json'
+import * as fs from 'node:fs'
+import * as XLSX from 'xlsx'
 
-// Only mutants that have a tier value
-const tieredMutants = (mutants as any[]).filter(m => m.tier)
+const xlsxBuf = fs.readFileSync('src/data/mut_tier.xlsx')
+const wb = XLSX.read(xlsxBuf, { type: 'buffer' })
+const ws = wb.Sheets[wb.SheetNames[0]]
+const rows = XLSX.utils.sheet_to_json(ws, { header: 1 }) as any[][]
+
+const tierMap: Record<string, string> = {
+  '1_': '1+', '1__': '1', '1___': '1-',
+  '2_': '2+', '2__': '2', '2___': '2-',
+  '3_': '3+', '3__': '3', '3___': '3-',
+  '4_': '4',
+}
+
+function normalize(s: string): string {
+  return s.toLowerCase().replace(/[^a-zа-яё0-9]/g, '').trim()
+}
+
+const nameToTier = new Map<string, string>()
+for (const row of rows) {
+  const name = row[1]
+  const rawTier = row[4]
+  if (name && rawTier && typeof name === 'string') {
+    const trimmed = String(rawTier).trim()
+    const mapped = tierMap[trimmed]
+    if (mapped) {
+      nameToTier.set(normalize(name), mapped)
+    }
+  }
+}
+
+const tieredMutants = (mutants as any[])
+  .filter(m => {
+    if (!m.name) return false
+    const tier = nameToTier.get(normalize(m.name))
+    if (tier) {
+      m.tier = tier
+      return true
+    }
+    return false
+  })
 ---
 
 <BaseLayout title="Тир-лист — Archivist-Library" fullWidth>

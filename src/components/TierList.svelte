@@ -2,7 +2,7 @@
   import { sortMutantsByGene } from '@/lib/mutant-sort'
   import MutantModal from './MutantModal.svelte'
 
-  export let mutants: any[] = []
+  let { mutants = [] }: { mutants: any[] } = $props()
 
   const MAIN_TIERS = ['1', '2', '3', '4']
 
@@ -14,16 +14,16 @@
   }
 
   const TIER_COLORS: Record<string, { border: string; bg: string; headerBg: string; subText: string }> = {
-    '1': { border: 'border-red-500',    bg: 'bg-red-500/10',    headerBg: 'bg-red-600',    subText: 'text-red-300' },
+    '1': { border: 'border-red-500', bg: 'bg-red-500/10', headerBg: 'bg-red-600', subText: 'text-red-300' },
     '2': { border: 'border-orange-500', bg: 'bg-orange-500/10', headerBg: 'bg-orange-600', subText: 'text-orange-300' },
     '3': { border: 'border-yellow-500', bg: 'bg-yellow-500/10', headerBg: 'bg-yellow-600', subText: 'text-yellow-300' },
-    '4': { border: 'border-green-500',  bg: 'bg-green-500/10',  headerBg: 'bg-green-600',  subText: 'text-green-300' },
+    '4': { border: 'border-green-500', bg: 'bg-green-500/10', headerBg: 'bg-green-600', subText: 'text-green-300' },
   }
 
   const SUB_LABELS: Record<string, string> = {
-    '1+': 'Топ тира',   '1': 'Середина',  '1-': 'Низ тира',
-    '2+': 'Топ тира',   '2': 'Середина',  '2-': 'Низ тира',
-    '3+': 'Топ тира',   '3': 'Середина',  '3-': 'Низ тира',
+    '1+': 'Топ тира', '1': 'Середина', '1-': 'Низ тира',
+    '2+': 'Топ тира', '2': 'Середина', '2-': 'Низ тира',
+    '3+': 'Топ тира', '3': 'Середина', '3-': 'Низ тира',
   }
 
   function groupByTier(list: any[]): Record<string, any[]> {
@@ -40,11 +40,11 @@
     return groups
   }
 
-  $: grouped = groupByTier(mutants)
+  const grouped = $derived(groupByTier(mutants))
 
-  let modalOpen = false
-  let selectedMutant: any = null
-  let selectedStar = 'normal'
+  let modalOpen = $state(false)
+  let selectedMutant: any = $state(null)
+  let selectedStar = $state('normal')
 
   function openModal(m: any) {
     selectedMutant = m
@@ -62,15 +62,13 @@
     selectedMutant = null
   }
 
-  // Build specimen (head icon) path
   function specimenSrc(m: any): string {
     const id = String(m.id ?? '')
     const base = id
       .replace(/^specimen[_-]/i, '')
       .replace(/_(normal|bronze|silver|gold|plat.*)$/i, '')
       .toLowerCase()
-    // Files are named: specimen_{base}_normal.webp
-    return `/textures_by_mutant/${base}/specimen_${base}_normal.webp`
+    return `/textures_by_mutant/${base}/thumb_specimen_${base}_normal.webp`
   }
 </script>
 
@@ -82,7 +80,6 @@
 
     {#if hasAny}
       <section class="rounded-2xl border-2 {colors.border} {colors.bg} overflow-hidden">
-        <!-- Tier header -->
         <div class="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 {colors.headerBg}">
           <span class="text-lg sm:text-xl font-extrabold text-white tracking-wide">ТИР {mainTier}</span>
           <span class="text-xs sm:text-sm text-slate-300">
@@ -106,7 +103,6 @@
                 </div>
               {/if}
 
-              <!-- Compact icon grid -->
               <div class="flex flex-wrap gap-1 sm:gap-1.5">
                 {#each list as m (m.id)}
                   <button
@@ -114,18 +110,16 @@
                            border border-slate-600/40 bg-slate-900/70
                            hover:border-sky-400/60 hover:shadow-[0_0_12px_rgba(56,189,248,0.2)]
                            transition-all duration-200 cursor-pointer flex-shrink-0"
-                    on:click={() => openModal(m)}
+                    onclick={() => openModal(m)}
                     title={m.name}
                   >
                     <img
                       src={specimenSrc(m)}
                       alt={m.name}
-                      class="w-full h-full object-contain p-0.5 sm:p-1
-                             group-hover:scale-110 transition-transform duration-200"
-                      loading="lazy"
+                      class="w-full h-full object-contain p-0.5 sm:p-1"
+                      loading="eager"
                       decoding="async"
                     />
-                    <!-- Name on hover -->
                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent
                                 px-0.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       <span class="text-[7px] sm:text-[8px] md:text-[9px] text-white leading-tight line-clamp-2 text-center block">
@@ -148,6 +142,6 @@
     open={modalOpen}
     mutant={selectedMutant}
     star={selectedStar}
-    on:close={closeModal}
+    onclose={closeModal}
   />
 {/if}

@@ -10,6 +10,7 @@ export interface BaseStatsInput {
   atk2?: number;
   atk2r?: number;
   speed?: number;
+  spd?: number;
   silver?: number;
   abilityPct1?: number;
   abilityPct2?: number;
@@ -20,6 +21,8 @@ export interface BaseStatsInput {
   atk2p_base?: number;
   speed_base?: number;
   bank_base?: number;
+  lvl1?: { spd?: number };
+  lvl30?: { spd?: number };
 }
 
 export interface CalculatedStats {
@@ -52,9 +55,9 @@ export function calculateFinalStats(
   const atk2r = baseStats.atk2r ?? baseStats.atk2p_base ?? atk2;
 
   const speed = baseStats.speed ?? baseStats.speed_base ??
-                (baseStats as any).spd ??
-                (baseStats as any).lvl1?.spd ??
-                (baseStats as any).lvl30?.spd ?? 0;
+                baseStats.spd ??
+                baseStats.lvl1?.spd ??
+                baseStats.lvl30?.spd ?? 0;
 
   const silver = baseStats.silver ?? baseStats.bank_base ?? 42;
   const abilityPct1 = baseStats.abilityPct1 ?? 0;

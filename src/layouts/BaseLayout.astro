@@ -1,10 +1,11 @@
 ---
 import "@/styles/global.css";
 import Analytics from '@vercel/analytics/astro';
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import SpeedInsights from "@vercel/speed-insights/astro"
 // Simple base layout for the site.
 // It provides a consistent header, footer and sets a dark theme background.
-const { title, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
+const { title, canonical, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
+const canonicalUrl = canonical ?? Astro.url.href;
 const isHome = Astro.url.pathname === "/";
 ---
 
@@ -32,7 +33,7 @@ const isHome = Astro.url.pathname === "/";
   <link rel="preload" as="font" type="font/woff2" href="/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/tt-supermolot-neue/tt-supermolot-neue.css">
   <!-- Каноническая ссылка (говорит ботам, что это главная версия страницы) -->
-  <link rel="canonical" href="https://www.archivist-library.com/" />
+  <link rel="canonical" href={canonicalUrl} />
   <!-- Иконка вкладки браузера -->
   <link rel="icon" type="image/png" href="/favicon.png" />
     <meta charset="utf-8" />
@@ -487,8 +488,6 @@ const isHome = Astro.url.pathname === "/";
       }
     </style>
   </head>
-  <SpeedInsights/>
-  <Analytics />
   <body>
     <header>
       <div class="logo">
@@ -592,5 +591,7 @@ const isHome = Astro.url.pathname === "/";
         link.addEventListener('click', closeMenu);
       });
     </script>
+    <SpeedInsights />
+    <Analytics />
   </body>
 </html>
