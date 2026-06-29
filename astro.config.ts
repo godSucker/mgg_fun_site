@@ -13,9 +13,7 @@ export default defineConfig({
   adapter: vercel(),
   prefetch: true,
   integrations: [svelte()],
-  build: {
-    assetsPrefix: 'https://cdn.archivist-library.com',
-  },
+
   vite: {
     plugins: [
       tailwindcss(),
