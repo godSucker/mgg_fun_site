@@ -410,7 +410,7 @@
                       : useRecipeIdLabel
                         ? `${translateItemId(recipe.id)} ×${totalIngredients}`
                         : `${baseLabel} ×${totalIngredients}`}
-                  {@const rewardIcon = useRecipeIdLabel ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null)}
+                  {@const rewardIcon = isPotPourriRecipe ? '/med/normal_med.webp' : (useRecipeIdLabel ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null))}
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}
@@ -616,7 +616,7 @@
                   {@const baseLabel = displayReward ? translateItemId(displayReward.id) : 'Рецепт'}
                   {@const totalIngredients = recipe.ingredients.reduce((sum, ing) => sum + ing.amount, 0)}
                   {@const rewardLabel = recipe.id.startsWith('pot_pourri_') ? `Средняя аптечка x${totalIngredients}` : baseLabel}
-                  {@const rewardIcon = displayReward ? getItemTexture(displayReward.id) : null}
+                  {@const rewardIcon = recipe.id.startsWith('pot_pourri_') ? '/med/normal_med.webp' : (displayReward ? getItemTexture(displayReward.id) : null)}
                   <button type="button" class:selected={recipe.id === currentRecipe?.id}
                     on:click={() => selectRecipe(activeFacility.id, recipe.id)}
                     role="tab" aria-selected={recipe.id === currentRecipe?.id}>

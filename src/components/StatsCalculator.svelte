@@ -1128,9 +1128,9 @@
         mutantFigureAfterHeight: '65px',
         mutantFigureAfterBottom: '-28px',
         heroGene: '40px',
-        attackGeneContainer: '42px',
-        attackGeneIcon: '28px',
-        attackAoe: '36px',
+        attackGeneContainer: '36px',
+        attackGeneIcon: '24px',
+        attackAoe: '30px',
         slotBtn: '56px',
         orb: '56px',
         star: '28px',
@@ -1145,9 +1145,9 @@
         mutantFigureAfterHeight: '110px',
         mutantFigureAfterBottom: '-45px',
         heroGene: '56px',
-        attackGeneContainer: '52px',
-        attackGeneIcon: '44px',
-        attackAoe: '64px',
+        attackGeneContainer: '44px',
+        attackGeneIcon: '36px',
+        attackAoe: '48px',
         slotBtn: '68px',
         orb: '68px',
         star: '32px',
@@ -1381,8 +1381,8 @@
         </button>
         {#each ['A','B','C','D','E','F'] as g}
           <button
-            class:active={geneFilter===g}
             class="gene-chip"
+            class:active={geneFilter===g}
             on:click={() => toggleGene(g)}
             title={GENE_NAME[g]}>
             <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
@@ -2071,27 +2071,27 @@
     .attack-side { gap: 8px; }
   }
 
- /* --- ФИКС АТАКИ (МАКСИМАЛЬНЫЙ РАЗМЕР) --- */
+ /* --- ФИКС АТАКИ --- */
   .attack-gene {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
   }
   @media (min-width: 768px) {
     .attack-gene {
-      width: 52px;
-      height: 52px;
+      width: 40px;
+      height: 40px;
     }
   }
 
-  /* Иконка гена - маленькая точка в центре */
+  /* Иконка гена */
   .attack-gene .gene-icon {
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
     display: block;
     position: relative;
@@ -2100,19 +2100,19 @@
   }
   @media (min-width: 768px) {
     .attack-gene .gene-icon {
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
     }
   }
 
-  /* Иконка АОЕ - ОГРОМНАЯ на весь слот */
+  /* Иконка АОЕ */
   .attack-gene .attack-aoe {
     position: absolute;
-    top: 45%;
-    left: 75%;
+    top: 50%;
+    left: 80%;
     transform: translate(-50%, -50%);
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     pointer-events: none;
     z-index: 1;
@@ -2120,8 +2120,8 @@
   }
   @media (min-width: 768px) {
     .attack-gene .attack-aoe {
-      width: 52px;
-      height: 52px;
+      width: 44px;
+      height: 44px;
     }
   }
 
@@ -2227,9 +2227,9 @@
     .hero-genes { gap: 6px; margin-bottom: -10px; }
     .slot-btn { width: 48px; height: 48px; min-width: 48px; min-height: 48px; }
     .star { width: 26px; height: 26px; min-width: 26px; }
-    .attack-gene { width: 40px; height: 40px; }
-    .attack-gene .gene-icon { width: 30px; height: 30px; }
-    .attack-gene .attack-aoe { width: 40px; height: 40px; }
+    .attack-gene { width: 34px; height: 34px; }
+    .attack-gene .gene-icon { width: 26px; height: 26px; }
+    .attack-gene .attack-aoe { width: 34px; height: 34px; }
     .ability-icon { width: 22px; height: 22px; }
     .row .label-icon { width: 18px; height: 18px; }
     .row .type-icon { width: 22px; height: 22px; }
@@ -2260,9 +2260,9 @@
     .hero-genes { gap: 5px; margin-bottom: -8px; }
     .slot-btn { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
     .star { width: 24px; height: 24px; min-width: 24px; }
-    .attack-gene { width: 36px; height: 36px; }
-    .attack-gene .gene-icon { width: 28px; height: 28px; }
-    .attack-gene .attack-aoe { width: 36px; height: 36px; }
+    .attack-gene { width: 30px; height: 30px; }
+    .attack-gene .gene-icon { width: 24px; height: 24px; }
+    .attack-gene .attack-aoe { width: 30px; height: 30px; }
     .ability-icon { width: 20px; height: 20px; }
     .mut-figure { padding: 0 0 8px; }
   }
@@ -2298,9 +2298,9 @@
     .slot-btn { width: 85px; height: 85px; min-width: 85px; min-height: 85px; }
     .slots { gap: 20px; }
     .mut-figure .texture { width: 310px; height: 310px; }
-    .attack-gene { width: 65px; height: 65px; }
-    .attack-gene .gene-icon { width: 50px; height: 50px; }
-    .attack-gene .attack-aoe { width: 65px; height: 65px; }
+    .attack-gene { width: 52px; height: 52px; }
+    .attack-gene .gene-icon { width: 42px; height: 42px; }
+    .attack-gene .attack-aoe { width: 52px; height: 52px; }
     .ability-icon { width: 35px; height: 35px; }
     .row .label-icon { width: 25px; height: 25px; }
     .row .type-icon { width: 33px; height: 33px; }
