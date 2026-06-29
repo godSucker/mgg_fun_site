@@ -456,7 +456,7 @@
       <div class="flex items-start justify-between gap-2">
         <div class="min-w-0">
           <h2 id="mutant-title" class="text-lg md:text-xl font-bold tracking-wide break-words">{mutant?.name}</h2>
-          <div class="mt-0.5 text-xs md:text-sm text-white/70 flex items-center gap-2 flex-wrap">
+          <div class="mt-0.5 text-xs md:text-sm text-slate-300 flex items-center gap-2 flex-wrap">
             {#if typeIcon(displayType)}
               <span class="inline-flex items-center gap-1 break-words">
                 <img class="type-icon opacity-90" src={typeIcon(displayType)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -480,7 +480,7 @@
 
       <!-- Lvl 1 -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1.5">Статы на 1 уровне</div>
+        <div class="text-xs text-slate-300 mb-1.5">Статы на 1 уровне</div>
         <dl class="grid grid-cols-2 gap-y-[2px] text-sm mb-1">
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(statsLvl1.hp)}</dd>
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(speedDisplay)}</dd>
@@ -513,14 +513,14 @@
             </div>
           {/each}
           {#if !rowsLvl1.length}
-            <div class="col-span-5 text-sm text-white/50">—</div>
+            <div class="col-span-5 text-sm text-slate-300">—</div>
           {/if}
         </div>
       </div>
 
       <!-- Lvl 30 -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1.5">Статы на 30 уровне</div>
+        <div class="text-xs text-slate-300 mb-1.5">Статы на 30 уровне</div>
         <dl class="grid grid-cols-2 gap-y-[2px] text-sm mb-1">
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_hp.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />HP</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(statsLvl30.hp)}</dd>
           <dt class="mut-dt"><span class="row-icon"><img class="stat-icon" src="/etc/icon_speed.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Скорость</span></dt><dd class="mut-dd whitespace-nowrap pl-1">{fmt(speedDisplay)}</dd>
@@ -553,14 +553,14 @@
             </div>
           {/each}
           {#if !rowsLvl30.length}
-            <div class="col-span-5 text-sm text-white/50">—</div>
+            <div class="col-span-5 text-sm text-slate-300">—</div>
           {/if}
         </div>
       </div>
 
       <!-- Bingo -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Бинго</span></div>
+        <div class="text-xs text-slate-300 mb-1"><span class="row-icon"><img class="stat-icon" src="/etc/icon_bingo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Бинго</span></div>
         {#if displayBingo.length}
           <div class="flex flex-wrap gap-2">
               {#each displayBingo as b}
@@ -568,14 +568,14 @@
             {/each}
           </div>
         {:else}
-          <div class="text-sm text-white/50">—</div>
+          <div class="text-sm text-slate-300">—</div>
         {/if}
       </div>
 
       <!-- Misc -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1">Прочее</div>
-        <div class="text-sm text-white/80 space-y-1">
+        <div class="text-xs text-slate-300 mb-1">Прочее</div>
+        <div class="text-sm text-slate-200 space-y-1">
           <div class="flex items-center gap-2 leading-tight">
             <span class="row-icon"><img class="stat-icon" src="/cash/softcurrency.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />Серебро (лвл 1):</span>
             <span class="text-white">{fmt(bankLvl1)}</span>
@@ -589,15 +589,15 @@
 
       <!-- Description -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
-        <div class="text-xs text-white/60 mb-1">Описание</div>
-        <div class="text-sm text-white/70 leading-relaxed break-words">
+        <div class="text-xs text-slate-300 mb-1">Описание</div>
+        <div class="text-sm text-slate-300 leading-relaxed break-words">
           { (mutant?.name_lore ?? '').trim() || '—' }
         </div>
       </div>
 
       <!-- Spheres -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
-        <div class="text-xs text-white/60 mb-2">Сферовка</div>
+        <div class="text-xs text-slate-300 mb-2">Сферовка</div>
         {#if orbingImages && orbingImages.rows}
           <div class="flex flex-col items-center gap-3 py-2">
             {#each orbingImages.rows as row}
@@ -621,7 +621,7 @@
             {/each}
           </div>
         {:else}
-          <div class="text-sm text-white/70 italic flex items-center gap-2">
+          <div class="text-sm text-slate-300 italic flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-500/50 animate-pulse"></span>
             Сферовки скоро появятся...
           </div>
