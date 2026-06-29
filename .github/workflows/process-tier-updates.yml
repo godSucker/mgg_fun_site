@@ -17,26 +17,17 @@ jobs:
         with:
           token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
       - name: Process tier updates
         run: |
-          # Устанавливаем зависимости
-          npm ci
-          
-          # В настоящее время обновления происходят напрямую через вебхук
-          # Этот шаг просто проверяет, что все работает
-          node scripts/process-tier-updates.mjs
+          echo "Обновления тиров обрабатываются через вебхук напрямую."
+          echo "Этот workflow оставлен как заглушка для ручного запуска при необходимости."
 
       - name: Commit and push if changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          
+
           if ! git diff --cached --quiet; then
             git commit -m "Auto-update: Mutant tier updates"
             git push

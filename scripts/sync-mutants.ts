@@ -10,7 +10,6 @@ const CONFIG = {
     LOC_RU_URL: 'https://s-beta.kobojo.com/mutants/gameconfig/localisation_ru.txt',
     GAME_DEFS_URL: 'https://s-ak.kobojo.com/mutants/gameconfig/gamedefinitions.xml',
     KOBOJO_IMG_BASE: 'https://s-ak.kobojo.com/mutants/assets/thumbnails/',
-    POKRADEX_ROOT_URL: 'https://pokradex.org/MutantsGG/MGG/',
 
     DATA_DIR: path.join(process.cwd(), 'src/data/mutants'),
     TEXTURES_DIR: path.join(process.cwd(), 'public/textures_by_mutant'),
@@ -24,12 +23,6 @@ const CONFIG = {
         gold: 1.75,
         platinum: 2.0
     } as Record<string, number>,
-    VERSION_MAP: {
-        bronze: 'V1',
-        silver: 'V2',
-        gold: 'V3',
-        platinum: 'V4'
-    } as Record<string, string>
 };
 
 type Rating = typeof CONFIG.RATINGS[number];
@@ -100,7 +93,7 @@ async function downloadFile(url: string, targetPath: string): Promise<boolean> {
             await fs.writeFile(targetPath, res.data);
             return true;
         }
-    } catch (e) {
+    } catch {
         return false;
     }
     return false;
@@ -136,166 +129,72 @@ async function loadLocalFiles() {
     return { gameDefs, locMap };
 }
 
-async function downloadImage(url: string, targetPath: string): Promise<boolean> {
+/**
+ * Скачивает specimen текстуру с Kobojo CDN если её нет на диске.
+ * Возвращает true если текстура доступна (была или скачана).
+ */
+async function downloadSpecimen(
+    mutantId: string,
+    rating: string
+): Promise<boolean> {
+    const idLower = mutantId.toLowerCase();
+    const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower);
+    const suffix = rating === 'normal' ? '' : `_${rating}`;
+    const iconName = `specimen_${idLower}${suffix}.webp`;
+    const iconPath = path.join(targetDir, iconName);
+
     try {
-        await fs.access(targetPath);
+        await fs.access(iconPath);
         return true;
-    } catch (e) {
-        try {
-            const res = await axios.get(url, {
-                responseType: 'arraybuffer',
-                timeout: 15000,
-                headers: { 'User-Agent': 'Mozilla/5.0' }
-            });
-            if (res.status === 200 && res.data.length > 100) {
-                await fs.mkdir(path.dirname(targetPath), { recursive: true });
-                await sharp(res.data).webp({ quality: 80 }).toFile(targetPath);
-                return true;
-            }
-        } catch (err) {}
-        return false;
+    } catch {
+        // Not found, download
     }
+
+    const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${suffix}.png`;
+    try {
+        const res = await axios.get(kobojoUrl, {
+            responseType: 'arraybuffer',
+            timeout: 15000,
+            headers: { 'User-Agent': 'Mozilla/5.0' }
+        });
+        if (res.status === 200 && res.data.length > 100) {
+            await fs.mkdir(targetDir, { recursive: true });
+            await sharp(res.data).webp({ quality: 80 }).toFile(iconPath);
+            return true;
+        }
+    } catch {}
+    return false;
 }
 
-async function getAvailableRatingsAndDownload(
+/**
+ * Возвращает список доступных рейтингов для мутанта.
+ * В режиме 'full' скачивает недостающие текстуры.
+ * В режиме 'stats' только проверяет наличие.
+ */
+async function getAvailableRatings(
     mutantId: string,
     mode: 'full' | 'stats',
     isGacha: boolean
 ): Promise<string[]> {
-    const idLower = mutantId.toLowerCase();
-    const idUpper = mutantId.toUpperCase();
-    const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower);
-    const foundRatings = new Set<string>();
-
     const ratingsToCheck = isGacha ? ['normal'] : CONFIG.RATINGS;
+    const found: string[] = [];
 
     for (const rating of ratingsToCheck) {
-        const kobojoSuffix = rating === 'normal' ? '' : `_${rating}`;
-        const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${kobojoSuffix}.png`;
-
-        const pokradexVersionPath = rating === 'normal' ? '' : `${CONFIG.VERSION_MAP[rating as keyof typeof CONFIG.VERSION_MAP]}/`;
-        const pokradexUrl = `${CONFIG.POKRADEX_ROOT_URL}${pokradexVersionPath}${idUpper}.png`;
-
-        const fullArtName = `${idUpper}_${rating}.webp`;
-        const iconName = `specimen_${idLower}_${rating}.webp`;
-
-        const fullArtPath = path.join(targetDir, fullArtName);
-        const iconPath = path.join(targetDir, iconName);
-
-        let ratingFound = false;
-
         if (mode === 'full') {
-            const d1 = await downloadImage(pokradexUrl, fullArtPath);
-            const d2 = await downloadImage(kobojoUrl, iconPath);
-            if (d1 || d2) ratingFound = true;
+            const ok = await downloadSpecimen(mutantId, rating);
+            if (ok) found.push(rating);
         } else {
-            try {
-                await fs.access(fullArtPath);
-                ratingFound = true;
-            } catch(e) {}
-            if (!ratingFound) {
-                try {
-                    await fs.access(iconPath);
-                    ratingFound = true;
-                } catch(e) {}
-            }
-        }
-
-        if (ratingFound) foundRatings.add(rating);
-    }
-
-    return Array.from(foundRatings);
-}
-
-/**
- * Проверяет наличие всех текстур у существующего мутанта и докачивает недостающие
- * Возвращает { allComplete, missingRatings, downloadedRatings }
- * - allComplete: true если все текстуры на месте (или были докачаны)
- * - missingRatings: список рейтингов которые не удалось докачать
- * - downloadedRatings: список рейтингов которые были успешно докачаны
- */
-async function checkAndDownloadMissingTextures(
-    mutantId: string,
-    isGacha: boolean
-): Promise<{ allComplete: boolean; missingRatings: string[]; downloadedRatings: string[] }> {
-    const idLower = mutantId.toLowerCase();
-    const idUpper = mutantId.toUpperCase();
-    const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower);
-    
-    const ratingsToCheck = isGacha ? ['normal'] : CONFIG.RATINGS;
-    const missingRatings: string[] = [];
-    const downloadedRatings: string[] = [];
-    
-    for (const rating of ratingsToCheck) {
-        const kobojoSuffix = rating === 'normal' ? '' : `_${rating}`;
-        const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${kobojoSuffix}.png`;
-        
-        const pokradexVersionPath = rating === 'normal' ? '' : `${CONFIG.VERSION_MAP[rating as keyof typeof CONFIG.VERSION_MAP]}/`;
-        const pokradexUrl = `${CONFIG.POKRADEX_ROOT_URL}${pokradexVersionPath}${idUpper}.png`;
-        
-        const fullArtName = `${idUpper}_${rating}.webp`;
-        const iconName = `specimen_${idLower}_${rating}.webp`;
-        
-        const fullArtPath = path.join(targetDir, fullArtName);
-        const iconPath = path.join(targetDir, iconName);
-        
-        // Проверяем наличие ОБЕИХ текстур (полная + иконка)
-        let hasFullArt = false;
-        let hasIcon = false;
-        
-        try {
-            await fs.access(fullArtPath);
-            hasFullArt = true;
-        } catch (e) {}
-        
-        try {
-            await fs.access(iconPath);
-            hasIcon = true;
-        } catch (e) {}
-        
-        // Если чего-то не хватает — докачиваем
-        if (!hasFullArt || !hasIcon) {
-            let downloaded = false;
-            
-            // Докачиваем полную текстуру если нет
-            if (!hasFullArt) {
-                const d1 = await downloadImage(pokradexUrl, fullArtPath);
-                if (d1) downloaded = true;
-            }
-            
-            // Докачиваем иконку если нет
-            if (!hasIcon) {
-                const d2 = await downloadImage(kobojoUrl, iconPath);
-                if (d2) downloaded = true;
-            }
-            
-            if (downloaded) {
-                downloadedRatings.push(rating);
-            }
-            
-            // Проверяем ещё раз после скачивания
-            try {
-                await fs.access(fullArtPath);
-                hasFullArt = true;
-            } catch (e) {}
-            
+            const idLower = mutantId.toLowerCase();
+            const suffix = rating === 'normal' ? '' : `_${rating}`;
+            const iconPath = path.join(CONFIG.TEXTURES_DIR, idLower, `specimen_${idLower}${suffix}.webp`);
             try {
                 await fs.access(iconPath);
-                hasIcon = true;
-            } catch (e) {}
-            
-            // Если всё ещё чего-то не хватает — добавляем в missing
-            if (!hasFullArt || !hasIcon) {
-                missingRatings.push(rating);
-            }
+                found.push(rating);
+            } catch {}
         }
     }
-    
-    return {
-        allComplete: missingRatings.length === 0,
-        missingRatings,
-        downloadedRatings
-    };
+
+    return found;
 }
 
 function findAllEntityDescriptors(obj: any): any[] {
@@ -401,9 +300,7 @@ function getTrueRating(type: string, multiplier: number): Rating {
 
 function buildImagePaths(mutantId: string, rating: string): string[] {
     const idLower = mutantId.toLowerCase();
-    const idUpper = mutantId.toUpperCase();
     return [
-        `textures_by_mutant/${idLower}/${idUpper}_${rating}.webp`,
         `textures_by_mutant/${idLower}/specimen_${idLower}_${rating}.webp`,
         `textures_by_mutant/${idLower}/larva_${idLower}.webp`
     ];
@@ -411,7 +308,7 @@ function buildImagePaths(mutantId: string, rating: string): string[] {
 
 // ==================== ВАЛИДАЦИЯ ====================
 
-function validateEntry(entry: UnifiedMutant, mutantId: string): { errors: string[]; warnings: string[]; isValid: boolean } {
+function validateEntry(entry: UnifiedMutant): { errors: string[]; warnings: string[]; isValid: boolean } {
     const warnings: string[] = [];
     const errors: string[] = [];
 
@@ -491,7 +388,7 @@ async function sync(options: {
             }
         }
         console.log(`[BINGO] Загружено ${bingoMap.size} мутантов с бинго данными`);
-    } catch (e) {
+    } catch {
         console.warn('[BINGO] Не удалось загрузить bingos.json, bingo поля будут пустыми');
     }
 
@@ -507,7 +404,7 @@ async function sync(options: {
             existingData.set(m.id, m);
             processedIds.add(m.id.replace(/^specimen_/, '').toUpperCase());
         }
-    } catch (e) {
+    } catch {
         console.log('[INFO] mutants.json не найден, создаём с нуля');
     }
 
@@ -550,25 +447,21 @@ async function sync(options: {
         const isGacha = typeUpper === 'GACHA';
 
         // Режим FULL: проверяем наличие текстур у существующих мутантов
+        let newTexturesDownloaded = false;
         if (skipExisting && processedIds.has(mutantId.toUpperCase())) {
-            const { allComplete, missingRatings, downloadedRatings } = await checkAndDownloadMissingTextures(
-                mutantId,
-                isGacha
-            );
-            if (allComplete) {
-                // Все текстуры на месте или успешно докачаны
-                if (downloadedRatings.length > 0) {
-                    console.log(`[TEXTURES ADDED] ${mutantId}: докачаны ${downloadedRatings.join(', ')}`);
-                }
+            const ratings = await getAvailableRatings(mutantId, 'full', isGacha);
+            const neededRatings = isGacha ? ['normal'] : CONFIG.RATINGS;
+            const missing = neededRatings.filter(r => !ratings.includes(r));
+            if (missing.length === 0) {
                 stats.skipped++;
                 continue;
             } else {
-                // Есть текстуры которые не удалось найти
-                console.log(`[TEXTURES MISSING] ${mutantId}: не найдены текстуры для ${missingRatings.join(', ')}`);
+                newTexturesDownloaded = true;
+                console.log(`[TEXTURES MISSING] ${mutantId}: не найдены текстуры для ${missing.join(', ')}`);
             }
         }
 
-        const textureRatings = await getAvailableRatingsAndDownload(
+        const textureRatings = await getAvailableRatings(
             mutantId,
             skipExisting ? 'full' : 'stats',
             isGacha
@@ -601,7 +494,6 @@ async function sync(options: {
         if (xmlMultiplier > 0) {
             gachaMult = xmlMultiplier;
         } else if (isGacha) {
-            // hideSkins="platinum" означает gold (1.75x), иначе platinum (2.0x)
             const hideSkins = String(tags.hideSkins || "").toLowerCase();
             gachaMult = hideSkins.includes('platinum') ? 1.75 : 2.0;
         }
@@ -610,15 +502,12 @@ async function sync(options: {
         const starsObj: Record<string, StarInfo> = {};
 
         if (isGacha) {
-            // GACHA — только одна звезда
             const trueRating = getTrueRating(typeUpper, gachaMult);
-            const imageRating = 'normal'; // текстуры всегда с суффиксом _normal
             starsObj[trueRating] = {
-                images: buildImagePaths(mutantId, imageRating),
+                images: buildImagePaths(mutantId, 'normal'),
                 ...(trueRating !== 'normal' && { multiplier: gachaMult })
             };
         } else {
-            // Обычные мутанты — все доступные звёзды
             for (const rating of textureRatings) {
                 starsObj[rating] = {
                     images: buildImagePaths(mutantId, rating),
@@ -676,7 +565,7 @@ async function sync(options: {
         const atk1AOE = String(tags.atk1 || "").includes("AOE") || String(tags.atk1p || "").includes("AOE");
         const atk2AOE = String(tags.atk2 || "").includes("AOE") || String(tags.atk2p || "").includes("AOE");
 
-        // Парсим unlockAttack для точных генов атак (формат: "1:1:a;2:5:e;1p:10:a;2p:15:e")
+        // Парсим unlockAttack для точных генов атак
         const unlockAttackStr = String(tags.unlockAttack || "");
         let parsedAtk1Gene = '';
         let parsedAtk2Gene = '';
@@ -689,6 +578,10 @@ async function sync(options: {
         }
         const atk1Gene = parsedAtk1Gene || genesChar[0]?.toLowerCase() || 'neutro';
         const atk2Gene = parsedAtk2Gene || genesChar[1]?.toLowerCase() || 'neutro';
+
+        // Сохраняем tier из существующей записи (не затираем)
+        const existingEntry = existingData.get(baseId);
+        const preservedTier = existingEntry?.tier ?? "";
 
         const entry: UnifiedMutant = {
             id: baseId,
@@ -730,7 +623,7 @@ async function sync(options: {
             bingo: bingoMap.get(fullId.toUpperCase()) || [],
             chance: parseInt(tags.odds || "0"),
             bank: bankVal,
-            tier: "",
+            tier: preservedTier,
             name_attack1: atk1Name,
             name_attack2: atk2Name,
             name_attack3: "",
@@ -738,7 +631,7 @@ async function sync(options: {
         };
 
         // Валидация
-        const validation = validateEntry(entry, mutantId);
+        const validation = validateEntry(entry);
         if (!validation.isValid) {
             console.log(`[ERROR] ${baseId}: ${validation.errors.join(', ')}`);
             stats.errors++;
@@ -749,11 +642,18 @@ async function sync(options: {
         }
 
         // Обновление/добавление
-        const existingEntry = existingData.get(baseId);
-
         if (existingEntry) {
             if (skipExisting) {
-                stats.skipped++;
+                if (newTexturesDownloaded) {
+                    // Текстуры были скачаны — обновляем stars в JSON
+                    existingEntry.stars = { ...existingEntry.stars, ...entry.stars };
+                    existingData.set(baseId, existingEntry);
+                    modifiedCount++;
+                    stats.updatedStats++;
+                    console.log(`[STARS UPDATED] ${baseId}: добавлены новые звёзды`);
+                } else {
+                    stats.skipped++;
+                }
                 continue;
             }
 
@@ -764,8 +664,9 @@ async function sync(options: {
                     continue;
                 }
 
-                // Сохраняем существующие звёзды, добавляем новые
+                // Сохраняем существующие звёзды и tier, добавляем новые
                 entry.stars = { ...existingEntry.stars, ...entry.stars };
+                entry.tier = existingEntry.tier || preservedTier;
                 existingData.set(baseId, entry);
                 modifiedCount++;
 
@@ -780,8 +681,9 @@ async function sync(options: {
                     console.log(`[LOC] ${baseId}`);
                 }
             } else if (forceStatUpdate) {
-                // Сохраняем существующие звёзды, добавляем/обновляем новые
+                // Сохраняем существующие звёзды и tier, добавляем/обновляем новые
                 entry.stars = { ...existingEntry.stars, ...entry.stars };
+                entry.tier = existingEntry.tier || preservedTier;
                 existingData.set(baseId, entry);
                 modifiedCount++;
                 stats.updatedStats++;
@@ -837,10 +739,9 @@ async function sync(options: {
 
 async function syncTexturesOnly() {
     console.log('[TEXTURES ONLY] Проверка и докачка недостающих текстур у всех мутантов...\n');
-    
+
     const { gameDefs, locMap } = await loadLocalFiles();
-    
-    // Загружаем существующие данные для определения GACHA мутантов
+
     const existingData = new Map<string, UnifiedMutant>();
     try {
         const data = JSON.parse(
@@ -850,62 +751,48 @@ async function syncTexturesOnly() {
             existingData.set(m.id, m);
         }
         console.log(`[INFO] Загружено ${existingData.size} мутантов из mutants.json`);
-    } catch (e) {
+    } catch {
         console.error('[ERROR] Не удалось загрузить mutants.json');
         return;
     }
-    
+
     const descriptors = findAllEntityDescriptors(gameDefs);
     const specimenDescriptors = descriptors.filter(d =>
         d.id && d.id.startsWith("Specimen_") &&
         !(locMap.get(d.id) || "").toLowerCase().includes("слабый") &&
         !(locMap.get(d.id) || "").toLowerCase().includes("weak")
     );
-    
-    const stats = {
-        checked: 0,
-        downloaded: 0,
-        complete: 0,
-        errors: 0
-    };
-    
+
+    const stats = { checked: 0, complete: 0, errors: 0 };
+
     for (const desc of specimenDescriptors) {
-        const fullId = desc.id;
-        const mutantId = fullId.replace('Specimen_', '');
-        
+        const mutantId = desc.id.replace('Specimen_', '');
         const tags = parseTags(desc);
         const hpBase = parseInt(tags.lifePoint || "0");
         if (hpBase === 0) continue;
-        
+
         const typeUpper = (tags.type || "").toUpperCase();
         const isGacha = typeUpper === 'GACHA';
-        
+
         stats.checked++;
-        
-        const { allComplete, missingRatings, downloadedRatings } = await checkAndDownloadMissingTextures(
-            mutantId,
-            isGacha
-        );
-        
-        if (allComplete) {
-            if (downloadedRatings.length > 0) {
-                stats.downloaded++;
-                console.log(`[ADDED] ${mutantId}: докачаны текстуры ${downloadedRatings.join(', ')}`);
-            } else {
-                stats.complete++;
-            }
+
+        const ratings = await getAvailableRatings(mutantId, 'full', isGacha);
+        const neededRatings = isGacha ? ['normal'] : CONFIG.RATINGS;
+        const missing = neededRatings.filter(r => !ratings.includes(r));
+
+        if (missing.length === 0) {
+            stats.complete++;
         } else {
             stats.errors++;
-            console.log(`[MISSING] ${mutantId}: не найдены текстуры для ${missingRatings.join(', ')}`);
+            console.log(`[MISSING] ${mutantId}: не найдены текстуры для ${missing.join(', ')}`);
         }
     }
-    
+
     console.log('\n' + '='.repeat(60));
     console.log('ИТОГИ ПРОВЕРКИ ТЕКСТУР:');
     console.log('='.repeat(60));
     console.log(`Проверено: ${stats.checked}`);
     console.log(`Полные: ${stats.complete}`);
-    console.log(`Докачано: ${stats.downloaded}`);
     console.log(`Проблемные: ${stats.errors}`);
     console.log('='.repeat(60) + '\n');
 }
@@ -915,7 +802,7 @@ async function syncTexturesOnly() {
 async function main() {
     const mode = process.argv[2] || 'full';
     console.log(`\n${'='.repeat(60)}`);
-    console.log(`ПАРСЕР V3 | РЕЖИМ: ${mode.toUpperCase()}`);
+    console.log(`ПАРСЕР V4 | РЕЖИМ: ${mode.toUpperCase()}`);
     console.log('='.repeat(60) + '\n');
 
     switch (mode) {
