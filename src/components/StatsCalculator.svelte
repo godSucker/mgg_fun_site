@@ -1233,9 +1233,7 @@
       const styleEl = document.createElement('style');
       styleEl.textContent = `
         .mut-figure::after {
-          width: ${config.mutantFigureAfterWidth} !important;
-          height: ${config.mutantFigureAfterHeight} !important;
-          bottom: ${config.mutantFigureAfterBottom} !important;
+          display: none !important;
         }
         /* Фикс для attack-side на мобильных - предотвращаем сжатие */
         .attack-side {
@@ -1759,10 +1757,10 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
   }
   @media (min-width: 768px) {
-    .header-tools-row { margin-bottom: 12px; }
+    .header-tools-row { margin-bottom: 6px; }
   }
 
   /* Имя: яркое белое, с подсветкой */
@@ -1818,7 +1816,7 @@
 
     /* Размеры и текст */
     width: auto; /* Автоматическая ширина под текст */
-    height: 32px;
+    height: 28px;
     padding: 0 14px; /* Отступы по бокам */
 
     font-size: 12px;
@@ -1839,20 +1837,19 @@
     transform: translateY(0);
   }
 
-  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .hero-section{ display:flex; flex-direction:column; align-items:center; gap:3px; }
   @media (min-width: 768px) {
-    .hero-section { gap: 8px; }
+    .hero-section { gap: 5px; }
   }
   .mut-figure{ position:relative; display:flex; justify-content:center; margin-bottom:0; padding:0 0 12px; width:100%; }
   @media (min-width: 768px) {
     .mut-figure { padding: 0 0 16px; }
   }
-  .mut-figure::after{ content:""; position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); width:272px; height:82px; background:radial-gradient(62% 72% at 50% 58%, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 82%); opacity:1; pointer-events:none; }
-  .mut-figure .texture{ width:220px; height:220px; object-fit:contain; image-rendering:auto; }
+  .mut-figure .texture{ width:clamp(80px, 20vw, 210px); height:clamp(80px, 20vw, 210px); object-fit:contain; image-rendering:auto; }
 
-  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:4px; }
   @media (min-width: 768px) {
-    .hero-controls { gap: 8px; }
+    .hero-controls { gap: 6px; }
   }
 
   /* СЛОТЫ: защита от сплющивания + фикс сфер */
@@ -2046,12 +2043,12 @@
   .attack-side {
     display: flex;
     align-items: center;
-    gap: 6px; /* Уменьшил отступ между иконкой и текстом (было 10-12px) */
+    gap: 3px;
     flex: 1 1 0;
     min-width: 0;
   }
   @media (min-width: 768px) {
-    .attack-side { gap: 8px; }
+    .attack-side { gap: 5px; }
   }
 
  /* --- ФИКС АТАКИ --- */
@@ -2201,8 +2198,6 @@
 
     .row.attack-row { flex-direction: column; gap: 6px; padding: 8px; }
     .ability-divider { display: none !important; }
-    .mut-figure .texture { width: 160px; height: 160px; }
-    .mut-figure::after { width: 140px; bottom: -18px; height: 45px; }
     .mut-figure { padding: 0 0 10px; }
     
     /* Увеличиваем иконки для мобильных для лучшей видимости */
@@ -2229,8 +2224,6 @@
       grid-template-columns: 1fr;
       justify-content: center; /* Center the content */
     }
-
-    .mut-figure .texture { width: 130px; height: 130px; }
 
     /* Fix long name issue - make title responsive */
     .title {
@@ -2280,7 +2273,6 @@
     .star { width: 40px; height: 40px; min-width: 40px; }
     .slot-btn { width: 85px; height: 85px; min-width: 85px; min-height: 85px; }
     .slots { gap: 20px; }
-    .mut-figure .texture { width: 310px; height: 310px; }
     .attack-gene { width: 52px; height: 52px; }
     .attack-gene .gene-icon { width: 42px; height: 42px; }
     .attack-gene .attack-aoe { width: 52px; height: 52px; }

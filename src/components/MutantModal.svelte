@@ -428,6 +428,14 @@
     tabindex="-1"
     class="modal-2k relative w-full max-w-5xl grid md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
+    <!-- Mobile close button -->
+    <button
+      class="mobile-close-btn"
+      onclick={close}
+      aria-label="Закрыть"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
     <!-- Left -->
     <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
       <!-- Star switcher -->
@@ -445,7 +453,7 @@
         </div>
       {/if}
       <div class="flex-1 flex items-center justify-center w-full">
-        <div class="w-full max-w-[320px] md:max-w-[400px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
+        <div class="w-full max-w-[296px] md:max-w-[370px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
           <img
             alt={mutant?.name}
             src={textureUrl(imgSrc(mutant, selectedStar))}
@@ -731,5 +739,36 @@
     .ability-icon { width: 14px; height: 14px; }
     .gene-ico { width: 16px; height: 16px; }
     .mut-dt, .mut-dd { font-size: 10px; }
+  }
+
+  .mobile-close-btn {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .mobile-close-btn {
+      display: flex;
+      position: sticky;
+      top: 0;
+      float: right;
+      z-index: 10;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(8px);
+      color: #ef4444;
+      cursor: pointer;
+      margin: 4px 4px 0 0;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+    .mobile-close-btn:active {
+      background: rgba(99,102,241,0.3);
+      color: #fff;
+      transform: scale(0.92);
+    }
   }
 </style>
