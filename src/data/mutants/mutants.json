@@ -5194,7 +5194,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/aa_02/AA_02_normal.webp",
           "textures_by_mutant/aa_02/specimen_aa_02_normal.webp",
           "textures_by_mutant/aa_02/larva_aa_02.webp"
         ]
@@ -5638,14 +5637,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ae_02/AE_02_normal.webp",
           "textures_by_mutant/ae_02/specimen_ae_02_normal.webp",
           "textures_by_mutant/ae_02/larva_ae_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/ae_02/AE_02_silver.webp",
           "textures_by_mutant/ae_02/specimen_ae_02_silver.webp",
           "textures_by_mutant/ae_02/larva_ae_02.webp"
         ],
@@ -5734,14 +5731,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/af_02/AF_02_normal.webp",
           "textures_by_mutant/af_02/specimen_af_02_normal.webp",
           "textures_by_mutant/af_02/larva_af_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/af_02/AF_02_silver.webp",
           "textures_by_mutant/af_02/specimen_af_02_silver.webp",
           "textures_by_mutant/af_02/larva_af_02.webp"
         ],
@@ -6186,14 +6181,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bd_02/BD_02_normal.webp",
           "textures_by_mutant/bd_02/specimen_bd_02_normal.webp",
           "textures_by_mutant/bd_02/larva_bd_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/bd_02/BD_02_silver.webp",
           "textures_by_mutant/bd_02/specimen_bd_02_silver.webp",
           "textures_by_mutant/bd_02/larva_bd_02.webp"
         ],
@@ -6282,14 +6275,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/be_02/BE_02_normal.webp",
           "textures_by_mutant/be_02/specimen_be_02_normal.webp",
           "textures_by_mutant/be_02/larva_be_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/be_02/BE_02_silver.webp",
           "textures_by_mutant/be_02/specimen_be_02_silver.webp",
           "textures_by_mutant/be_02/larva_be_02.webp"
         ],
@@ -6852,14 +6843,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cd_02/CD_02_normal.webp",
           "textures_by_mutant/cd_02/specimen_cd_02_normal.webp",
           "textures_by_mutant/cd_02/larva_cd_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/cd_02/CD_02_silver.webp",
           "textures_by_mutant/cd_02/specimen_cd_02_silver.webp",
           "textures_by_mutant/cd_02/larva_cd_02.webp"
         ],
@@ -6948,14 +6937,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ce_02/CE_02_normal.webp",
           "textures_by_mutant/ce_02/specimen_ce_02_normal.webp",
           "textures_by_mutant/ce_02/larva_ce_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/ce_02/CE_02_silver.webp",
           "textures_by_mutant/ce_02/specimen_ce_02_silver.webp",
           "textures_by_mutant/ce_02/larva_ce_02.webp"
         ],
@@ -7399,14 +7386,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/dc_02/DC_02_normal.webp",
           "textures_by_mutant/dc_02/specimen_dc_02_normal.webp",
           "textures_by_mutant/dc_02/larva_dc_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/dc_02/DC_02_silver.webp",
           "textures_by_mutant/dc_02/specimen_dc_02_silver.webp",
           "textures_by_mutant/dc_02/larva_dc_02.webp"
         ],
@@ -8651,14 +8636,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fb_02/FB_02_normal.webp",
           "textures_by_mutant/fb_02/specimen_fb_02_normal.webp",
           "textures_by_mutant/fb_02/larva_fb_02.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/fb_02/FB_02_silver.webp",
           "textures_by_mutant/fb_02/specimen_fb_02_silver.webp",
           "textures_by_mutant/fb_02/larva_fb_02.webp"
         ],
@@ -8747,7 +8730,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fc_02/FC_02_normal.webp",
           "textures_by_mutant/fc_02/specimen_fc_02_normal.webp",
           "textures_by_mutant/fc_02/larva_fc_02.webp"
         ]
@@ -9544,14 +9526,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ad_03/AD_03_normal.webp",
           "textures_by_mutant/ad_03/specimen_ad_03_normal.webp",
           "textures_by_mutant/ad_03/larva_ad_03.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/ad_03/AD_03_silver.webp",
           "textures_by_mutant/ad_03/specimen_ad_03_silver.webp",
           "textures_by_mutant/ad_03/larva_ad_03.webp"
         ],
@@ -10473,14 +10453,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bf_03/BF_03_normal.webp",
           "textures_by_mutant/bf_03/specimen_bf_03_normal.webp",
           "textures_by_mutant/bf_03/larva_bf_03.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/bf_03/BF_03_silver.webp",
           "textures_by_mutant/bf_03/specimen_bf_03_silver.webp",
           "textures_by_mutant/bf_03/larva_bf_03.webp"
         ],
@@ -11962,14 +11940,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ea_03/EA_03_normal.webp",
           "textures_by_mutant/ea_03/specimen_ea_03_normal.webp",
           "textures_by_mutant/ea_03/larva_ea_03.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/ea_03/EA_03_silver.webp",
           "textures_by_mutant/ea_03/specimen_ea_03_silver.webp",
           "textures_by_mutant/ea_03/larva_ea_03.webp"
         ],
@@ -12536,14 +12512,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ef_03/EF_03_normal.webp",
           "textures_by_mutant/ef_03/specimen_ef_03_normal.webp",
           "textures_by_mutant/ef_03/larva_ef_03.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/ef_03/EF_03_silver.webp",
           "textures_by_mutant/ef_03/specimen_ef_03_silver.webp",
           "textures_by_mutant/ef_03/larva_ef_03.webp"
         ],
@@ -12871,7 +12845,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fc_03/FC_03_normal.webp",
           "textures_by_mutant/fc_03/specimen_fc_03_normal.webp",
           "textures_by_mutant/fc_03/larva_fc_03.webp"
         ]
@@ -13283,7 +13256,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/a_03/A_03_normal.webp",
           "textures_by_mutant/a_03/specimen_a_03_normal.webp",
           "textures_by_mutant/a_03/larva_a_03.webp"
         ]
@@ -13368,7 +13340,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/b_03/B_03_normal.webp",
           "textures_by_mutant/b_03/specimen_b_03_normal.webp",
           "textures_by_mutant/b_03/larva_b_03.webp"
         ]
@@ -13453,7 +13424,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/c_03/C_03_normal.webp",
           "textures_by_mutant/c_03/specimen_c_03_normal.webp",
           "textures_by_mutant/c_03/larva_c_03.webp"
         ]
@@ -13538,7 +13508,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/d_03/D_03_normal.webp",
           "textures_by_mutant/d_03/specimen_d_03_normal.webp",
           "textures_by_mutant/d_03/larva_d_03.webp"
         ]
@@ -13740,7 +13709,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/f_03/F_03_normal.webp",
           "textures_by_mutant/f_03/specimen_f_03_normal.webp",
           "textures_by_mutant/f_03/larva_f_03.webp"
         ]
@@ -14064,7 +14032,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ac_04/AC_04_normal.webp",
           "textures_by_mutant/ac_04/specimen_ac_04_normal.webp",
           "textures_by_mutant/ac_04/larva_ac_04.webp"
         ]
@@ -14268,7 +14235,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ae_04/AE_04_normal.webp",
           "textures_by_mutant/ae_04/specimen_ae_04_normal.webp",
           "textures_by_mutant/ae_04/larva_ae_04.webp"
         ]
@@ -14713,7 +14679,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bc_04/BC_04_normal.webp",
           "textures_by_mutant/bc_04/specimen_bc_04_normal.webp",
           "textures_by_mutant/bc_04/larva_bc_04.webp"
         ]
@@ -15363,7 +15328,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cc_04/CC_04_normal.webp",
           "textures_by_mutant/cc_04/specimen_cc_04_normal.webp",
           "textures_by_mutant/cc_04/larva_cc_04.webp"
         ]
@@ -15924,7 +15888,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/db_04/DB_04_normal.webp",
           "textures_by_mutant/db_04/specimen_db_04_normal.webp",
           "textures_by_mutant/db_04/larva_db_04.webp"
         ]
@@ -16724,7 +16687,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ec_04/EC_04_normal.webp",
           "textures_by_mutant/ec_04/specimen_ec_04_normal.webp",
           "textures_by_mutant/ec_04/larva_ec_04.webp"
         ]
@@ -16811,7 +16773,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ed_04/ED_04_normal.webp",
           "textures_by_mutant/ed_04/specimen_ed_04_normal.webp",
           "textures_by_mutant/ed_04/larva_ed_04.webp"
         ]
@@ -17134,7 +17095,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fa_04/FA_04_normal.webp",
           "textures_by_mutant/fa_04/specimen_fa_04_normal.webp",
           "textures_by_mutant/fa_04/larva_fa_04.webp"
         ]
@@ -17338,7 +17298,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fc_04/FC_04_normal.webp",
           "textures_by_mutant/fc_04/specimen_fc_04_normal.webp",
           "textures_by_mutant/fc_04/larva_fc_04.webp"
         ]
@@ -17781,7 +17740,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/b_04/B_04_normal.webp",
           "textures_by_mutant/b_04/specimen_b_04_normal.webp",
           "textures_by_mutant/b_04/larva_b_04.webp"
         ]
@@ -17866,7 +17824,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/f_04/F_04_normal.webp",
           "textures_by_mutant/f_04/specimen_f_04_normal.webp",
           "textures_by_mutant/f_04/larva_f_04.webp"
         ]
@@ -18510,7 +18467,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/af_05/AF_05_normal.webp",
           "textures_by_mutant/af_05/specimen_af_05_normal.webp",
           "textures_by_mutant/af_05/larva_af_05.webp"
         ]
@@ -19429,7 +19385,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cb_05/CB_05_normal.webp",
           "textures_by_mutant/cb_05/specimen_cb_05_normal.webp",
           "textures_by_mutant/cb_05/larva_cb_05.webp"
         ]
@@ -19636,7 +19591,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cd_05/CD_05_normal.webp",
           "textures_by_mutant/cd_05/specimen_cd_05_normal.webp",
           "textures_by_mutant/cd_05/larva_cd_05.webp"
         ]
@@ -20049,7 +20003,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/db_05/DB_05_normal.webp",
           "textures_by_mutant/db_05/specimen_db_05_normal.webp",
           "textures_by_mutant/db_05/larva_db_05.webp"
         ]
@@ -21554,7 +21507,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fc_05/FC_05_normal.webp",
           "textures_by_mutant/fc_05/specimen_fc_05_normal.webp",
           "textures_by_mutant/fc_05/larva_fc_05.webp"
         ]
@@ -21759,14 +21711,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fe_05/FE_05_normal.webp",
           "textures_by_mutant/fe_05/specimen_fe_05_normal.webp",
           "textures_by_mutant/fe_05/larva_fe_05.webp"
         ]
       },
       "silver": {
         "images": [
-          "textures_by_mutant/fe_05/FE_05_silver.webp",
           "textures_by_mutant/fe_05/specimen_fe_05_silver.webp",
           "textures_by_mutant/fe_05/larva_fe_05.webp"
         ],
@@ -22910,7 +22860,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/af_06/AF_06_normal.webp",
           "textures_by_mutant/af_06/specimen_af_06_normal.webp",
           "textures_by_mutant/af_06/larva_af_06.webp"
         ]
@@ -23826,7 +23775,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cb_06/CB_06_normal.webp",
           "textures_by_mutant/cb_06/specimen_cb_06_normal.webp",
           "textures_by_mutant/cb_06/larva_cb_06.webp"
         ]
@@ -24268,7 +24216,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cf_06/CF_06_normal.webp",
           "textures_by_mutant/cf_06/specimen_cf_06_normal.webp",
           "textures_by_mutant/cf_06/larva_cf_06.webp"
         ]
@@ -24827,7 +24774,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/de_06/DE_06_normal.webp",
           "textures_by_mutant/de_06/specimen_de_06_normal.webp",
           "textures_by_mutant/de_06/larva_de_06.webp"
         ]
@@ -24913,7 +24859,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/df_06/DF_06_normal.webp",
           "textures_by_mutant/df_06/specimen_df_06_normal.webp",
           "textures_by_mutant/df_06/larva_df_06.webp"
         ]
@@ -26447,7 +26392,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ab_07/AB_07_normal.webp",
           "textures_by_mutant/ab_07/specimen_ab_07_normal.webp",
           "textures_by_mutant/ab_07/larva_ab_07.webp"
         ]
@@ -27893,7 +27837,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cc_07/CC_07_normal.webp",
           "textures_by_mutant/cc_07/specimen_cc_07_normal.webp",
           "textures_by_mutant/cc_07/larva_cc_07.webp"
         ]
@@ -27979,7 +27922,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cd_07/CD_07_normal.webp",
           "textures_by_mutant/cd_07/specimen_cd_07_normal.webp",
           "textures_by_mutant/cd_07/larva_cd_07.webp"
         ]
@@ -28185,7 +28127,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cf_07/CF_07_normal.webp",
           "textures_by_mutant/cf_07/specimen_cf_07_normal.webp",
           "textures_by_mutant/cf_07/larva_cf_07.webp"
         ]
@@ -28510,7 +28451,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/dc_07/DC_07_normal.webp",
           "textures_by_mutant/dc_07/specimen_dc_07_normal.webp",
           "textures_by_mutant/dc_07/larva_dc_07.webp"
         ]
@@ -30259,7 +30199,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ff_07/FF_07_normal.webp",
           "textures_by_mutant/ff_07/specimen_ff_07_normal.webp",
           "textures_by_mutant/ff_07/larva_ff_07.webp"
         ]
@@ -33199,7 +33138,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ea_08/EA_08_normal.webp",
           "textures_by_mutant/ea_08/specimen_ea_08_normal.webp",
           "textures_by_mutant/ea_08/larva_ea_08.webp"
         ]
@@ -33285,7 +33223,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/eb_08/EB_08_normal.webp",
           "textures_by_mutant/eb_08/specimen_eb_08_normal.webp",
           "textures_by_mutant/eb_08/larva_eb_08.webp"
         ]
@@ -33729,7 +33666,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ef_08/EF_08_normal.webp",
           "textures_by_mutant/ef_08/specimen_ef_08_normal.webp",
           "textures_by_mutant/ef_08/larva_ef_08.webp"
         ]
@@ -34642,7 +34578,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ab_09/AB_09_normal.webp",
           "textures_by_mutant/ab_09/specimen_ab_09_normal.webp",
           "textures_by_mutant/ab_09/larva_ab_09.webp"
         ]
@@ -35797,7 +35732,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bf_09/BF_09_normal.webp",
           "textures_by_mutant/bf_09/specimen_bf_09_normal.webp",
           "textures_by_mutant/bf_09/larva_bf_09.webp"
         ]
@@ -35883,7 +35817,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ca_09/CA_09_normal.webp",
           "textures_by_mutant/ca_09/specimen_ca_09_normal.webp",
           "textures_by_mutant/ca_09/larva_ca_09.webp"
         ]
@@ -39110,7 +39043,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ae_10/AE_10_normal.webp",
           "textures_by_mutant/ae_10/specimen_ae_10_normal.webp",
           "textures_by_mutant/ae_10/larva_ae_10.webp"
         ]
@@ -41419,7 +41351,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ea_10/EA_10_normal.webp",
           "textures_by_mutant/ea_10/specimen_ea_10_normal.webp",
           "textures_by_mutant/ea_10/larva_ea_10.webp"
         ]
@@ -42453,7 +42384,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fd_10/FD_10_normal.webp",
           "textures_by_mutant/fd_10/specimen_fd_10_normal.webp",
           "textures_by_mutant/fd_10/larva_fd_10.webp"
         ]
@@ -43133,7 +43063,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ad_11/AD_11_normal.webp",
           "textures_by_mutant/ad_11/specimen_ad_11_normal.webp",
           "textures_by_mutant/ad_11/larva_ad_11.webp"
         ]
@@ -43338,7 +43267,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/af_11/AF_11_normal.webp",
           "textures_by_mutant/af_11/specimen_af_11_normal.webp",
           "textures_by_mutant/af_11/larva_af_11.webp"
         ]
@@ -43542,7 +43470,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bb_11/BB_11_normal.webp",
           "textures_by_mutant/bb_11/specimen_bb_11_normal.webp",
           "textures_by_mutant/bb_11/larva_bb_11.webp"
         ]
@@ -43984,14 +43911,12 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bf_11/BF_11_normal.webp",
           "textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
           "textures_by_mutant/bf_11/larva_bf_11.webp"
         ]
       },
       "platinum": {
         "images": [
-          "textures_by_mutant/bf_11/BF_11_platinum.webp",
           "textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
           "textures_by_mutant/bf_11/larva_bf_11.webp"
         ],
@@ -44283,7 +44208,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cc_11/CC_11_normal.webp",
           "textures_by_mutant/cc_11/specimen_cc_11_normal.webp",
           "textures_by_mutant/cc_11/larva_cc_11.webp"
         ]
@@ -44609,7 +44533,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cf_11/CF_11_normal.webp",
           "textures_by_mutant/cf_11/specimen_cf_11_normal.webp",
           "textures_by_mutant/cf_11/larva_cf_11.webp"
         ]
@@ -44815,7 +44738,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/db_11/DB_11_normal.webp",
           "textures_by_mutant/db_11/specimen_db_11_normal.webp",
           "textures_by_mutant/db_11/larva_db_11.webp"
         ]
@@ -45255,7 +45177,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/df_11/DF_11_normal.webp",
           "textures_by_mutant/df_11/specimen_df_11_normal.webp",
           "textures_by_mutant/df_11/larva_df_11.webp"
         ]
@@ -45342,7 +45263,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ea_11/EA_11_normal.webp",
           "textures_by_mutant/ea_11/specimen_ea_11_normal.webp",
           "textures_by_mutant/ea_11/larva_ea_11.webp"
         ]
@@ -45546,7 +45466,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ec_11/EC_11_normal.webp",
           "textures_by_mutant/ec_11/specimen_ec_11_normal.webp",
           "textures_by_mutant/ec_11/larva_ec_11.webp"
         ]
@@ -47285,7 +47204,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/af_12/AF_12_normal.webp",
           "textures_by_mutant/af_12/specimen_af_12_normal.webp",
           "textures_by_mutant/af_12/larva_af_12.webp"
         ]
@@ -47490,7 +47408,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bb_12/BB_12_normal.webp",
           "textures_by_mutant/bb_12/specimen_bb_12_normal.webp",
           "textures_by_mutant/bb_12/larva_bb_12.webp"
         ]
@@ -47577,7 +47494,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bc_12/BC_12_normal.webp",
           "textures_by_mutant/bc_12/specimen_bc_12_normal.webp",
           "textures_by_mutant/bc_12/larva_bc_12.webp"
         ]
@@ -48373,7 +48289,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cd_12/CD_12_normal.webp",
           "textures_by_mutant/cd_12/specimen_cd_12_normal.webp",
           "textures_by_mutant/cd_12/larva_cd_12.webp"
         ]
@@ -48459,7 +48374,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ce_12/CE_12_normal.webp",
           "textures_by_mutant/ce_12/specimen_ce_12_normal.webp",
           "textures_by_mutant/ce_12/larva_ce_12.webp"
         ]
@@ -48782,7 +48696,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/db_12/DB_12_normal.webp",
           "textures_by_mutant/db_12/specimen_db_12_normal.webp",
           "textures_by_mutant/db_12/larva_db_12.webp"
         ]
@@ -48868,7 +48781,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/dc_12/DC_12_normal.webp",
           "textures_by_mutant/dc_12/specimen_dc_12_normal.webp",
           "textures_by_mutant/dc_12/larva_dc_12.webp"
         ]
@@ -48955,7 +48867,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/dd_12/DD_12_normal.webp",
           "textures_by_mutant/dd_12/specimen_dd_12_normal.webp",
           "textures_by_mutant/dd_12/larva_dd_12.webp"
         ]
@@ -49718,7 +49629,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ee_12/EE_12_normal.webp",
           "textures_by_mutant/ee_12/specimen_ee_12_normal.webp",
           "textures_by_mutant/ee_12/larva_ee_12.webp"
         ]
@@ -50158,7 +50068,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fc_12/FC_12_normal.webp",
           "textures_by_mutant/fc_12/specimen_fc_12_normal.webp",
           "textures_by_mutant/fc_12/larva_fc_12.webp"
         ]
@@ -50363,7 +50272,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fe_12/FE_12_normal.webp",
           "textures_by_mutant/fe_12/specimen_fe_12_normal.webp",
           "textures_by_mutant/fe_12/larva_fe_12.webp"
         ]
@@ -50450,7 +50358,6 @@
     "stars": {
       "platinum": {
         "images": [
-          "textures_by_mutant/ff_12/FF_12_platinum.webp",
           "textures_by_mutant/ff_12/specimen_ff_12_platinum.webp",
           "textures_by_mutant/ff_12/larva_ff_12.webp"
         ],
@@ -50458,7 +50365,6 @@
       },
       "normal": {
         "images": [
-          "textures_by_mutant/ff_12/FF_12_normal.webp",
           "textures_by_mutant/ff_12/specimen_ff_12_normal.webp",
           "textures_by_mutant/ff_12/larva_ff_12.webp"
         ]
@@ -50473,7 +50379,6 @@
       },
       "silver": {
         "images": [
-          "textures_by_mutant/ff_12/FF_12_silver.webp",
           "textures_by_mutant/ff_12/specimen_ff_12_silver.webp",
           "textures_by_mutant/ff_12/larva_ff_12.webp"
         ],
@@ -50481,7 +50386,6 @@
       },
       "gold": {
         "images": [
-          "textures_by_mutant/ff_12/FF_12_gold.webp",
           "textures_by_mutant/ff_12/specimen_ff_12_gold.webp",
           "textures_by_mutant/ff_12/larva_ff_12.webp"
         ],
@@ -51262,7 +51166,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ac_13/AC_13_normal.webp",
           "textures_by_mutant/ac_13/specimen_ac_13_normal.webp",
           "textures_by_mutant/ac_13/larva_ac_13.webp"
         ]
@@ -52278,7 +52181,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bf_13/BF_13_normal.webp",
           "textures_by_mutant/bf_13/specimen_bf_13_normal.webp",
           "textures_by_mutant/bf_13/larva_bf_13.webp"
         ]
@@ -52364,7 +52266,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ca_13/CA_13_normal.webp",
           "textures_by_mutant/ca_13/specimen_ca_13_normal.webp",
           "textures_by_mutant/ca_13/larva_ca_13.webp"
         ]
@@ -53492,7 +53393,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/de_13/DE_13_normal.webp",
           "textures_by_mutant/de_13/specimen_de_13_normal.webp",
           "textures_by_mutant/de_13/larva_de_13.webp"
         ]
@@ -53808,7 +53708,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/eb_13/EB_13_normal.webp",
           "textures_by_mutant/eb_13/specimen_eb_13_normal.webp",
           "textures_by_mutant/eb_13/larva_eb_13.webp"
         ]
@@ -54360,7 +54259,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fa_13/FA_13_normal.webp",
           "textures_by_mutant/fa_13/specimen_fa_13_normal.webp",
           "textures_by_mutant/fa_13/larva_fa_13.webp"
         ]
@@ -54680,7 +54578,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fd_13/FD_13_normal.webp",
           "textures_by_mutant/fd_13/specimen_fd_13_normal.webp",
           "textures_by_mutant/fd_13/larva_fd_13.webp"
         ]
@@ -54764,7 +54661,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fe_13/FE_13_normal.webp",
           "textures_by_mutant/fe_13/specimen_fe_13_normal.webp",
           "textures_by_mutant/fe_13/larva_fe_13.webp"
         ]
@@ -55654,7 +55550,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/aa_99/AA_99_normal.webp",
           "textures_by_mutant/aa_99/specimen_aa_99_normal.webp",
           "textures_by_mutant/aa_99/larva_aa_99.webp"
         ]
@@ -55740,7 +55635,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ab_99/AB_99_normal.webp",
           "textures_by_mutant/ab_99/specimen_ab_99_normal.webp",
           "textures_by_mutant/ab_99/larva_ab_99.webp"
         ]
@@ -55824,7 +55718,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ae_99/AE_99_normal.webp",
           "textures_by_mutant/ae_99/specimen_ae_99_normal.webp",
           "textures_by_mutant/ae_99/larva_ae_99.webp"
         ]
@@ -56143,7 +56036,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ca_99/CA_99_normal.webp",
           "textures_by_mutant/ca_99/specimen_ca_99_normal.webp",
           "textures_by_mutant/ca_99/larva_ca_99.webp"
         ]
@@ -56229,7 +56121,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ce_99/CE_99_normal.webp",
           "textures_by_mutant/ce_99/specimen_ce_99_normal.webp",
           "textures_by_mutant/ce_99/larva_ce_99.webp"
         ]
@@ -56313,7 +56204,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/cf_99/CF_99_normal.webp",
           "textures_by_mutant/cf_99/specimen_cf_99_normal.webp",
           "textures_by_mutant/cf_99/larva_cf_99.webp"
         ]
@@ -56397,7 +56287,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/df_99/DF_99_normal.webp",
           "textures_by_mutant/df_99/specimen_df_99_normal.webp",
           "textures_by_mutant/df_99/larva_df_99.webp"
         ]
@@ -56481,7 +56370,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ea_99/EA_99_normal.webp",
           "textures_by_mutant/ea_99/specimen_ea_99_normal.webp",
           "textures_by_mutant/ea_99/larva_ea_99.webp"
         ]
@@ -56565,7 +56453,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/eb_99/EB_99_normal.webp",
           "textures_by_mutant/eb_99/specimen_eb_99_normal.webp",
           "textures_by_mutant/eb_99/larva_eb_99.webp"
         ]
@@ -56651,7 +56538,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ed_99/ED_99_normal.webp",
           "textures_by_mutant/ed_99/specimen_ed_99_normal.webp",
           "textures_by_mutant/ed_99/larva_ed_99.webp"
         ]
@@ -56737,7 +56623,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ee_99/EE_99_normal.webp",
           "textures_by_mutant/ee_99/specimen_ee_99_normal.webp",
           "textures_by_mutant/ee_99/larva_ee_99.webp"
         ]
@@ -56823,7 +56708,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ef_99/EF_99_normal.webp",
           "textures_by_mutant/ef_99/specimen_ef_99_normal.webp",
           "textures_by_mutant/ef_99/larva_ef_99.webp"
         ]
@@ -56907,7 +56791,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fa_99/FA_99_normal.webp",
           "textures_by_mutant/fa_99/specimen_fa_99_normal.webp",
           "textures_by_mutant/fa_99/larva_fa_99.webp"
         ]
@@ -57227,7 +57110,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ff_99/FF_99_normal.webp",
           "textures_by_mutant/ff_99/specimen_ff_99_normal.webp",
           "textures_by_mutant/ff_99/larva_ff_99.webp"
         ]
@@ -57315,7 +57197,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ab_14/AB_14_normal.webp",
           "textures_by_mutant/ab_14/specimen_ab_14_normal.webp",
           "textures_by_mutant/ab_14/larva_ab_14.webp"
         ]
@@ -57636,7 +57517,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ae_14/AE_14_normal.webp",
           "textures_by_mutant/ae_14/specimen_ae_14_normal.webp",
           "textures_by_mutant/ae_14/larva_ae_14.webp"
         ]
@@ -57836,7 +57716,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ba_14/BA_14_normal.webp",
           "textures_by_mutant/ba_14/specimen_ba_14_normal.webp",
           "textures_by_mutant/ba_14/larva_ba_14.webp"
         ]
@@ -57922,7 +57801,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/bc_14/BC_14_normal.webp",
           "textures_by_mutant/bc_14/specimen_bc_14_normal.webp",
           "textures_by_mutant/bc_14/larva_bc_14.webp"
         ]
@@ -58648,7 +58526,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/da_14/DA_14_normal.webp",
           "textures_by_mutant/da_14/specimen_da_14_normal.webp",
           "textures_by_mutant/da_14/larva_da_14.webp"
         ]
@@ -58735,7 +58612,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/db_14/DB_14_normal.webp",
           "textures_by_mutant/db_14/specimen_db_14_normal.webp",
           "textures_by_mutant/db_14/larva_db_14.webp"
         ]
@@ -58819,7 +58695,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/dc_14/DC_14_normal.webp",
           "textures_by_mutant/dc_14/specimen_dc_14_normal.webp",
           "textures_by_mutant/dc_14/larva_dc_14.webp"
         ]
@@ -59021,7 +58896,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/de_14/DE_14_normal.webp",
           "textures_by_mutant/de_14/specimen_de_14_normal.webp",
           "textures_by_mutant/de_14/larva_de_14.webp"
         ]
@@ -59343,7 +59217,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ef_14/EF_14_normal.webp",
           "textures_by_mutant/ef_14/specimen_ef_14_normal.webp",
           "textures_by_mutant/ef_14/larva_ef_14.webp"
         ]
@@ -59427,7 +59300,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fb_14/FB_14_normal.webp",
           "textures_by_mutant/fb_14/specimen_fb_14_normal.webp",
           "textures_by_mutant/fb_14/larva_fb_14.webp"
         ]
@@ -59513,7 +59385,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/fd_14/FD_14_normal.webp",
           "textures_by_mutant/fd_14/specimen_fd_14_normal.webp",
           "textures_by_mutant/fd_14/larva_fd_14.webp"
         ]
@@ -59716,7 +59587,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ff_14/FF_14_normal.webp",
           "textures_by_mutant/ff_14/specimen_ff_14_normal.webp",
           "textures_by_mutant/ff_14/larva_ff_14.webp"
         ]
@@ -60270,7 +60140,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/ab_15/AB_15_normal.webp",
           "textures_by_mutant/ab_15/specimen_ab_15_normal.webp",
           "textures_by_mutant/ab_15/larva_ab_15.webp"
         ]
@@ -60357,7 +60226,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/de_15/DE_15_normal.webp",
           "textures_by_mutant/de_15/specimen_de_15_normal.webp",
           "textures_by_mutant/de_15/larva_de_15.webp"
         ]
@@ -60791,7 +60659,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/be_15/BE_15_normal.webp",
           "textures_by_mutant/be_15/specimen_be_15_normal.webp",
           "textures_by_mutant/be_15/larva_be_15.webp"
         ]
@@ -61106,7 +60973,6 @@
     "stars": {
       "normal": {
         "images": [
-          "textures_by_mutant/dd_15/DD_15_normal.webp",
           "textures_by_mutant/dd_15/specimen_dd_15_normal.webp",
           "textures_by_mutant/dd_15/larva_dd_15.webp"
         ]
