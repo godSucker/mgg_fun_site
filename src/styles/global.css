@@ -50,4 +50,9 @@
 }
 
 body { font-family: var(--font-ui); }
-/* при желании — вернуть твою тему для .prose.prose-invert */
+
+/* Кастомные grid-колонки для tier list */
+@theme {
+  --grid-template-columns-9: repeat(9, minmax(0, 1fr));
+  --grid-template-columns-16: repeat(16, minmax(0, 1fr));
+}

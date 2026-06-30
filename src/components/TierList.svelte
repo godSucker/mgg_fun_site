@@ -14,10 +14,10 @@
   }
 
   const TIER_COLORS: Record<string, { border: string; bg: string; headerBg: string; subText: string }> = {
-    '1': { border: 'border-red-500', bg: 'bg-red-500/10', headerBg: 'bg-red-600', subText: 'text-red-300' },
-    '2': { border: 'border-orange-500', bg: 'bg-orange-500/10', headerBg: 'bg-orange-600', subText: 'text-orange-300' },
-    '3': { border: 'border-yellow-500', bg: 'bg-yellow-500/10', headerBg: 'bg-yellow-600', subText: 'text-yellow-300' },
-    '4': { border: 'border-green-500', bg: 'bg-green-500/10', headerBg: 'bg-green-600', subText: 'text-green-300' },
+    '1': { border: 'border-red-500', bg: 'bg-[#141922]', headerBg: 'bg-red-600', subText: 'text-red-300' },
+    '2': { border: 'border-orange-500', bg: 'bg-[#141922]', headerBg: 'bg-orange-600', subText: 'text-orange-300' },
+    '3': { border: 'border-yellow-500', bg: 'bg-[#141922]', headerBg: 'bg-yellow-600', subText: 'text-yellow-300' },
+    '4': { border: 'border-green-500', bg: 'bg-[#141922]', headerBg: 'bg-green-600', subText: 'text-green-300' },
   }
 
   const SUB_LABELS: Record<string, string> = {
@@ -62,7 +62,45 @@
     selectedMutant = null
   }
 
+  const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'] as const
+
+  const GENE_COLORS: Record<string, string> = {
+    A: '#c8a200',
+    B: '#5a7a1a',
+    C: '#a04040',
+    D: '#a07228',
+    E: '#3a6aa8',
+    F: '#7b4fa0',
+  }
+
+  function primaryGene(m: any): string {
+    const genes = m.genes
+    if (Array.isArray(genes) && genes.length > 0) return String(genes[0]).toUpperCase()
+    return ''
+  }
+
+  function geneColor(m: any): string {
+    return GENE_COLORS[primaryGene(m)] ?? '#555'
+  }
+
   function specimenSrc(m: any): string {
+    const id = String(m.id ?? '')
+    const base = id
+      .replace(/^specimen[_-]/i, '')
+      .replace(/_(normal|bronze|silver|gold|plat.*)$/i, '')
+      .toLowerCase()
+
+    let star = 'normal'
+    if (m.stars) {
+      for (const s of STAR_ORDER) {
+        if (m.stars[s]) { star = s; break }
+      }
+    }
+
+    return `/textures_by_mutant/${base}/thumb_specimen_${base}_${star}.webp`
+  }
+
+  function specimenFallback(m: any): string {
     const id = String(m.id ?? '')
     const base = id
       .replace(/^specimen[_-]/i, '')
@@ -72,57 +110,60 @@
   }
 </script>
 
-<div class="space-y-4 sm:space-y-6">
+<div class="space-y-2 sm:space-y-3">
   {#each MAIN_TIERS as mainTier}
     {@const subs = SUB_ORDER[mainTier] ?? [mainTier]}
     {@const colors = TIER_COLORS[mainTier]}
     {@const hasAny = subs.some(s => grouped[s]?.length > 0)}
 
     {#if hasAny}
-      <section class="rounded-2xl border-2 {colors.border} {colors.bg} overflow-hidden">
-        <div class="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 {colors.headerBg}">
-          <span class="text-lg sm:text-xl font-extrabold text-white tracking-wide">ТИР {mainTier}</span>
-          <span class="text-xs sm:text-sm text-slate-300">
+      <section class="rounded-xl border-2 {colors.border} {colors.bg} overflow-hidden">
+        <div class="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 {colors.headerBg}">
+          <span class="text-sm sm:text-base font-extrabold text-white tracking-wide">ТИР {mainTier}</span>
+          <span class="text-[10px] sm:text-xs text-slate-300">
             {subs.reduce((sum, s) => sum + (grouped[s]?.length ?? 0), 0)} мутантов
           </span>
         </div>
 
-        {#each subs as subTier}
+        {#each subs as subTier, subIdx}
           {@const list = grouped[subTier] ?? []}
+          {@const isLast = subIdx === subs.length - 1}
           {#if list.length > 0}
-            <div class="px-3 sm:px-4 pt-2.5 sm:pt-3 pb-1.5 sm:pb-2">
+            <div class="px-1.5 sm:px-3 pt-1 sm:pt-1.5 {isLast ? 'pb-1.5 sm:pb-2' : 'pb-0'}">
               {#if subs.length > 1}
-                <div class="flex items-center gap-2 mb-1.5 sm:mb-2">
-                  <span class="text-[11px] sm:text-xs font-bold {colors.subText} opacity-80 uppercase tracking-wider">
+                <div class="flex items-center gap-1.5 mb-0.5 sm:mb-1">
+                  <span class="text-[10px] sm:text-[11px] font-bold {colors.subText} opacity-80 uppercase tracking-wider">
                     {subTier}
                   </span>
-                  <span class="text-[10px] sm:text-[11px] text-slate-400">
+                  <span class="text-[9px] sm:text-[10px] text-slate-400">
                     {SUB_LABELS[subTier] ?? ''}
                   </span>
                   <div class="flex-1 h-px bg-white/5"></div>
                 </div>
               {/if}
 
-              <div class="flex flex-wrap gap-1 sm:gap-1.5">
+              <div class="tier-grid gap-1">
                 {#each list as m (m.id)}
+                  {@const gc = geneColor(m)}
                   <button
-                    class="group relative w-10 h-12 sm:w-12 sm:h-14 md:w-14 md:h-16 rounded-lg overflow-hidden
-                           border border-slate-600/40 bg-slate-900/70
-                           hover:border-sky-400/60 hover:shadow-[0_0_12px_rgba(56,189,248,0.2)]
-                           transition-all duration-200 cursor-pointer flex-shrink-0"
+                    class="group relative tier-icon rounded-sm overflow-hidden
+                           cursor-pointer transition-all duration-200
+                           hover:ring-1 hover:ring-sky-400/60 hover:z-10"
+                    style="background-color: {gc}"
                     onclick={() => openModal(m)}
                     title={m.name}
                   >
                     <img
                       src={specimenSrc(m)}
                       alt={m.name}
-                      class="w-full h-full object-contain p-0.5 sm:p-1"
+                      class="absolute inset-0 w-full h-full object-contain"
                       loading="lazy"
                       decoding="async"
+                      onerror={(e) => { if (!e.currentTarget.dataset.fallback) { e.currentTarget.dataset.fallback = '1'; e.currentTarget.src = specimenFallback(m) } }}
                     />
                     <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent
-                                px-0.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <span class="text-[7px] sm:text-[8px] md:text-[9px] text-white leading-tight line-clamp-2 text-center block">
+                                px-px py-px opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <span class="text-[6px] sm:text-[7px] md:text-[8px] text-white leading-tight line-clamp-2 text-center block">
                         {m.name}
                       </span>
                     </div>
@@ -145,3 +186,15 @@
     onclose={closeModal}
   />
 {/if}
+
+<style>
+  .tier-icon { width: var(--tier-icon); height: var(--tier-icon); }
+  .tier-grid { display: grid; grid-template-columns: repeat(9, 1fr); }
+  @media (min-width: 768px) { .tier-grid { display: flex; flex-wrap: wrap; } }
+  :root { --tier-icon: 2.25rem; }
+  @media (min-width: 640px)  { :root { --tier-icon: 2.5rem; } }
+  @media (min-width: 768px)  { :root { --tier-icon: 3rem; } }
+  @media (min-width: 1024px) { :root { --tier-icon: 3.5rem; } }
+  @media (min-width: 1920px) { :root { --tier-icon: 4rem; } }
+  @media (min-width: 2560px) { :root { --tier-icon: 4.5rem; } }
+</style>

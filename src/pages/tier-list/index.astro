@@ -49,18 +49,18 @@ const tieredMutants = (mutants as any[])
 ---
 
 <BaseLayout title="Тир-лист — Archivist-Library" fullWidth>
-  <div class="mb-6 text-center">
-    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-wide mb-2">
+  <div class="mb-3 sm:mb-4 text-center">
+    <h1 class="text-lg sm:text-2xl font-extrabold text-white tracking-wide mb-1">
       Тир-лист лучших мутантов в PvP
     </h1>
-    <p class="text-sm text-slate-300">
+    <p class="text-xs text-slate-300">
       Актуально на февраль 2026. Мутанты расположены по генам от Киборга до Мифика.
     </p>
   </div>
 
   <TierList client:load mutants={tieredMutants} />
 
-  <p class="mt-8 text-xs sm:text-sm text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
+  <p class="mt-4 sm:mt-6 text-[10px] sm:text-xs text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
     Напоминаем, что этот топ является субъективным виденьем меты игры админами группы. У нас есть неплохой игровой опыт и примерное понимание меты. Однако, в тире всегда могут быть неточности, всем людям не сойтись на одном мнении. Тир создан для примерного понимания силы мутантов и упрощенного восприятия общей картины игрового баланса.
   </p>
 </BaseLayout>
