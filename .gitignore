@@ -1,23 +1,38 @@
 # Dependencies
 node_modules/
-.backend/
+.venv_orb/
 venv/
+__pycache__/
+*.pyc
+
+# Environment variables
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/tier_updater/.env
 
 # Build outputs
 dist/
 .output/
 .build/
-.vercel/output/
+.vercel/
 
-# Environment variables
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# IDE / AI tools
+.idea/
+.vscode/
+.claude/
+.astro/
+.mimocode/
 
-# Temporary files
+# Temporary / parser cache
+temp/
 tmp/
+
+# Backup files
+*.backup
+*.bak
 
 # OS generated files
 .DS_Store
@@ -38,7 +53,7 @@ pids/
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# Coverage
 coverage/
 .lib/
 .nyc_output/
@@ -46,10 +61,8 @@ coverage/
 # TypeScript cache
 *.tsbuildinfo
 
-# Optional npm cache directory
+# npm cache
 .npm
 
-# Temporary file for tier updates (important to not commit)
-temp/pending_tier_updates.json
 # API keys
 settings.json

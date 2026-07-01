@@ -1,6 +1,15 @@
 <script lang="ts">
   import { normalizeSearch } from '@/lib/search-normalize'
 
+  function safeUrl(url: string): string {
+    if (!url) return '#'
+    try {
+      const parsed = new URL(url)
+      if (parsed.protocol === 'https:' || parsed.protocol === 'http:') return url
+    } catch {}
+    return '#'
+  }
+
   let { players = [], mutantsDb = [] }: { players: { rank: number; name: string; level: number; id: string; tandem: string; atk1: string; atk2: string; socials: any[] }[]; mutantsDb: any[] } = $props()
 
   let query = $state('')
@@ -221,7 +230,7 @@
           <div class="socials-header">Соц. сети игрока</div>
           <div class="socials-grid">
             {#each selectedPlayer.socials as social}
-              <a href={social.url} target="_blank" rel="noopener noreferrer" class="social-btn {social.type}">
+              <a href={safeUrl(social.url)} target="_blank" rel="noopener noreferrer" class="social-btn {social.type}">
                 <div class="btn-content">
                   <span class="btn-icon">
                     {#if social.type === 'tg'}✈️
