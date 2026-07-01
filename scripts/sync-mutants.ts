@@ -122,7 +122,7 @@ async function loadLocalFiles() {
     txtContent.split(/\r?\n/).forEach(line => {
         const parts = line.split(';');
         if (parts.length >= 2) {
-            locMap.set(parts[0].trim(), parts.slice(1).join(';').trim());
+            locMap.set(parts[0].trim().toLowerCase(), parts.slice(1).join(';').trim());
         }
     });
 
@@ -224,21 +224,9 @@ function parseTags(descriptor: any): Record<string, any> {
 // ==================== ЛОКАЛИЗАЦИЯ ====================
 
 function findLocalizedText(locMap: Map<string, string>, id: string, suffix: string = ""): string {
-    const mutantId = id.replace('Specimen_', '').replace('specimen_', '');
-
-    const keys = [
-        `specimen_${mutantId}${suffix}`,
-        ...(suffix === '' ? [`Specimen_${mutantId}`, `${id}`] : []),
-        `${id}${suffix}`,
-        `Specimen_${mutantId}${suffix}`,
-        `${id.toUpperCase()}${suffix}`,
-        `${id.toLowerCase()}${suffix}`
-    ];
-
-    for (const key of keys) {
-        if (locMap.has(key)) return locMap.get(key)!;
-    }
-    return "";
+    const mutantId = id.replace('Specimen_', '').replace('specimen_', '').toLowerCase();
+    const key = `specimen_${mutantId}${suffix}`.toLowerCase();
+    return locMap.get(key) || "";
 }
 
 // ==================== РАСЧЕТ СТАТОВ ====================
