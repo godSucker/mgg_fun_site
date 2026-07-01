@@ -7,8 +7,7 @@
       color: "platinum",
       avatar: "avatars/my_avatar.jpg",
       socials: [
-        { name: "Telegram", url: "https://t.me/absolutely_poxuy" },
-        { name: "GitHub", url: "https://github.com/godSucker" }
+        { name: "Telegram", url: "https://t.me/absolutely_poxuy" }
       ]
     },
     {
