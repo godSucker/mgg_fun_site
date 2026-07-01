@@ -12,10 +12,11 @@
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
   import { textureUrl } from '@/lib/texture-cdn';
 
-  let { open = false, mutant = null, star = 'normal', onclose = undefined }: {
+  let { open = false, mutant = null, star = 'normal', skins = [], onclose = undefined }: {
     open?: boolean;
     mutant?: any;
     star?: string;
+    skins?: any[];
     onclose?: () => void;
   } = $props();
 
@@ -69,6 +70,64 @@
   })() : []);
   let currentMultiplier = $derived(mutant?.stars?.[selectedStar]?.multiplier ?? STAR_MULTIPLIERS[selectedStar] ?? 1.0);
 
+  // ===== Skin switching =====
+  let selectedSkin = $state(null);
+
+  $effect(() => {
+    if (mutant?.id) {
+      selectedSkin = null;
+    }
+  });
+
+  let displayMutant = $derived(selectedSkin ?? mutant);
+  // Skin uses its own star for multiplier; base mutant uses selectedStar
+  let displayMultiplier = $derived(
+    selectedSkin
+      ? (mutant?.stars?.[selectedSkin.star]?.multiplier ?? STAR_MULTIPLIERS[selectedSkin.star] ?? 1.0)
+      : currentMultiplier
+  );
+
+  const SKIN_ICON: Record<string, string> = {
+    'anniversary': '/skins/icon_anniversary.webp',
+    '1_april': '/skins/icon_1_april.webp',
+    'autumn_skin': '/skins/icon_autumn_skin.webp',
+    'carnival': '/skins/icon_carnival.webp',
+    'card_game_skin': '/skins/icon_card_game_skin.webp',
+    'easter': '/skins/icon_easter.webp',
+    'elementals_team': '/skins/icon_elementals_team.webp',
+    'europe_day': '/skins/icon_europe_day.webp',
+    'fantasy': '/skins/icon_fantasy.webp',
+    'girl_power': '/skins/icon_girl_power.webp',
+    'gothic': '/skins/icon_gothic.webp',
+    'halloween': '/skins/icon_halloween.webp',
+    'hero': '/skins/icon_hero.webp',
+    'japan': '/skins/icon_japan.webp',
+    'muchachos': '/skins/icon_muchachos.webp',
+    'oktoberfest': '/skins/icon_oktoberfest.webp',
+    'Gods_of_Olympus': '/skins/icon_gods_of_olympus.webp',
+    'royal': '/skins/icon_royal.webp',
+    'saint_patrick_day': '/skins/icon_saint_patrick_day.webp',
+    'school_skin': '/skins/icon_school_skin.webp',
+    'photosynthesis': '/skins/icon_photosynthesis.webp',
+    'army': '/skins/icon_army.webp',
+    'spring_skin': '/skins/icon_spring_skin.webp',
+    'star_wars': '/skins/icon_star_wars.webp',
+    'steampunk': '/skins/icon_steampunk.webp',
+    'summer_skin': '/skins/icon_summer_skin.webp',
+    'blue_planet': '/skins/icon_blue_planet.webp',
+    "valentine's_day": '/skins/icon_valentines_day.webp',
+    "St. Valentine's Day": '/skins/icon_valentines_day.webp',
+    'villain': '/skins/icon_villain.webp',
+    'western': '/skins/icon_western.webp',
+    'winter': '/skins/icon_winter.webp',
+    'workers_day': '/skins/icon_workers_day.webp',
+    'french_revolution': '/skins/icon_french_revolution.webp',
+    'tropical_summer': '/skins/icon_tropical_summer.webp',
+    'disco': '/skins/icon_disco.webp',
+    'independence_day': '/skins/icon_independence_day.webp',
+  };
+  const skinIcon = (skinName: string) => SKIN_ICON[skinName] ?? null;
+
   // ===== helpers =====
   const baseId = (id?: string) =>
     String(id ?? '')
@@ -77,7 +136,7 @@
 
   // Bingo from mutant data directly
   let displayBingo = $derived((() => {
-    const raw = mutant?.bingo;
+    const raw = displayMutant?.bingo;
     let arr: string[] = [];
     if (Array.isArray(raw)) {
       arr = raw.map((x: any) =>
@@ -182,20 +241,20 @@
     return ABILITY_RU?.[raw] ?? raw.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
-  // Base fields - use raw base_stats with star multiplier
-  let baseStats = $derived(mutant?.base_stats ?? {});
-  let genes = $derived(Array.isArray(mutant?.genes) ? mutant.genes[0] : '');
+  // Base fields — reactive to skin selection
+  let baseStats = $derived(displayMutant?.base_stats ?? {});
+  let genes = $derived(Array.isArray(displayMutant?.genes) ? displayMutant.genes[0] : '');
 
-  let displayType = $derived(mutant?.type);
+  let displayType = $derived(displayMutant?.type);
 
-  // Reactive stats — recalculated when baseStats or currentMultiplier change
-  let statsLvl1 = $derived(calculateFinalStats(baseStats, 1, currentMultiplier));
-  let statsLvl30 = $derived(calculateFinalStats(baseStats, 30, currentMultiplier));
+  // Reactive stats — recalculated when displayMutant or displayMultiplier change
+  let statsLvl1 = $derived(calculateFinalStats(baseStats, 1, displayMultiplier));
+  let statsLvl30 = $derived(calculateFinalStats(baseStats, 30, displayMultiplier));
   let speedDisplay = $derived(Math.round(statsLvl1.speed * 100) / 100);
   let bankLvl1 = $derived(Math.round(statsLvl1.silver));
 
   const getAbilityValue = (level: number, abilityIndex: number, s1: any, s30: any): number => {
-    const abilities = mutant?.abilities ?? [];
+    const abilities = displayMutant?.abilities ?? [];
     if (abilityIndex < abilities.length && abilities[abilityIndex]) {
       const ability = abilities[abilityIndex];
       const isRetaliate = ability.name?.toLowerCase().includes('retaliate') ?? false;
@@ -223,6 +282,9 @@
       if (pick) return pick.startsWith('/') ? pick : `/${pick}`;
     }
     const list: string[] = m?.image ?? [];
+    // Prefer semi-full specimen path for skins
+    const semiFull = list.find((p) => p.includes('semi-full'));
+    if (semiFull) return semiFull.startsWith('/') ? semiFull : `/${semiFull}`;
     const specimen = list.find((p) => p.includes('specimen'));
     if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
     const pick = list[0];
@@ -272,7 +334,7 @@
     const aoe1 = baseLvl30?.atk1_AOE ?? baseLvl?.atk1_AOE ?? false;
     const aoe2 = baseLvl30?.atk2_AOE ?? baseLvl?.atk2_AOE ?? false;
 
-    const list = (Array.isArray(mutant?.abilities) ? mutant.abilities : []) as any[];
+    const list = (Array.isArray(displayMutant?.abilities) ? displayMutant.abilities : []) as any[];
     const rows: Row[] = [];
 
     const bothRetaliate = list.length >= 2 &&
@@ -291,7 +353,7 @@
     if (ab1) {
       const value1 = getAbilityValue(level, abilityIndex1, s1, s30);
       rows.push({
-        atkName: attackName(mutant, 1),
+        atkName: attackName(displayMutant, 1),
         dmg: atk1,
         abCode: ab1.name || null,
         abName: ab1.name ? abilityLabel(ab1.name) : '—',
@@ -304,7 +366,7 @@
 
     const ab2 = bothRetaliate ? null : list[1];
     rows.push({
-      atkName: attackName(mutant, 2),
+      atkName: attackName(displayMutant, 2),
       dmg: atk2,
       abCode: ab2?.name || null,
       abName: ab2?.name ? abilityLabel(ab2.name) : '—',
@@ -322,12 +384,12 @@
 
   // Misc
   let incubTime = $derived(
-    mutant?.incub_time ??
-    mutant?.incubation ??
-    mutant?.incubation_time ??
-    mutant?.incubationTime ??
-    mutant?.incubation_hours ??
-    mutant?.hatch_time ??
+    displayMutant?.incub_time ??
+    displayMutant?.incubation ??
+    displayMutant?.incubation_time ??
+    displayMutant?.incubationTime ??
+    displayMutant?.incubation_hours ??
+    displayMutant?.hatch_time ??
     null
   );
 
@@ -344,7 +406,7 @@
     return null;
   };
 
-  let orbingImages = $derived(getOrbingImages(mutant));
+  let orbingImages = $derived(getOrbingImages(displayMutant));
 
   // ===== a11y: focus trap =====
   let modalRef: HTMLElement = $state() as HTMLElement;
@@ -443,8 +505,8 @@
         <div class="flex gap-2 mb-2">
           {#each availableStars as s}
             <button
-              class="star-switch-btn {selectedStar === s ? 'active' : ''}"
-              onclick={() => selectedStar = s}
+              class="star-switch-btn {selectedStar === s && !selectedSkin ? 'active' : ''}"
+              onclick={() => { selectedStar = s; selectedSkin = null; }}
               title={STAR_LABEL[s] ?? s}
             >
               <img src={textureUrl(STAR_ICONS[s] ?? '/stars/no_stars.webp')} alt={s} class="w-6 h-6 object-contain" />
@@ -452,11 +514,29 @@
           {/each}
         </div>
       {/if}
+      {#if skins.length > 0}
+        <div class="flex gap-1.5 mb-2 flex-wrap justify-center">
+          {#each skins as s, i}
+            <button
+              class="skin-switch-btn {selectedSkin === s ? 'active' : ''}"
+              onclick={() => { selectedSkin = (selectedSkin === s ? null : s); }}
+              title={s.skin}
+            >
+              {#if skinIcon(s.skin)}
+                <img src={skinIcon(s.skin)} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
+              {:else}
+                <img src={textureUrl(imgSrc(s, s.star || 'normal'))} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
+              {/if}
+              <span class="text-[9px] leading-tight">{s.skin}</span>
+            </button>
+          {/each}
+        </div>
+      {/if}
       <div class="flex-1 flex items-center justify-center w-full">
-        <div class="w-full max-w-[296px] md:max-w-[370px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
+        <div class="w-full max-w-[196px] md:max-w-[370px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
           <img
-            alt={mutant?.name}
-            src={textureUrl(imgSrc(mutant, selectedStar))}
+            alt={displayMutant?.name}
+            src={textureUrl(selectedSkin ? imgSrc(selectedSkin, selectedSkin.star || 'normal') : imgSrc(mutant, selectedStar))}
             class="w-full h-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
             loading="lazy"
             decoding="async"
@@ -473,7 +553,7 @@
       <!-- Header -->
       <div class="flex items-start justify-between gap-2">
         <div class="min-w-0">
-          <h2 id="mutant-title" class="text-lg md:text-xl font-bold tracking-wide break-words">{mutant?.name}</h2>
+          <h2 id="mutant-title" class="text-lg md:text-xl font-bold tracking-wide break-words">{mutant?.name}{selectedSkin ? ` — ${selectedSkin.skin}` : ''}</h2>
           <div class="mt-0.5 text-xs md:text-sm text-slate-300 flex items-center gap-2 flex-wrap">
             {#if typeIcon(displayType)}
               <span class="inline-flex items-center gap-1 break-words">
@@ -711,6 +791,29 @@
     opacity: 1;
     background: rgba(6,182,212,0.2);
     border-color: rgba(6,182,212,0.5);
+  }
+
+  /* Skin switcher */
+  .skin-switch-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s;
+    color: rgba(255,255,255,0.6);
+  }
+  .skin-switch-btn:hover { opacity: 0.8; background: rgba(255,255,255,0.1); }
+  .skin-switch-btn.active {
+    opacity: 1;
+    background: rgba(6,182,212,0.2);
+    border-color: rgba(6,182,212,0.5);
+    color: #fff;
   }
 
   @media (max-width: 1200px) {

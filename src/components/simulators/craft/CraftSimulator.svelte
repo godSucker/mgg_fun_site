@@ -129,6 +129,7 @@
   ];
 
   let activeFacilityId: FacilityId = $state(facilities[0]?.id ?? 'metal');
+  let sidebarOpen = $state(false);
 
   let activeIncentiveId: string = $state(incentiveRewards[0]?.id ?? '');
   let activeIncentive = $derived(
@@ -154,6 +155,7 @@
 
   function setActiveFacility(id: FacilityId) {
     activeFacilityId = id;
+    sidebarOpen = false;
   }
 
   function selectRecipe(facilityId: FacilityId, recipeId: string) {
@@ -328,10 +330,19 @@
   >
     <div class="facility__background" style={`background-image: ${activeFacility.gradient};`}></div>
     <div class="facility__inner">
-      <aside class="facility__sidebar">
-        <div class="facility__header">
+      <aside class="facility__sidebar" class:open={sidebarOpen}>
+        <button
+          type="button"
+          class="sidebar-toggle"
+          onclick={() => sidebarOpen = !sidebarOpen}
+          aria-expanded={sidebarOpen}
+          aria-label={sidebarOpen ? 'Свернуть информацию' : 'Развернуть информацию'}
+        >
           <span class="badge badge--outline">{activeFacility.badge}</span>
           <h2>{activeFacility.name}</h2>
+          <svg class="sidebar-toggle__chevron" class:rotated={sidebarOpen} width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="facility__header">
           <p>{activeFacility.description}</p>
         </div>
         <div class="facility__featured" aria-label="Ключевые награды">
@@ -1109,6 +1120,9 @@
     gap: 2rem;
     align-content: start;
   }
+  .sidebar-toggle {
+    display: none;
+  }
   .facility__sidebar::after {
     content: '';
     position: absolute;
@@ -1526,127 +1540,323 @@
     border-radius: 4px;
   }
 
-  /* --- МОБИЛЬНАЯ АДАПТАЦИЯ (ЖЕЛЕЗОБЕТОННЫЙ ФИКС) --- */
+  /* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
   @media (max-width: 1023px) {
-    /* 1. Превращаем сетку в колонку */
+    /* 1. Секции — плотнее */
+    section + section { margin-top: 1.5rem; }
+
+    /* 2. Hero — компактный */
+    .craft-hero { margin-bottom: 1.2rem; }
+    .craft-hero__card {
+      padding: 1.5rem 1rem;
+      border-radius: 20px;
+    }
+    .craft-hero__card h1 { font-size: 1.5rem; margin: 0.6rem 0 0.5rem; }
+    .craft-hero__card p { font-size: 0.9rem; line-height: 1.5; }
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+    dt { font-size: 0.7rem; }
+    dd { font-size: 1.1rem; }
+
+    /* 3. Incentive — компактный */
+    .incentive-panel { width: 100%; }
+    .incentive-card {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+      gap: 1rem;
+      border-radius: 20px;
+    }
+    .incentive-card__info h2 { font-size: 1.2rem; margin: 0.4rem 0; }
+    .incentive-card__info p { font-size: 0.85rem; line-height: 1.5; }
+
+    /* 4. Табы — горизонтальный скролл, компактные */
+    .facility-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding: 0 0.5rem 0.75rem;
+      margin: 1.2rem 0 1rem;
+      gap: 0.5rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .facility-tabs::-webkit-scrollbar { display: none; }
+    .facility-tabs button {
+      flex: 0 0 75%;
+      max-width: 260px;
+      min-width: auto;
+      padding: 0.65rem 0.8rem;
+      border-radius: 14px;
+      gap: 0.15rem;
+    }
+    .facility-tabs__name { font-size: 0.9rem; }
+    .facility-tabs__tagline { font-size: 0.75rem; }
+
+    /* 5. Основной layout — колонка */
+    .facility { border-radius: 24px; }
     .facility__inner {
       display: flex;
       flex-direction: column;
       width: 100%;
     }
 
-    /* 2. Табы со скроллом (фикс разъезжания) */
-    .facility-tabs {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      justify-content: flex-start;
-      padding-bottom: 1rem;
-      margin: 2rem 0;
-      /* Прячем скроллбар */
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .facility-tabs::-webkit-scrollbar {
-      display: none;
-    }
-    .facility-tabs button {
-      flex: 0 0 85%; /* Кнопка занимает 85% экрана, видно кусок следующей */
-      max-width: 300px;
-      min-width: auto; /* Убираем жесткий минимум */
-    }
-
-    /* 3. Сайдбар и контент */
+    /* 6. Сайдбар → сворачиваемый блок */
     .facility__sidebar {
       border-right: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 2rem 1.5rem;
+      padding: 0;
+      gap: 0;
     }
+    .facility__sidebar::after { opacity: 0.3; }
+    .facility__sidebar .facility__header,
+    .facility__sidebar .facility__featured,
+    .facility__sidebar .facility__stats {
+      display: none;
+    }
+    .facility__sidebar.open .facility__header,
+    .facility__sidebar.open .facility__featured,
+    .facility__sidebar.open .facility__stats {
+      display: grid;
+    }
+    .facility__sidebar.open {
+      padding: 0 1rem 1.2rem;
+    }
+
+    /* Toggle button */
+    .sidebar-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: none;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 0;
+    }
+    .sidebar-toggle h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      flex: 1;
+    }
+    .sidebar-toggle .badge { flex-shrink: 0; }
+    .sidebar-toggle__chevron {
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+      color: rgba(226, 232, 240, 0.6);
+    }
+    .sidebar-toggle__chevron.rotated { transform: rotate(180deg); }
+
+    .facility__sidebar.open .sidebar-toggle {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Featured items — горизонтально в opened sidebar */
+    .facility__sidebar.open .facility__featured {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      padding-top: 1rem;
+    }
+    .facility__sidebar.open .featured-item {
+      padding: 0.4rem 0.5rem;
+      grid-template-columns: 32px 1fr;
+      gap: 0.4rem;
+      border-radius: 12px;
+    }
+    .facility__sidebar.open .featured-item img {
+      width: 32px;
+      height: 32px;
+    }
+    .facility__sidebar.open .featured-item__label {
+      font-size: 0.75rem;
+    }
+    .facility__sidebar.open .facility__stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      padding-top: 0.75rem;
+    }
+
+    /* 7. Контент — плотнее */
     .facility__content {
-      padding: 1.5rem 1rem;
+      padding: 1rem;
+      gap: 1rem;
     }
 
-    /* 4. Список рецептов - в одну колонку */
+    /* 8. Сетка рецептов — 2 колонки, компактные кнопки */
     .recipe-selector {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+    }
+    .recipe-selector button {
+      padding: 0.45rem;
+      border-radius: 12px;
+      gap: 0.2rem;
+    }
+    .recipe-selector button img {
+      width: 30px;
+      height: 30px;
+    }
+    .recipe-selector__title {
+      font-size: 0.65rem;
+      line-height: 1.1;
     }
 
-    /* 5. Карточки и сетки - тоже в одну */
-    .incentive-card,
-    .recipe-card__body,
-    .results-grid {
+    /* Black hole recipes container — 1 колонка */
+    .recipes-container {
       grid-template-columns: 1fr;
+      gap: 1rem;
     }
-    .incentive-card {
-      padding: 1.5rem;
+    .recipes-group .recipe-selector {
+      grid-template-columns: 1fr 1fr;
     }
+    .recipes-group .recipe-selector button {
+      padding: 0.35rem;
+      border-radius: 8px;
+      gap: 0.15rem;
+    }
+    .recipes-group .recipe-selector button img {
+      width: 26px;
+      height: 26px;
+    }
+    .recipes-group .recipe-selector__title {
+      font-size: 0.6rem;
+    }
+    .group-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Compact grid (transformatron etc) */
+    .recipe-selector.grid-3-4 {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem;
+    }
+    .recipe-selector.grid-3-4 button {
+      padding: 0.35rem;
+      border-radius: 8px;
+    }
+    .recipe-selector.grid-3-4 button img {
+      width: 26px;
+      height: 26px;
+    }
+    .recipe-selector.grid-3-4 .recipe-selector__title {
+      font-size: 0.6rem;
+    }
+
+    /* 9. Карточка рецепта — компактная */
     .recipe-card {
-      padding: 1.5rem 1rem;
+      padding: 1rem;
+      border-radius: 18px;
+      gap: 1rem;
+    }
+    .recipe-card__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .recipe-card__meta {
+      justify-content: flex-start;
+    }
+    .recipe-card__subtitle { font-size: 0.8rem; }
+    .meta-pill { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+
+    .recipe-card__body {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .recipe-section h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
     }
 
-    /* 6. Список ингредиентов (перенос шансов вниз) */
+    /* 10. Списки ингредиентов/наград — компактные */
+    .ingredient-list,
+    .reward-list,
+    .results-grid ul {
+      gap: 0.4rem;
+    }
     .ingredient-list li,
     .reward-list li,
     .results-grid li {
-      grid-template-columns: 48px 1fr; /* Две колонки: иконка + текст */
-      gap: 0.75rem;
-      padding: 0.75rem;
+      grid-template-columns: 36px 1fr;
+      gap: 0.5rem;
+      padding: 0.5rem 0.6rem;
+      border-radius: 12px;
     }
+    .item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+    .item-icon img {
+      width: 30px;
+      height: 30px;
+    }
+    .item-title { font-size: 0.82rem; }
+    .item-sub { font-size: 0.72rem; }
 
-    /* Шансы и количество переносим под название на отдельную строку */
     .item-odds,
     .reward-list li .item-odds {
       grid-column: 1 / -1;
       display: flex;
       justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 0.5rem;
-      margin-top: 0.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.35rem;
+      margin-top: 0.15rem;
       text-align: left;
+      font-size: 0.78rem;
     }
+    .item-odds__raw { display: inline; margin: 0; }
 
-    .item-odds__raw {
-      display: inline;
-      margin: 0;
-    }
+    .rewards-scroll { max-height: 280px; }
 
-    .recipes-container {
-      grid-template-columns: 1fr;
-    }
-
-    /* 7. Контролы */
+    /* 11. Контролы симуляции — компактные */
     .simulation-controls {
       flex-direction: column;
       align-items: stretch;
-      padding: 1rem;
+      padding: 0.75rem;
+      border-radius: 14px;
+      gap: 0.5rem;
     }
+    .craft-input label { font-size: 0.75rem; }
     .craft-input input {
-      width: 100%;
+      padding: 0.55rem 0.7rem;
+      font-size: 0.9rem;
     }
     .simulate-btn {
+      padding: 0.65rem 1.2rem;
+      font-size: 0.9rem;
       width: 100%;
-      margin-top: 0.5rem;
     }
 
-    /* 8. Hero и статистика */
-    .craft-hero__card {
-      padding: 2rem 1rem;
-      border-radius: 24px;
-    }
-    .craft-hero__card h1 {
-      font-size: 1.75rem;
-    }
-    .hero-stats {
-      grid-template-columns: 1fr 1fr;
+    /* 12. Результаты — компактные */
+    .results-card {
+      padding: 1rem;
+      border-radius: 16px;
       gap: 1rem;
     }
+    .results-grid {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+    .results-grid h5 { font-size: 0.9rem; }
+    .results-log li { font-size: 0.8rem; }
   }
 
-  /* Для очень маленьких экранов */
-  @media (max-width: 640px) {
-    .badge {
-      font-size: 0.75rem;
-      padding: 0.35rem 0.9rem;
-    }
+  /* Очень маленькие экраны */
+  @media (max-width: 400px) {
+    .craft-hero__card { padding: 1rem 0.75rem; }
+    .craft-hero__card h1 { font-size: 1.3rem; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .recipe-selector { grid-template-columns: 1fr 1fr; }
+    .recipe-selector button img { width: 26px; height: 26px; }
+    .recipe-selector__title { font-size: 0.6rem; }
+    .facility__content { padding: 0.75rem; }
   }
 
   /* Desktop layout boundary fix (2K/QHD) */

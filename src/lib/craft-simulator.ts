@@ -182,6 +182,54 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   'token_sink_04': 'Бронзовая звезда',
   'token_sink_05': 'Золотая звезда',
   'token_sink_06': 'Серебряная звезда',
+
+  // Transformatron — базовые сферы (апгрейд/крафт)
+  orb_rankup_basic_attack: 'Сфера атаки',
+  orb_rankup_basic_critical: 'Сфера крит. урона',
+  orb_rankup_basic_life: 'Сфера HP',
+  orb_rankup_basic_regenerate: 'Сфера регенерации',
+  orb_rankup_basic_retaliate: 'Сфера отражения',
+  orb_rankup_basic_shield: 'Сфера щита',
+  orb_rankup_basic_slash: 'Сфера ранения',
+  orb_rankup_basic_strengthen: 'Сфера усиления',
+  orb_rankup_basic_weaken: 'Сфера понижения',
+  orb_rankup_basic_xp: 'Сфера опыта',
+
+  // Transformatron — особые сферы (апгрейд/крафт)
+  orb_rankup_special_addregenerate: 'Особая сфера регенерации',
+  orb_rankup_special_addretaliate: 'Особая сфера отражения',
+  orb_rankup_special_addshield: 'Особая сфера щита',
+  orb_rankup_special_addslash: 'Особая сфера ранения',
+  orb_rankup_special_addstrengthen: 'Особая сфера усиления',
+  orb_rankup_special_addweaken: 'Особая сфера понижения',
+  orb_rankup_special_speed: 'Особая сфера скорости',
+
+  // Black Hole — хроносмещённые сферы (ур.4)
+  chronoshifted_addregen: 'Хронос-сфера регенерации',
+  chronoshifted_addshield: 'Хронос-сфера щита',
+  chronoshifted_addslash: 'Хронос-сфера ранения',
+  chronoshifted_addstrengthen: 'Хронос-сфера усиления',
+  chronoshifted_addweaken: 'Хронос-сфера понижения',
+  chronoshifted_retaliate: 'Хронос-сфера отражения',
+
+  // Black Hole — pot_pourri
+  pot_pourri_03: 'Смешанный крафт: 3 аптечки',
+  pot_pourri_04: 'Смешанный крафт: 4 аптечки',
+  pot_pourri_05: 'Смешанный крафт: 5 аптечек',
+  pot_pourri_06: 'Смешанный крафт: 6 аптечек',
+  pot_pourri_07: 'Смешанный крафт: 7 аптечек',
+
+  // Supplies Lab — альтернативные ID
+  medpack_1: 'Маленькая аптечка',
+  muto_1: 'Малая доза мутостерона',
+  muto_10: 'Доза мутостерона',
+  xp_10: 'Плитка опыта',
+  xp_250: 'Баночка опыта',
+
+  // Metal Factory — строчные варианты звёзд
+  star_bronze: 'Бронзовая звезда',
+  star_silver: 'Серебряная звезда',
+  star_gold: 'Золотая звезда',
 };
 
 // Кастомные заголовки для detail view

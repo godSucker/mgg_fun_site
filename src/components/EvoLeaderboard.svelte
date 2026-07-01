@@ -1,5 +1,6 @@
 <script lang="ts">
   import { normalizeSearch } from '@/lib/search-normalize'
+  import { textureUrl } from '@/lib/texture-cdn'
 
   function safeUrl(url: string): string {
     if (!url) return '#'
@@ -62,7 +63,7 @@
       return dbNormalized.includes(normalizedClean) || normalizedClean.includes(dbNormalized)
     })
 
-    if (!found) return null
+    if (!found) return { isDisabled: true }
 
     let image = ''
 
@@ -198,7 +199,7 @@
             <h3>Тандем: <span class="tandem-name">{selectedPlayer.mutantData.name}</span></h3>
             <div class="mutant-preview">
               {#if selectedPlayer.mutantData.image}
-                <img src={selectedPlayer.mutantData.image} alt={selectedPlayer.mutantData.name} />
+                <img src={textureUrl(selectedPlayer.mutantData.image)} alt={selectedPlayer.mutantData.name} />
               {:else}
                 <div class="no-image">?</div>
               {/if}

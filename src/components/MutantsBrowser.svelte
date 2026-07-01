@@ -73,7 +73,7 @@
     const base = key ? lookup.get(key) : undefined;
 
     const merged: any = {
-      ...(base ?? {}),
+      ...Object.fromEntries(Object.entries(base ?? {}).filter(([k]) => k !== 'stars')),
       ...(s ?? {}),
       id: s?.id ?? base?.id,
       name: s?.name ?? base?.name,
@@ -114,7 +114,6 @@
   let baseMap: BaseMap = $derived(buildBaseMap(items ?? []));
 
   let preparedMutants: any[] = $state([]);
-  let preparedSkins: any[] = $state([]);
 
   $effect(() => {
     preparedMutants = (items || []).map(enrichItem);
@@ -123,13 +122,6 @@
 
   let normalizedSkins = $derived((Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index)));
 
-  $effect(() => {
-    preparedSkins = (normalizedSkins || []).map(enrichItem);
-    _cache.clear();
-  });
-
-  type Mode = 'mutants' | 'skins';
-  let mode: Mode = $state('mutants');
   type ViewMode = 'full' | 'heads';
   let viewMode: ViewMode = $state('heads');
 
@@ -170,7 +162,6 @@
   let bingoSel = $state('');
 
   type StarKey = 'normal'|'bronze'|'silver'|'gold'|'platinum';
-  type SkinStarKey = 'any'|'normal'|'bronze'|'silver'|'gold'|'platinum';
 
   const STAR_MUTANTS: {key: StarKey; icon: string; label: string}[] = [
     { key: 'normal',   icon: '/stars/no_stars.webp',      label: 'Обычные' },
@@ -179,24 +170,20 @@
     { key: 'gold',     icon: '/stars/star_gold.webp',     label: 'Золото' },
     { key: 'platinum', icon: '/stars/star_platinum.webp', label: 'Платина' },
   ];
-  const STAR_SKINS: {key: SkinStarKey; icon?: string; label: string}[] = [
-    { key: 'any',      label: 'Все' },
-    { key: 'normal',   icon: '/stars/no_stars.webp',      label: 'Обычные' },
-    { key: 'bronze',   icon: '/stars/star_bronze.webp',   label: 'Бронза' },
-    { key: 'silver',   icon: '/stars/star_silver.webp',   label: 'Серебро' },
-    { key: 'gold',     icon: '/stars/star_gold.webp',     label: 'Золото' },
-    { key: 'platinum', icon: '/stars/star_platinum.webp', label: 'Платина' },
-  ];
 
   const starSelMutants: StarKey = 'normal';
-  let starSelSkins: SkinStarKey = $state('any');
 
-  function switchTo(next: Mode) {
-    mode = next;
-    if (mode === 'skins') {
-      if (!['any','normal','bronze','silver','gold','platinum'].includes(starSelSkins)) starSelSkins = 'any';
+  // Skin lookup: map base ID → array of skins for that mutant
+  let skinLookup: Map<string, any[]> = $derived((() => {
+    const map = new Map<string, any[]>();
+    for (const skin of normalizedSkins) {
+      const key = baseId(skin?.id);
+      if (!key) continue;
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(skin);
     }
-  }
+    return map;
+  })());
 
   const geneList = [
     { key: '',  label: 'Ген 1: ВСЕ',             icon: '/genes/gene_all.webp' },
@@ -351,61 +338,16 @@
     })();
   }));
 
-  let filteredSkins = $derived(memo(getCacheKey(query, `${gene1Sel},${gene2Sel}`, typeSel, '', starSelSkins), () => {
-    return (() => {
-    const q = query ? query.trim().toLowerCase() : null;
-    const normalizedQ = q ? normalizeForSearch(q) : null;
-    const isSearching = !!normalizedQ;
-    const checkStars = !isSearching && starSelSkins !== 'any';
-    const targetStar = starSelSkins === 'normal' ? 'normal' : starSelSkins;
-
-    const res = [];
-    for (const it of preparedSkins) {
-      const m = it._meta;
-      if (normalizedQ && !m.searchName.includes(normalizedQ)) continue;
-      if (isSearching) {
-        res.push(it);
-        continue;
-      }
-      if (gene1Sel) {
-        const firstGene = m.code?.[0];
-        if (firstGene !== gene1Sel.toUpperCase()) continue;
-        if (gene2Sel) {
-          if (gene2Sel === 'neutral') {
-            if (m.code.length !== 1) continue;
-          } else {
-            if (m.code.length < 2 || m.code[1] !== gene2Sel.toUpperCase()) continue;
-          }
-        }
-      }
-      if (checkStars && m.starKey !== targetStar) continue;
-      res.push(it);
-    }
-    return res.sort((a, b) => {
-      const rankA = a._meta?.rank ?? 199;
-      const rankB = b._meta?.rank ?? 199;
-      if (rankA !== rankB) return rankA - rankB;
-
-      const weight2A = a._meta?.secondaryWeight ?? 0;
-      const weight2B = b._meta?.secondaryWeight ?? 0;
-      if (weight2A !== weight2B) return weight2A - weight2B;
-
-      return (a._meta?.id || '').localeCompare(b._meta?.id || '');
-    });
-    })();
-  }));
-
   let pageSize = $derived(viewMode === 'heads' ? 60 : 20);
   let currentPage = $state(1);
 
   $effect(() => {
-    mode; query; gene1Sel; gene2Sel; typeSel; bingoSel; starSelMutants; starSelSkins; viewMode;
+    query; gene1Sel; gene2Sel; typeSel; bingoSel; starSelMutants; viewMode;
     currentPage = 1;
   });
 
   let endIndex = $derived(pageSize * currentPage);
   let shownMutants = $derived(filteredMutants.slice(0, endIndex));
-  let shownSkins = $derived(filteredSkins.slice(0, endIndex));
 
   function pickTexture(it:any, headsMode: boolean = false): string {
     const bid = baseId(it.id);
@@ -478,20 +420,10 @@
     return p.replace('/textures_by_mutant/', '/textures_by_mutant/').replace('specimen_', 'thumb_specimen_');
   }
   function rarityType(item:any){
-    if (isSkin(item)) return (item?.star ?? 'normal').toLowerCase();
     return item?._displayStar || starSelMutants;
   }
 
-  const isSkin = (it:any) =>
-    it?.__source === 'skin' || typeof it?.skin !== 'undefined';
-
   const keyOf = (it:any, index?: number) => {
-    if (isSkin(it)) {
-      if (typeof it?.__skinKey === 'string') return `skin:${it.__skinKey}`;
-      const key = baseId(it?.id);
-      const variant = it?.skin ?? index ?? '';
-      return `skin:${key}:${variant}:${index ?? 0}`;
-    }
     return `mut:${it?.id ?? index}`;
   };
 
@@ -505,48 +437,7 @@
     <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">{title}</h1>
   {/if}
 
-  <!-- Переключатель режимов -->
-  <div class="mb-4 flex flex-wrap gap-2 items-center">
-    <button type="button"
-      class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
-        + (mode==='mutants' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      onclick={() => switchTo('mutants')}
-      aria-pressed={mode==='mutants'}
-    >
-      MUTANTS
-    </button>
-    <button type="button"
-      class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
-        + (mode==='skins' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      onclick={() => switchTo('skins')}
-      aria-pressed={mode==='skins'}
-    >
-      SKINS
-    </button>
 
-    <!-- FULL/HEADS toggle — temporarily hidden -->
-    <!--
-    <span class="w-px h-6 bg-white/10 mx-1"></span>
-    <button type="button"
-      class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
-        + (viewMode==='full' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      onclick={() => viewMode = 'full'}
-      aria-pressed={viewMode==='full'}
-      title="Полные карточки"
-    >
-      FULL
-    </button>
-    <button type="button"
-      class={'px-3 rounded-lg ring-1 h-8 text-[11px] uppercase tracking-wider '
-        + (viewMode==='heads' ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-      onclick={() => viewMode = 'heads'}
-      aria-pressed={viewMode==='heads'}
-      title="Режим голов"
-    >
-      HEADS
-    </button>
-    -->
-  </div>
 
   <!-- Поиск -->
   <div class="mb-3">
@@ -623,36 +514,13 @@
     </div>
   </div>
 
-  <!-- Редкость (иконки) — только для скинов -->
-  {#if mode === 'skins'}
-    <div class="mb-4 rounded-xl bg-slate-900/60 ring-1 ring-white/10 p-2 shadow-sm md:shadow">
-      <div class="flex flex-wrap gap-2">
-        {#each STAR_SKINS as s}
-          <button type="button"
-            class={'px-2 h-8 rounded-lg ring-1 flex items-center gap-2 '
-              + (starSelSkins===s.key ? 'bg-cyan-700 ring-cyan-400 text-white' : 'bg-slate-800 ring-white/10 text-slate-200')}
-            onclick={() => (starSelSkins = s.key)}
-            aria-pressed={starSelSkins===s.key}
-          >
-            {#if s.icon}<img src={textureUrl(s.icon)} alt={s.label} class="h-5 w-5 object-contain" />{/if}
-            <span class="text-xs">{s.label}</span>
-          </button>
-        {/each}
-      </div>
-    </div>
-  {/if}
-
   <!-- Тип/Бинго (селекты) -->
   <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
     <label class="flex flex-col gap-1">
       <span class="text-xs text-slate-300">Тип</span>
       <select
-        class={'px-3 py-2 rounded-lg ring-1 '
-          + (mode==='mutants'
-              ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
-              : 'bg-slate-800/60 text-slate-500 ring-white/10/30 pointer-events-none')}
+        class="px-3 py-2 rounded-lg ring-1 bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         bind:value={typeSel}
-        disabled={mode!=='mutants'}
       >
         <option value=''>Любой</option>
         {#each typeOptions as t}<option value={t}>{TYPE_RU?.[t] ?? t}</option>{/each}
@@ -662,12 +530,8 @@
     <label class="flex flex-col gap-1">
       <span class="text-xs text-slate-300">Бинго</span>
       <select
-        class={'px-3 py-2 rounded-lg ring-1 '
-          + (mode==='mutants'
-              ? 'bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400'
-              : 'bg-slate-800/60 text-slate-500 ring-white/10/30 pointer-events-none')}
+        class="px-3 py-2 rounded-lg ring-1 bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         bind:value={bingoSel}
-        disabled={mode!=='mutants'}
       >
         <option value=''>Любое</option>
         {#each bingoOptions as b}<option value={b}>{bingoLabel?.(b) ?? b}</option>{/each}
@@ -680,70 +544,38 @@
     ? 'grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10'
     : 'grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5'}
   >
-    {#if mode === 'mutants'}
-      {#each shownMutants as it, i (keyOf(it, i))}
-        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-        <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
-          {#if viewMode === 'heads'}
-            <div class="heads-card">
-              <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" />
-              <div class="heads-name">{it.name}</div>
+    {#each shownMutants as it, i (keyOf(it, i))}
+      <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+      <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
+        {#if viewMode === 'heads'}
+          <div class="heads-card">
+            <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" />
+            <div class="heads-name">{it.name}</div>
+          </div>
+        {:else}
+          <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
+            <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <div class="px-3 pt-2 pb-3">
+              <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>
-          {:else}
-            <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
-              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
-              <div class="px-3 pt-2 pb-3">
-                <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
-              </div>
-            </div>
-          {/if}
-        </div>
-      {/each}
-    {:else}
-      {#each shownSkins as it, i (keyOf(it, i))}
-        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-        <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
-          {#if viewMode === 'heads'}
-            <div class="heads-card">
-              <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" />
-              <div class="heads-name">{it.name}</div>
-            </div>
-          {:else}
-            <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
-              <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
-              <div class="px-3 pt-2 pb-3">
-                <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
-              </div>
-            </div>
-          {/if}
-        </div>
-      {/each}
-    {/if}
+          </div>
+        {/if}
+      </div>
+    {/each}
   </div>
 
   <!-- Показать ещё -->
-  {#if mode === 'mutants'}
-    {#if shownMutants.length < filteredMutants.length}
-      <div class="mt-3 flex justify-center">
-        <button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10 text-white"
-                onclick={() => { currentPage = currentPage + 1; }}>
-          Показать ещё
-        </button>
-      </div>
-    {/if}
-  {:else}
-    {#if shownSkins.length < filteredSkins.length}
-      <div class="mt-3 flex justify-center">
-        <button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10 text-white"
-                onclick={() => { currentPage = currentPage + 1; }}>
-          Показать ещё
-        </button>
-      </div>
-    {/if}
+  {#if shownMutants.length < filteredMutants.length}
+    <div class="mt-3 flex justify-center">
+      <button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 ring-1 ring-white/10 text-white"
+              onclick={() => { currentPage = currentPage + 1; }}>
+        Показать ещё
+      </button>
+    </div>
   {/if}
 
   {#if openItem}
-    <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} onclose={closeModal} />
+    <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} skins={skinLookup.get(baseId(openItem.id)) ?? []} onclose={closeModal} />
   {/if}
 </div>
 

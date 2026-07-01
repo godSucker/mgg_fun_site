@@ -1366,7 +1366,7 @@
             class:active={geneFilter===g}
             onclick={() => toggleGene(g)}
             title={GENE_NAME[g]}>
-            <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+            <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} />
           </button>
         {/each}
       </div>
@@ -1394,7 +1394,7 @@
             disabled={!geneFilter}
             onclick={() => toggleGene2(g)}
             title={GENE_NAME[g]}>
-            <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+            <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} />
           </button>
         {/each}
       </div>
@@ -1463,7 +1463,7 @@
       <div class="hero-section">
       <div class="hero-genes">
           {#each selected.genes as g}
-            <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+            <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} />
           {/each}
         </div>
         <div class="mut-figure">
@@ -1541,7 +1541,7 @@
                     onclick={() => stars = s}
                     aria-pressed={stars === s}
                     title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
-                    <img src={STAR_ICON[s]} alt="*" />
+                    <img src={textureUrl(STAR_ICON[s])} alt="*" />
                   </button>
                 {/each}
               </div>

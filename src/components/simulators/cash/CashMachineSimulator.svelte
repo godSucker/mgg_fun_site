@@ -231,28 +231,28 @@
             </div>
           </div>
           <div class="stat-card currency">
-            <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+            <img class="stat-icon" src={textureUrl(goldIcon)} alt="Иконка золота" loading="lazy" />
             <div class="stat-body">
               <span class="label">Потрачено золота</span>
               <strong>{formatNumber(result.goldSpent)}</strong>
             </div>
           </div>
           <div class="stat-card currency">
-            <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+            <img class="stat-icon" src={textureUrl(goldIcon)} alt="Иконка золота" loading="lazy" />
             <div class="stat-body">
               <span class="label">Выиграно золота</span>
               <strong>{formatNumber(result.goldWon)}</strong>
             </div>
           </div>
           <div class="stat-card currency">
-            <img class="stat-icon" src={silverIcon} alt="Иконка серебра" loading="lazy" />
+            <img class="stat-icon" src={textureUrl(silverIcon)} alt="Иконка серебра" loading="lazy" />
             <div class="stat-body">
               <span class="label">Выиграно серебра</span>
               <strong>{formatNumber(result.silverWon)}</strong>
             </div>
           </div>
           <div class={`stat-card currency net ${result.netGold >= 0 ? 'positive' : 'negative'}`}>
-            <img class="stat-icon" src={goldIcon} alt="Иконка золота" loading="lazy" />
+            <img class="stat-icon" src={textureUrl(goldIcon)} alt="Иконка золота" loading="lazy" />
             <div class="stat-body">
               <span class="label">Чистый результат</span>
               <strong>{result.netGold >= 0 ? '+' : ''}{formatNumber(result.netGold)}</strong>

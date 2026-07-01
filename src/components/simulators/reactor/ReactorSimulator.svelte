@@ -6,6 +6,7 @@
     STAR_LABEL,
     getMutantName,
   } from '@/lib/reactor-gacha';
+  import { textureUrl } from '@/lib/texture-cdn';
 
   interface DecoratedReward extends BasicReward {
     name: string;
@@ -231,14 +232,14 @@
           <div class="slot-inner">
             <div class="slot-top">
               {#if STAR_ICON[reward.stars]}
-                <img class="slot-stars" src={STAR_ICON[reward.stars]} alt="Звёзды награды" />
+                <img class="slot-stars" src={textureUrl(STAR_ICON[reward.stars])} alt="Звёзды награды" />
               {/if}
               <!-- ПРЯМОЙ РАСЧЕТ ШАНСА В ВЕРСТКЕ ДЛЯ ГАРАНТИИ ПЕРЕСЧЕТА -->
               <span class="slot-odds">{(reward.odds / weightDenominator * 100).toFixed(2)}%</span>
             </div>
             <div class="slot-art">
               {#if reward.texture}
-                <img src={reward.texture} alt={reward.name} loading="lazy" />
+                <img src={textureUrl(reward.texture ?? '')} alt={reward.name} loading="lazy" />
               {:else}
                 <span class="slot-placeholder">?</span>
               {/if}
@@ -266,7 +267,7 @@
             </div>
             <div class="slot-art">
               {#if completionReward.texture}
-                <img src={completionReward.texture} alt={completionReward.name} loading="lazy" />
+                <img src={textureUrl(completionReward.texture ?? '')} alt={completionReward.name} loading="lazy" />
               {:else}
                 <span class="slot-placeholder">?</span>
               {/if}
@@ -307,7 +308,7 @@
             <div class="inventory-list custom-scroll">
                 {#each [...inventory.entries()].sort((a,b) => b[1] - a[1]) as [id, count]}
                     <div class="inv-item">
-                        <div class="inv-thumb"><img src={getRewardTexture(id) || ''} alt="Текстура награды"/></div>
+                        <div class="inv-thumb"><img src={textureUrl(getRewardTexture(id) || '')} alt="Текстура награды"/></div>
                         <div class="inv-name">{getRewardName(id)}</div>
                         <div class="inv-count">x{count}</div>
                     </div>
@@ -324,7 +325,7 @@
         </header>
         <div class="result-body">
           <div class="result-art-wrapper">
-             <img class="result-art" src={getRewardTexture(lastResult.item.specimen) ?? ''} alt="Итоговая награда"/>
+             <img class="result-art" src={textureUrl(getRewardTexture(lastResult.item.specimen) ?? '')} alt="Итоговая награда"/>
           </div>
           <div class="result-info">
             <h3>{getRewardName(lastResult.item.specimen)}</h3>
@@ -342,7 +343,7 @@
           {#each history as entry}
             <li>
               <div class="history-thumb">
-                 <img src={getRewardTexture(entry.item.specimen) ?? ''} alt="Иконка награды"/>
+                 <img src={textureUrl(getRewardTexture(entry.item.specimen) ?? '')} alt="Иконка награды"/>
               </div>
               <div class="history-main">
                 <div class="history-name">{getRewardName(entry.item.specimen)}</div>
