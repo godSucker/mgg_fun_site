@@ -23,9 +23,11 @@
 | Роль | Участник |
 | :--- | :--- |
 | **Dev Lead** | [**がらんの画眉丸**](https://t.me/absolutely_poxuy) |
-| **Data helper** | [**Евгений aka DonutSafe**](https://t.me/Donut_Safe) |
-| **Sim Helper** | [**imashio aka blindpain**](https://t.me/blindpain) |
-| **and special thanks to** |[**Meeggee**](https://t.me/meeggee) |
+| **Спонсор** | [**Евгений aka DonutSafe**](https://t.me/Donut_Safe) |
+| **Sim Developer** | [**imashio**](https://t.me/blindpain) |
+| **Контрибьютор** | [**ミーギー**](https://t.me/meeggee) |
+| **Контрибьютор** | **Ctrl+C Ctrl+V Master** |
+| **Бета-тестер** | [**Егор**](https://t.me/+79014144308) |
 
 <br>
 

@@ -579,7 +579,7 @@
               title={g.label}
               aria-pressed={gene1Sel===g.key}
             >
-              <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+              <img src={textureUrl(g.icon)} alt={g.label} class="h-8 w-8 object-contain" />
             </button>
           {/if}
         {/each}
@@ -605,7 +605,7 @@
               aria-pressed={gene2Sel===g.key}
               disabled={!gene1Sel}
             >
-              <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+              <img src={textureUrl(g.icon)} alt={g.label} class="h-8 w-8 object-contain" />
             </button>
           {:else}
             <button type="button"
@@ -615,7 +615,7 @@
               aria-pressed={gene2Sel===g.key}
               disabled={!gene1Sel}
             >
-              <img src={g.icon} alt={g.label} class="h-8 w-8 object-contain" />
+              <img src={textureUrl(g.icon)} alt={g.label} class="h-8 w-8 object-contain" />
             </button>
           {/if}
         {/each}
@@ -634,7 +634,7 @@
             onclick={() => (starSelSkins = s.key)}
             aria-pressed={starSelSkins===s.key}
           >
-            {#if s.icon}<img src={s.icon} alt={s.label} class="h-5 w-5 object-contain" />{/if}
+            {#if s.icon}<img src={textureUrl(s.icon)} alt={s.label} class="h-5 w-5 object-contain" />{/if}
             <span class="text-xs">{s.label}</span>
           </button>
         {/each}

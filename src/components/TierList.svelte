@@ -1,5 +1,6 @@
 <script lang="ts">
   import { sortMutantsByGene } from '@/lib/mutant-sort'
+  import { textureUrl } from '@/lib/texture-cdn'
   import MutantModal from './MutantModal.svelte'
 
   let { mutants = [] }: { mutants: any[] } = $props()
@@ -97,7 +98,7 @@
       }
     }
 
-    return `/textures_by_mutant/${base}/thumb_specimen_${base}_${star}.webp`
+    return textureUrl(`/textures_by_mutant/${base}/thumb_specimen_${base}_${star}.webp`)
   }
 
   function specimenFallback(m: any): string {
@@ -106,7 +107,7 @@
       .replace(/^specimen[_-]/i, '')
       .replace(/_(normal|bronze|silver|gold|plat.*)$/i, '')
       .toLowerCase()
-    return `/textures_by_mutant/${base}/thumb_specimen_${base}_normal.webp`
+    return textureUrl(`/textures_by_mutant/${base}/thumb_specimen_${base}_normal.webp`)
   }
 </script>
 

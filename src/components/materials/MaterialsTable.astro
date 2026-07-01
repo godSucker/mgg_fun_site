@@ -32,7 +32,10 @@ const {
   textureExt = '.webp'
 } = Astro.props;
 
-const resolveTexture = (row: MaterialRow) => row.texture ? row.texture : `${texturePrefix}${row.id}${textureExt}`;
+const resolveTexture = (row: MaterialRow) => {
+  const path = row.texture ? row.texture : `${texturePrefix}${row.id}${textureExt}`;
+  return path.startsWith('http') ? path : `https://cdn.archivist-library.com${path.startsWith('/') ? path : '/' + path}`;
+};
 
 const toChip = (s: SourceInfo) => {
   const iconByType: Record<string, string> = {

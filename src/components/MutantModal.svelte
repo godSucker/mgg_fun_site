@@ -623,7 +623,7 @@
                 {#each row as orbFile}
                   <div class="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 relative group">
                     <img
-                      src={orbFile.startsWith('special/') ? '/orbs/special/orb_slot_spe.webp' : '/orbs/basic/orb_slot.webp'}
+                      src={textureUrl(orbFile.startsWith('special/') ? '/orbs/special/orb_slot_spe.webp' : '/orbs/basic/orb_slot.webp')}
                       alt=""
                       class="absolute inset-0 w-full h-full opacity-40"
                     />
