@@ -52,16 +52,19 @@ jobs:
           branch: main
           file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/**'
 
-      - name: 7. Синхронизация текстур с Яндекс CDN
+      - name: 7. Синхронизация ассетов с Яндекс CDN
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           pip install awscli
-          aws s3 sync public/textures_by_mutant/ s3://archivist-cdn/textures_by_mutant/ \
-            --endpoint-url https://storage.yandexcloud.net \
-            --acl public-read \
-            --delete \
-            --exclude "*" \
-            --include "*.webp"
+          for dir in textures_by_mutant textures_by_skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
+            if [ -d "public/$dir" ]; then
+              echo "Syncing $dir..."
+              aws s3 sync "public/$dir/" "s3://archivist-cdn/$dir/" \
+                --endpoint-url https://storage.yandexcloud.net \
+                --acl public-read \
+                --delete
+            fi
+          done
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.YANDEX_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_SECRET_KEY }}
