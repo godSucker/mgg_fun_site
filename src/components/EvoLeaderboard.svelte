@@ -189,7 +189,7 @@
           <div class="tandem-section">
             <h3 class="sad-title">Тандем отключен</h3>
             <div class="mutant-preview sad-preview">
-              <img src="/avatars/sad_emoji.gif" alt="Sad" class="sad-icon" />
+              <img src={textureUrl("/avatars/sad_emoji.gif")} alt="Sad" class="sad-icon" />
             </div>
             <p class="sad-text">У этого игрока нет активного тандема.</p>
           </div>

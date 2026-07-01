@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { textureUrl } from '@/lib/texture-cdn';
   import { tick } from 'svelte';
   import type {
     MadnessMachineDefinition,
@@ -374,7 +375,7 @@
     <div class="summary-grid" role="presentation">
       <div class="summary-card token-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/tokens/material_jackpot_token.webp" alt="" loading="lazy" />
+          <img src={textureUrl("/tokens/material_jackpot_token.webp")} alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Прокруты за жетоны джекпота</span>
@@ -384,7 +385,7 @@
       </div>
       <div class="summary-card gold-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/cash/g20.webp" alt="" loading="lazy" />
+          <img src={textureUrl("/cash/g20.webp")} alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Прокруты за золото</span>
@@ -394,7 +395,7 @@
       </div>
       <div class="summary-card total-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
+          <img src={textureUrl("/etc/icon_timer.webp")} alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Всего прокрутов</span>
@@ -404,7 +405,7 @@
       </div>
       <div class="summary-card highlight jackpot-chance">
         <div class="summary-icon" aria-hidden="true">
-          <img src="/cash/jackpot.webp" alt="" loading="lazy" />
+          <img src={textureUrl("/cash/jackpot.webp")} alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Шанс джекпота</span>
@@ -485,7 +486,7 @@
                 {@const currencyLabel = getCurrencyLabel(entry)}
                 <li class:index-top={index < 3}>
                   <div class="icon">
-                    <img src={entry.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
+                    <img src={textureUrl(entry.icon ?? '/etc/icon_larva.webp')} alt="" loading="lazy" />
                   </div>
                   <div class="details">
                     <div class="row">
@@ -515,7 +516,7 @@
               {#each result.history as entry}
                 <li>
                   <div class="icon">
-                    <img src={entry.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
+                    <img src={textureUrl(entry.icon ?? '/etc/icon_larva.webp')} alt="" loading="lazy" />
                   </div>
                   <div class="details">
                     <span class="name">{entry.label}</span>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { textureUrl } from '@/lib/texture-cdn';
   import type {
     LuckyMachineDefinition,
     LuckyRewardAggregate,
@@ -209,15 +210,15 @@
 
         <section class="stats">
           <div class="stat-card">
-            <img class="stat-icon" src="/etc/icon_timer.webp" alt="" />
+            <img class="stat-icon" src={textureUrl("/etc/icon_timer.webp")} alt="" />
             <div class="stat-body"><span class="label">Всего прокрутов</span><strong>{formatNumber(result.totalSpins)}</strong></div>
           </div>
           <div class="stat-card">
-            <img class="stat-icon" src="/tokens/material_jackpot_token.webp" alt="" />
+            <img class="stat-icon" src={textureUrl("/tokens/material_jackpot_token.webp")} alt="" />
             <div class="stat-body"><span class="label">Платных</span><strong>{formatNumber(result.paidSpins)}</strong></div>
           </div>
           <div class="stat-card highlight">
-            <img class="stat-icon" src="/etc/freespin.webp" alt="" />
+            <img class="stat-icon" src={textureUrl("/etc/freespin.webp")} alt="" />
             <div class="stat-body">
               <span class="label">Бесплатных</span>
               <strong>{formatNumber(result.freeSpins)}</strong>
@@ -225,15 +226,15 @@
             </div>
           </div>
           <div class="stat-card">
-            <img class="stat-icon" src="/cash/g20.webp" alt="" />
+            <img class="stat-icon" src={textureUrl("/cash/g20.webp")} alt="" />
             <div class="stat-body"><span class="label">Выиграно золота</span><strong>{formatNumber(result.goldWon)}</strong></div>
           </div>
           <div class="stat-card">
-            <img class="stat-icon" src="/cash/softcurrency.webp" alt="" />
+            <img class="stat-icon" src={textureUrl("/cash/softcurrency.webp")} alt="" />
             <div class="stat-body"><span class="label">Выиграно серебра</span><strong>{formatNumber(result.silverWon)}</strong></div>
           </div>
           <div class="stat-card">
-            <img class="stat-icon" src="/tokens/material_gacha_token.webp" alt="" />
+            <img class="stat-icon" src={textureUrl("/tokens/material_gacha_token.webp")} alt="" />
             <div class="stat-body"><span class="label">Жетоны</span><strong>{formatNumber(result.tokenItems)}</strong></div>
           </div>
         </section>
@@ -260,7 +261,7 @@
                   {@const totalLabel = getCurrencyLabel(entry)}
                   <li class:index-top={index < 3}>
                     <div class="icon">
-                      <img src={entry.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
+                      <img src={textureUrl(entry.icon ?? '/etc/icon_larva.webp')} alt="" loading="lazy" />
                     </div>
                     <div class="details">
                       <div class="row">
@@ -292,7 +293,7 @@
                 {#each result.history as spin}
                   <li class:free-spin={spin.type === 'free-spin'}>
                     <div class="history-info">
-                      <img src={spin.icon ?? '/etc/icon_larva.webp'} alt="" loading="lazy" />
+                      <img src={textureUrl(spin.icon ?? '/etc/icon_larva.webp')} alt="" loading="lazy" />
                       <span class="title">{spin.label}</span>
                     </div>
                     {#if spin.type === 'free-spin'}

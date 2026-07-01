@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { textureUrl } from '@/lib/texture-cdn';
   import type {
     CashMachineDefinition,
     RewardAggregate,
@@ -222,7 +223,7 @@
         <section class="stats">
           <div class="stat-card metric spins">
             <div class="metric-icon" aria-hidden="true">
-              <img src="/etc/icon_timer.webp" alt="" loading="lazy" />
+              <img src={textureUrl("/etc/icon_timer.webp")} alt="" loading="lazy" />
             </div>
             <div class="metric-body">
               <span class="label">Прокрутов</span>

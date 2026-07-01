@@ -358,7 +358,7 @@
                       <span>Ген 2: ВСЕ</span>
                   </button>
                   <button class="filter-chip gene-chip {filterGene2==='neutral' ? 'active' : ''}" disabled={filterGene==='all'} onclick={() => filterGene2='neutral'}>
-                      <img src="/genes/gene_all.webp" alt="Нейтральный"/>
+                      <img src={textureUrl("/genes/gene_all.webp")} alt="Нейтральный"/>
                   </button>
                   {#each ['A','B','C','D','E','F'] as g}
                       <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" disabled={filterGene==='all'} onclick={() => filterGene2=g}>

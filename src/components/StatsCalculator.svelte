@@ -1385,7 +1385,7 @@
           disabled={!geneFilter}
           onclick={() => toggleGene2('neutral')}
           title="Нейтральный">
-          <img src="/genes/gene_all.webp" alt="Нейтральный" />
+          <img src={textureUrl("/genes/gene_all.webp")} alt="Нейтральный" />
         </button>
         {#each ['A','B','C','D','E','F'] as g}
           <button
@@ -1476,7 +1476,7 @@
             {#each basicSlots as orb, i}
               <div class="slot">
                 <button class="slot-btn" onclick={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
-                  <img class="slot-bg" src="/orbs/basic/orb_slot.webp" alt="slot" />
+                  <img class="slot-bg" src={textureUrl("/orbs/basic/orb_slot.webp")} alt="slot" />
                   {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
                 </button>
                 {#if orb}
@@ -1498,7 +1498,7 @@
             {#if selected.specialSlotCount > 0}
             <div class="slot">
               <button class="slot-btn" onclick={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
-                <img class="slot-bg" src="/orbs/special/orb_slot_spe.webp" alt="special" />
+                <img class="slot-bg" src={textureUrl("/orbs/special/orb_slot_spe.webp")} alt="special" />
                 {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
               </button>
               {#if specialSlot}
@@ -1576,7 +1576,7 @@
                     <img class="gene-icon" src={attack.geneIcon} alt="" aria-hidden="true" />
                   {/if}
                   {#if attack.isAoe}
-                    <img class="attack-aoe" src="/genes/atk_multiple.webp" alt="АОЕ" />
+                    <img class="attack-aoe" src={textureUrl("/genes/atk_multiple.webp")} alt="АОЕ" />
                   {/if}
                 </span>
                 <div class="attack-info">
@@ -1617,7 +1617,7 @@
           </div>
           <div class="row">
             <span class="label">
-              <img class="label-icon" src="/cash/softcurrency.webp" alt="Серебро" />
+              <img class="label-icon" src={textureUrl("/cash/softcurrency.webp")} alt="Серебро" />
               Серебро
             </span>
             <b>{stats.bank.toLocaleString('ru-RU')}</b>
