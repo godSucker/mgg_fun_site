@@ -26,12 +26,16 @@
   // --- HELPERS ---
   const getName = (m: Mutant) => m.name || m.id;
 
+  function toThumb(p: string): string {
+    return p.replace('specimen_', 'thumb_specimen_');
+  }
+
   function getImageSrc(m: Mutant): string {
     const img = m.image;
     const list = Array.isArray(img) ? img : (img ? [img] : []);
     if (!list.length) return textureUrl('/preview.jpg');
     const specimen = list.find((p: string) => p.includes('specimen'));
-    if (specimen) return textureUrl(specimen);
+    if (specimen) return textureUrl(toThumb(specimen));
     const first = list[0];
     return textureUrl(first);
   }
