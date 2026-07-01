@@ -1,6 +1,6 @@
 <div align="center">
 
-![Archivist Library Preview](https://www.archivist-library.com/preview.jpg)
+![Archivist Library Preview](https://archivist-library.com/preview.jpg)
 
 # 🧬 Archivist Library (MGG Hub)
 
@@ -29,6 +29,6 @@
 
 <br>
 
-[🌐 **Открыть сайт**](https://www.archivist-library.com)
+[🌐 **Открыть сайт**](https://archivist-library.com)
 
 </div>
