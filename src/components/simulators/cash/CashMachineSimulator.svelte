@@ -272,7 +272,7 @@
               {#each breakdown as entry}
                 <div class="table-row">
                   <span class="reward-label">
-                    <img class="reward-icon" src={entry.icon} alt={entry.label} loading="lazy" />
+                    <img class="reward-icon" src={textureUrl(entry.icon)} alt={entry.label} loading="lazy" />
                     <span>{entry.label}</span>
                   </span>
                   <span>x{formatNumber(entry.count)}</span>
@@ -290,7 +290,7 @@
                 {#each history as spin (spin.timestamp)}
                   <li>
                     <div class="history-info">
-                      <img class="history-icon" src={spin.icon} alt={spin.label} loading="lazy" />
+                      <img class="history-icon" src={textureUrl(spin.icon)} alt={spin.label} loading="lazy" />
                       <span class="title">{spin.label}</span>
                     </div>
                     <span class="odds">+{formatAmountWithUnit(spin.reward.amount, spin.reward.type)}</span>
@@ -321,7 +321,7 @@
         {#each rewardChances as reward}
           <li>
             <span class="odds-name">
-              <img class="odds-icon" src={reward.icon} alt={reward.label} loading="lazy" />
+              <img class="odds-icon" src={textureUrl(reward.icon)} alt={reward.label} loading="lazy" />
               <span class="name">{reward.label}</span>
             </span>
             <span class="chance">{(reward.chance * 100).toFixed(4)}%</span>

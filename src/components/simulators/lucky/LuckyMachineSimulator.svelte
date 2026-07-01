@@ -242,7 +242,7 @@
         <section class="resource-summary">
           {#each resourceSummaries as s (s.key)}
             <article class="resource-card">
-              <div class="resource-icon"><img src={s.icon} alt="" /></div>
+              <div class="resource-icon"><img src={textureUrl(s.icon)} alt="" /></div>
               <div class="resource-body">
                 <span class="resource-title">{s.label}</span>
                 <strong>{formatNumber(s.count)}</strong>
@@ -325,7 +325,7 @@
         <ul class="odds-list">
           {#each rewardChances as r}
             <li>
-              <span class="odds-name"><img class="odds-icon" src={r.icon} alt="" /><span class="name">{r.name}</span></span>
+              <span class="odds-name"><img class="odds-icon" src={textureUrl(r.icon)} alt="" /><span class="name">{r.name}</span></span>
               <span class="chance">{(r.chance * 100).toFixed(4)}%</span>
             </li>
           {/each}

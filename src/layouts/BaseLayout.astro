@@ -63,7 +63,7 @@ const isHome = Astro.url.pathname === "/";
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('/main_page.webp');
+        background-image: url('https://cdn.archivist-library.com/main_page.webp');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -75,7 +75,7 @@ const isHome = Astro.url.pathname === "/";
 
       @supports not (background-image: url('data:image/webp;base64,')) {
         body::before {
-          background-image: url('/main_page.jpg');
+          background-image: url('https://cdn.archivist-library.com/main_page.jpg');
         }
       }
 

@@ -43,18 +43,18 @@
   function getGeneIcon(geneChar: string): string {
     const char = geneChar.toLowerCase().charAt(0);
     if (['a', 'b', 'c', 'd', 'e', 'f'].includes(char)) {
-        return `/genes/gene_${char}.webp`;
+        return textureUrl(`/genes/gene_${char}.webp`);
     }
-    return '/genes/gene_all.webp';
+    return textureUrl('/genes/gene_all.webp');
   }
 
   function getTypeIcon(m: Mutant): string {
     const t = (m.type ?? '').toLowerCase();
-    if (t === 'legend') return '/mut_icons/icon_legendary.webp';
-    if (t === 'recipe') return '/mut_icons/icon_recipe.webp';
-    if (t === 'community') return '/mut_icons/icon_special.webp';
-    if (!t || t === 'default') return '/mut_icons/icon_morphology.webp';
-    return `/mut_icons/icon_${t}.webp`;
+    if (t === 'legend') return textureUrl('/mut_icons/icon_legendary.webp');
+    if (t === 'recipe') return textureUrl('/mut_icons/icon_recipe.webp');
+    if (t === 'community') return textureUrl('/mut_icons/icon_special.webp');
+    if (!t || t === 'default') return textureUrl('/mut_icons/icon_morphology.webp');
+    return textureUrl(`/mut_icons/icon_${t}.webp`);
   }
 
   function formatTime(val: number | undefined) {

@@ -12,6 +12,7 @@ import orbRaw from '@/data/simulators/CRAFT/orb.txt?raw';
 import starRaw from '@/data/simulators/CRAFT/star.txt?raw';
 import incentiveRaw from '@/data/simulators/CRAFT/incentreward.txt?raw';
 import mutantNamesData from '@/data/mutant_names.json';
+import { textureUrl } from '@/lib/texture-cdn';
 
 export type CraftCategory = 'blackhole' | 'lab' | 'orb' | 'star';
 
@@ -402,6 +403,11 @@ export function translateItemId(itemId: string): string {
 }
 
 export function getItemTexture(itemId: string): string | null {
+  const raw = getRawTexture(itemId);
+  return raw ? textureUrl(raw) : null;
+}
+
+function getRawTexture(itemId: string): string | null {
   if (ITEM_TEXTURES[itemId]) {
     return ITEM_TEXTURES[itemId];
   }

@@ -1477,7 +1477,7 @@
               <div class="slot">
                 <button class="slot-btn" onclick={() => openDropdown = openDropdown === `basic-${i}` ? null : `basic-${i}`}>
                   <img class="slot-bg" src={textureUrl("/orbs/basic/orb_slot.webp")} alt="slot" />
-                  {#if orb}<img class="orb" src={orb.icon} alt={orb.id} />{/if}
+                  {#if orb}<img class="orb" src={textureUrl(orb.icon)} alt={orb.id} />{/if}
                 </button>
                 {#if orb}
                   <button class="x" title="убрать" onclick={() => clearSlot('basic', i)}>×</button>
@@ -1486,7 +1486,7 @@
                   <div class="dropdown">
                     {#each basicOrbOptions as o}
                       <button class="orb-row" onclick={() => pickBasic(i, o)}>
-                        <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
+                        <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
                       </button>
                     {/each}
                   </div>
@@ -1499,7 +1499,7 @@
             <div class="slot">
               <button class="slot-btn" onclick={() => openDropdown = openDropdown === 'special' ? null : 'special'}>
                 <img class="slot-bg" src={textureUrl("/orbs/special/orb_slot_spe.webp")} alt="special" />
-                {#if specialSlot}<img class="orb" src={specialSlot.icon} alt={specialSlot.id} />{/if}
+                {#if specialSlot}<img class="orb" src={textureUrl(specialSlot.icon)} alt={specialSlot.id} />{/if}
               </button>
               {#if specialSlot}
                 <button class="x" title="убрать" onclick={() => clearSlot('special')}>×</button>
@@ -1508,7 +1508,7 @@
                 <div class="dropdown">
                   {#each ORBS.special as o}
                     <button class="orb-row" onclick={() => pickSpecial(o)}>
-                      <img src={o.icon} alt={o.id} /> <span>{o.name || o.id}</span>
+                      <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
                     </button>
                   {/each}
                 </div>
@@ -1590,7 +1590,7 @@
                   {#each attack.effects as effect, i (effect.label + effect.value + effect.percent + i)}
                     <div class="effect-row">
                       {#if effect.icon}
-                        <img class="ability-icon" src={effect.icon} alt={effect.label} />
+                        <img class="ability-icon" src={textureUrl(effect.icon)} alt={effect.label} />
                       {/if}
                       <span class="effect-name">
                         {effect.label}

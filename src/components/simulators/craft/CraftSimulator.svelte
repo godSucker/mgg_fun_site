@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { textureUrl } from '@/lib/texture-cdn';
   import {
     craftRecipesByCategory,
     incentiveRewards,
@@ -337,7 +338,7 @@
           {#each activeFacility.featuredRewards as item (item.id)}
             <div class="featured-item">
               {#if item.icon}
-                <img src={item.icon} alt={item.label} />
+                <img src={textureUrl(item.icon)} alt={item.label} />
               {:else}
                 <span>{item.label.slice(0, 1)}</span>
               {/if}
@@ -414,7 +415,7 @@
                       : useRecipeIdLabel
                         ? `${translateItemId(recipe.id)} ×${totalIngredients}`
                         : `${baseLabel} ×${totalIngredients}`}
-                  {@const rewardIcon = isPotPourriRecipe ? '/med/normal_med.webp' : (useRecipeIdLabel ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null))}
+                  {@const rewardIcon = isPotPourriRecipe ? textureUrl('/med/normal_med.webp') : (useRecipeIdLabel ? getItemTexture(recipe.id) : (displayReward ? getItemTexture(displayReward.id) : null))}
                   <button
                     type="button"
                     class:selected={recipe.id === currentRecipe?.id}

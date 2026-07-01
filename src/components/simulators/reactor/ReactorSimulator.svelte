@@ -365,7 +365,7 @@
     padding: 2rem;
     border-radius: 24px;
     /* UPDATED: Use gacha_background.webp texture */
-    background-image: url('/reactor/gacha_background.webp');
+    background-image: url('https://cdn.archivist-library.com/reactor/gacha_background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -463,7 +463,7 @@
           {#each displayedResourceSummaries as summary (summary.key)}
             <article class="resource-card">
               <div class="resource-icon">
-                <img src={summary.icon} alt="" loading="lazy" />
+                <img src={textureUrl(summary.icon)} alt="" loading="lazy" />
               </div>
               <div class="resource-body">
                 <span class="resource-title">{summary.label}</span>
