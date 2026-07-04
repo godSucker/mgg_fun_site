@@ -36,7 +36,7 @@ jobs:
       - name: 5. Проверка изменений
         id: check-changes
         run: |
-          if git diff --quiet src/data/mutants/*.json public/textures_by_skins/ 2>/dev/null; then
+          if git diff --quiet src/data/mutants/*.json public/textures_by_mutant/ public/textures_by_skins/ 2>/dev/null; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "ℹ️  Изменений не обнаружено"
           else
@@ -53,13 +53,13 @@ jobs:
           commit_user_email: "bot@archivist-library.com"
           commit_author: "MGG Parser Bot <bot@archivist-library.com>"
           branch: main
-          file_pattern: 'src/data/mutants/*.json public/textures_by_skins/**'
+          file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/**'
 
       - name: 7. Синхронизация ассетов с Яндекс CDN
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           pip install awscli
-          for dir in textures_by_skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
+          for dir in textures_by_mutant textures_by_skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
             if [ -d "public/$dir" ]; then
               echo "Syncing $dir..."
               aws s3 sync "public/$dir/" "s3://archivist-cdn/$dir/" \
