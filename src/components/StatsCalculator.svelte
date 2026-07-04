@@ -1636,14 +1636,14 @@
     display: flex;
     justify-content: center;
     gap: 4px;
-    margin-bottom: -8px;
+    margin-bottom: 2px;
     z-index: 10;
     position: relative;
   }
   @media (min-width: 768px) {
     .hero-genes {
       gap: 6px;
-      margin-bottom: -12px;
+      margin-bottom: 4px;
     }
   }
 
@@ -1845,7 +1845,7 @@
   @media (min-width: 768px) {
     .mut-figure { padding: 0 0 16px; }
   }
-  .mut-figure .texture{ width:clamp(80px, 20vw, 210px); height:clamp(80px, 20vw, 210px); object-fit:contain; image-rendering:auto; }
+  .mut-figure .texture{ max-width:100px; max-height:100px; object-fit:contain; image-rendering:auto; }
 
   .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:4px; }
   @media (min-width: 768px) {
@@ -2202,7 +2202,7 @@
     
     /* Увеличиваем иконки для мобильных для лучшей видимости */
     .hero-genes img { width: 28px; height: 28px; }
-    .hero-genes { gap: 6px; margin-bottom: -10px; }
+    .hero-genes { gap: 6px; margin-bottom: 2px; }
     .slot-btn { width: 48px; height: 48px; min-width: 48px; min-height: 48px; }
     .star { width: 26px; height: 26px; min-width: 26px; }
     .attack-gene { width: 34px; height: 34px; }
@@ -2233,7 +2233,7 @@
     
     /* Увеличиваем иконки для очень маленьких экранов */
     .hero-genes img { width: 26px; height: 26px; }
-    .hero-genes { gap: 5px; margin-bottom: -8px; }
+    .hero-genes { gap: 5px; margin-bottom: 2px; }
     .slot-btn { width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
     .star { width: 24px; height: 24px; min-width: 24px; }
     .attack-gene { width: 30px; height: 30px; }
@@ -2269,7 +2269,7 @@
     .stats-page { grid-template-columns: 320px minmax(0, 900px); }
     .mut-icon { width: 55px; height: 55px; }
     .hero-genes img { width: 45px; height: 45px; }
-    .hero-genes { gap: 8px; margin-bottom: -16px; }
+    .hero-genes { gap: 8px; margin-bottom: 4px; }
     .star { width: 40px; height: 40px; min-width: 40px; }
     .slot-btn { width: 85px; height: 85px; min-width: 85px; min-height: 85px; }
     .slots { gap: 20px; }

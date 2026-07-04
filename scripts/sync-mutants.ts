@@ -159,7 +159,7 @@ async function downloadSpecimen(
         });
         if (res.status === 200 && res.data.length > 100) {
             await fs.mkdir(targetDir, { recursive: true });
-            await sharp(res.data).webp({ quality: 80 }).toFile(iconPath);
+            await sharp(res.data).webp({ quality: 95 }).toFile(iconPath);
             return true;
         }
     } catch {}
@@ -185,7 +185,7 @@ async function getAvailableRatings(
             if (ok) found.push(rating);
         } else {
             const idLower = mutantId.toLowerCase();
-            const suffix = rating === 'normal' ? '' : `_${rating}`;
+            const suffix = `_${rating}`;
             const iconPath = path.join(CONFIG.TEXTURES_DIR, idLower, `specimen_${idLower}${suffix}.webp`);
             try {
                 await fs.access(iconPath);

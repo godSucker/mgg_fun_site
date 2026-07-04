@@ -24,7 +24,7 @@ export function buildSpecimenUrl(mutantId: string, variant: string = 'normal'): 
   
   const folder = base.toLowerCase();
   const fileId = base.toLowerCase();
-  const suffix = variant === 'normal' ? '' : `_${variant}`;
+  const suffix = `_${variant}`;
   return `/textures_by_mutant/${folder}/specimen_${fileId}${suffix}.webp`;
 }
 

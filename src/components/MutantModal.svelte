@@ -115,14 +115,15 @@
     'steampunk': '/skins/icon_steampunk.webp',
     'summer_skin': '/skins/icon_summer_skin.webp',
     'blue_planet': '/skins/icon_blue_planet.webp',
-    "valentine's_day": '/skins/icon_valentines_day.webp',
-    "St. Valentine's Day": '/skins/icon_valentines_day.webp',
+    "valentine's_day": '/skins/icon_valentine_s_day.webp',
+    "St. Valentine's Day": '/skins/icon_st._valentine_s_day.webp',
     'villain': '/skins/icon_villain.webp',
     'western': '/skins/icon_western.webp',
     'winter': '/skins/icon_winter.webp',
     'workers_day': '/skins/icon_workers_day.webp',
     'french_revolution': '/skins/icon_french_revolution.webp',
     'tropical_summer': '/skins/icon_tropical_summer.webp',
+    'tropical summer': '/skins/icon_tropical_summer.webp',
     'disco': '/skins/icon_disco.webp',
     'independence_day': '/skins/icon_independence_day.webp',
   };
@@ -533,16 +534,16 @@
         </div>
       {/if}
       <div class="flex-1 flex items-center justify-center w-full">
-        <div class="w-full max-w-[196px] md:max-w-[370px] aspect-square flex items-center justify-center rounded-xl bg-black/30">
+        <div class="w-fit max-w-[120px] aspect-square flex items-center justify-center rounded-xl bg-black/30 p-2 md:p-3">
           <img
             alt={displayMutant?.name}
             src={textureUrl(selectedSkin ? imgSrc(selectedSkin, selectedSkin.star || 'normal') : imgSrc(mutant, selectedStar))}
-            class="w-full h-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]"
+            class="max-w-[100px] md:max-w-[100px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)] image-rendering-auto"
             loading="lazy"
             decoding="async"
             fetchpriority="low"
-            width="512"
-            height="512"
+            width="100"
+            height="100"
           />
         </div>
       </div>
