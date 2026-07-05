@@ -143,7 +143,7 @@
                 </div>
               {/if}
 
-              <div class="tier-grid gap-1">
+              <div class="tier-grid">
                 {#each list as m (m.id)}
                   {@const gc = geneColor(m)}
                   <button
@@ -189,9 +189,16 @@
 {/if}
 
 <style>
-  .tier-icon { width: var(--tier-icon); height: var(--tier-icon); }
-  .tier-grid { display: grid; grid-template-columns: repeat(9, 1fr); }
-  @media (min-width: 768px) { .tier-grid { display: flex; flex-wrap: wrap; } }
+  .tier-icon { width: 100%; aspect-ratio: 1; box-sizing: border-box; max-width: var(--tier-icon); max-height: var(--tier-icon); }
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 5px;
+  }
+  @media (min-width: 768px) {
+    .tier-icon { width: var(--tier-icon); height: var(--tier-icon); max-width: none; max-height: none; aspect-ratio: auto; }
+    .tier-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  }
   :root { --tier-icon: 2.25rem; }
   @media (min-width: 640px)  { :root { --tier-icon: 2.5rem; } }
   @media (min-width: 768px)  { :root { --tier-icon: 3rem; } }

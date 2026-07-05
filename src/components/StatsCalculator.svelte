@@ -563,6 +563,9 @@
   let basicSlots = $state([]);                 // длина = selected.basicSlotCount
   let specialSlot = $state(null);
 
+  // Множители урона для каждой атаки (1 / 0.5 / 0.75 / 1.25 / 1.5)
+  let atkMultipliers = $state({ 1: 1, 2: 1 });
+
   // Состояние интерфейса
   let showCatalog = $state(true); // Показывать ли поиск/каталог слева
   let isCopying = $state(false);  // Состояние "Копируется..."
@@ -840,11 +843,13 @@
       const geneIcon = meta.geneIcon || '';
       const isAoe = Boolean(meta.isAoe);
       const label = meta.label || `Атака ${idx}`;
+      const gene = meta.gene || '';
       return {
         attack: idx,
         label,
         geneIcon,
         isAoe,
+        gene,
         damage,
         effects,
       };
@@ -1570,6 +1575,22 @@
 
           {#each attackRows as attack (attack.attack)}
             <div class="row attack-row">
+              {#if attack.gene !== 'neutro'}
+              <div class="atk-mult-bar">
+                {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
+                  {@const active = (atkMultipliers[attack.attack] ?? 1) === (1 + delta)}
+                  <button
+                    class="atk-mult-btn"
+                    class:active
+                    class:m-beige={delta === -0.25}
+                    class:m-orange={delta === 0.25}
+                    class:m-red={delta === 0.5}
+                    title={delta === 0 ? 'Без изменений' : `${delta > 0 ? '+' : ''}${delta * 100}%`}
+                    onclick={() => atkMultipliers[attack.attack] = active ? 1 : 1 + delta}
+                  >{delta === 0 ? '0' : `${delta > 0 ? '+' : ''}${delta * 100}%`}</button>
+                {/each}
+              </div>
+              {/if}
               <div class="attack-side">
                 <span class="attack-gene" class:empty={!attack.geneIcon}>
                   {#if attack.geneIcon}
@@ -1581,7 +1602,25 @@
                 </span>
                 <div class="attack-info">
                   <span class="attack-label">{attack.label}</span>
-                  <span class="attack-damage">{attack.damage ? attack.damage.toLocaleString('ru-RU') : '—'}</span>
+                  <div class="attack-dmg-group">
+                    <span class="attack-damage">{attack.damage ? Math.round(attack.damage * (atkMultipliers[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
+                    {#if attack.gene !== 'neutro'}
+                    <div class="atk-mult-btns">
+                      {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
+                        {@const active = (atkMultipliers[attack.attack] ?? 1) === (1 + delta)}
+                        <button
+                          class="atk-mult-btn"
+                          class:active
+                          class:m-beige={delta === -0.25}
+                          class:m-orange={delta === 0.25}
+                          class:m-red={delta === 0.5}
+                          title={delta === 0 ? 'Без изменений' : `${delta > 0 ? '+' : ''}${delta * 100}%`}
+                          onclick={() => atkMultipliers[attack.attack] = active ? 1 : 1 + delta}
+                        >{delta === 0 ? '0' : `${delta > 0 ? '+' : ''}${delta * 100}%`}</button>
+                      {/each}
+                    </div>
+                    {/if}
+                  </div>
                 </div>
               </div>
               <span class="ability-divider" class:empty={!attack.effects.length} aria-hidden="true"></span>
@@ -1598,7 +1637,7 @@
                           <span class="effect-percent">{effect.percent.toLocaleString('ru-RU')}%</span>
                         {/if}
                       </span>
-                      <span class="effect-value">{effect.value.toLocaleString('ru-RU')}</span>
+                      <span class="effect-value">{Math.round(effect.value * (atkMultipliers[attack.attack] ?? 1)).toLocaleString('ru-RU')}</span>
                     </div>
                   {/each}
                 {:else}
@@ -1810,16 +1849,13 @@
   }
   /* --- НОВЫЙ СТИЛЬ ДЛЯ КНОПКИ СКРИНШОТА --- */
   .share-btn {
-    background: rgba(59, 130, 246, 0.15); /* Синеватый фон */
-    border: 1px solid rgba(59, 130, 246, 0.3); /* Рамка */
-    color: #93c5fd; /* Светло-голубой текст */
-
-    /* Размеры и текст */
-    width: auto; /* Автоматическая ширина под текст */
-    height: 28px;
-    padding: 0 14px; /* Отступы по бокам */
-
-    font-size: 12px;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+    width: auto;
+    height: 22px;
+    padding: 0 10px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1936,10 +1972,10 @@
   @media (min-width: 768px) {
     .controls { gap: 8px; }
   }
-  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:6px 10px; }
+  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:3px 10px; }
   .control .control-label{ white-space:nowrap; }
 
-  .lvl{ width:64px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
+  .lvl{ width:64px; padding:3px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
 
   /* Стили для статического уровня на скриншоте */
   :global(.lvl-static) {
@@ -1992,15 +2028,15 @@
     background:#1b212a;
     border:1px solid #2e3948;
     border-radius:12px;
-    padding:4px 10px;
+    padding:2px 10px;
     color:#dfe7f3;
     font-size:13px;
-    min-height:38px;
+    min-height:32px;
   }
   @media (min-width: 768px) {
     .row {
-      padding: 6px 14px;
-      min-height: 44px;
+      padding: 4px 14px;
+      min-height: 38px;
       font-size: 14px;
     }
   }
@@ -2029,6 +2065,7 @@
 
   /* --- ОБНОВЛЕННЫЙ ДИЗАЙН АТАКИ --- */
   .row.attack-row{
+    position: relative;
     align-items: stretch;
     gap: 6px;
     padding: 6px 10px;
@@ -2036,19 +2073,32 @@
   @media (min-width: 768px) {
     .row.attack-row {
       gap: 10px;
-      padding: 8px 14px;
+      padding: 28px 14px 8px;
     }
   }
 
-  .attack-side {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    flex: 1 1 0;
-    min-width: 0;
+  /* Панель множителей — абсолютно в углу карточки (только ПК) */
+  .atk-mult-bar {
+    display: none;
   }
   @media (min-width: 768px) {
-    .attack-side { gap: 5px; }
+    .atk-mult-bar {
+      display: flex;
+      gap: 3px;
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      z-index: 2;
+    }
+  }
+
+  /* Кнопки внутри строки — только мобилка, на ПК скрыты */
+  .atk-mult-btns {
+    display: flex;
+    gap: 2px;
+  }
+  @media (min-width: 768px) {
+    .atk-mult-btns { display: none !important; }
   }
 
  /* --- ФИКС АТАКИ --- */
@@ -2107,14 +2157,25 @@
 
   .attack-gene.empty { opacity: 0; }
 
+  .attack-side {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  @media (min-width: 768px) {
+    .attack-side { gap: 5px; }
+  }
+
   .attack-info {
     display: flex;
-    flex-direction: row; /* Выстраиваем Имя и Урон в одну линию */
-    justify-content: space-between; /* Имя слева, Урон справа (как на скриншоте) */
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
     gap: 8px;
     min-width: 0;
+    flex: 1;
   }
 
 
@@ -2127,16 +2188,62 @@
     text-overflow: ellipsis;
     line-height: 1.2;
     text-align: left;
-    flex: 1; /* Занимает все свободное место, толкая урон вправо */
+    flex: 1 1 auto;
+    min-width: 80px;
+  }
+
+  .attack-dmg-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    flex-shrink: 1;
   }
 
   .attack-damage {
-    font-size: 15px;       /* Точно такой же размер */
+    font-size: 15px;
     font-weight: 700;
-    color: #e9eef6;        /* Точно такой же цвет */
+    color: #e9eef6;
     text-align: right;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
+  }
+
+  .atk-mult-btns {
+    display: flex;
+    gap: 2px;
+  }
+
+  .atk-mult-btn {
+    appearance: none;
+    border: 1px solid #2e3948;
+    background: #10161f;
+    color: #6b7a8d;
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .atk-mult-btn:hover {
+    background: #1b212a;
+    color: #aab6c8;
+    border-color: #3a475a;
+  }
+  .atk-mult-btn.active {
+    background: rgba(59,130,246,0.2);
+    color: #60a5fa;
+    border-color: rgba(59,130,246,0.4);
+  }
+  .atk-mult-btn.active.m-beige { color: #d4c49a; border-color: rgba(212,196,154,0.4); background: rgba(212,196,154,0.15); }
+  .atk-mult-btn.active.m-orange { color: #e8923a; border-color: rgba(232,146,58,0.4); background: rgba(232,146,58,0.15); }
+  .atk-mult-btn.active.m-red { color: #e05555; border-color: rgba(224,85,85,0.4); background: rgba(224,85,85,0.15); }
+  @media (min-width: 768px) {
+    .atk-mult-btn { padding: 2px 5px; font-size: 10px; }
+    .atk-mult-btns { gap: 3px; }
   }
 
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); flex-shrink: 0; }

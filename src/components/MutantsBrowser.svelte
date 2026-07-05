@@ -434,7 +434,10 @@
 
 <div class="mx-auto max-w-[1400px] px-4 py-6 page-2k">
   {#if title}
-    <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">{title}</h1>
+    <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">
+      {title}
+      <span class="text-base md:text-lg font-normal text-slate-200 ml-2">({filteredMutants.length} мутантов)</span>
+    </h1>
   {/if}
 
 

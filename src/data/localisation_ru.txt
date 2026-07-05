@@ -176,7 +176,6 @@ Promo_Specimen_EE_03;Мастер Йоуда
 Promo_Specimen_F_03;Снегомаг
 Promo_Specimen_FB_02;Принц-скорпион
 Specimen_A_01;Робот
-Specimen_A_02;Слабый Робот
 Specimen_AA_01;Андроид
 Specimen_AA_02;Голиаф
 Specimen_AB_01;Некробот
@@ -195,7 +194,6 @@ Specimen_AE_02;Либраро
 Specimen_AF_01;Бог Машин
 Specimen_AF_02;Виргон
 Specimen_B_01;Зомби
-Specimen_B_02;Слабый Зомби
 Specimen_B_03;Джек Скеллингтон
 Specimen_BA_01;Зомборг
 Specimen_BA_01_alt;Зомборг-клоун
@@ -218,7 +216,6 @@ Specimen_BF_02;Черноличник
 Specimen_BF_02_bronze;Черноличник
 Specimen_BF_02_Promo;Черноличник
 Specimen_C_01;Воин
-Specimen_C_02;Слабый Воин
 Specimen_CA_01;Амбал
 Specimen_CA_02;Перехватчица
 Specimen_CA_03;Генерал Хаос
