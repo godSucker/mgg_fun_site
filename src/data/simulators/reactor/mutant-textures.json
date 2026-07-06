@@ -1,6 +1,5 @@
 {
   "Specimen_A_01": "/textures_by_mutant/a_01/specimen_a_01_normal.webp",
-  "Specimen_A_02": "/textures_by_mutant/a_02/specimen_a_02_normal.webp",
   "Specimen_A_03": "/textures_by_mutant/a_03/specimen_a_03_normal.webp",
   "Specimen_A_05": "/textures_by_mutant/a_05/specimen_a_05_normal.webp",
   "Specimen_A_13": "/textures_by_mutant/a_13/specimen_a_13_normal.webp",
@@ -91,7 +90,6 @@
   "Specimen_AF_14": "/textures_by_mutant/af_14/specimen_af_14_normal.webp",
   "Specimen_AF_99": "/textures_by_mutant/af_99/specimen_af_99_normal.webp",
   "Specimen_B_01": "/textures_by_mutant/b_01/specimen_b_01_normal.webp",
-  "Specimen_B_02": "/textures_by_mutant/b_02/specimen_b_02_normal.webp",
   "Specimen_B_03": "/textures_by_mutant/b_03/specimen_b_03_normal.webp",
   "Specimen_B_04": "/textures_by_mutant/b_04/specimen_b_04_normal.webp",
   "Specimen_B_05": "/textures_by_mutant/b_05/specimen_b_05_normal.webp",
@@ -177,7 +175,6 @@
   "Specimen_BF_12": "/textures_by_mutant/bf_12/specimen_bf_12_normal.webp",
   "Specimen_BF_13": "/textures_by_mutant/bf_13/specimen_bf_13_normal.webp",
   "Specimen_C_01": "/textures_by_mutant/c_01/specimen_c_01_normal.webp",
-  "Specimen_C_02": "/textures_by_mutant/c_02/specimen_c_02_normal.webp",
   "Specimen_C_03": "/textures_by_mutant/c_03/specimen_c_03_normal.webp",
   "Specimen_C_05": "/textures_by_mutant/c_05/specimen_c_05_normal.webp",
   "Specimen_C_13": "/textures_by_mutant/c_13/specimen_c_13_normal.webp",

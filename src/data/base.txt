@@ -1174,84 +1174,9 @@
 <Script cmd="PlaceSpecimen">
 <Param>Specimen_F_F</Param>
 </Script>
-<EntityDescriptor id="Specimen_A_02" movable="true" storable="true" category="specimen" sizeX="0.01" sizeY="0.01">
-<State id="default" spriteId="specimen_A_01_stand" sellPrice="1"/>
-<Tag key="atk1" value="60"/>
-<Tag key="spX100" value="353"/>
-<Tag key="odds" value="0"/>
-<Tag key="dna" value="A"/>
-<Tag key="lifePoint" value="500"/>
-<Tag key="incubMin" value="180"/>
-<Tag key="specimen" value="true"/>
-<Tag key="atk2" value="276"/>
-<Tag key="atk1p" value="138"/>
-<Tag key="atk2p" value="525"/>
-<Tag key="bank" value="42"/>
-<Tag key="PNJ" value="true"/>
-<Tag key="unlockAttack" value="1:1:a;2:5:neutre;1p:10:a;2p:15:neutre"/>
-<Tag key="abilities" value="1:ability_shield;2:ability_shield_plus"/>
-<Tag key="abilityPct1" value="20"/>
-<Tag key="abilityPct2" value="30"/>
-<Tag key="orbSlots" value="n;s:20h"/>
-<Tag key="hideSkins" value="platinum"/>
-<CustomScript name="onPlaceOver">
-<Script cmd="PlaceSpecimen">
-<Param>Specimen_A</Param>
-</Script>
-</CustomScript>
-</EntityDescriptor>
-<EntityDescriptor id="Specimen_B_02" movable="true" storable="true" category="specimen" sizeX="0.01" sizeY="0.01">
-<State id="default" spriteId="specimen_B_01_stand" sellPrice="1"/>
-<Tag key="spX100" value="268"/>
-<Tag key="odds" value="0"/>
-<Tag key="dna" value="B"/>
-<Tag key="lifePoint" value="400"/>
-<Tag key="incubMin" value="180"/>
-<Tag key="specimen" value="true"/>
-<Tag key="atk1" value="150"/>
-<Tag key="atk1p" value="315"/>
-<Tag key="atk2" value="252"/>
-<Tag key="atk2p" value="327"/>
-<Tag key="bank" value="42"/>
-<Tag key="PNJ" value="true"/>
-<Tag key="unlockAttack" value="1:1:b;2:5:neutre;1p:10:b;2p:15:neutre"/>
-<Tag key="abilities" value="1:ability_regen;2:ability_regen_plus"/>
-<Tag key="abilityPct1" value="25"/>
-<Tag key="abilityPct2" value="35"/>
-<Tag key="orbSlots" value="n;s:20h"/>
-<Tag key="hideSkins" value="platinum"/>
-<CustomScript name="onPlaceOver">
-<Script cmd="PlaceSpecimen">
-<Param>Specimen_B</Param>
-</Script>
-</CustomScript>
-</EntityDescriptor>
-<EntityDescriptor id="Specimen_C_02" movable="true" storable="true" category="specimen" sizeX="0.01" sizeY="0.01">
-<State id="default" spriteId="specimen_C_01_stand" sellPrice="1"/>
-<Tag key="spX100" value="275"/>
-<Tag key="odds" value="0"/>
-<Tag key="dna" value="C"/>
-<Tag key="lifePoint" value="300"/>
-<Tag key="incubMin" value="180"/>
-<Tag key="specimen" value="true"/>
-<Tag key="atk1" value="150"/>
-<Tag key="atk1p" value="375"/>
-<Tag key="atk2" value="300"/>
-<Tag key="atk2p" value="372"/>
-<Tag key="bank" value="42"/>
-<Tag key="PNJ" value="true"/>
-<Tag key="unlockAttack" value="1:1:c;2:5:neutre;1p:10:c;2p:15:neutre"/>
-<Tag key="abilities" value="1:ability_retaliate;2:ability_retaliate_plus"/>
-<Tag key="abilityPct1" value="-15"/>
-<Tag key="abilityPct2" value="-25"/>
-<Tag key="orbSlots" value="n;s:20h"/>
-<Tag key="hideSkins" value="platinum"/>
-<CustomScript name="onPlaceOver">
-<Script cmd="PlaceSpecimen">
-<Param>Specimen_C</Param>
-</Script>
-</CustomScript>
-</EntityDescriptor>
+
+
+
 <EntityDescriptor id="Specimen_AA_02" movable="true" storable="true" category="specimen" sizeX="0.01" sizeY="0.01">
 <State id="default" spriteId="specimen_AA_02_stand" sellPrice="20000"/>
 <Tag key="spX100" value="260"/>

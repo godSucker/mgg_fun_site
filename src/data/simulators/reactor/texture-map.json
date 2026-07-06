@@ -1,7 +1,6 @@
 {
   "Specimen_A_01": "/textures_by_mutant/a_01/A_01_normal.webp",
   "Specimen_A_01_JAPAN": "/textures_by_skins/textures_by_skin/semi-full/specimen_a_01_japan.webp",
-  "Specimen_A_02": "/textures_by_mutant/a_02/A_02_normal.webp",
   "Specimen_A_03": "/textures_by_mutant/a_03/A_03_normal.webp",
   "Specimen_A_05": "/textures_by_mutant/a_05/A_05_normal.webp",
   "Specimen_A_05_WINTER": "/textures_by_skins/textures_by_skin/semi-full/specimen_a_05_winter.webp",
@@ -134,7 +133,6 @@
   "Specimen_AF_99_WINTER": "/textures_by_skins/textures_by_skin/semi-full/specimen_af_99_winter.webp",
   "Specimen_B_01": "/textures_by_mutant/b_01/B_01_normal.webp",
   "Specimen_B_01_VILLAINS": "/textures_by_skins/textures_by_skin/semi-full/specimen_b_01_villains.webp",
-  "Specimen_B_02": "/textures_by_mutant/b_02/B_02_normal.webp",
   "Specimen_B_03": "/textures_by_mutant/b_03/B_03_normal.webp",
   "Specimen_B_04": "/textures_by_mutant/b_04/B_04_normal.webp",
   "Specimen_B_05": "/textures_by_mutant/b_05/B_05_normal.webp",
@@ -265,7 +263,6 @@
   "Specimen_BF_13": "/textures_by_mutant/bf_13/BF_13_normal.webp",
   "Specimen_C_01": "/textures_by_mutant/c_01/C_01_normal.webp",
   "Specimen_C_01_STEAMPUNK": "/textures_by_skins/textures_by_skin/semi-full/specimen_c_01_steampunk.webp",
-  "Specimen_C_02": "/textures_by_mutant/c_02/C_02_normal.webp",
   "Specimen_C_03": "/textures_by_mutant/c_03/C_03_normal.webp",
   "Specimen_C_05": "/textures_by_mutant/c_05/C_05_normal.webp",
   "Specimen_C_13": "/textures_by_mutant/c_13/C_13_normal.webp",

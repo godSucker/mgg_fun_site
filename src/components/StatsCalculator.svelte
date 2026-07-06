@@ -563,12 +563,30 @@
   let basicSlots = $state([]);                 // длина = selected.basicSlotCount
   let specialSlot = $state(null);
 
+  // Множители урона для каждой атаки (1 / 0.5 / 0.75 / 1.25 / 1.5)
+  let atkMultipliers = $state({ 1: 1, 2: 1 });
+
   // Состояние интерфейса
   let showCatalog = $state(true); // Показывать ли поиск/каталог слева
   let isCopying = $state(false);  // Состояние "Копируется..."
   let dropdownHost = $state(null as HTMLElement | null);
   let openDropdown = $state(null as string | null); // 'basic-i' | 'special' | null
+  let collapsedCats = $state(new Set(['attack','health','speed','critical','xp','shield','regenerate','retaliate','slash','strengthen','weaken','other'].flatMap(k => [`basic-${k}`, `special-${k}`]))); // все категории свёрнуты по умолчанию
   let lastMutantId = $state(null as string | null); // Для отслеживания смены мутанта
+
+  // --- РЕЖИМ СРАВНЕНИЯ ---
+  let compareMode = $state(false);
+  let selected2 = $state(null as any);
+  let level2 = $state(30);
+  let stars2 = $state(0);
+  let basicSlots2 = $state([] as any[]);
+  let specialSlot2 = $state(null as any);
+  let openDropdown2 = $state(null as string | null);
+  let lastMutantId2 = $state(null as string | null);
+  let query2 = $state('');
+  let showSearch2 = $state(false);
+  let showSearch1 = $state(false);
+  let atkMultipliers2 = $state({ 1: 1, 2: 1 });
 
   // --- РАСЧЕТЫ ---
   // фильтрация + сортировка + поиск
@@ -620,6 +638,18 @@
       })
       .sort(byGene)); // Always use genetic sorting
 
+  // Фильтрованные списки для режима сравнения (без лимита)
+  let filtered1 = $derived(
+    query.trim()
+      ? ALL_MUTANTS.filter(m => normalizeSearch(m.name).includes(normalizeSearch(query))).sort(byGene)
+      : ALL_MUTANTS.slice().sort(byGene)
+  );
+  let filtered2 = $derived(
+    query2.trim()
+      ? ALL_MUTANTS.filter(m => normalizeSearch(m.name).includes(normalizeSearch(query2))).sort(byGene)
+      : ALL_MUTANTS.slice().sort(byGene)
+  );
+
   // смена выбранного мутанта — сбрасываем слоты по его типу и выбираем макс. звезду
   $effect(() => { if (selected && selected.id !== lastMutantId) {
     const count = Number.isFinite(selected.basicSlotCount) ? selected.basicSlotCount : 3;
@@ -633,12 +663,36 @@
     }
   }});
 
+  // Второй мутант: сброс слотов при смене
+  $effect(() => { if (selected2 && selected2.id !== lastMutantId2) {
+    const count = Number.isFinite(selected2.basicSlotCount) ? selected2.basicSlotCount : 3;
+    basicSlots2 = Array(count).fill(null);
+    specialSlot2 = null;
+    const availableArray = Array.from(selected2.availableStars);
+    if (availableArray.length > 0) {
+      stars2 = Math.max(...availableArray);
+      lastMutantId2 = selected2.id;
+    }
+  }});
+
   let allowedAbilityBases = $derived(buildAllowedAbilityBases(selected, specialSlot));
   let basicOrbOptions = $derived(filterBasicOrbs(ORBS.basic, allowedAbilityBases));
+  let specialOrbOptions = $derived(ORBS.special.filter(o => !isOrbConflicting(o, selected)));
   $effect(() => { if (Array.isArray(basicSlots)) {
     const sanitized = basicSlots.map((orb) => allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null);
     if (!arraysEqual(sanitized, basicSlots)) {
       basicSlots = sanitized;
+    }
+  }});
+
+  // Второй мутант: orb options
+  let allowedAbilityBases2 = $derived(buildAllowedAbilityBases(selected2, specialSlot2));
+  let basicOrbOptions2 = $derived(filterBasicOrbs(ORBS.basic, allowedAbilityBases2));
+  let specialOrbOptions2 = $derived(ORBS.special.filter(o => !isOrbConflicting(o, selected2)));
+  $effect(() => { if (Array.isArray(basicSlots2)) {
+    const sanitized = basicSlots2.map((orb) => allowOrbForAbilities(orb, allowedAbilityBases2) ? orb : null);
+    if (!arraysEqual(sanitized, basicSlots2)) {
+      basicSlots2 = sanitized;
     }
   }});
 
@@ -814,7 +868,14 @@
   let stats = $derived(selected ? calcStats(selected, level, stars, orbModifiers) : {hp:0, atk1:0, atk2:0, speed:0, bank: 0});
   let abilityRows = $derived(selected ? calcAbilityRows(selected, stats, orbModifiers, level, specialSlot) : []);
   let attackRows = $derived(buildAttackRows(selected, stats, abilityRows));
+
+  // --- ВТОРОЙ МУТАНТ (сравнение) ---
+  let orbModifiers2 = $derived(calcOrbModifiers(basicSlots2, specialSlot2));
+  let stats2 = $derived(selected2 ? calcStats(selected2, level2, stars2, orbModifiers2) : {hp:0, atk1:0, atk2:0, speed:0, bank: 0});
+  let abilityRows2 = $derived(selected2 ? calcAbilityRows(selected2, stats2, orbModifiers2, level2, specialSlot2) : []);
+  let attackRows2 = $derived(buildAttackRows(selected2, stats2, abilityRows2));
   let typeIconCurrent = $derived(selected ? typeIconPath(selected.typeKey || selected.type) : '');
+  let typeIconCurrent2 = $derived(selected2 ? typeIconPath(selected2.typeKey || selected2.type) : '');
 
   function buildAttackRows(mutant, statLine, abilityList){
     if (!mutant) return [];
@@ -840,11 +901,13 @@
       const geneIcon = meta.geneIcon || '';
       const isAoe = Boolean(meta.isAoe);
       const label = meta.label || `Атака ${idx}`;
+      const gene = meta.gene || '';
       return {
         attack: idx,
         label,
         geneIcon,
         isAoe,
+        gene,
         damage,
         effects,
       };
@@ -979,6 +1042,83 @@
     return arr.filter((orb) => allowOrbForAbilities(orb, allowed));
   }
 
+  const CAT_ORDER = ['attack', 'health', 'speed', 'critical', 'xp', 'shield', 'regenerate', 'retaliate', 'slash', 'strengthen', 'weaken', 'other'];
+
+  const CAT_LABELS: Record<string, string> = {
+    attack: 'Атака',
+    health: 'Здоровье',
+    speed: 'Скорость',
+    critical: 'Крит',
+    xp: 'Опыт',
+    shield: 'Щит',
+    regenerate: 'Вытягивание жизни',
+    retaliate: 'Отражение',
+    slash: 'Рана',
+    strengthen: 'Усиление',
+    weaken: 'Проклятие',
+  };
+
+  const CAT_ICONS: Record<string, string> = {
+    attack: '/orbs/basic/orb_basic_attack_03.webp',
+    health: '/orbs/basic/orb_basic_life_03.webp',
+    speed: '/orbs/basic/orb_basic_speed_03.webp',
+    critical: '/orbs/basic/orb_basic_critical_03.webp',
+    xp: '/orbs/basic/orb_basic_xp_03.webp',
+    shield: '/orbs/basic/orb_basic_shield_03.webp',
+    regenerate: '/orbs/basic/orb_basic_regenerate_03.webp',
+    retaliate: '/orbs/basic/orb_basic_retaliate_03.webp',
+    slash: '/orbs/basic/orb_basic_slash_03.webp',
+    strengthen: '/orbs/basic/orb_basic_strengthen_03.webp',
+    weaken: '/orbs/basic/orb_basic_weaken_03.webp',
+  };
+
+  function orbCategoryKey(orb: any): string {
+    const id = String(orb?.id || '').toLowerCase();
+    if (id.includes('attack')) return 'attack';
+    if (id.includes('health') || id.includes('_hp') || id.includes('life')) return 'health';
+    if (id.includes('speed')) return 'speed';
+    if (id.includes('critical') || id.includes('crit')) return 'critical';
+    if (id.includes('xp') || id.includes('experience')) return 'xp';
+    if (id.includes('shield')) return 'shield';
+    if (id.includes('regenerate')) return 'regenerate';
+    if (id.includes('retaliate')) return 'retaliate';
+    if (id.includes('slash')) return 'slash';
+    if (id.includes('strengthen')) return 'strengthen';
+    if (id.includes('weaken')) return 'weaken';
+    return 'other';
+  }
+
+  function groupOrbsByCategory(list: any[], prefix: string = 'basic'): { key: string; label: string; icon: string; items: any[] }[] {
+    const map = new Map<string, any[]>();
+    for (const orb of list) {
+      const key = orbCategoryKey(orb);
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(orb);
+    }
+    const result: { key: string; label: string; icon: string; items: any[] }[] = [];
+    for (const k of CAT_ORDER) {
+      const items = map.get(k);
+      if (items && items.length > 0) {
+        const fallback = CAT_ICONS[k] ? CAT_ICONS[k].replace('/orbs/basic/', `/orbs/${prefix}/`) : '';
+        const icon = items[0]?.icon || fallback;
+        result.push({ key: k, label: CAT_LABELS[k] || k, icon, items });
+      }
+    }
+    return result;
+  }
+
+  function toggleCat(prefix: string, key: string) {
+    const id = `${prefix}-${key}`;
+    const next = new Set(collapsedCats);
+    if (next.has(id)) next.delete(id);
+    else next.add(id);
+    collapsedCats = next;
+  }
+
+  function isCatOpen(prefix: string, key: string): boolean {
+    return !collapsedCats.has(`${prefix}-${key}`);
+  }
+
   function arraysEqual(a, b){
     if (a === b) return true;
     if (!Array.isArray(a) || !Array.isArray(b)) return false;
@@ -1018,14 +1158,45 @@
   function selectMutant(m){
     selected = m;
   }
+  function selectMutant1(m){
+    selected = m;
+    query = m.name;
+    showSearch1 = false;
+  }
+  function selectMutant2(m){
+    selected2 = m;
+    query2 = m.name;
+    showSearch2 = false;
+  }
   function pickBasic(slotIndex, orb){
     const choice = allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null;
     basicSlots = basicSlots.map((v,i)=> i===slotIndex ? choice : v);
     openDropdown = null;
   }
   function pickSpecial(orb){
+    if (isOrbConflicting(orb, selected)) return;
     specialSlot = orb;
     openDropdown = null;
+  }
+
+  function getMutantAbilityBases(mutant): Set<string> {
+    const set = new Set<string>();
+    const baseList = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
+    for (const ability of baseList) {
+      const base = abilityBaseKey(ability?.baseCode || ability?.code);
+      if (base) set.add(base);
+    }
+    return set;
+  }
+
+  function isOrbConflicting(orb, mutant): boolean {
+    if (!orb || !mutant) return false;
+    const ability = orb.specialAbility;
+    if (!ability) return false;
+    const orbBase = abilityBaseKey(ability.baseCode || ability.code);
+    if (!orbBase) return false;
+    const mutantBases = getMutantAbilityBases(mutant);
+    return mutantBases.has(orbBase);
   }
   function clearSlot(kind, i=null){
     if (kind==='basic') basicSlots = basicSlots.map((v,idx)=> idx===i ? null : v);
@@ -1034,9 +1205,10 @@
 
   // Закрытие открытых выпадашек по клику вне
   function windowClick(e){
-    if (!openDropdown) return;
-    if (!dropdownHost) return;
-    if (!dropdownHost.contains(e.target)) openDropdown = null;
+    if (openDropdown && dropdownHost && !dropdownHost.contains(e.target)) openDropdown = null;
+    const target = e.target as HTMLElement;
+    if (showSearch1 && !target?.closest('.compare-search-wrap[data-slot="1"]')) showSearch1 = false;
+    if (showSearch2 && !target?.closest('.compare-search-wrap[data-slot="2"]')) showSearch2 = false;
   }
 
   // --- NEW CODE: Логика скрытия каталога и скриншота ---
@@ -1348,7 +1520,7 @@
 
 <svelte:window onclick={windowClick} />
 
-<div class="stats-page" class:single-col={!showCatalog}>
+<div class="stats-page" class:single-col={!showCatalog && !compareMode} class:compare-active={compareMode}>
 
   <!-- ЛЕВАЯ КОЛОНКА: КАТАЛОГ (Скрывается по условию) -->
   {#if showCatalog}
@@ -1430,26 +1602,65 @@
     {#if selected}
       <!-- Хедер панели с кнопками управления -->
       <div class="panel-header">
-         <!-- Кнопка показа/скрытия каталога -->
+         <!-- Кнопка показа/скрытия каталога (только вне сравнения) -->
          <div class="header-left">
+            {#if !compareMode}
             <button class="tool-btn" onclick={toggleCatalog} title={showCatalog ? "Скрыть поиск" : "Показать поиск"}>
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                 {#if showCatalog}
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                 {:else}
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                 {/if}
+                  {#if showCatalog}
+                     <line x1="18" y1="6" x2="6" y2="18"></line>
+                     <line x1="6" y1="6" x2="18" y2="18"></line>
+                  {:else}
+                     <line x1="3" y1="12" x2="21" y2="12"></line>
+                     <line x1="3" y1="6" x2="21" y2="6"></line>
+                     <line x1="3" y1="18" x2="21" y2="18"></line>
+                  {/if}
                </svg>
             </button>
+            {/if}
          </div>
 
-         <header class="title">{selected.name}</header>
+         {#if compareMode}
+           <div class="compare-search-wrap" data-slot="1">
+             <input
+               class="compare-search-input"
+               type="text"
+               placeholder="Поиск мутанта..."
+               bind:value={query}
+               onfocus={() => showSearch1 = true}
+               oninput={() => showSearch1 = true}
+             />
+             {#if query}
+               <button class="compare-search-clear" onclick={() => { query = ''; showSearch1 = true; }} title="Очистить">×</button>
+             {/if}
+             {#if showSearch1 && filtered1.length > 0}
+               <div class="compare-search-dropdown">
+                 {#each filtered1 as m (m.id)}
+                   <button
+                     class="compare-search-row"
+                     class:active={selected?.id === m.id}
+                     onclick={() => selectMutant1(m)}
+                   >
+                     <img class="compare-search-icon" src={textureUrl(listThumbnail(m) || '')} alt="" loading="lazy" />
+                     <div class="compare-search-meta">
+                       <span class="compare-search-name">{m.name}</span>
+                       <span class="compare-search-genes">
+                         {#each m.genes as g}
+                           <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+                         {/each}
+                       </span>
+                     </div>
+                   </button>
+                 {/each}
+               </div>
+             {/if}
+           </div>
+         {:else}
+           <header class="title">{selected.name}</header>
+         {/if}
       </div>
 
-      <!-- Кнопка скриншота перенесена под заголовок для исключения наложения -->
+      <!-- Кнопки инструментов (скриншот / сравнение) -->
       <div class="header-tools-row">
         <button class="tool-btn share-btn" onclick={shareScreenshot} disabled={isCopying} title="Сохранить как картинку">
            {#if isCopying}
@@ -1457,6 +1668,9 @@
            {:else}
              <span>Сделать скриншот</span>
            {/if}
+        </button>
+        <button class="tool-btn compare-btn" class:active={compareMode} onclick={() => { compareMode = !compareMode; if (compareMode && !selected2) selected2 = ALL_MUTANTS[1]; }}>
+          <span>{compareMode ? 'Выход' : 'Сравнить'}</span>
         </button>
       </div>
 
@@ -1484,10 +1698,20 @@
                 {/if}
                 {#if openDropdown === `basic-${i}`}
                   <div class="dropdown">
-                    {#each basicOrbOptions as o}
-                      <button class="orb-row" onclick={() => pickBasic(i, o)}>
-                        <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                    {#each groupOrbsByCategory(basicOrbOptions, 'basic') as cat}
+                      <button class="cat-header" class:collapsed={!isCatOpen('basic', cat.key)} onclick={() => toggleCat('basic', cat.key)}>
+                        <span class="cat-arrow">{isCatOpen('basic', cat.key) ? '▾' : '▸'}</span>
+                        {#if cat.icon}<img class="cat-icon" src={textureUrl(cat.icon)} alt="" />{/if}
+                        {cat.label}
+                        <span class="cat-count">{cat.items.length}</span>
                       </button>
+                      {#if isCatOpen('basic', cat.key)}
+                        {#each cat.items as o}
+                          <button class="orb-row" onclick={() => pickBasic(i, o)}>
+                            <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                          </button>
+                        {/each}
+                      {/if}
                     {/each}
                   </div>
                 {/if}
@@ -1506,10 +1730,20 @@
               {/if}
               {#if openDropdown === 'special'}
                 <div class="dropdown">
-                  {#each ORBS.special as o}
-                    <button class="orb-row" onclick={() => pickSpecial(o)}>
-                      <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                  {#each groupOrbsByCategory(specialOrbOptions, 'special') as cat}
+                    <button class="cat-header" class:collapsed={!isCatOpen('special', cat.key)} onclick={() => toggleCat('special', cat.key)}>
+                      <span class="cat-arrow">{isCatOpen('special', cat.key) ? '▾' : '▸'}</span>
+                      {#if cat.icon}<img class="cat-icon" src={textureUrl(cat.icon)} alt="" />{/if}
+                      {cat.label}
+                      <span class="cat-count">{cat.items.length}</span>
                     </button>
+                    {#if isCatOpen('special', cat.key)}
+                      {#each cat.items as o}
+                        <button class="orb-row" onclick={() => pickSpecial(o)}>
+                          <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                        </button>
+                      {/each}
+                    {/if}
                   {/each}
                 </div>
               {/if}
@@ -1570,6 +1804,22 @@
 
           {#each attackRows as attack (attack.attack)}
             <div class="row attack-row">
+              {#if attack.gene !== 'neutro'}
+              <div class="atk-mult-bar">
+                {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
+                  {@const active = (atkMultipliers[attack.attack] ?? 1) === (1 + delta)}
+                  <button
+                    class="atk-mult-btn"
+                    class:active
+                    class:m-beige={delta === -0.25}
+                    class:m-orange={delta === 0.25}
+                    class:m-red={delta === 0.5}
+                    title={delta === 0 ? 'Без изменений' : `${delta > 0 ? '+' : ''}${delta * 100}%`}
+                    onclick={() => atkMultipliers[attack.attack] = active ? 1 : 1 + delta}
+                  >{delta === 0 ? '0' : `${delta > 0 ? '+' : ''}${delta * 100}%`}</button>
+                {/each}
+              </div>
+              {/if}
               <div class="attack-side">
                 <span class="attack-gene" class:empty={!attack.geneIcon}>
                   {#if attack.geneIcon}
@@ -1581,7 +1831,25 @@
                 </span>
                 <div class="attack-info">
                   <span class="attack-label">{attack.label}</span>
-                  <span class="attack-damage">{attack.damage ? attack.damage.toLocaleString('ru-RU') : '—'}</span>
+                  <div class="attack-dmg-group">
+                    <span class="attack-damage">{attack.damage ? Math.round(attack.damage * (atkMultipliers[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
+                    {#if attack.gene !== 'neutro'}
+                    <div class="atk-mult-btns">
+                      {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
+                        {@const active = (atkMultipliers[attack.attack] ?? 1) === (1 + delta)}
+                        <button
+                          class="atk-mult-btn"
+                          class:active
+                          class:m-beige={delta === -0.25}
+                          class:m-orange={delta === 0.25}
+                          class:m-red={delta === 0.5}
+                          title={delta === 0 ? 'Без изменений' : `${delta > 0 ? '+' : ''}${delta * 100}%`}
+                          onclick={() => atkMultipliers[attack.attack] = active ? 1 : 1 + delta}
+                        >{delta === 0 ? '0' : `${delta > 0 ? '+' : ''}${delta * 100}%`}</button>
+                      {/each}
+                    </div>
+                    {/if}
+                  </div>
                 </div>
               </div>
               <span class="ability-divider" class:empty={!attack.effects.length} aria-hidden="true"></span>
@@ -1598,7 +1866,7 @@
                           <span class="effect-percent">{effect.percent.toLocaleString('ru-RU')}%</span>
                         {/if}
                       </span>
-                      <span class="effect-value">{effect.value.toLocaleString('ru-RU')}</span>
+                      <span class="effect-value">{Math.round(effect.value * (atkMultipliers[attack.attack] ?? 1)).toLocaleString('ru-RU')}</span>
                     </div>
                   {/each}
                 {:else}
@@ -1627,6 +1895,276 @@
 
     {/if}
   </section>
+
+  <!-- ВТОРАЯ ПАНЕЛЬ (режим сравнения) -->
+  {#if compareMode && selected2}
+  <section class="panel panel-compare">
+    {#if selected2}
+      <div class="panel-header">
+         <div class="header-left">
+            <button class="tool-btn" onclick={() => { compareMode = false; }} title="Закрыть сравнение">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+               </svg>
+            </button>
+         </div>
+           <div class="compare-search-wrap" data-slot="2">
+            <input
+              class="compare-search-input"
+              type="text"
+              placeholder="Поиск мутанта..."
+              bind:value={query2}
+              onfocus={() => showSearch2 = true}
+              oninput={() => showSearch2 = true}
+            />
+            {#if query2}
+              <button class="compare-search-clear" onclick={() => { query2 = ''; showSearch2 = true; }} title="Очистить">×</button>
+            {/if}
+            {#if showSearch2 && filtered2.length > 0}
+             <div class="compare-search-dropdown">
+               {#each filtered2 as m (m.id)}
+                 <button
+                   class="compare-search-row"
+                   class:active={selected2?.id === m.id}
+                   onclick={() => selectMutant2(m)}
+                 >
+                   <img class="compare-search-icon" src={textureUrl(listThumbnail(m) || '')} alt="" loading="lazy" />
+                   <div class="compare-search-meta">
+                     <span class="compare-search-name">{m.name}</span>
+                     <span class="compare-search-genes">
+                       {#each m.genes as g}
+                         <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+                       {/each}
+                     </span>
+                   </div>
+                 </button>
+               {/each}
+             </div>
+           {/if}
+         </div>
+      </div>
+
+      <div class="hero-section">
+      <div class="hero-genes">
+          {#each selected2.genes as g}
+            <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} />
+          {/each}
+        </div>
+        <div class="mut-figure">
+          <img class="texture" src={textureUrl(figureImage(selected2, stars2))} alt={selected2.name} />
+        </div>
+
+        <div class="hero-controls">
+          <div class="slots">
+            {#each basicSlots2 as orb, i}
+              <div class="slot">
+                <button class="slot-btn" onclick={() => openDropdown2 = openDropdown2 === `basic2-${i}` ? null : `basic2-${i}`}>
+                  <img class="slot-bg" src={textureUrl("/orbs/basic/orb_slot.webp")} alt="slot" />
+                  {#if orb}<img class="orb" src={textureUrl(orb.icon)} alt={orb.id} />{/if}
+                </button>
+                {#if orb}
+                  <button class="x" title="убрать" onclick={() => { basicSlots2 = basicSlots2.map((v,idx)=> idx===i ? null : v); }}>×</button>
+                {/if}
+                {#if openDropdown2 === `basic2-${i}`}
+                  <div class="dropdown">
+                    {#each groupOrbsByCategory(basicOrbOptions2, 'basic') as cat}
+                      <button class="cat-header" class:collapsed={!isCatOpen('basic', cat.key)} onclick={() => toggleCat('basic', cat.key)}>
+                        <span class="cat-arrow">{isCatOpen('basic', cat.key) ? '▾' : '▸'}</span>
+                        {#if cat.icon}<img class="cat-icon" src={textureUrl(cat.icon)} alt="" />{/if}
+                        {cat.label}
+                        <span class="cat-count">{cat.items.length}</span>
+                      </button>
+                      {#if isCatOpen('basic', cat.key)}
+                        {#each cat.items as o}
+                          <button class="orb-row" onclick={() => { basicSlots2 = basicSlots2.map((v,idx)=> idx===i ? o : v); openDropdown2 = null; }}>
+                            <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                          </button>
+                        {/each}
+                      {/if}
+                    {/each}
+                  </div>
+                {/if}
+              </div>
+            {/each}
+
+            {#if selected2.specialSlotCount > 0}
+            <div class="slot">
+              <button class="slot-btn" onclick={() => openDropdown2 = openDropdown2 === 'special2' ? null : 'special2'}>
+                <img class="slot-bg" src={textureUrl("/orbs/special/orb_slot_spe.webp")} alt="special" />
+                {#if specialSlot2}<img class="orb" src={textureUrl(specialSlot2.icon)} alt={specialSlot2.id} />{/if}
+              </button>
+              {#if specialSlot2}
+                <button class="x" title="убрать" onclick={() => { specialSlot2 = null; }}>×</button>
+              {/if}
+              {#if openDropdown2 === 'special2'}
+                <div class="dropdown">
+                  {#each groupOrbsByCategory(specialOrbOptions2, 'special') as cat}
+                    <button class="cat-header" class:collapsed={!isCatOpen('special', cat.key)} onclick={() => toggleCat('special', cat.key)}>
+                      <span class="cat-arrow">{isCatOpen('special', cat.key) ? '▾' : '▸'}</span>
+                      {#if cat.icon}<img class="cat-icon" src={textureUrl(cat.icon)} alt="" />{/if}
+                      {cat.label}
+                      <span class="cat-count">{cat.items.length}</span>
+                    </button>
+                    {#if isCatOpen('special', cat.key)}
+                      {#each cat.items as o}
+                        <button class="orb-row" onclick={() => { specialSlot2 = o; openDropdown2 = null; }}>
+                          <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                        </button>
+                      {/each}
+                    {/if}
+                  {/each}
+                </div>
+              {/if}
+            </div>
+            {/if}
+          </div>
+
+          <div class="controls">
+              <div class="control">
+              <span class="control-label">Уровень:</span>
+              <input
+                class="lvl"
+                type="number"
+                min="1"
+                max="500"
+                bind:value={level2}
+                onkeydown={(e) => { if (e.key === '-' || e.key === 'e' || e.key === '+') e.preventDefault(); }}
+                oninput={(e) => { if (e.target.value < 0) level2 = 0; }}
+              />
+            </div>
+            <div class="control">
+              <span class="control-label">Звёздность:</span>
+              <div class="stars">
+                {#each [0,1,2,3,4] as s}
+                  <button
+                    class="star"
+                    class:selected={stars2 === s}
+                    disabled={!selected2.availableStars.has(s)}
+                    onclick={() => stars2 = s}
+                    aria-pressed={stars2 === s}
+                    title={s===0?'Без звёзд': s===1?'Бронза': s===2?'Серебро': s===3?'Золото':'Платина'}>
+                    <img src={textureUrl(STAR_ICON[s])} alt="*" />
+                  </button>
+                {/each}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="stats">
+          <div class="row">
+            <span class="label">
+              {#if typeIconCurrent2}
+                <img class="label-icon type-icon" src={typeIconCurrent2} alt="Тип" />
+              {/if}
+              Тип
+            </span>
+            <b>{selected2.typeLabel || selected2.type || '—'}</b>
+          </div>
+          <div class="row"><span class="label">Тир</span><b>{selected2.tierLabel || selected2.tier || '—'}</b></div>
+          <div class="row">
+            <span class="label">
+              <img class="label-icon" src={STAT_ICON.hp} alt="HP" />
+              HP
+            </span>
+            <b>{stats2.hp.toLocaleString('ru-RU')}</b>
+          </div>
+
+          {#each attackRows2 as attack (attack.attack)}
+            <div class="row attack-row">
+              {#if attack.gene !== 'neutro'}
+              <div class="atk-mult-bar">
+                {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
+                  {@const active = (atkMultipliers2[attack.attack] ?? 1) === (1 + delta)}
+                  <button
+                    class="atk-mult-btn"
+                    class:active
+                    class:m-beige={delta === -0.25}
+                    class:m-orange={delta === 0.25}
+                    class:m-red={delta === 0.5}
+                    title={delta === 0 ? 'Без изменений' : `${delta > 0 ? '+' : ''}${delta * 100}%`}
+                    onclick={() => atkMultipliers2[attack.attack] = active ? 1 : 1 + delta}
+                  >{delta === 0 ? '0' : `${delta > 0 ? '+' : ''}${delta * 100}%`}</button>
+                {/each}
+              </div>
+              {/if}
+              <div class="attack-side">
+                <span class="attack-gene" class:empty={!attack.geneIcon}>
+                  {#if attack.geneIcon}
+                    <img class="gene-icon" src={attack.geneIcon} alt="" aria-hidden="true" />
+                  {/if}
+                  {#if attack.isAoe}
+                    <img class="attack-aoe" src={textureUrl("/genes/atk_multiple.webp")} alt="АОЕ" />
+                  {/if}
+                </span>
+                <div class="attack-info">
+                  <span class="attack-label">{attack.label}</span>
+                  <div class="attack-dmg-group">
+                    <span class="attack-damage">{attack.damage ? Math.round(attack.damage * (atkMultipliers2[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
+                    {#if attack.gene !== 'neutro'}
+                    <div class="atk-mult-btns">
+                      {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
+                        {@const active = (atkMultipliers2[attack.attack] ?? 1) === (1 + delta)}
+                        <button
+                          class="atk-mult-btn"
+                          class:active
+                          class:m-beige={delta === -0.25}
+                          class:m-orange={delta === 0.25}
+                          class:m-red={delta === 0.5}
+                          title={delta === 0 ? 'Без изменений' : `${delta > 0 ? '+' : ''}${delta * 100}%`}
+                          onclick={() => atkMultipliers2[attack.attack] = active ? 1 : 1 + delta}
+                        >{delta === 0 ? '0' : `${delta > 0 ? '+' : ''}${delta * 100}%`}</button>
+                      {/each}
+                    </div>
+                    {/if}
+                  </div>
+                </div>
+              </div>
+              <span class="ability-divider" class:empty={!attack.effects.length} aria-hidden="true"></span>
+              <div class="effect-side">
+                {#if attack.effects.length}
+                  {#each attack.effects as effect, i (effect.label + effect.value + effect.percent + i)}
+                    <div class="effect-row">
+                      {#if effect.icon}
+                        <img class="ability-icon" src={textureUrl(effect.icon)} alt={effect.label} />
+                      {/if}
+                      <span class="effect-name">
+                        {effect.label}
+                        {#if effect.percent != null}
+                          <span class="effect-percent">{effect.percent.toLocaleString('ru-RU')}%</span>
+                        {/if}
+                      </span>
+                      <span class="effect-value">{Math.round(effect.value * (atkMultipliers2[attack.attack] ?? 1)).toLocaleString('ru-RU')}</span>
+                    </div>
+                  {/each}
+                {:else}
+                  <span class="effect-empty">—</span>
+                {/if}
+              </div>
+            </div>
+          {/each}
+
+          <div class="row">
+            <span class="label">
+              <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
+              Скорость
+            </span>
+            <b>{formatSpeed(stats2.speed)}</b>
+          </div>
+          <div class="row">
+            <span class="label">
+              <img class="label-icon" src={textureUrl("/cash/softcurrency.webp")} alt="Серебро" />
+              Серебро
+            </span>
+            <b>{stats2.bank.toLocaleString('ru-RU')}</b>
+          </div>
+        </div>
+
+    {/if}
+  </section>
+  {/if}
 </div>
 
 <style>
@@ -1681,6 +2219,212 @@
   .stats-page.single-col .panel {
     width: 100%;
     max-width: 660px;
+  }
+
+  /* Режим сравнения: две панели рядом */
+  .stats-page.compare-active {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .stats-page.compare-active .catalog {
+    display: none;
+  }
+  .stats-page.compare-active .panel {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+  .stats-page.compare-active .panel .header-tools-row {
+    margin-bottom: 0;
+  }
+  .stats-page.compare-active .panel .panel-header {
+    margin-bottom: 0;
+  }
+  .stats-page.compare-active .panel .hero-section {
+    gap: 2px;
+  }
+  .compare-btn {
+    background: rgba(34, 197, 94, 0.2) !important;
+    border: 1px solid rgba(34, 197, 94, 0.6) !important;
+    border-radius: 6px !important;
+    color: #86efac !important;
+    width: auto !important;
+    height: 22px !important;
+    padding: 0 10px !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    transition: all 0.2s ease !important;
+  }
+  .compare-btn.active {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border: 1px solid rgba(239, 68, 68, 0.6) !important;
+    color: #fca5a5 !important;
+  }
+  .compare-btn:hover {
+    background: rgba(34, 197, 94, 0.35) !important;
+    color: #ffffff !important;
+    border-color: rgba(34, 197, 94, 0.8) !important;
+    transform: translateY(-1px);
+  }
+  .compare-btn.active:hover {
+    background: rgba(239, 68, 68, 0.35) !important;
+    color: #ffffff !important;
+    border-color: rgba(239, 68, 68, 0.8) !important;
+    transform: translateY(-1px);
+  }
+  .compare-btn:active {
+    transform: translateY(0);
+  }
+  .compare-select-wrap { flex: 1; display: flex; justify-content: center; }
+  .compare-select {
+    background: #1b212a;
+    color: #e9eef6;
+    border: 1px solid #3a475a;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    max-width: 260px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+  }
+  .compare-select option { background: #1b212a; color: #e9eef6; }
+
+  /* --- Поиск мутанта в режиме сравнения --- */
+  .compare-search-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 270px;
+  }
+  .compare-search-input {
+    width: 100%;
+    padding: 6px 24px 6px 12px;
+    border-radius: 8px;
+    border: 1px solid #3a475a !important;
+    background: #1b212a !important;
+    color: #e9eef6 !important;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .compare-search-input:focus {
+    border-color: #58a6ff;
+  }
+  .compare-search-input::placeholder {
+    color: #6b7a8d;
+  }
+  .compare-search-clear {
+    position: absolute;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 100, 100, 0.3) !important;
+    color: #ff6464 !important;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+    z-index: 1;
+    line-height: 1;
+    padding: 0;
+  }
+  .compare-search-clear:hover {
+    background: rgba(255, 100, 100, 0.5) !important;
+  }
+  .compare-search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #1b212a;
+    border: 1px solid #3a475a;
+    border-radius: 10px;
+    z-index: 9999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  }
+  .compare-search-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    color: #dfe7f3;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+  .compare-search-row:hover {
+    background: rgba(88, 166, 255, 0.1);
+  }
+  .compare-search-row.active {
+    background: rgba(88, 166, 255, 0.2);
+    color: #58a6ff;
+  }
+  .compare-search-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #0f1319;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .compare-search-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .compare-search-name {
+    font-size: 13px;
+    color: #e9eef6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .compare-search-genes {
+    display: flex;
+    gap: 3px;
+  }
+  .compare-search-genes img {
+    width: 16px;
+    height: 16px;
+  }
+  @media (max-width: 1024px) {
+    .stats-page.compare-active {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .stats-page.compare-active .panel { max-width: 95vw; margin: 0 auto; }
+  }
+  @media (max-width: 480px) {
+    .compare-search-wrap { max-width: 90%; }
+    .compare-search-input { font-size: 13px; padding: 5px 22px 5px 12px; }
+    .compare-search-dropdown { max-height: 250px; }
   }
 
   .catalog{ background:#212832; border-radius:12px; padding:16px; display:flex; flex-direction:column; }
@@ -1756,6 +2500,7 @@
   .header-tools-row {
     display: flex;
     justify-content: center;
+    gap: 8px;
     width: 100%;
     margin-bottom: 3px;
   }
@@ -1810,16 +2555,13 @@
   }
   /* --- НОВЫЙ СТИЛЬ ДЛЯ КНОПКИ СКРИНШОТА --- */
   .share-btn {
-    background: rgba(59, 130, 246, 0.15); /* Синеватый фон */
-    border: 1px solid rgba(59, 130, 246, 0.3); /* Рамка */
-    color: #93c5fd; /* Светло-голубой текст */
-
-    /* Размеры и текст */
-    width: auto; /* Автоматическая ширина под текст */
-    height: 28px;
-    padding: 0 14px; /* Отступы по бокам */
-
-    font-size: 12px;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+    width: auto;
+    height: 22px;
+    padding: 0 10px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1903,6 +2645,15 @@
   @media (min-width: 768px) {
     .x { right: -8px; top: -8px; width: 22px; height: 22px; font-size: 14px; }
   }
+  /* В режиме сравнения сдвигаем X-кнопку слотов левее, чтобы не наезжала на инпут поиска */
+  .compare-active .slot .x { right: -10px !important; }
+  @media (min-width: 768px) {
+    .compare-active .slot .x { right: -12px !important; }
+  }
+  /* Уменьшаем padding кнопки X (close) в compare-active чтобы не наезжала на инпут */
+  .compare-active .header-left .tool-btn {
+    padding: 4px !important;
+  }
 
    /* --- ИСПРАВЛЕННОЕ МЕНЮ СФЕР (ПО ЦЕНТРУ) --- */
   .dropdown {
@@ -1925,21 +2676,46 @@
     /* Сильная тень, чтобы затемнить фон под меню */
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7), 0 10px 40px rgba(0,0,0, 0.8);
   }
-  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
+  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:2px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
   .orb-row:hover { background: #2e3948; }
-  .orb-row img{ width:28px; height:28px; object-fit:contain; flex-shrink: 0; }
+  .orb-row img{ width:36px; height:36px; object-fit:contain; flex-shrink: 0; }
   @media (min-width: 768px) {
-    .orb-row img { width: 36px; height: 36px; }
+    .orb-row img { width: 44px; height: 44px; }
   }
+
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .cat-header:first-child { margin-top: 0; }
+  .cat-header:hover { background: rgba(59, 130, 246, 0.2); }
+  .cat-header.collapsed { color: #ffffff; }
+  .cat-arrow { font-size: 12px; width: 14px; text-align: center; flex-shrink: 0; }
+  .cat-icon { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
+  .cat-count { margin-left: auto; font-size: 12px; color: #94a3b8; font-weight: 400; }
 
   .controls{ display:flex; gap:6px; justify-content:center; margin:0; flex-wrap:wrap; }
   @media (min-width: 768px) {
     .controls { gap: 8px; }
   }
-  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:6px 10px; }
+  .control{ display:flex; align-items:center; gap:6px; color:#aab6c8; font-size:12px; background:#1b212a; border:1px solid #2e3948; border-radius:10px; padding:3px 10px; }
   .control .control-label{ white-space:nowrap; }
 
-  .lvl{ width:64px; padding:6px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
+  .lvl{ width:64px; padding:3px 7px; border-radius:8px; border:1px solid #3a475a; background:#10161f; color:#e9eef6; font-size:13px; }
 
   /* Стили для статического уровня на скриншоте */
   :global(.lvl-static) {
@@ -1992,15 +2768,15 @@
     background:#1b212a;
     border:1px solid #2e3948;
     border-radius:12px;
-    padding:4px 10px;
+    padding:2px 10px;
     color:#dfe7f3;
     font-size:13px;
-    min-height:38px;
+    min-height:32px;
   }
   @media (min-width: 768px) {
     .row {
-      padding: 6px 14px;
-      min-height: 44px;
+      padding: 4px 14px;
+      min-height: 38px;
       font-size: 14px;
     }
   }
@@ -2029,6 +2805,7 @@
 
   /* --- ОБНОВЛЕННЫЙ ДИЗАЙН АТАКИ --- */
   .row.attack-row{
+    position: relative;
     align-items: stretch;
     gap: 6px;
     padding: 6px 10px;
@@ -2036,19 +2813,32 @@
   @media (min-width: 768px) {
     .row.attack-row {
       gap: 10px;
-      padding: 8px 14px;
+      padding: 28px 14px 8px;
     }
   }
 
-  .attack-side {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    flex: 1 1 0;
-    min-width: 0;
+  /* Панель множителей — абсолютно в углу карточки (только ПК) */
+  .atk-mult-bar {
+    display: none;
   }
   @media (min-width: 768px) {
-    .attack-side { gap: 5px; }
+    .atk-mult-bar {
+      display: flex;
+      gap: 3px;
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      z-index: 2;
+    }
+  }
+
+  /* Кнопки внутри строки — только мобилка, на ПК скрыты */
+  .atk-mult-btns {
+    display: flex;
+    gap: 2px;
+  }
+  @media (min-width: 768px) {
+    .atk-mult-btns { display: none !important; }
   }
 
  /* --- ФИКС АТАКИ --- */
@@ -2107,14 +2897,25 @@
 
   .attack-gene.empty { opacity: 0; }
 
+  .attack-side {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  @media (min-width: 768px) {
+    .attack-side { gap: 5px; }
+  }
+
   .attack-info {
     display: flex;
-    flex-direction: row; /* Выстраиваем Имя и Урон в одну линию */
-    justify-content: space-between; /* Имя слева, Урон справа (как на скриншоте) */
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
     gap: 8px;
     min-width: 0;
+    flex: 1;
   }
 
 
@@ -2127,16 +2928,62 @@
     text-overflow: ellipsis;
     line-height: 1.2;
     text-align: left;
-    flex: 1; /* Занимает все свободное место, толкая урон вправо */
+    flex: 1 1 auto;
+    min-width: 80px;
+  }
+
+  .attack-dmg-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    flex-shrink: 1;
   }
 
   .attack-damage {
-    font-size: 15px;       /* Точно такой же размер */
+    font-size: 15px;
     font-weight: 700;
-    color: #e9eef6;        /* Точно такой же цвет */
+    color: #e9eef6;
     text-align: right;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
+  }
+
+  .atk-mult-btns {
+    display: flex;
+    gap: 2px;
+  }
+
+  .atk-mult-btn {
+    appearance: none;
+    border: 1px solid #2e3948;
+    background: #10161f;
+    color: #6b7a8d;
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .atk-mult-btn:hover {
+    background: #1b212a;
+    color: #aab6c8;
+    border-color: #3a475a;
+  }
+  .atk-mult-btn.active {
+    background: rgba(59,130,246,0.2);
+    color: #60a5fa;
+    border-color: rgba(59,130,246,0.4);
+  }
+  .atk-mult-btn.active.m-beige { color: #d4c49a; border-color: rgba(212,196,154,0.4); background: rgba(212,196,154,0.15); }
+  .atk-mult-btn.active.m-orange { color: #e8923a; border-color: rgba(232,146,58,0.4); background: rgba(232,146,58,0.15); }
+  .atk-mult-btn.active.m-red { color: #e05555; border-color: rgba(224,85,85,0.4); background: rgba(224,85,85,0.15); }
+  @media (min-width: 768px) {
+    .atk-mult-btn { padding: 2px 5px; font-size: 10px; }
+    .atk-mult-btns { gap: 3px; }
   }
 
   .ability-divider{ width:1px; align-self:stretch; background:rgba(255,255,255,0.08); flex-shrink: 0; }
