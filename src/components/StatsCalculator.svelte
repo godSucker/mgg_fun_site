@@ -571,6 +571,7 @@
   let isCopying = $state(false);  // Состояние "Копируется..."
   let dropdownHost = $state(null as HTMLElement | null);
   let openDropdown = $state(null as string | null); // 'basic-i' | 'special' | null
+  let collapsedCats = $state(new Set(['attack','health','speed','critical','xp','shield','regenerate','retaliate','slash','strengthen','weaken','other'].flatMap(k => [`basic-${k}`, `special-${k}`]))); // все категории свёрнуты по умолчанию
   let lastMutantId = $state(null as string | null); // Для отслеживания смены мутанта
 
   // --- РАСЧЕТЫ ---
@@ -638,6 +639,7 @@
 
   let allowedAbilityBases = $derived(buildAllowedAbilityBases(selected, specialSlot));
   let basicOrbOptions = $derived(filterBasicOrbs(ORBS.basic, allowedAbilityBases));
+  let specialOrbOptions = $derived(ORBS.special.filter(o => !isOrbConflicting(o, selected)));
   $effect(() => { if (Array.isArray(basicSlots)) {
     const sanitized = basicSlots.map((orb) => allowOrbForAbilities(orb, allowedAbilityBases) ? orb : null);
     if (!arraysEqual(sanitized, basicSlots)) {
@@ -984,6 +986,83 @@
     return arr.filter((orb) => allowOrbForAbilities(orb, allowed));
   }
 
+  const CAT_ORDER = ['attack', 'health', 'speed', 'critical', 'xp', 'shield', 'regenerate', 'retaliate', 'slash', 'strengthen', 'weaken', 'other'];
+
+  const CAT_LABELS: Record<string, string> = {
+    attack: 'Атака',
+    health: 'Здоровье',
+    speed: 'Скорость',
+    critical: 'Крит',
+    xp: 'Опыт',
+    shield: 'Щит',
+    regenerate: 'Вытягивание жизни',
+    retaliate: 'Отражение',
+    slash: 'Рана',
+    strengthen: 'Усиление',
+    weaken: 'Проклятие',
+  };
+
+  const CAT_ICONS: Record<string, string> = {
+    attack: '/orbs/basic/orb_basic_attack_03.webp',
+    health: '/orbs/basic/orb_basic_life_03.webp',
+    speed: '/orbs/basic/orb_basic_speed_03.webp',
+    critical: '/orbs/basic/orb_basic_critical_03.webp',
+    xp: '/orbs/basic/orb_basic_xp_03.webp',
+    shield: '/orbs/basic/orb_basic_shield_03.webp',
+    regenerate: '/orbs/basic/orb_basic_regenerate_03.webp',
+    retaliate: '/orbs/basic/orb_basic_retaliate_03.webp',
+    slash: '/orbs/basic/orb_basic_slash_03.webp',
+    strengthen: '/orbs/basic/orb_basic_strengthen_03.webp',
+    weaken: '/orbs/basic/orb_basic_weaken_03.webp',
+  };
+
+  function orbCategoryKey(orb: any): string {
+    const id = String(orb?.id || '').toLowerCase();
+    if (id.includes('attack')) return 'attack';
+    if (id.includes('health') || id.includes('_hp') || id.includes('life')) return 'health';
+    if (id.includes('speed')) return 'speed';
+    if (id.includes('critical') || id.includes('crit')) return 'critical';
+    if (id.includes('xp') || id.includes('experience')) return 'xp';
+    if (id.includes('shield')) return 'shield';
+    if (id.includes('regenerate')) return 'regenerate';
+    if (id.includes('retaliate')) return 'retaliate';
+    if (id.includes('slash')) return 'slash';
+    if (id.includes('strengthen')) return 'strengthen';
+    if (id.includes('weaken')) return 'weaken';
+    return 'other';
+  }
+
+  function groupOrbsByCategory(list: any[], prefix: string = 'basic'): { key: string; label: string; icon: string; items: any[] }[] {
+    const map = new Map<string, any[]>();
+    for (const orb of list) {
+      const key = orbCategoryKey(orb);
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(orb);
+    }
+    const result: { key: string; label: string; icon: string; items: any[] }[] = [];
+    for (const k of CAT_ORDER) {
+      const items = map.get(k);
+      if (items && items.length > 0) {
+        const fallback = CAT_ICONS[k] ? CAT_ICONS[k].replace('/orbs/basic/', `/orbs/${prefix}/`) : '';
+        const icon = items[0]?.icon || fallback;
+        result.push({ key: k, label: CAT_LABELS[k] || k, icon, items });
+      }
+    }
+    return result;
+  }
+
+  function toggleCat(prefix: string, key: string) {
+    const id = `${prefix}-${key}`;
+    const next = new Set(collapsedCats);
+    if (next.has(id)) next.delete(id);
+    else next.add(id);
+    collapsedCats = next;
+  }
+
+  function isCatOpen(prefix: string, key: string): boolean {
+    return !collapsedCats.has(`${prefix}-${key}`);
+  }
+
   function arraysEqual(a, b){
     if (a === b) return true;
     if (!Array.isArray(a) || !Array.isArray(b)) return false;
@@ -1029,8 +1108,29 @@
     openDropdown = null;
   }
   function pickSpecial(orb){
+    if (isOrbConflicting(orb, selected)) return;
     specialSlot = orb;
     openDropdown = null;
+  }
+
+  function getMutantAbilityBases(mutant): Set<string> {
+    const set = new Set<string>();
+    const baseList = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
+    for (const ability of baseList) {
+      const base = abilityBaseKey(ability?.baseCode || ability?.code);
+      if (base) set.add(base);
+    }
+    return set;
+  }
+
+  function isOrbConflicting(orb, mutant): boolean {
+    if (!orb || !mutant) return false;
+    const ability = orb.specialAbility;
+    if (!ability) return false;
+    const orbBase = abilityBaseKey(ability.baseCode || ability.code);
+    if (!orbBase) return false;
+    const mutantBases = getMutantAbilityBases(mutant);
+    return mutantBases.has(orbBase);
   }
   function clearSlot(kind, i=null){
     if (kind==='basic') basicSlots = basicSlots.map((v,idx)=> idx===i ? null : v);
@@ -1489,10 +1589,20 @@
                 {/if}
                 {#if openDropdown === `basic-${i}`}
                   <div class="dropdown">
-                    {#each basicOrbOptions as o}
-                      <button class="orb-row" onclick={() => pickBasic(i, o)}>
-                        <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                    {#each groupOrbsByCategory(basicOrbOptions, 'basic') as cat}
+                      <button class="cat-header" class:collapsed={!isCatOpen('basic', cat.key)} onclick={() => toggleCat('basic', cat.key)}>
+                        <span class="cat-arrow">{isCatOpen('basic', cat.key) ? '▾' : '▸'}</span>
+                        {#if cat.icon}<img class="cat-icon" src={textureUrl(cat.icon)} alt="" />{/if}
+                        {cat.label}
+                        <span class="cat-count">{cat.items.length}</span>
                       </button>
+                      {#if isCatOpen('basic', cat.key)}
+                        {#each cat.items as o}
+                          <button class="orb-row" onclick={() => pickBasic(i, o)}>
+                            <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                          </button>
+                        {/each}
+                      {/if}
                     {/each}
                   </div>
                 {/if}
@@ -1511,10 +1621,20 @@
               {/if}
               {#if openDropdown === 'special'}
                 <div class="dropdown">
-                  {#each ORBS.special as o}
-                    <button class="orb-row" onclick={() => pickSpecial(o)}>
-                      <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                  {#each groupOrbsByCategory(specialOrbOptions, 'special') as cat}
+                    <button class="cat-header" class:collapsed={!isCatOpen('special', cat.key)} onclick={() => toggleCat('special', cat.key)}>
+                      <span class="cat-arrow">{isCatOpen('special', cat.key) ? '▾' : '▸'}</span>
+                      {#if cat.icon}<img class="cat-icon" src={textureUrl(cat.icon)} alt="" />{/if}
+                      {cat.label}
+                      <span class="cat-count">{cat.items.length}</span>
                     </button>
+                    {#if isCatOpen('special', cat.key)}
+                      {#each cat.items as o}
+                        <button class="orb-row" onclick={() => pickSpecial(o)}>
+                          <img src={textureUrl(o.icon)} alt={o.id} /> <span>{o.name || o.id}</span>
+                        </button>
+                      {/each}
+                    {/if}
                   {/each}
                 </div>
               {/if}
@@ -1961,12 +2081,37 @@
     /* Сильная тень, чтобы затемнить фон под меню */
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7), 0 10px 40px rgba(0,0,0, 0.8);
   }
-  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:6px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
+  .orb-row{ display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; border-radius:10px; background:#242b36; margin:2px 0; border:none; color: #dfe7f3; cursor: pointer; text-align: left; }
   .orb-row:hover { background: #2e3948; }
-  .orb-row img{ width:28px; height:28px; object-fit:contain; flex-shrink: 0; }
+  .orb-row img{ width:36px; height:36px; object-fit:contain; flex-shrink: 0; }
   @media (min-width: 768px) {
-    .orb-row img { width: 36px; height: 36px; }
+    .orb-row img { width: 44px; height: 44px; }
   }
+
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .cat-header:first-child { margin-top: 0; }
+  .cat-header:hover { background: rgba(59, 130, 246, 0.2); }
+  .cat-header.collapsed { color: #ffffff; }
+  .cat-arrow { font-size: 12px; width: 14px; text-align: center; flex-shrink: 0; }
+  .cat-icon { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
+  .cat-count { margin-left: auto; font-size: 12px; color: #94a3b8; font-weight: 400; }
 
   .controls{ display:flex; gap:6px; justify-content:center; margin:0; flex-wrap:wrap; }
   @media (min-width: 768px) {
