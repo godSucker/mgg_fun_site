@@ -10,7 +10,7 @@
   import { textureUrl } from '@/lib/texture-cdn';
 
   // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
-  import domtoimage from 'dom-to-image-more';
+  import { toPng } from 'html-to-image';
 
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
   const GENE_NAME = {
@@ -1261,7 +1261,50 @@
     }, 3000);
   }
 
-    // --- ФУНКЦИЯ СКРИНШОТА (MOBILE + DESKTOP) ---
+    // --- Конвертация изображений в data URLs (обход CORS) ---
+  let imageCache = new Map<string, string>();
+
+  async function preloadAllImages(root: Element): Promise<void> {
+    const imgs = Array.from(root.querySelectorAll('img')) as HTMLImageElement[];
+    const urls = new Set<string>();
+    for (const img of imgs) {
+      const src = img.getAttribute('src') || img.src;
+      if (src && !src.startsWith('data:') && !imageCache.has(src)) urls.add(src);
+    }
+    const results = await Promise.all(Array.from(urls).map(async (url) => {
+      try {
+        const r = await fetch(url, { mode: 'cors', credentials: 'omit' });
+        if (!r.ok) return [url, null] as const;
+        const blob = await r.blob();
+        const du = await new Promise<string>((res, rej) => {
+          const fr = new FileReader();
+          fr.onloadend = () => res(fr.result as string);
+          fr.onerror = rej;
+          fr.readAsDataURL(blob);
+        });
+        return [url, du] as const;
+      } catch { return [url, null] as const; }
+    }));
+    for (const [url, du] of results) { if (du) imageCache.set(url, du); }
+    for (const img of imgs) {
+      const src = img.getAttribute('src') || img.src;
+      if (src && imageCache.has(src)) img.src = imageCache.get(src)!;
+    }
+  }
+
+  function restoreAllImages(root: Element): void {
+    const imgs = Array.from(root.querySelectorAll('img')) as HTMLImageElement[];
+    for (const img of imgs) {
+      const src = img.getAttribute('src') || img.src;
+      if (src && src.startsWith('data:') && imageCache.size > 0) {
+        for (const [url, du] of imageCache) {
+          if (du === src) { img.src = url; break; }
+        }
+      }
+    }
+  }
+
+    // --- ФУНКЦИЯ СКРИНШОТА (MOBILE + DESКТОП) ---
   async function shareScreenshot() {
     if (!selected || isCopying) return;
     const panelEl = document.querySelector('.panel');
@@ -1451,15 +1494,19 @@
       sandbox.appendChild(clone);
       document.body.appendChild(sandbox);
 
-      await new Promise(resolve => setTimeout(resolve, 150));
+      // Конвертируем изображения в clone (sandbox) в data URLs.
+      // html-to-image проверяет clonedNode.src — если это data URL, пропускает загрузку.
+      await preloadAllImages(sandbox);
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       // 9. ГЕНЕРАЦИЯ (Получаем Base64 URL)
-      const dataUrl = await domtoimage.toPng(sandbox, {
+      const dataUrl = await toPng(sandbox, {
         width: config.sandboxWidth,
         height: sandbox.offsetHeight,
         bgcolor: '#2a313c',
         style: { transform: 'scale(1)', transformOrigin: 'top left' },
-        quality: 1.0
+        quality: 1.0,
+        pixelRatio: 1,
       });
 
       // --- 10. ОПЕРАЦИЯ "ОБРЕЗАНИЕ" (КОСТЫЛЬ) ---
@@ -1507,10 +1554,12 @@
         }
 
         document.body.removeChild(sandbox);
+        restoreAllImages(panelEl);
       }, 'image/png');
 
     } catch (error) {
       isCopying = false;
+      restoreAllImages(document.querySelector('.panel'));
       const sb = document.querySelector('div[style*="fixed"][style*="-9999px"]');
       if(sb) sb.remove();
     }

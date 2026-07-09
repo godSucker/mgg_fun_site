@@ -127,7 +127,19 @@
     'disco': '/skins/icon_disco.webp',
     'independence_day': '/skins/icon_independence_day.webp',
   };
-  const skinIcon = (skinName: string) => SKIN_ICON[skinName] ?? null;
+  const skinIcon = (skinName: string) => {
+    if (!skinName) return null;
+    if (SKIN_ICON[skinName]) return SKIN_ICON[skinName];
+    const lower = skinName.toLowerCase();
+    if (SKIN_ICON[lower]) return SKIN_ICON[lower];
+    // Normalize Unicode apostrophes and special chars
+    const normalized = lower.replace(/[\u2018\u2019\u201A\uFF07]/g, "'").replace(/[^a-z0-9'_ ]/g, '');
+    for (const [key, val] of Object.entries(SKIN_ICON)) {
+      const normKey = key.toLowerCase().replace(/[\u2018\u2019\u201A\uFF07]/g, "'").replace(/[^a-z0-9'_ ]/g, '');
+      if (normKey === normalized) return val;
+    }
+    return null;
+  };
 
   // ===== helpers =====
   const baseId = (id?: string) =>

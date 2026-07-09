@@ -16,6 +16,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.13.5",
     "dom-to-image-more": "^3.7.2",
+    "html-to-image": "^1.11.13",
     "sharp": "^0.34.5",
     "svelte": "^5.38.6",
     "typescript": "^5.9.2",
