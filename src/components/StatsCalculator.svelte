@@ -1264,306 +1264,235 @@
     // --- Конвертация изображений в data URLs (обход CORS) ---
   let imageCache = new Map<string, string>();
 
+  async function urlToDataUrl(url: string): Promise<string | null> {
+    if (imageCache.has(url)) return imageCache.get(url)!;
+    try {
+      const r = await fetch(url, { mode: 'cors', credentials: 'omit' });
+      if (!r.ok) return null;
+      const blob = await r.blob();
+      const du = await new Promise<string>((res, rej) => {
+        const fr = new FileReader();
+        fr.onloadend = () => res(fr.result as string);
+        fr.onerror = rej;
+        fr.readAsDataURL(blob);
+      });
+      imageCache.set(url, du);
+      return du;
+    } catch { return null; }
+  }
+
   async function preloadAllImages(root: Element): Promise<void> {
     const imgs = Array.from(root.querySelectorAll('img')) as HTMLImageElement[];
-    const urls = new Set<string>();
-    for (const img of imgs) {
-      const src = img.getAttribute('src') || img.src;
-      if (src && !src.startsWith('data:') && !imageCache.has(src)) urls.add(src);
-    }
-    const results = await Promise.all(Array.from(urls).map(async (url) => {
-      try {
-        const r = await fetch(url, { mode: 'cors', credentials: 'omit' });
-        if (!r.ok) return [url, null] as const;
-        const blob = await r.blob();
-        const du = await new Promise<string>((res, rej) => {
-          const fr = new FileReader();
-          fr.onloadend = () => res(fr.result as string);
-          fr.onerror = rej;
-          fr.readAsDataURL(blob);
-        });
-        return [url, du] as const;
-      } catch { return [url, null] as const; }
-    }));
-    for (const [url, du] of results) { if (du) imageCache.set(url, du); }
-    for (const img of imgs) {
-      const src = img.getAttribute('src') || img.src;
-      if (src && imageCache.has(src)) img.src = imageCache.get(src)!;
-    }
-  }
-
-  function restoreAllImages(root: Element): void {
-    const imgs = Array.from(root.querySelectorAll('img')) as HTMLImageElement[];
-    for (const img of imgs) {
-      const src = img.getAttribute('src') || img.src;
-      if (src && src.startsWith('data:') && imageCache.size > 0) {
-        for (const [url, du] of imageCache) {
-          if (du === src) { img.src = url; break; }
-        }
+    const conversions = imgs.map(async (img) => {
+      const src = img.getAttribute('src') || img.currentSrc || img.src;
+      if (!src || src.startsWith('data:')) return;
+      const du = await urlToDataUrl(src);
+      if (du) {
+        img.setAttribute('src', du);
+        img.src = du;
+        try { (img as any).currentSrc = du; } catch {}
       }
-    }
+    });
+    await Promise.all(conversions);
   }
 
-    // --- ФУНКЦИЯ СКРИНШОТА (MOBILE + DESКТОП) ---
-  async function shareScreenshot() {
-    if (!selected || isCopying) return;
-    const panelEl = document.querySelector('.panel');
-    if (!panelEl) return;
+  function downloadBlob(blob: Blob, filename: string) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 
-    isCopying = true;
+  function canvasToBlob(canvas: HTMLCanvasElement): Promise<Blob | null> {
+    return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+  }
 
-    try {
-      // Определяем тип устройства по ширине окна
-      const isMobile = window.innerWidth < 768;
+  function buildSandbox(panelElements: HTMLElement[], config: any, isMobile: boolean): HTMLDivElement {
+    const sandbox = document.createElement('div');
+    Object.assign(sandbox.style, {
+      width: `${config.sandboxWidth}px`, height: 'auto', position: 'fixed',
+      left: '-9999px', top: '0', zIndex: '-100', background: '#2a313c',
+      borderRadius: '16px', padding: '0',
+      display: 'flex', flexDirection: 'row', gap: '8px',
+    });
 
-      // Конфигурация размеров для мобильных и десктопов
-      const config = isMobile ? {
-        // МОБИЛЬНЫЕ: компактные размеры для предотвращения переполнения
-        sandboxWidth: 420,
-        mutantTexture: '200px',
-        mutantFigureHeight: '240px',
-        mutantFigureAfterWidth: '240px',
-        mutantFigureAfterHeight: '65px',
-        mutantFigureAfterBottom: '-28px',
-        heroGene: '40px',
-        attackGeneContainer: '36px',
-        attackGeneIcon: '24px',
-        attackAoe: '30px',
-        slotBtn: '56px',
-        orb: '56px',
-        star: '28px',
-        mutIcon: '36px',
-        shadowScale: 0.85,
-      } : {
-        // ДЕСКТОП: большие размеры для чёткости
-        sandboxWidth: 700,
-        mutantTexture: '340px',
-        mutantFigureHeight: '380px',
-        mutantFigureAfterWidth: '380px',
-        mutantFigureAfterHeight: '110px',
-        mutantFigureAfterBottom: '-45px',
-        heroGene: '56px',
-        attackGeneContainer: '44px',
-        attackGeneIcon: '36px',
-        attackAoe: '48px',
-        slotBtn: '68px',
-        orb: '68px',
-        star: '32px',
-        mutIcon: '44px',
-        shadowScale: 1.0,
-      };
+    for (const panelEl of panelElements) {
+      const clone = panelEl.cloneNode(true) as HTMLElement;
+      Object.assign(clone.style, {
+        width: panelElements.length > 1 ? `${config.sandboxWidth / panelElements.length - 8}px` : '100%',
+        maxWidth: 'none', margin: '0', transform: 'none',
+        border: 'none', outline: 'none', boxShadow: 'none',
+        borderRadius: '0', flex: '1 1 0',
+      });
 
-      // 1. Песочница
-      const sandbox = document.createElement('div');
-      sandbox.style.width = `${config.sandboxWidth}px`;
-      sandbox.style.height = 'auto';
-      sandbox.style.position = 'fixed';
-      sandbox.style.left = '-9999px';
-      sandbox.style.top = '0';
-      sandbox.style.zIndex = '-100';
-      sandbox.style.background = '#2a313c';
-      sandbox.style.borderRadius = '16px';
-      // Убираем паддинг, чтобы обрезать ровно по краю
-      sandbox.style.padding = '0';
-
-      // 2. Клон
-      const clone = panelEl.cloneNode(true);
-      clone.style.width = '100%';
-      clone.style.maxWidth = 'none';
-      clone.style.margin = '0';
-      clone.style.transform = 'none';
-
-      // Сброс стилей контейнера
-      clone.style.border = 'none';
-      clone.style.outline = 'none';
-      clone.style.boxShadow = 'none';
-      // Убираем скругление у клона, скругление будет у песочницы
-      clone.style.borderRadius = '0';
-
-      // 3. Чистка кнопок
       clone.querySelectorAll('.tool-btn').forEach(b => b.remove());
       clone.querySelectorAll('.header-tools-row').forEach(r => r.remove());
 
-      // 4. Фикс инпута
       const input = clone.querySelector('input.lvl');
       if (input) {
-        const val = input.value;
         const span = document.createElement('div');
         span.className = 'lvl-static';
-        span.innerText = val;
+        span.innerText = (input as HTMLInputElement).value;
         if (input.parentNode) input.parentNode.replaceChild(span, input);
       }
 
-      // 5. Центровка
       const title = clone.querySelector('.title');
       if (title) {
-        title.style.textAlign = 'center';
-        title.style.width = '100%';
-        title.style.margin = '0 0 15px 0';
-        title.style.flex = 'none';
-        title.style.maxWidth = 'none';
+        Object.assign(title.style, { textAlign: 'center', width: '100%', margin: '0 0 15px 0', flex: 'none', maxWidth: 'none' });
       }
 
-      // 6. Anti-squash + масштабирование для мобильных/десктопов
-      const freezeStyles = (selector, width, height) => {
-        clone.querySelectorAll(selector).forEach(el => {
-          el.style.width = width;
-          el.style.height = height;
-          el.style.minWidth = width;
-          el.style.minHeight = height;
-          el.style.maxWidth = width;
-          el.style.maxHeight = height;
-          el.style.flex = `0 0 ${width}`;
-          el.style.objectFit = 'contain';
+      const freeze = (sel: string, w: string, h: string) => {
+        clone.querySelectorAll(sel).forEach((el: any) => {
+          Object.assign(el.style, { width: w, height: h, minWidth: w, minHeight: h, maxWidth: w, maxHeight: h, flex: `0 0 ${w}`, objectFit: 'contain' });
         });
       };
-      freezeStyles('.slot-btn', config.slotBtn, config.slotBtn);
-      freezeStyles('.orb', config.orb, config.orb);
-      freezeStyles('.star', config.star, config.star);
-      freezeStyles('.star img', config.star, config.star);
-      freezeStyles('.mut-icon', config.mutIcon, config.mutIcon);
-      // Мутант, гены, иконки атак - точные размеры
-      freezeStyles('.mut-figure .texture', config.mutantTexture, config.mutantTexture);
-      freezeStyles('.hero-genes img', config.heroGene, config.heroGene);
-      freezeStyles('.attack-gene', config.attackGeneContainer, config.attackGeneContainer);
-      freezeStyles('.attack-gene .gene-icon', config.attackGeneIcon, config.attackGeneIcon);
-      freezeStyles('.attack-gene .attack-aoe', config.attackAoe, config.attackAoe);
-      
-      // Фиксация размера контейнера мутанта и тени
-      clone.querySelectorAll('.mut-figure').forEach(el => {
+      freeze('.slot-btn', config.slotBtn, config.slotBtn);
+      freeze('.orb', config.orb, config.orb);
+      freeze('.star', config.star, config.star);
+      freeze('.star img', config.star, config.star);
+      freeze('.mut-icon', config.mutIcon, config.mutIcon);
+      freeze('.mut-figure .texture', config.mutantTexture, config.mutantTexture);
+      freeze('.hero-genes img', config.heroGene, config.heroGene);
+      freeze('.attack-gene', config.attackGeneContainer, config.attackGeneContainer);
+      freeze('.attack-gene .gene-icon', config.attackGeneIcon, config.attackGeneIcon);
+      freeze('.attack-gene .attack-aoe', config.attackAoe, config.attackAoe);
+
+      clone.querySelectorAll('.mut-figure').forEach((el: any) => {
         el.style.height = config.mutantFigureHeight;
         el.style.minHeight = config.mutantFigureHeight;
       });
 
-      // Вертикальное смещение мутанта для мобильных — чтобы "стоял" на тени
-      // Используем marginTop вместо transform, чтобы избежать конфликта с CSS
       if (isMobile) {
-        const mutantTexture = clone.querySelector('.mut-figure .texture');
-        if (mutantTexture) {
-          mutantTexture.style.marginTop = '18px';
-        }
+        const tex = clone.querySelector('.mut-figure .texture') as HTMLElement;
+        if (tex) tex.style.marginTop = '18px';
       }
 
-      // Добавляем стиль для увеличения тени (псевдоэлемент ::after)
       const styleEl = document.createElement('style');
       styleEl.textContent = `
-        .mut-figure::after {
-          display: none !important;
-        }
-        /* Фикс для attack-side на мобильных - предотвращаем сжатие */
-        .attack-side {
-          min-width: ${isMobile ? '140px' : '180px'} !important;
-        }
-        /* Фикс для attack-info - разрешаем перенос текста */
-        .attack-info {
-          min-width: 0 !important;
-          flex-shrink: 1 !important;
-        }
-        .attack-label {
-          max-width: ${isMobile ? '120px' : '200px'};
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+        .mut-figure::after { display: none !important; }
+        .attack-side { min-width: ${isMobile ? '140px' : '180px'} !important; }
+        .attack-info { min-width: 0 !important; flex-shrink: 1 !important; }
+        .attack-label { max-width: ${isMobile ? '120px' : '200px'}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       `;
       clone.appendChild(styleEl);
 
-      // 7. Зачистка внутренних рамок
-      clone.querySelectorAll('*').forEach(el => {
-        const whitelist = ['row', 'lvl-static', 'gene-chip', 'control', 'search', 'mut-row'];
-        const shouldKeep = whitelist.some(cls => el.classList.contains(cls));
-        if (!shouldKeep) {
-          el.style.border = 'none';
-          el.style.outline = 'none';
-          el.style.boxShadow = 'none';
+      clone.querySelectorAll('*').forEach((el: any) => {
+        if (!['row', 'lvl-static', 'gene-chip', 'control', 'search', 'mut-row'].some(c => el.classList.contains(c))) {
+          el.style.border = 'none'; el.style.outline = 'none'; el.style.boxShadow = 'none';
         }
       });
-
-      // 8. Вотермарка
-      const wm = document.createElement('div');
-      wm.innerText = 'archivist-library.com';
-      wm.style.border = 'none';
-      Object.assign(wm.style, {
-        display: 'block', textAlign: 'center', fontSize: '14px', color: '#637083',
-        marginTop: '25px', paddingTop: '15px', paddingBottom: '20px', // Отступ снизу
-        borderTop: '1px solid #3a475a',
-        fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'sans-serif'
-      });
-      clone.appendChild(wm);
 
       sandbox.appendChild(clone);
-      document.body.appendChild(sandbox);
+    }
 
-      // Конвертируем изображения в clone (sandbox) в data URLs.
-      // html-to-image проверяет clonedNode.src — если это data URL, пропускает загрузку.
-      await preloadAllImages(sandbox);
-      await new Promise(resolve => setTimeout(resolve, 100));
+    const wm = document.createElement('div');
+    wm.innerText = 'archivist-library.com';
+    wm.style.border = 'none';
+    Object.assign(wm.style, {
+      display: 'block', textAlign: 'center', fontSize: '14px', color: '#637083',
+      marginTop: '25px', paddingTop: '15px', paddingBottom: '20px',
+      borderTop: '1px solid #3a475a',
+      fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'sans-serif'
+    });
+    sandbox.lastElementChild?.appendChild(wm);
 
-      // 9. ГЕНЕРАЦИЯ (Получаем Base64 URL)
-      const dataUrl = await toPng(sandbox, {
-        width: config.sandboxWidth,
-        height: sandbox.offsetHeight,
-        bgcolor: '#2a313c',
-        style: { transform: 'scale(1)', transformOrigin: 'top left' },
-        quality: 1.0,
-        pixelRatio: 1,
-      });
+    return sandbox;
+  }
 
-      // --- 10. ОПЕРАЦИЯ "ОБРЕЗАНИЕ" (КОСТЫЛЬ) ---
+  async function captureAndSave(sandbox: HTMLDivElement, config: any, filename: string): Promise<void> {
+    document.body.appendChild(sandbox);
 
-      // Загружаем картинку в память
-      const img = new Image();
-      img.src = dataUrl;
-      await new Promise(r => img.onload = r);
+    const allImgs = Array.from(sandbox.querySelectorAll('img')) as HTMLImageElement[];
+    await Promise.all(allImgs.map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise<void>(res => { img.onload = () => res(); img.onerror = () => res(); });
+    }));
 
-      // Создаем канвас для обрезки
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+    await preloadAllImages(sandbox);
+    await new Promise(r => setTimeout(r, 50));
 
-      // Сколько пикселей срезать с каждой стороны
-      const crop = 3;
+    const dataUrl = await toPng(sandbox, {
+      width: config.sandboxWidth,
+      height: sandbox.offsetHeight,
+      bgcolor: '#2a313c',
+      style: { transform: 'scale(1)', transformOrigin: 'top left' },
+      pixelRatio: 1,
+    });
 
-      // Размер нового канваса меньше оригинала на (crop * 2)
-      canvas.width = img.width - (crop * 2);
-      canvas.height = img.height - (crop * 2);
+    document.body.removeChild(sandbox);
 
-      // Рисуем картинку со смещением влево и вверх (-2px, -2px)
-      // Тем самым белая рамка остается за пределами холста
-      ctx.drawImage(img, -crop, -crop);
+    const img = new Image();
+    img.src = dataUrl;
+    await new Promise<void>((res, rej) => { img.onload = () => res(); img.onerror = rej; });
 
-      // Превращаем обрезанный канвас в Blob
-      canvas.toBlob(async (blob) => {
-        if (!blob) { isCopying = false; return; }
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    const crop = 3;
+    canvas.width = img.width - crop * 2;
+    canvas.height = img.height - crop * 2;
+    ctx.drawImage(img, -crop, -crop);
 
-        try {
-          const item = new ClipboardItem({ 'image/png': blob });
-          await navigator.clipboard.write([item]);
-          showNotification('Скриншот сохранен в буфер обмена!');
-          setTimeout(() => isCopying = false, 2000);
-        } catch (clipboardErr) {
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = `${selected.name || 'mutant'}-stats.webp`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(url);
-          showNotification('Скриншот загружен!');
-          isCopying = false;
-        }
+    const blob = await canvasToBlob(canvas);
+    if (!blob) throw new Error('Canvas toBlob returned null');
 
-        document.body.removeChild(sandbox);
-        restoreAllImages(panelEl);
-      }, 'image/png');
-
-    } catch (error) {
-      isCopying = false;
-      restoreAllImages(document.querySelector('.panel'));
-      const sb = document.querySelector('div[style*="fixed"][style*="-9999px"]');
-      if(sb) sb.remove();
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      showNotification('Скриншот сохранён в буфер обмена!');
+    } catch {
+      downloadBlob(blob, filename);
+      showNotification('Скриншот скачан!');
     }
   }
+
+  // --- ФУНКЦИЯ СКРИНШОТА ---
+  async function shareScreenshot() {
+    if (!selected || isCopying) return;
+    isCopying = true;
+
+    try {
+      const isMobile = window.innerWidth < 768;
+      const isCompare = compareMode && selected2;
+
+      const config = isMobile ? {
+        sandboxWidth: isCompare ? 820 : 420,
+        mutantTexture: '200px', mutantFigureHeight: '240px',
+        heroGene: '40px', attackGeneContainer: '36px', attackGeneIcon: '24px', attackAoe: '30px',
+        slotBtn: '56px', orb: '56px', star: '28px', mutIcon: '36px',
+      } : {
+        sandboxWidth: isCompare ? 1380 : 700,
+        mutantTexture: '340px', mutantFigureHeight: '380px',
+        heroGene: '56px', attackGeneContainer: '44px', attackGeneIcon: '36px', attackAoe: '48px',
+        slotBtn: '68px', orb: '68px', star: '32px', mutIcon: '44px',
+      };
+
+      const panels: HTMLElement[] = [];
+      if (isCompare) {
+        panels.push(...Array.from(document.querySelectorAll('.stats-page > .panel')) as HTMLElement[]);
+      } else {
+        const panelEl = document.querySelector('.panel') as HTMLElement;
+        if (!panelEl) { isCopying = false; return; }
+        panels.push(panelEl);
+      }
+
+      const sandbox = buildSandbox(panels, config, isMobile);
+      const filename = isCompare
+        ? `${selected.name || 'mutant'}-vs-${selected2?.name || 'mutant'}-stats.png`
+        : `${selected.name || 'mutant'}-stats.png`;
+
+      await captureAndSave(sandbox, config, filename);
+      isCopying = false;
+    } catch (error) {
+      console.error('[Screenshot]', error);
+      isCopying = false;
+      const sb = document.querySelector('div[style*="fixed"][style*="-9999px"]');
+      if (sb) sb.remove();
+    }
+  }
+
 </script>
 
 
