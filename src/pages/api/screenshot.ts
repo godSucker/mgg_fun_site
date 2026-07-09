@@ -1,0 +1,114 @@
+import type { APIRoute } from 'astro';
+import { chromium } from 'playwright-core';
+
+export const GET: APIRoute = async ({ url }) => {
+  const stateParam = url.searchParams.get('state');
+  if (!stateParam) {
+    return new Response('Missing state param', { status: 400 });
+  }
+
+  const origin = url.origin;
+  const renderUrl = `${origin}/panel-render?state=${encodeURIComponent(stateParam)}`;
+
+  let browser;
+  try {
+    const Chromium = (await import('@sparticuz/chromium')).default;
+    const execPath = await Chromium.executablePath();
+    browser = await chromium.launch({
+      executablePath: execPath,
+      args: Chromium.args,
+    });
+
+    const page = await browser.newPage({
+      deviceScaleFactor: 2,
+      viewport: { width: 1400, height: 900 },
+    });
+
+    await page.goto(renderUrl, { waitUntil: 'networkidle', timeout: 15000 });
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForSelector('.panel', { timeout: 10000 });
+    await page.waitForTimeout(1000);
+
+    const isCompareMode = stateParam.includes('"compare":true') || stateParam.includes('"compare": true');
+    if (isCompareMode) {
+      await page.waitForFunction(() => document.querySelectorAll('.panel').length >= 2, { timeout: 5000 }).catch(() => {});
+      await page.waitForTimeout(500);
+    }
+
+    await page.evaluate(() => {
+      document.querySelectorAll('.tool-btn, .header-tools-row, .header-left, .catalog').forEach(el => (el as HTMLElement).style.display = 'none');
+      document.querySelectorAll('.compare-search-wrap').forEach(el => (el as HTMLElement).style.display = 'none');
+      document.querySelectorAll('.slot .x').forEach(el => (el as HTMLElement).style.display = 'none');
+      document.querySelectorAll('.panel-header').forEach(el => {
+        const h = el as HTMLElement;
+        h.style.margin = '0';
+        h.style.padding = '4px 0 0 0';
+        h.style.minHeight = '0';
+      });
+      document.querySelectorAll('.hero-genes').forEach(el => {
+        (el as HTMLElement).style.marginBottom = '4px';
+      });
+      document.querySelectorAll('.atk-mult-btns').forEach(el => (el as HTMLElement).style.display = 'none');
+      document.documentElement.style.setProperty('--orb-size-container-large', '52px');
+      document.querySelectorAll('.slot-btn').forEach(el => {
+        (el as HTMLElement).style.overflow = 'hidden';
+      });
+      document.querySelectorAll('.orb').forEach(el => {
+        const h = el as HTMLElement;
+        h.style.width = '48px';
+        h.style.height = '48px';
+        h.style.objectFit = 'contain';
+      });
+      document.querySelectorAll('.attack-row').forEach(el => {
+        (el as HTMLElement).style.overflow = 'hidden';
+      });
+      document.querySelectorAll('.effect-row').forEach(el => {
+        (el as HTMLElement).style.paddingLeft = '0';
+        (el as HTMLElement).style.paddingRight = '0';
+      });
+
+      const panels = document.querySelectorAll('.panel');
+      panels.forEach(panel => {
+        const wm = document.createElement('div');
+        wm.innerText = 'ARCHIVIST-LIBRARY.COM';
+        Object.assign(wm.style, {
+          textAlign: 'center', fontSize: '11px', color: '#637083',
+          marginTop: '16px', paddingTop: '12px',
+          borderTop: '1px solid #3a475a',
+          fontWeight: '700', letterSpacing: '2px', fontFamily: 'sans-serif',
+        });
+        panel.appendChild(wm);
+      });
+    });
+    await page.waitForTimeout(100);
+
+    const isCompare = await page.evaluate(() => document.querySelectorAll('.panel').length > 1);
+    let buffer: Buffer;
+    if (isCompare) {
+      const statsPage = await page.$('.stats-page');
+      if (!statsPage) {
+        return new Response('Stats page not found', { status: 500 });
+      }
+      buffer = await statsPage.screenshot({ type: 'png' }) as Buffer;
+    } else {
+      const panel = await page.$('.panel');
+      if (!panel) {
+        return new Response('Panel not found', { status: 500 });
+      }
+      buffer = await panel.screenshot({ type: 'png' }) as Buffer;
+    }
+
+    return new Response(buffer, {
+      status: 200,
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'no-store',
+      },
+    });
+  } catch (err: any) {
+    console.error('[Screenshot]', err);
+    return new Response(`Screenshot error: ${err.message}`, { status: 500 });
+  } finally {
+    await browser?.close();
+  }
+};

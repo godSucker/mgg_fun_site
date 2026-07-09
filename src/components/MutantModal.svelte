@@ -256,13 +256,38 @@
 
   // Base fields — reactive to skin selection
   let baseStats = $derived(displayMutant?.base_stats ?? {});
+
+  // Для скинов: hp/atk1/atk2 из skins.json, остальное (speed, silver и т.д.) из mutants.json
+  // Скины уже содержат финальные значения на нужном уровне, не нужно применять level scaling
+  function getSkinStats(skin: any, mutantBaseStats: any, level: number) {
+    const lvl = level === 1 ? 'lvl1' : 'lvl30';
+    const skinStats = skin?.base_stats?.[lvl] ?? {};
+    const mutantStats = mutantBaseStats?.[lvl] ?? {};
+    const abilities = displayMutant?.abilities ?? [];
+    const abilityPct = level < 25
+      ? (abilities[0]?.pct ?? 0)
+      : (abilities[abilities.length > 1 ? 1 : 0]?.pct ?? 0);
+    return {
+      hp: skinStats.hp ?? 0,
+      atk1: skinStats.atk1 ?? 0,
+      atk2: skinStats.atk2 ?? 0,
+      ability: Math.round((skinStats.atk1 ?? 0) * Math.abs(abilityPct) / 100),
+      speed: mutantStats.speed ?? 0,
+      silver: mutantStats.silver ?? 0,
+    };
+  }
   let genes = $derived(Array.isArray(displayMutant?.genes) ? displayMutant.genes[0] : '');
 
   let displayType = $derived(displayMutant?.type);
 
   // Reactive stats — recalculated when displayMutant or displayMultiplier change
-  let statsLvl1 = $derived(calculateFinalStats(baseStats, 1, displayMultiplier));
-  let statsLvl30 = $derived(calculateFinalStats(baseStats, 30, displayMultiplier));
+  // For skins: values are already final in skins.json, no scaling needed
+  let statsLvl1 = $derived(selectedSkin
+    ? getSkinStats(selectedSkin, mutant?.base_stats, 1)
+    : calculateFinalStats(baseStats, 1, displayMultiplier));
+  let statsLvl30 = $derived(selectedSkin
+    ? getSkinStats(selectedSkin, mutant?.base_stats, 30)
+    : calculateFinalStats(baseStats, 30, displayMultiplier));
   let speedDisplay = $derived(Math.round(statsLvl1.speed * 100) / 100);
   let bankLvl1 = $derived(Math.round(statsLvl1.silver));
 

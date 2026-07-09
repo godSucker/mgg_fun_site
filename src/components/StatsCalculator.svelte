@@ -9,10 +9,10 @@
   import { applySpeedSphere } from '@/lib/stats/speed-sphere-table';
   import { textureUrl } from '@/lib/texture-cdn';
 
-  // --- БИБЛИОТЕКА ДЛЯ СКРИНШОТОВ ---
-  import { toPng } from 'html-to-image';
-
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
+  let { renderState }: { renderState?: string } = $props();
+  const isRenderMode = !!renderState;
+  const renderParams = renderState ? JSON.parse(decodeURIComponent(renderState)) : null;
   const GENE_NAME = {
     A: 'Кибер',
     B: 'Зверь',
@@ -587,6 +587,34 @@
   let showSearch2 = $state(false);
   let showSearch1 = $state(false);
   let atkMultipliers2 = $state({ 1: 1, 2: 1 });
+
+  // --- ИНИЦИАЛИЗАЦИЯ ДЛЯ РЕЖИМА РЕНДЕРА ---
+  if (renderParams) {
+    const m = ALL_MUTANTS.find((x: any) => x.id === renderParams.id);
+    if (m) { lastMutantId = m.id; selected = m; }
+    if (renderParams.level) level = renderParams.level;
+    if (renderParams.stars != null) stars = renderParams.stars;
+    showCatalog = false;
+    if (renderParams.orbs) {
+      basicSlots = renderParams.orbs.map((id: string | null) => id ? ORBS.basic.find((o) => o.id === id) || ORBS.special.find((o) => o.id === id) || null : null);
+    }
+    if (renderParams.special) {
+      specialSlot = ORBS.special.find((o) => o.id === renderParams.special) || ORBS.basic.find((o) => o.id === renderParams.special) || null;
+    }
+    if (renderParams.compare && renderParams.id2) {
+      compareMode = true;
+      const m2 = ALL_MUTANTS.find((x: any) => x.id === renderParams.id2);
+      if (m2) { lastMutantId2 = m2.id; selected2 = m2; }
+      if (renderParams.level2) level2 = renderParams.level2;
+      if (renderParams.stars2 != null) stars2 = renderParams.stars2;
+      if (renderParams.orbs2) {
+        basicSlots2 = renderParams.orbs2.map((id: string | null) => id ? ORBS.basic.find((o) => o.id === id) || ORBS.special.find((o) => o.id === id) || null : null);
+      }
+      if (renderParams.special2) {
+        specialSlot2 = ORBS.special.find((o) => o.id === renderParams.special2) || ORBS.basic.find((o) => o.id === renderParams.special2) || null;
+      }
+    }
+  }
 
   // --- РАСЧЕТЫ ---
   // фильтрация + сортировка + поиск
@@ -1261,41 +1289,6 @@
     }, 3000);
   }
 
-    // --- Конвертация изображений в data URLs (обход CORS) ---
-  let imageCache = new Map<string, string>();
-
-  async function urlToDataUrl(url: string): Promise<string | null> {
-    if (imageCache.has(url)) return imageCache.get(url)!;
-    try {
-      const r = await fetch(url, { mode: 'cors', credentials: 'omit' });
-      if (!r.ok) return null;
-      const blob = await r.blob();
-      const du = await new Promise<string>((res, rej) => {
-        const fr = new FileReader();
-        fr.onloadend = () => res(fr.result as string);
-        fr.onerror = rej;
-        fr.readAsDataURL(blob);
-      });
-      imageCache.set(url, du);
-      return du;
-    } catch { return null; }
-  }
-
-  async function preloadAllImages(root: Element): Promise<void> {
-    const imgs = Array.from(root.querySelectorAll('img')) as HTMLImageElement[];
-    const conversions = imgs.map(async (img) => {
-      const src = img.getAttribute('src') || img.currentSrc || img.src;
-      if (!src || src.startsWith('data:')) return;
-      const du = await urlToDataUrl(src);
-      if (du) {
-        img.setAttribute('src', du);
-        img.src = du;
-        try { (img as any).currentSrc = du; } catch {}
-      }
-    });
-    await Promise.all(conversions);
-  }
-
   function downloadBlob(blob: Blob, filename: string) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1307,189 +1300,49 @@
     URL.revokeObjectURL(url);
   }
 
-  function canvasToBlob(canvas: HTMLCanvasElement): Promise<Blob | null> {
-    return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-  }
-
-  function buildSandbox(panelElements: HTMLElement[], config: any, isMobile: boolean): HTMLDivElement {
-    const sandbox = document.createElement('div');
-    Object.assign(sandbox.style, {
-      width: `${config.sandboxWidth}px`, height: 'auto', position: 'fixed',
-      left: '-9999px', top: '0', zIndex: '-100', background: '#2a313c',
-      borderRadius: '16px', padding: '0',
-      display: 'flex', flexDirection: 'row', gap: '8px',
-    });
-
-    for (const panelEl of panelElements) {
-      const clone = panelEl.cloneNode(true) as HTMLElement;
-      Object.assign(clone.style, {
-        width: panelElements.length > 1 ? `${config.sandboxWidth / panelElements.length - 8}px` : '100%',
-        maxWidth: 'none', margin: '0', transform: 'none',
-        border: 'none', outline: 'none', boxShadow: 'none',
-        borderRadius: '0', flex: '1 1 0',
-      });
-
-      clone.querySelectorAll('.tool-btn').forEach(b => b.remove());
-      clone.querySelectorAll('.header-tools-row').forEach(r => r.remove());
-
-      const input = clone.querySelector('input.lvl');
-      if (input) {
-        const span = document.createElement('div');
-        span.className = 'lvl-static';
-        span.innerText = (input as HTMLInputElement).value;
-        if (input.parentNode) input.parentNode.replaceChild(span, input);
-      }
-
-      const title = clone.querySelector('.title');
-      if (title) {
-        Object.assign(title.style, { textAlign: 'center', width: '100%', margin: '0 0 15px 0', flex: 'none', maxWidth: 'none' });
-      }
-
-      const freeze = (sel: string, w: string, h: string) => {
-        clone.querySelectorAll(sel).forEach((el: any) => {
-          Object.assign(el.style, { width: w, height: h, minWidth: w, minHeight: h, maxWidth: w, maxHeight: h, flex: `0 0 ${w}`, objectFit: 'contain' });
-        });
-      };
-      freeze('.slot-btn', config.slotBtn, config.slotBtn);
-      freeze('.orb', config.orb, config.orb);
-      freeze('.star', config.star, config.star);
-      freeze('.star img', config.star, config.star);
-      freeze('.mut-icon', config.mutIcon, config.mutIcon);
-      freeze('.mut-figure .texture', config.mutantTexture, config.mutantTexture);
-      freeze('.hero-genes img', config.heroGene, config.heroGene);
-      freeze('.attack-gene', config.attackGeneContainer, config.attackGeneContainer);
-      freeze('.attack-gene .gene-icon', config.attackGeneIcon, config.attackGeneIcon);
-      freeze('.attack-gene .attack-aoe', config.attackAoe, config.attackAoe);
-
-      clone.querySelectorAll('.mut-figure').forEach((el: any) => {
-        el.style.height = config.mutantFigureHeight;
-        el.style.minHeight = config.mutantFigureHeight;
-      });
-
-      if (isMobile) {
-        const tex = clone.querySelector('.mut-figure .texture') as HTMLElement;
-        if (tex) tex.style.marginTop = '18px';
-      }
-
-      const styleEl = document.createElement('style');
-      styleEl.textContent = `
-        .mut-figure::after { display: none !important; }
-        .attack-side { min-width: ${isMobile ? '140px' : '180px'} !important; }
-        .attack-info { min-width: 0 !important; flex-shrink: 1 !important; }
-        .attack-label { max-width: ${isMobile ? '120px' : '200px'}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      `;
-      clone.appendChild(styleEl);
-
-      clone.querySelectorAll('*').forEach((el: any) => {
-        if (!['row', 'lvl-static', 'gene-chip', 'control', 'search', 'mut-row'].some(c => el.classList.contains(c))) {
-          el.style.border = 'none'; el.style.outline = 'none'; el.style.boxShadow = 'none';
-        }
-      });
-
-      sandbox.appendChild(clone);
-    }
-
-    const wm = document.createElement('div');
-    wm.innerText = 'archivist-library.com';
-    wm.style.border = 'none';
-    Object.assign(wm.style, {
-      display: 'block', textAlign: 'center', fontSize: '14px', color: '#637083',
-      marginTop: '25px', paddingTop: '15px', paddingBottom: '20px',
-      borderTop: '1px solid #3a475a',
-      fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'sans-serif'
-    });
-    sandbox.lastElementChild?.appendChild(wm);
-
-    return sandbox;
-  }
-
-  async function captureAndSave(sandbox: HTMLDivElement, config: any, filename: string): Promise<void> {
-    document.body.appendChild(sandbox);
-
-    const allImgs = Array.from(sandbox.querySelectorAll('img')) as HTMLImageElement[];
-    await Promise.all(allImgs.map(img => {
-      if (img.complete) return Promise.resolve();
-      return new Promise<void>(res => { img.onload = () => res(); img.onerror = () => res(); });
-    }));
-
-    await preloadAllImages(sandbox);
-    await new Promise(r => setTimeout(r, 50));
-
-    const dataUrl = await toPng(sandbox, {
-      width: config.sandboxWidth,
-      height: sandbox.offsetHeight,
-      bgcolor: '#2a313c',
-      style: { transform: 'scale(1)', transformOrigin: 'top left' },
-      pixelRatio: 1,
-    });
-
-    document.body.removeChild(sandbox);
-
-    const img = new Image();
-    img.src = dataUrl;
-    await new Promise<void>((res, rej) => { img.onload = () => res(); img.onerror = rej; });
-
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    const crop = 3;
-    canvas.width = img.width - crop * 2;
-    canvas.height = img.height - crop * 2;
-    ctx.drawImage(img, -crop, -crop);
-
-    const blob = await canvasToBlob(canvas);
-    if (!blob) throw new Error('Canvas toBlob returned null');
-
-    try {
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-      showNotification('Скриншот сохранён в буфер обмена!');
-    } catch {
-      downloadBlob(blob, filename);
-      showNotification('Скриншот скачан!');
-    }
-  }
-
   // --- ФУНКЦИЯ СКРИНШОТА ---
   async function shareScreenshot() {
     if (!selected || isCopying) return;
     isCopying = true;
 
     try {
-      const isMobile = window.innerWidth < 768;
       const isCompare = compareMode && selected2;
-
-      const config = isMobile ? {
-        sandboxWidth: isCompare ? 820 : 420,
-        mutantTexture: '200px', mutantFigureHeight: '240px',
-        heroGene: '40px', attackGeneContainer: '36px', attackGeneIcon: '24px', attackAoe: '30px',
-        slotBtn: '56px', orb: '56px', star: '28px', mutIcon: '36px',
-      } : {
-        sandboxWidth: isCompare ? 1380 : 700,
-        mutantTexture: '340px', mutantFigureHeight: '380px',
-        heroGene: '56px', attackGeneContainer: '44px', attackGeneIcon: '36px', attackAoe: '48px',
-        slotBtn: '68px', orb: '68px', star: '32px', mutIcon: '44px',
+      const state: Record<string, any> = {
+        id: selected.id,
+        level,
+        stars,
+        orbs: basicSlots.map((o: any) => o?.id || null),
+        special: specialSlot?.id || null,
       };
-
-      const panels: HTMLElement[] = [];
       if (isCompare) {
-        panels.push(...Array.from(document.querySelectorAll('.stats-page > .panel')) as HTMLElement[]);
-      } else {
-        const panelEl = document.querySelector('.panel') as HTMLElement;
-        if (!panelEl) { isCopying = false; return; }
-        panels.push(panelEl);
+        state.compare = true;
+        state.id2 = selected2.id;
+        state.level2 = level2;
+        state.stars2 = stars2;
+        state.orbs2 = basicSlots2.map((o: any) => o?.id || null);
+        state.special2 = specialSlot2?.id || null;
       }
 
-      const sandbox = buildSandbox(panels, config, isMobile);
+      const res = await fetch(`/api/screenshot?state=${encodeURIComponent(JSON.stringify(state))}`);
+      if (!res.ok) throw new Error(`Screenshot API error: ${res.status}`);
+
+      const blob = await res.blob();
       const filename = isCompare
         ? `${selected.name || 'mutant'}-vs-${selected2?.name || 'mutant'}-stats.png`
         : `${selected.name || 'mutant'}-stats.png`;
 
-      await captureAndSave(sandbox, config, filename);
-      isCopying = false;
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        showNotification('Скриншот сохранён в буфер обмена!');
+      } catch {
+        downloadBlob(blob, filename);
+        showNotification('Скриншот скачан!');
+      }
     } catch (error) {
       console.error('[Screenshot]', error);
+      showNotification('Ошибка создания скриншота');
+    } finally {
       isCopying = false;
-      const sb = document.querySelector('div[style*="fixed"][style*="-9999px"]');
-      if (sb) sb.remove();
     }
   }
 
@@ -1599,6 +1452,7 @@
          </div>
 
          {#if compareMode}
+            <header class="title">{selected.name}</header>
            <div class="compare-search-wrap" data-slot="1">
              <input
                class="compare-search-input"
@@ -1887,6 +1741,7 @@
                </svg>
             </button>
          </div>
+            {#if selected2}<header class="title">{selected2.name}</header>{/if}
            <div class="compare-search-wrap" data-slot="2">
             <input
               class="compare-search-input"
@@ -1922,6 +1777,8 @@
            {/if}
          </div>
       </div>
+
+      <div class="header-tools-row" style="height:14px"></div>
 
       <div class="hero-section">
       <div class="hero-genes">
@@ -2567,9 +2424,9 @@
   }
   .mut-figure .texture{ max-width:100px; max-height:100px; object-fit:contain; image-rendering:auto; }
 
-  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .hero-controls{ width:100%; max-width:520px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:2px; }
   @media (min-width: 768px) {
-    .hero-controls { gap: 6px; }
+    .hero-controls { gap: 4px; }
   }
 
   /* СЛОТЫ: защита от сплющивания + фикс сфер */
