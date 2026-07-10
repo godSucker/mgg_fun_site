@@ -1,6 +1,7 @@
 <script lang="ts">
   import { sortMutantsByGene } from '@/lib/mutant-sort'
   import { textureUrl } from '@/lib/texture-cdn'
+  import { pluralize } from '@/lib/utils'
   import MutantModal from './MutantModal.svelte'
 
   let { mutants = [] }: { mutants: any[] } = $props()
@@ -116,13 +117,14 @@
     {@const subs = SUB_ORDER[mainTier] ?? [mainTier]}
     {@const colors = TIER_COLORS[mainTier]}
     {@const hasAny = subs.some(s => grouped[s]?.length > 0)}
+    {@const tierCount = subs.reduce((sum, s) => sum + (grouped[s]?.length ?? 0), 0)}
 
     {#if hasAny}
       <section class="rounded-xl border-2 {colors.border} {colors.bg} overflow-hidden">
         <div class="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 {colors.headerBg}">
           <span class="text-sm sm:text-base font-extrabold text-white tracking-wide">ТИР {mainTier}</span>
           <span class="text-[10px] sm:text-xs text-slate-300">
-            {subs.reduce((sum, s) => sum + (grouped[s]?.length ?? 0), 0)} мутантов
+            {tierCount} {pluralize(tierCount, 'мутант', 'мутанта', 'мутантов')}
           </span>
         </div>
 

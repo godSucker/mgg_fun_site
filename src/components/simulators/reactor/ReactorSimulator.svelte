@@ -7,6 +7,7 @@
     getMutantName,
   } from '@/lib/reactor-gacha';
   import { textureUrl } from '@/lib/texture-cdn';
+  import { pluralize } from '@/lib/utils';
 
   interface DecoratedReward extends BasicReward {
     name: string;
@@ -216,7 +217,7 @@
     <div class="stage-header">
       <div class="header-info">
         <h1>{gachaName}</h1>
-        <p>Соберите коллекцию из {baseRewards.length} мутантов.</p>
+        <p>Соберите коллекцию из {baseRewards.length} {pluralize(baseRewards.length, 'мутант', 'мутанта', 'мутантов')}.</p>
       </div>
       <div class="header-progress">
         <span>{progressSummary}</span>

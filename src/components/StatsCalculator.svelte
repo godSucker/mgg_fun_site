@@ -1664,7 +1664,12 @@
                 <div class="attack-info">
                   <span class="attack-label">{attack.label}</span>
                   <div class="attack-dmg-group">
-                    <span class="attack-damage">{attack.damage ? Math.round(attack.damage * (atkMultipliers[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
+                    <span class="attack-damage"
+                      class:m-cyan={(atkMultipliers[attack.attack] ?? 1) === 0.5}
+                      class:m-beige={(atkMultipliers[attack.attack] ?? 1) === 0.75}
+                      class:m-orange={(atkMultipliers[attack.attack] ?? 1) === 1.25}
+                      class:m-red={(atkMultipliers[attack.attack] ?? 1) === 1.5}
+                    >{attack.damage ? Math.round(attack.damage * (atkMultipliers[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
                     {#if attack.gene !== 'neutro'}
                     <div class="atk-mult-btns">
                       {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
@@ -1937,7 +1942,12 @@
                 <div class="attack-info">
                   <span class="attack-label">{attack.label}</span>
                   <div class="attack-dmg-group">
-                    <span class="attack-damage">{attack.damage ? Math.round(attack.damage * (atkMultipliers2[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
+                    <span class="attack-damage"
+                      class:m-cyan={(atkMultipliers2[attack.attack] ?? 1) === 0.5}
+                      class:m-beige={(atkMultipliers2[attack.attack] ?? 1) === 0.75}
+                      class:m-orange={(atkMultipliers2[attack.attack] ?? 1) === 1.25}
+                      class:m-red={(atkMultipliers2[attack.attack] ?? 1) === 1.5}
+                    >{attack.damage ? Math.round(attack.damage * (atkMultipliers2[attack.attack] ?? 1)).toLocaleString('ru-RU') : '—'}</span>
                     {#if attack.gene !== 'neutro'}
                     <div class="atk-mult-btns">
                       {#each [-0.5, -0.25, 0, 0.25, 0.5] as delta}
@@ -2075,6 +2085,13 @@
   }
   .stats-page.compare-active .panel .panel-header {
     margin-bottom: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0;
+  }
+  .stats-page.compare-active .panel .title {
+    width: 100%;
+    max-width: 100%;
   }
   .stats-page.compare-active .panel .hero-section {
     gap: 2px;
@@ -2136,7 +2153,8 @@
     display: flex;
     justify-content: center;
     position: relative;
-    max-width: 270px;
+    max-width: 310px;
+    width: 100%;
   }
   .compare-search-input {
     width: 100%;
@@ -2257,8 +2275,8 @@
     .stats-page.compare-active .panel { max-width: 95vw; margin: 0 auto; }
   }
   @media (max-width: 480px) {
-    .compare-search-wrap { max-width: 90%; }
-    .compare-search-input { font-size: 13px; padding: 5px 22px 5px 12px; }
+    .compare-search-wrap { max-width: 80%; width: 100%; }
+    .compare-search-input { font-size: 14px; padding: 6px 24px 6px 12px; }
     .compare-search-dropdown { max-height: 250px; }
   }
 
@@ -2783,6 +2801,10 @@
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
+  .attack-damage.m-cyan { color: #7ec8e3; }
+  .attack-damage.m-beige { color: #d4c49a; }
+  .attack-damage.m-orange { color: #e8923a; }
+  .attack-damage.m-red { color: #e05555; }
 
   .atk-mult-btns {
     display: flex;
