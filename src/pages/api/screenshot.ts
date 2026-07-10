@@ -24,15 +24,20 @@ export const GET: APIRoute = async ({ url }) => {
       viewport: { width: 1400, height: 900 },
     });
 
-    await page.goto(renderUrl, { waitUntil: 'networkidle', timeout: 15000 });
-    await page.evaluate(() => document.fonts.ready);
-    await page.waitForSelector('.panel', { timeout: 10000 });
-    await page.waitForTimeout(1000);
+    await page.goto(renderUrl, { waitUntil: 'domcontentloaded', timeout: 12000 });
+
+    // Wait for fonts and panel to be ready (parallel)
+    await Promise.all([
+      page.evaluate(() => document.fonts.ready),
+      page.waitForSelector('.panel', { timeout: 10000 }),
+    ]);
+
+    await page.waitForTimeout(800);
 
     const isCompareMode = stateParam.includes('"compare":true') || stateParam.includes('"compare": true');
     if (isCompareMode) {
       await page.waitForFunction(() => document.querySelectorAll('.panel').length >= 2, { timeout: 5000 }).catch(() => {});
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(400);
     }
 
     await page.evaluate(() => {
@@ -80,7 +85,7 @@ export const GET: APIRoute = async ({ url }) => {
         panel.appendChild(wm);
       });
     });
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(50);
 
     const isCompare = await page.evaluate(() => document.querySelectorAll('.panel').length > 1);
     let buffer: Buffer;
@@ -106,9 +111,9 @@ export const GET: APIRoute = async ({ url }) => {
       },
     });
   } catch (err: any) {
-    console.error('[Screenshot]', err);
+    console.error('[Screenshot]', err?.message || err);
     return new Response(`Screenshot error: ${err.message}`, { status: 500 });
   } finally {
-    await browser?.close();
+    try { await browser?.close(); } catch {}
   }
 };

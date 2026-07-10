@@ -176,3 +176,40 @@ The dev server runs with polling enabled and ignores Python venv directories (`.
 - Telegram bot code in `bot/` directory (separate from web app)
 - The site simulates real game mechanics with accurate probabilities
 - Git history cleaned with filter-repo (evidence in `.git/filter-repo/`)
+
+## Rules (from MEMORY.md)
+
+- **Bingo sync is ADDITIVE ONLY**: read existing bingos.json, only ADD new entries. Never overwrite or delete existing data.
+- **Breeding**: NEVER break secrets (secretCombos.ts) or type exceptions (type-filters.ts). Secrets checked FIRST, then genes, then type filtering. This order is sacred.
+- **Breeding reference section is LOCKED**. Do NOT reopen without explicit user approval.
+- **Auto-sync scripts** use GitHub Actions with `workflow_dispatch` (manual trigger), not cron.
+- **No `tailwind.config.*` file**. Tailwind CSS 4 uses CSS-first config via `@import "tailwindcss"` in `src/styles/global.css`. Custom tokens are CSS custom properties in `:root`.
+- **Reactor/gacha sync was REVERTED**. Do NOT recreate without user approval.
+- **Weak mutants** (Specimen_A_02, Specimen_B_02, Specimen_C_02 = Слабый Робот/Зомби/Воин) must NEVER be parsed or written to mutants.json.
+- **Bingo title matching** requires stripping dash prefixes: existing titles use `--------morphology_*` for sort order.
+- **StatsCalculator.svelte** is the only component using `client:only="svelte"`. All others use `client:load` or `client:visible`.
+- **Stat calculation single source of truth**: `src/lib/stats/unified-calculator.ts` (`calculateFinalStats()`).
+- **Lucky Box feature REMOVED**. All code, data, textures deleted. Lucky Slots roulette simulator is SEPARATE and must be preserved.
+- **All new textures** must be uploaded to CDN.
+
+## Sync Scripts
+
+| Script | Trigger | Purpose |
+|--------|---------|---------|
+| `scripts/sync-mutants.ts` | `sync-cron.yml` daily 16:30 MSK | Parse gamedefinitions.xml, download textures, update mutants.json |
+| `scripts/sync-bingo.ts` | `sync-simulators.yml` manual | Incremental bingo updater (additive only) |
+| `scripts/download-skins.ts` | `sync-cron.yml` daily | Download skin textures from CDN |
+
+## Gotchas
+
+- **esbuild/tsx cannot parse UTF-8 em dash (U+2014 —) in JSDoc comments**: Use ASCII-only `//` comments in .ts scripts.
+- **ShopItems XML is minified**: Python `xml.etree.ElementTree` fails. Use Node.js `fast-xml-parser`.
+- **`.effect-row` background is INTENTIONAL**: Never set to transparent. User confirmed this is desired look.
+- **Orb sizing needs `overflow: hidden`**: Without it, orb images render at intrinsic size (hundreds of px).
+- **`@sparticuz/chromium` v149**: Use dynamic import, not static — Vite ESM interop breaks static import.
+- **CDN CORS only allows archivist-library.com**: Blocks localhost. Screenshots with images only testable on production.
+- **CSS background-image URLs must use hardcoded CDN**: `<style>` blocks in Svelte/Astro cannot call JS `textureUrl()`. Must use full `https://cdn.archivist-library.com/...` paths.
+- **`.icon` property pattern requires per-usage wrapping**: Every `src={something.icon}` template binding must be wrapped with `textureUrl()`. Data definitions can stay as bare paths.
+- **SSR + fs.readFileSync in Vercel**: Pages with `output: "server"` run frontmatter at request time. `src/data/` doesn't exist at runtime — only `dist/`. Must use `export const prerender = true`.
+- **Dynamic routes require prerender=true in SSR**: Pages using `getStaticPaths()` in SSR mode MUST have `export const prerender = true`. Both `[param].astro` and parent need it.
+- **Lazy loading critical for performance**: All grid/list images must use `loading="lazy"`. Never `loading="eager"` on bulk images.

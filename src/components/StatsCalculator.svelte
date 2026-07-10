@@ -1323,21 +1323,29 @@
         state.special2 = specialSlot2?.id || null;
       }
 
-      const res = await fetch(`/api/screenshot?state=${encodeURIComponent(JSON.stringify(state))}`);
-      if (!res.ok) throw new Error(`Screenshot API error: ${res.status}`);
+      const stateStr = encodeURIComponent(JSON.stringify(state));
+      let res: Response | null = null;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        res = await fetch(`/api/screenshot?state=${stateStr}`);
+        if (res.ok) break;
+        if (attempt === 0) await new Promise(r => setTimeout(r, 1000));
+      }
+      if (!res || !res.ok) throw new Error(`Screenshot API error: ${res?.status}`);
 
       const blob = await res.blob();
       const filename = isCompare
         ? `${selected.name || 'mutant'}-vs-${selected2?.name || 'mutant'}-stats.png`
         : `${selected.name || 'mutant'}-stats.png`;
 
-      try {
-        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-        showNotification('Скриншот сохранён в буфер обмена!');
-      } catch {
-        downloadBlob(blob, filename);
-        showNotification('Скриншот скачан!');
+      if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+        try {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          showNotification('Скриншот сохранён в буфер обмена!');
+          return;
+        } catch {}
       }
+      downloadBlob(blob, filename);
+      showNotification('Скриншот скачан!');
     } catch (error) {
       console.error('[Screenshot]', error);
       showNotification('Ошибка создания скриншота');

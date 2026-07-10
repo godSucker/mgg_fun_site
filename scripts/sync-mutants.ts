@@ -409,12 +409,16 @@ async function sync(options: {
     if (skipExisting) console.log(`[INFO] Режим FULL: Пропуск существующих мутантов`);
     if (compareBeforeUpdate) console.log(`[INFO] Режим REBALANCE: Обновление только изменившихся данных`);
 
+    const WEAK_MUTANT_IDS = new Set(['SPECIMEN_A_02', 'SPECIMEN_B_02', 'SPECIMEN_C_02']);
+
     const descriptors = findAllEntityDescriptors(gameDefs);
-    const specimenDescriptors = descriptors.filter(d =>
-        d.id && d.id.startsWith("Specimen_") &&
-        !(locMap.get(d.id) || "").toLowerCase().includes("слабый") &&
-        !(locMap.get(d.id) || "").toLowerCase().includes("weak")
-    );
+    const specimenDescriptors = descriptors.filter(d => {
+        if (!d.id || !d.id.startsWith("Specimen_")) return false;
+        if (WEAK_MUTANT_IDS.has(d.id.toUpperCase())) return false;
+        const locName = (locMap.get(d.id.toLowerCase()) || "").toLowerCase();
+        if (locName.includes("слабый") || locName.includes("weak")) return false;
+        return true;
+    });
 
     let modifiedCount = 0;
     console.log(`[SYNC] Найдено ${specimenDescriptors.length} записей. Обработка...\n`);
@@ -744,12 +748,16 @@ async function syncTexturesOnly() {
         return;
     }
 
+    const WEAK_MUTANT_IDS = new Set(['SPECIMEN_A_02', 'SPECIMEN_B_02', 'SPECIMEN_C_02']);
+
     const descriptors = findAllEntityDescriptors(gameDefs);
-    const specimenDescriptors = descriptors.filter(d =>
-        d.id && d.id.startsWith("Specimen_") &&
-        !(locMap.get(d.id) || "").toLowerCase().includes("слабый") &&
-        !(locMap.get(d.id) || "").toLowerCase().includes("weak")
-    );
+    const specimenDescriptors = descriptors.filter(d => {
+        if (!d.id || !d.id.startsWith("Specimen_")) return false;
+        if (WEAK_MUTANT_IDS.has(d.id.toUpperCase())) return false;
+        const locName = (locMap.get(d.id.toLowerCase()) || "").toLowerCase();
+        if (locName.includes("слабый") || locName.includes("weak")) return false;
+        return true;
+    });
 
     const stats = { checked: 0, complete: 0, errors: 0 };
 
