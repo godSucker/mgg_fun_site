@@ -126,6 +126,11 @@
     'tropical summer': '/skins/icon_tropical_summer.webp',
     'disco': '/skins/icon_disco.webp',
     'independence_day': '/skins/icon_independence_day.webp',
+    'big_boss': '/skins/icon_big_boss.webp',
+    'blood_sport': '/skins/icon_blood_sport.webp',
+    'britani_buranka': '/skins/icon_britani_buranka.webp',
+    'film': '/skins/icon_film.webp',
+    'timecop': '/skins/icon_timecop.webp',
   };
   const skinIcon = (skinName: string) => {
     if (!skinName) return null;
