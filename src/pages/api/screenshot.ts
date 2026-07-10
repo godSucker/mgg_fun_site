@@ -24,30 +24,20 @@ export const GET: APIRoute = async ({ url }) => {
       viewport: { width: 1400, height: 900 },
     });
 
-    await page.goto(renderUrl, { waitUntil: 'domcontentloaded', timeout: 12000 });
+    await page.goto(renderUrl, { waitUntil: 'networkidle', timeout: 20000 });
 
-    // Wait for fonts and panel to render first
+    // Wait for fonts and panel to be ready (parallel)
     await Promise.all([
       page.evaluate(() => document.fonts.ready),
       page.waitForSelector('.panel', { timeout: 10000 }),
     ]);
 
-    // Now wait for all Svelte-rendered images to load
-    await page.evaluate(() => Promise.all(
-      Array.from(document.images).map(img =>
-        img.complete ? Promise.resolve() : new Promise(resolve => {
-          img.onload = resolve;
-          img.onerror = resolve;
-        })
-      )
-    ));
-
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(800);
 
     const isCompareMode = stateParam.includes('"compare":true') || stateParam.includes('"compare": true');
     if (isCompareMode) {
       await page.waitForFunction(() => document.querySelectorAll('.panel').length >= 2, { timeout: 5000 }).catch(() => {});
-      await page.waitForTimeout(400);
+      await page.waitForTimeout(500);
     }
 
     await page.evaluate(() => {
@@ -95,7 +85,7 @@ export const GET: APIRoute = async ({ url }) => {
         panel.appendChild(wm);
       });
     });
-    await page.waitForTimeout(50);
+    await page.waitForTimeout(100);
 
     const isCompare = await page.evaluate(() => document.querySelectorAll('.panel').length > 1);
     let buffer: Buffer;
