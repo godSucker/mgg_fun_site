@@ -4,6 +4,7 @@
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { textureUrl } from '@/lib/texture-cdn';
+  import { pluralize } from '@/lib/utils';
 
   const normalizeForSearch = normalizeSearch;
 
@@ -436,7 +437,7 @@
   {#if title}
     <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">
       {title}
-      <span class="text-base md:text-lg font-normal text-slate-200 ml-2">({filteredMutants.length} мутантов)</span>
+      <span class="text-base md:text-lg font-normal text-slate-200 ml-2">({filteredMutants.length} {pluralize(filteredMutants.length, 'мутант', 'мутанта', 'мутантов')})</span>
     </h1>
   {/if}
 
