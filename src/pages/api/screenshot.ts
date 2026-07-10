@@ -26,21 +26,23 @@ export const GET: APIRoute = async ({ url }) => {
 
     await page.goto(renderUrl, { waitUntil: 'domcontentloaded', timeout: 12000 });
 
-    // Wait for fonts, panel, and all images to be ready (parallel)
+    // Wait for fonts and panel to render first
     await Promise.all([
       page.evaluate(() => document.fonts.ready),
       page.waitForSelector('.panel', { timeout: 10000 }),
-      page.evaluate(() => Promise.all(
-        Array.from(document.images).map(img =>
-          img.complete ? Promise.resolve() : new Promise(resolve => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          })
-        )
-      )),
     ]);
 
-    await page.waitForTimeout(300);
+    // Now wait for all Svelte-rendered images to load
+    await page.evaluate(() => Promise.all(
+      Array.from(document.images).map(img =>
+        img.complete ? Promise.resolve() : new Promise(resolve => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        })
+      )
+    ));
+
+    await page.waitForTimeout(200);
 
     const isCompareMode = stateParam.includes('"compare":true') || stateParam.includes('"compare": true');
     if (isCompareMode) {
