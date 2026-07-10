@@ -24,15 +24,10 @@ export const GET: APIRoute = async ({ url }) => {
       viewport: { width: 1400, height: 900 },
     });
 
-    await page.goto(renderUrl, { waitUntil: 'networkidle', timeout: 20000 });
-
-    // Wait for fonts and panel to be ready (parallel)
-    await Promise.all([
-      page.evaluate(() => document.fonts.ready),
-      page.waitForSelector('.panel', { timeout: 10000 }),
-    ]);
-
-    await page.waitForTimeout(800);
+    await page.goto(renderUrl, { waitUntil: 'networkidle', timeout: 15000 });
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForSelector('.panel', { timeout: 10000 });
+    await page.waitForTimeout(1000);
 
     const isCompareMode = stateParam.includes('"compare":true') || stateParam.includes('"compare": true');
     if (isCompareMode) {
@@ -111,9 +106,9 @@ export const GET: APIRoute = async ({ url }) => {
       },
     });
   } catch (err: any) {
-    console.error('[Screenshot]', err?.message || err);
+    console.error('[Screenshot]', err);
     return new Response(`Screenshot error: ${err.message}`, { status: 500 });
   } finally {
-    try { await browser?.close(); } catch {}
+    await browser?.close();
   }
 };
