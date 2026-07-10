@@ -1,6 +1,6 @@
 const CDN_BASE = 'https://cdn.archivist-library.com';
 
-const SKIP_PREFIXES = ['/api/', '/_astro/', '/fonts/'];
+const SKIP_PREFIXES = ['/api/', '/_astro/'];
 
 export function textureUrl(relativePath: string): string {
   if (!relativePath) return relativePath;
