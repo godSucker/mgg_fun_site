@@ -26,13 +26,21 @@ export const GET: APIRoute = async ({ url }) => {
 
     await page.goto(renderUrl, { waitUntil: 'domcontentloaded', timeout: 12000 });
 
-    // Wait for fonts and panel to be ready (parallel)
+    // Wait for fonts, panel, and all images to be ready (parallel)
     await Promise.all([
       page.evaluate(() => document.fonts.ready),
       page.waitForSelector('.panel', { timeout: 10000 }),
+      page.evaluate(() => Promise.all(
+        Array.from(document.images).map(img =>
+          img.complete ? Promise.resolve() : new Promise(resolve => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          })
+        )
+      )),
     ]);
 
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(300);
 
     const isCompareMode = stateParam.includes('"compare":true') || stateParam.includes('"compare": true');
     if (isCompareMode) {
