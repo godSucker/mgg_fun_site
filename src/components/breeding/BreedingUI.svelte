@@ -1,8 +1,8 @@
 <script lang="ts">
   import { secretCombos } from '@/lib/secretCombos';
   import mutantsAll from '@/data/mutants/mutants.json';
-  import { calculateBreeding, findParentsFor } from '@/lib/breeding/breeding';
-  import type { Mutant, BreedingResult, ParentPair } from '@/lib/breeding/breeding';
+  import { calculateBreeding, findParentsFor, calculateDuration } from '@/lib/breeding/breeding';
+  import type { Mutant, BreedingResult, ParentPair, BuildingLevel, StarLevel } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
@@ -13,10 +13,10 @@
     id: String(m.id),
     name: m.name,
     genes: m.genes,
-    odds: Number(m.odds) || 0,
+    chance: Number(m.chance) || 0,
     type: m.type || 'default',
-    star: 'normal',
     incub_time: Number(m.incub_time) || 0,
+    stars: m.stars || {},
     image: (() => { const s = m.stars; if (s) { const k = Object.keys(s); if (k.length) return s[k[0]]?.images ?? []; } return m.image ?? []; })()
   }));
 
@@ -57,13 +57,47 @@
     return textureUrl(`/mut_icons/icon_${t}.webp`);
   }
 
-  function formatTime(val: number | undefined) {
-    const m = Number(val);
-    if (!m || m <= 0) return '-';
-    if (m < 60) return `${m}м`;
-    const h = Math.floor(m / 60);
-    const min = m % 60;
-    return min > 0 ? `${h}ч ${min}м` : `${h}ч`;
+  function formatTime(seconds: number): string {
+    if (!seconds || seconds <= 0) return '-';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    const parts: string[] = [];
+    if (h > 0) parts.push(`${h}ч`);
+    if (m > 0) parts.push(`${m}м`);
+    if (s > 0 && h === 0) parts.push(`${s}с`);
+    return parts.join(' ') || '-';
+  }
+
+  function formatMinutes(minutes: number): string {
+    if (!minutes || minutes <= 0) return '-';
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    if (h > 0 && m > 0) return `${h}ч ${m}м`;
+    if (h > 0) return `${h}ч`;
+    return `${m}м`;
+  }
+
+  // Star timer multiplier: same as in breeding.ts
+  const STAR_TIMER_MULT: Record<StarLevel, number> = {
+    0: 1.0, 1: 1.5, 2: 2.0, 3: 3.0, 4: 1.0,
+  };
+
+  function getIncubTime(mutant: Mutant, star: StarLevel): number {
+    const base = Number(mutant.incub_time) || 0;
+    return Math.round(base * STAR_TIMER_MULT[star]);
+  }
+
+  function getGeneCode(mutant: Mutant): string {
+    const g = Array.isArray(mutant.genes) ? mutant.genes.join('') : (mutant.genes || '');
+    return g.toUpperCase();
+  }
+
+  function formatProb(prob: number): string {
+    if (prob >= 100) return '100%';
+    if (prob >= 10) return `${prob.toFixed(1)}%`;
+    if (prob >= 1) return `${prob.toFixed(1)}%`;
+    return `${prob.toFixed(2)}%`;
   }
 
   // --- STATE ---
@@ -76,6 +110,100 @@
   let search = $state('');
   let filterGene = $state('all');
   let filterGene2 = $state('all');
+
+  // Breeding settings
+  let buildingLevel: BuildingLevel = $state(3);
+  let resultStar: StarLevel = $state(0);
+  let showStarDropdown = $state(false);
+
+  const starNames: Record<StarLevel, string> = {
+    0: 'Без звезды',
+    1: 'Бронзовая',
+    2: 'Серебряная',
+    3: 'Золотая',
+    4: 'Платиновая',
+  };
+
+  // Declined forms for error messages
+  const starNamesAcc: Record<StarLevel, string> = {
+    0: '',
+    1: 'бронзовую',
+    2: 'серебряную',
+    3: 'золотую',
+    4: 'платиновую',
+  };
+
+  const starIcons: Record<StarLevel, string> = {
+    0: '/stars/no_stars.webp',
+    1: '/stars/star_bronze.webp',
+    2: '/stars/star_silver.webp',
+    3: '/stars/star_gold.webp',
+    4: '/stars/star_platinum.webp',
+  };
+
+  const STAR_MIN_LEVEL: Record<StarLevel, number> = {
+    0: 0,
+    1: 10,
+    2: 15,
+    3: 20,
+    4: 30,
+  };
+
+  function hasStarUpgrades(mutant: Mutant): boolean {
+    const stars = (mutant as any).stars;
+    return stars && Object.keys(stars).length > 1;
+  }
+
+  function selectResultStar(star: StarLevel) {
+    if (star === 4) {
+      // Platinum: only for 2 identical mutants with star upgrades
+      if (!p1 || !p2) {
+        showStarDropdown = false;
+        return;
+      }
+      if (p1.id !== p2.id) {
+        notify('Платиновая звезда доступна только при скрещивании двух одинаковых мутантов');
+        showStarDropdown = false;
+        return;
+      }
+      if (!hasStarUpgrades(p1)) {
+        notify(`Скрещивание в платиновую звезду невозможно: ${getName(p1)} не имеет звёзд`);
+        showStarDropdown = false;
+        return;
+      }
+    } else if (star > 1) {
+      // Silver / Gold: parents must have star upgrades
+      if (p1 && !hasStarUpgrades(p1)) {
+        notify(`Скрещивание в ${starNamesAcc[star]} звезду невозможно: ${getName(p1)} не имеет звёзд`);
+        showStarDropdown = false;
+        return;
+      }
+      if (p2 && !hasStarUpgrades(p2)) {
+        notify(`Скрещивание в ${starNamesAcc[star]} звезду невозможно: ${getName(p2)} не имеет звёзд`);
+        showStarDropdown = false;
+        return;
+      }
+    }
+    resultStar = star;
+    showStarDropdown = false;
+  }
+
+  function toggleStarDropdown() {
+    showStarDropdown = !showStarDropdown;
+  }
+
+  // Close dropdown on outside click
+  function handleClickOutside(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.star-dropdown-wrapper')) {
+      showStarDropdown = false;
+    }
+  }
+
+  $effect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  });
 
   let notificationMessage = $state('');
   let showNotification = $state(false);
@@ -129,7 +257,12 @@
 
   $effect(() => {
     if (mode === 'calc' && p1 && p2) {
-      calcResults = calculateBreeding(p1, p2, allMutants);
+      calcResults = calculateBreeding(p1, p2, allMutants, buildingLevel, resultStar, resultStar)
+        .sort((a, b) => {
+          // Secrets first, then by gene code
+          if (a.isSecret !== b.isSecret) return a.isSecret ? -1 : 1;
+          return getGeneCode(a.child).localeCompare(getGeneCode(b.child));
+        });
     } else {
       calcResults = [];
     }
@@ -187,7 +320,7 @@
              <div class="subtitle">Genetics Simulator</div>
          </div>
       </div>
-      
+
       <div class="mode-switch-desktop">
          <button class="mode-btn {mode==='calc' ? 'active' : ''}" onclick={() => {mode='calc'; target=null}}>
              Инкубатор
@@ -211,6 +344,21 @@
     <div class="workspace custom-scroll">
         {#if mode === 'calc'}
             <div class="calc-container" in:fly={{y:20, duration:400}}>
+                <!-- BUILDING LEVEL SELECTOR -->
+                <div class="building-level-bar">
+                    <span class="building-label">Уровень центра скрещиваний:</span>
+                    <div class="building-level-btns">
+                        {#each [1, 2, 3] as lvl}
+                            <button
+                                class="level-btn {buildingLevel === lvl ? 'active' : ''}"
+                                onclick={() => buildingLevel = lvl as BuildingLevel}
+                            >
+                                {lvl}
+                            </button>
+                        {/each}
+                    </div>
+                </div>
+
                 <!-- PARENT SLOTS -->
                 <div class="slots-area">
                     <div class="parent-slot-wrapper">
@@ -233,7 +381,32 @@
                         {/if}
                     </div>
 
-                    <div class="cross-icon">✕</div>
+                    <!-- STAR SELECTOR BETWEEN MUTANTS -->
+                    <div class="cross-area">
+                        <div class="star-dropdown-wrapper">
+                            <button class="star-dropdown-trigger" onclick={(e) => { e.stopPropagation(); toggleStarDropdown(); }} title="Выберите итоговую звезду">
+                                <img src={textureUrl(starIcons[resultStar])} alt={starNames[resultStar]} class="star-between-icon" />
+                            </button>
+                            {#if showStarDropdown}
+                                <div class="star-dropdown" in:fly={{y: -8, duration: 150}}>
+                                    {#each [0, 1, 2, 3, 4] as star}
+                                        {@const minLvl = STAR_MIN_LEVEL[star]}
+                                        <button
+                                            class="star-option {resultStar === star ? 'active' : ''}"
+                                            onclick={() => selectResultStar(star as StarLevel)}
+                                        >
+                                            <img src={textureUrl(starIcons[star])} alt={starNames[star]} class="star-option-icon" />
+                                            <span class="star-option-name">{starNames[star]}</span>
+                                            {#if minLvl > 0}
+                                                <span class="star-option-level">ур.{minLvl}</span>
+                                            {/if}
+                                        </button>
+                                    {/each}
+                                </div>
+                            {/if}
+                        </div>
+                        <div class="cross-icon">✕</div>
+                    </div>
 
                     <div class="parent-slot-wrapper">
                         <button class="slot {p2 ? 'filled' : 'empty'}" onclick={() => { p2 = null; mobileTab = 'list'; }}>
@@ -256,6 +429,15 @@
                     </div>
                 </div>
 
+                <!-- BREEDING TIME (below parents) -->
+                {#if p1 && p2}
+                    <div class="breeding-time-summary" in:fade>
+                        <span class="time-label">Время скрещивания:</span>
+                        <span class="time-icon">⏱</span>
+                        <span class="time-value">{formatTime(calculateDuration(p1, p2, buildingLevel, resultStar, resultStar))}</span>
+                    </div>
+                {/if}
+
                 <!-- RESULTS -->
                 {#if p1 && p2}
                     <div class="results-area" in:slide>
@@ -263,7 +445,7 @@
                             <div class="results-header">
                                 <span>Возможные варианты разведения: <strong class="text-lime-400">{calcResults.length}</strong></span>
                             </div>
-                            
+
                             <div class="results-list">
                                 {#each calcResults as res, i}
                                     <div class="result-card" style="animation-delay: {i * 50}ms">
@@ -282,7 +464,10 @@
                                                 </div>
                                             </div>
                                             <div class="card-meta">
-                                                <span class="time">⏱ {formatTime(res.child.incub_time)}</span>
+                                                {#if !res.isSecret}
+                                                    <span class="prob-badge">{formatProb(res.probability)}</span>
+                                                {/if}
+                                                <span class="time">⏱ {formatMinutes(getIncubTime(res.child, resultStar))}</span>
                                                 {#if res.isSecret || secretNames.has(normalize(getName(res.child)))}
                                                     <span class="secret-tag">★ Секрет</span>
                                                 {/if}
@@ -341,7 +526,7 @@
               <input type="text" bind:value={search} placeholder="Поиск мутанта..." />
               <span class="icon">🔍</span>
           </div>
-          
+
           <div class="filters">
               <div class="gene-line">
                   <button class="filter-chip {filterGene==='all' ? 'active' : ''}" onclick={() => filterGene='all'}>
@@ -425,7 +610,6 @@
   .main-wrapper {
     display: flex;
     flex-direction: column;
-    /* Subtract approx header height (65px) + padding to avoid scroll on desktop */
     height: calc(100dvh - 90px);
     max-width: 1600px;
     margin: 0 auto;
@@ -438,9 +622,6 @@
 
   @media (max-width: 1023px) {
     .main-wrapper {
-        /* On mobile, we want full height, header will scroll away or be sticky. 
-           But if header is sticky, we need to subtract it. 
-           BaseLayout header is relative (usually). */
         height: calc(100dvh - 70px);
         border-radius: 0;
         border: none;
@@ -455,7 +636,6 @@
     }
   }
 
-  /* PANELS */
   .panel {
     display: none;
     flex-direction: column;
@@ -465,7 +645,7 @@
     backdrop-filter: blur(12px);
     overflow: hidden;
   }
-  
+
   .panel.active { display: flex; }
 
   @media (min-width: 1024px) {
@@ -481,7 +661,6 @@
     }
   }
 
-  /* HEADER */
   .panel-header {
     padding: 1rem;
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -551,12 +730,11 @@
     .panel-header { padding: 1.5rem; }
   }
 
-  /* WORKSPACE */
   .workspace {
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
-    padding-bottom: 6rem; /* Space for mobile nav */
+    padding-bottom: 6rem;
     position: relative;
   }
 
@@ -566,13 +744,67 @@
 
   .calc-container, .reverse-container {
     max-width: 800px; margin: 0 auto;
-    display: flex; flex-direction: column; gap: 2rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+
+  /* BUILDING LEVEL BAR */
+  .building-level-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .building-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #94a3b8;
+    white-space: nowrap;
+  }
+
+  .building-level-btns {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .level-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(132, 204, 22, 0.2);
+    background: rgba(132, 204, 22, 0.05);
+    color: #84cc16;
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .level-btn:hover {
+    background: rgba(132, 204, 22, 0.15);
+    border-color: rgba(132, 204, 22, 0.4);
+  }
+
+  .level-btn.active {
+    background: #84cc16;
+    color: #000;
+    border-color: #84cc16;
+    box-shadow: 0 0 10px rgba(132, 204, 22, 0.4);
   }
 
   /* SLOTS */
   .slots-area {
     display: flex; align-items: flex-start; justify-content: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .parent-slot-wrapper {
@@ -634,22 +866,149 @@
   .remove-icon {
     position: absolute; top: 4px; right: 4px;
     color: rgba(255,255,255,0.5); font-size: 0.8rem; z-index: 2;
-    /* Скрываем на мобильных, так как клик по слоту сам переключает */
     @media (max-width: 1023px) { display: none; }
   }
 
-  .cross-icon { font-size: 1.2rem; color: #475569; align-self: center; margin-top: 2rem; }
+  /* STAR DROPDOWN */
+  .star-dropdown-wrapper {
+    position: relative;
+  }
+
+  .star-dropdown-trigger {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(255, 80, 80, 0.25), rgba(255, 50, 50, 0.08));
+    border: 2px solid rgba(255, 80, 80, 0.45);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+    box-shadow: 0 0 12px rgba(255, 50, 50, 0.2);
+  }
+
+  .star-dropdown-trigger:hover {
+    border-color: rgba(255, 100, 100, 0.7);
+    box-shadow: 0 0 18px rgba(255, 50, 50, 0.35);
+    transform: scale(1.08);
+  }
+
+  .star-between-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgba(255, 200, 0, 0.5));
+  }
+
+  .star-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 0.3rem;
+    z-index: 50;
+    min-width: 160px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+  }
+
+  .star-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .star-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .star-option.active {
+    background: rgba(255, 215, 0, 0.12);
+    color: #fbbf24;
+  }
+
+  .star-option-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .star-option-name {
+    white-space: nowrap;
+  }
+
+  .star-option-level {
+    margin-left: auto;
+    font-size: 0.65rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  /* CROSS AREA */
+  .cross-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 2rem;
+  }
+
+  .cross-icon { font-size: 1.2rem; color: #475569; }
 
   @media (min-width: 1024px) {
-    .slots-area { gap: 3rem; }
+    .slots-area { gap: 2rem; }
     .slot { width: 180px; height: 180px; }
     .slot .plus { font-size: 3rem; }
     .slot .label { font-size: 0.75rem; }
     .slot-label { font-size: 0.8rem; padding: 6px; }
     .parent-gene-icon { width: 40px; height: 40px; }
     .parent-genes { gap: 0.5rem; padding: 0.5rem 0.75rem; }
-    .cross-icon { margin-top: 3rem; }
+    .star-dropdown-trigger { width: 48px; height: 48px; }
+    .star-between-icon { width: 28px; height: 28px; }
+    .star-dropdown { min-width: 180px; }
+    .star-option { padding: 0.55rem 0.75rem; font-size: 0.8rem; }
+    .star-option-icon { width: 24px; height: 24px; }
+    .cross-area { margin-top: 3rem; }
   }
+
+  /* BREEDING TIME SUMMARY */
+  .breeding-time-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: #93c5fd;
+    font-weight: 700;
+  }
+
+  .time-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  .time-icon { font-size: 1rem; }
+  .time-value { font-family: monospace; }
 
   /* RESULTS */
   .results-area {
@@ -658,7 +1017,7 @@
     border-radius: 16px;
     overflow: hidden;
   }
-  
+
   .results-header {
     background: rgba(0,0,0,0.2);
     padding: 0.75rem 1rem;
@@ -668,7 +1027,6 @@
   }
 
   .results-list {
-    /* Removed max-height to avoid nested scrolls within workspace */
     padding: 0.5rem;
     display: grid; gap: 0.5rem;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -687,13 +1045,13 @@
   .mutant-thumb { width: 100%; height: 100%; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid #334155; display: flex; align-items: center; justify-content: center; }
   .mutant-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
   .card-info { flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 4px; }
-  
+
   .card-header-row {
     display: flex; align-items: center; justify-content: space-between; gap: 8px;
   }
-  
+
   .card-title { font-weight: 700; font-size: 0.9rem; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  
+
   .card-genes { display: flex; gap: 4px; flex-shrink: 0; }
   .gene-result-icon {
     width: 24px;
@@ -702,9 +1060,19 @@
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
   }
 
-  .card-meta { display: flex; gap: 0.5rem; font-size: 0.7rem; color: #64748b; font-weight: 600; align-items: center; }
+  .card-meta { display: flex; gap: 0.5rem; font-size: 0.7rem; color: #64748b; font-weight: 600; align-items: center; flex-wrap: wrap; }
   .secret-tag { color: #d946ef; background: rgba(217, 70, 239, 0.1); padding: 2px 4px; border-radius: 4px; }
   .info-tag { color: #60a5fa; background: rgba(96, 165, 250, 0.1); padding: 2px 4px; border-radius: 4px; }
+  .prob-badge {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 0.7rem;
+  }
+
+  .time { font-family: monospace; color: #94a3b8; }
 
   /* REVERSE MODE STYLES */
   .empty-search, .instruction {
@@ -724,7 +1092,7 @@
     overflow: hidden;
     padding: 1.5rem;
   }
-  
+
   .target-bg {
     position: absolute; inset: 0;
     background-size: cover; background-position: center;
@@ -740,11 +1108,10 @@
     flex-shrink: 0;
   }
   .target-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-  
+
   .target-info h2 { margin: 0; font-size: 1.5rem; font-weight: 800; color: #fff; line-height: 1.2; }
   .badges { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
   .badge { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.3); }
-  .time { font-family: monospace; color: #94a3b8; font-size: 0.8rem; }
   .reset-btn { margin-top: 0.5rem; font-size: 0.75rem; color: #94a3b8; text-decoration: underline; background: none; border: none; cursor: pointer; padding: 0; }
 
   .pairs-list { display: grid; gap: 0.75rem; }
@@ -760,7 +1127,7 @@
   .p-imgs img { width: 32px; height: 32px; border-radius: 50%; background: #000; border: 1px solid #475569; }
   .p-imgs .plus { font-size: 0.8rem; color: #64748b; }
   .p-names { font-size: 0.75rem; color: #cbd5e1; font-weight: 600; line-height: 1.2; }
-  
+
   .tag { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; }
   .tag.normal { background: rgba(132, 204, 22, 0.1); color: #bef264; border: 1px solid rgba(132, 204, 22, 0.2); }
   .tag.secret { background: rgba(217, 70, 239, 0.1); color: #f0abfc; border: 1px solid rgba(217, 70, 239, 0.2); }
@@ -772,7 +1139,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.05);
     display: flex; flex-direction: column; gap: 1rem;
   }
-  
+
   .search-box { position: relative; }
   .search-box input {
     width: 100%;
@@ -787,7 +1154,7 @@
   .filters {
     display: flex; flex-wrap: wrap; gap: 0.5rem;
   }
-  
+
   .filter-chip {
     height: 36px;
     padding: 0 0.8rem;
@@ -799,19 +1166,19 @@
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
   }
-  
+
   .filter-chip.active { background: #e2e8f0; color: #0f172a; border-color: #fff; transform: scale(1.05); }
-  
+
   .gene-chip { width: 36px; padding: 0; }
   .gene-chip img { width: 20px; height: 20px; }
-  
+
   .secret-chip {
     gap: 0.3rem;
     background: rgba(88, 28, 135, 0.3); border-color: rgba(168, 85, 247, 0.4); color: #d8b4fe;
   }
   .secret-chip.active { background: #a855f7; color: #fff; }
   .secret-chip .star { font-size: 1rem; line-height: 1; }
-  
+
   .gene-line {
     display: flex;
     flex-wrap: wrap;
@@ -826,17 +1193,17 @@
   .list-grid {
     flex: 1; overflow-y: auto;
     padding: 0.5rem;
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 0.5rem;
-    padding-bottom: 6rem; /* Mobile nav space */
+    padding-bottom: 6rem;
     align-content: start;
   }
-  
+
   @media (min-width: 1024px) {
-    .list-grid { 
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
-        gap: 0.75rem; padding: 1rem; padding-bottom: 1rem; 
+    .list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.75rem; padding: 1rem; padding-bottom: 1rem;
     }
   }
 
@@ -854,7 +1221,7 @@
     padding: 0.5rem;
     margin: 0;
     width: 100%;
-    height: 120px; /* Фиксированная высота для карточки */
+    height: 120px;
     cursor: pointer;
   }
 
@@ -871,7 +1238,7 @@
   }
 
   .type-icon {
-    width: 14px; /* Уменьшил до размера гена */
+    width: 14px;
     height: 14px;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
   }
@@ -888,28 +1255,28 @@
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
   }
   .grid-item:hover { border-color: #84cc16; background: rgba(30, 41, 59, 0.8); transform: translateY(-2px); z-index: 10; }
-  
+
   .img-wrapper {
       width: 100%;
-      height: 70px; /* Больше места для мутанта */
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 0.25rem;
   }
 
-  .grid-item img.mutant-texture { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: contain; /* Чтобы не обрезалось */
+  .grid-item img.mutant-texture {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
       opacity: 0.9;
       transition: 0.2s;
-      transform: scale(1.2); /* Немного увеличим для наглядности, раз теперь есть место */
+      transform: scale(1.2);
   }
-  
+
   .grid-item:hover img { opacity: 1; transform: scale(1.05); }
-  
+
   .item-info-row {
     width: 100%;
     margin-top: auto;
@@ -931,7 +1298,7 @@
     -webkit-box-orient: vertical;
     word-break: break-word;
   }
-  
+
   .secret-badge {
     position: absolute; top: 4px; right: 4px; left: auto;
     background: #d946ef; color: #fff;
@@ -944,13 +1311,13 @@
   .mobile-nav {
     display: flex;
     position: fixed; bottom: 0; left: 0; right: 0;
-    height: 80px; /* Safe area included */
+    height: 80px;
     background: #0f172a;
     border-top: 1px solid rgba(255,255,255,0.1);
     z-index: 100;
     padding-bottom: env(safe-area-inset-bottom, 20px);
   }
-  
+
   @media (min-width: 1024px) {
     .mobile-nav { display: none; }
   }
@@ -963,10 +1330,10 @@
   }
   .nav-item.active { color: #84cc16; }
   .nav-item.active:last-child { color: #60a5fa; }
-  
+
   .nav-item .icon { font-size: 1.5rem; }
   .nav-item .label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
-  
+
   .divider { width: 1px; background: rgba(255,255,255,0.1); height: 60%; align-self: center; }
 
   /* SCROLLBARS */

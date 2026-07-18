@@ -53,16 +53,13 @@ export function extractGenePool(geneCode: string): Gene[] {
  * Applies the "Single Exception" reduction rule: when both parents contribute the same gene,
  * the result can be EITHER a Mono (AA) OR a Single (A).
  *
+ * However, when BOTH parents have 2 genes (mono or hybrid), single-gene offspring
+ * are impossible — only two-gene combinations can result.
+ *
  * Algorithm:
  * 1. Extract gene pool from each parent
  * 2. Create Cartesian product (every gene from p1 × every gene from p2)
- * 3. Apply reduction rule for identical gene pairs
- *
- * Test cases:
- * - AA + BC -> AB, AC, BA, CA
- * - B + BA -> BB, B, BA, AB
- * - A + A -> AA, A
- * - A + B -> AB, BA
+ * 3. Apply reduction rule for identical gene pairs (only when at least one parent is single-gene)
  *
  * @param parent1Code First parent's gene code
  * @param parent2Code Second parent's gene code
@@ -78,24 +75,24 @@ export function calculatePossibleOffspring(
   const p1Genes = extractGenePool(p1Code);
   const p2Genes = extractGenePool(p2Code);
 
+  const bothParentsTwoGene = p1Genes.length === 2 && p2Genes.length === 2;
+
   const results = new Set<GeneCode>();
 
   // Cartesian product: every gene from p1 with every gene from p2
   for (const g1 of p1Genes) {
     for (const g2 of p2Genes) {
-      // Order matters (Primary/Secondary gene)
-      const combo1 = `${g1}${g2}`;
-      const combo2 = `${g2}${g1}`;
-
-      // Special Reduction Rule: if both genes are identical
       if (g1 === g2) {
-        // Add BOTH the Mono (AA) AND the Single (A)
-        results.add(`${g1}${g1}`); // Mono
-        results.add(g1);            // Single
+        // Identical genes: always produce Mono (AA)
+        results.add(`${g1}${g1}`);
+        // Single (A) only when at least one parent is single-gene
+        if (!bothParentsTwoGene) {
+          results.add(g1);
+        }
       } else {
-        // For different genes, add both orderings (AB and BA are different)
-        results.add(combo1);
-        results.add(combo2);
+        // Different genes: both orderings (AB and BA)
+        results.add(`${g1}${g2}`);
+        results.add(`${g2}${g1}`);
       }
     }
   }
@@ -117,8 +114,16 @@ export function canBreedChild(
   parent1Code: string | string[],
   parent2Code: string | string[]
 ): boolean {
+  const p1Genes = extractGenePool(normalizeGeneCode(parent1Code));
+  const p2Genes = extractGenePool(normalizeGeneCode(parent2Code));
+  const bothParentsTwoGene = p1Genes.length === 2 && p2Genes.length === 2;
+
   const possibleOffspring = calculatePossibleOffspring(parent1Code, parent2Code);
   const normalizedChild = normalizeGeneCode(childCode);
+
+  if (bothParentsTwoGene && normalizedChild.length === 1) {
+    return false;
+  }
 
   return possibleOffspring.includes(normalizedChild);
 }
@@ -129,40 +134,40 @@ export function canBreedChild(
 export function runTests(): { passed: number; failed: number; results: string[] } {
   const tests = [
     {
-      name: 'AA + BC',
+      name: 'AA + BC (two-gene x two-gene, no singles)',
       p1: 'AA',
       p2: 'BC',
       expected: ['AB', 'AC', 'BA', 'CA']
     },
     {
-      name: 'B (Single) + BA',
+      name: 'B (Single) + BA (single x two-gene, singles allowed)',
       p1: 'B',
       p2: 'BA',
       expected: ['BB', 'B', 'BA', 'AB']
     },
     {
-      name: 'A (Single) + A (Single)',
+      name: 'A (Single) + A (Single) (single x single, singles allowed)',
       p1: 'A',
       p2: 'A',
       expected: ['AA', 'A']
     },
     {
-      name: 'A (Single) + B (Single)',
+      name: 'A (Single) + B (Single) (single x single, no identical genes)',
       p1: 'A',
       p2: 'B',
       expected: ['AB', 'BA']
     },
     {
-      name: 'AB + CD',
+      name: 'AB + CD (two-gene x two-gene, no singles)',
       p1: 'AB',
       p2: 'CD',
       expected: ['AC', 'AD', 'BC', 'BD', 'CA', 'DA', 'CB', 'DB']
     },
     {
-      name: 'AA + AA',
+      name: 'AA + AA (two-gene x two-gene, only mono)',
       p1: 'AA',
       p2: 'AA',
-      expected: ['AA', 'A']
+      expected: ['AA']
     }
   ];
 

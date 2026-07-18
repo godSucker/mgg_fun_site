@@ -40,42 +40,15 @@ export const INHERITANCE_ONLY_TYPES = new Set([
  * All names are normalized (lowercase, alphanumeric only) for comparison.
  */
 export const BREEDABLE_LEGENDS = new Set([
-  // Original legends (excluding secret/recipe mutants)
-  'human',
-  'dezinger',
-  'mechanorog',
-  'invadron',
-  'cursedracer',
-  'proklyatiygonshchik', // Проклятый Гонщик
-  'touchdown',
-  'grimteddy',
-  'ragnar',
-  'buckmaurice',
-  'galaxyguard',
-  'thor',
-  'kobrakai',
-  'cosmokong',
-  'absolem',
-  'longhorn',
-  'startrooper',
-  'wampaa',
-  'masteryoda',
-  'anubis',
-  'raveneye',
-  'hor',
-  'gore',
-  // NOTE: Secret/Recipe mutants removed:
-  // bushi, captainbagobones, captainwrenchfury, mantidruid,
-  // devourer, darkseer, interceptrix, cyberslug, commodoreshark
-
-  // Russian names (normalized, excluding secret/recipe mutants)
+  // Normalized Russian names (as returned by normalizeSearch)
   'человек',
+  'хуман',
   'дезингер',
   'механорог',
   'инвадрон',
   'проклятыйгонщик',
   'тачдаун',
-  'мрачныймишка',
+  'жуткиймишка',
   'рагнар',
   'бакморис',
   'стражгалактики',
@@ -83,16 +56,16 @@ export const BREEDABLE_LEGENDS = new Set([
   'кобракай',
   'космоконг',
   'абсолем',
-  'длиннорог',
-  'штурмовик',
+  'долгоног',
+  'звездныйдесантник',
   'вампаа',
-  'мастерйода',
+  'мастерйоуда',
   'анубис',
-  'вороноглаз'
-  // NOTE: Secret/Recipe mutants removed:
+  'воронийглаз'
+  // NOTE: Secret/Recipe mutants excluded:
   // буши, капитанкостьмилягу, капитангаечныйключ, мантидроид,
   // пожиратель, темновзор, перехватчица, киберслизень, коммодоракула
-].map(normalizeSearch));
+]);
 
 /**
  * Checks if a mutant type is completely unbreedable.
