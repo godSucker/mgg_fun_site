@@ -1,7 +1,7 @@
 <script lang="ts">
   import { secretCombos } from '@/lib/secretCombos';
   import mutantsAll from '@/data/mutants/mutants.json';
-  import { calculateBreeding, findParentsFor, calculateDuration } from '@/lib/breeding/breeding';
+  import { calculateBreeding, findParentsFor, calculateDuration, recommendedScore } from '@/lib/breeding/breeding';
   import type { Mutant, BreedingResult, ParentPair, BuildingLevel, StarLevel } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
   import { normalizeSearch } from '@/lib/search-normalize';
@@ -270,18 +270,76 @@
 
   let guideResults: any[] = $state([]);
   let isSearching = $state(false);
+  let allSecrets = $derived(guideResults.length > 0 && guideResults.every((r: any) => r.isSecret));
+  let sortField: 'duration' | 'probability' | 'recommended' = $state('recommended');
+  let sortAsc = $state(true);
+  let showAll = $state(false);
+  let reverseStar: StarLevel = $state(0);
+
+  const TOP_N = 15;
+
+  const byRecommended = $derived(() => {
+    const sorted = [...guideResults].sort((a, b) =>
+      recommendedScore(b.probability, b.duration) - recommendedScore(a.probability, a.duration)
+    );
+    return sorted.slice(0, 200);
+  });
+
+  const byTime = $derived(() => {
+    const sorted = [...guideResults].sort((a, b) =>
+      a.duration !== b.duration ? a.duration - b.duration : b.probability - a.probability
+    );
+    return sorted.slice(0, 200);
+  });
+
+  const byProbability = $derived(() => {
+    const sorted = [...guideResults].sort((a, b) =>
+      b.probability !== a.probability ? b.probability - a.probability : a.duration - b.duration
+    );
+    return sorted.slice(0, 200);
+  });
+
+  let tabCount = $derived(() => {
+    const base = sortField === 'recommended' ? byRecommended() :
+                 sortField === 'duration' ? byTime() : byProbability();
+    return base.length;
+  });
+
+  let sortedGuideResults = $derived(() => {
+    const base = sortField === 'recommended' ? byRecommended() :
+                 sortField === 'duration' ? byTime() : byProbability();
+    const secrets = guideResults.filter((r: any) => r.isSecret);
+    const combined = [...secrets, ...base];
+    return showAll ? combined : combined.slice(0, TOP_N);
+  });
+
+  function toggleSort(field: 'duration' | 'probability' | 'recommended') {
+    if (field === 'recommended') {
+      sortField = 'recommended';
+      sortAsc = true;
+    } else if (sortField === field) {
+      sortAsc = !sortAsc;
+    } else {
+      sortField = field;
+      sortAsc = true;
+    }
+    showAll = false;
+  }
 
   $effect(() => {
     if (mode === 'reverse' && target) {
+      const bl = buildingLevel;
+      const rs = reverseStar;
       isSearching = true;
       guideResults = [];
       setTimeout(() => {
           if (!target) return;
-          const res = findParentsFor(target, allMutants);
+          const res = findParentsFor(target, allMutants, bl, rs, rs);
           guideResults = res.map(r => ({
               p1: r.p1, p2: r.p2, isSecret: r.isSecret,
+              duration: r.duration, probability: r.probability,
               tag: r.isSecret ? 'РЕЦЕПТ' : 'ПАРЫ'
-          })).slice(0, 10);
+          }));
           isSearching = false;
       }, 100);
     }
@@ -323,21 +381,23 @@
 
       <div class="mode-switch-desktop">
          <button class="mode-btn {mode==='calc' ? 'active' : ''}" onclick={() => {mode='calc'; target=null}}>
-             Инкубатор
+             Центр скрещиваний
          </button>
-         <button class="mode-btn disabled" title="Справочник временно закрыт">
-             Справочник 🔒
+         <button class="mode-btn {mode==='reverse' ? 'active' : ''}" onclick={() => {mode='reverse'; p1=null; p2=null}}>
+             Справочник
          </button>
       </div>
 
       <button class="mode-switch-mobile" onclick={() => {
           if (mode === 'reverse') {
               mode = 'calc';
-              target = null; p1 = null; p2 = null;
+              target = null;
+          } else {
+              mode = 'reverse';
+              p1 = null; p2 = null;
           }
-          notify('🔒 Справочник временно закрыт по техническим причинам.\n\nМы работаем над улучшением базы данных рецептов.');
       }}>
-          {mode === 'calc' ? 'Справочник 🔒' : 'В Инкубатор ➜'}
+          {mode === 'calc' ? 'Справочник' : 'Центр скрещиваний ➜'}
       </button>
     </div>
 
@@ -493,27 +553,152 @@
                 {/if}
             </div>
         {:else}
-            <!-- REVERSE MODE - CLOSED -->
-             <div class="closed-section" in:fly={{y:20, duration:400}}>
-                 <div class="closed-content">
-                     <div class="closed-icon">🔒</div>
-                     <h1>Раздел закрыт</h1>
-                     <p class="closed-reason">Справочник временно недоступен по техническим причинам</p>
-                     <p class="closed-text">Мы работаем над улучшением базы данных рецептов.<br/>Раздел откроется в ближайшее время.</p>
-                     <button class="back-btn" onclick={() => {mode='calc'; target=null}}>
-                         ← Вернуться в Инкубатор
-                     </button>
-                     <div class="decorator">
-                         <div class="dna-strand">
-                             <span class="base">A</span>
-                             <span class="base">T</span>
-                             <span class="base">G</span>
-                             <span class="base">C</span>
-                             <span class="base">A</span>
-                             <span class="base">T</span>
+            <!-- REVERSE MODE - СПРАВОЧНИК -->
+             <div class="reverse-container" in:fly={{y:20, duration:400}}>
+                 {#if target}
+                     <!-- TARGET CARD -->
+                     <div class="target-card">
+                         <div class="target-content">
+                             <div class="target-img-wrap">
+                                 <img src={getImageSrc(target)} alt={getName(target)} />
+                             </div>
+                             <div class="target-info">
+                                 <div class="badges">
+                                     <span class="badge">{(target.type || 'default').toUpperCase()}</span>
+                                     {#each getAllGenes(target) as g}
+                                         <img src={getGeneIcon(g)} alt={g} class="badge-gene-icon" />
+                                     {/each}
+                                 </div>
+                                 <h2>{getName(target)}</h2>
+                                  <button class="reset-btn" onclick={() => { target = null; guideResults = []; }}>
+                                     ✕ Сбросить
+                                 </button>
+                             </div>
                          </div>
                      </div>
-                 </div>
+
+                     <!-- BUILDING LEVEL + STAR SELECTORS -->
+                     <div class="reverse-settings">
+                         <div class="building-level-bar">
+                             <span class="building-label">Уровень центра:</span>
+                             <div class="building-level-btns">
+                                 {#each [1, 2, 3] as lvl}
+                                     <button
+                                         class="level-btn {buildingLevel === lvl ? 'active' : ''}"
+                                         onclick={() => buildingLevel = lvl as BuildingLevel}
+                                     >
+                                         {lvl}
+                                     </button>
+                                 {/each}
+                             </div>
+                         </div>
+                         <div class="reverse-star-bar">
+                             <span class="building-label">Звезда мутанта:</span>
+                             <div class="building-level-btns">
+                                 {#each [0, 1, 2, 3, 4] as star}
+                                     <button
+                                         class="level-btn star-btn {reverseStar === star ? 'active' : ''}"
+                                         onclick={() => reverseStar = star as StarLevel}
+                                     >
+                                         <img src={textureUrl(starIcons[star])} alt={starNames[star]} class="star-btn-icon" />
+                                     </button>
+                                 {/each}
+                             </div>
+                         </div>
+                     </div>
+
+                     <!-- RESULTS -->
+                     {#if isSearching}
+                         <div class="loading">
+                             <div class="spinner"></div>
+                             Поиск пар...
+                         </div>
+                      {:else if guideResults.length > 0}
+                          <div class="results-area">
+                              <div class="results-header">
+                                  <span>{allSecrets ? 'Существующие рецепты' : 'Найденные пары'}: <strong class="text-lime-400">{tabCount()}</strong></span>
+                                  {#if !allSecrets}
+                                  <div class="sort-controls">
+                                      <button class="sort-btn rec-btn {sortField === 'recommended' ? 'active' : ''}" onclick={() => toggleSort('recommended')}>
+                                          Рекомендуемое
+                                      </button>
+                                      <button class="sort-btn {sortField === 'duration' ? 'active' : ''}" onclick={() => toggleSort('duration')}>
+                                          Время {sortField === 'duration' ? (sortAsc ? '↑' : '↓') : ''}
+                                      </button>
+                                      <button class="sort-btn {sortField === 'probability' ? 'active' : ''}" onclick={() => toggleSort('probability')}>
+                                          Шанс {sortField === 'probability' ? (sortAsc ? '↑' : '↓') : ''}
+                                      </button>
+                                  </div>
+                                  {/if}
+                              </div>
+                              <div class="pairs-list">
+                                  {#each sortedGuideResults() as pair, i}
+                                      <div class="pair-card" style="animation-delay: {i * 50}ms">
+                                          <div class="parents">
+                                              <div class="p-imgs">
+                                                  <div class="p-item">
+                                                      <div class="p-genes-overlay">
+                                                          {#each getAllGenes(pair.p1) as g}
+                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                          {/each}
+                                                      </div>
+                                                      <img src={getImageSrc(pair.p1)} alt={getName(pair.p1)} title={getName(pair.p1)} />
+                                                      <div class="p-genes-below">
+                                                          {#each getAllGenes(pair.p1) as g}
+                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                          {/each}
+                                                      </div>
+                                                      <div class="p-name">{getName(pair.p1)}</div>
+                                                  </div>
+                                                  <span class="plus">+</span>
+                                                  <div class="p-item">
+                                                      <div class="p-genes-overlay">
+                                                          {#each getAllGenes(pair.p2) as g}
+                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                          {/each}
+                                                      </div>
+                                                      <img src={getImageSrc(pair.p2)} alt={getName(pair.p2)} title={getName(pair.p2)} />
+                                                      <div class="p-genes-below">
+                                                          {#each getAllGenes(pair.p2) as g}
+                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                          {/each}
+                                                      </div>
+                                                      <div class="p-name">{getName(pair.p2)}</div>
+                                                  </div>
+                                              </div>
+                                              <div class="p-names">
+                                                  {getName(pair.p1)} × {getName(pair.p2)}
+                                              </div>
+                                          </div>
+                                          <div class="pair-stats">
+                                              <span class="pair-time">⏱ {formatTime(pair.duration)}</span>
+                                              <span class="pair-prob">{formatProb(pair.probability)}</span>
+                                          </div>
+                                      </div>
+                                  {/each}
+                              </div>
+                              {#if !allSecrets && tabCount() > TOP_N && !showAll}
+                                  <button class="show-all-btn" onclick={() => showAll = true}>
+                                      Показать больше ({tabCount()})
+                                  </button>
+                              {/if}
+                         </div>
+                     {:else}
+                         <div class="empty-search">
+                             <div class="icon">🔍</div>
+                             <p>Пары не найдены</p>
+                         </div>
+                     {/if}
+                 {:else}
+                     <!-- INSTRUCTIONS -->
+                     <div class="instruction">
+                         <button class="mobile-select-btn" onclick={() => { mobileTab = 'list'; }}>
+                             📋 Выбрать мутанта из списка
+                         </button>
+                         <div class="icon">🔬</div>
+                         <p>Выберите мутанта из списка, чтобы найти все пары родителей, которые его дают</p>
+                     </div>
+                 {/if}
              </div>
         {/if}
     </div>
@@ -1020,11 +1205,23 @@
 
   .results-header {
     background: rgba(0,0,0,0.2);
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     border-bottom: 1px solid rgba(255,255,255,0.05);
-    display: flex; justify-content: space-between;
-    font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #94a3b8;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.65rem; text-transform: uppercase; font-weight: 700; color: #94a3b8;
   }
+  .sort-controls { display: flex; gap: 0.3rem; }
+  .sort-btn {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8; border-radius: 6px; padding: 0.2rem 0.3rem;
+      font-size: 0.65rem; font-weight: 700; cursor: pointer; transition: all 0.15s;
+      display: flex; align-items: center; gap: 2px;
+  }
+  .sort-btn:hover { background: rgba(255,255,255,0.12); color: #e2e8f0; }
+  .sort-btn.active { background: rgba(74,222,128,0.15); color: #4ade80; border-color: rgba(74,222,128,0.3); }
+  .rec-btn { border-color: rgba(251,191,36,0.25); color: #fbbf24; }
+  .rec-btn:hover { background: rgba(251,191,36,0.1); color: #fcd34d; }
+  .rec-btn.active { background: rgba(251,191,36,0.15); color: #fbbf24; border-color: rgba(251,191,36,0.4); }
 
   .results-list {
     padding: 0.5rem;
@@ -1084,6 +1281,26 @@
   .big-icon, .icon { font-size: 3rem; margin-bottom: 0.5rem; filter: grayscale(1); }
   .instruction p { max-width: 300px; font-size: 0.9rem; line-height: 1.5; }
 
+  .mobile-select-btn {
+    display: none;
+    padding: 0.7rem 1.5rem;
+    background: rgba(132, 204, 22, 0.15);
+    border: 1px solid rgba(132, 204, 22, 0.4);
+    border-radius: 10px;
+    color: #84cc16;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mobile-select-btn:hover {
+    background: rgba(132, 204, 22, 0.25);
+    border-color: rgba(132, 204, 22, 0.6);
+  }
+  @media (max-width: 1023px) {
+    .mobile-select-btn { display: block; }
+  }
+
   .target-card {
     position: relative;
     background: rgba(15, 23, 42, 0.8);
@@ -1112,21 +1329,110 @@
   .target-info h2 { margin: 0; font-size: 1.5rem; font-weight: 800; color: #fff; line-height: 1.2; }
   .badges { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
   .badge { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .badge-gene-icon { width: 20px; height: 20px; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
   .reset-btn { margin-top: 0.5rem; font-size: 0.75rem; color: #94a3b8; text-decoration: underline; background: none; border: none; cursor: pointer; padding: 0; }
+  .reverse-settings {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .reverse-settings .building-level-bar { flex: 1; min-width: 0; }
+  .reverse-star-bar {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .star-btn { width: 32px; height: 32px; padding: 0; }
+  .star-btn-icon { width: 20px; height: 20px; object-fit: contain; }
+  @media (max-width: 480px) {
+    .reverse-settings { flex-direction: column; gap: 0.15rem; margin-bottom: 0.15rem; margin-top: -0.35rem; }
+    .reverse-settings .building-level-bar { min-width: 100%; padding: 0.2rem 0.4rem; }
+    .reverse-star-bar { min-width: 100%; padding: 0.2rem 0.4rem; justify-content: center; }
+    .building-label { font-size: 0.55rem; }
+    .level-btn { width: 30px; height: 30px; font-size: 0.7rem; }
+    .star-btn { width: 30px; height: 30px; }
+    .star-btn-icon { width: 18px; height: 18px; }
+  }
 
-  .pairs-list { display: grid; gap: 0.75rem; }
+  .pairs-list { display: grid; gap: 0.4rem; }
   .pair-card {
     background: rgba(30, 41, 59, 0.4);
     border: 1px solid rgba(255,255,255,0.05);
-    padding: 0.75rem; border-radius: 12px;
+    padding: 0.45rem 0.6rem; border-radius: 10px;
     display: flex; justify-content: space-between; align-items: center;
     animation: slideUp 0.3s ease-out backwards;
   }
-  .parents { display: flex; gap: 1rem; align-items: center; }
-  .p-imgs { display: flex; align-items: center; gap: 0.5rem; }
-  .p-imgs img { width: 32px; height: 32px; border-radius: 50%; background: #000; border: 1px solid #475569; }
-  .p-imgs .plus { font-size: 0.8rem; color: #64748b; }
-  .p-names { font-size: 0.75rem; color: #cbd5e1; font-weight: 600; line-height: 1.2; }
+  .parents { display: flex; gap: 0.5rem; align-items: center; }
+  .p-imgs { display: flex; align-items: center; gap: 0.25rem; }
+  .p-item { display: flex; flex-direction: column; align-items: center; gap: 1px; position: relative; }
+  .p-item > img { width: 36px; height: 36px; border-radius: 6px; background: #000; border: 1px solid #475569; object-fit: contain; }
+  .p-genes-overlay { display: none; }
+  .p-genes-below { display: flex; gap: 0px; }
+  .p-gene-icon { width: 16px; height: 16px; object-fit: contain; border: none !important; border-radius: 0 !important; background: none !important; }
+  .p-imgs .plus { font-size: 0.6rem; color: #64748b; }
+  .p-names { font-size: 0.7rem; color: #cbd5e1; font-weight: 600; line-height: 1.2; }
+  .p-name { display: none; }
+  .pair-stats {
+    display: flex; gap: 0.5rem; align-items: center;
+    flex-shrink: 0; margin-left: auto; margin-right: 1.5rem;
+    min-width: 120px; justify-content: flex-end;
+  }
+  .pair-time {
+    font-size: 0.65rem; color: #94a3b8; white-space: nowrap;
+    width: 60px; text-align: right;
+  }
+  .pair-prob {
+    font-size: 0.65rem; color: #4ade80; font-weight: 700; white-space: nowrap;
+    width: 42px; text-align: right;
+  }
+  @media (max-width: 480px) {
+    .pair-card {
+        display: flex; align-items: stretch; gap: 0;
+        padding: 0.35rem 0; border-radius: 8px;
+    }
+    .parents {
+        flex: 1; min-width: 0; padding: 0 0.4rem;
+        display: flex; align-items: center; gap: 0.3rem;
+    }
+    .p-imgs { display: flex; align-items: center; gap: 0.3rem; }
+    .p-item { width: 38px; text-align: center; }
+    .p-item > img { width: 34px; height: 34px; display: block; margin: 0 auto; }
+    .p-genes-overlay {
+        display: flex; gap: 0; position: absolute; top: -4px; left: 50%;
+        transform: translateX(-50%); z-index: 2;
+    }
+    .p-genes-overlay .p-gene-icon { width: 12px; height: 12px; }
+    .p-genes-below { display: none; }
+    .p-names { display: none; }
+    .p-name {
+        display: block; font-size: 0.5rem; color: #cbd5e1; font-weight: 600;
+        line-height: 1.1; max-width: 50px; text-align: center; word-break: break-word;
+        margin-top: 1px; min-height: 1.2em;
+    }
+    .p-imgs .plus { font-size: 0.55rem; }
+    .pair-stats {
+        display: flex; flex-direction: row; gap: 0.35rem;
+        flex-shrink: 0; margin-left: auto; margin-right: 0.3rem;
+    }
+    .pair-time, .pair-prob {
+        display: flex; align-items: center; justify-content: center;
+        width: 52px; padding: 0.2rem 0;
+        box-sizing: border-box;
+    }
+    .pair-time { font-size: 0.7rem; color: #94a3b8; width: 60px; }
+    .pair-prob { font-size: 0.7rem; color: #4ade80; font-weight: 700; width: 56px; }
+    .sort-btn { width: 46px; justify-content: center; padding: 0.15rem 0.2rem; font-size: 0.6rem; }
+    .sort-btn.rec-btn { width: auto; padding: 0.15rem 0.35rem; }
+    .sort-controls { gap: 0.35rem; }
+  }
+  .show-all-btn {
+    width: 100%; margin-top: 0.5rem;
+    background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.12);
+    color: #94a3b8; border-radius: 8px; padding: 0.5rem;
+    font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+  }
+  .show-all-btn:hover { background: rgba(255,255,255,0.08); color: #e2e8f0; border-color: rgba(255,255,255,0.2); }
 
   .tag { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; }
   .tag.normal { background: rgba(132, 204, 22, 0.1); color: #bef264; border: 1px solid rgba(132, 204, 22, 0.2); }

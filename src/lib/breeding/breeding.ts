@@ -11,7 +11,7 @@
  */
 
 import { calculatePossibleOffspring, normalizeGeneCode, canBreedChild } from './core-algorithm';
-import { canBreedByType, getBreedingTag, isUnbreedableType } from './type-filters';
+import { canBreedByType, getBreedingTag, isUnbreedableType, UNBREEDABLE_TYPES } from './type-filters';
 import { secretCombos } from '@/lib/secretCombos';
 import { normalizeSearch as normalizeName } from '@/lib/search-normalize';
 
@@ -43,6 +43,8 @@ export interface ParentPair {
   p1: Mutant;
   p2: Mutant;
   isSecret: boolean;
+  duration: number;
+  probability: number;
 }
 
 // --- 2. LengthOut Table (from breedingsettings_decoded.xml) ---
@@ -155,7 +157,7 @@ export function calculateBreeding(
   });
 
   // Calculate duration for secrets
-  const secretDuration = calculateDuration(p1, p2, buildingLevel, star1, star2);
+  const pairDuration = calculateDuration(p1, p2, buildingLevel, star1, star2);
 
   if (secretMatch) {
     const secretChild = allMutants.find(m =>
@@ -168,7 +170,7 @@ export function calculateBreeding(
         tag: 'РЕЦЕПТ',
         probability: 100,
         weight: 0,
-        duration: secretDuration,
+        duration: pairDuration,
       });
       seenIds.add(String(secretChild.id));
     }
@@ -236,7 +238,7 @@ export function calculateBreeding(
       tag,
       probability: 0,
       weight,
-      duration: secretDuration,
+      duration: pairDuration,
     });
     seenIds.add(mId);
   }
@@ -295,23 +297,64 @@ export function calculateDuration(
 
 // --- 8. Reverse Breeding (Find Parents) ---
 
+let geneCodeCache: Map<string, Mutant[]> | null = null;
+
+function getGeneCodeMap(allMutants: Mutant[]): Map<string, Mutant[]> {
+  if (geneCodeCache) return geneCodeCache;
+  geneCodeCache = new Map();
+  for (const m of allMutants) {
+    const code = getGeneStr(m.genes);
+    if (!geneCodeCache.has(code)) geneCodeCache.set(code, []);
+    geneCodeCache.get(code)!.push(m);
+  }
+  return geneCodeCache;
+}
+
+export function recommendedScore(probability: number, durationSec: number, W = 3): number {
+  if (durationSec <= 0 || probability <= 0) return 0;
+  const p = probability / 100;
+  return Math.pow(p, W) * (3600 / durationSec);
+}
+
+function canBeStarParent(m: Mutant, star1: StarLevel, star2: StarLevel): boolean {
+  const usesSilverOrGold = star1 >= 2 || star2 >= 2;
+  if (!usesSilverOrGold) return true;
+  const t = (m.type || 'default').toLowerCase();
+  return !UNBREEDABLE_TYPES.has(t);
+}
+
 export function findParentsFor(
   target: Mutant,
-  allMutants: Mutant[]
+  allMutants: Mutant[],
+  buildingLevel: BuildingLevel = 3,
+  star1: StarLevel = 0,
+  star2: StarLevel = 0
 ): ParentPair[] {
-  const results: ParentPair[] = [];
-
   const tName = normalizeName(target.name);
   const tType = (target.type || 'default').toLowerCase();
   const tGenes = getGeneStr(target.genes);
   const tId = String(target.id);
 
+  // Platinum: always target × target
+  if (star1 === 4 && star2 === 4) {
+    return [{
+      p1: target,
+      p2: target,
+      isSecret: false,
+      probability: 100,
+      duration: calculateDuration(target, target, buildingLevel, 4, 4),
+    }];
+  }
+
   const secretRecipes = secretCombos.filter(s => normalizeName(s.childName) === tName);
   if (secretRecipes.length > 0) {
+    const results: ParentPair[] = [];
     secretRecipes.forEach(r => {
       const p1 = allMutants.find(m => normalizeName(m.name) === normalizeName(r.parents[0]));
       const p2 = allMutants.find(m => normalizeName(m.name) === normalizeName(r.parents[1]));
-      if (p1 && p2) results.push({ p1, p2, isSecret: true });
+      if (p1 && p2) {
+        results.push({ p1, p2, isSecret: true, probability: 100, duration: calculateDuration(p1, p2, buildingLevel, star1, star2) });
+      }
     });
     return results;
   }
@@ -320,43 +363,75 @@ export function findParentsFor(
     return [];
   }
 
+  const byGeneCode = getGeneCodeMap(allMutants);
   const targetGenePool = tGenes.split('').filter((g, i, arr) => arr.indexOf(g) === i);
 
-  const potentialParents = allMutants.filter(m => {
-    const genes = getGeneStr(m.genes);
-    return targetGenePool.some(g => genes.includes(g));
-  }).sort((a, b) => (Number(b.chance) || 0) - (Number(a.chance) || 0));
+  const relevantCodes = [...byGeneCode.keys()]
+    .filter(code => targetGenePool.some(g => code.includes(g)));
+
+  const validCategoryPairs: [string, string][] = [];
+  for (let i = 0; i < relevantCodes.length; i++) {
+    for (let j = i; j < relevantCodes.length; j++) {
+      if (canBreedChild(tGenes, relevantCodes[i], relevantCodes[j])) {
+        validCategoryPairs.push([relevantCodes[i], relevantCodes[j]]);
+      }
+    }
+  }
 
   const needsInheritance = !canBreedByType(target, 'none', 'none');
 
-  if (needsInheritance) {
-    for (const p2 of potentialParents) {
-      if (canBreedChild(tGenes, tGenes, getGeneStr(p2.genes))) {
-        results.push({ p1: target, p2, isSecret: false });
-      }
-    }
-  } else {
-    let count = 0;
-    const maxResults = 20;
-    const maxIterations = 5000;
+  const probCache = new Map<string, number>();
+  for (const [c1, c2] of validCategoryPairs) {
+    const group1 = byGeneCode.get(c1)!;
+    const group2 = c1 === c2 ? group1 : byGeneCode.get(c2)!;
+    const pickRep = (group: Mutant[]) =>
+      needsInheritance ? (group.find(m => m.id === tId) ?? group[0]) : (group.find(m => m.id !== tId) ?? group[0]);
+    const rep1 = pickRep(group1);
+    const rep2 = pickRep(group2);
+    const res = calculateBreeding(rep1, rep2, allMutants, buildingLevel, star1, star2);
+    const match = res.find(r => normalizeName(r.child.name) === tName);
+    probCache.set(`${c1}|${c2}`, match ? match.probability : 0);
+  }
 
-    outer: for (let i = 0; i < potentialParents.length; i++) {
-      for (let j = i; j < potentialParents.length; j++) {
-        if (count++ > maxIterations) break outer;
+  const results: ParentPair[] = [];
+  const selfBreedCache = new Map<string, number>();
 
-        const p1 = potentialParents[i];
-        const p2 = potentialParents[j];
+  function getSelfBreedProb(mutant: Mutant): number {
+    const key = mutant.id;
+    if (selfBreedCache.has(key)) return selfBreedCache.get(key)!;
+    const res = calculateBreeding(mutant, mutant, allMutants, buildingLevel, star1, star2);
+    const match = res.find(r => normalizeName(r.child.name) === tName);
+    const prob = match ? match.probability : 0;
+    selfBreedCache.set(key, prob);
+    return prob;
+  }
 
-        const p1Genes = getGeneStr(p1.genes);
-        const p2Genes = getGeneStr(p2.genes);
+  for (const [c1, c2] of validCategoryPairs) {
+    const catProb = probCache.get(`${c1}|${c2}`) ?? 0;
+    if (catProb <= 0) continue;
 
-        if (canBreedChild(tGenes, p1Genes, p2Genes)) {
-          results.push({ p1, p2, isSecret: false });
-          if (results.length >= maxResults) break outer;
-        }
+    const group1 = byGeneCode.get(c1)!;
+    const group2 = c1 === c2 ? group1 : byGeneCode.get(c2)!;
+
+    for (const p1 of group1) {
+      if (!canBeStarParent(p1, star1, star2)) continue;
+      for (const p2 of group2) {
+        if (!canBeStarParent(p2, star1, star2)) continue;
+        if (needsInheritance && p1.id !== target.id && p2.id !== target.id) continue;
+        if (p1.id > p2.id) continue;
+        const prob = p1.id === p2.id ? getSelfBreedProb(p1) : catProb;
+        if (prob <= 0) continue;
+        results.push({
+          p1, p2,
+          isSecret: false,
+          probability: prob,
+          duration: calculateDuration(p1, p2, buildingLevel, star1, star2),
+        });
       }
     }
   }
 
   return results;
 }
+
+
