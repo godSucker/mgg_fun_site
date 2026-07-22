@@ -424,7 +424,7 @@
                     <div class="parent-slot-wrapper">
                         <button class="slot {p1 ? 'filled' : 'empty'}" onclick={() => { p1 = null; mobileTab = 'list'; }}>
                             {#if p1}
-                                <img src={getImageSrc(p1)} alt={p1.name} class="mutant-img"/>
+                                <img src={textureUrl(getImageSrc(p1))} alt={p1.name} class="mutant-img"/>
                                 <div class="slot-label">{getName(p1)}</div>
                                 <div class="remove-icon">✕</div>
                             {:else}
@@ -435,7 +435,7 @@
                         {#if p1}
                             <div class="parent-genes" in:fade>
                                 {#each getAllGenes(p1) as g}
-                                    <img src={getGeneIcon(g)} alt={g} class="parent-gene-icon" title="Gene {g}" />
+                                    <img src={textureUrl(getGeneIcon(g))} alt={g} class="parent-gene-icon" title="Gene {g}" />
                                 {/each}
                             </div>
                         {/if}
@@ -471,7 +471,7 @@
                     <div class="parent-slot-wrapper">
                         <button class="slot {p2 ? 'filled' : 'empty'}" onclick={() => { p2 = null; mobileTab = 'list'; }}>
                             {#if p2}
-                                <img src={getImageSrc(p2)} alt={p2.name} class="mutant-img"/>
+                                <img src={textureUrl(getImageSrc(p2))} alt={p2.name} class="mutant-img"/>
                                 <div class="slot-label">{getName(p2)}</div>
                                 <div class="remove-icon">✕</div>
                             {:else}
@@ -482,7 +482,7 @@
                         {#if p2}
                             <div class="parent-genes" in:fade>
                                 {#each getAllGenes(p2) as g}
-                                    <img src={getGeneIcon(g)} alt={g} class="parent-gene-icon" title="Gene {g}" />
+                                    <img src={textureUrl(getGeneIcon(g))} alt={g} class="parent-gene-icon" title="Gene {g}" />
                                 {/each}
                             </div>
                         {/if}
@@ -511,7 +511,7 @@
                                     <div class="result-card" style="animation-delay: {i * 50}ms">
                                         <div class="card-left">
                                             <div class="mutant-thumb">
-                                                <img src={getImageSrc(res.child)} alt="Результат скрещивания"/>
+                                                <img src={textureUrl(getImageSrc(res.child))} alt="Результат скрещивания"/>
                                             </div>
                                         </div>
                                         <div class="card-info">
@@ -519,7 +519,7 @@
                                                 <div class="card-title">{getName(res.child)}</div>
                                                 <div class="card-genes">
                                                     {#each getAllGenes(res.child) as g}
-                                                        <img src={getGeneIcon(g)} alt={g} class="gene-result-icon" title="Gene {g}" />
+                                                        <img src={textureUrl(getGeneIcon(g))} alt={g} class="gene-result-icon" title="Gene {g}" />
                                                     {/each}
                                                 </div>
                                             </div>
@@ -560,13 +560,13 @@
                      <div class="target-card">
                          <div class="target-content">
                              <div class="target-img-wrap">
-                                 <img src={getImageSrc(target)} alt={getName(target)} />
+                                 <img src={textureUrl(getImageSrc(target))} alt={getName(target)} />
                              </div>
                              <div class="target-info">
                                  <div class="badges">
                                      <span class="badge">{(target.type || 'default').toUpperCase()}</span>
                                      {#each getAllGenes(target) as g}
-                                         <img src={getGeneIcon(g)} alt={g} class="badge-gene-icon" />
+                                         <img src={textureUrl(getGeneIcon(g))} alt={g} class="badge-gene-icon" />
                                      {/each}
                                  </div>
                                  <h2>{getName(target)}</h2>
@@ -639,13 +639,13 @@
                                                   <div class="p-item">
                                                       <div class="p-genes-overlay">
                                                           {#each getAllGenes(pair.p1) as g}
-                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                              <img src={textureUrl(getGeneIcon(g))} alt={g} class="p-gene-icon" />
                                                           {/each}
                                                       </div>
-                                                      <img src={getImageSrc(pair.p1)} alt={getName(pair.p1)} title={getName(pair.p1)} />
+                                                      <img src={textureUrl(getImageSrc(pair.p1))} alt={getName(pair.p1)} title={getName(pair.p1)} />
                                                       <div class="p-genes-below">
                                                           {#each getAllGenes(pair.p1) as g}
-                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                              <img src={textureUrl(getGeneIcon(g))} alt={g} class="p-gene-icon" />
                                                           {/each}
                                                       </div>
                                                       <div class="p-name">{getName(pair.p1)}</div>
@@ -654,13 +654,13 @@
                                                   <div class="p-item">
                                                       <div class="p-genes-overlay">
                                                           {#each getAllGenes(pair.p2) as g}
-                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                              <img src={textureUrl(getGeneIcon(g))} alt={g} class="p-gene-icon" />
                                                           {/each}
                                                       </div>
-                                                      <img src={getImageSrc(pair.p2)} alt={getName(pair.p2)} title={getName(pair.p2)} />
+                                                      <img src={textureUrl(getImageSrc(pair.p2))} alt={getName(pair.p2)} title={getName(pair.p2)} />
                                                       <div class="p-genes-below">
                                                           {#each getAllGenes(pair.p2) as g}
-                                                              <img src={getGeneIcon(g)} alt={g} class="p-gene-icon" />
+                                                              <img src={textureUrl(getGeneIcon(g))} alt={g} class="p-gene-icon" />
                                                           {/each}
                                                       </div>
                                                       <div class="p-name">{getName(pair.p2)}</div>
@@ -719,7 +719,7 @@
                   </button>
                   {#each ['A','B','C','D','E','F'] as g}
                       <button class="filter-chip gene-chip {filterGene===g ? 'active' : ''}" onclick={() => filterGene=g}>
-                          <img src={getGeneIcon(g)} alt={g}/>
+                          <img src={textureUrl(getGeneIcon(g))} alt={g}/>
                       </button>
                   {/each}
               </div>
@@ -732,7 +732,7 @@
                   </button>
                   {#each ['A','B','C','D','E','F'] as g}
                       <button class="filter-chip gene-chip {filterGene2===g ? 'active' : ''}" disabled={filterGene==='all'} onclick={() => filterGene2=g}>
-                          <img src={getGeneIcon(g)} alt={g}/>
+                          <img src={textureUrl(getGeneIcon(g))} alt={g}/>
                       </button>
                   {/each}
               </div>
@@ -748,15 +748,15 @@
            {#each filteredList as m (m.id + m.name)}
                 <button class="grid-item" onclick={() => handleCardClick(m)} title={getName(m)}>
                     <div class="card-badges">
-                        <img src={getTypeIcon(m)} alt="Значок типа мутанта" class="type-icon" />
+                        <img src={textureUrl(getTypeIcon(m))} alt="Значок типа мутанта" class="type-icon" />
                         <div class="gene-icons">
                             {#each (Array.isArray(m.genes) ? m.genes : [m.genes]) as g}
-                                <img src={getGeneIcon(g)} alt={g} class="gene-icon" />
+                                <img src={textureUrl(getGeneIcon(g))} alt={g} class="gene-icon" />
                             {/each}
                         </div>
                     </div>
                     <div class="img-wrapper">
-                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="Текстура мутанта" onerror={(e) => (e.currentTarget as HTMLImageElement).src = '/preview.jpg'}/>
+                        <img class="mutant-texture" loading="lazy" src={getImageSrc(m)} alt="Текстура мутанта" onerror={(e) => (e.currentTarget as HTMLImageElement).src = textureUrl('/preview.jpg')}/>
                     </div>
                     <div class="item-info-row">
                         <div class="item-name">{getName(m)}</div>

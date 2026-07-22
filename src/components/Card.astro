@@ -1,13 +1,15 @@
 ---
 // Карточка для раздела или симулятора.
 // Принимает свойства: title (string), desc (string), href (string), icon (optional URL).
+import { textureUrl } from '@/lib/texture-cdn';
+
 const { title, desc, href, icon } = Astro.props;
 ---
 
 <a href={href} class="card">
   {icon ? (
     <div class="card-icon">
-      <img src={icon} alt="" />
+      <img src={textureUrl(icon)} alt="" />
     </div>
   ) : null}
   <h3 class="card-title">{title}</h3>

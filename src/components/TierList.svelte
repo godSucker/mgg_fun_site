@@ -157,7 +157,7 @@
                     title={m.name}
                   >
                     <img
-                      src={specimenSrc(m)}
+                      src={textureUrl(specimenSrc(m))}
                       alt={m.name}
                       class="absolute inset-0 w-full h-full object-contain"
                       loading="lazy"

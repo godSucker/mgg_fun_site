@@ -33,10 +33,27 @@ jobs:
       - name: 4.1 Скачивание текстур скинов
         run: npx tsx scripts/download-skins.ts
 
+      - name: 4.2 Установка Python (рендер full-текстур)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scripts/character-textures/requirements.txt
+
+      - name: 4.3 Рендер full-текстур персонажей (инкремент)
+        run: |
+          pip install -r scripts/character-textures/requirements.txt
+          python scripts/character-textures/sync_characters.py
+
+      - name: 4.4 Генерация статов скинов (skins.json)
+        # Идёт ПОСЛЕ рендера full-текстур: скин существует тогда и только тогда,
+        # когда есть его FULL_*.png. Статы считаются из свежего mutants.json + gacha.xml.
+        run: npx tsx scripts/build-skins.ts
+
       - name: 5. Проверка изменений
         id: check-changes
         run: |
-          if git diff --quiet src/data/mutants/*.json public/textures_by_mutant/ public/textures_by_skins/ 2>/dev/null; then
+          if git diff --quiet src/data/mutants/*.json public/textures_by_mutant/ public/textures_by_skins/ scripts/character-textures/rendered.json 2>/dev/null; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "ℹ️  Изменений не обнаружено"
           else
@@ -53,13 +70,13 @@ jobs:
           commit_user_email: "bot@archivist-library.com"
           commit_author: "MGG Parser Bot <bot@archivist-library.com>"
           branch: main
-          file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/**'
+          file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/** scripts/character-textures/rendered.json'
 
       - name: 7. Синхронизация ассетов с Яндекс CDN
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           pip install awscli
-          for dir in textures_by_mutant textures_by_skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
+          for dir in textures_by_mutant textures_by_skins skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
             if [ -d "public/$dir" ]; then
               echo "Syncing $dir..."
               aws s3 sync "public/$dir/" "s3://archivist-cdn/$dir/" \
@@ -78,11 +95,16 @@ jobs:
         run: |
           echo "## 📊 Итоги синхронизации" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Мутанты (данные)" >> $GITHUB_STEP_SUMMARY
           if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
             echo "✅ **Статус:** Обнаружены изменения, данные обновлены" >> $GITHUB_STEP_SUMMARY
           else
             echo "ℹ️ **Статус:** Изменений не обнаружено" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f scripts/character-textures/.cache/summary.md ]; then
+            cat scripts/character-textures/.cache/summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "🕐 **Время запуска:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
-          echo "⏱️ **Режим парсера:** FULL (добавление новых мутантов)" >> $GITHUB_STEP_SUMMARY
+          echo "⏱️ **Режим:** FULL (данные) + character-textures (инкремент)" >> $GITHUB_STEP_SUMMARY

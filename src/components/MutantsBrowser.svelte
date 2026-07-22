@@ -124,7 +124,7 @@
   let normalizedSkins = $derived((Array.isArray(skins) ? skins : []).map((skin, index) => mapSkin(skin, baseMap, index)));
 
   type ViewMode = 'full' | 'heads';
-  let viewMode: ViewMode = $state('heads');
+  let viewMode: ViewMode = $state('full');
 
   let query = $state('');
   let gene1Sel = $state('');
@@ -417,6 +417,21 @@
     return pick ?? 'placeholder-mutant.webp';
   }
 
+  // Полная текстура (стойка), отрендеренная пайплайном scripts/character-textures/.
+  // Лежит рядом со старыми specimen_*.webp: textures_by_mutant/<code>/FULL_<code>[_<tier>].png
+  // baseId() не срезает префикс specimen_, поэтому нормализуем id здесь.
+  // FULL-версия есть не у каждого мутанта/тира -> в разметке onerror откатывает на портрет.
+  function fullTexturePath(it: any): string {
+    const code = String(it?.id ?? '')
+      .replace(/^specimen[_-]/i, '')
+      .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '')
+      .toLowerCase();
+    if (!code) return '';
+    const star = String(it?._displayStar || starSelMutants || 'normal').toLowerCase();
+    const suffix = star && star !== 'normal' ? `_${star}` : '';
+    return `textures_by_mutant/${code}/FULL_${code}${suffix}.png`;
+  }
+
   function toThumbPath(p: string): string {
     return p.replace('/textures_by_mutant/', '/textures_by_mutant/').replace('specimen_', 'thumb_specimen_');
   }
@@ -543,6 +558,29 @@
     </label>
   </div>
 
+  <!-- Переключатель вида: полные текстуры / головы -->
+  <div class="mb-3 flex items-center gap-2">
+    <span class="text-xs text-slate-300">Вид</span>
+    <div class="inline-flex overflow-hidden rounded-lg ring-1 ring-white/10">
+      <button
+        type="button"
+        class={'px-3 py-1.5 text-sm transition ' + (viewMode === 'full'
+          ? 'bg-cyan-500/20 text-cyan-200'
+          : 'bg-slate-900 text-slate-300 hover:bg-slate-800')}
+        aria-pressed={viewMode === 'full'}
+        onclick={() => (viewMode = 'full')}
+      >Полные</button>
+      <button
+        type="button"
+        class={'px-3 py-1.5 text-sm transition ' + (viewMode === 'heads'
+          ? 'bg-cyan-500/20 text-cyan-200'
+          : 'bg-slate-900 text-slate-300 hover:bg-slate-800')}
+        aria-pressed={viewMode === 'heads'}
+        onclick={() => (viewMode = 'heads')}
+      >Головы</button>
+    </div>
+  </div>
+
   <!-- Сетка карточек -->
   <div class={viewMode === 'heads'
     ? 'grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10'
@@ -558,7 +596,19 @@
           </div>
         {:else}
           <div class="relative rounded-xl overflow-hidden bg-slate-800 ring-1 ring-white/10">
-            <img class="w-full object-contain bg-slate-900" style="height: 195px;" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+            <img
+              class="w-full object-contain bg-slate-900"
+              style="height: 195px;"
+              src={textureUrl(fullTexturePath(it))}
+              data-fallback-src={textureUrl(pickTexture(it))}
+              onerror={(e) => {
+                const t = e.currentTarget;
+                if (!t.dataset.fellBack && t.dataset.fallbackSrc) {
+                  t.dataset.fellBack = '1';
+                  t.src = t.dataset.fallbackSrc;
+                }
+              }}
+              alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>

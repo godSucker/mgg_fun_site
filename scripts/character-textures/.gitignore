@@ -1,0 +1,5 @@
+# Runtime cache: extracted stands.xml (~21MB), downloaded atlases, summary block.
+# Regenerated on every run — never commit.
+.cache/
+__pycache__/
+*.pyc

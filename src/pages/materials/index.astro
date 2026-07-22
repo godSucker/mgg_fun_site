@@ -10,6 +10,7 @@ import sourcesMap from '../../data/materials/sources.json';
 import bingosData from '../../data/bingos.json';
 import { bingoLabel } from '../../lib/mutant-dicts';
 import { getItemTexture } from '../../lib/craft-simulator';
+import { textureUrl } from '../../lib/texture-cdn';
 
 const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1";
 
@@ -214,7 +215,7 @@ const TABS = [
     <div id="zones-normal" class="zones-grid" data-kind="normal">
       {zonesNormal.map((z) => (
         <div class="zone-card" aria-label={z.name} title={z.name}>
-          <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
+          <div class="zone-cover"><img src={textureUrl(z.texture)} alt={z.name} loading="lazy" /></div>
           <div class="zone-title">{z.name}</div>
           {z.description && <div class="zone-desc">{z.description}</div>}
           {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
@@ -226,7 +227,7 @@ const TABS = [
     <div id="zones-luxe" class="zones-grid" data-kind="luxe" hidden>
       {zonesLuxe.map((z) => (
         <div class="zone-card" aria-label={z.name} title={z.name}>
-          <div class="zone-cover"><img src={z.texture} alt={z.name} loading="lazy" /></div>
+          <div class="zone-cover"><img src={textureUrl(z.texture)} alt={z.name} loading="lazy" /></div>
           <div class="zone-title">{z.name}</div>
           {z.description && <div class="zone-desc">{z.description}</div>}
           {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}

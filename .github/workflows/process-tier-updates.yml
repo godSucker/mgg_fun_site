@@ -1,37 +1,28 @@
 name: Process Tier Updates
 
+# Тиры обновляются вебхуком напрямую (src/pages/api/telegram-webhook.ts):
+# бот получает файл -> tier-parser.js -> коммит mutants.json через GitHub API.
+# Этот workflow — ручная заглушка на случай, если понадобится вмешаться.
+#
+# Расписание убрано намеренно: шаг ниже ничего не делает, а cron '0 */6 * * *'
+# жёг ~1460 холостых прогонов в год. Прежний слепой `git add -A` тоже убран —
+# он мог закоммитить посторонние файлы, оказавшиеся в рабочем дереве.
 on:
-  workflow_dispatch:  # Можно запускать вручную
-  schedule:
-    - cron: '0 */6 * * *'  # Каждые 6 часов
+  workflow_dispatch:
 
 jobs:
   process-updates:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Необходимо для коммитов
+      contents: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
 
-      - name: Process tier updates
+      - name: Статус
         run: |
-          echo "Обновления тиров обрабатываются через вебхук напрямую."
-          echo "Этот workflow оставлен как заглушка для ручного запуска при необходимости."
-
-      - name: Commit and push if changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-
-          if ! git diff --cached --quiet; then
-            git commit -m "Auto-update: Mutant tier updates"
-            git push
-            echo "Changes committed and pushed"
-          else
-            echo "No changes to commit"
-          fi
+          echo "## ℹ️ Process Tier Updates" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Тиры обновляются вебхуком напрямую, этот workflow — заглушка." >> $GITHUB_STEP_SUMMARY
+          echo "Автоматических изменений здесь не производится." >> $GITHUB_STEP_SUMMARY

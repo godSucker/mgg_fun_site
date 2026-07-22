@@ -4,6 +4,7 @@ import bingosData from '../data/bingos.json';
 import mutantNamesData from '../data/mutant_names.json';
 import { getMutantTexturePath, getMutantTextureFallbacks, getRewardTexturePath, getRewardLabel } from '../lib/bingo-textures';
 import { bingoLabel } from '../lib/mutant-dicts';
+import { textureUrl } from '../lib/texture-cdn';
 
 interface BingoMutant {
   specimenId: string;
@@ -295,7 +296,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                             <div class="grid-cell empty"></div>
                             {topHeaders.map((icon) => (
                               <div class="grid-cell header-cell top">
-                                {icon && <img src={icon} alt="" class="header-icon-img" />}
+                                {icon && <img src={textureUrl(icon)} alt="" class="header-icon-img" />}
                               </div>
                             ))}
                             {hasLineRewards && <div class="grid-cell empty"></div>}
@@ -306,7 +307,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                           <>
                             {hasHeaders && (
                               <div class="grid-cell header-cell side">
-                                {sideHeaders[r] && <img src={sideHeaders[r]} alt="" class="header-icon-img" />}
+                                {sideHeaders[r] && <img src={textureUrl(sideHeaders[r])} alt="" class="header-icon-img" />}
                               </div>
                             )}
 
@@ -322,7 +323,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                               return (
                                 <div class="grid-cell mutant-cell" class:missing-mutant={isMissing} title={getMutantName(mutant.specimenId)}>
                                   <div class="mutant-content">
-                                    <img src={texturePath} alt="" loading="lazy" class="mutant-img" />
+                                    <img src={textureUrl(texturePath)} alt="" loading="lazy" class="mutant-img" />
                                     {hasSkin && <span class="skin-badge">✦</span>}
                                     <span class="cell-index">{idx + 1}</span>
                                     <div class="cell-check">✓</div>
@@ -334,7 +335,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                             {hasLineRewards && (
                               <div class="grid-cell reward-cell row-reward" title={getRewardLabel(rowRewards[r])}>
                                 <div class="reward-content">
-                                  <img src={getRewardTexturePath(rowRewards[r])} alt="" class="reward-img" />
+                                  <img src={textureUrl(getRewardTexturePath(rowRewards[r]))} alt="" class="reward-img" />
                                   <span class="reward-val">x{rowRewards[r].amount}</span>
                                 </div>
                               </div>
@@ -348,7 +349,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                             {colRewards.map((reward) => (
                               <div class="grid-cell reward-cell col-reward" title={getRewardLabel(reward)}>
                                 <div class="reward-content">
-                                  <img src={getRewardTexturePath(reward)} alt="" class="reward-img" />
+                                  <img src={textureUrl(getRewardTexturePath(reward))} alt="" class="reward-img" />
                                   <span class="reward-val">x{reward.amount}</span>
                                 </div>
                               </div>
@@ -356,7 +357,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                             {completionReward && (
                               <div class="grid-cell reward-cell completion-cell" title={getRewardLabel(completionReward)}>
                                 <div class="reward-content">
-                                  <img src={getRewardTexturePath(completionReward)} alt="" class="reward-img" />
+                                  <img src={textureUrl(getRewardTexturePath(completionReward))} alt="" class="reward-img" />
                                   <span class="reward-val main">x{completionReward.amount}</span>
                                   <span class="completion-star">★</span>
                                 </div>
@@ -373,7 +374,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                          <div class="rewards-grid-list">
                            {(hasLineRewards ? otherRewards : bingo.rewards).map((reward) => (
                               <div class="reward-card-simple">
-                                 <img src={getRewardTexturePath(reward)} alt="" />
+                                 <img src={textureUrl(getRewardTexturePath(reward))} alt="" />
                                  <span>{getRewardLabel(reward)}</span>
                               </div>
                            ))}

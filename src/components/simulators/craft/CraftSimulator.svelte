@@ -393,7 +393,7 @@
                     aria-selected={recipe.id === currentRecipe?.id}
                   >
                     {#if rewardIcon}
-                      <img src={rewardIcon} alt={baseLabel} />
+                      <img src={textureUrl(rewardIcon)} alt={baseLabel} />
                     {/if}
                     <span class="recipe-selector__title">{baseLabel}</span>
                   </button>
@@ -435,7 +435,7 @@
                     aria-selected={recipe.id === currentRecipe?.id}
                   >
                     {#if rewardIcon}
-                      <img src={rewardIcon} alt={rewardLabel} />
+                      <img src={textureUrl(rewardIcon)} alt={rewardLabel} />
                     {/if}
                     <span class="recipe-selector__title">{rewardLabel}</span>
                   </button>
@@ -507,7 +507,7 @@
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
                       {#if rewardIcon}
-                        <img src={rewardIcon} alt={rewardLabel} />
+                        <img src={textureUrl(rewardIcon)} alt={rewardLabel} />
                       {/if}
                       <span class="recipe-selector__title">{rewardLabel}</span>
                     </button>
@@ -541,7 +541,7 @@
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
                       {#if rewardIcon}
-                        <img src={rewardIcon} alt={rewardLabel} />
+                        <img src={textureUrl(rewardIcon)} alt={rewardLabel} />
                       {/if}
                       <span class="recipe-selector__title">{rewardLabel}</span>
                     </button>
@@ -575,7 +575,7 @@
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
                       {#if rewardIcon}
-                        <img src={rewardIcon} alt={rewardLabel} />
+                        <img src={textureUrl(rewardIcon)} alt={rewardLabel} />
                       {/if}
                       <span class="recipe-selector__title">{rewardLabel}</span>
                     </button>
@@ -609,7 +609,7 @@
                       aria-selected={recipe.id === currentRecipe?.id}
                     >
                       {#if rewardIcon}
-                        <img src={rewardIcon} alt={rewardLabel} />
+                        <img src={textureUrl(rewardIcon)} alt={rewardLabel} />
                       {/if}
                       <span class="recipe-selector__title">{rewardLabel}</span>
                     </button>
@@ -646,7 +646,7 @@
                 aria-selected={recipe.id === currentRecipe?.id}
               >
                 {#if rewardIcon}
-                  <img src={rewardIcon} alt={rewardLabel} />
+                  <img src={textureUrl(rewardIcon)} alt={rewardLabel} />
                 {/if}
                 <span class="recipe-selector__title">{rewardLabel}</span>
               </button>
@@ -695,7 +695,7 @@
                     <li>
                       <div class="item-icon">
                         {#if icon}
-                          <img src={icon} alt={label} />
+                          <img src={textureUrl(icon)} alt={label} />
                         {:else}
                           <span>{label.slice(0, 1)}</span>
                         {/if}
@@ -720,7 +720,7 @@
                       <li>
                         <div class="item-icon">
                           {#if icon}
-                            <img src={icon} alt={label} />
+                            <img src={textureUrl(icon)} alt={label} />
                           {:else}
                             <span>{label.slice(0, 1)}</span>
                           {/if}
@@ -792,7 +792,7 @@
                           <li>
                             <div class="item-icon">
                               {#if icon}
-                                <img src={icon} alt={label} />
+                                <img src={textureUrl(icon)} alt={label} />
                               {:else}
                                 <span>{label.slice(0, 1)}</span>
                               {/if}
@@ -827,7 +827,7 @@
                           <li>
                             <div class="item-icon">
                               {#if icon}
-                                <img src={icon} alt={label} />
+                                <img src={textureUrl(icon)} alt={label} />
                               {:else}
                                 <span>{label.slice(0, 1)}</span>
                               {/if}

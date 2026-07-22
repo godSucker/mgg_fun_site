@@ -1425,7 +1425,7 @@
               <div class="name">{m.name}</div>
               <div class="genes">
                 {#each m.genes as g}
-                  <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} title={GENE_NAME[g]} />
+                  <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} title={GENE_NAME[g]} />
                 {/each}
               </div>
             </div>
@@ -1486,7 +1486,7 @@
                        <span class="compare-search-name">{m.name}</span>
                        <span class="compare-search-genes">
                          {#each m.genes as g}
-                           <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+                           <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} />
                          {/each}
                        </span>
                      </div>
@@ -1627,7 +1627,7 @@
           <div class="row">
             <span class="label">
               {#if typeIconCurrent}
-                <img class="label-icon type-icon" src={typeIconCurrent} alt="Тип" />
+                <img class="label-icon type-icon" src={textureUrl(typeIconCurrent)} alt="Тип" />
               {/if}
               Тип
             </span>
@@ -1636,7 +1636,7 @@
           <div class="row"><span class="label">Тир</span><b>{selected.tierLabel || selected.tier || '—'}</b></div>
           <div class="row">
             <span class="label">
-              <img class="label-icon" src={STAT_ICON.hp} alt="HP" />
+              <img class="label-icon" src={textureUrl(STAT_ICON.hp)} alt="HP" />
               HP
             </span>
             <b>{stats.hp.toLocaleString('ru-RU')}</b>
@@ -1663,7 +1663,7 @@
               <div class="attack-side">
                 <span class="attack-gene" class:empty={!attack.geneIcon}>
                   {#if attack.geneIcon}
-                    <img class="gene-icon" src={attack.geneIcon} alt="" aria-hidden="true" />
+                    <img class="gene-icon" src={textureUrl(attack.geneIcon)} alt="" aria-hidden="true" />
                   {/if}
                   {#if attack.isAoe}
                     <img class="attack-aoe" src={textureUrl("/genes/atk_multiple.webp")} alt="АОЕ" />
@@ -1723,7 +1723,7 @@
 
           <div class="row">
             <span class="label">
-              <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
+              <img class="label-icon" src={textureUrl(STAT_ICON.speed)} alt="Скорость" />
               Скорость
             </span>
             <b>{formatSpeed(stats.speed)}</b>
@@ -1780,7 +1780,7 @@
                      <span class="compare-search-name">{m.name}</span>
                      <span class="compare-search-genes">
                        {#each m.genes as g}
-                         <img src={GENE_ICON[g] || GENE_ICON['']} alt={g} />
+                         <img src={textureUrl(GENE_ICON[g] || GENE_ICON[''])} alt={g} />
                        {/each}
                      </span>
                    </div>
@@ -1905,7 +1905,7 @@
           <div class="row">
             <span class="label">
               {#if typeIconCurrent2}
-                <img class="label-icon type-icon" src={typeIconCurrent2} alt="Тип" />
+                <img class="label-icon type-icon" src={textureUrl(typeIconCurrent2)} alt="Тип" />
               {/if}
               Тип
             </span>
@@ -1914,7 +1914,7 @@
           <div class="row"><span class="label">Тир</span><b>{selected2.tierLabel || selected2.tier || '—'}</b></div>
           <div class="row">
             <span class="label">
-              <img class="label-icon" src={STAT_ICON.hp} alt="HP" />
+              <img class="label-icon" src={textureUrl(STAT_ICON.hp)} alt="HP" />
               HP
             </span>
             <b>{stats2.hp.toLocaleString('ru-RU')}</b>
@@ -1941,7 +1941,7 @@
               <div class="attack-side">
                 <span class="attack-gene" class:empty={!attack.geneIcon}>
                   {#if attack.geneIcon}
-                    <img class="gene-icon" src={attack.geneIcon} alt="" aria-hidden="true" />
+                    <img class="gene-icon" src={textureUrl(attack.geneIcon)} alt="" aria-hidden="true" />
                   {/if}
                   {#if attack.isAoe}
                     <img class="attack-aoe" src={textureUrl("/genes/atk_multiple.webp")} alt="АОЕ" />
@@ -2001,7 +2001,7 @@
 
           <div class="row">
             <span class="label">
-              <img class="label-icon" src={STAT_ICON.speed} alt="Скорость" />
+              <img class="label-icon" src={textureUrl(STAT_ICON.speed)} alt="Скорость" />
               Скорость
             </span>
             <b>{formatSpeed(stats2.speed)}</b>

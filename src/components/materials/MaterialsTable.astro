@@ -1,4 +1,6 @@
 ---
+import { textureUrl } from '@/lib/texture-cdn';
+
 export interface SourceInfo {
   type: string;
   where?: string;
@@ -34,7 +36,7 @@ const {
 
 const resolveTexture = (row: MaterialRow) => {
   const path = row.texture ? row.texture : `${texturePrefix}${row.id}${textureExt}`;
-  return path.startsWith('http') ? path : `https://cdn.archivist-library.com${path.startsWith('/') ? path : '/' + path}`;
+  return textureUrl(path);
 };
 
 const toChip = (s: SourceInfo) => {
@@ -86,7 +88,7 @@ const toChip = (s: SourceInfo) => {
             <div class="td image" role="cell">
               <div class="thumb">
                 <img
-                  src={resolveTexture(row)}
+                  src={textureUrl(resolveTexture(row))}
                   alt={row.name || row.id}
                   loading="lazy"
                   onerror="this.closest('.thumb').classList.add('noimg')"

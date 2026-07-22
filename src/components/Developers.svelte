@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { textureUrl } from '@/lib/texture-cdn';
+
   const teamMembers = [
     {
       name: "がらんの画眉丸",
@@ -99,7 +101,7 @@
         <div class="card-content">
           <div class="avatar-wrapper">
             {#if member.avatar}
-              <img src={member.avatar} alt={member.name} class="avatar" />
+              <img src={textureUrl(member.avatar)} alt={member.name} class="avatar" />
             {:else}
               <div class="avatar-placeholder">{member.name[0]}</div>
             {/if}

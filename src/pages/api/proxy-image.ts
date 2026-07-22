@@ -1,31 +1,36 @@
-import type { APIRoute } from 'astro';
+import type { APIRoute } from 'astro'
 
 const ALLOWED_PREFIXES = [
   'https://cdn.archivist-library.com/',
   'https://s-ak.kobojo.com/',
   'https://s-beta.kobojo.com/',
-];
+]
 
 export const GET: APIRoute = async ({ url }) => {
-  const targetUrl = url.searchParams.get('url');
+  const targetUrl = url.searchParams.get('url')
   if (!targetUrl) {
-    return new Response('Missing url param', { status: 400 });
+    return new Response('Missing url param', { status: 400 })
   }
 
   if (!ALLOWED_PREFIXES.some((p) => targetUrl.startsWith(p))) {
-    return new Response('Forbidden', { status: 403 });
+    return new Response('Forbidden', { status: 403 })
   }
 
   try {
+    // Referer обязателен: бакет CDN отдаёт объекты только по allowlist рефереров
+    // (защита от перебора). Серверный fetch по умолчанию Referer не шлёт -> 403.
     const resp = await fetch(targetUrl, {
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-    });
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+        Referer: 'https://archivist-library.com/',
+      },
+    })
     if (!resp.ok) {
-      return new Response(`Upstream ${resp.status}`, { status: resp.status });
+      return new Response(`Upstream ${resp.status}`, { status: resp.status })
     }
 
-    const data = await resp.arrayBuffer();
-    const contentType = resp.headers.get('content-type') || 'image/png';
+    const data = await resp.arrayBuffer()
+    const contentType = resp.headers.get('content-type') || 'image/png'
 
     return new Response(data, {
       status: 200,
@@ -34,8 +39,8 @@ export const GET: APIRoute = async ({ url }) => {
         'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'public, max-age=86400',
       },
-    });
+    })
   } catch {
-    return new Response('Proxy error', { status: 502 });
+    return new Response('Proxy error', { status: 502 })
   }
-};
+}

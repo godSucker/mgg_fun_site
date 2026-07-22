@@ -80,6 +80,20 @@
   });
 
   let displayMutant = $derived(selectedSkin ?? mutant);
+  // Метка звезды в шапке: у скина своя звезда, она главнее выбранной вручную.
+  let shownStar = $derived(selectedSkin?.star ?? selectedStar);
+  // Кандидаты главной картинки + указатель на текущий; onerror двигает указатель.
+  let heroSrcs = $derived(
+    selectedSkin
+      ? heroCandidates(selectedSkin, selectedSkin.star || 'normal')
+      : heroCandidates(mutant, selectedStar)
+  );
+  let heroIdx = $state(0);
+  // Сброс при смене мутанта/скина/звезды: heroSrcs пересобирается -> начинаем с лучшего.
+  $effect(() => {
+    heroSrcs;
+    heroIdx = 0;
+  });
   // Skin uses its own star for multiplier; base mutant uses selectedStar
   let displayMultiplier = $derived(
     selectedSkin
@@ -88,6 +102,49 @@
   );
 
   const SKIN_ICON: Record<string, string> = {
+    // --- Имена гачи (skins.json генерируется из gacha.xml) -> существующие файлы иконок.
+    // Старые ключи ниже оставлены как алиасы на случай ручных/легаси-данных.
+    'girl': '/skins/icon_girl_power.webp',
+    'starwars': '/skins/icon_star_wars.webp',
+    'summer': '/skins/icon_summer_skin.webp',
+    'spring': '/skins/icon_spring_skin.webp',
+    'autumn': '/skins/icon_autumn_skin.webp',
+    'school': '/skins/icon_school_skin.webp',
+    'villains': '/skins/icon_villain.webp',
+    'heroes': '/skins/icon_hero.webp',
+    'worker': '/skins/icon_workers_day.webp',
+    'labor': '/skins/icon_workers_day.webp',
+    'europe': '/skins/icon_europe_day.webp',
+    'independence': '/skins/icon_independence_day.webp',
+    'blueplanet': '/skins/icon_blue_planet.webp',
+    'valentines': '/skins/icon_valentine_s_day.webp',
+    'aprilfools': '/skins/icon_1_april.webp',
+    'tcg': '/skins/icon_card_game_skin.webp',
+    'elements': '/skins/icon_elementals_team.webp',
+    'lucha': '/skins/icon_muchachos.webp',
+    'olympians': '/skins/icon_gods_of_olympus.webp',
+    'patrick': '/skins/icon_saint_patrick_day.webp',
+    'vegetal': '/skins/icon_photosynthesis.webp',
+    'camo': '/skins/icon_army.webp',
+    'revolution': '/skins/icon_french_revolution.webp',
+    'beach': '/skins/icon_tropical_summer.webp',
+    'music': '/skins/icon_disco.webp',
+    'gachaboss': '/skins/icon_big_boss.webp',
+    'movies': '/skins/icon_film.webp',
+    'kings': '/skins/icon_royal.webp',
+    // Скачаны с CDN игры (assets/gachacontent/icon_<gachaId>.png) -> webp.
+    'advent': '/skins/icon_advent.webp',
+    'chess': '/skins/icon_chess.webp',
+    'confrontation': '/skins/icon_confrontation.webp',
+    'honeybee': '/skins/icon_honeybee.webp',
+    'jefferson': '/skins/icon_jefferson.webp',
+    'masks': '/skins/icon_masks.webp',
+    'olympics': '/skins/icon_olympics.webp',
+    'science': '/skins/icon_science.webp',
+    'soldiers': '/skins/icon_soldiers.webp',
+    'xinnian': '/skins/icon_xinnian.webp',
+    'xmas25': '/skins/icon_xmas25.webp',
+
     'anniversary': '/skins/icon_anniversary.webp',
     '1_april': '/skins/icon_1_april.webp',
     'autumn_skin': '/skins/icon_autumn_skin.webp',
@@ -335,6 +392,31 @@
     return pick.startsWith('/') ? pick : `/${pick}`;
   };
 
+  // Цепочка кандидатов для главной картинки, от лучшего к запасному:
+  //   full со звездой -> full без звезды -> голова.
+  // Второй шаг обязателен: у мутантов, существующих в одной форме (GACHA),
+  // отрендерен только FULL_<code>.png без суффикса звезды.
+  const heroCandidates = (m: any, starKey: string): string[] => {
+    const abs = (p: string) => (p.startsWith('/') ? p : `/${p}`);
+    const out: string[] = [];
+    const skinFull = (m?.image ?? []).find((p: string) => p.includes('/full/'));
+    if (skinFull) {
+      out.push(abs(skinFull));
+    } else {
+      const code = String(m?.id ?? '')
+        .replace(/^specimen[_-]/i, '')
+        .replace(/_+(?:normal|bronze|silver|gold|plat.*)$/i, '')
+        .toLowerCase();
+      if (code) {
+        const star = String(starKey || 'normal').toLowerCase();
+        if (star && star !== 'normal') out.push(`/textures_by_mutant/${code}/FULL_${code}_${star}.png`);
+        out.push(`/textures_by_mutant/${code}/FULL_${code}.png`);
+      }
+    }
+    out.push(imgSrc(m, starKey));
+    return out;
+  };
+
   // formatting
   function fmt(n: any): string {
     if (n === undefined || n === null || n === '' || Number.isNaN(Number(n))) return '—';
@@ -566,7 +648,7 @@
               title={s.skin}
             >
               {#if skinIcon(s.skin)}
-                <img src={skinIcon(s.skin)} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
+                <img src={textureUrl(skinIcon(s.skin))} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
               {:else}
                 <img src={textureUrl(imgSrc(s, s.star || 'normal'))} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
               {/if}
@@ -576,18 +658,19 @@
         </div>
       {/if}
       <div class="flex-1 flex items-center justify-center w-full">
-        <div class="w-fit max-w-[120px] aspect-square flex items-center justify-center rounded-xl bg-black/30 p-2 md:p-3">
           <img
             alt={displayMutant?.name}
-            src={textureUrl(selectedSkin ? imgSrc(selectedSkin, selectedSkin.star || 'normal') : imgSrc(mutant, selectedStar))}
-            class="max-w-[100px] md:max-w-[100px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)] image-rendering-auto"
+            src={textureUrl(heroSrcs[Math.min(heroIdx, heroSrcs.length - 1)])}
+            onerror={() => {
+              // Двигаемся по цепочке: full со звездой -> full без звезды -> голова.
+              if (heroIdx < heroSrcs.length - 1) heroIdx += 1
+            }}
+            oncontextmenu={(e) => e.preventDefault()}
+            draggable="false"
+            class="mutant-hero-img max-w-full max-h-[55vh] w-auto h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)] image-rendering-auto"
             loading="lazy"
             decoding="async"
-            fetchpriority="low"
-            width="100"
-            height="100"
           />
-        </div>
       </div>
     </div>
 
@@ -600,7 +683,7 @@
           <div class="mt-0.5 text-xs md:text-sm text-slate-300 flex items-center gap-2 flex-wrap">
             {#if typeIcon(displayType)}
               <span class="inline-flex items-center gap-1 break-words">
-                <img class="type-icon opacity-90" src={typeIcon(displayType)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                <img class="type-icon opacity-90" src={textureUrl(typeIcon(displayType))} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                 {TYPE_RU[displayType] ?? displayType}
               </span>
             {:else}
@@ -615,7 +698,7 @@
           {#if mutant?.tier}
             <span class="px-2 py-1 rounded-full text-[11px] bg-emerald-500/15 text-emerald-100 ring-1 ring-emerald-500/40">Тир {mutant.tier}</span>
           {/if}
-          <span class={`px-2 py-1 rounded-full text-[10px] ring-1 ${STAR_COLOR[selectedStar]}`}>{STAR_LABEL[selectedStar] ?? selectedStar}</span>
+          <span class={`px-2 py-1 rounded-full text-[10px] ring-1 ${STAR_COLOR[shownStar]}`}>{STAR_LABEL[shownStar] ?? shownStar}</span>
         </div>
       </div>
 
@@ -633,7 +716,7 @@
               <div class="flex items-center">
                 {#if geneIcon(r.gene)}
                   <span class="gene-ico">
-                    <img src={geneIcon(r.gene)} alt="" aria-hidden="true" class="w-full h-full" loading="lazy" decoding="async" />
+                    <img src={textureUrl(geneIcon(r.gene))} alt="" aria-hidden="true" class="w-full h-full" loading="lazy" decoding="async" />
                     {#if r.isAoe}
                       <img src={textureUrl("/genes/atk_multiple.webp")} alt="" aria-hidden="true" class="gene-aoe" loading="lazy" decoding="async" />
                     {/if}
@@ -644,7 +727,7 @@
               <div class="mut-dd whitespace-nowrap pl-1">{fmt(r.dmg)}</div>
               <div class="mut-dt break-words flex items-center gap-1.5">
                 {#if abilityIcon(r.abCode) || abilityIcon(r.abName)}
-                  <img class="ability-icon align-middle" src={abilityIcon(r.abCode) || abilityIcon(r.abName)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <img class="ability-icon align-middle" src={textureUrl(abilityIcon(r.abCode) || abilityIcon(r.abName))} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                 {/if}
                 {r.abName}
               </div>
@@ -673,7 +756,7 @@
               <div class="flex items-center">
                 {#if geneIcon(r.gene)}
                   <span class="gene-ico">
-                    <img src={geneIcon(r.gene)} alt="" aria-hidden="true" class="w-full h-full" loading="lazy" decoding="async" />
+                    <img src={textureUrl(geneIcon(r.gene))} alt="" aria-hidden="true" class="w-full h-full" loading="lazy" decoding="async" />
                     {#if r.isAoe}
                       <img src={textureUrl("/genes/atk_multiple.webp")} alt="" aria-hidden="true" class="gene-aoe" loading="lazy" decoding="async" />
                     {/if}
@@ -684,7 +767,7 @@
               <div class="mut-dd whitespace-nowrap pl-1">{fmt(r.dmg)}</div>
               <div class="mut-dt break-words flex items-center gap-1.5">
                 {#if abilityIcon(r.abCode) || abilityIcon(r.abName)}
-                  <img class="ability-icon align-middle" src={abilityIcon(r.abCode) || abilityIcon(r.abName)} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                  <img class="ability-icon align-middle" src={textureUrl(abilityIcon(r.abCode) || abilityIcon(r.abName))} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                 {/if}
                 {r.abName}
               </div>
@@ -751,7 +834,7 @@
                       class="absolute inset-0 w-full h-full opacity-40"
                     />
                     <img
-                      src={`/orbs/${orbFile}`}
+                      src={textureUrl(`/orbs/${orbFile}`)}
                       alt="Orb"
                       class="relative z-10 w-full h-full drop-shadow-md transition-transform group-hover:scale-110"
                       loading="lazy"

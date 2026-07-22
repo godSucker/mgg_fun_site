@@ -132,13 +132,13 @@
   <div class="uc-stats">
     <div class="uc-stat">
       <span class="uc-stat-label">
-        <img src={typeIcon || STAT_ICON.hp} alt="" /> Тип
+        <img src={textureUrl(typeIcon || STAT_ICON.hp)} alt="" /> Тип
       </span>
       <span class="uc-stat-val">{mutant?.typeLabel || '—'}</span>
     </div>
     <div class="uc-stat">
       <span class="uc-stat-label">
-        <img src={STAT_ICON.hp} alt="" /> HP
+        <img src={textureUrl(STAT_ICON.hp)} alt="" /> HP
       </span>
       <span class="uc-stat-val">{fmt(stats?.hp ?? 0)}</span>
     </div>
@@ -172,7 +172,7 @@
 
     <div class="uc-stat">
       <span class="uc-stat-label">
-        <img src={STAT_ICON.speed} alt="" /> Скор.
+        <img src={textureUrl(STAT_ICON.speed)} alt="" /> Скор.
       </span>
       <span class="uc-stat-val">{fmtSpeed(stats?.speed ?? 0)}</span>
     </div>

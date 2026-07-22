@@ -1,158 +1,156 @@
 /**
- * Parser for tier data from various formats (txt)
- * Expected format in files:
- * - Each line should contain mutant NAME and tier value
- * - Format: mutant_name,tier_value or mutant_name tier_value
- * - Example: Робот,2+ or Андроид,3-
+ * Parser for tier data sent to the Telegram bot.
+ * Supported line formats (first match wins):
+ * - "Имя (тир)"  e.g. "Азимов (2+)"   <- what the bot actually receives
+ * - "Имя,тир"    e.g. "Робот,2+"
+ * - "Имя:тир"    e.g. "Робот:2+"
+ * Lines starting with # or // are ignored.
  */
 
 // Valid tier values
-const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired'];
+const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired']
+
+/**
+ * Strip decoration from a name, keeping letters of ANY script (incl. Cyrillic),
+ * digits, spaces, hyphens and apostrophes.
+ * NOTE: \w is [A-Za-z0-9_] in JS and does NOT match Cyrillic - using it here
+ * used to blank out every Russian name, which made every lookup match the
+ * first mutant in the list. Unicode property escapes are required.
+ */
+function normalizeForComparison(str) {
+  return String(str)
+    .replace(/[«»"'`]/g, '')
+    .replace(/[^\p{L}\p{N}\s'-]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
+}
 
 /**
  * Normalize tier value to accepted format
  * Valid tiers: 1, 1+, 1-, 2, 2+, 2-, 3, 3+, 3-, 4, un-tired
  */
 function normalizeTierValue(tier) {
-  tier = tier.trim();
-  
+  tier = String(tier).trim()
+
   // Direct mapping (case-insensitive for Russian text)
-  const tierUpper = tier.toUpperCase();
+  const tierUpper = tier.toUpperCase()
   const tierMapping = {
-    '1': '1', '1+': '1+', '1-': '1-',
-    '2': '2', '2+': '2+', '2-': '2-',
-    '3': '3', '3+': '3+', '3-': '3-',
-    '4': '4',
+    1: '1',
+    '1+': '1+',
+    '1-': '1-',
+    2: '2',
+    '2+': '2+',
+    '2-': '2-',
+    3: '3',
+    '3+': '3+',
+    '3-': '3-',
+    4: '4',
     'UN-TIRED': 'un-tired',
     // Russian variations
-    '1ПЛЮС': '1+', '1МИНУС': '1-',
-    '2ПЛЮС': '2+', '2НОРМ': '2', '2МИНУС': '2-',
-    '3ПЛЮС': '3+', '3НОРМ': '3', '3МИНУС': '3-',
-    '4НОРМ': '4'
-  };
-  
-  const normalizedTier = tierMapping[tierUpper] || tier;
-  
-  // Validate tier format
-  const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired'];
+    '1ПЛЮС': '1+',
+    '1МИНУС': '1-',
+    '2ПЛЮС': '2+',
+    '2НОРМ': '2',
+    '2МИНУС': '2-',
+    '3ПЛЮС': '3+',
+    '3НОРМ': '3',
+    '3МИНУС': '3-',
+    '4НОРМ': '4',
+  }
+
+  const normalizedTier = tierMapping[tierUpper] || tier
+
   if (!VALID_TIERS.includes(normalizedTier)) {
-    throw new Error(`Invalid tier value: ${normalizedTier}. Valid tiers are: ${VALID_TIERS.join(', ')}`);
+    throw new Error(
+      `Invalid tier value: ${normalizedTier}. Valid tiers are: ${VALID_TIERS.join(', ')}`,
+    )
   }
-  
-  return normalizedTier;
+
+  return normalizedTier
 }
 
 /**
- * Find mutant ID by Russian name with fuzzy matching
+ * Find ALL mutant IDs matching a Russian name.
+ * Returns an array because distinct mutants can share a name (e.g. "Колосс" is
+ * both specimen_ae_01 and specimen_ce_99) - returning only the first would
+ * leave the other one's tier permanently stale.
+ * Exact matches first; the substring fallback is guarded so it can never
+ * degrade into "empty string matches everything".
  */
-function findMutantIdByName(name, nameToId) {
-  // Clean up the input name - remove quotes and special characters
-  let cleanedName = name
-    .replace(/[«»"'`]/g, '')  // Remove all types of quotes
-    .replace(/\s+/g, ' ')     // Normalize multiple spaces
+function findMutantIdsByName(name, nameToIds) {
+  const cleanedName = String(name)
+    .replace(/[«»"'`]/g, '')
+    .replace(/\s+/g, ' ')
     .trim()
-    .toLowerCase();
-  
-  // Direct match
-  if (nameToId[cleanedName]) {
-    return nameToId[cleanedName];
-  }
-  
-  // Direct match with original name (in case it has quotes)
-  if (nameToId[name]) {
-    return nameToId[name];
+    .toLowerCase()
+
+  if (!cleanedName) return []
+
+  // 1. Exact match on the raw / cleaned name
+  if (nameToIds[cleanedName]) return nameToIds[cleanedName]
+  if (nameToIds[name]) return nameToIds[name]
+
+  // 2. Exact match on the normalized form
+  const normalizedInput = normalizeForComparison(cleanedName)
+  if (!normalizedInput) return []
+
+  for (const [storedName, mutantIds] of Object.entries(nameToIds)) {
+    if (normalizeForComparison(storedName) === normalizedInput) return mutantIds
   }
 
-  // Create a normalized version for comparison (remove special chars except spaces and hyphens)
-  const normalizeForComparison = (str) => {
-    return str
-      .replace(/[^\w\s'-]/g, '')  // Remove special chars except letters, numbers, spaces, hyphens, apostrophes
-      .replace(/\s+/g, ' ')
-      .trim()
-      .toLowerCase();
-  };
-  
-  const normalizedInput = normalizeForComparison(cleanedName);
-  
-  // Try partial match with cleaned names
-  for (const [storedName, mutantId] of Object.entries(nameToId)) {
-    const normalizedStored = normalizeForComparison(storedName);
-    
-    // Check if one contains the other
-    if (normalizedInput.includes(normalizedStored) || normalizedStored.includes(normalizedInput)) {
-      return mutantId;
-    }
-    
-    // Check if cleaned input contains stored name (for cases like "ДЭР, зомби-властитель")
-    if (cleanedName.includes(storedName) || storedName.includes(cleanedName)) {
-      return mutantId;
+  // 3. Guarded substring fallback: both sides must be reasonably long, and
+  //    among the candidates we take the closest one by length. A short input
+  //    is never allowed to swallow an unrelated mutant.
+  if (normalizedInput.length < 4) return []
+
+  let best = null
+  let bestDelta = Infinity
+  for (const [storedName, mutantIds] of Object.entries(nameToIds)) {
+    const normalizedStored = normalizeForComparison(storedName)
+    if (normalizedStored.length < 4) continue
+
+    if (normalizedStored.includes(normalizedInput) || normalizedInput.includes(normalizedStored)) {
+      const delta = Math.abs(normalizedStored.length - normalizedInput.length)
+      if (delta < bestDelta) {
+        bestDelta = delta
+        best = mutantIds
+      }
     }
   }
 
-  // If no match found, return null
-  return null;
+  return best ?? []
 }
 
 /**
- * Parse tier data from text content
+ * Back-compat helper: first matching ID or null.
  */
-function parseTierFromTxt(txtContent, nameToId) {
-  const tiers = {};
-  const lines = txtContent.split('\n');
-  
-  for (const line of lines) {
-    let processedLine = line.trim();
-    if (!processedLine || processedLine.startsWith('#') || processedLine.startsWith('//')) {
-      continue;
-    }
-    
-    // Try comma-separated format
-    if (processedLine.includes(',')) {
-      const parts = processedLine.split(',');
-      if (parts.length >= 2) {
-        const mutantName = parts[0].trim().toLowerCase();
-        const tier = normalizeTierValue(parts[1].trim());
-        
-        // Find matching mutant ID
-        const mutantId = findMutantIdByName(mutantName, nameToId);
-        if (mutantId) {
-          tiers[mutantId] = tier;
-        }
-      }
-    }
-    // Try space-separated format with colon
-    else if (processedLine.includes(':')) {
-      const parts = processedLine.split(':');
-      if (parts.length >= 2) {
-        const mutantName = parts[0].trim().toLowerCase();
-        const tier = normalizeTierValue(parts[1].trim());
-        
-        // Find matching mutant ID
-        const mutantId = findMutantIdByName(mutantName, nameToId);
-        if (mutantId) {
-          tiers[mutantId] = tier;
-        }
-      }
-    }
-    // Try simple space format (last word is tier)
-    else {
-      const parts = processedLine.split(/\s+/);
-      if (parts.length >= 2) {
-        // Assume last part is tier, rest is mutant name
-        const tier = normalizeTierValue(parts[parts.length - 1].trim());
-        const mutantNameParts = parts.slice(0, -1);
-        const mutantName = mutantNameParts.join(' ').trim().toLowerCase();
-        
-        // Find matching mutant ID
-        const mutantId = findMutantIdByName(mutantName, nameToId);
-        if (mutantId) {
-          tiers[mutantId] = tier;
-        }
-      }
-    }
+function findMutantIdByName(name, nameToIds) {
+  const ids = findMutantIdsByName(name, nameToIds)
+  return ids.length > 0 ? ids[0] : null
+}
+
+/**
+ * Split one line into [name, tier]. Returns null if the line carries no tier.
+ */
+function splitLine(line) {
+  // "Имя (тир)"
+  const parenMatch = line.match(/^(.+?)\s*\(([^)]+)\)\s*$/)
+  if (parenMatch) return [parenMatch[1], parenMatch[2]]
+
+  // "Имя,тир"
+  if (line.includes(',')) {
+    const parts = line.split(',')
+    if (parts.length >= 2) return [parts[0], parts.slice(1).join(',')]
   }
-  
-  return tiers;
+
+  // "Имя:тир"
+  if (line.includes(':')) {
+    const parts = line.split(':')
+    if (parts.length >= 2) return [parts[0], parts.slice(1).join(':')]
+  }
+
+  return null
 }
 
 /**
@@ -160,50 +158,47 @@ function parseTierFromTxt(txtContent, nameToId) {
  * @param {string} mutantsJson - JSON string of mutants data
  */
 function loadMutantMapping(mutantsJson) {
-  console.log(`loadMutantMapping: received ${mutantsJson ? mutantsJson.length : 0} chars`);
+  console.log(`loadMutantMapping: received ${mutantsJson ? mutantsJson.length : 0} chars`)
 
   if (!mutantsJson || mutantsJson.length === 0) {
-    throw new Error('Empty mutantsJson received');
+    throw new Error('Empty mutantsJson received')
   }
 
-  let mutantsData;
+  let mutantsData
   try {
-    mutantsData = JSON.parse(mutantsJson);
+    mutantsData = JSON.parse(mutantsJson)
   } catch (e) {
-    console.error(`JSON parse error: ${e.message}`);
-    console.error(`First 500 chars: ${mutantsJson.slice(0, 500)}`);
-    throw new Error(`Invalid JSON: ${e.message}`);
+    console.error(`JSON parse error: ${e.message}`)
+    console.error(`First 500 chars: ${mutantsJson.slice(0, 500)}`)
+    throw new Error(`Invalid JSON: ${e.message}`)
   }
 
-  const nameToId = {};
+  const nameToIds = {}
+  const addVariant = (variant, mutantId) => {
+    // Empty keys are what let a blank normalization match every lookup.
+    if (!variant) return
+    if (!nameToIds[variant]) nameToIds[variant] = []
+    if (!nameToIds[variant].includes(mutantId)) nameToIds[variant].push(mutantId)
+  }
+
   for (const mutant of mutantsData) {
-    const name = mutant.name.trim().toLowerCase();
-    const mutantId = mutant.id;
-    
-    // Add original name
-    nameToId[name] = mutantId;
+    if (!mutant || !mutant.name || !mutant.id) continue
 
-    // Add variation without quotes
-    const noQuotesName = mutant.name.replace(/[«»"'`]/g, '').trim().toLowerCase();
-    if (noQuotesName !== name) {
-      nameToId[noQuotesName] = mutantId;
-    }
-    
-    // Add variation without special characters (except letters, numbers, spaces, hyphens)
-    const cleanName = mutant.name.replace(/[^\w\s'-]/g, '').trim().toLowerCase();
-    if (cleanName !== name) {
-      nameToId[cleanName] = mutantId;
-    }
-    
-    // Add variation with normalized spaces
-    const normalizedSpacesName = mutant.name.replace(/\s+/g, ' ').trim().toLowerCase();
-    if (normalizedSpacesName !== name) {
-      nameToId[normalizedSpacesName] = mutantId;
-    }
+    const name = String(mutant.name).trim().toLowerCase()
+    addVariant(name, mutant.id)
+    addVariant(
+      String(mutant.name)
+        .replace(/[«»"'`]/g, '')
+        .trim()
+        .toLowerCase(),
+      mutant.id,
+    )
+    addVariant(normalizeForComparison(mutant.name), mutant.id)
+    addVariant(String(mutant.name).replace(/\s+/g, ' ').trim().toLowerCase(), mutant.id)
   }
 
-  console.log(`Loaded ${Object.keys(nameToId).length} mutant mappings`);
-  return nameToId;
+  console.log(`Loaded ${Object.keys(nameToIds).length} mutant mappings`)
+  return nameToIds
 }
 
 /**
@@ -212,67 +207,47 @@ function loadMutantMapping(mutantsJson) {
  * @param {string} mutantsJson - JSON string of mutants data
  */
 function parseTierData(content, mutantsJson) {
-  // Load the name to ID mapping from mutants data
-  const nameToId = loadMutantMapping(mutantsJson);
-  
-  const tiers = {};
-  const lines = content.split('\n');
-  
+  const nameToIds = loadMutantMapping(mutantsJson)
+
+  const tiers = {}
+  // Files arrive from Telegram with CRLF line endings.
+  const lines = String(content).split(/\r?\n/)
+
   for (const line of lines) {
-    let processedLine = line.trim();
+    const processedLine = line.trim()
     if (!processedLine || processedLine.startsWith('#') || processedLine.startsWith('//')) {
-      continue;
+      continue
     }
-    
-    // Try to match format: "Mutant Name (tier)"
-    const parenMatch = processedLine.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
-    if (parenMatch) {
-      const mutantName = parenMatch[1].trim().toLowerCase();
-      const tier = normalizeTierValue(parenMatch[2].trim());
-      
-      // Find matching mutant ID
-      const mutantId = findMutantIdByName(mutantName, nameToId);
-      if (mutantId) {
-        tiers[mutantId] = tier;
+
+    // One malformed line must never abort the whole file.
+    try {
+      const split = splitLine(processedLine)
+      if (!split) continue
+
+      const mutantName = split[0].trim().toLowerCase()
+      const tier = normalizeTierValue(split[1])
+
+      // A name can legitimately belong to several mutants - set the tier on all.
+      const mutantIds = findMutantIdsByName(mutantName, nameToIds)
+      if (mutantIds.length > 0) {
+        for (const mutantId of mutantIds) tiers[mutantId] = tier
       } else {
-        console.log(`NOT FOUND: "${mutantName}" (tier: ${tier})`);
+        console.log(`NOT FOUND: "${mutantName}" (tier: ${tier})`)
       }
-      continue;
-    }
-    
-    // Try comma-separated format
-    if (processedLine.includes(',')) {
-      const parts = processedLine.split(',');
-      if (parts.length >= 2) {
-        const mutantName = parts[0].trim().toLowerCase();
-        const tier = normalizeTierValue(parts[1].trim());
-        
-        const mutantId = findMutantIdByName(mutantName, nameToId);
-        if (mutantId) {
-          tiers[mutantId] = tier;
-        }
-      }
-      continue;
-    }
-    
-    // Try space-separated format with colon
-    if (processedLine.includes(':')) {
-      const parts = processedLine.split(':');
-      if (parts.length >= 2) {
-        const mutantName = parts[0].trim().toLowerCase();
-        const tier = normalizeTierValue(parts[1].trim());
-        
-        const mutantId = findMutantIdByName(mutantName, nameToId);
-        if (mutantId) {
-          tiers[mutantId] = tier;
-        }
-      }
-      continue;
+    } catch (e) {
+      console.log(`SKIPPED LINE: "${processedLine}" - ${e.message}`)
     }
   }
-  
-  return tiers;
+
+  return tiers
 }
 
 // Export functions for use in other modules
-export { parseTierData, normalizeTierValue, loadMutantMapping };
+export {
+  parseTierData,
+  normalizeTierValue,
+  loadMutantMapping,
+  findMutantIdsByName,
+  findMutantIdByName,
+  normalizeForComparison,
+}

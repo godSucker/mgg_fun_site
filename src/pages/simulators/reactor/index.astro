@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { listGachas } from '../../../lib/reactor-gacha';
+import { textureUrl } from '../../../lib/texture-cdn';
 
 const gachas = listGachas();
 
@@ -38,7 +39,7 @@ const sortedGachas = [...gachas].sort((a, b) => {
         <a class="gacha-card" href={`/simulators/reactor/${gacha.id}`} aria-label={gacha.name}>
           {gacha.cover ? (
             <div class="card-cover">
-              <img class="cover" src={gacha.cover} alt="" loading="lazy" />
+              <img class="cover" src={textureUrl(gacha.cover)} alt="" loading="lazy" />
             </div>
           ) : (
             <div class="card-cover no-cover" aria-hidden="true"></div>

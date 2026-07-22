@@ -85,7 +85,7 @@
     <div class="relative w-full aspect-square p-2" style="transform: translateZ(18px);">
       {#if !broken}
         <img
-          src={imgSrc}
+          src={textureUrl(imgSrc)}
           alt={`Текстура ${name || id}`}
           class="h-full w-full object-contain drop-shadow-[0_6px_28px_rgba(0,0,0,0.45)]"
           loading="lazy"
