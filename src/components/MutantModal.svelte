@@ -69,6 +69,13 @@
     return stars.filter(s => mutant.stars?.[s]);
   })() : []);
   let currentMultiplier = $derived(mutant?.stars?.[selectedStar]?.multiplier ?? STAR_MULTIPLIERS[selectedStar] ?? 1.0);
+  // Ряд звёзд рисуем, если звёзд больше одной ИЛИ есть скины (тогда единственная
+  // звезда служит кнопкой «убрать скин»). Заблокированные мутанты — без ряда.
+  let showStarRow = $derived(
+    availableStars.length > 0 &&
+    (availableStars.length > 1 || skins.length > 0) &&
+    !STAR_SWITCHER_BLOCKED.has(mutant?.id)
+  );
 
   // ===== Skin switching =====
   let selectedSkin = $state(null);
@@ -629,24 +636,22 @@
     </button>
     <!-- Left -->
     <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
-      <!-- Star switcher -->
-      <!-- Показываем ряд звёзд и при единственной звезде, если есть скины: -->
+      <!-- Звёзды и скины в одном ряду (сбоку друг от друга). -->
+      <!-- Ряд звёзд показываем и при единственной звезде, если есть скины: -->
       <!-- эта кнопка работает как «убрать скин» (Крушила и другие SPECIAL с GACHA-скином). -->
-      {#if availableStars.length > 0 && (availableStars.length > 1 || skins.length > 0) && !STAR_SWITCHER_BLOCKED.has(mutant?.id)}
-        <div class="flex gap-2 mb-2">
-          {#each availableStars as s}
-            <button
-              class="star-switch-btn {selectedStar === s && !selectedSkin ? 'active' : ''}"
-              onclick={() => { selectedStar = s; selectedSkin = null; }}
-              title={STAR_LABEL[s] ?? s}
-            >
-              <img src={textureUrl(STAR_ICONS[s] ?? '/stars/no_stars.webp')} alt={s} class="w-6 h-6 object-contain" />
-            </button>
-          {/each}
-        </div>
-      {/if}
-      {#if skins.length > 0}
-        <div class="flex gap-1.5 mb-2 flex-wrap justify-center">
+      {#if showStarRow || skins.length > 0}
+        <div class="flex gap-2 mb-2 flex-wrap justify-center items-center">
+          {#if showStarRow}
+            {#each availableStars as s}
+              <button
+                class="star-switch-btn {selectedStar === s && !selectedSkin ? 'active' : ''}"
+                onclick={() => { selectedStar = s; selectedSkin = null; }}
+                title={STAR_LABEL[s] ?? s}
+              >
+                <img src={textureUrl(STAR_ICONS[s] ?? '/stars/no_stars.webp')} alt={s} class="w-9 h-9 object-contain" />
+              </button>
+            {/each}
+          {/if}
           {#each skins as s, i}
             <button
               class="skin-switch-btn {selectedSkin === s ? 'active' : ''}"
