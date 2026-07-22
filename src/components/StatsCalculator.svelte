@@ -1324,27 +1324,42 @@
       }
 
       const stateStr = encodeURIComponent(JSON.stringify(state));
-      let res: Response | null = null;
-      for (let attempt = 0; attempt < 2; attempt++) {
-        res = await fetch(`/api/screenshot?state=${stateStr}`);
-        if (res.ok) break;
-        if (attempt === 0) await new Promise(r => setTimeout(r, 1000));
-      }
-      if (!res || !res.ok) throw new Error(`Screenshot API error: ${res?.status}`);
-
-      const blob = await res.blob();
       const filename = isCompare
         ? `${selected.name || 'mutant'}-vs-${selected2?.name || 'mutant'}-stats.png`
         : `${selected.name || 'mutant'}-stats.png`;
 
-      if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+      // Запрос идёт дольше, чем живёт "user activation" от клика, поэтому любой
+      // await до clipboard.write ломает копирование (первый клик уходил в скачивание).
+      // Отдаём ClipboardItem сам промис и вызываем write сразу.
+      let pending: Promise<Blob> | null = null;
+      const fetchBlob = () => {
+        if (!pending) {
+          pending = (async () => {
+            let res: Response | null = null;
+            for (let attempt = 0; attempt < 2; attempt++) {
+              res = await fetch(`/api/screenshot?state=${stateStr}`);
+              if (res.ok) break;
+              if (attempt === 0) await new Promise(r => setTimeout(r, 1000));
+            }
+            if (!res || !res.ok) throw new Error(`Screenshot API error: ${res?.status}`);
+            return await res.blob();
+          })();
+        }
+        return pending;
+      };
+
+      if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
         try {
-          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': fetchBlob() })]);
           showNotification('Скриншот сохранён в буфер обмена!');
           return;
-        } catch {}
+        } catch (err) {
+          // Если упал сам запрос — пробрасываем ошибку в общий catch, а не скачиваем битый файл.
+          await fetchBlob();
+          console.warn('[Screenshot] clipboard unavailable, falling back to download', err);
+        }
       }
-      downloadBlob(blob, filename);
+      downloadBlob(await fetchBlob(), filename);
       showNotification('Скриншот скачан!');
     } catch (error) {
       console.error('[Screenshot]', error);

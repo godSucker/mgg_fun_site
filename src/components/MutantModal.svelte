@@ -80,12 +80,16 @@
   });
 
   let displayMutant = $derived(selectedSkin ?? mutant);
+  // В skins.json отсутствие звезды записано как "none" — это не ключ STAR_LABEL/stars.
+  const normStar = (s?: string | null) =>
+    !s || s === 'none' ? 'normal' : s;
+  let skinStar = $derived(normStar(selectedSkin?.star));
   // Метка звезды в шапке: у скина своя звезда, она главнее выбранной вручную.
-  let shownStar = $derived(selectedSkin?.star ?? selectedStar);
+  let shownStar = $derived(selectedSkin ? skinStar : selectedStar);
   // Кандидаты главной картинки + указатель на текущий; onerror двигает указатель.
   let heroSrcs = $derived(
     selectedSkin
-      ? heroCandidates(selectedSkin, selectedSkin.star || 'normal')
+      ? heroCandidates(selectedSkin, skinStar)
       : heroCandidates(mutant, selectedStar)
   );
   let heroIdx = $state(0);
@@ -97,7 +101,7 @@
   // Skin uses its own star for multiplier; base mutant uses selectedStar
   let displayMultiplier = $derived(
     selectedSkin
-      ? (mutant?.stars?.[selectedSkin.star]?.multiplier ?? STAR_MULTIPLIERS[selectedSkin.star] ?? 1.0)
+      ? (mutant?.stars?.[skinStar]?.multiplier ?? STAR_MULTIPLIERS[skinStar] ?? 1.0)
       : currentMultiplier
   );
 
@@ -626,7 +630,9 @@
     <!-- Left -->
     <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
       <!-- Star switcher -->
-      {#if availableStars.length > 1 && !STAR_SWITCHER_BLOCKED.has(mutant?.id)}
+      <!-- Показываем ряд звёзд и при единственной звезде, если есть скины: -->
+      <!-- эта кнопка работает как «убрать скин» (Крушила и другие SPECIAL с GACHA-скином). -->
+      {#if availableStars.length > 0 && (availableStars.length > 1 || skins.length > 0) && !STAR_SWITCHER_BLOCKED.has(mutant?.id)}
         <div class="flex gap-2 mb-2">
           {#each availableStars as s}
             <button
@@ -647,11 +653,19 @@
               onclick={() => { selectedSkin = (selectedSkin === s ? null : s); }}
               title={s.skin}
             >
-              {#if skinIcon(s.skin)}
-                <img src={textureUrl(skinIcon(s.skin))} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
-              {:else}
-                <img src={textureUrl(imgSrc(s, s.star || 'normal'))} alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" />
-              {/if}
+              <!-- Иконка гачи; если её нет на CDN — откатываемся на текстуру самого скина. -->
+              <img
+                src={textureUrl(skinIcon(s.skin) ?? imgSrc(s, normStar(s.star)))}
+                data-fallback-src={textureUrl(imgSrc(s, normStar(s.star)))}
+                onerror={(e) => {
+                  const t = e.currentTarget as HTMLImageElement;
+                  if (!t.dataset.fellBack && t.dataset.fallbackSrc) {
+                    t.dataset.fellBack = '1';
+                    t.src = t.dataset.fallbackSrc;
+                  }
+                }}
+                alt="" class="w-9 h-9 object-contain" loading="lazy" decoding="async" draggable="false" />
+
               <span class="text-[9px] leading-tight">{s.skin}</span>
             </button>
           {/each}

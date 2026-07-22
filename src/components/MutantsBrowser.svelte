@@ -591,7 +591,7 @@
       <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
         {#if viewMode === 'heads'}
           <div class="heads-card">
-            <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" />
+            <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" oncontextmenu={(e) => e.preventDefault()} draggable="false" />
             <div class="heads-name">{it.name}</div>
           </div>
         {:else}
@@ -608,7 +608,8 @@
                   t.src = t.dataset.fallbackSrc;
                 }
               }}
-              alt={it.name} loading="lazy" decoding="async" width="512" height="512" />
+              alt={it.name} loading="lazy" decoding="async" width="512" height="512"
+              oncontextmenu={(e) => e.preventDefault()} draggable="false" />
             <div class="px-3 pt-2 pb-3">
               <div class="text-slate-100 font-semibold text-sm truncate">{it.name}</div>
             </div>

@@ -91,6 +91,8 @@
           loading="lazy"
           decoding="async"
           onerror={onError}
+          oncontextmenu={(e) => e.preventDefault()}
+          draggable="false"
         />
       {:else}
         <div class="flex h-full w-full items-center justify-center bg-slate-950/40 text-sky-300/80 text-xs">
