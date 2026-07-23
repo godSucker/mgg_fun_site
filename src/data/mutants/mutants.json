@@ -59116,5 +59116,116 @@
     "name_attack2": "Вулканический молот",
     "name_attack3": "",
     "name_lore": "В древнеримских мифах говорилось о двух божествах: одном — покровителе кузницы, а другом — покровителе вулканов. Но были ли они действительно разными божествами или же представляли собой лишь два аспекта одного и того же существа, способного как вызвать извержение Везувия, так и выковать легендарное оружие? Наука разрешила этот вопрос несколько тысячелетий спустя, воссоздав этого нестабильного вулканического мутанта…"
+  },
+  {
+    "id": "specimen_fa_14",
+    "name": "Фрактальный заклинатель",
+    "genes": [
+      "F",
+      "A"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 1130,
+        "atk1": 312,
+        "atk2": 312,
+        "ability": 62,
+        "speed": 5,
+        "silver": 42,
+        "atk1_gene": "f",
+        "atk2_gene": "a",
+        "atk1_AOE": true,
+        "atk2_AOE": true
+      },
+      "lvl30": {
+        "hp": 4407,
+        "atk1": 1825,
+        "atk2": 1825,
+        "ability": 548,
+        "speed": 5,
+        "silver": 1260,
+        "atk1_gene": "f",
+        "atk2_gene": "a",
+        "atk1_AOE": true,
+        "atk2_AOE": true
+      },
+      "hp_base": 1130,
+      "atk1_base": 312,
+      "atk1p_base": 468,
+      "atk2_base": 312,
+      "atk2p_base": 468,
+      "speed_base": 5,
+      "bank_base": 42,
+      "abilityPct1": -20,
+      "abilityPct2": -30
+    },
+    "abilities": [
+      {
+        "name": "ability_weaken",
+        "pct": 20,
+        "value_atk1_lvl1": 62,
+        "value_atk2_lvl1": 62,
+        "value_atk1_lvl30": 365,
+        "value_atk2_lvl30": 365
+      },
+      {
+        "name": "ability_weaken_plus",
+        "pct": 30,
+        "value_atk1_lvl1": 94,
+        "value_atk2_lvl1": 94,
+        "value_atk1_lvl30": 548,
+        "value_atk2_lvl30": 548
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/fa_14/specimen_fa_14_normal.webp",
+          "textures_by_mutant/fa_14/larva_fa_14.webp"
+        ]
+      },
+      "bronze": {
+        "images": [
+          "textures_by_mutant/fa_14/specimen_fa_14_bronze.webp",
+          "textures_by_mutant/fa_14/larva_fa_14.webp"
+        ],
+        "multiplier": 1.1
+      },
+      "silver": {
+        "images": [
+          "textures_by_mutant/fa_14/specimen_fa_14_silver.webp",
+          "textures_by_mutant/fa_14/larva_fa_14.webp"
+        ],
+        "multiplier": 1.3
+      },
+      "gold": {
+        "images": [
+          "textures_by_mutant/fa_14/specimen_fa_14_gold.webp",
+          "textures_by_mutant/fa_14/larva_fa_14.webp"
+        ],
+        "multiplier": 1.75
+      },
+      "platinum": {
+        "images": [
+          "textures_by_mutant/fa_14/specimen_fa_14_platinum.webp",
+          "textures_by_mutant/fa_14/larva_fa_14.webp"
+        ],
+        "multiplier": 2
+      }
+    },
+    "type": "LEGEND",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 0,
+    "bank": 42,
+    "tier": "",
+    "name_attack1": "Спиральный взрыв",
+    "name_attack2": "Вихрь узоров",
+    "name_attack3": "",
+    "name_lore": "Странное существо из Хекс-Сити. Похоже, оно умеет манипулировать обоими аспектами местной магии, проецируя светящиеся шестиугольники и фрактальные взрывы. Его роль в происходящих там событиях пока остается неясной. Но его интерес к исследованию других измерений делает его идеальным мутантом для арен Генетического города."
   }
 ]
