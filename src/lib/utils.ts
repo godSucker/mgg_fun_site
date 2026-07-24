@@ -13,6 +13,17 @@ export function pluralize(n: number, one: string, few: string, many: string): st
   return many
 }
 
+/**
+ * Базовый id мутанта: нижний регистр, срезан суффикс звезды и всё после него.
+ * 'specimen_a_01_platinum' -> 'specimen_a_01'; префикс specimen_ сохраняется.
+ * Единая замена локальным baseId()-копиям в компонентах.
+ */
+export function baseMutantId(id: unknown): string {
+  return String(id ?? '')
+    .toLowerCase()
+    .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '')
+}
+
 export function normalizeMutantId(specimenId: string): { folder: string; fileId: string; baseId: string } {
   if (!specimenId) return { folder: '', fileId: '', baseId: '' }
 

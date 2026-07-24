@@ -19,6 +19,7 @@
     ABILITY_ALIASES,
     getGeneIcon,
   } from '@/lib/mutant-icons';
+  import { baseMutantId as baseId } from '@/lib/utils';
 
   let { open = false, mutant = null, star = 'normal', skins = [], onclose = undefined }: {
     open?: boolean;
@@ -207,10 +208,6 @@
   };
 
   // ===== helpers =====
-  const baseId = (id?: string) =>
-    String(id ?? '')
-      .toLowerCase()
-      .replace(/_+(?:normal|bronze|silver|gold|plat).*$/i, '');
 
   // Bingo from mutant data directly
   let displayBingo = $derived((() => {

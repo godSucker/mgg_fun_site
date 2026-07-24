@@ -4,7 +4,7 @@
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { textureUrl } from '@/lib/texture-cdn';
-  import { pluralize } from '@/lib/utils';
+  import { pluralize, baseMutantId as baseId } from '@/lib/utils';
 
   const normalizeForSearch = normalizeSearch;
 
@@ -17,11 +17,6 @@
     _cache.set(key, v as any);
     return v;
   }
-
-  const baseId = (id: any) =>
-    String(id ?? '')
-      .toLowerCase()
-      .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '');
 
   type BaseMap = Map<string, any>;
   function buildBaseMap(list: any[]): BaseMap {

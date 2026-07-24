@@ -16,6 +16,7 @@
     STAT_ICONS,
     TYPE_ICONS,
   } from '@/lib/mutant-icons';
+  import { baseMutantId } from '@/lib/utils';
 
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
   let { renderState }: { renderState?: string } = $props();
@@ -127,10 +128,7 @@
     return 2;
   }
   function baseIdOf(m){
-    const raw = String(m?.id ?? m?.slug ?? m?.specimen ?? m?.name ?? '').trim();
-    return raw
-      .replace(/_(bronze|silver|gold|platinum)$/i, '')
-      .replace(/_plat$/i, '');
+    return baseMutantId(String(m?.id ?? m?.slug ?? m?.specimen ?? m?.name ?? '').trim());
   }
   function readableType(raw){
     const val = String(raw || '').trim();
