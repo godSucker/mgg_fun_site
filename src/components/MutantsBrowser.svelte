@@ -338,7 +338,7 @@
   let endIndex = $derived(pageSize * currentPage);
   let shownMutants = $derived(filteredMutants.slice(0, endIndex));
 
-  function pickTexture(it:any, headsMode: boolean = false): string {
+  function pickTexture(it:any): string {
     const bid = baseId(it.id);
 
     if (it?.forceSkin) {
@@ -368,10 +368,6 @@
         const starData = it.stars[displayStar] || it.stars[starKeys[0]];
         if (starData?.images?.length) {
             const imgs = starData.images;
-            if (headsMode) {
-                const specimen = imgs.find((p: string) => p.includes('specimen'));
-                if (specimen) return toThumbPath(specimen);
-            }
             const specimen = imgs.find((p: string) => p.includes('specimen'));
             if (specimen) return specimen;
             const fullTexture = imgs.find((p: string) => p.includes('textures_by_mutant/') && !p.includes('specimen') && !p.includes('larva'));
@@ -399,9 +395,6 @@
             pick = list[0];
         }
     }
-    if (headsMode && pick && pick.includes('specimen_')) {
-        return toThumbPath(pick);
-    }
     return pick ?? 'placeholder-mutant.webp';
   }
 
@@ -420,9 +413,6 @@
     return `textures_by_mutant/${code}/FULL_${code}${suffix}.png`;
   }
 
-  function toThumbPath(p: string): string {
-    return p.replace('/textures_by_mutant/', '/textures_by_mutant/').replace('specimen_', 'thumb_specimen_');
-  }
   function rarityType(item:any){
     return item?._displayStar || starSelMutants;
   }
@@ -579,7 +569,7 @@
       <div role="button" tabindex="0" class="cursor-pointer" onclick={() => openModal(it)} onkeydown={(e) => e.key === 'Enter' && openModal(it)}>
         {#if viewMode === 'heads'}
           <div class="heads-card">
-            <img class="heads-img specimen" src={textureUrl(pickTexture(it, true))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" oncontextmenu={(e) => e.preventDefault()} draggable="false" />
+            <img class="heads-img specimen" src={textureUrl(pickTexture(it))} alt={it.name} loading="lazy" decoding="async" width="128" height="128" oncontextmenu={(e) => e.preventDefault()} draggable="false" />
             <div class="heads-name">{it.name}</div>
           </div>
         {:else}

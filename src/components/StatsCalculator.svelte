@@ -680,11 +680,7 @@
   }
 
   function listThumbnail(m){
-    const img = portraitImage(m) || firstTexture(m.images);
-    if (img && img.includes('/textures_by_mutant/') && img.includes('specimen_')) {
-      return img.replace('/textures_by_mutant/', '/textures_by_mutant/').replace('specimen_', 'thumb_specimen_');
-    }
-    return img;
+    return portraitImage(m) || firstTexture(m.images);
   }
 
   function starTexture(m, stars){

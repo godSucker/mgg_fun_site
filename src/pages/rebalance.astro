@@ -72,6 +72,12 @@ const headTexture = (id: string): string | null => {
       каждому мутанту.
     </p>
 
+    {runs.length > 0 && (
+      <button id="downloadRebalanceBtn" class="download-btn" type="button">
+        📷 Скачать таблицу картинкой
+      </button>
+    )}
+
     {runs.length === 0 && (
       <div class="empty">
         Пока нет зафиксированных ребалансов — таблица заполнится автоматически после первого
@@ -129,6 +135,35 @@ const headTexture = (id: string): string | null => {
   </section>
 </BaseLayout>
 
+<script>
+  const btn = document.getElementById('downloadRebalanceBtn') as HTMLButtonElement | null;
+
+  btn?.addEventListener('click', async () => {
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '⏳ Генерация...';
+    try {
+      const res = await fetch('/api/screenshot-rebalance');
+      if (!res.ok) throw new Error(await res.text());
+      const blob = await res.blob();
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = 'rebalance-history.png';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch (err) {
+      console.error('[Rebalance screenshot]', err);
+      alert('Не удалось сгенерировать картинку. Попробуйте ещё раз.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  });
+</script>
+
 <style>
   .rebalance-page {
     max-width: 900px;
@@ -142,6 +177,28 @@ const headTexture = (id: string): string | null => {
   .intro {
     color: #94a3b8;
     margin-bottom: 1.5rem;
+  }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .download-btn:hover:not(:disabled) {
+    background: rgba(96, 165, 250, 0.22);
+  }
+  .download-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
   }
   .empty {
     padding: 2rem;

@@ -109,16 +109,11 @@ def main():
                 continue
         
         out_webp = os.path.join(output_dir, rel)
-        thumb_name = os.path.basename(spec_path).replace("specimen_", "thumb_specimen_")
-        out_thumb = os.path.join(os.path.dirname(out_webp), thumb_name)
-        
+
         try:
             result = upscale_image(session, spec_path, args.size)
             result.save(out_webp, "WEBP", quality=args.quality, effort=4)
-            
-            thumb = result.resize((128, 128), Image.BICUBIC)
-            thumb.save(out_thumb, "WEBP", quality=85)
-            
+
             processed += 1
             if processed % 25 == 0:
                 elapsed = time.time() - t0

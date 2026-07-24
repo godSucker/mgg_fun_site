@@ -1,1 +1,45 @@
-[]
+[
+  {
+    "date": "2026-07-22T14:00:00.000Z",
+    "entries": [
+      {
+        "id": "specimen_a_01",
+        "name": "Робот",
+        "changes": [
+          { "stat": "hp", "level": 1, "old": 1700, "new": 1819 },
+          { "stat": "hp", "level": 30, "old": 6800, "new": 7094 },
+          { "stat": "atk1", "level": 1, "old": 250, "new": 274 },
+          { "stat": "atk1", "level": 30, "old": 1500, "new": 1611 }
+        ]
+      },
+      {
+        "id": "specimen_aa_01",
+        "name": "Андроид",
+        "changes": [
+          { "stat": "atk2", "level": 1, "old": 230, "new": 199 },
+          { "stat": "atk2", "level": 30, "old": 1350, "new": 1162 },
+          { "stat": "abilities", "level": null, "old": null, "new": null }
+        ]
+      },
+      {
+        "id": "specimen_ab_01",
+        "name": "Некробот",
+        "changes": [
+          { "stat": "speed", "level": null, "old": 8, "new": 7.14 }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-05-10T09:30:00.000Z",
+    "entries": [
+      {
+        "id": "specimen_a_01",
+        "name": "Робот",
+        "changes": [
+          { "stat": "abilities", "level": null, "old": null, "new": null }
+        ]
+      }
+    ]
+  }
+]

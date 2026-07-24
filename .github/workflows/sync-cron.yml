@@ -9,10 +9,19 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: sync-cron
+  cancel-in-progress: false
+
 jobs:
   sync-job:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Раньше было 30 — этого не хватало: npm ci + полный парсер (554 мутанта) +
+    # скачивание скинов + pip install + рендер full-текстур + build-skins + commit +
+    # CDN sync суммарно легко превышают 30 мин, особенно если Kobojo CDN отвечает
+    # медленнее обычного. 60 даёт реальный запас без риска зависнуть навсегда
+    # (каждый сетевой шаг ниже и так имеет свои таймауты/инкрементальный режим).
+    timeout-minutes: 60
 
     steps:
       - name: 1. Клонирование репозитория
@@ -28,6 +37,7 @@ jobs:
         run: npm ci
 
       - name: 4. Запуск Парсера (Режим FULL)
+        timeout-minutes: 25
         run: npx tsx scripts/sync-mutants.ts full
 
       - name: 4.1 Скачивание текстур скинов
@@ -41,6 +51,7 @@ jobs:
           cache-dependency-path: scripts/character-textures/requirements.txt
 
       - name: 4.3 Рендер full-текстур персонажей (инкремент)
+        timeout-minutes: 20
         run: |
           pip install -r scripts/character-textures/requirements.txt
           python scripts/character-textures/sync_characters.py

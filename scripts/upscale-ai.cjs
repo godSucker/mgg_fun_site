@@ -97,14 +97,6 @@ async function toWebP(srcPath, dstPath, quality) {
     .toFile(dstPath);
 }
 
-// Generate thumbnail
-async function makeThumbnail(srcPath, dstPath) {
-  await sharp(srcPath)
-    .resize(128, 128, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .webp({ quality: 85 })
-    .toFile(dstPath);
-}
-
 async function main() {
   console.log(`[AI-UPSCALE] Source: ${SOURCE_DIR}`);
   console.log(`[AI-UPSCALE] Output: ${OUTPUT_DIR}`);
@@ -153,8 +145,6 @@ async function main() {
     const tmpUpscaled = path.join(tmpDir, `upscaled_${parsed.base}.png`);
     
     const outWebp = path.join(OUTPUT_DIR, rel);
-    const thumbName = parsed.name.replace('specimen_', 'thumb_specimen_') + '.webp';
-    const outThumb = path.join(path.dirname(outWebp), thumbName);
 
     if (DRY_RUN) {
       console.log(`  [DRY] ${rel}`);
@@ -176,9 +166,6 @@ async function main() {
 
       // Convert to webP
       await toWebP(tmpUpscaled, outWebp, WEBP_QUALITY);
-
-      // Generate thumbnail
-      await makeThumbnail(tmpUpscaled, outThumb);
 
       processed++;
       if (processed % 50 === 0) {

@@ -180,6 +180,13 @@ const isHome = Astro.url.pathname === "/";
         display: flex;
         gap: 1rem;
         align-items: center;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      header nav::-webkit-scrollbar {
+        display: none;
       }
       
       header nav a {
@@ -187,6 +194,7 @@ const isHome = Astro.url.pathname === "/";
         text-decoration: none;
         font-size: 0.9rem;
         white-space: nowrap;
+        flex-shrink: 0;
         transition: all 0.2s;
         padding: 0.5rem 0.75rem;
         border-radius: 6px;
@@ -201,6 +209,7 @@ const isHome = Astro.url.pathname === "/";
       .dropdown {
         position: relative;
         display: inline-block;
+        flex-shrink: 0;
       }
 
       .dropdown-trigger {
@@ -285,12 +294,15 @@ const isHome = Astro.url.pathname === "/";
         right: -100%;
         width: 280px;
         height: 100vh;
+        height: 100dvh;
         background-color: #161b22;
         border-left: 1px solid #30363d;
         padding: 1rem;
         z-index: 1000;
         transition: right 0.3s ease;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
       }
       
       .mobile-nav.active {

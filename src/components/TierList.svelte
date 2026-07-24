@@ -99,7 +99,7 @@
       }
     }
 
-    return textureUrl(`/textures_by_mutant/${base}/thumb_specimen_${base}_${star}.webp`)
+    return textureUrl(`/textures_by_mutant/${base}/specimen_${base}_${star}.webp`)
   }
 
   function specimenFallback(m: any): string {
@@ -108,7 +108,7 @@
       .replace(/^specimen[_-]/i, '')
       .replace(/_(normal|bronze|silver|gold|plat.*)$/i, '')
       .toLowerCase()
-    return textureUrl(`/textures_by_mutant/${base}/thumb_specimen_${base}_normal.webp`)
+    return textureUrl(`/textures_by_mutant/${base}/specimen_${base}_normal.webp`)
   }
 </script>
 
