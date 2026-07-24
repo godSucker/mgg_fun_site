@@ -72,16 +72,65 @@ jobs:
           branch: main
           file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/** scripts/character-textures/rendered.json'
 
-      - name: 7. Синхронизация ассетов с Яндекс CDN
+      - name: 7. Синхронизация ассетов с Яндекс CDN (инкремент по git diff)
+        # Раньше здесь был `aws s3 sync` по 20 папкам. На свежем раннере git checkout
+        # ставит всем файлам новый mtime, из-за чего sync считал их изменёнными и
+        # перезаливал ВСЕ ~8400 текстур каждый прогон (~6.5 мин). Теперь заливаем
+        # только файлы, реально изменённые в коммите бота (HEAD~1..HEAD).
         if: steps.check-changes.outputs.has_changes == 'true'
         run: |
           pip install awscli
-          for dir in textures_by_mutant textures_by_skins skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
+
+          BASE=$(git rev-parse --verify HEAD~1 2>/dev/null || true)
+          if [ -z "$BASE" ]; then
+            echo "⚠️  Нет предыдущего коммита для diff — пропуск CDN sync"
+            exit 0
+          fi
+
+          S3="s3://archivist-cdn"
+          ENDPOINT="https://storage.yandexcloud.net"
+
+          # Добавленные/изменённые файлы под public/ -> заливаем
+          git diff --name-only --no-renames --diff-filter=ACM "$BASE" HEAD -- 'public/' | while read -r f; do
+            [ -f "$f" ] || continue
+            key="${f#public/}"
+            echo "↑ $key"
+            aws s3 cp "$f" "$S3/$key" \
+              --endpoint-url "$ENDPOINT" \
+              --acl public-read
+          done
+
+          # Удалённые файлы под public/ -> удаляем с CDN
+          git diff --name-only --no-renames --diff-filter=D "$BASE" HEAD -- 'public/' | while read -r f; do
+            key="${f#public/}"
+            echo "✗ $key"
+            aws s3 rm "$S3/$key" \
+              --endpoint-url "$ENDPOINT"
+          done
+
+          echo "✅ CDN обновлён (только изменённые файлы)"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.YANDEX_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_SECRET_KEY }}
+          AWS_DEFAULT_REGION: ru-central1
+
+      - name: 7.1 Синхронизация статики с Яндекс CDN
+        # Статические папки (иконки, орбы, материалы и т.п.) меняются обычными
+        # коммитами разработчиков, а не ботом — поэтому шаг НЕ завязан на has_changes.
+        # --size-only: игнорируем mtime (после git checkout он всегда свежий),
+        # сравниваем только размер, чтобы не перезаливать неизменённое. Папки мелкие
+        # (~48с на все вместе). textures_by_mutant/textures_by_skins тут НЕ трогаем —
+        # их инкрементально синкает шаг 7.
+        if: always()
+        run: |
+          pip install awscli
+          for dir in skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
             if [ -d "public/$dir" ]; then
               echo "Syncing $dir..."
               aws s3 sync "public/$dir/" "s3://archivist-cdn/$dir/" \
                 --endpoint-url https://storage.yandexcloud.net \
                 --acl public-read \
+                --size-only \
                 --delete
             fi
           done
