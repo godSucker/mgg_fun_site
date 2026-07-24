@@ -20,7 +20,6 @@
 
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
   let { renderState }: { renderState?: string } = $props();
-  const isRenderMode = !!renderState;
   const renderParams = renderState ? JSON.parse(decodeURIComponent(renderState)) : null;
   // Словари иконок — единый источник: src/lib/mutant-icons.ts
   const GENE_NAME = GENE_NAMES;
@@ -33,9 +32,7 @@
 
   const SPECIAL_SLOT_COUNT = 1;
 
-  const byNameAsc  = (a, b) => a.name.localeCompare(b.name, 'ru');
-  const byNameDesc = (a, b) => b.name.localeCompare(a.name, 'ru');
-  const byGene     = sortMutantsByGene;
+  const byGene = sortMutantsByGene;
 
   // --- ЛОГИКА ОБРАБОТКИ ДАННЫХ ---
   function normalizeMutants(raw) {
@@ -503,7 +500,6 @@
   let query = $state('');                      // строка поиска
   let geneFilter = $state('');                 // '' = все, 'A'..'F' = конкретный ген (single select!)
   let gene2Filter = $state('');                // '' = все, 'A'..'F' = конкретный, 'neutral' = одногенный
-  let sortMode = 'gene';                       // nameAsc | nameDesc | gene
   let selected = $state(ALL_MUTANTS[0]);       // текущий мутант
   let level = $state(30);                      // уровень из инпута
   let stars = $state(0);                       // 0..4

@@ -118,7 +118,7 @@ export const POST: APIRoute = async ({ request }) => {
 
       let count = 0
       for (const [mutantId, newTier] of Object.entries(parsedTiers)) {
-        const idx = currentMutants.findIndex((m: any) => m.id === mutantId)
+        const idx = currentMutants.findIndex((m: { id?: string }) => m.id === mutantId)
         if (idx !== -1) {
           currentMutants[idx].tier = newTier
           count++

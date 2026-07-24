@@ -2,11 +2,13 @@ const GENE_ORDER: Record<string, number> = {
   A: 0, B: 1, C: 2, D: 3, E: 4, F: 5,
 }
 
-function readGenes(m: any): string {
+type GeneCarrier = { genes?: unknown; id?: unknown }
+
+function readGenes(m: GeneCarrier): string {
   if (Array.isArray(m?.genes)) {
     return m.genes
       .filter(Boolean)
-      .map((g: any) => String(g).toUpperCase())
+      .map((g: unknown) => String(g).toUpperCase())
       .join('')
   }
   return ''
@@ -18,7 +20,7 @@ function readGenes(m: any): string {
  * 2) Secondary: second gene (0=single first, 1=A, 2=B..6=F)
  * 3) Tertiary: by ID (lower ID first)
  */
-export function sortMutantsByGene<T extends Record<string, any>>(a: T, b: T): number {
+export function sortMutantsByGene<T extends GeneCarrier>(a: T, b: T): number {
   const ga = readGenes(a)
   const gb = readGenes(b)
 
@@ -42,7 +44,7 @@ export function sortMutantsByGene<T extends Record<string, any>>(a: T, b: T): nu
  * Filter mutants that match gene1 (first gene) and gene2 (second gene).
  * gene1/gene2 should be uppercase letters or empty string for "all".
  */
-export function filterByGenes<T extends Record<string, any>>(
+export function filterByGenes<T extends GeneCarrier>(
   items: T[],
   gene1: string,
   gene2: string,

@@ -2,7 +2,7 @@
   import { secretCombos } from '@/lib/secretCombos';
   import mutantsAll from '@/data/mutants/mutants.json';
   import { calculateBreeding, findParentsFor, calculateDuration, recommendedScore } from '@/lib/breeding/breeding';
-  import type { Mutant, BreedingResult, ParentPair, BuildingLevel, StarLevel } from '@/lib/breeding/breeding';
+  import type { Mutant, BreedingResult, BuildingLevel, StarLevel } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';

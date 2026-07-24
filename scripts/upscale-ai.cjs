@@ -13,11 +13,11 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync, spawnSync } = require('child_process');
+const { spawnSync } = require('child_process');
 const sharp = require('sharp');
 
 const REAL_ESRGAN = '/tmp/realesrgan-bin/realesrgan-ncnn-vulkan';
-const MODELS_DIR = '/tmp/realesrgan-bin/models';
+const _MODELS_DIR = '/tmp/realesrgan-bin/models';
 
 // Parse args
 const args = process.argv.slice(2);
@@ -62,8 +62,8 @@ function findSpecimens(dir) {
 async function padImage(srcPath, tmpPath, size) {
   const img = sharp(srcPath);
   const meta = await img.metadata();
-  const padX = Math.max(0, size - meta.width);
-  const padY = Math.max(0, size - meta.height);
+  const _padX = Math.max(0, size - meta.width);
+  const _padY = Math.max(0, size - meta.height);
   
   await img
     .resize(size, size, { 

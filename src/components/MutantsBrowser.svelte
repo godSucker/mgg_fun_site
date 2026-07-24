@@ -8,7 +8,7 @@
 
   const normalizeForSearch = normalizeSearch;
 
-  let { items = [], skins = [], bingos = [], title = '', bingoIndex = [], star = '' } = $props();
+  let { items = [], skins = [], bingos = [], title = '', bingoIndex = [] } = $props();
 
   const _cache = new Map<string, any[]>();
   function memo<T>(key: string, calc: () => T): T {
@@ -330,7 +330,8 @@
   let currentPage = $state(1);
 
   $effect(() => {
-    query; gene1Sel; gene2Sel; typeSel; bingoSel; starSelMutants; viewMode;
+    // Явное чтение зависимостей: смена любого фильтра сбрасывает страницу
+    void [query, gene1Sel, gene2Sel, typeSel, bingoSel, starSelMutants, viewMode];
     currentPage = 1;
   });
 

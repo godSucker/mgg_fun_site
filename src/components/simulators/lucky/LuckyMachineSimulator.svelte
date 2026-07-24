@@ -82,7 +82,6 @@
   }
 
   let resourceSummaries = $derived(buildResourceSummaries(result));
-  let jackpotCount = $derived(resourceSummaries.find((s) => s.key === 'jackpots')?.count ?? 0);
 
   function formatPercent(value: number, digits = 2): string {
     return `${(value * 100).toFixed(digits)}%`;

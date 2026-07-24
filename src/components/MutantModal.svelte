@@ -86,7 +86,7 @@
   let heroIdx = $state(0);
   // Сброс при смене мутанта/скина/звезды: heroSrcs пересобирается -> начинаем с лучшего.
   $effect(() => {
-    heroSrcs;
+    void heroSrcs; // зависимость: пересборка кандидатов сбрасывает указатель
     heroIdx = 0;
   });
   // Skin uses its own star for multiplier; base mutant uses selectedStar
@@ -570,7 +570,7 @@
               </button>
             {/each}
           {/if}
-          {#each skins as s, i}
+          {#each skins as s}
             <button
               class="skin-switch-btn {selectedSkin === s ? 'active' : ''}"
               onclick={() => { selectedSkin = (selectedSkin === s ? null : s); }}

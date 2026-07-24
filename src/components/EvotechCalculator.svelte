@@ -260,7 +260,7 @@
       hitCap       = res.hitCap;
 
       busy = false;
-    } catch (e) {
+    } catch {
       errorMsg = 'Ошибка расчёта.';
       busy = false;
     }

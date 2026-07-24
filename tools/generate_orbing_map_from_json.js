@@ -1,6 +1,5 @@
 
 import fs from 'fs';
-import path from 'path';
 
 const orbsData = JSON.parse(fs.readFileSync('src/data/materials/orbs.json', 'utf8'));
 const normalData = JSON.parse(fs.readFileSync('src/data/mutants/normal.json', 'utf8'));

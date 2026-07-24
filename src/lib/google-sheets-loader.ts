@@ -3,7 +3,7 @@ const SHEET_ID = '10hJePm-VDoM-fywzgHx8bPMcGfMoOJKQ2aFy99t0NKs'
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`
 
 // Кэш для хранения данных
-let cachedData: any[] | null = null
+let cachedData: PlayerRecord[] | null = null
 let cacheTime: number = 0
 const CACHE_DURATION = 5 * 60 * 1000 // 5 минут
 
@@ -18,11 +18,11 @@ export interface PlayerRecord {
   socials: { type: 'fb' | 'vk' | 'tg' | 'link'; url: string; label: string }[]
 }
 
-function parseCSV(text: string): any[][] {
+function parseCSV(text: string): string[][] {
   // Посимвольный разбор всего текста: перенос строки ВНУТРИ кавычек — часть
   // значения ячейки, а не конец строки таблицы (раньше text.split('\n')
   // ломал такие строки пополам).
-  const rows: any[][] = []
+  const rows: string[][] = []
   let values: string[] = []
   let current = ''
   let inQuotes = false
@@ -88,7 +88,7 @@ export async function loadEvoTop(): Promise<PlayerRecord[]> {
         const level = row[3] // ЭВО
         const tandem = row[5] // Тандем
 
-        const formatNum = (val: any) => {
+        const formatNum = (val: unknown) => {
           if (!val) return '???'
           if (!isNaN(Number(val))) return Number(val).toLocaleString('ru-RU')
           return String(val).trim()
@@ -167,7 +167,7 @@ export async function loadEvoTop(): Promise<PlayerRecord[]> {
     cacheTime = Date.now()
 
     return result
-  } catch (e) {
+  } catch {
     if (cachedData) return cachedData
     return []
   }

@@ -10,12 +10,10 @@
     calculateIncentiveChance,
     formatDurationMinutes,
     getBonusRange,
-    getOkhcRange,
     getFeaturedRewardIds,
     RECIPE_HEADER_TITLES,
     type CraftRecipe,
     type DetailedSimulationResult,
-    type IncentiveReward,
   } from '@/lib/craft-simulator';
 
   type FacilityId = 'metal' | 'transformatron' | 'supplies' | 'blackhole';
@@ -769,7 +767,6 @@
               {@const rewardDetails = state.result.rewardDetails}
               {@const incentiveDetails = state.result.incentiveDetails}
               {@const totalMain = rewardDetails.reduce((sum, item) => sum + item.amount, 0)}
-              {@const totalIncentive = incentiveDetails.reduce((sum, item) => sum + item.amount, 0)}
               <div class="results-card">
                 <header>
                   <h4>Результаты {state.result.crafts} крафтов</h4>

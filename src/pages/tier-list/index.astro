@@ -8,7 +8,7 @@ import mutants from '@/data/mutants/mutants.json'
 // Тиры живут прямо в mutants.json (поле `tier`), их обновляет телеграм-вебхук
 // (src/pages/api/telegram-webhook.ts -> tier-parser.js). Прежний источник
 // mut_tier.xlsx удалён, его данные разово перенесены в mutants.json.
-const tieredMutants = (mutants as any[]).filter(m => m.name && String(m.tier ?? '').trim())
+const tieredMutants = mutants.filter((m) => m.name && String(m.tier ?? '').trim())
 ---
 
 <BaseLayout title="Тир-лист мутантов" description="Актуальный тир-лист мутантов MGG (Mutants Genetic Gladiators) от сообщества." fullWidth>

@@ -1,6 +1,5 @@
 
 import fs from 'fs';
-import path from 'path';
 
 const orbsData = JSON.parse(fs.readFileSync('src/data/materials/orbs.json', 'utf8'));
 const normalData = JSON.parse(fs.readFileSync('src/data/mutants/normal.json', 'utf8'));
@@ -20,8 +19,8 @@ const getOrbFilePath = (orbName) => {
 };
 
 const getMutantIdFromName = (mutantName) => {
-  const cleanedMutantName = mutantName.replace(/["'\[\]().]/g, '').toLowerCase();
-  const mutant = normalData.find(m => m.name.toLowerCase().replace(/["'\[\]().]/g, '') === cleanedMutantName);
+  const cleanedMutantName = mutantName.replace(/["'[\]().]/g, '').toLowerCase();
+  const mutant = normalData.find(m => m.name.toLowerCase().replace(/["'[\]().]/g, '') === cleanedMutantName);
   return mutant ? mutant.id : null;
 };
 

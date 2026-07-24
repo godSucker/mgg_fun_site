@@ -117,9 +117,10 @@ export const GET: APIRoute = async ({ url }) => {
         'Cache-Control': 'no-store',
       },
     });
-  } catch (err: any) {
-    console.error('[Screenshot]', err?.message || err);
-    return new Response(`Screenshot error: ${err.message}`, { status: 500 });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[Screenshot]', message);
+    return new Response(`Screenshot error: ${message}`, { status: 500 });
   } finally {
     try { await browser?.close(); } catch {}
   }

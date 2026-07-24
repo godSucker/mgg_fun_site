@@ -36,9 +36,17 @@ export default [
   // Браузерное окружение: клиентский код сайта
   {
     files: ['src/**/*.svelte', 'src/**/*.ts', 'src/**/*.js', 'src/**/*.astro'],
-    ignores: ['src/pages/api/**', 'src/lib/tier-parser.js'],
     languageOptions: {
       globals: { ...globals.browser },
+    },
+  },
+
+  // CommonJS-скрипты: require() легален
+  {
+    files: ['**/*.cjs'],
+    languageOptions: { globals: { ...globals.node } },
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
 
@@ -69,7 +77,13 @@ export default [
     files: ['**/*.svelte'],
     languageOptions: {
       parser: svelteParser,
-      parserOptions: { ecmaVersion: 'latest', sourceType: 'module', extraFileExtensions: ['.svelte'] }
+      parserOptions: {
+        // <script lang="ts"> внутри .svelte разбираем TS-парсером
+        parser: tseslint.parser,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        extraFileExtensions: ['.svelte']
+      }
     },
     plugins: { svelte },
     rules: {
@@ -83,8 +97,42 @@ export default [
   // Общие мелкие придирки, чтобы шум не мешал
   {
     rules: {
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-undef': 'error'
+      // Для TS/Svelte неиспользуемое ловит @typescript-eslint-версия правила,
+      // базовое no-undef в TS даёт ложные срабатывания (типы это работа tsc)
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
+      'no-unused-vars': 'off',
+      // Пустой catch — осознанный паттерн (best-effort скачивания текстур и т.п.)
+      'no-empty': ['error', { allowEmptyCatch: true }],
+    }
+  },
+  {
+    files: ['**/*.ts', '**/*.svelte', '**/*.astro'],
+    rules: {
+      'no-undef': 'off',
+    }
+  },
+  {
+    files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
+    rules: {
+      'no-undef': 'error',
+    }
+  },
+  // Внутренний тулинг: динамические XML/JSON-структуры, any оправдан
+  {
+    files: ['scripts/**', 'tools/**'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    }
+  },
+  // Большие Svelte-вьюхи исторически на any; полная типизация — отдельный
+  // проект, до него держим сигнал видимым, но не блокирующим
+  {
+    files: ['**/*.svelte'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
     }
   }
 ]

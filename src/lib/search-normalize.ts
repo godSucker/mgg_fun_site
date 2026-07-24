@@ -67,7 +67,7 @@ export function normalizeSearch(text: string): string {
     // Remove special symbols/punctuation that shouldn't affect search
     .replace(/[«»"''„"']/g, '')  // Remove quotes and apostrophes
     .replace(/[.,;:!?$]/g, '')  // Remove punctuation
-    .replace(/[()\[\]{}]/g, '') // Remove brackets
+    .replace(/[()[\]{}]/g, '') // Remove brackets
     .replace(/[-–—/\\]/g, ''); // Remove hyphens, dashes, slashes
 
   // Remove everything that's not a letter or digit

@@ -3,16 +3,13 @@
   import { tick } from 'svelte';
   import type {
     MadnessMachineDefinition,
-    MadnessResearchChance,
     MadnessRewardAggregate,
     MadnessSimulation,
-    MadnessSpinSummary,
   } from '@/lib/madness-machine';
   import {
     getMaxResearchForLevel,
     getResearchChanceBreakdown,
     getResearchLabel,
-    getRewardChances,
     madnessMachine,
     simulateMadnessAsync,
   } from '@/lib/madness-machine';
@@ -231,7 +228,6 @@
   let tokenCostPerSpin = $derived(Math.ceil(machine.tokenCost * multiplier));
 
   let maxResearch = $derived(getMaxResearchForLevel(level));
-  let rewardChances = $derived(getRewardChances(level, machine));
   let researchChances = $derived(getResearchChanceBreakdown(level, machine));
 
   let tokenSpins = $derived(tokenCostPerSpin > 0 ? Math.floor(tokens / tokenCostPerSpin) : 0);

@@ -3,7 +3,6 @@
   import {
     GACHA_NAME_RU,
     STAR_ICON,
-    STAR_LABEL,
     getMutantName,
   } from '@/lib/reactor-gacha';
   import { textureUrl } from '@/lib/texture-cdn';

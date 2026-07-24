@@ -44,7 +44,7 @@ const mutants = [];
 // Split by block markers
 const blocks = content.split(/\]\s*\[/);
 
-blocks.forEach((block, idx) => {
+blocks.forEach((block) => {
     let cleanBlock = block;
     if (!cleanBlock.startsWith('[')) cleanBlock = '[' + cleanBlock;
     if (!cleanBlock.endsWith(']')) cleanBlock = cleanBlock + ']';
