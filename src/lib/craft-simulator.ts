@@ -435,9 +435,6 @@ export function translateItemId(itemId: string): string {
       if (/^\d+$/.test(suffix)) {
         return `${title} ур.${Number(suffix)}`;
       }
-      if (/^\d{2}$/.test(suffix)) {
-        return `${title} ур.${Number(suffix)}`;
-      }
     }
   }
 
