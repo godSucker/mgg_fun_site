@@ -173,7 +173,11 @@ export const POST: APIRoute = async ({ request }) => {
     // Сообщаем отправителю файла об ошибке, иначе он не узнает о проблеме
     // (сервер молча 500-ил, а Telegram бесконечно ретраил).
     if (chatId != null && BOT_TOKEN) {
-      await sendTelegramMessage(BOT_TOKEN, chatId, '❌ Ошибка обработки файла тиров. Попробуйте позже.')
+      await sendTelegramMessage(
+        BOT_TOKEN,
+        chatId,
+        '❌ Ошибка обработки файла тиров. Попробуйте позже.',
+      )
     }
     // 200, а не 500: иначе Telegram ретраит апдейт и дублирует ❌-сообщения.
     return new Response(JSON.stringify({ ok: false, error: 'Internal error' }), {

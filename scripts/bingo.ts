@@ -32,7 +32,7 @@ function restore() {
 
             // Создаем карту для быстрого поиска: ID -> Bingo Array
             const bingoMap = new Map();
-            backupData.forEach(m => {
+            backupData.forEach((m: { id: string; bingo?: string[] }) => {
                 if (m.bingo && m.bingo.length > 0) {
                     bingoMap.set(m.id, m.bingo);
                 }
@@ -41,7 +41,7 @@ function restore() {
             let restoredCount = 0;
 
             // Проходимся по целевому файлу и обновляем
-            targetData.forEach(mutant => {
+            targetData.forEach((mutant: { id: string; bingo?: string[] }) => {
                 if (bingoMap.has(mutant.id)) {
                     // Берем бинго из бекапа
                     const originalBingo = bingoMap.get(mutant.id);
@@ -62,7 +62,7 @@ function restore() {
             }
 
         } catch (e) {
-            console.error(`[ERROR] Ошибка при обработке ${fileName}:`, e.message);
+            console.error(`[ERROR] Ошибка при обработке ${fileName}:`, e instanceof Error ? e.message : e);
         }
     }
     console.log('--- ГОТОВО ---');

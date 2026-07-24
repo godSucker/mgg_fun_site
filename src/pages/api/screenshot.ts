@@ -110,7 +110,7 @@ export const GET: APIRoute = async ({ url }) => {
       buffer = await panel.screenshot({ type: 'png' }) as Buffer;
     }
 
-    return new Response(buffer, {
+    return new Response(new Uint8Array(buffer), {
       status: 200,
       headers: {
         'Content-Type': 'image/png',

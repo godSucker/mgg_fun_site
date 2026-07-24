@@ -2,7 +2,11 @@
 // Универсальный компонент таблицы. Принимает
 // props: columns (массив объектов {key, label}), rows (массив объектов).
 // Отображает простую таблицу без стилизации сортировки.
-const { columns = [], rows = [], title } = Astro.props;
+const { columns = [], rows = [], title } = Astro.props as {
+  columns: { key: string; label: string }[];
+  rows: Record<string, unknown>[];
+  title?: string;
+};
 ---
 
 <section class="data-table-wrapper">

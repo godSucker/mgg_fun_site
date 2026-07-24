@@ -32,10 +32,7 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [
-      tailwindcss(),
-      raw({ match: /\.txt$/ }),
-    ],
+    plugins: [tailwindcss(), raw({ match: /\.txt$/ })],
     resolve: {
       alias: {
         '@': SRC,
@@ -45,7 +42,7 @@ export default defineConfig({
       host: true,
       allowedHosts: ['.ru.tuna.am', '.nl.tuna.am', '.manus.computer'],
       hmr: {
-        overlay: false
+        overlay: false,
       },
       watch: {
         usePolling: false,

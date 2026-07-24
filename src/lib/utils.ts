@@ -24,7 +24,11 @@ export function baseMutantId(id: unknown): string {
     .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '')
 }
 
-export function normalizeMutantId(specimenId: string): { folder: string; fileId: string; baseId: string } {
+export function normalizeMutantId(specimenId: string): {
+  folder: string
+  fileId: string
+  baseId: string
+} {
   if (!specimenId) return { folder: '', fileId: '', baseId: '' }
 
   let cleaned = specimenId.replace(/^Specimen_/i, '')

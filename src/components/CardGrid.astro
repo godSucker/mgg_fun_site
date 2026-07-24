@@ -2,7 +2,16 @@
 // Сетка карточек. Принимает проп cards — массив объектов
 // { title, desc, href, icon } и опциональный заголовок.
 import Card from './Card.astro';
-const { cards, heading } = Astro.props;
+
+interface CardItem {
+  title?: string;
+  desc?: string;
+  href?: string;
+  icon?: string;
+  [key: string]: unknown;
+}
+
+const { cards, heading } = Astro.props as { cards: CardItem[]; heading?: string };
 ---
 
 <section class="card-grid-section">

@@ -7,8 +7,8 @@ import skins  from '@/data/mutants/skins.json';
 import bingos from '@/data/bingos.json';
 
 // Универсальный сбор ключей бинго
-const collectBingoKeys = (it) => {
-  const b = it?.bingo;
+const collectBingoKeys = (it: unknown) => {
+  const b = (it as { bingo?: unknown } | null)?.bingo;
   if (!b) return [];
   if (Array.isArray(b)) return b.map(x => typeof x === 'string' ? x : (x?.key ?? '')).filter(Boolean);
   if (typeof b === 'object') return Object.keys(b);

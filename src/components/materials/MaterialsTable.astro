@@ -13,9 +13,9 @@ export interface MaterialRow {
   name: string;
   description?: string;
   texture?: string;
-  percent?: string;
-  value?: string;
-  rarity?: string;
+  percent?: string | number | null;
+  value?: string | number | null;
+  rarity?: string | null;
 }
 
 interface Props {

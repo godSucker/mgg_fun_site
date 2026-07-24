@@ -16,7 +16,17 @@ import { textureUrl } from '../../lib/texture-cdn';
 const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1";
 
 // ---------- нормализация материалов/бустеров/сфер ----------
-const normRow = (item) => {
+interface RawItem {
+  id?: string;
+  name?: string;
+  description?: string;
+  percent?: number | string | null;
+  pct?: number | string | null;
+  value?: number | string | null;
+  rarity?: string | null;
+}
+
+const normRow = (item: RawItem) => {
   const id = String(item?.id || '').trim();
   const name = item?.name || id;
   const description = item?.description || '';
@@ -38,7 +48,7 @@ const normRow = (item) => {
   return { id, name, description, percent, value, rarity, texture };
 };
 
-function formatBingoTitle(title, id) {
+function formatBingoTitle(title: string, id: string) {
   const labelById = bingoLabel(id);
   if (labelById && labelById !== id) return labelById;
   const labelByTitle = bingoLabel(title);
@@ -53,12 +63,13 @@ function formatBingoTitle(title, id) {
 }
 
 // Map internal bingo reward names to building IDs
-const REWARD_TO_BUILDING = {
+const REWARD_TO_BUILDING: Record<string, string> = {
   'Building_HC_1': 'Building_Forge',
   'Building_HC_2': 'Building_Gold_Smelter'
 };
 
-const buildingSources = {};
+type SourceEntry = { type: string; where: string; link?: string };
+const buildingSources: Record<string, SourceEntry[]> = {};
 
 (bingosData || []).forEach(bingo => {
   if (!bingo.rewards) return;
@@ -82,7 +93,7 @@ const buildingSources = {};
 });
 
 // Merge into sourcesMap (clone to avoid mutating imported module)
-const sourcesMapMerged = Object.assign({}, sourcesMap);
+const sourcesMapMerged = Object.assign({}, sourcesMap) as Record<string, SourceEntry[]>;
 Object.keys(buildingSources).forEach(id => {
   const existing = (sourcesMapMerged[id] || []).filter(s => s.type !== 'bingo');
   sourcesMapMerged[id] = [...existing, ...buildingSources[id]];
@@ -96,7 +107,7 @@ const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
 const materialsRows = (Array.isArray(materialData) ? materialData : []).map(normRow);
 const charmsRows    = (Array.isArray(charmsData) ? charmsData : []).map(normRow);
 const orbsRows      = (Array.isArray(orbsData) ? orbsData : []).map(normRow);
-const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b) => ({
+const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b: RawItem & { texture?: string }) => ({
   id: String(b?.id || '').trim(),
   name: b?.name || (b?.id || ''),
   description: b?.description || '',
@@ -104,10 +115,10 @@ const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b
 }));
 
 // ---------- зоны: поддержка строк/объектов из zones.json ----------
-const geneMap = { a:'Киборг', b:'Нежить', c:'Рубака', d:'Зооморф', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
-const capMap  = { 1:2, 2:3, 3:4 };
+const geneMap: Record<string, string> = { a:'Киборг', b:'Нежить', c:'Рубака', d:'Зооморф', e:'Галактик', f:'Мифик', abcdef:'Любые гены' };
+const capMap: Record<number, number> = { 1: 2, 2: 3, 3: 4 };
 
-function parseStem(stem) {
+function parseStem(stem: string) {
   // stem уже без расширения, например 'habitat_f_3_hc'
   const lux = /_hc$/i.test(stem);
   const m = /^habitat_([a-f]+|abcdef)_(\d)(?:_hc)?$/i.exec(stem);
@@ -119,9 +130,9 @@ function parseStem(stem) {
   };
 }
 
-function metaFromStem(stem) {
+function metaFromStem(stem: string) {
   const { geneKey, level, isLuxe } = parseStem(stem);
-  const cap = capMap[level] ?? '?';
+  const cap = (level != null ? capMap[level] : undefined) ?? '?';
   const geneName = geneMap[geneKey] ?? (geneKey ? geneKey.toUpperCase() : '—');
   const title = geneKey === 'abcdef' ? `Общая зона · вместимость ${cap}` : `Зона ${geneName} · вместимость ${cap}`;
   const desc  = geneKey
@@ -131,7 +142,7 @@ function metaFromStem(stem) {
 }
 
 // правила хранения серебра
-function calcStorage(geneKey, isLuxe) {
+function calcStorage(geneKey: string, isLuxe: boolean) {
   if (isLuxe) {
     // Люкс: универсальные (abcdef) = 400000, остальные = 320000
     return geneKey === 'abcdef' ? 400000 : 320000;
@@ -144,12 +155,13 @@ function calcStorage(geneKey, isLuxe) {
   return null;
 }
 
-const fmt = (n) => new Intl.NumberFormat('ru-RU').format(n ?? 0);
+const fmt = (n?: number | null) => new Intl.NumberFormat('ru-RU').format(n ?? 0);
 
-function normalizeZone(list, base) {
+type ZoneItem = string | { file?: string; name?: string; description?: string };
+function normalizeZone(list: ZoneItem[], base: string) {
   const rows = [];
   for (const it of (list || [])) {
-    const file = typeof it === 'string' ? it : it.file;
+    const file = typeof it === 'string' ? it : it?.file;
     if (!file) continue;
     const stem = file.replace(/\.[^.]+$/, '');
     const meta = metaFromStem(stem);
@@ -241,25 +253,25 @@ const TABS = [
 
 <script>
   (function(){
-    const qsa = (s,d=document)=>Array.from(d.querySelectorAll(s));
+    const qsa = (s: string, d: Document | Element = document) => Array.from(d.querySelectorAll<HTMLElement>(s));
 
     // --- tabs ---
     const tabs = qsa('.tab-btn');
     const sections = qsa('.tab-section');
-    function showTab(key){
+    function showTab(key: string){
       for(const b of tabs){ const on = b.dataset.tab===key; b.classList.toggle('active', on); b.setAttribute('aria-pressed', String(on)); }
       for(const s of sections){ const on = s.dataset.tab===key; s.hidden = !on; }
       const url = new URL(window.location.href);
       url.searchParams.set('tab', key);
       history.replaceState(null, '', url.toString());
     }
-    tabs.forEach((b)=>b.addEventListener('click', ()=>showTab(b.dataset.tab)));
+    tabs.forEach((b)=>b.addEventListener('click', ()=>showTab(b.dataset.tab ?? '')));
     showTab(new URL(window.location.href).searchParams.get('tab') || 'materials');
 
     // --- zones toggle ---
     const zbtns = qsa('.zbtn');
     const grids = qsa('.zones-grid');
-    function showZones(kind){
+    function showZones(kind: string){
       for(const b of zbtns){
         const on = b.dataset.kind===kind;
         b.classList.toggle('active', on);
@@ -267,7 +279,7 @@ const TABS = [
       }
       for(const g of grids){ g.hidden = g.dataset.kind!==kind; }
     }
-    zbtns.forEach((b)=>b.addEventListener('click', ()=>showZones(b.dataset.kind)));
+    zbtns.forEach((b)=>b.addEventListener('click', ()=>showZones(b.dataset.kind ?? '')));
     showZones('normal');
   })();
 </script>
