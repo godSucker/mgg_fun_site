@@ -297,17 +297,21 @@ export function calculateDuration(
 
 // --- 8. Reverse Breeding (Find Parents) ---
 
-let geneCodeCache: Map<string, Mutant[]> | null = null;
+// Кэш привязан к конкретному массиву мутантов: другой массив -> другой кэш
+// (раньше модульный кэш строился один раз и молча игнорировал новые данные).
+const geneCodeCaches = new WeakMap<Mutant[], Map<string, Mutant[]>>();
 
 function getGeneCodeMap(allMutants: Mutant[]): Map<string, Mutant[]> {
-  if (geneCodeCache) return geneCodeCache;
-  geneCodeCache = new Map();
+  const cached = geneCodeCaches.get(allMutants);
+  if (cached) return cached;
+  const map = new Map<string, Mutant[]>();
   for (const m of allMutants) {
     const code = getGeneStr(m.genes);
-    if (!geneCodeCache.has(code)) geneCodeCache.set(code, []);
-    geneCodeCache.get(code)!.push(m);
+    if (!map.has(code)) map.set(code, []);
+    map.get(code)!.push(m);
   }
-  return geneCodeCache;
+  geneCodeCaches.set(allMutants, map);
+  return map;
 }
 
 export function recommendedScore(probability: number, durationSec: number, W = 3): number {
