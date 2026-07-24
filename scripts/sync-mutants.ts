@@ -139,7 +139,11 @@ async function downloadSpecimen(
 ): Promise<boolean> {
     const idLower = mutantId.toLowerCase();
     const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower);
-    const suffix = rating === 'normal' ? '' : `_${rating}`;
+    // ВАЖНО: имя файла всегда с суффиксом рейтинга (в т.ч. _normal) — именно такой
+    // путь пишет buildImagePaths() в mutants.json и проверяет режим stats.
+    // Раньше normal сохранялся без суффикса (specimen_x.webp), из-за чего у новых
+    // мутантов JSON ссылался на несуществующий specimen_x_normal.webp.
+    const suffix = `_${rating}`;
     const iconName = `specimen_${idLower}${suffix}.webp`;
     const iconPath = path.join(targetDir, iconName);
 
@@ -147,10 +151,25 @@ async function downloadSpecimen(
         await fs.access(iconPath);
         return true;
     } catch {
-        // Not found, download
+        // Not found
     }
 
-    const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${suffix}.png`;
+    // Самолечение: legacy-файл normal без суффикса (specimen_x.webp) -> копируем
+    // под каноничным именем, без похода в сеть.
+    if (rating === 'normal') {
+        const legacyPath = path.join(targetDir, `specimen_${idLower}.webp`);
+        try {
+            await fs.copyFile(legacyPath, iconPath);
+            console.log(`[TEXTURE HEAL] ${idLower}: specimen_${idLower}.webp -> ${iconName}`);
+            return true;
+        } catch {
+            // legacy-файла нет — качаем
+        }
+    }
+
+    // На Kobojo normal-портрет лежит без суффикса
+    const remoteSuffix = rating === 'normal' ? '' : suffix;
+    const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${remoteSuffix}.png`;
     try {
         const res = await axios.get(kobojoUrl, {
             responseType: 'arraybuffer',
