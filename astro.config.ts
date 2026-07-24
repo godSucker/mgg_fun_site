@@ -12,6 +12,18 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   prefetch: true,
+  // Старые тир-адреса каталога мутантов: страницы удалены, фильтрация по звёздам
+  // живёт внутри /mutants. Редиректы сохраняют внешние ссылки/закладки.
+  redirects: {
+    '/mutants/all': '/mutants',
+    '/mutants/normal': '/mutants',
+    '/mutants/bronze': '/mutants',
+    '/mutants/silver': '/mutants',
+    '/mutants/gold': '/mutants',
+    '/mutants/platinum': '/mutants',
+    // Дубликат страницы эво-калькулятора: канонический адрес — /evolution/evotech-calculator
+    '/evotech-calculator': '/evolution/evotech-calculator',
+  },
   integrations: [svelte()],
 
   vite: {
