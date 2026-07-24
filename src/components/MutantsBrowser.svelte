@@ -164,14 +164,6 @@
 
   type StarKey = 'normal'|'bronze'|'silver'|'gold'|'platinum';
 
-  const STAR_MUTANTS: {key: StarKey; icon: string; label: string}[] = [
-    { key: 'normal',   icon: '/stars/no_stars.webp',      label: 'Обычные' },
-    { key: 'bronze',   icon: '/stars/star_bronze.webp',   label: 'Бронза' },
-    { key: 'silver',   icon: '/stars/star_silver.webp',   label: 'Серебро' },
-    { key: 'gold',     icon: '/stars/star_gold.webp',     label: 'Золото' },
-    { key: 'platinum', icon: '/stars/star_platinum.webp', label: 'Платина' },
-  ];
-
   const starSelMutants: StarKey = 'normal';
 
   // Skin lookup: map base ID → array of skins for that mutant

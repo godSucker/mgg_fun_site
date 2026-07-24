@@ -7,6 +7,7 @@
   import { normalizeSearch } from '@/lib/search-normalize';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { textureUrl } from '@/lib/texture-cdn';
+  import { getGeneIcon as getGeneIconPath, getTypeIcon as getTypeIconPath } from '@/lib/mutant-icons';
 
   // --- DATA ---
   const allMutants: Mutant[] = (mutantsAll as any[]).map((m: any) => ({
@@ -40,21 +41,13 @@
     return textureUrl(first);
   }
 
+  // Иконки генов/типов — единый источник: src/lib/mutant-icons.ts
   function getGeneIcon(geneChar: string): string {
-    const char = geneChar.toLowerCase().charAt(0);
-    if (['a', 'b', 'c', 'd', 'e', 'f'].includes(char)) {
-        return textureUrl(`/genes/gene_${char}.webp`);
-    }
-    return textureUrl('/genes/gene_all.webp');
+    return textureUrl(getGeneIconPath(geneChar.charAt(0)) ?? '/genes/gene_all.webp');
   }
 
   function getTypeIcon(m: Mutant): string {
-    const t = (m.type ?? '').toLowerCase();
-    if (t === 'legend') return textureUrl('/mut_icons/icon_legendary.webp');
-    if (t === 'recipe') return textureUrl('/mut_icons/icon_recipe.webp');
-    if (t === 'community') return textureUrl('/mut_icons/icon_special.webp');
-    if (!t || t === 'default') return textureUrl('/mut_icons/icon_morphology.webp');
-    return textureUrl(`/mut_icons/icon_${t}.webp`);
+    return textureUrl(getTypeIconPath(m.type) ?? '/mut_icons/icon_morphology.webp');
   }
 
   function formatTime(seconds: number): string {

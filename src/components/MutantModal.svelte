@@ -11,6 +11,14 @@
   import { orbingMap } from '@/lib/orbing-map';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
   import { textureUrl } from '@/lib/texture-cdn';
+  import {
+    STAR_MULTIPLIERS,
+    STAR_ICONS,
+    TYPE_ICONS,
+    ABILITY_ICONS,
+    ABILITY_ALIASES,
+    getGeneIcon,
+  } from '@/lib/mutant-icons';
 
   let { open = false, mutant = null, star = 'normal', skins = [], onclose = undefined }: {
     open?: boolean;
@@ -21,22 +29,6 @@
   } = $props();
 
   const close = () => onclose?.();
-
-  const STAR_MULTIPLIERS: Record<string, number> = {
-    normal: 1.0,
-    bronze: 1.1,
-    silver: 1.3,
-    gold: 1.75,
-    platinum: 2.0
-  };
-
-  const STAR_ICONS: Record<string, string> = {
-    normal: '/stars/no_stars.webp',
-    bronze: '/stars/star_bronze.webp',
-    silver: '/stars/star_silver.webp',
-    gold: '/stars/star_gold.webp',
-    platinum: '/stars/star_platinum.webp'
-  };
 
   let originalFontSize = '';
   onMount(() => {
@@ -234,63 +226,11 @@
     return arr;
   })());
 
-  const TYPE_ICON: Record<string, string> = {
-    zodiac: '/mut_icons/icon_zodiac.webp',
-    videogame: '/mut_icons/icon_videogame.webp',
-    special: '/mut_icons/icon_special.webp',
-    seasonal: '/mut_icons/icon_seasonal.webp',
-    recipe: '/mut_icons/icon_recipe.webp',
-    pvp: '/mut_icons/icon_pvp.webp',
-    heroic: '/mut_icons/icon_heroic.webp',
-    legend: '/mut_icons/icon_legendary.webp',
-    legends: '/mut_icons/icon_legendary.webp',
-    legendary: '/mut_icons/icon_legendary.webp',
-    gacha: '/mut_icons/icon_gacha.webp',
-    reactor: '/mut_icons/icon_gacha.webp',
-    'реактор': '/mut_icons/icon_gacha.webp'
-  };
-  const typeIcon = (t?: string | null) => TYPE_ICON[String(t ?? '').toLowerCase()] ?? null;
+  // Иконки типов/генов/способностей — единый источник: src/lib/mutant-icons.ts
+  const typeIcon = (t?: string | null) => TYPE_ICONS[String(t ?? '').toLowerCase()] ?? null;
 
-  // Genes
-  const GENE_ICON: Record<string, string> = {
-    a: '/genes/gene_a.webp',
-    b: '/genes/gene_b.webp',
-    c: '/genes/gene_c.webp',
-    d: '/genes/gene_d.webp',
-    e: '/genes/gene_e.webp',
-    f: '/genes/gene_f.webp',
-    neutro: '/genes/gene_all.webp'
-  };
-  const normalizeGene = (code?: string | null) => {
-    if (!code) return null;
-    const k = String(code).trim().toLowerCase();
-    if (k === 'neutral' || k === 'none' || k === 'all') return 'neutro';
-    return k;
-  };
-  const geneIcon = (code?: string | null) => {
-    const k = normalizeGene(code);
-    return k ? (GENE_ICON[k] ?? null) : null;
-  };
+  const geneIcon = (code?: string | null) => getGeneIcon(code);
 
-  // Ability icons
-  const ABILITY_ICON: Record<string, string> = {
-    weaken: '/ability/ability_weaken.webp',
-    curse: '/ability/ability_weaken.webp',
-    strengthen: '/ability/ability_strengthen.webp',
-    buff: '/ability/ability_strengthen.webp',
-    slash: '/ability/ability_slash.webp',
-    wound: '/ability/ability_slash.webp',
-    bleed: '/ability/ability_slash.webp',
-    shield: '/ability/ability_shield.webp',
-    protect: '/ability/ability_shield.webp',
-    retaliate: '/ability/ability_retaliate.webp',
-    counter: '/ability/ability_retaliate.webp',
-    regenerate: '/ability/ability_regenerate.webp',
-    lifesteal: '/ability/ability_regenerate.webp',
-    life_drain: '/ability/ability_regenerate.webp',
-    drain: '/ability/ability_regenerate.webp',
-    regen: '/ability/ability_regenerate.webp'
-  };
   const ABILITY_RU_INV: Record<string, string> = {};
   for (const k in (ABILITY_RU as any)) {
     const v = (ABILITY_RU as any)[k];
@@ -299,21 +239,11 @@
   const abilityIcon = (name?: string | null): string | null => {
     if (!name) return null;
     const raw = String(name).trim().toLowerCase();
-    if (ABILITY_ICON[raw]) return ABILITY_ICON[raw];
+    if (ABILITY_ICONS[raw]) return ABILITY_ICONS[raw];
     const ruToCode = ABILITY_RU_INV[raw];
-    if (ruToCode && ABILITY_ICON[ruToCode]) return ABILITY_ICON[ruToCode];
-    const alias: Record<string, string> = {
-      'проклятие': 'weaken',
-      'усиление': 'strengthen',
-      'рана': 'slash',
-      'кровотечение': 'slash',
-      'щит': 'shield',
-      'отражение': 'retaliate',
-      'вытягивание жизни': 'regenerate',
-      'регенерация': 'regenerate'
-    };
-    const a = alias[raw];
-    return a ? (ABILITY_ICON[a] ?? null) : null;
+    if (ruToCode && ABILITY_ICONS[ruToCode]) return ABILITY_ICONS[ruToCode];
+    const a = ABILITY_ALIASES[raw];
+    return a ? (ABILITY_ICONS[a] ?? null) : null;
   };
 
   // Names

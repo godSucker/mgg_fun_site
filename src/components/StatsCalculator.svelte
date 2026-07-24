@@ -8,77 +8,27 @@
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { applySpeedSphere } from '@/lib/stats/speed-sphere-table';
   import { textureUrl } from '@/lib/texture-cdn';
+  import {
+    GENE_NAMES,
+    GENE_ICONS,
+    STAR_KEYS,
+    STAR_ICONS,
+    STAT_ICONS,
+    TYPE_ICONS,
+  } from '@/lib/mutant-icons';
 
   // --- УТИЛИТЫ И КОНСТАНТЫ ---
   let { renderState }: { renderState?: string } = $props();
   const isRenderMode = !!renderState;
   const renderParams = renderState ? JSON.parse(decodeURIComponent(renderState)) : null;
-  const GENE_NAME = {
-    A: 'Кибер',
-    B: 'Зверь',
-    C: 'Галактик',
-    D: 'Зомби',
-    E: 'Мифик',
-    F: 'Рубака',
-  };
-  const GENE_ICON = {
-    '': '/genes/gene_all.webp',
-    A: '/genes/gene_a.webp',
-    B: '/genes/gene_b.webp',
-    C: '/genes/gene_c.webp',
-    D: '/genes/gene_d.webp',
-    E: '/genes/gene_e.webp',
-    F: '/genes/gene_f.webp',
-  };
-  const ATTACK_GENE_ICON = {
-    a: '/genes/gene_a.webp',
-    b: '/genes/gene_b.webp',
-    c: '/genes/gene_c.webp',
-    d: '/genes/gene_d.webp',
-    e: '/genes/gene_e.webp',
-    f: '/genes/gene_f.webp',
-    neutro: '/genes/gene_all.webp',
-    neutral: '/genes/gene_all.webp',
-    none: '/genes/gene_all.webp',
-    all: '/genes/gene_all.webp',
-  };
-  const STAR_KEYS = ['normal', 'bronze', 'silver', 'gold', 'platinum'];
-  const STAR_ICON = {
-    0: '/stars/no_stars.webp',
-    1: '/stars/star_bronze.webp',
-    2: '/stars/star_silver.webp',
-    3: '/stars/star_gold.webp',
-    4: '/stars/star_platinum.webp'
-  };
-  const STAR_IMAGE_KEYWORDS = {
-    normal: ['_normal', 'normal'],
-    bronze: ['_bronze', 'bronze'],
-    silver: ['_silver', 'silver'],
-    gold: ['_gold', 'gold'],
-    platinum: ['_platinum', '_plat', 'platinum', 'plat']
-  };
-  const STAT_ICON = {
-    hp: '/etc/icon_hp.webp',
-    atk: '/etc/icon_atk.webp',
-    speed: '/etc/icon_speed.webp',
-  };
-  const TYPE_ICON = {
-    default: '/mut_icons/icon_special.webp',
-    special: '/mut_icons/icon_special.webp',
-    heroic: '/mut_icons/icon_heroic.webp',
-    legend: '/mut_icons/icon_legendary.webp',
-    legendary: '/mut_icons/icon_legendary.webp',
-    gacha: '/mut_icons/icon_gacha.webp',
-    pvp: '/mut_icons/icon_pvp.webp',
-    seasonal: '/mut_icons/icon_seasonal.webp',
-    recipe: '/mut_icons/icon_recipe.webp',
-    videogame: '/mut_icons/icon_videogame.webp',
-    video_game: '/mut_icons/icon_videogame.webp',
-    morphology: '/mut_icons/icon_morphology.webp',
-    zodiac: '/mut_icons/icon_zodiac.webp',
-    limited: '/mut_icons/limited.webp',
-    community: '/mut_icons/icon_special.webp',
-  };
+  // Словари иконок — единый источник: src/lib/mutant-icons.ts
+  const GENE_NAME = GENE_NAMES;
+  const GENE_ICON = GENE_ICONS;
+  const ATTACK_GENE_ICON = GENE_ICONS;
+  // Числовой индекс звезды (0..4) -> иконка
+  const STAR_ICON = Object.fromEntries(STAR_KEYS.map((k, i) => [i, STAR_ICONS[k]]));
+  const STAT_ICON = STAT_ICONS;
+  const TYPE_ICON = TYPE_ICONS;
 
   const SPECIAL_SLOT_COUNT = 1;
 
