@@ -518,6 +518,7 @@
   let showCatalog = $state(true); // Показывать ли поиск/каталог слева
   let isCopying = $state(false);  // Состояние "Копируется..."
   let dropdownHost = $state(null as HTMLElement | null);
+  let dropdownHost2 = $state(null as HTMLElement | null);
   let openDropdown = $state(null as string | null); // 'basic-i' | 'special' | null
   let collapsedCats = $state(new Set(['attack','health','speed','critical','xp','shield','regenerate','retaliate','slash','strengthen','weaken','other'].flatMap(k => [`basic-${k}`, `special-${k}`]))); // все категории свёрнуты по умолчанию
   let lastMutantId = $state(null as string | null); // Для отслеживания смены мутанта
@@ -1182,6 +1183,7 @@
   // Закрытие открытых выпадашек по клику вне
   function windowClick(e){
     if (openDropdown && dropdownHost && !dropdownHost.contains(e.target)) openDropdown = null;
+    if (openDropdown2 && dropdownHost2 && !dropdownHost2.contains(e.target)) openDropdown2 = null;
     const target = e.target as HTMLElement;
     if (showSearch1 && !target?.closest('.compare-search-wrap[data-slot="1"]')) showSearch1 = false;
     if (showSearch2 && !target?.closest('.compare-search-wrap[data-slot="2"]')) showSearch2 = false;
@@ -1754,7 +1756,12 @@
          </div>
       </div>
 
-      <div class="header-tools-row" style="height:14px"></div>
+      <!-- Невидимый клон кнопок первой панели: высота строки инструментов совпадает
+           всегда, независимо от размеров шрифта/паддингов -> панели симметричны. -->
+      <div class="header-tools-row" style="visibility:hidden" aria-hidden="true">
+        <button class="tool-btn share-btn" tabindex="-1"><span>Сделать скриншот</span></button>
+        <button class="tool-btn compare-btn" tabindex="-1"><span>Сравнить</span></button>
+      </div>
 
       <div class="hero-section">
       <div class="hero-genes">
@@ -1766,7 +1773,7 @@
           <img class="texture" src={textureUrl(figureImage(selected2, stars2))} alt={selected2.name} />
         </div>
 
-        <div class="hero-controls">
+        <div class="hero-controls" bind:this={dropdownHost2}>
           <div class="slots">
             {#each basicSlots2 as orb, i}
               <div class="slot">
