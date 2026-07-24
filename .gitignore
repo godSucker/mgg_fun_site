@@ -22,7 +22,8 @@ dist/
 # IDE / AI tools
 .idea/
 .vscode/
-.claude/
+.claude/*
+!.claude/settings.json
 .astro/
 .mimocode/
 
@@ -66,3 +67,4 @@ coverage/
 
 # API keys
 settings.json
+!.claude/settings.json

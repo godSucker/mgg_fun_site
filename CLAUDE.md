@@ -94,6 +94,7 @@ The dev server runs with polling enabled and ignores Python venv directories (`.
 - Bingo: `/bingo` → data in `src/data/bingos.json`
 - Top Evo: `/top-evo` → `src/components/EvoLeaderboard.svelte`, данные из Google Sheets (`src/lib/google-sheets-loader.ts`, кэш 5 мин, SSR)
 - Credits: `/credits` → `src/components/Developers.svelte`
+- Rebalance history: `/rebalance` — публичная страница истории изменений статов/способностей мутантов, `prerender = true`; данные `src/data/mutants/rebalance-history.json`
 
 ### Data Layer
 - Game data stored in `src/data/` as JSON, TXT, and XLSX files
