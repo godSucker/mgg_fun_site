@@ -11,7 +11,7 @@ import mutants from '@/data/mutants/mutants.json'
 const tieredMutants = (mutants as any[]).filter(m => m.name && String(m.tier ?? '').trim())
 ---
 
-<BaseLayout title="Тир-лист — Archivist-Library" fullWidth>
+<BaseLayout title="Тир-лист мутантов" description="Актуальный тир-лист мутантов MGG (Mutants Genetic Gladiators) от сообщества." fullWidth>
   <div class="mb-3 sm:mb-4 text-center">
     <h1 class="text-lg sm:text-2xl font-extrabold text-white tracking-wide mb-1">
       Тир-лист лучших мутантов в PvP

@@ -4,41 +4,48 @@ import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from "@vercel/speed-insights/astro"
 // Simple base layout for the site.
 // It provides a consistent header, footer and sets a dark theme background.
-const { title, canonical, fullWidth = false, viewport = "width=device-width, initial-scale=1" } = Astro.props;
-const canonicalUrl = canonical ?? Astro.url.href;
+const {
+  title,
+  description,
+  canonical,
+  fullWidth = false,
+  viewport = "width=device-width, initial-scale=1",
+} = Astro.props;
+
+// SEO: ключевые слова MGG / Mutants Genetic Gladiators присутствуют в
+// дефолтном заголовке и описании каждой страницы.
+const SITE_NAME = 'Archivist-Library — база знаний MGG (Mutants Genetic Gladiators)';
+const pageTitle = title ? `${title} | Archivist-Library (MGG)` : SITE_NAME;
+const pageDescription = description ??
+  'База знаний по игре Mutants Genetic Gladiators (MGG): вики мутантов, симуляторы скрещивания, реактора и рулеток, калькуляторы статов и эво.';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://www.archivist-library.com').href;
 const isHome = Astro.url.pathname === "/";
 ---
 
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-  <!-- Тип контента -->
-  <meta property="og:type" content="website" />
-
-  <!-- ЗАГОЛОВОК (я добавил текст, без него не работает!) -->
-  <meta property="og:title" content="База знаний MGG с калькуляторами и симуляторами разных игровых активностей" />
-
-  <!-- Описание -->
-  <meta property="og:description" content="Возрождаем MGG" />
-
-  <!-- Ссылка на сам сайт (очень важно для корректной работы) -->
-  <meta property="og:url" content="https://www.archivist-library.com/" />
-
-  <!-- Картинка -->
-  <meta property="og:image" content="https://www.archivist-library.com/preview.jpg" />
-
-  <!-- Тип карточки для Твиттера/X (и некоторых других соцсетей) -->
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="preload" as="font" type="font/woff2" href="https://cdn.archivist-library.com/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin>
-  <link rel="stylesheet" href="https://cdn.archivist-library.com/fonts/tt-supermolot-neue/tt-supermolot-neue.css">
-  <!-- Каноническая ссылка (говорит ботам, что это главная версия страницы) -->
-  <link rel="canonical" href={canonicalUrl} />
-  <!-- Иконка вкладки браузера -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content={viewport} />
-    <title>{title ?? 'Archivist-Library'}</title>
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <!-- Open Graph: карточка страницы в соцсетях/мессенджерах -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Archivist-Library" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="https://www.archivist-library.com/preview.jpg" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preload" as="font" type="font/woff2" href="https://cdn.archivist-library.com/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin>
+    <link rel="stylesheet" href="https://cdn.archivist-library.com/fonts/tt-supermolot-neue/tt-supermolot-neue.css">
+    <!-- Каноническая ссылка (говорит ботам, что это главная версия страницы) -->
+    <link rel="canonical" href={canonicalUrl} />
+    <!-- Иконка вкладки браузера -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <style>
       body {
         margin: 0;
