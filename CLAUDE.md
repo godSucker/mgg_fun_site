@@ -14,10 +14,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tech Stack
 
-- **Astro 5** (SSG framework) with TypeScript
+- **Astro 5** with TypeScript — `output: 'server'` (SSR на Vercel), но почти все страницы `export const prerender = true`; серверными остаются только `src/pages/api/*`, `/panel-render` и `/top-evo`
 - **Svelte 5** for interactive components
 - **Tailwind CSS 4** via Vite plugin
-- **XLSX** for Excel data parsing
 - **Sharp** for image optimization
 - **Vercel Analytics & Speed Insights**
 
@@ -51,14 +50,14 @@ The dev server runs with polling enabled and ignores Python venv directories (`.
 ### Core Features
 
 **Mutants Browser** (`/mutants`)
-- Tier-based pages: `/mutants/[tier].astro` (bronze, silver, gold, platinum, normal)
+- Единственная страница каталога; старые tier-адреса (`/mutants/bronze` и т.п.) — редиректы в `astro.config.ts`
 - Components: `MutantsBrowser.svelte`, `MutantCard.svelte`, `MutantModal.svelte`
-- Data: `src/data/mutants/*.json`, `src/data/mutant_names.json`
+- Data: `src/data/mutants/mutants.json` (единый файл), `skins.json`, `src/data/mutant_names.json`
 - Textures: CDN-based URLs via `src/lib/mutant-textures.ts`
 
 **Breeding Simulator** (`/simulators/breeding`)
 - UI: `src/components/breeding/BreedingUI.svelte`
-- Logic: `src/lib/breeding/` (engine, logic, breeding)
+- Logic: `src/lib/breeding/` (`breeding.ts`, `core-algorithm.ts`, `type-filters.ts`)
 - XML settings: `src/data/breeding/settings.xml`
 - Gene-based prediction algorithm with weighted outcomes
 
@@ -93,21 +92,19 @@ The dev server runs with polling enabled and ignores Python venv directories (`.
 
 **Other Features**
 - Bingo: `/bingo` → data in `src/data/bingos.json`
-- Top Evo: `/top-evo` → `src/components/EvoLeaderboard.svelte`, data in `src/data/evo_top.xlsx`
+- Top Evo: `/top-evo` → `src/components/EvoLeaderboard.svelte`, данные из Google Sheets (`src/lib/google-sheets-loader.ts`, кэш 5 мин, SSR)
 - Credits: `/credits` → `src/components/Developers.svelte`
 
 ### Data Layer
 - Game data stored in `src/data/` as JSON, TXT, and XLSX files
 - Localization: `localisation_ru.txt`, `localisation_en.txt`
-- Mutant tier data: `mut_tier.xlsx`
+- Тиры мутантов: поле `tier` внутри `mutants.json` (обновляется через `api/telegram-webhook`)
 - Base game data: `base.txt`
 
 ### Utility Libraries
-- `src/lib/breed-map.ts` — Breeding combinations
 - `src/lib/orbing-map.ts` — Orb mappings
 - `src/lib/mutant-dicts.ts` — Mutant dictionaries
 - `src/lib/secretCombos.ts` — Secret breeding combos
-- `src/lib/xlsx-loader.ts` — Excel file parsing
 - `src/lib/search-normalize.ts` — Search utilities
 - `src/lib/bingo-textures.ts` — Bingo image mappings
 
@@ -172,8 +169,9 @@ The dev server runs with polling enabled and ignores Python venv directories (`.
 
 - All user-facing content is in **Russian**
 - No test files in src/ (only in node_modules)
+- API-роуты: `api/screenshot.ts` (headless Chromium скриншот стат-панели), `api/proxy-image.ts` (CORS-прокси, whitelist), `api/telegram-webhook.ts`
 - Python scripts in `src/data/simulators/CRAFT/` are reference implementations
-- Telegram bot code in `bot/` directory (separate from web app)
+- Python-парсер тиров: `backend/tier_updater/`; приём файлов от бота — `src/pages/api/telegram-webhook.ts` (секрет обязателен)
 - The site simulates real game mechanics with accurate probabilities
 - Git history cleaned with filter-repo (evidence in `.git/filter-repo/`)
 
