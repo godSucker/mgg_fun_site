@@ -316,25 +316,51 @@ function validateEntry(entry: UnifiedMutant): {
 
 // ==================== DIFF ENGINE ====================
 
-function compareStats(oldEntry: any, newEntry: any): { hasChanges: boolean; changes: string[] } {
-  if (!oldEntry) return { hasChanges: true, changes: ['NEW'] }
+// Структурная запись одного изменения стата (для rebalance-history.json)
+interface StatChange {
+  stat: 'hp' | 'atk1' | 'atk2' | 'speed' | 'abilities'
+  level: 1 | 30 | null
+  old: number | null
+  new: number | null
+}
+
+function compareStats(
+  oldEntry: any,
+  newEntry: any,
+): { hasChanges: boolean; changes: string[]; details: StatChange[] } {
+  if (!oldEntry) return { hasChanges: true, changes: ['NEW'], details: [] }
 
   const changes: string[] = []
+  const details: StatChange[] = []
+  const diffStat = (
+    stat: StatChange['stat'],
+    level: 1 | 30,
+    oldVal: number,
+    newVal: number,
+    label: string,
+  ) => {
+    if (oldVal !== newVal) {
+      changes.push(`${label}: ${oldVal}→${newVal}`)
+      details.push({ stat, level, old: oldVal, new: newVal })
+    }
+  }
 
   const oldL1 = oldEntry.base_stats.lvl1
   const newL1 = newEntry.base_stats.lvl1
-  if (oldL1.hp !== newL1.hp) changes.push(`hp1: ${oldL1.hp}→${newL1.hp}`)
-  if (oldL1.atk1 !== newL1.atk1) changes.push(`atk1_1: ${oldL1.atk1}→${newL1.atk1}`)
-  if (oldL1.atk2 !== newL1.atk2) changes.push(`atk2_1: ${oldL1.atk2}→${newL1.atk2}`)
+  diffStat('hp', 1, oldL1.hp, newL1.hp, 'hp1')
+  diffStat('atk1', 1, oldL1.atk1, newL1.atk1, 'atk1_1')
+  diffStat('atk2', 1, oldL1.atk2, newL1.atk2, 'atk2_1')
+  diffStat('speed', 1, oldL1.speed, newL1.speed, 'speed')
 
   const oldL30 = oldEntry.base_stats.lvl30
   const newL30 = newEntry.base_stats.lvl30
-  if (oldL30.hp !== newL30.hp) changes.push(`hp30: ${oldL30.hp}→${newL30.hp}`)
-  if (oldL30.atk1 !== newL30.atk1) changes.push(`atk1_30: ${oldL30.atk1}→${newL30.atk1}`)
-  if (oldL30.atk2 !== newL30.atk2) changes.push(`atk2_30: ${oldL30.atk2}→${newL30.atk2}`)
+  diffStat('hp', 30, oldL30.hp, newL30.hp, 'hp30')
+  diffStat('atk1', 30, oldL30.atk1, newL30.atk1, 'atk1_30')
+  diffStat('atk2', 30, oldL30.atk2, newL30.atk2, 'atk2_30')
 
   if (JSON.stringify(oldEntry.abilities) !== JSON.stringify(newEntry.abilities)) {
     changes.push('abilities')
+    details.push({ stat: 'abilities', level: null, old: null, new: null })
   }
 
   if (
@@ -352,7 +378,7 @@ function compareStats(oldEntry: any, newEntry: any): { hasChanges: boolean; chan
     changes.push('loc:attack2')
   }
 
-  return { hasChanges: changes.length > 0, changes }
+  return { hasChanges: changes.length > 0, changes, details }
 }
 
 // ==================== ГЛАВНАЯ ФУНКЦИЯ ====================
@@ -409,6 +435,10 @@ async function sync(options: {
     warnings: 0,
     deleted: 0,
   }
+
+  // История ребаланса: копится в режиме rebalance и дописывается в
+  // src/data/mutants/rebalance-history.json (его коммитят те же workflow)
+  const rebalanceEntries: { id: string; name: string; changes: StatChange[] }[] = []
 
   if (skipExisting) console.log(`[INFO] Режим FULL: Пропуск существующих мутантов`)
   if (compareBeforeUpdate)
@@ -682,6 +712,9 @@ async function sync(options: {
 
         if (hasStatsChanges) {
           stats.updatedStats++
+          if (diff.details.length > 0) {
+            rebalanceEntries.push({ id: baseId, name: entry.name, changes: diff.details })
+          }
           console.log(`[REBALANCE] ${baseId}: ${diff.changes.join(', ')}`)
         } else if (hasLocChanges) {
           stats.updatedLocalization++
@@ -741,6 +774,24 @@ async function sync(options: {
     console.log(`[DONE] mutants.json обновлён! (${outputArray.length} мутантов)`)
   } else {
     console.log('[DONE] Нет изменений.')
+  }
+
+  // Дописываем историю ребаланса (append-only, новые записи в начало)
+  if (compareBeforeUpdate && rebalanceEntries.length > 0) {
+    const historyPath = path.join(CONFIG.DATA_DIR, 'rebalance-history.json')
+    let history: unknown[] = []
+    try {
+      const parsed = JSON.parse(await fs.readFile(historyPath, 'utf-8'))
+      if (Array.isArray(parsed)) history = parsed
+    } catch {
+      // файла ещё нет
+    }
+    history.unshift({
+      date: new Date().toISOString(),
+      entries: rebalanceEntries,
+    })
+    await fs.writeFile(historyPath, JSON.stringify(history, null, 2), 'utf-8')
+    console.log(`[REBALANCE HISTORY] Записано изменений: ${rebalanceEntries.length} мутантов`)
   }
 }
 

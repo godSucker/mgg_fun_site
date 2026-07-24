@@ -1,0 +1,221 @@
+---
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import history from '@/data/mutants/rebalance-history.json';
+import mutants from '@/data/mutants/mutants.json';
+import { textureUrl } from '@/lib/texture-cdn';
+
+interface StatChange {
+  stat: 'hp' | 'atk1' | 'atk2' | 'speed' | 'abilities';
+  level: 1 | 30 | null;
+  old: number | null;
+  new: number | null;
+}
+interface RebalanceEntry {
+  id: string;
+  name: string;
+  changes: StatChange[];
+}
+interface RebalanceRun {
+  date: string;
+  entries: RebalanceEntry[];
+}
+
+const runs = (history as RebalanceRun[]) ?? [];
+
+const STAT_RU: Record<StatChange['stat'], string> = {
+  hp: 'HP',
+  atk1: 'Атака 1',
+  atk2: 'Атака 2',
+  speed: 'Скорость',
+  abilities: 'Способности',
+};
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const fmtNum = (n: number | null) => (n == null ? '—' : n.toLocaleString('ru-RU'));
+
+const delta = (oldVal: number | null, newVal: number | null): { text: string; cls: string } => {
+  if (oldVal == null || newVal == null || oldVal === 0) return { text: '', cls: '' };
+  const pct = ((newVal - oldVal) / oldVal) * 100;
+  if (Math.abs(pct) < 0.005) return { text: '', cls: '' };
+  const sign = pct > 0 ? '+' : '';
+  return {
+    text: `${sign}${pct.toFixed(Math.abs(pct) < 10 ? 1 : 0)}%`,
+    cls: pct > 0 ? 'up' : 'down',
+  };
+};
+
+// Иконка-голова мутанта для строки таблицы
+const headTexture = (id: string): string | null => {
+  const m = (mutants as { id: string; stars?: Record<string, { images?: string[] }> }[]).find(
+    (x) => x.id === id,
+  );
+  if (!m?.stars) return null;
+  for (const star of Object.values(m.stars)) {
+    const specimen = star.images?.find((p) => p.includes('specimen'));
+    if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
+  }
+  return null;
+};
+---
+
+<BaseLayout
+  title="Ребаланс мутантов"
+  description="История ребалансов Mutants Genetic Gladiators (MGG): какие статы мутантов изменились и на сколько."
+>
+  <section class="rebalance-page">
+    <h1>Ребаланс мутантов</h1>
+    <p class="intro">
+      Здесь автоматически фиксируются все изменения статов после ребалансов игры: было → стало по
+      каждому мутанту.
+    </p>
+
+    {runs.length === 0 && (
+      <div class="empty">
+        Пока нет зафиксированных ребалансов — таблица заполнится автоматически после первого
+        обновления статов игрой.
+      </div>
+    )}
+
+    {runs.map((run) => (
+      <details class="run" open={run === runs[0]}>
+        <summary>
+          <span class="run-date">{fmtDate(run.date)}</span>
+          <span class="run-count">{run.entries.length} мутантов</span>
+        </summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Мутант</th>
+                <th>Стат</th>
+                <th>Уровень</th>
+                <th>Было</th>
+                <th>Стало</th>
+                <th>Δ</th>
+              </tr>
+            </thead>
+            <tbody>
+              {run.entries.map((entry) =>
+                entry.changes.map((c, i) => {
+                  const d = delta(c.old, c.new);
+                  const head = i === 0 ? headTexture(entry.id) : null;
+                  return (
+                    <tr class={i === 0 ? 'first-row' : ''}>
+                      {i === 0 ? (
+                        <td class="mut-cell" rowspan={entry.changes.length}>
+                          {head && (
+                            <img src={textureUrl(head)} alt="" loading="lazy" decoding="async" />
+                          )}
+                          <span>{entry.name}</span>
+                        </td>
+                      ) : null}
+                      <td>{STAT_RU[c.stat]}</td>
+                      <td>{c.level ?? '—'}</td>
+                      <td class="num">{c.stat === 'abilities' ? 'изменены' : fmtNum(c.old)}</td>
+                      <td class="num">{c.stat === 'abilities' ? '' : fmtNum(c.new)}</td>
+                      <td class={`num delta ${d.cls}`}>{d.text}</td>
+                    </tr>
+                  );
+                }),
+              )}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .rebalance-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .intro {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+  .empty {
+    padding: 2rem;
+    text-align: center;
+    color: #94a3b8;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+  }
+  .run {
+    margin-bottom: 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .run summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    color: #e2e8f0;
+    list-style: none;
+  }
+  .run summary::-webkit-details-marker {
+    display: none;
+  }
+  .run-count {
+    font-size: 0.85rem;
+    color: #60a5fa;
+  }
+  .table-wrap {
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  th,
+  td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  th {
+    color: #94a3b8;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .mut-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    white-space: nowrap;
+  }
+  .mut-cell img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+  .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .delta.up {
+    color: #4ade80;
+  }
+  .delta.down {
+    color: #f87171;
+  }
+</style>
