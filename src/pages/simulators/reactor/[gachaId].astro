@@ -3,6 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ReactorSimulator from '../../../components/simulators/reactor/ReactorSimulator.svelte';
 import { getGachaMeta, listGachas } from '../../../lib/reactor-gacha';
 import { getMutantTexture, getSkinTextures } from '../../../lib/mutant-textures';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export const prerender = true;
 
@@ -13,13 +15,50 @@ interface Props {
 }
 
 export function getStaticPaths() {
+  // Апгрейд текстуры награды до FULL-версии (полный рост вместо головы/полу-роста).
+  // Работает на этапе сборки: берём FULL-файл только если он реально лежит в public/
+  // (public/ синкается на CDN, так что локальное наличие = наличие на CDN).
+  // NB: хелпер живёт внутри getStaticPaths — Astro исполняет её изолированно
+  // и не видит переменные фронтматтера снаружи.
+  const PUB = path.join(process.cwd(), 'public');
+  const exists = (rel: string) => fs.existsSync(path.join(PUB, rel.replace(/^\//, '')));
+
+  function upgradeToFull(specimenId: string, texture: string | null): string | null {
+    const code = String(specimenId)
+      .replace(/^Specimen_/i, '')
+      .toLowerCase();
+
+    // 1) FULL-версия скина: semi-full/specimen_<code>_<skin>.webp -> full/FULL_<code>_<skin>.png
+    if (texture) {
+      const m = texture.match(/\/semi-full\/specimen_(.+)\.webp$/);
+      if (m) {
+        const full = `/textures_by_skins/textures_by_skin/full/FULL_${m[1]}.png`;
+        if (exists(full)) return full;
+      }
+      // уже full/ (chess) — оставляем как есть
+      if (texture.includes('/full/FULL_')) return texture;
+    }
+
+    // 2) FULL-версия самого мутанта
+    const mutantFull = `/textures_by_mutant/${code}/FULL_${code}.png`;
+    if (exists(mutantFull)) return mutantFull;
+
+    return texture;
+  }
+
   return listGachas()
     .filter((gacha): gacha is NonNullable<typeof gacha> => gacha !== null)
     .map((gacha) => {
       const baseIds = gacha.basic_elements.map((reward) => reward.specimen);
       const baseTextures = getSkinTextures(baseIds);
+      for (const id of baseIds) {
+        baseTextures[id] = upgradeToFull(id, baseTextures[id]);
+      }
       const completionTexture = gacha.completion_reward
-        ? getMutantTexture(gacha.completion_reward.specimen)
+        ? upgradeToFull(
+            gacha.completion_reward.specimen,
+            getMutantTexture(gacha.completion_reward.specimen),
+          )
         : null;
 
       return {
