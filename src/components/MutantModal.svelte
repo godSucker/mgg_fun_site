@@ -31,15 +31,6 @@
 
   const close = () => onclose?.();
 
-  let originalFontSize = '';
-  onMount(() => {
-    originalFontSize = document.documentElement.style.fontSize;
-    document.documentElement.style.fontSize = '16px';
-  });
-  onDestroy(() => {
-    document.documentElement.style.fontSize = originalFontSize;
-  });
-
   // ===== Star switching =====
   const STAR_SWITCHER_BLOCKED = new Set(['specimen_bf_11', 'specimen_ce_10']);
   let selectedStar = $state('normal');
@@ -814,10 +805,6 @@
 {/if}
 
 <style>
-  :root {
-    font-size: 16px;
-  }
-
   .stat-icon { width: 24px; height: 24px; display:inline-block; }
   .type-icon { width: 26px; height: 26px; display:inline-block; }
   .ability-icon { width: 24px; height: 24px; display:inline-block; vertical-align: middle; }
@@ -889,10 +876,6 @@
   }
 
   @media (max-width: 1200px) {
-    :root {
-      font-size: 16px;
-    }
-
     .stat-icon { width: 18px; height: 18px; }
     .type-icon { width: 20px; height: 20px; }
     .ability-icon { width: 18px; height: 18px; }
