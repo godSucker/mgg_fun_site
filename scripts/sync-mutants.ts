@@ -352,7 +352,7 @@ async function sync(options: {
     const { gameDefs, locMap } = await loadLocalFiles();
 
     // Загрузка bingos.json для маппинга мутантов к бинго
-    let bingoMap = new Map<string, string[]>();
+    const bingoMap = new Map<string, string[]>();
     try {
         const bingosPath = path.join(process.cwd(), 'src/data/bingos.json');
         const bingosData = JSON.parse(await fs.readFile(bingosPath, 'utf-8'));

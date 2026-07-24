@@ -123,7 +123,7 @@ export async function loadEvoTop(): Promise<PlayerRecord[]> {
             type = 'tg';
             label = 'Telegram';
             if (!url.includes('http') && !url.includes('t.me')) {
-              let nick = url.replace('@', '').trim().split(' ')[0];
+              const nick = url.replace('@', '').trim().split(' ')[0];
               url = `https://t.me/${nick}`;
             }
           }

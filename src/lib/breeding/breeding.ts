@@ -100,7 +100,7 @@ const STAR_TIMER_MULTIPLIER: Record<StarLevel, number> = {
 // --- 5. Helpers ---
 
 function getGeneStr(genes: string | string[]): string {
-  let str = Array.isArray(genes) ? genes.join('') : genes;
+  const str = Array.isArray(genes) ? genes.join('') : genes;
   return str ? str.toUpperCase().trim() : '';
 }
 
