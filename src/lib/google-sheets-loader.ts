@@ -19,34 +19,45 @@ export interface PlayerRecord {
 }
 
 function parseCSV(text: string): any[][] {
+  // Посимвольный разбор всего текста: перенос строки ВНУТРИ кавычек — часть
+  // значения ячейки, а не конец строки таблицы (раньше text.split('\n')
+  // ломал такие строки пополам).
   const rows: any[][] = [];
-  const lines = text.split('\n');
-  
-  for (const line of lines) {
-    if (!line.trim()) continue;
-    
-    // Простой парсинг CSV (для сложных случаев нужно использовать библиотеку)
-    const values: string[] = [];
-    let current = '';
-    let inQuotes = false;
-    
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        values.push(current.trim().replace(/^"|"$/g, ''));
-        current = '';
-      } else {
-        current += char;
-      }
-    }
-    
+  let values: string[] = [];
+  let current = '';
+  let inQuotes = false;
+
+  const pushValue = () => {
     values.push(current.trim().replace(/^"|"$/g, ''));
-    rows.push(values);
+    current = '';
+  };
+  const pushRow = () => {
+    pushValue();
+    if (values.some((v) => v !== '')) rows.push(values);
+    values = [];
+  };
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char === '"') {
+      // Экранированная кавычка внутри кавычек: "" -> "
+      if (inQuotes && text[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      pushValue();
+    } else if ((char === '\n' || char === '\r') && !inQuotes) {
+      if (char === '\r' && text[i + 1] === '\n') i++;
+      pushRow();
+    } else {
+      current += char;
+    }
   }
-  
+  if (current !== '' || values.length) pushRow();
+
   return rows;
 }
 
