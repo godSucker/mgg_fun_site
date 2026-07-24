@@ -3,7 +3,7 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import bingosData from '../data/bingos.json';
 import mutantNamesData from '../data/mutant_names.json';
-import { getMutantTexturePath, getMutantTextureFallbacks, getRewardTexturePath, getRewardLabel } from '../lib/bingo-textures';
+import { getMutantTexturePath, getRewardTexturePath, getRewardLabel } from '../lib/bingo-textures';
 import { bingoLabel } from '../lib/mutant-dicts';
 import { textureUrl } from '../lib/texture-cdn';
 
@@ -38,46 +38,6 @@ const GENE_ICONS = {
   F: '/genes/icon_gene_f.webp',
 };
 
-const BINGO_ICONS: Record<string, string> = {
-  "2025_skins": "/bingo/bingo_2025_skins.webp",
-  "2025_mutants": "/bingo/bingo_mutants_2025.webp",
-  "2026_events": "/bingo/bingo_2025_events.webp",
-  "2026_skins": "/bingo/bingo_2025_skins.webp",
-  "2026_mutants": "/bingo/bingo_mutants_2025.webp",
-  "anniversary_25": "/bingo/bingo_anniversery.webp",
-  "cross_mutation": "/bingo/bingo_cross_mutation.webp",
-  "research_1": "/bingo/bingo_1.webp",
-  "research_2": "/bingo/bingo_2.webp",
-  "research_3": "/bingo/bingo_3.webp",
-  "research_4": "/bingo/bingo_4.webp",
-  "research_5": "/bingo/bingo_5.webp",
-  "research_6": "/bingo/bingo_6.webp",
-  "research_7": "/bingo/bingo_7.webp",
-  "research_8": "/bingo/bingo_8.webp",
-  "research_9": "/bingo/bingo_9.webp",
-  "research_10": "/bingo/bingo_10.webp",
-  "research_11": "/bingo/bingo_11.webp",
-  "reactor": "/bingo/bingo_reactor.webp",
-  "legend": "/bingo/bingo_legendary.webp",
-  "rumble": "/bingo/bingo_rumble.webp",
-  "heroic": "/bingo/bingo_heroic.webp",
-  "event_2019": "/bingo/bingo_special.webp",
-  "event_2020": "/bingo/bingo_special.webp",
-  "event_2021": "/bingo/bingo_special.webp",
-  "event_2022": "/bingo/bingo_special.webp",
-  "event_2024": "/bingo/bingo_special.webp",
-  "2025_events": "/bingo/bingo_2025_events.webp",
-  "events": "/bingo/bingo_special.webp",
-  "zodiac": "/bingo/bingo_zodiac.webp",
-  "zodiac_silver": "/bingo/bingo_silver_zodiac.webp",
-  "amazons": "/bingo/bingo_amazons.webp",
-  "bingo_bronze": "/bingo/bingo_bronze.webp",
-  "bingo_silver": "/bingo/bingo_silver.webp",
-  "bingo_gold": "/bingo/bingo_gold.webp",
-  "bingo_plat": "/bingo/bingo_platinum.webp",
-  "starter_plat": "/bingo/bingo_starter_platinum.webp",
-  "Starter": "/bingo/bingo_starter.webp"
-};
 
 function formatBingoTitle(title: string, id: string): string {
   const labelById = bingoLabel(id);
