@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { XMLParser } from 'fast-xml-parser';
 import sharp from 'sharp';
+import { calculateFinalStats as calcFinalStatsUnified } from '../src/lib/stats/unified-calculator';
 
 // ==================== КОНФИГУРАЦИЯ ====================
 
@@ -250,41 +251,13 @@ function findLocalizedText(locMap: Map<string, string>, id: string, suffix: stri
 
 // ==================== РАСЧЕТ СТАТОВ ====================
 
+// Формула живёт в ЕДИНСТВЕННОМ источнике правды: src/lib/stats/unified-calculator.ts.
+// Здесь только клампим уровень (парсер оперирует диапазоном игры 1..30)
+// и округляем скорость как раньше.
 function calculateFinalStats(baseStats: BaseStatsCalc, level: number, starMultiplier: number): StatsResult {
-    const multiplier = starMultiplier;
     const lvl = Math.max(1, Math.min(30, level));
-
-    const hpBase = baseStats.hp_base * multiplier;
-    const atk1Base = baseStats.atk1_base * multiplier;
-    const atk1PlusBase = baseStats.atk1p_base * multiplier;
-    const atk2Base = baseStats.atk2_base * multiplier;
-    const atk2PlusBase = baseStats.atk2p_base * multiplier;
-    const speedBase = baseStats.speed_base;
-    const bankBase = baseStats.bank_base;
-
-    const levelScale = lvl / 10 + 0.9;
-    const finalHp = hpBase * levelScale;
-
-    const activeAtk1Base = lvl < 10 ? atk1Base : atk1PlusBase;
-    const finalAtk1 = activeAtk1Base * levelScale;
-
-    const activeAtk2Base = lvl < 15 ? atk2Base : atk2PlusBase;
-    const finalAtk2 = activeAtk2Base * levelScale;
-
-    const abilityPercent = lvl < 25 ? baseStats.abilityPct1 : baseStats.abilityPct2;
-    const abilityValue = finalAtk1 * (Math.abs(abilityPercent) / 100);
-
-    const finalSpeed = roundSpeed(speedBase);
-    const finalSilver = bankBase * lvl;
-
-    return {
-        hp: Math.round(finalHp),
-        atk1: Math.round(finalAtk1),
-        atk2: Math.round(finalAtk2),
-        ability: Math.round(abilityValue),
-        speed: finalSpeed,
-        silver: Math.round(finalSilver)
-    };
+    const result = calcFinalStatsUnified(baseStats, lvl, starMultiplier);
+    return { ...result, speed: roundSpeed(result.speed) };
 }
 
 // ==================== ОПРЕДЕЛЕНИЕ РЕЙТИНГА ====================
