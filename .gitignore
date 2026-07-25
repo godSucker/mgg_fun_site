@@ -30,6 +30,7 @@ dist/
 # Temporary / parser cache
 temp/
 tmp/
+scripts/.cache/
 
 # Backup files
 *.backup

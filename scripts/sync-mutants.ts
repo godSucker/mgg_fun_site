@@ -486,6 +486,7 @@ async function sync(options: {
     added: 0,
     updatedStats: 0,
     updatedLocalization: 0,
+    newStars: 0,
     skipped: 0,
     errors: 0,
     warnings: 0,
@@ -738,11 +739,11 @@ async function sync(options: {
     if (existingEntry) {
       if (skipExisting) {
         if (newTexturesDownloaded) {
-          // Текстуры были скачаны — обновляем stars в JSON
+          // Текстуры были скачаны — обновляем stars в JSON (статы/локализация НЕ трогаются)
           existingEntry.stars = { ...existingEntry.stars, ...entry.stars }
           existingData.set(baseId, existingEntry)
           modifiedCount++
-          stats.updatedStats++
+          stats.newStars++
           console.log(`[STARS UPDATED] ${baseId}: добавлены новые звёзды`)
         } else {
           stats.skipped++
@@ -812,15 +813,49 @@ async function sync(options: {
   if (stats.updatedStats > 0) console.log(`Обновлено (статы): ${stats.updatedStats}`)
   if (stats.updatedLocalization > 0)
     console.log(`Обновлено (локализация): ${stats.updatedLocalization}`)
+  if (stats.newStars > 0) console.log(`Новые head-версии/звёзды: ${stats.newStars}`)
   if (stats.deleted > 0) console.log(`Удалено: ${stats.deleted}`)
   if (stats.skipped > 0) console.log(`Пропущено: ${stats.skipped}`)
   if (stats.warnings > 0) console.log(`Предупреждений: ${stats.warnings}`)
   if (stats.errors > 0) console.log(`Ошибок: ${stats.errors}`)
 
   const totalProcessed =
-    stats.added + stats.updatedStats + stats.updatedLocalization + stats.skipped + stats.errors
+    stats.added +
+    stats.updatedStats +
+    stats.updatedLocalization +
+    stats.newStars +
+    stats.skipped +
+    stats.errors
   console.log(`\nВсего обработано: ${totalProcessed} записей`)
   console.log('='.repeat(60) + '\n')
+
+  // Markdown-сводка для $GITHUB_STEP_SUMMARY — тот же паттерн, что и у
+  // sync_characters.py (scripts/character-textures/.cache/summary.md):
+  // пишем в файл, а не напрямую в переменную окружения, чтобы финальный шаг
+  // workflow сам решал порядок склейки секций.
+  try {
+    const modeLabel = skipExisting ? 'FULL' : forceStatUpdate ? 'STATS' : 'REBALANCE'
+    const lines = [`### Парсер мутантов (${modeLabel}, статы/данные)`]
+    if (totalProcessed === 0) {
+      lines.push('ℹ️ Мутанты не обработаны (пустой XML или ошибка загрузки)')
+    } else {
+      lines.push(`🆕 Новых мутантов: ${stats.added}`)
+      lines.push(`📈 Обновлено (статы): ${stats.updatedStats}`)
+      lines.push(`🌐 Обновлено (локализация): ${stats.updatedLocalization}`)
+      lines.push(`🖼️ Новые head-версии/звёзды: ${stats.newStars}`)
+      lines.push(`🗑️ Удалено (нет в XML): ${stats.deleted}`)
+      lines.push(`⏭️ Пропущено (без изменений): ${stats.skipped}`)
+      lines.push(`⚠️ Предупреждений: ${stats.warnings}`)
+      lines.push(`❌ Ошибок: ${stats.errors}`)
+      lines.push('')
+      lines.push(`Всего обработано: ${totalProcessed} записей`)
+    }
+    const cacheDir = path.join(process.cwd(), 'scripts/.cache')
+    await fs.mkdir(cacheDir, { recursive: true })
+    await fs.writeFile(path.join(cacheDir, 'parser-summary.md'), lines.join('\n') + '\n', 'utf-8')
+  } catch {
+    // Сводка — не критичный шаг, не должна ронять сам синк.
+  }
 
   if (modifiedCount > 0) {
     console.log(`[SAVE] Сохранение ${modifiedCount} изменений...`)

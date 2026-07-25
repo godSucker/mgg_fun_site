@@ -176,13 +176,16 @@ jobs:
         run: |
           echo "## 📊 Итоги синхронизации" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Мутанты (данные)" >> $GITHUB_STEP_SUMMARY
           if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
             echo "✅ **Статус:** Обнаружены изменения, данные обновлены" >> $GITHUB_STEP_SUMMARY
           else
             echo "ℹ️ **Статус:** Изменений не обнаружено" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f scripts/.cache/parser-summary.md ]; then
+            cat scripts/.cache/parser-summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
           if [ -f scripts/character-textures/.cache/summary.md ]; then
             cat scripts/character-textures/.cache/summary.md >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
