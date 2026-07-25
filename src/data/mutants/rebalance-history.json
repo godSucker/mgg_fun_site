@@ -3423,6 +3423,18 @@
             "field": "atk2"
           }
         ]
+      },
+      {
+        "id": "specimen_aa_01",
+        "name": "Андроид",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5500,
+            "new": 6045
+          }
+        ]
       }
     ]
   },

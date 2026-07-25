@@ -7,6 +7,7 @@ import mutants from '@/data/mutants/mutants.json';
 import { textureUrl } from '@/lib/texture-cdn';
 import { ABILITY_RU } from '@/lib/mutant-dicts';
 import { getGeneIcon } from '@/lib/mutant-icons';
+import { sortMutantsByGene } from '@/lib/mutant-sort';
 
 type AbilityField = 'pct' | 'atk1' | 'atk2';
 interface StatChange {
@@ -49,12 +50,30 @@ interface MutantMeta {
   head: string | null;
   genes: string[];
   tier: string;
+  hp: number | null;
+  atk1: number | null;
+  atk2: number | null;
+  abilityPct: number | null;
+  abilityAtk1: number | null;
+  abilityAtk2: number | null;
+  abilityName: string | null;
+  speed: number | null;
 }
 const mutantMetaCache = new Map<string, MutantMeta>();
 const mutantMeta = (id: string): MutantMeta => {
   if (mutantMetaCache.has(id)) return mutantMetaCache.get(id)!;
   const m = (
-    mutants as { id: string; genes?: string[]; tier?: string; stars?: Record<string, { images?: string[] }> }[]
+    mutants as {
+      id: string;
+      genes?: string[];
+      tier?: string;
+      stars?: Record<string, { images?: string[] }>;
+      base_stats?: {
+        lvl30?: { hp?: number; atk1?: number; atk2?: number; speed?: number; ability?: number };
+        abilityPct2?: number;
+      };
+      abilities?: { name: string; pct: number; value_atk1_lvl30?: number; value_atk2_lvl30?: number }[];
+    }[]
   ).find((x) => x.id === id);
   let head: string | null = null;
   if (m?.stars) {
@@ -66,7 +85,21 @@ const mutantMeta = (id: string): MutantMeta => {
       }
     }
   }
-  const meta: MutantMeta = { head, genes: m?.genes ?? [], tier: String(m?.tier ?? '').trim() };
+  const lvl30 = m?.base_stats?.lvl30;
+  const ab = m?.abilities?.[0];
+  const meta: MutantMeta = {
+    head,
+    genes: m?.genes ?? [],
+    tier: String(m?.tier ?? '').trim(),
+    hp: lvl30?.hp ?? null,
+    atk1: lvl30?.atk1 ?? null,
+    atk2: lvl30?.atk2 ?? null,
+    abilityPct: m?.base_stats?.abilityPct2 ?? ab?.pct ?? null,
+    abilityAtk1: ab?.value_atk1_lvl30 ?? null,
+    abilityAtk2: ab?.value_atk2_lvl30 ?? null,
+    abilityName: ab?.name ?? null,
+    speed: lvl30?.speed ?? null,
+  };
   mutantMetaCache.set(id, meta);
   return meta;
 };
@@ -95,25 +128,32 @@ interface MutantRow {
 // по стату - под макет "1 мутант = 1 строка/карточка" вместо старого
 // rowspan-табличного вида, где на каждый change была отдельная строка.
 function buildRow(entry: RebalanceEntry): MutantRow {
+  const meta = mutantMeta(entry.id);
   const find = (stat: StatChange['stat'], level: 1 | 30 | null) =>
     entry.changes.find((c) => c.stat === stat && c.level === level);
 
-  // HP: показываем только финальный (lvl30) показатель - по тому же принципу,
-  // что и атаки/способности (одна "актуальная" цифра вместо lvl1/lvl30 пары).
+  // HP: lvl30 — если нет изменения, показываем текущее значение
   const hp30 = find('hp', 30);
-  const hp = hp30 ? { old: hp30.old, new: hp30.new } : null;
+  const hp: Pair = hp30
+    ? { old: hp30.old, new: hp30.new }
+    : { old: meta.hp, new: meta.hp };
 
-  // Атака 1/2: только "усиленная" (retaliate/lvl30) версия - level: null, см. парсер.
+  // Атака 1/2: "усиленная" версия (level: null)
   const atk1Change = find('atk1', null);
+  const atk1: Pair = atk1Change
+    ? { old: atk1Change.old, new: atk1Change.new }
+    : { old: meta.atk1, new: meta.atk1 };
   const atk2Change = find('atk2', null);
-  const atk1 = atk1Change ? { old: atk1Change.old, new: atk1Change.new } : null;
-  const atk2 = atk2Change ? { old: atk2Change.old, new: atk2Change.new } : null;
+  const atk2: Pair = atk2Change
+    ? { old: atk2Change.old, new: atk2Change.new }
+    : { old: meta.atk2, new: meta.atk2 };
 
-  // Способности: группируем плоские field-diffs обратно по названию способности
-  // (только "_plus"-варианты, парсер их уже отфильтровал).
+  // Способности: группируем field-diffs по названию способности
   const abilityChanges = entry.changes.filter((c) => c.stat === 'abilities');
   const abilityNames = [...new Set(abilityChanges.map((c) => c.ability).filter(Boolean))] as string[];
-  const abilities: AbilityRow[] = abilityNames.map((name) => {
+  // Если есть изменения способностей — используем их, иначе — текущую способность из базы
+  const namesToRender = abilityNames.length > 0 ? abilityNames : (meta.abilityName ? [meta.abilityName] : []);
+  const abilities: AbilityRow[] = namesToRender.map((name) => {
     const forField = (field: AbilityField) =>
       abilityChanges.find((c) => c.ability === name && c.field === field);
     const pctC = forField('pct');
@@ -121,16 +161,23 @@ function buildRow(entry: RebalanceEntry): MutantRow {
     const atk2C = forField('atk2');
     return {
       label: ABILITY_RU[name] ?? name,
-      pct: pctC ? { old: pctC.old, new: pctC.new } : null,
-      atk1: atk1C ? { old: atk1C.old, new: atk1C.new } : null,
-      atk2: atk2C ? { old: atk2C.old, new: atk2C.new } : null,
+      pct: pctC
+        ? { old: pctC.old, new: pctC.new }
+        : { old: meta.abilityPct, new: meta.abilityPct },
+      atk1: atk1C
+        ? { old: atk1C.old, new: atk1C.new }
+        : { old: meta.abilityAtk1, new: meta.abilityAtk1 },
+      atk2: atk2C
+        ? { old: atk2C.old, new: atk2C.new }
+        : { old: meta.abilityAtk2, new: meta.abilityAtk2 },
     };
   });
 
   const speedChange = find('speed', null);
-  const speed = speedChange ? { old: speedChange.old, new: speedChange.new } : null;
+  const speed: Pair = speedChange
+    ? { old: speedChange.old, new: speedChange.new }
+    : { old: meta.speed, new: meta.speed };
 
-  const meta = mutantMeta(entry.id);
   return {
     id: entry.id,
     name: entry.name,
@@ -162,8 +209,7 @@ const pctDeltaCls = (pct: Pair | null): string => {
     <h1>Ребаланс мутантов</h1>
     <p class="intro">
       Здесь автоматически фиксируются все изменения статов после ребалансов игры: было → стало по
-      каждому мутанту. Значок <span class="plus-badge" title="Усиленная (+) версия">+</span> отмечает
-      усиленную версию атаки/способности, которая включается с определённого уровня.
+      каждому мутанту.<br />В таблице указаны только усиленные версии атак и способности.
     </p>
 
     {runs.length > 0 && (
@@ -188,7 +234,7 @@ const pctDeltaCls = (pct: Pair | null): string => {
     )}
 
     {runs.map((run) => {
-      const rows = run.entries.map(buildRow);
+      const rows = run.entries.map(buildRow).sort(sortMutantsByGene);
       return (
         <details class="run" data-date={run.date} open={run === runs[0]}>
           <summary>
@@ -200,13 +246,9 @@ const pctDeltaCls = (pct: Pair | null): string => {
             <div class="rb-row rb-head" role="row">
               <div class="rb-cell rb-mut" role="columnheader">Мутант</div>
               <div class="rb-cell" role="columnheader">HP</div>
-              <div class="rb-cell" role="columnheader">
-                Атака 1 <span class="plus-badge" title="Усиленная (+) версия атаки — включается с определённого уровня">+</span>
-              </div>
-              <div class="rb-cell" role="columnheader">
-                Атака 2 <span class="plus-badge" title="Усиленная (+) версия атаки — включается с определённого уровня">+</span>
-              </div>
-              <div class="rb-cell" role="columnheader">Способности</div>
+              <div class="rb-cell" role="columnheader">Атака 1</div>
+              <div class="rb-cell" role="columnheader">Атака 2</div>
+              <div class="rb-cell" role="columnheader">Способность</div>
               <div class="rb-cell" role="columnheader">Скорость</div>
             </div>
 
@@ -232,60 +274,37 @@ const pctDeltaCls = (pct: Pair | null): string => {
                 </div>
 
                 <div class="rb-cell rb-stat" role="cell" data-label="HP">
-                  {row.hp ? <StatBox oldVal={row.hp.old} newVal={row.hp.new} /> : <span class="dash">—</span>}
+                  <StatBox oldVal={row.hp.old} newVal={row.hp.new} />
                 </div>
 
                 <div class="rb-cell rb-stat" role="cell" data-label="Атака 1">
-                  {row.atk1 ? <StatBox oldVal={row.atk1.old} newVal={row.atk1.new} /> : <span class="dash">—</span>}
+                  <StatBox oldVal={row.atk1.old} newVal={row.atk1.new} />
                 </div>
 
                 <div class="rb-cell rb-stat" role="cell" data-label="Атака 2">
-                  {row.atk2 ? <StatBox oldVal={row.atk2.old} newVal={row.atk2.new} /> : <span class="dash">—</span>}
+                  <StatBox oldVal={row.atk2.old} newVal={row.atk2.new} />
                 </div>
 
-                <div class="rb-cell rb-stat" role="cell" data-label="Способности">
-                  {row.abilities.length > 0 ? (
-                    row.abilities.map((ab) => {
-                      const pctCls = pctDeltaCls(ab.pct);
-                      return (
-                        <div class="atk-block">
-                          <div class="ability-header">
-                            <span class="ability-label">{ab.label}</span>
-                            <span class="plus-badge" title="Улучшенная (+) версия способности">+</span>
-                            {ab.pct && (
-                              <span class={`ability-pct ${pctCls}`}>
-                                {ab.pct.old ?? '—'}%<span class="arrow">→</span>{ab.pct.new ?? '—'}%
-                              </span>
-                            )}
-                          </div>
-                          <div class="lvl-pair">
-                            {ab.atk1 && (
-                              <div class="ability-atk">
-                                <span class="ability-atk-label">Атк1</span>
-                                <StatBox oldVal={ab.atk1.old} newVal={ab.atk1.new} />
-                              </div>
-                            )}
-                            {ab.atk2 && (
-                              <div class="ability-atk">
-                                <span class="ability-atk-label">Атк2</span>
-                                <StatBox oldVal={ab.atk2.old} newVal={ab.atk2.new} />
-                              </div>
-                            )}
-                          </div>
+                <div class="rb-cell rb-stat" role="cell" data-label="Способность">
+                  {row.abilities.map((ab) => {
+                    const pctCls = pctDeltaCls(ab.pct);
+                    return (
+                      <div class="atk-block">
+                        <div class="ability-header">
+                          <span class="ability-label">{ab.label}</span>
+                          {ab.pct && (
+                            <span class={`ability-pct ${pctCls}`}>
+                              {ab.pct.old ?? '—'}%<span class="arrow">→</span>{ab.pct.new ?? '—'}%
+                            </span>
+                          )}
                         </div>
-                      );
-                    })
-                  ) : (
-                    <span class="dash">—</span>
-                  )}
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div class="rb-cell" role="cell" data-label="Скорость">
-                  {row.speed ? (
-                    <StatBox oldVal={row.speed.old} newVal={row.speed.new} />
-                  ) : (
-                    <span class="dash">—</span>
-                  )}
+                  <StatBox oldVal={row.speed.old} newVal={row.speed.new} />
                 </div>
               </div>
             ))}
@@ -421,9 +440,9 @@ const pctDeltaCls = (pct: Pair | null): string => {
   }
   .rb-row {
     display: grid;
-    grid-template-columns: minmax(150px, 1.1fr) 0.95fr 0.9fr 0.9fr 1.55fr 0.6fr;
+    grid-template-columns: minmax(180px, 1.4fr) 0.85fr 0.8fr 0.8fr 1.1fr 0.7fr;
     gap: 0;
-    padding: 0.75rem 1rem;
+    padding: 0.4rem 0.75rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
   .rb-row.rb-head {
@@ -432,6 +451,9 @@ const pctDeltaCls = (pct: Pair | null): string => {
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+  .rb-row.rb-head .rb-mut {
+    padding-left: 30px;
   }
   .rb-cell {
     display: flex;
@@ -485,6 +507,7 @@ const pctDeltaCls = (pct: Pair | null): string => {
   .mut-name {
     overflow-wrap: break-word;
     line-height: 1.2;
+    font-size: 0.9em;
   }
   .mut-badges {
     display: flex;
@@ -515,13 +538,8 @@ const pctDeltaCls = (pct: Pair | null): string => {
     cursor: help;
     vertical-align: middle;
   }
-  .lvl-pair {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
   .atk-block + .atk-block {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
   .dash {
     color: #475569;
@@ -529,9 +547,12 @@ const pctDeltaCls = (pct: Pair | null): string => {
   .ability-header {
     display: flex;
     align-items: baseline;
-    gap: 0.4rem;
+    gap: 0;
     flex-wrap: wrap;
-    margin-bottom: 0.15rem;
+  }
+  .ability-pct {
+    flex-basis: 100%;
+    margin-top: -0.05em;
   }
   .ability-label {
     font-size: 0.72rem;
@@ -553,21 +574,6 @@ const pctDeltaCls = (pct: Pair | null): string => {
   .ability-pct.down {
     color: #f87171;
   }
-  .ability-atk {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: nowrap;
-    gap: 0.4rem;
-    min-width: 0;
-  }
-  .ability-atk-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #64748b;
-    min-width: 1.8rem;
-    flex-shrink: 0;
-  }
-
   /* --- Mobile: rows become cards, header hides, cells get their own label --- */
   @media (max-width: 700px) {
     .rb-row.rb-head {
