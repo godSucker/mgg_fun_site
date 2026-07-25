@@ -322,6 +322,11 @@ interface StatChange {
   level: 1 | 30 | null
   old: number | null
   new: number | null
+  // Только для stat === 'abilities': какая способность и какое её числовое
+  // поле изменилось - без этого abilities схлопывались бы в один плоский
+  // булев флаг "изменены" без конкретных цифр.
+  ability?: string
+  field?: 'pct' | 'atk1' | 'atk2'
 }
 
 function compareStats(
@@ -334,7 +339,7 @@ function compareStats(
   const details: StatChange[] = []
   const diffStat = (
     stat: StatChange['stat'],
-    level: 1 | 30,
+    level: 1 | 30 | null,
     oldVal: number,
     newVal: number,
     label: string,
@@ -347,20 +352,71 @@ function compareStats(
 
   const oldL1 = oldEntry.base_stats.lvl1
   const newL1 = newEntry.base_stats.lvl1
-  diffStat('hp', 1, oldL1.hp, newL1.hp, 'hp1')
-  diffStat('atk1', 1, oldL1.atk1, newL1.atk1, 'atk1_1')
-  diffStat('atk2', 1, oldL1.atk2, newL1.atk2, 'atk2_1')
-  diffStat('speed', 1, oldL1.speed, newL1.speed, 'speed')
+  // level: null - скорость не разбита на lvl1/lvl30 в игре, один-единственный
+  // показатель, так же трактуется на странице /rebalance.
+  diffStat('speed', null, oldL1.speed, newL1.speed, 'speed')
 
   const oldL30 = oldEntry.base_stats.lvl30
   const newL30 = newEntry.base_stats.lvl30
+  // HP: показываем только финальный (lvl30) показатель - как и атаки/способности,
+  // по решению автора сайта одна "актуальная" цифра вместо lvl1/lvl30 пары.
   diffStat('hp', 30, oldL30.hp, newL30.hp, 'hp30')
-  diffStat('atk1', 30, oldL30.atk1, newL30.atk1, 'atk1_30')
-  diffStat('atk2', 30, oldL30.atk2, newL30.atk2, 'atk2_30')
+  // Атака 1/2: unified-calculator переключает atk1_base -> atk1p_base ("усиленная"/
+  // retaliate версия атаки) на level>=10/15 соответственно - это НЕ прокачка одного
+  // и того же числа, а два разных игровых стата. lvl1 здесь = обычный atk*_base,
+  // lvl30 = atk*p_base. Показываем только усиленную (lvl30) версию по решению автора
+  // сайта - "обычная" atk1_base/atk2_base читателю не нужна, отдельного растущего
+  // от lvl1 к lvl30 показателя атаки в игре нет.
+  diffStat('atk1', null, oldL30.atk1, newL30.atk1, 'atk1')
+  diffStat('atk2', null, oldL30.atk2, newL30.atk2, 'atk2')
 
-  if (JSON.stringify(oldEntry.abilities) !== JSON.stringify(newEntry.abilities)) {
-    changes.push('abilities')
-    details.push({ stat: 'abilities', level: null, old: null, new: null })
+  // Способности: сравниваем по названию (пары old/new с одинаковым name),
+  // диффим числовые поля по отдельности - раньше был один булев флаг
+  // "изменены" без единой цифры, теперь то же было/стало/Δ, что и у статов.
+  // Только "_plus"-варианты (ability_shield_plus и т.п.) - базовая способность
+  // без "+" по решению автора сайта не показывается вообще, только усиленная.
+  // Аналогично атакам, её atk1/atk2 берём из *_lvl30 (тот же переключатель на
+  // atk1p_base/atk2p_base), *_lvl1 (обычный atk*_base) отбрасываем.
+  type Ability = {
+    name: string
+    pct?: number
+    value_atk1_lvl30?: number
+    value_atk2_lvl30?: number
+  }
+  const oldAbilities: Ability[] = (oldEntry.abilities ?? []).filter((a: Ability) =>
+    a.name.endsWith('_plus'),
+  )
+  const newAbilities: Ability[] = (newEntry.abilities ?? []).filter((a: Ability) =>
+    a.name.endsWith('_plus'),
+  )
+  const abilityNames = new Set([
+    ...oldAbilities.map((a) => a.name),
+    ...newAbilities.map((a) => a.name),
+  ])
+  const abilityFieldKey: Record<string, keyof Ability> = {
+    pct: 'pct',
+    atk1: 'value_atk1_lvl30',
+    atk2: 'value_atk2_lvl30',
+  }
+  for (const name of abilityNames) {
+    const oldAbility = oldAbilities.find((a) => a.name === name) ?? null
+    const newAbility = newAbilities.find((a) => a.name === name) ?? null
+    for (const field of ['pct', 'atk1', 'atk2'] as const) {
+      const key = abilityFieldKey[field]
+      const oldVal = oldAbility ? ((oldAbility[key] as number | undefined) ?? null) : null
+      const newVal = newAbility ? ((newAbility[key] as number | undefined) ?? null) : null
+      if (oldVal !== newVal) {
+        changes.push(`ability:${name}:${field}: ${oldVal}→${newVal}`)
+        details.push({
+          stat: 'abilities',
+          level: null,
+          old: oldVal,
+          new: newVal,
+          ability: name,
+          field,
+        })
+      }
+    }
   }
 
   if (

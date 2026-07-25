@@ -36,11 +36,15 @@ const canonicalizeBase = (id: string): string => {
 // не обновлялся под новые скины 2025/2026 -> бинго показывало обычную голову
 // вместо скиновой). Ключ мапы - id+skin, т.к. в бинго мутант может фигурировать
 // с ДРУГИМ (более старым) скином, чем его "текущий" скин в skins.json.
+// Эта карта - единственный потребитель которой бинго (getSkinTexture(id, skin)) -
+// должна отдавать ТОЛЬКО head (semi-full), никогда full-body: без записи для скина
+// без semi-full-файла getSkinTexture провалится в getMutantTexture() (базовая голова
+// без скина) вместо показа full-body рендера не по размеру ячейки.
 type SkinSpecimen = { id: string; skin?: string; image?: string[] }
 const skinsByIdAndSkin = new Map<string, string>()
 for (const rec of (skinsData as { specimens: SkinSpecimen[] }).specimens ?? []) {
   const images = rec.image ?? []
-  const preferred = images.find((p) => p.includes('/semi-full/')) ?? images[0]
+  const preferred = images.find((p) => p.includes('/semi-full/'))
   if (!preferred || !rec.skin) continue
   const key = `${canonicalizeBase(rec.id)}::${rec.skin.toLowerCase()}`
   skinsByIdAndSkin.set(key, preferred.startsWith('/') ? preferred : `/${preferred}`)

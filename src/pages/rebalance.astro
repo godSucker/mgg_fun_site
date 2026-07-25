@@ -1,15 +1,21 @@
 ---
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import StatBox from '@/components/rebalance/StatBox.astro';
 import history from '@/data/mutants/rebalance-history.json';
 import mutants from '@/data/mutants/mutants.json';
 import { textureUrl } from '@/lib/texture-cdn';
+import { ABILITY_RU } from '@/lib/mutant-dicts';
+import { getGeneIcon } from '@/lib/mutant-icons';
 
+type AbilityField = 'pct' | 'atk1' | 'atk2';
 interface StatChange {
   stat: 'hp' | 'atk1' | 'atk2' | 'speed' | 'abilities';
   level: 1 | 30 | null;
   old: number | null;
   new: number | null;
+  ability?: string;
+  field?: AbilityField;
 }
 interface RebalanceEntry {
   id: string;
@@ -23,41 +29,128 @@ interface RebalanceRun {
 
 const runs = (history as RebalanceRun[]) ?? [];
 
-const STAT_RU: Record<StatChange['stat'], string> = {
-  hp: 'HP',
-  atk1: 'Атака 1',
-  atk2: 'Атака 2',
-  speed: 'Скорость',
-  abilities: 'Способности',
-};
-
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 
-const fmtNum = (n: number | null) => (n == null ? '—' : n.toLocaleString('ru-RU'));
-
-const delta = (oldVal: number | null, newVal: number | null): { text: string; cls: string } => {
-  if (oldVal == null || newVal == null || oldVal === 0) return { text: '', cls: '' };
-  const pct = ((newVal - oldVal) / oldVal) * 100;
-  if (Math.abs(pct) < 0.005) return { text: '', cls: '' };
-  const sign = pct > 0 ? '+' : '';
-  return {
-    text: `${sign}${pct.toFixed(Math.abs(pct) < 10 ? 1 : 0)}%`,
-    cls: pct > 0 ? 'up' : 'down',
-  };
+// Русская плюрализация: 1 мутант, 2/3/4 мутанта, 5-20 мутантов, 21 мутант, 22 мутанта...
+const pluralMutants = (n: number): string => {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return `${n} мутант`;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} мутанта`;
+  return `${n} мутантов`;
 };
 
-// Иконка-голова мутанта для строки таблицы
-const headTexture = (id: string): string | null => {
-  const m = (mutants as { id: string; stars?: Record<string, { images?: string[] }> }[]).find(
-    (x) => x.id === id,
-  );
-  if (!m?.stars) return null;
-  for (const star of Object.values(m.stars)) {
-    const specimen = star.images?.find((p) => p.includes('specimen'));
-    if (specimen) return specimen.startsWith('/') ? specimen : `/${specimen}`;
+// Тир (1 - лучший ... 4 - худший, +/- внутри тира) -> цвет бейджа, тот же принцип, что в TierList.svelte
+const TIER_COLOR: Record<string, string> = { '1': '#f87171', '2': '#fb923c', '3': '#facc15', '4': '#4ade80' };
+const tierColor = (tier: string) => TIER_COLOR[tier[0]] ?? '#94a3b8';
+
+interface MutantMeta {
+  head: string | null;
+  genes: string[];
+  tier: string;
+}
+const mutantMetaCache = new Map<string, MutantMeta>();
+const mutantMeta = (id: string): MutantMeta => {
+  if (mutantMetaCache.has(id)) return mutantMetaCache.get(id)!;
+  const m = (
+    mutants as { id: string; genes?: string[]; tier?: string; stars?: Record<string, { images?: string[] }> }[]
+  ).find((x) => x.id === id);
+  let head: string | null = null;
+  if (m?.stars) {
+    for (const star of Object.values(m.stars)) {
+      const specimen = star.images?.find((p) => p.includes('specimen'));
+      if (specimen) {
+        head = specimen.startsWith('/') ? specimen : `/${specimen}`;
+        break;
+      }
+    }
   }
-  return null;
+  const meta: MutantMeta = { head, genes: m?.genes ?? [], tier: String(m?.tier ?? '').trim() };
+  mutantMetaCache.set(id, meta);
+  return meta;
+};
+
+type Pair = { old: number | null; new: number | null };
+interface AbilityRow {
+  label: string;
+  pct: Pair | null;
+  atk1: Pair | null;
+  atk2: Pair | null;
+}
+interface MutantRow {
+  id: string;
+  name: string;
+  head: string | null;
+  genes: string[];
+  tier: string;
+  hp: Pair | null;
+  atk1: Pair | null;
+  atk2: Pair | null;
+  abilities: AbilityRow[];
+  speed: Pair | null;
+}
+
+// Плоский список changes из парсера -> одна строка на мутанта, сгруппированная
+// по стату - под макет "1 мутант = 1 строка/карточка" вместо старого
+// rowspan-табличного вида, где на каждый change была отдельная строка.
+function buildRow(entry: RebalanceEntry): MutantRow {
+  const find = (stat: StatChange['stat'], level: 1 | 30 | null) =>
+    entry.changes.find((c) => c.stat === stat && c.level === level);
+
+  // HP: показываем только финальный (lvl30) показатель - по тому же принципу,
+  // что и атаки/способности (одна "актуальная" цифра вместо lvl1/lvl30 пары).
+  const hp30 = find('hp', 30);
+  const hp = hp30 ? { old: hp30.old, new: hp30.new } : null;
+
+  // Атака 1/2: только "усиленная" (retaliate/lvl30) версия - level: null, см. парсер.
+  const atk1Change = find('atk1', null);
+  const atk2Change = find('atk2', null);
+  const atk1 = atk1Change ? { old: atk1Change.old, new: atk1Change.new } : null;
+  const atk2 = atk2Change ? { old: atk2Change.old, new: atk2Change.new } : null;
+
+  // Способности: группируем плоские field-diffs обратно по названию способности
+  // (только "_plus"-варианты, парсер их уже отфильтровал).
+  const abilityChanges = entry.changes.filter((c) => c.stat === 'abilities');
+  const abilityNames = [...new Set(abilityChanges.map((c) => c.ability).filter(Boolean))] as string[];
+  const abilities: AbilityRow[] = abilityNames.map((name) => {
+    const forField = (field: AbilityField) =>
+      abilityChanges.find((c) => c.ability === name && c.field === field);
+    const pctC = forField('pct');
+    const atk1C = forField('atk1');
+    const atk2C = forField('atk2');
+    return {
+      label: ABILITY_RU[name] ?? name,
+      pct: pctC ? { old: pctC.old, new: pctC.new } : null,
+      atk1: atk1C ? { old: atk1C.old, new: atk1C.new } : null,
+      atk2: atk2C ? { old: atk2C.old, new: atk2C.new } : null,
+    };
+  });
+
+  const speedChange = find('speed', null);
+  const speed = speedChange ? { old: speedChange.old, new: speedChange.new } : null;
+
+  const meta = mutantMeta(entry.id);
+  return {
+    id: entry.id,
+    name: entry.name,
+    head: meta.head,
+    genes: meta.genes,
+    tier: meta.tier,
+    hp,
+    atk1,
+    atk2,
+    abilities,
+    speed,
+  };
+}
+
+// Цвет для инлайн-% способности (рядом с названием), тот же принцип, что StatBox
+const pctDeltaCls = (pct: Pair | null): string => {
+  if (!pct || pct.old == null || pct.new == null || pct.old === 0) return '';
+  const diff = ((pct.new - pct.old) / pct.old) * 100;
+  if (Math.abs(diff) < 0.5) return '';
+  return diff > 0 ? 'up' : 'down';
 };
 ---
 
@@ -69,13 +162,22 @@ const headTexture = (id: string): string | null => {
     <h1>Ребаланс мутантов</h1>
     <p class="intro">
       Здесь автоматически фиксируются все изменения статов после ребалансов игры: было → стало по
-      каждому мутанту.
+      каждому мутанту. Значок <span class="plus-badge" title="Усиленная (+) версия">+</span> отмечает
+      усиленную версию атаки/способности, которая включается с определённого уровня.
     </p>
 
     {runs.length > 0 && (
-      <button id="downloadRebalanceBtn" class="download-btn" type="button">
-        📷 Скачать таблицу картинкой
-      </button>
+      <div class="export-bar">
+        <select id="rebalanceDateSelect" class="date-select">
+          <option value="all">Все даты</option>
+          {runs.map((run) => (
+            <option value={run.date}>{fmtDate(run.date)}</option>
+          ))}
+        </select>
+        <button id="downloadRebalanceBtn" class="download-btn" type="button">
+          📷 Скачать таблицу картинкой
+        </button>
+      </div>
     )}
 
     {runs.length === 0 && (
@@ -85,71 +187,134 @@ const headTexture = (id: string): string | null => {
       </div>
     )}
 
-    {runs.map((run) => (
-      <details class="run" open={run === runs[0]}>
-        <summary>
-          <span class="run-date">{fmtDate(run.date)}</span>
-          <span class="run-count">{run.entries.length} мутантов</span>
-        </summary>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Мутант</th>
-                <th>Стат</th>
-                <th>Уровень</th>
-                <th>Было</th>
-                <th>Стало</th>
-                <th>Δ</th>
-              </tr>
-            </thead>
-            <tbody>
-              {run.entries.map((entry) =>
-                entry.changes.map((c, i) => {
-                  const d = delta(c.old, c.new);
-                  const head = i === 0 ? headTexture(entry.id) : null;
-                  return (
-                    <tr class={i === 0 ? 'first-row' : ''}>
-                      {i === 0 ? (
-                        <td class="mut-cell" rowspan={entry.changes.length}>
-                          {head && (
-                            <img src={textureUrl(head)} alt="" loading="lazy" decoding="async" />
-                          )}
-                          <span>{entry.name}</span>
-                        </td>
-                      ) : null}
-                      <td>{STAT_RU[c.stat]}</td>
-                      <td>{c.level ?? '—'}</td>
-                      <td class="num">{c.stat === 'abilities' ? 'изменены' : fmtNum(c.old)}</td>
-                      <td class="num">{c.stat === 'abilities' ? '' : fmtNum(c.new)}</td>
-                      <td class={`num delta ${d.cls}`}>{d.text}</td>
-                    </tr>
-                  );
-                }),
-              )}
-            </tbody>
-          </table>
-        </div>
-      </details>
-    ))}
+    {runs.map((run) => {
+      const rows = run.entries.map(buildRow);
+      return (
+        <details class="run" data-date={run.date} open={run === runs[0]}>
+          <summary>
+            <span class="run-date">{fmtDate(run.date)}</span>
+            <span class="run-count">{pluralMutants(run.entries.length)}</span>
+          </summary>
+
+          <div class="rb-table" role="table">
+            <div class="rb-row rb-head" role="row">
+              <div class="rb-cell rb-mut" role="columnheader">Мутант</div>
+              <div class="rb-cell" role="columnheader">HP</div>
+              <div class="rb-cell" role="columnheader">
+                Атака 1 <span class="plus-badge" title="Усиленная (+) версия атаки — включается с определённого уровня">+</span>
+              </div>
+              <div class="rb-cell" role="columnheader">
+                Атака 2 <span class="plus-badge" title="Усиленная (+) версия атаки — включается с определённого уровня">+</span>
+              </div>
+              <div class="rb-cell" role="columnheader">Способности</div>
+              <div class="rb-cell" role="columnheader">Скорость</div>
+            </div>
+
+            {rows.map((row, i) => (
+              <div class="rb-row" role="row">
+                <div class="rb-cell rb-mut" role="cell">
+                  <span class="row-num">{i + 1}</span>
+                  {row.head && <img class="mut-img" src={textureUrl(row.head)} alt="" loading="lazy" decoding="async" />}
+                  <div class="mut-meta">
+                    <span class="mut-name">{row.name}</span>
+                    <div class="mut-badges">
+                      {row.genes.map((g) => {
+                        const icon = getGeneIcon(g);
+                        return icon && <img class="gene-icon" src={textureUrl(icon)} alt={g} title={g} />;
+                      })}
+                      {row.tier && (
+                        <span class="tier-badge" style={`color:${tierColor(row.tier)};border-color:${tierColor(row.tier)}`}>
+                          {row.tier}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rb-cell rb-stat" role="cell" data-label="HP">
+                  {row.hp ? <StatBox oldVal={row.hp.old} newVal={row.hp.new} /> : <span class="dash">—</span>}
+                </div>
+
+                <div class="rb-cell rb-stat" role="cell" data-label="Атака 1">
+                  {row.atk1 ? <StatBox oldVal={row.atk1.old} newVal={row.atk1.new} /> : <span class="dash">—</span>}
+                </div>
+
+                <div class="rb-cell rb-stat" role="cell" data-label="Атака 2">
+                  {row.atk2 ? <StatBox oldVal={row.atk2.old} newVal={row.atk2.new} /> : <span class="dash">—</span>}
+                </div>
+
+                <div class="rb-cell rb-stat" role="cell" data-label="Способности">
+                  {row.abilities.length > 0 ? (
+                    row.abilities.map((ab) => {
+                      const pctCls = pctDeltaCls(ab.pct);
+                      return (
+                        <div class="atk-block">
+                          <div class="ability-header">
+                            <span class="ability-label">{ab.label}</span>
+                            <span class="plus-badge" title="Улучшенная (+) версия способности">+</span>
+                            {ab.pct && (
+                              <span class={`ability-pct ${pctCls}`}>
+                                {ab.pct.old ?? '—'}%<span class="arrow">→</span>{ab.pct.new ?? '—'}%
+                              </span>
+                            )}
+                          </div>
+                          <div class="lvl-pair">
+                            {ab.atk1 && (
+                              <div class="ability-atk">
+                                <span class="ability-atk-label">Атк1</span>
+                                <StatBox oldVal={ab.atk1.old} newVal={ab.atk1.new} />
+                              </div>
+                            )}
+                            {ab.atk2 && (
+                              <div class="ability-atk">
+                                <span class="ability-atk-label">Атк2</span>
+                                <StatBox oldVal={ab.atk2.old} newVal={ab.atk2.new} />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <span class="dash">—</span>
+                  )}
+                </div>
+
+                <div class="rb-cell" role="cell" data-label="Скорость">
+                  {row.speed ? (
+                    <StatBox oldVal={row.speed.old} newVal={row.speed.new} />
+                  ) : (
+                    <span class="dash">—</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
+      );
+    })}
   </section>
 </BaseLayout>
 
 <script>
   const btn = document.getElementById('downloadRebalanceBtn') as HTMLButtonElement | null;
+  const dateSelect = document.getElementById('rebalanceDateSelect') as HTMLSelectElement | null;
 
   btn?.addEventListener('click', async () => {
     const original = btn.textContent;
     btn.disabled = true;
     btn.textContent = '⏳ Генерация...';
     try {
-      const res = await fetch('/api/screenshot-rebalance');
+      const dateValue = dateSelect?.value || 'all';
+      const qs = dateValue !== 'all' ? `?date=${encodeURIComponent(dateValue)}` : '';
+      const res = await fetch(`/api/screenshot-rebalance${qs}`);
       if (!res.ok) throw new Error(await res.text());
       const blob = await res.blob();
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
       a.href = objectUrl;
-      a.download = 'rebalance-history.png';
+      const fileSlug = dateValue !== 'all' ? dateValue.slice(0, 10) : 'all';
+      a.download = `rebalance-${fileSlug}.png`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -166,7 +331,7 @@ const headTexture = (id: string): string | null => {
 
 <style>
   .rebalance-page {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 1.5rem 1rem 3rem;
   }
@@ -178,11 +343,27 @@ const headTexture = (id: string): string | null => {
     color: #94a3b8;
     margin-bottom: 1.5rem;
   }
+  .export-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .date-select {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    cursor: pointer;
+  }
   .download-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    margin-bottom: 1.25rem;
     padding: 0.55rem 1rem;
     font-size: 0.85rem;
     font-weight: 700;
@@ -232,47 +413,196 @@ const headTexture = (id: string): string | null => {
     font-size: 0.85rem;
     color: #60a5fa;
   }
-  .table-wrap {
-    overflow-x: auto;
+
+  /* --- "Table" built from divs so it can reflow into cards on mobile --- */
+  .rb-table {
+    display: flex;
+    flex-direction: column;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-  }
-  th,
-  td {
-    padding: 0.5rem 0.75rem;
-    text-align: left;
+  .rb-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.1fr) 0.95fr 0.9fr 0.9fr 1.55fr 0.6fr;
+    gap: 0;
+    padding: 0.75rem 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
-  th {
+  .rb-row.rb-head {
+    border-top: none;
     color: #94a3b8;
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  .mut-cell {
+  .rb-cell {
     display: flex;
     align-items: center;
+    min-width: 0;
+    padding: 0 0.75rem;
+  }
+  .rb-cell:first-child {
+    padding-left: 0;
+  }
+  .rb-cell:last-child {
+    padding-right: 0;
+  }
+  .rb-cell:not(:first-child) {
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .rb-stat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .rb-mut {
     gap: 0.5rem;
     font-weight: 700;
     color: #f1f5f9;
-    white-space: nowrap;
   }
-  .mut-cell img {
+  .row-num {
+    flex-shrink: 0;
+    min-width: 1.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #64748b;
+    text-align: right;
+  }
+  .rb-mut img.gene-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .rb-mut img.mut-img {
     width: 36px;
     height: 36px;
     object-fit: contain;
+    flex-shrink: 0;
   }
-  .num {
-    text-align: right;
+  .mut-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .mut-name {
+    overflow-wrap: break-word;
+    line-height: 1.2;
+  }
+  .mut-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .tier-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid;
+    border-radius: 5px;
+  }
+  .plus-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.16);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    border-radius: 50%;
+    cursor: help;
+    vertical-align: middle;
+  }
+  .lvl-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .atk-block + .atk-block {
+    margin-top: 0.5rem;
+  }
+  .dash {
+    color: #475569;
+  }
+  .ability-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.15rem;
+  }
+  .ability-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #c4b5fd;
+  }
+  .ability-pct {
+    font-size: 0.72rem;
     font-variant-numeric: tabular-nums;
+    color: #94a3b8;
   }
-  .delta.up {
+  .ability-pct .arrow {
+    margin: 0 0.15rem;
+    color: #64748b;
+  }
+  .ability-pct.up {
     color: #4ade80;
   }
-  .delta.down {
+  .ability-pct.down {
     color: #f87171;
+  }
+  .ability-atk {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+  .ability-atk-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #64748b;
+    min-width: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  /* --- Mobile: rows become cards, header hides, cells get their own label --- */
+  @media (max-width: 700px) {
+    .rb-row.rb-head {
+      display: none;
+    }
+    .rb-row {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      padding: 0.9rem 1rem;
+    }
+    .rb-cell:not(.rb-mut) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .rb-cell:not(:first-child) {
+      border-left: none;
+      padding-left: 0;
+    }
+    .rb-cell[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+    }
+    .rb-mut {
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .rb-mut img.mut-img {
+      width: 44px;
+      height: 44px;
+    }
   }
 </style>

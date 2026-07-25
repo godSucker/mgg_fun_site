@@ -14,18 +14,19 @@ interface SkinEntry {
 }
 
 /**
- * Извлекает имя файла скина из пути semi-full.
- * image[1] = "textures_by_skins/textures_by_skin/semi-full/specimen_a_01_japan.webp"
- * → возвращает "specimen_a_01_japan"
+ * Строит ожидаемое имя файла скина из id+skin напрямую (specimen_<code>_<skin>),
+ * а не из image[1]: build-skins.ts добавляет image[1] в skins.json ТОЛЬКО когда
+ * файл уже существует на диске - если читать имя оттуда, скин без предыдущей
+ * успешной загрузки никогда не получит первую попытку (circular dependency,
+ * из-за которой ряд скинов годами не скачивался, хотя Kobojo отдаёт 200).
  */
-function extractSkinFileName(imagePath: string): string | null {
-  const match = imagePath.match(/semi-full\/(.+)\.webp$/)
-  return match ? match[1] : null
+function skinFileNameFor(skin: SkinEntry): string | null {
+  const code = skin.id?.replace(/^Specimen_/i, '').toLowerCase()
+  if (!code || !skin.skin) return null
+  return `specimen_${code}_${skin.skin.toLowerCase()}`
 }
 
-async function downloadSkinTexture(
-  skinFileName: string
-): Promise<'ok' | 'exists' | 'error'> {
+async function downloadSkinTexture(skinFileName: string): Promise<'ok' | 'exists' | 'error'> {
   const targetPath = path.join(SKINS_DIR, `${skinFileName}.webp`)
 
   try {
@@ -58,16 +59,10 @@ async function main() {
   const stats = { downloaded: 0, exists: 0, errors: 0, skipped: 0 }
 
   for (const skin of skins) {
-    const semiFull = skin.image?.[1]
-    if (!semiFull) {
-      stats.skipped++
-      continue
-    }
-
-    const skinFileName = extractSkinFileName(semiFull)
+    const skinFileName = skinFileNameFor(skin)
     if (!skinFileName) {
       stats.skipped++
-      console.log(`[SKIP] ${skin.id} — не удалось извлечь имя из пути: ${semiFull}`)
+      console.log(`[SKIP] ${skin.id} — не удалось построить имя файла (нет skin?)`)
       continue
     }
 

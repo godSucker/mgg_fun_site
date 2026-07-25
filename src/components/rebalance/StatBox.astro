@@ -1,0 +1,59 @@
+---
+interface Props {
+  oldVal: number | null;
+  newVal: number | null;
+}
+const { oldVal, newVal } = Astro.props;
+
+const fmtNum = (n: number | null) => (n == null ? '—' : n.toLocaleString('ru-RU'));
+
+// Только цвет направления (зелёный/красный), без числового % изменения -
+// автор сайта решил, что процент ребаланса только мешает восприятию.
+const directionCls = (): string => {
+  if (oldVal == null || newVal == null || oldVal === 0) return '';
+  const pct = ((newVal - oldVal) / oldVal) * 100;
+  if (Math.abs(pct) < 0.005) return '';
+  return pct > 0 ? 'up' : 'down';
+};
+
+const cls = directionCls();
+---
+
+<div class="statbox">
+  <span class="vals">
+    <span class="old-val">{fmtNum(oldVal)}</span>
+    <span class="arrow">→</span>
+    <span class={`new-val ${cls}`}>{fmtNum(newVal)}</span>
+  </span>
+</div>
+
+<style>
+  .statbox {
+    display: flex;
+    align-items: baseline;
+    line-height: 1.3;
+    min-width: 0;
+  }
+  .vals {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .old-val {
+    color: #94a3b8;
+  }
+  .new-val {
+    color: #e2e8f0;
+    font-weight: 700;
+  }
+  .new-val.up {
+    color: #4ade80;
+  }
+  .new-val.down {
+    color: #f87171;
+  }
+  .arrow {
+    color: #64748b;
+    margin: 0 0.2rem;
+  }
+</style>

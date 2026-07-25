@@ -73,13 +73,17 @@ def _req(url, method="GET"):
 def http_signature(url):
     """HEAD an atlas -> stable signature string, or None if it does not exist.
 
-    Used both to test existence (skip 404 tiers/skins) and to detect changes."""
+    Used both to test existence (skip 404 tiers/skins) and to detect changes.
+    Content-Length only: Kobojo's CDN serves the same atlas with a flip-flopping
+    Last-Modified between two values (confirmed via HEAD on live URLs - same
+    length, different date depending which edge answers), so including it made
+    ~150-200 unchanged atlases look "new" on every run, causing needless
+    re-renders and commits daily. ETag is never sent by this CDN (always empty),
+    so it added nothing. Length alone will miss a same-size content edit, but
+    that's an acceptable trade for actually-working incremental detection."""
     try:
         with urllib.request.urlopen(_req(url, "HEAD"), timeout=30) as r:
-            h = r.headers
-            return "%s|%s|%s" % (h.get("Last-Modified", ""),
-                                 h.get("Content-Length", ""),
-                                 h.get("ETag", ""))
+            return r.headers.get("Content-Length", "")
     except urllib.error.HTTPError:
         return None
     except Exception:
@@ -312,7 +316,13 @@ def load_state():
 
 
 def save_state(state):
-    json.dump(state, open(STATE_PATH, "w"), indent=0, sort_keys=True)
+    # Atomic write: a SIGKILL (job timeout) mid-write must not truncate the
+    # existing rendered.json, or load_state() falls back to {} and the next
+    # run re-renders everything instead of resuming from the checkpoint.
+    tmp_path = STATE_PATH + ".tmp"
+    with open(tmp_path, "w") as fh:
+        json.dump(state, fh, indent=0, sort_keys=True)
+    os.replace(tmp_path, STATE_PATH)
 
 
 def summary(stats, review, failures):
@@ -395,6 +405,9 @@ def main():
         n += 1
         if n % 25 == 0:
             print("  ... %d rendered" % n, flush=True)
+            save_state(state)  # checkpoint: a mid-run timeout must not discard
+            # everything rendered so far, or a heavy day (many real content
+            # changes) can never make net progress across cron runs.
         if args.limit and n >= args.limit:
             print("[limit] stopping at %d" % n)
             break
