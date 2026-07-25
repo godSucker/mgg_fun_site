@@ -3,7 +3,10 @@ export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EvotechCalculator from '@/components/EvotechCalculator.svelte';
 ---
-<BaseLayout title="Калькулятор эво">
+<BaseLayout
+  title="Калькулятор эво"
+  description="Калькулятор уровня эво MGG (Mutants Genetic Gladiators): расчёт необходимых ресурсов для поднятия уровня."
+>
   <!-- Загрузка Svelte-компонента на клиенте -->
   <EvotechCalculator client:load />
 </BaseLayout>

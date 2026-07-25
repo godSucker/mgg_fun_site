@@ -12,7 +12,11 @@ const charmsColumns = charmsData && charmsData.length > 0
   : [];
 ---
 
-<BaseLayout title="Чары (Charms)" viewport={NO_ZOOM_VIEWPORT}>
+<BaseLayout
+  title="Чары (Charms)"
+  description="Все чармы (charms) Mutants Genetic Gladiators (MGG): характеристики, где добыть, на что влияют."
+  viewport={NO_ZOOM_VIEWPORT}
+>
   <h1>Чары</h1>
   <p>Бустеры, увеличивающие статы и возможности мутантов.</p>
   <DataTable columns={charmsColumns} rows={charmsData} title="Список чаров" />
