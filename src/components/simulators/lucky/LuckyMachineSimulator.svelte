@@ -176,7 +176,7 @@
       <label class="input-group">
         <span>Количество платных прокрутов</span>
         <div class="input-wrapper">
-          <input type="number" min={1} bind:value={spins} />
+          <input id="lucky-spins" name="lucky-spins" type="number" min={1} bind:value={spins} />
           <span class="suffix">спинов</span>
         </div>
       </label>

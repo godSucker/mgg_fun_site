@@ -277,25 +277,25 @@
       <div class="space-y-3">
         <label class="block">
           <span class="text-sky-300/80 text-sm">Стартовый уровень (≥ 5)</span>
-          <input type="text" bind:value={startLevel} oninput={onInputStartLevel} inputmode="numeric" placeholder="Например, 120"
+          <input id="evo-start-level" name="evo-start-level" type="text" bind:value={startLevel} oninput={onInputStartLevel} inputmode="numeric" placeholder="Например, 120"
             class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Серебро</span>
-           <input type="text" bind:value={silver} oninput={onInputSilver} inputmode="numeric" placeholder="Можно оставить пустым"
+           <input id="evo-silver" name="evo-silver" type="text" bind:value={silver} oninput={onInputSilver} inputmode="numeric" placeholder="Можно оставить пустым"
             class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Золото</span>
-           <input type="text" bind:value={gold} oninput={onInputGold} inputmode="numeric" placeholder="Можно оставить пустым"
+           <input id="evo-gold" name="evo-gold" type="text" bind:value={gold} oninput={onInputGold} inputmode="numeric" placeholder="Можно оставить пустым"
               class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 placeholder-slate-500 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad"/>
         </label>
 
         <label class="block">
           <span class="text-sky-300/80 text-sm">Скидка</span>
-           <select bind:value={discount}
+           <select id="evo-discount" name="evo-discount" bind:value={discount}
                class="mt-1 w-full rounded-xl border border-slate-700/70 bg-slate-950/60 text-sky-100 outline-none focus:ring-2 focus:ring-sky-500/60 evo-pad">
             <option value="0">0%</option>
             <option value="60">60%</option>

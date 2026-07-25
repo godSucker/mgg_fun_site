@@ -121,7 +121,7 @@
 <div class="leaderboard-container">
   <div class="search-bar">
     <div class="search-icon">🔍</div>
-    <input type="text" placeholder="Найти игрока..." bind:value={query} />
+    <input id="evo-top-search" name="evo-top-search" type="text" placeholder="Найти игрока..." bind:value={query} />
   </div>
 
   <div class="list">

@@ -169,6 +169,8 @@
         <span>Бюджет золота</span>
         <div class="input-wrapper">
           <input
+            id="cash-budget"
+            name="cash-budget"
             type="number"
             min={costPerSpin}
             bind:value={budget}

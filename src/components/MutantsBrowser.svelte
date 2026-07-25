@@ -439,6 +439,8 @@
   <!-- Поиск -->
   <div class="mb-3">
     <input
+      id="mutant-search"
+      name="mutant-search"
       class="w-full px-4 py-3 rounded-lg ring-1 transition outline-none bg-slate-900 text-slate-100 placeholder-slate-400 ring-white/10 focus:ring-2 focus:ring-cyan-400"
       placeholder="Введите имя мутанта…"
       bind:value={query}
@@ -516,6 +518,8 @@
     <label class="flex flex-col gap-1">
       <span class="text-xs text-slate-300">Тип</span>
       <select
+        id="mutant-type-filter"
+        name="mutant-type-filter"
         class="px-3 py-2 rounded-lg ring-1 bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         bind:value={typeSel}
       >
@@ -527,6 +531,8 @@
     <label class="flex flex-col gap-1">
       <span class="text-xs text-slate-300">Бинго</span>
       <select
+        id="mutant-bingo-filter"
+        name="mutant-bingo-filter"
         class="px-3 py-2 rounded-lg ring-1 bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         bind:value={bingoSel}
       >

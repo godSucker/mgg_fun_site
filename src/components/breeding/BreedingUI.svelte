@@ -697,7 +697,7 @@
   <div class="panel list-panel {mobileTab === 'list' ? 'active' : ''}">
       <div class="list-header">
           <div class="search-box">
-              <input type="text" bind:value={search} placeholder="Поиск мутанта..." />
+              <input id="breeding-search" name="breeding-search" type="text" bind:value={search} placeholder="Поиск мутанта..." />
               <span class="icon">🔍</span>
           </div>
 

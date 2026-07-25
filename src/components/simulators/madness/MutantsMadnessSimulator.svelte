@@ -344,22 +344,22 @@
     <div class="inputs">
       <label class="field">
         <span class="label">Уровень славы игрока</span>
-        <input type="number" min={1} bind:value={level} />
+        <input id="madness-level" name="madness-level" type="number" min={1} bind:value={level} />
         <small>Максимальное исследование: {maxResearch > 0 ? maxResearch : 'не доступно'}</small>
       </label>
       <label class="field">
         <span class="label">Золото</span>
-        <input type="number" min={0} step={1} bind:value={gold} />
+        <input id="madness-gold" name="madness-gold" type="number" min={0} step={1} bind:value={gold} />
         <small>Стоимость прокрута: {formatNumber(goldCostPerSpin)} золота</small>
       </label>
       <label class="field">
         <span class="label">Жетоны джекпота</span>
-        <input type="number" min={0} step={1} bind:value={tokens} />
+        <input id="madness-tokens" name="madness-tokens" type="number" min={0} step={1} bind:value={tokens} />
         <small>Стоимость прокрута: {formatNumber(tokenCostPerSpin)} жетонов джекпота</small>
       </label>
       <label class="field">
         <span class="label">Скидка</span>
-        <select bind:value={discountValue}>
+        <select id="madness-discount" name="madness-discount" bind:value={discountValue}>
           {#each discountOptions as option}
             <option value={option}>{option}%</option>
           {/each}

@@ -1368,6 +1368,8 @@
       </div>
 
       <input
+        id="stats-search"
+        name="stats-search"
         class="search"
         type="text"
         placeholder="Введите имя мутанта"
@@ -1420,6 +1422,8 @@
             <header class="title">{selected.name}</header>
            <div class="compare-search-wrap" data-slot="1">
              <input
+               id="stats-compare-search-1"
+               name="stats-compare-search-1"
                class="compare-search-input"
                type="text"
                placeholder="Поиск мутанта..."
@@ -1714,6 +1718,8 @@
             {#if selected2}<header class="title">{selected2.name}</header>{/if}
            <div class="compare-search-wrap" data-slot="2">
             <input
+              id="stats-compare-search-2"
+              name="stats-compare-search-2"
               class="compare-search-input"
               type="text"
               placeholder="Поиск мутанта..."
