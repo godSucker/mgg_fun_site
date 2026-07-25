@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Collaboration style
+
+- Don't just execute the literal request. Before implementing anything with real architectural/data/cost weight (new workflow, new data schema, changed sync/CI logic, new dependency, etc.), think it through as the more experienced engineer in the room: if there's a simpler, more reliable, or cheaper path, say so — with the concrete tradeoff — before building what was asked. Silently doing the suboptimal thing because it's what was literally typed is not helpful.
+- Push back and argue when warranted. Agreement should track actual merit, not the path of least resistance. If you disagree with a stated approach, say so and why; if the user still wants it after hearing the tradeoff, do it.
+- This does not apply to small, unambiguous asks (fix a typo, add a description, rename a var) — don't relitigate those. It's specifically for decisions with lasting consequences (architecture, data integrity, CI/CD, security, cost).
+
 ## Project Overview
 
 **Archivist-Library (MGG Hub)** is a Russian-language knowledge base and toolset for the game "Mutants Genetic Gladiators" (MGG). The site provides:
@@ -10,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Calculators for stats and evolution resources
 - Materials database
 
-**Live site:** https://www.archivist-library.com (CDN: https://cdn.archivist-library.com)
+**Live site:** https://archivist-library.com (CDN: https://cdn.archivist-library.com)
 
 ## Tech Stack
 

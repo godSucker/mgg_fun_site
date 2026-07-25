@@ -19,7 +19,7 @@ const SITE_NAME = 'Archivist-Library — база знаний MGG (Mutants Gene
 const pageTitle = title ? `${title} | Archivist-Library (MGG)` : SITE_NAME;
 const pageDescription = description ??
   'База знаний по игре Mutants Genetic Gladiators (MGG): вики мутантов, симуляторы скрещивания, реактора и рулеток, калькуляторы статов и эво.';
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://www.archivist-library.com').href;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://archivist-library.com').href;
 const isHome = Astro.url.pathname === "/";
 
 // SEO: structured data (schema.org). WebSite описывает сайт как единую сущность -
@@ -33,7 +33,7 @@ const structuredData = [
     '@type': 'WebSite',
     name: 'Archivist-Library',
     alternateName: 'MGG Hub',
-    url: 'https://www.archivist-library.com/',
+    url: 'https://archivist-library.com/',
     description:
       'База знаний по игре Mutants Genetic Gladiators (MGG): вики мутантов, симуляторы скрещивания, реактора и рулеток, калькуляторы статов и эво.',
     inLanguage: 'ru',
@@ -42,8 +42,8 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Archivist-Library',
-    url: 'https://www.archivist-library.com/',
-    logo: 'https://www.archivist-library.com/favicon.png',
+    url: 'https://archivist-library.com/',
+    logo: 'https://archivist-library.com/favicon.png',
   },
 ];
 ---
@@ -62,7 +62,7 @@ const structuredData = [
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="https://www.archivist-library.com/preview.jpg" />
+    <meta property="og:image" content="https://archivist-library.com/preview.jpg" />
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
 

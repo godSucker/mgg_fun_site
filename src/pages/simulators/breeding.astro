@@ -5,5 +5,20 @@ import BreedingUI from '@/components/breeding/BreedingUI.svelte';
 ---
 
 <BaseLayout title="Симулятор скрещивания" description="Симулятор скрещивания мутантов MGG (Mutants Genetic Gladiators) с реальными шансами: гены, секретные рецепты, обратный подбор родителей." fullWidth={true}>
+  <p class="breeding-intro">
+    Симулятор скрещивания мутантов Mutants Genetic Gladiators (MGG): рассчитывает реальные шансы получить
+    нужного мутанта по генам родителей, учитывает секретные рецепты скрещивания и позволяет искать родителей
+    в обратном направлении — от желаемого результата к паре мутантов.
+  </p>
   <BreedingUI client:load />
 </BaseLayout>
+
+<style>
+  .breeding-intro {
+    max-width: 900px;
+    margin: 0 auto 0.75rem;
+    padding: 0 1rem;
+    color: #e5e7eb;
+    font-size: 0.95rem;
+  }
+</style>

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /panel-render
 
-Sitemap: https://www.archivist-library.com/sitemap-index.xml
+Sitemap: https://archivist-library.com/sitemap-index.xml

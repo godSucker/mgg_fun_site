@@ -5,5 +5,30 @@ import StatsCalculator from '@/components/StatsCalculator.svelte';
 ---
 
 <BaseLayout title="Калькулятор статов" description="Калькулятор статов мутантов MGG (Mutants Genetic Gladiators): уровень, звёзды, сферы, сравнение двух мутантов.">
- <StatsCalculator client:only="svelte" />
+  <section class="intro">
+    <h1>Калькулятор статов MGG</h1>
+    <p>
+      Считает итоговые характеристики (HP, атака, скорость) любого мутанта Mutants Genetic Gladiators
+      по формуле игры: базовые статы, уровень от 1 до 30, редкость звезды (обычная/бронза/серебро/золото/платина)
+      и установленные сферы. Можно сравнить двух мутантов сразу и подобрать оптимальную прокачку.
+    </p>
+  </section>
+  <StatsCalculator client:only="svelte" />
 </BaseLayout>
+
+<style>
+  .intro {
+    max-width: 900px;
+    margin: 0 auto 1rem;
+    padding: 0 1rem;
+  }
+  .intro h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+    color: #f8fafc;
+  }
+  .intro p {
+    margin: 0;
+    color: #e5e7eb;
+  }
+</style>
