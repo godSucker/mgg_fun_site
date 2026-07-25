@@ -2,15 +2,96 @@ import type { APIRoute } from 'astro'
 
 const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un-tired']
 
-async function sendTelegramMessage(botToken: string, chatId: number | string, text: string) {
+// В группе (несколько людей, файлы шлют не только для тиров) нужен явный
+// триггер в подписи/тексте сообщения, иначе любой присланный файл будет
+// пытаться распарситься как тиры.
+const TIER_TRIGGER = '.тир'
+
+const MENU_KEYBOARD = {
+  inline_keyboard: [
+    [
+      { text: '📊 Статус сайта', callback_data: 'status' },
+      { text: '🔄 Последний синк', callback_data: 'lastsync' },
+    ],
+  ],
+}
+
+async function sendTelegramMessage(
+  botToken: string,
+  chatId: number | string,
+  text: string,
+  replyMarkup?: unknown,
+) {
   try {
     await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text }),
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
+      }),
     })
   } catch {
     // Ответ в чат — best effort, не роняем обработку
+  }
+}
+
+async function answerCallbackQuery(botToken: string, callbackQueryId: string) {
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/answerCallbackQuery`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ callback_query_id: callbackQueryId }),
+    })
+  } catch {
+    // best effort
+  }
+}
+
+async function checkSiteHealth(): Promise<string> {
+  try {
+    const res = await fetch('https://archivist-library.com', {
+      signal: AbortSignal.timeout(10000),
+    })
+    if (!res.ok) {
+      return `🔴 HTTP ${res.status} вместо 200`
+    }
+    const body = await res.text()
+    if (!body.includes('Archivist-Library')) {
+      return '🔴 Код 200, но ожидаемый контент не найден (битая страница)'
+    }
+    return '✅ Сайт отвечает нормально (200 OK)'
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    return `🔴 Не удалось достучаться: ${message}`
+  }
+}
+
+async function getLastSyncInfo(
+  githubToken: string,
+  owner: string,
+  repo: string,
+): Promise<string> {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/actions/workflows/sync-cron.yml/runs?per_page=1`,
+      { headers: { Authorization: `Bearer ${githubToken}` } },
+    )
+    if (!res.ok) {
+      return `🔴 Не удалось получить данные (GitHub API: ${res.status})`
+    }
+    const data = await res.json()
+    const run = data.workflow_runs?.[0]
+    if (!run) {
+      return 'ℹ️ Прогонов sync-cron ещё не было'
+    }
+    const statusIcon = run.conclusion === 'success' ? '✅' : run.conclusion === 'failure' ? '🔴' : '⏳'
+    const when = new Date(run.created_at).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })
+    return `${statusIcon} Последний прогон: ${when} МСК — ${run.conclusion ?? run.status}\n${run.html_url}`
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    return `🔴 Ошибка запроса к GitHub: ${message}`
   }
 }
 
@@ -44,9 +125,73 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const rawBody = await request.text()
     const body = JSON.parse(rawBody)
+
+    // Нажатие инлайн-кнопки — отдельный тип апдейта, не обычное сообщение.
+    if (body.callback_query) {
+      const cq = body.callback_query
+      const cbChatId = cq.message?.chat?.id ?? null
+      if (cbChatId != null && BOT_TOKEN) {
+        if (cq.data === 'status') {
+          const health = await checkSiteHealth()
+          await sendTelegramMessage(BOT_TOKEN, cbChatId, `[Статус]\n${health}`)
+        } else if (cq.data === 'lastsync') {
+          if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
+            const info = await getLastSyncInfo(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+            await sendTelegramMessage(BOT_TOKEN, cbChatId, `[Синк]\n${info}`)
+          }
+        }
+      }
+      if (BOT_TOKEN) await answerCallbackQuery(BOT_TOKEN, cq.id)
+      return new Response(JSON.stringify({ ok: true }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+
     chatId = body.message?.chat?.id ?? null
+    const text: string = body.message?.text ?? ''
+
+    if (chatId != null && BOT_TOKEN) {
+      if (text === '/start' || text === '/menu') {
+        await sendTelegramMessage(BOT_TOKEN, chatId, 'Меню:', MENU_KEYBOARD)
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      if (text === '/status') {
+        const health = await checkSiteHealth()
+        await sendTelegramMessage(BOT_TOKEN, chatId, `[Статус]\n${health}`)
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      if (text === '/lastsync') {
+        if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
+          const info = await getLastSyncInfo(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+          await sendTelegramMessage(BOT_TOKEN, chatId, `[Синк]\n${info}`)
+        }
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+    }
 
     if (body.message && body.message.document) {
+      // В группе — обрабатываем файл, только если в тексте/подписи явно
+      // указан триггер (иначе любой скинутый в чат файл будет пытаться
+      // распарситься как тиры).
+      const caption: string = body.message.caption ?? ''
+      const trigger = `${text} ${caption}`.toLowerCase()
+      if (!trigger.includes(TIER_TRIGGER)) {
+        return new Response(JSON.stringify({ ok: true, skipped: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+
       const fileId = body.message.document.file_id
       const fileName = body.message.document.file_name
 
@@ -152,7 +297,7 @@ export const POST: APIRoute = async ({ request }) => {
       console.log(`Updated ${count} tiers`)
 
       if (chatId != null && BOT_TOKEN) {
-        await sendTelegramMessage(BOT_TOKEN, chatId, `✅ Успех! Обновлено ${count} тиров мутантов.`)
+        await sendTelegramMessage(BOT_TOKEN, chatId, `[Тиры]\n✅ Успех! Обновлено ${count} тиров мутантов.`)
       }
 
       return new Response(
@@ -176,7 +321,7 @@ export const POST: APIRoute = async ({ request }) => {
       await sendTelegramMessage(
         BOT_TOKEN,
         chatId,
-        '❌ Ошибка обработки файла тиров. Попробуйте позже.',
+        '[Тиры]\n❌ Ошибка обработки файла тиров. Попробуйте позже.',
       )
     }
     // 200, а не 500: иначе Telegram ретраит апдейт и дублирует ❌-сообщения.

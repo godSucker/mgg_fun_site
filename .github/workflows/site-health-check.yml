@@ -20,6 +20,15 @@ jobs:
           STATUS=$(curl -s -o /tmp/body.html -w "%{http_code}" --max-time 15 https://archivist-library.com || echo "000")
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
 
+          # github.event.schedule всегда равен строке cron из workflow (одна и та
+          # же для всех 4 дневных прогонов), поэтому "какой именно это прогон"
+          # определяем по текущему часу UTC, а не по event.schedule.
+          if [ "$(date -u +%H)" = "00" ]; then
+            echo "is_midnight=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_midnight=false" >> "$GITHUB_OUTPUT"
+          fi
+
           if [ "$STATUS" != "200" ]; then
             echo "failed=true" >> "$GITHUB_OUTPUT"
             echo "reason=HTTP $STATUS вместо 200 (возможно, relay/Vercel Firewall/сертификат)" >> "$GITHUB_OUTPUT"
@@ -33,9 +42,21 @@ jobs:
       - name: Алерт в Telegram при провале
         if: steps.check.outputs.failed == 'true'
         run: |
+          MSG=$(printf '[Health-Check]\n🔴 archivist-library.com: health check не прошёл — %s' "${{ steps.check.outputs.reason }}")
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-            -d text="🔴 archivist-library.com: health check не прошёл — ${{ steps.check.outputs.reason }}"
+            -d text="$MSG"
+
+      # "Тишина" от бота может означать и "всё ок", и "мониторинг сам сломался".
+      # Раз в сутки (на прогоне в 00:00 UTC) шлём спокойный heartbeat независимо
+      # от результата, чтобы не путать эти два случая.
+      - name: Суточный heartbeat
+        if: steps.check.outputs.failed == 'false' && steps.check.outputs.is_midnight == 'true'
+        run: |
+          MSG=$(printf '[Health-Check]\n✅ Heartbeat: мониторинг работает, сайт в порядке (HTTP %s)' "${{ steps.check.outputs.status }}")
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="$MSG"
 
       - name: Итог
         if: always()

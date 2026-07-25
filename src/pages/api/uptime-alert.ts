@@ -36,7 +36,8 @@ export const POST: APIRoute = async ({ request, url }) => {
   const isUp = /up/i.test(alertType)
   const icon = isUp ? '✅' : '🔴'
   const text = [
-    `${icon} UptimeRobot: ${monitor}`,
+    `[UptimeRobot]`,
+    `${icon} ${monitor}`,
     `Статус: ${alertType}`,
     details ? `Детали: ${details}` : null,
     monitorUrl ? monitorUrl : null,
