@@ -12,7 +12,11 @@ const orbsColumns = orbsData && orbsData.length > 0
   : [];
 ---
 
-<BaseLayout title="Сферы (Orbs)" viewport={NO_ZOOM_VIEWPORT}>
+<BaseLayout
+  title="Сферы (Orbs)"
+  description="Все сферы (orbs) MGG (Mutants Genetic Gladiators): типы, эффекты и где их получить."
+  viewport={NO_ZOOM_VIEWPORT}
+>
   <h1>Сферы</h1>
   <p>Сферы дают уникальные бонусы при установке на мутантов.</p>
   <DataTable columns={orbsColumns} rows={orbsData} title="Список сфер" />

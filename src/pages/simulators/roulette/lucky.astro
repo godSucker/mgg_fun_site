@@ -9,7 +9,11 @@ const freeSpinReward = luckyMachine.rewards.find((reward) => reward.isFreeTry) ?
 const jackpotChance = jackpotReward ? getRewardWithChance(jackpotReward, luckyMachine).chance : 0;
 const freeSpinChance = freeSpinReward ? getRewardWithChance(freeSpinReward, luckyMachine).chance : 0;
 ---
-<BaseLayout title="Lucky Slots — симулятор рулетки" fullWidth={true}>
+<BaseLayout
+  title="Lucky Slots — симулятор рулетки"
+  description="Симулятор рулетки Lucky Slots в Mutants Genetic Gladiators (MGG): реальные шансы выпадения наград."
+  fullWidth={true}
+>
   <div class="back-nav">
     <a href="/simulators/roulette" class="back-button">
       <span class="icon">←</span>

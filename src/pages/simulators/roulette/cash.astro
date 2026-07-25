@@ -7,7 +7,11 @@ import { cashMachine, getRewardChance } from '../../../lib/cash-machine';
 const jackpotReward = cashMachine.rewards.find((reward) => reward.isSuperJackpot) ?? cashMachine.rewards[0];
 const jackpotChance = jackpotReward ? getRewardChance(jackpotReward, cashMachine) : 0;
 ---
-<BaseLayout title="Cash Frenzy — симулятор рулетки" fullWidth={true}>
+<BaseLayout
+  title="Cash Frenzy — симулятор рулетки"
+  description="Симулятор рулетки Cash Frenzy в Mutants Genetic Gladiators (MGG): реальные шансы выпадения призов и кредитов."
+  fullWidth={true}
+>
   <div class="back-nav">
     <a href="/simulators/roulette" class="back-button">
       <span class="icon">←</span>

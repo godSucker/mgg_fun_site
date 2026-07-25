@@ -21,6 +21,31 @@ const pageDescription = description ??
   'База знаний по игре Mutants Genetic Gladiators (MGG): вики мутантов, симуляторы скрещивания, реактора и рулеток, калькуляторы статов и эво.';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://www.archivist-library.com').href;
 const isHome = Astro.url.pathname === "/";
+
+// SEO: structured data (schema.org). WebSite описывает сайт как единую сущность -
+// помогает Google связать бренд-запрос ("archivist-library") именно с этим доменом,
+// а не потеряться среди похожих названий. Organization даёт то же самое для карточки
+// бренда в поиске. Отдаём на каждой странице (не только на главной) - не мешает,
+// а лишний сигнал сущности с любой проиндексированной страницы не помешает.
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Archivist-Library',
+    alternateName: 'MGG Hub',
+    url: 'https://www.archivist-library.com/',
+    description:
+      'База знаний по игре Mutants Genetic Gladiators (MGG): вики мутантов, симуляторы скрещивания, реактора и рулеток, калькуляторы статов и эво.',
+    inLanguage: 'ru',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Archivist-Library',
+    url: 'https://www.archivist-library.com/',
+    logo: 'https://www.archivist-library.com/favicon.png',
+  },
+];
 ---
 
 <!DOCTYPE html>
@@ -47,6 +72,11 @@ const isHome = Astro.url.pathname === "/";
     <link rel="canonical" href={canonicalUrl} />
     <!-- Иконка вкладки браузера -->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Structured data (schema.org): помогает поисковикам распознать бренд/сайт -->
+    {structuredData.map((entry) => (
+      // eslint-disable-next-line astro/no-set-html-directive -- статичный JSON.stringify нашего же объекта, не пользовательский ввод
+      <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
     <style>
       body {
         margin: 0;

@@ -9,7 +9,11 @@ const maxLevel = 200;
 const researchChances = getResearchChanceBreakdown(maxLevel, machine);
 const jackpotChance = researchChances.find((entry) => entry.key === 'jackpot')?.chance ?? 0;
 ---
-<BaseLayout title="Mutants Madness — симулятор рулетки" fullWidth={true}>
+<BaseLayout
+  title="Mutants Madness — симулятор рулетки"
+  description="Симулятор рулетки Mutants Madness в Mutants Genetic Gladiators (MGG): реальные шансы выпадения мутантов и наград."
+  fullWidth={true}
+>
   <div class="back-nav">
     <a href="/simulators/roulette" class="back-button">
       <span class="icon">←</span>
