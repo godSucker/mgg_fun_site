@@ -332,7 +332,8 @@
       "star": "gold",
       "skin": "worker",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ab_03_worker.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ab_03_worker.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_03_worker.webp"
       ]
     },
     {
@@ -461,7 +462,8 @@
       "star": "gold",
       "skin": "xmas25",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ab_08_xmas25.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ab_08_xmas25.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_08_xmas25.webp"
       ]
     },
     {
@@ -486,7 +488,8 @@
       "star": "gold",
       "skin": "science",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ab_10_science.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ab_10_science.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_10_science.webp"
       ]
     },
     {
@@ -511,7 +514,8 @@
       "star": "gold",
       "skin": "honeybee",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ab_11_honeybee.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ab_11_honeybee.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ab_11_honeybee.webp"
       ]
     },
     {
@@ -614,7 +618,8 @@
       "star": "none",
       "skin": "chess",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ac_04_chess.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ac_04_chess.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ac_04_chess.webp"
       ]
     },
     {
@@ -795,7 +800,8 @@
       "star": "gold",
       "skin": "xinnian",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ad_02_xinnian.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ad_02_xinnian.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_02_xinnian.webp"
       ]
     },
     {
@@ -950,7 +956,8 @@
       "star": "gold",
       "skin": "blueplanet",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ae_05_blueplanet.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ae_05_blueplanet.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_05_blueplanet.webp"
       ]
     },
     {
@@ -1027,7 +1034,8 @@
       "star": "gold",
       "skin": "valentines",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ae_09_valentines.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ae_09_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ae_09_valentines.webp"
       ]
     },
     {
@@ -1310,7 +1318,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_b_12_easter.png"
+        "textures_by_skins/textures_by_skin/full/FULL_b_12_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_b_12_easter.webp"
       ]
     },
     {
@@ -1413,7 +1422,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ba_04_halloween.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ba_04_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_04_halloween.webp"
       ]
     },
     {
@@ -1464,7 +1474,8 @@
       "star": "silver",
       "skin": "chess",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ba_06_chess.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ba_06_chess.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ba_06_chess.webp"
       ]
     },
     {
@@ -1723,7 +1734,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_bb_06_easter.png"
+        "textures_by_skins/textures_by_skin/full/FULL_bb_06_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_06_easter.webp"
       ]
     },
     {
@@ -1774,7 +1786,8 @@
       "star": "gold",
       "skin": "verdant",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_bb_07_verdant.png"
+        "textures_by_skins/textures_by_skin/full/FULL_bb_07_verdant.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bb_07_verdant.webp"
       ]
     },
     {
@@ -2033,7 +2046,8 @@
       "star": "gold",
       "skin": "valentines",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_bc_10_valentines.png"
+        "textures_by_skins/textures_by_skin/full/FULL_bc_10_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bc_10_valentines.webp"
       ]
     },
     {
@@ -2084,7 +2098,8 @@
       "star": "gold",
       "skin": "thanksgiving",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_bd_01_thanksgiving.png"
+        "textures_by_skins/textures_by_skin/full/FULL_bd_01_thanksgiving.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_01_thanksgiving.webp"
       ]
     },
     {
@@ -2291,7 +2306,8 @@
       "star": "gold",
       "skin": "patrick",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_bd_11_patrick.png"
+        "textures_by_skins/textures_by_skin/full/FULL_bd_11_patrick.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_bd_11_patrick.webp"
       ]
     },
     {
@@ -2368,7 +2384,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_be_07_halloween.png"
+        "textures_by_skins/textures_by_skin/full/FULL_be_07_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_07_halloween.webp"
       ]
     },
     {
@@ -3120,7 +3137,8 @@
       "star": "gold",
       "skin": "independence",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_cc_06_independence.png"
+        "textures_by_skins/textures_by_skin/full/FULL_cc_06_independence.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cc_06_independence.webp"
       ]
     },
     {
@@ -3327,7 +3345,8 @@
       "star": "gold",
       "skin": "oktoberfest",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_cd_08_oktoberfest.png"
+        "textures_by_skins/textures_by_skin/full/FULL_cd_08_oktoberfest.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_08_oktoberfest.webp"
       ]
     },
     {
@@ -3404,7 +3423,8 @@
       "star": "gold",
       "skin": "xmas25",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_cd_11_xmas25.png"
+        "textures_by_skins/textures_by_skin/full/FULL_cd_11_xmas25.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cd_11_xmas25.webp"
       ]
     },
     {
@@ -3481,7 +3501,8 @@
       "star": "gold",
       "skin": "autumn",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ce_06_autumn.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ce_06_autumn.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_06_autumn.webp"
       ]
     },
     {
@@ -3558,7 +3579,8 @@
       "star": "gold",
       "skin": "valentines",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ce_11_valentines.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ce_11_valentines.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ce_11_valentines.webp"
       ]
     },
     {
@@ -3661,7 +3683,8 @@
       "star": "silver",
       "skin": "chess",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_cf_04_chess.png"
+        "textures_by_skins/textures_by_skin/full/FULL_cf_04_chess.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_cf_04_chess.webp"
       ]
     },
     {
@@ -3867,7 +3890,8 @@
       "star": "gold",
       "skin": "spring",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_da_03_spring.png"
+        "textures_by_skins/textures_by_skin/full/FULL_da_03_spring.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_03_spring.webp"
       ]
     },
     {
@@ -3892,7 +3916,8 @@
       "star": "gold",
       "skin": "winter",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_da_04_winter.png"
+        "textures_by_skins/textures_by_skin/full/FULL_da_04_winter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_da_04_winter.webp"
       ]
     },
     {
@@ -4411,7 +4436,8 @@
       "star": "gold",
       "skin": "xmas25",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_dd_04_xmas25.png"
+        "textures_by_skins/textures_by_skin/full/FULL_dd_04_xmas25.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_04_xmas25.webp"
       ]
     },
     {
@@ -4514,7 +4540,8 @@
       "star": "gold",
       "skin": "xmas25",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_dd_09_xmas25.png"
+        "textures_by_skins/textures_by_skin/full/FULL_dd_09_xmas25.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_dd_09_xmas25.webp"
       ]
     },
     {
@@ -4825,7 +4852,8 @@
       "star": "gold",
       "skin": "elements",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_df_04_elements.png"
+        "textures_by_skins/textures_by_skin/full/FULL_df_04_elements.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_df_04_elements.webp"
       ]
     },
     {
@@ -5030,7 +5058,8 @@
       "star": "platinum",
       "skin": "chess",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_e_03_chess.png"
+        "textures_by_skins/textures_by_skin/full/FULL_e_03_chess.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_e_03_chess.webp"
       ]
     },
     {
@@ -5211,7 +5240,8 @@
       "star": "gold",
       "skin": "easter",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_eb_03_easter.png"
+        "textures_by_skins/textures_by_skin/full/FULL_eb_03_easter.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_03_easter.webp"
       ]
     },
     {
@@ -5314,7 +5344,8 @@
       "star": "gold",
       "skin": "aprilfools",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_eb_10_aprilfools.png"
+        "textures_by_skins/textures_by_skin/full/FULL_eb_10_aprilfools.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_10_aprilfools.webp"
       ]
     },
     {
@@ -5339,7 +5370,8 @@
       "star": "gold",
       "skin": "summer",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_eb_11_summer.png"
+        "textures_by_skins/textures_by_skin/full/FULL_eb_11_summer.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_11_summer.webp"
       ]
     },
     {
@@ -5442,7 +5474,8 @@
       "star": "gold",
       "skin": "kings",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ec_05_kings.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ec_05_kings.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_05_kings.webp"
       ]
     },
     {
@@ -5493,7 +5526,8 @@
       "star": "gold",
       "skin": "revolution",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ec_10_revolution.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ec_10_revolution.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_10_revolution.webp"
       ]
     },
     {
@@ -5674,7 +5708,8 @@
       "star": "gold",
       "skin": "carnival",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ed_09_carnival.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ed_09_carnival.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ed_09_carnival.webp"
       ]
     },
     {
@@ -6037,7 +6072,8 @@
       "star": "gold",
       "skin": "europe",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_ef_06_europe.png"
+        "textures_by_skins/textures_by_skin/full/FULL_ef_06_europe.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_06_europe.webp"
       ]
     },
     {
@@ -6138,7 +6174,8 @@
       "star": "gold",
       "skin": "xmas25",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_f_12_xmas25.png"
+        "textures_by_skins/textures_by_skin/full/FULL_f_12_xmas25.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_f_12_xmas25.webp"
       ]
     },
     {
@@ -6267,7 +6304,8 @@
       "star": "gold",
       "skin": "xmas25",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_fa_09_xmas25.png"
+        "textures_by_skins/textures_by_skin/full/FULL_fa_09_xmas25.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_09_xmas25.webp"
       ]
     },
     {
@@ -6422,7 +6460,8 @@
       "star": "gold",
       "skin": "halloween",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_fb_09_halloween.png"
+        "textures_by_skins/textures_by_skin/full/FULL_fb_09_halloween.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fb_09_halloween.webp"
       ]
     },
     {
@@ -6629,7 +6668,8 @@
       "star": "gold",
       "skin": "advent",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_fc_10_advent.png"
+        "textures_by_skins/textures_by_skin/full/FULL_fc_10_advent.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fc_10_advent.webp"
       ]
     },
     {
@@ -6940,7 +6980,8 @@
       "star": "gold",
       "skin": "chess",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_fe_06_chess.png"
+        "textures_by_skins/textures_by_skin/full/FULL_fe_06_chess.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_06_chess.webp"
       ]
     },
     {
@@ -7095,7 +7136,8 @@
       "star": "none",
       "skin": "seasons",
       "image": [
-        "textures_by_skins/textures_by_skin/full/FULL_fe_13_seasons.png"
+        "textures_by_skins/textures_by_skin/full/FULL_fe_13_seasons.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fe_13_seasons.webp"
       ]
     },
     {
