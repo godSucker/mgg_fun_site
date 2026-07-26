@@ -268,21 +268,21 @@
   const TOP_N = 15;
 
   const byRecommended = $derived(() => {
-    const sorted = [...guideResults].sort((a, b) =>
+    const sorted = guideResults.filter((r: any) => !r.isSecret).sort((a, b) =>
       recommendedScore(b.probability, b.duration) - recommendedScore(a.probability, a.duration)
     );
     return sorted.slice(0, 200);
   });
 
   const byTime = $derived(() => {
-    const sorted = [...guideResults].sort((a, b) =>
+    const sorted = guideResults.filter((r: any) => !r.isSecret).sort((a, b) =>
       a.duration !== b.duration ? a.duration - b.duration : b.probability - a.probability
     );
     return sorted.slice(0, 200);
   });
 
   const byProbability = $derived(() => {
-    const sorted = [...guideResults].sort((a, b) =>
+    const sorted = guideResults.filter((r: any) => !r.isSecret).sort((a, b) =>
       b.probability !== a.probability ? b.probability - a.probability : a.duration - b.duration
     );
     return sorted.slice(0, 200);

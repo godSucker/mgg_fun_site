@@ -668,7 +668,7 @@
       "starLabel": "Бронзовая",
       "slug": "ab_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ab_02/specimen_ab_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ab_02/specimen_ab_02_bronze.webp"
     },
     {
       "rewardId": 38,
@@ -686,7 +686,7 @@
       "starLabel": "Бронзовая",
       "slug": "ac_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ac_02/specimen_ac_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ac_02/specimen_ac_02_bronze.webp"
     },
     {
       "rewardId": 39,
@@ -704,7 +704,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_02/specimen_ad_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_02/specimen_ad_02_bronze.webp"
     },
     {
       "rewardId": 40,
@@ -722,7 +722,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_02/specimen_ba_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_02/specimen_ba_02_bronze.webp"
     },
     {
       "rewardId": 41,
@@ -740,7 +740,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_02/specimen_bc_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_02/specimen_bc_02_bronze.webp"
     },
     {
       "rewardId": 42,
@@ -758,7 +758,7 @@
       "starLabel": "Бронзовая",
       "slug": "ca_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ca_02/specimen_ca_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ca_02/specimen_ca_02_bronze.webp"
     },
     {
       "rewardId": 43,
@@ -776,7 +776,7 @@
       "starLabel": "Бронзовая",
       "slug": "cb_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cb_02/specimen_cb_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cb_02/specimen_cb_02_bronze.webp"
     },
     {
       "rewardId": 44,
@@ -794,7 +794,7 @@
       "starLabel": "Бронзовая",
       "slug": "cc_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cc_02/specimen_cc_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cc_02/specimen_cc_02_bronze.webp"
     },
     {
       "rewardId": 45,
@@ -812,7 +812,7 @@
       "starLabel": "Бронзовая",
       "slug": "cf_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cf_02/specimen_cf_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cf_02/specimen_cf_02_bronze.webp"
     },
     {
       "rewardId": 46,
@@ -830,7 +830,7 @@
       "starLabel": "Бронзовая",
       "slug": "de_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/de_02/specimen_de_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/de_02/specimen_de_02_bronze.webp"
     },
     {
       "rewardId": 47,
@@ -848,7 +848,7 @@
       "starLabel": "Бронзовая",
       "slug": "ea_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ea_02/specimen_ea_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ea_02/specimen_ea_02_bronze.webp"
     },
     {
       "rewardId": 48,
@@ -866,7 +866,7 @@
       "starLabel": "Бронзовая",
       "slug": "fd_02",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fd_02/specimen_fd_02_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fd_02/specimen_fd_02_bronze.webp"
     },
     {
       "rewardId": 49,
@@ -884,7 +884,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_99",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_99/BD_99_bronze.webp"
+      "icon": "/textures_by_mutant/bd_99/specimen_bd_99_bronze.webp"
     },
     {
       "rewardId": 50,
@@ -902,7 +902,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_99",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_99/BD_99_bronze.webp"
+      "icon": "/textures_by_mutant/bd_99/specimen_bd_99_bronze.webp"
     },
     {
       "rewardId": 51,
@@ -1514,7 +1514,7 @@
       "starLabel": "Бронзовая",
       "slug": "aa_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/aa_03/specimen_aa_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/aa_03/specimen_aa_03_bronze.webp"
     },
     {
       "rewardId": 85,
@@ -1532,7 +1532,7 @@
       "starLabel": "Бронзовая",
       "slug": "ac_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ac_03/specimen_ac_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ac_03/specimen_ac_03_bronze.webp"
     },
     {
       "rewardId": 87,
@@ -1550,7 +1550,7 @@
       "starLabel": "Бронзовая",
       "slug": "ae_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ae_03/specimen_ae_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ae_03/specimen_ae_03_bronze.webp"
     },
     {
       "rewardId": 88,
@@ -1568,7 +1568,7 @@
       "starLabel": "Бронзовая",
       "slug": "af_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/af_03/specimen_af_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/af_03/specimen_af_03_bronze.webp"
     },
     {
       "rewardId": 89,
@@ -1586,7 +1586,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_03/specimen_ba_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_03/specimen_ba_03_bronze.webp"
     },
     {
       "rewardId": 90,
@@ -1604,7 +1604,7 @@
       "starLabel": "Бронзовая",
       "slug": "bb_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bb_03/specimen_bb_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bb_03/specimen_bb_03_bronze.webp"
     },
     {
       "rewardId": 91,
@@ -1622,7 +1622,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_03/specimen_bc_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_03/specimen_bc_03_bronze.webp"
     },
     {
       "rewardId": 92,
@@ -1640,7 +1640,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_03/specimen_bd_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bd_03/specimen_bd_03_bronze.webp"
     },
     {
       "rewardId": 94,
@@ -1658,7 +1658,7 @@
       "starLabel": "Бронзовая",
       "slug": "cb_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cb_03/specimen_cb_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cb_03/specimen_cb_03_bronze.webp"
     },
     {
       "rewardId": 95,
@@ -1676,7 +1676,7 @@
       "starLabel": "Бронзовая",
       "slug": "cc_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cc_03/specimen_cc_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cc_03/specimen_cc_03_bronze.webp"
     },
     {
       "rewardId": 96,
@@ -1694,7 +1694,7 @@
       "starLabel": "Бронзовая",
       "slug": "ce_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ce_03/specimen_ce_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ce_03/specimen_ce_03_bronze.webp"
     },
     {
       "rewardId": 97,
@@ -1712,7 +1712,7 @@
       "starLabel": "Бронзовая",
       "slug": "cf_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cf_03/specimen_cf_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cf_03/specimen_cf_03_bronze.webp"
     },
     {
       "rewardId": 98,
@@ -1730,7 +1730,7 @@
       "starLabel": "Бронзовая",
       "slug": "da_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/da_03/specimen_da_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/da_03/specimen_da_03_bronze.webp"
     },
     {
       "rewardId": 99,
@@ -1748,7 +1748,7 @@
       "starLabel": "Бронзовая",
       "slug": "db_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/db_03/specimen_db_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/db_03/specimen_db_03_bronze.webp"
     },
     {
       "rewardId": 100,
@@ -1766,7 +1766,7 @@
       "starLabel": "Бронзовая",
       "slug": "dd_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dd_03/specimen_dd_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dd_03/specimen_dd_03_bronze.webp"
     },
     {
       "rewardId": 101,
@@ -1784,7 +1784,7 @@
       "starLabel": "Бронзовая",
       "slug": "df_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/df_03/specimen_df_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/df_03/specimen_df_03_bronze.webp"
     },
     {
       "rewardId": 102,
@@ -1802,7 +1802,7 @@
       "starLabel": "Бронзовая",
       "slug": "eb_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/eb_03/specimen_eb_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/eb_03/specimen_eb_03_bronze.webp"
     },
     {
       "rewardId": 104,
@@ -1820,7 +1820,7 @@
       "starLabel": "Бронзовая",
       "slug": "ec_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ec_03/specimen_ec_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ec_03/specimen_ec_03_bronze.webp"
     },
     {
       "rewardId": 105,
@@ -1838,7 +1838,7 @@
       "starLabel": "Бронзовая",
       "slug": "ed_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ed_03/specimen_ed_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ed_03/specimen_ed_03_bronze.webp"
     },
     {
       "rewardId": 106,
@@ -1856,7 +1856,7 @@
       "starLabel": "Бронзовая",
       "slug": "ee_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ee_03/specimen_ee_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ee_03/specimen_ee_03_bronze.webp"
     },
     {
       "rewardId": 108,
@@ -1874,7 +1874,7 @@
       "starLabel": "Бронзовая",
       "slug": "fa_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fa_03/specimen_fa_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fa_03/specimen_fa_03_bronze.webp"
     },
     {
       "rewardId": 109,
@@ -1892,7 +1892,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_03/specimen_fb_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_03/specimen_fb_03_bronze.webp"
     },
     {
       "rewardId": 110,
@@ -1910,7 +1910,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_04/specimen_fe_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_04/specimen_fe_04_bronze.webp"
     },
     {
       "rewardId": 111,
@@ -1928,7 +1928,7 @@
       "starLabel": "Бронзовая",
       "slug": "ff_03",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ff_03/specimen_ff_03_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ff_03/specimen_ff_03_bronze.webp"
     },
     {
       "rewardId": 112,
@@ -2576,7 +2576,7 @@
       "starLabel": "Бронзовая",
       "slug": "aa_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/aa_04/specimen_aa_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/aa_04/specimen_aa_04_bronze.webp"
     },
     {
       "rewardId": 148,
@@ -2594,7 +2594,7 @@
       "starLabel": "Бронзовая",
       "slug": "ab_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ab_04/specimen_ab_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ab_04/specimen_ab_04_bronze.webp"
     },
     {
       "rewardId": 149,
@@ -2612,7 +2612,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_04/specimen_ad_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_04/specimen_ad_04_bronze.webp"
     },
     {
       "rewardId": 150,
@@ -2630,7 +2630,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_04/specimen_ba_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_04/specimen_ba_04_bronze.webp"
     },
     {
       "rewardId": 151,
@@ -2648,7 +2648,7 @@
       "starLabel": "Бронзовая",
       "slug": "bb_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bb_04/specimen_bb_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bb_04/specimen_bb_04_bronze.webp"
     },
     {
       "rewardId": 152,
@@ -2666,7 +2666,7 @@
       "starLabel": "Бронзовая",
       "slug": "be_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/be_04/specimen_be_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/be_04/specimen_be_04_bronze.webp"
     },
     {
       "rewardId": 153,
@@ -2684,7 +2684,7 @@
       "starLabel": "Бронзовая",
       "slug": "ca_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ca_04/specimen_ca_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ca_04/specimen_ca_04_bronze.webp"
     },
     {
       "rewardId": 154,
@@ -2702,7 +2702,7 @@
       "starLabel": "Бронзовая",
       "slug": "cb_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cb_04/specimen_cb_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cb_04/specimen_cb_04_bronze.webp"
     },
     {
       "rewardId": 155,
@@ -2720,7 +2720,7 @@
       "starLabel": "Бронзовая",
       "slug": "cd_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cd_04/specimen_cd_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cd_04/specimen_cd_04_bronze.webp"
     },
     {
       "rewardId": 156,
@@ -2738,7 +2738,7 @@
       "starLabel": "Бронзовая",
       "slug": "ce_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ce_04/specimen_ce_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ce_04/specimen_ce_04_bronze.webp"
     },
     {
       "rewardId": 157,
@@ -2756,7 +2756,7 @@
       "starLabel": "Бронзовая",
       "slug": "cf_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cf_04/specimen_cf_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cf_04/specimen_cf_04_bronze.webp"
     },
     {
       "rewardId": 158,
@@ -2774,7 +2774,7 @@
       "starLabel": "Бронзовая",
       "slug": "da_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/da_04/specimen_da_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/da_04/specimen_da_04_bronze.webp"
     },
     {
       "rewardId": 159,
@@ -2792,7 +2792,7 @@
       "starLabel": "Бронзовая",
       "slug": "dc_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dc_04/specimen_dc_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dc_04/specimen_dc_04_bronze.webp"
     },
     {
       "rewardId": 160,
@@ -2810,7 +2810,7 @@
       "starLabel": "Бронзовая",
       "slug": "dd_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dd_04/specimen_dd_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dd_04/specimen_dd_04_bronze.webp"
     },
     {
       "rewardId": 161,
@@ -2828,7 +2828,7 @@
       "starLabel": "Бронзовая",
       "slug": "de_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/de_04/specimen_de_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/de_04/specimen_de_04_bronze.webp"
     },
     {
       "rewardId": 162,
@@ -2846,7 +2846,7 @@
       "starLabel": "Бронзовая",
       "slug": "df_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/df_04/specimen_df_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/df_04/specimen_df_04_bronze.webp"
     },
     {
       "rewardId": 163,
@@ -2864,7 +2864,7 @@
       "starLabel": "Бронзовая",
       "slug": "ea_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ea_04/specimen_ea_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ea_04/specimen_ea_04_bronze.webp"
     },
     {
       "rewardId": 164,
@@ -2882,7 +2882,7 @@
       "starLabel": "Бронзовая",
       "slug": "eb_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/eb_04/specimen_eb_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/eb_04/specimen_eb_04_bronze.webp"
     },
     {
       "rewardId": 165,
@@ -2900,7 +2900,7 @@
       "starLabel": "Бронзовая",
       "slug": "ee_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ee_04/specimen_ee_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ee_04/specimen_ee_04_bronze.webp"
     },
     {
       "rewardId": 166,
@@ -2918,7 +2918,7 @@
       "starLabel": "Бронзовая",
       "slug": "ef_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ef_04/specimen_ef_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ef_04/specimen_ef_04_bronze.webp"
     },
     {
       "rewardId": 167,
@@ -2936,7 +2936,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_04/specimen_fb_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_04/specimen_fb_04_bronze.webp"
     },
     {
       "rewardId": 168,
@@ -2954,7 +2954,7 @@
       "starLabel": "Бронзовая",
       "slug": "fd_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fd_04/specimen_fd_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fd_04/specimen_fd_04_bronze.webp"
     },
     {
       "rewardId": 169,
@@ -2972,7 +2972,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_99",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_99/specimen_fe_99_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_99/specimen_fe_99_bronze.webp"
     },
     {
       "rewardId": 170,
@@ -2990,7 +2990,7 @@
       "starLabel": "Бронзовая",
       "slug": "ff_04",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ff_04/specimen_ff_04_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ff_04/specimen_ff_04_bronze.webp"
     },
     {
       "rewardId": 171,
@@ -3602,7 +3602,7 @@
       "starLabel": "Бронзовая",
       "slug": "ac_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ac_05/specimen_ac_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ac_05/specimen_ac_05_bronze.webp"
     },
     {
       "rewardId": 205,
@@ -3620,7 +3620,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_05/specimen_ad_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_05/specimen_ad_05_bronze.webp"
     },
     {
       "rewardId": 206,
@@ -3638,7 +3638,7 @@
       "starLabel": "Бронзовая",
       "slug": "ae_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ae_05/specimen_ae_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ae_05/specimen_ae_05_bronze.webp"
     },
     {
       "rewardId": 207,
@@ -3656,7 +3656,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_05/specimen_ba_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_05/specimen_ba_05_bronze.webp"
     },
     {
       "rewardId": 208,
@@ -3674,7 +3674,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_05/specimen_bc_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_05/specimen_bc_05_bronze.webp"
     },
     {
       "rewardId": 209,
@@ -3692,7 +3692,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_05/specimen_bd_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bd_05/specimen_bd_05_bronze.webp"
     },
     {
       "rewardId": 210,
@@ -3710,7 +3710,7 @@
       "starLabel": "Бронзовая",
       "slug": "be_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/be_05/specimen_be_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/be_05/specimen_be_05_bronze.webp"
     },
     {
       "rewardId": 211,
@@ -3728,7 +3728,7 @@
       "starLabel": "Бронзовая",
       "slug": "bf_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bf_05/specimen_bf_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bf_05/specimen_bf_05_bronze.webp"
     },
     {
       "rewardId": 212,
@@ -3746,7 +3746,7 @@
       "starLabel": "Бронзовая",
       "slug": "ca_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ca_05/specimen_ca_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ca_05/specimen_ca_05_bronze.webp"
     },
     {
       "rewardId": 213,
@@ -3764,7 +3764,7 @@
       "starLabel": "Бронзовая",
       "slug": "cf_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cf_05/specimen_cf_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cf_05/specimen_cf_05_bronze.webp"
     },
     {
       "rewardId": 214,
@@ -3782,7 +3782,7 @@
       "starLabel": "Бронзовая",
       "slug": "da_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/da_05/specimen_da_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/da_05/specimen_da_05_bronze.webp"
     },
     {
       "rewardId": 215,
@@ -3800,7 +3800,7 @@
       "starLabel": "Бронзовая",
       "slug": "dc_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dc_05/specimen_dc_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dc_05/specimen_dc_05_bronze.webp"
     },
     {
       "rewardId": 216,
@@ -3818,7 +3818,7 @@
       "starLabel": "Бронзовая",
       "slug": "de_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/de_05/specimen_de_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/de_05/specimen_de_05_bronze.webp"
     },
     {
       "rewardId": 217,
@@ -3836,7 +3836,7 @@
       "starLabel": "Бронзовая",
       "slug": "df_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/df_05/specimen_df_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/df_05/specimen_df_05_bronze.webp"
     },
     {
       "rewardId": 218,
@@ -3854,7 +3854,7 @@
       "starLabel": "Бронзовая",
       "slug": "ea_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ea_05/specimen_ea_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ea_05/specimen_ea_05_bronze.webp"
     },
     {
       "rewardId": 219,
@@ -3872,7 +3872,7 @@
       "starLabel": "Бронзовая",
       "slug": "eb_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/eb_05/specimen_eb_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/eb_05/specimen_eb_05_bronze.webp"
     },
     {
       "rewardId": 220,
@@ -3890,7 +3890,7 @@
       "starLabel": "Бронзовая",
       "slug": "ec_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ec_05/specimen_ec_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ec_05/specimen_ec_05_bronze.webp"
     },
     {
       "rewardId": 221,
@@ -3908,7 +3908,7 @@
       "starLabel": "Бронзовая",
       "slug": "ed_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ed_06/specimen_ed_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ed_06/specimen_ed_06_bronze.webp"
     },
     {
       "rewardId": 222,
@@ -3926,7 +3926,7 @@
       "starLabel": "Бронзовая",
       "slug": "ef_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ef_05/specimen_ef_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ef_05/specimen_ef_05_bronze.webp"
     },
     {
       "rewardId": 223,
@@ -3944,7 +3944,7 @@
       "starLabel": "Бронзовая",
       "slug": "fa_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fa_05/specimen_fa_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fa_05/specimen_fa_05_bronze.webp"
     },
     {
       "rewardId": 224,
@@ -3962,7 +3962,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_05/specimen_fb_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_05/specimen_fb_05_bronze.webp"
     },
     {
       "rewardId": 225,
@@ -3980,7 +3980,7 @@
       "starLabel": "Бронзовая",
       "slug": "fd_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fd_05/specimen_fd_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fd_05/specimen_fd_05_bronze.webp"
     },
     {
       "rewardId": 227,
@@ -4610,7 +4610,7 @@
       "starLabel": "Бронзовая",
       "slug": "ff_05",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ff_05/specimen_ff_05_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ff_05/specimen_ff_05_bronze.webp"
     },
     {
       "rewardId": 262,
@@ -4628,7 +4628,7 @@
       "starLabel": "Бронзовая",
       "slug": "ab_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ab_06/specimen_ab_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ab_06/specimen_ab_06_bronze.webp"
     },
     {
       "rewardId": 263,
@@ -4646,7 +4646,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_06/specimen_ad_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_06/specimen_ad_06_bronze.webp"
     },
     {
       "rewardId": 264,
@@ -4664,7 +4664,7 @@
       "starLabel": "Бронзовая",
       "slug": "ae_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ae_06/specimen_ae_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ae_06/specimen_ae_06_bronze.webp"
     },
     {
       "rewardId": 265,
@@ -4682,7 +4682,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_06/specimen_ba_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_06/specimen_ba_06_bronze.webp"
     },
     {
       "rewardId": 266,
@@ -4700,7 +4700,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_06/specimen_bc_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_06/specimen_bc_06_bronze.webp"
     },
     {
       "rewardId": 267,
@@ -4718,7 +4718,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_06/specimen_bd_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bd_06/specimen_bd_06_bronze.webp"
     },
     {
       "rewardId": 268,
@@ -4736,7 +4736,7 @@
       "starLabel": "Бронзовая",
       "slug": "be_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/be_06/specimen_be_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/be_06/specimen_be_06_bronze.webp"
     },
     {
       "rewardId": 269,
@@ -4754,7 +4754,7 @@
       "starLabel": "Бронзовая",
       "slug": "bf_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bf_06/specimen_bf_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bf_06/specimen_bf_06_bronze.webp"
     },
     {
       "rewardId": 270,
@@ -4772,7 +4772,7 @@
       "starLabel": "Бронзовая",
       "slug": "ca_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ca_06/specimen_ca_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ca_06/specimen_ca_06_bronze.webp"
     },
     {
       "rewardId": 271,
@@ -4790,7 +4790,7 @@
       "starLabel": "Бронзовая",
       "slug": "cd_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cd_06/specimen_cd_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cd_06/specimen_cd_06_bronze.webp"
     },
     {
       "rewardId": 272,
@@ -4808,7 +4808,7 @@
       "starLabel": "Бронзовая",
       "slug": "ce_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ce_06/specimen_ce_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ce_06/specimen_ce_06_bronze.webp"
     },
     {
       "rewardId": 273,
@@ -4826,7 +4826,7 @@
       "starLabel": "Бронзовая",
       "slug": "da_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/da_06/specimen_da_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/da_06/specimen_da_06_bronze.webp"
     },
     {
       "rewardId": 274,
@@ -4844,7 +4844,7 @@
       "starLabel": "Бронзовая",
       "slug": "db_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/db_06/specimen_db_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/db_06/specimen_db_06_bronze.webp"
     },
     {
       "rewardId": 275,
@@ -4862,7 +4862,7 @@
       "starLabel": "Бронзовая",
       "slug": "dc_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dc_06/specimen_dc_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dc_06/specimen_dc_06_bronze.webp"
     },
     {
       "rewardId": 276,
@@ -4880,7 +4880,7 @@
       "starLabel": "Бронзовая",
       "slug": "ea_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ea_06/specimen_ea_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ea_06/specimen_ea_06_bronze.webp"
     },
     {
       "rewardId": 277,
@@ -4898,7 +4898,7 @@
       "starLabel": "Бронзовая",
       "slug": "ed_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ed_07/specimen_ed_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ed_07/specimen_ed_07_bronze.webp"
     },
     {
       "rewardId": 278,
@@ -4916,7 +4916,7 @@
       "starLabel": "Бронзовая",
       "slug": "ee_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ee_06/specimen_ee_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ee_06/specimen_ee_06_bronze.webp"
     },
     {
       "rewardId": 279,
@@ -4934,7 +4934,7 @@
       "starLabel": "Бронзовая",
       "slug": "ef_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ef_06/specimen_ef_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ef_06/specimen_ef_06_bronze.webp"
     },
     {
       "rewardId": 280,
@@ -4952,7 +4952,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_06/specimen_fb_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_06/specimen_fb_06_bronze.webp"
     },
     {
       "rewardId": 281,
@@ -4970,7 +4970,7 @@
       "starLabel": "Бронзовая",
       "slug": "fd_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fd_06/specimen_fd_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fd_06/specimen_fd_06_bronze.webp"
     },
     {
       "rewardId": 282,
@@ -4988,7 +4988,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_06/specimen_fe_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_06/specimen_fe_06_bronze.webp"
     },
     {
       "rewardId": 283,
@@ -5006,7 +5006,7 @@
       "starLabel": "Бронзовая",
       "slug": "ff_06",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ff_06/specimen_ff_06_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ff_06/specimen_ff_06_bronze.webp"
     },
     {
       "rewardId": 284,
@@ -5600,7 +5600,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_07/specimen_ad_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_07/specimen_ad_07_bronze.webp"
     },
     {
       "rewardId": 317,
@@ -5618,7 +5618,7 @@
       "starLabel": "Бронзовая",
       "slug": "ae_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ae_07/specimen_ae_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ae_07/specimen_ae_07_bronze.webp"
     },
     {
       "rewardId": 318,
@@ -5636,7 +5636,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_07/specimen_ba_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_07/specimen_ba_07_bronze.webp"
     },
     {
       "rewardId": 319,
@@ -5654,7 +5654,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_07/specimen_bc_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_07/specimen_bc_07_bronze.webp"
     },
     {
       "rewardId": 320,
@@ -5672,7 +5672,7 @@
       "starLabel": "Бронзовая",
       "slug": "be_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/be_07/specimen_be_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/be_07/specimen_be_07_bronze.webp"
     },
     {
       "rewardId": 321,
@@ -5690,7 +5690,7 @@
       "starLabel": "Бронзовая",
       "slug": "bf_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bf_07/specimen_bf_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bf_07/specimen_bf_07_bronze.webp"
     },
     {
       "rewardId": 322,
@@ -5708,7 +5708,7 @@
       "starLabel": "Бронзовая",
       "slug": "ca_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ca_07/specimen_ca_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ca_07/specimen_ca_07_bronze.webp"
     },
     {
       "rewardId": 323,
@@ -5726,7 +5726,7 @@
       "starLabel": "Бронзовая",
       "slug": "da_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/da_07/specimen_da_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/da_07/specimen_da_07_bronze.webp"
     },
     {
       "rewardId": 324,
@@ -5744,7 +5744,7 @@
       "starLabel": "Бронзовая",
       "slug": "dd_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dd_07/specimen_dd_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dd_07/specimen_dd_07_bronze.webp"
     },
     {
       "rewardId": 325,
@@ -5762,7 +5762,7 @@
       "starLabel": "Бронзовая",
       "slug": "de_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/de_07/specimen_de_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/de_07/specimen_de_07_bronze.webp"
     },
     {
       "rewardId": 326,
@@ -5780,7 +5780,7 @@
       "starLabel": "Бронзовая",
       "slug": "df_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/df_07/specimen_df_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/df_07/specimen_df_07_bronze.webp"
     },
     {
       "rewardId": 327,
@@ -5798,7 +5798,7 @@
       "starLabel": "Бронзовая",
       "slug": "ea_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ea_07/specimen_ea_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ea_07/specimen_ea_07_bronze.webp"
     },
     {
       "rewardId": 328,
@@ -5816,7 +5816,7 @@
       "starLabel": "Бронзовая",
       "slug": "eb_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/eb_07/specimen_eb_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/eb_07/specimen_eb_07_bronze.webp"
     },
     {
       "rewardId": 329,
@@ -5834,7 +5834,7 @@
       "starLabel": "Бронзовая",
       "slug": "ec_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ec_07/specimen_ec_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ec_07/specimen_ec_07_bronze.webp"
     },
     {
       "rewardId": 330,
@@ -5852,7 +5852,7 @@
       "starLabel": "Бронзовая",
       "slug": "ed_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ed_08/specimen_ed_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ed_08/specimen_ed_08_bronze.webp"
     },
     {
       "rewardId": 331,
@@ -5870,7 +5870,7 @@
       "starLabel": "Бронзовая",
       "slug": "ef_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ef_07/specimen_ef_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ef_07/specimen_ef_07_bronze.webp"
     },
     {
       "rewardId": 332,
@@ -5888,7 +5888,7 @@
       "starLabel": "Бронзовая",
       "slug": "fa_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fa_07/specimen_fa_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fa_07/specimen_fa_07_bronze.webp"
     },
     {
       "rewardId": 333,
@@ -5906,7 +5906,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_07/specimen_fb_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_07/specimen_fb_07_bronze.webp"
     },
     {
       "rewardId": 334,
@@ -5924,7 +5924,7 @@
       "starLabel": "Бронзовая",
       "slug": "fc_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fc_07/specimen_fc_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fc_07/specimen_fc_07_bronze.webp"
     },
     {
       "rewardId": 335,
@@ -5942,7 +5942,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_07",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_07/specimen_fe_07_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_07/specimen_fe_07_bronze.webp"
     },
     {
       "rewardId": 336,
@@ -6356,7 +6356,7 @@
       "starLabel": "Бронзовая",
       "slug": "ac_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ac_08/specimen_ac_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ac_08/specimen_ac_08_bronze.webp"
     },
     {
       "rewardId": 359,
@@ -6374,7 +6374,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_08/specimen_ad_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_08/specimen_ad_08_bronze.webp"
     },
     {
       "rewardId": 360,
@@ -6392,7 +6392,7 @@
       "starLabel": "Бронзовая",
       "slug": "af_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/af_08/specimen_af_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/af_08/specimen_af_08_bronze.webp"
     },
     {
       "rewardId": 361,
@@ -6410,7 +6410,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_08/specimen_ba_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_08/specimen_ba_08_bronze.webp"
     },
     {
       "rewardId": 362,
@@ -6428,7 +6428,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_08/specimen_bc_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_08/specimen_bc_08_bronze.webp"
     },
     {
       "rewardId": 363,
@@ -6446,7 +6446,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_08/specimen_bd_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bd_08/specimen_bd_08_bronze.webp"
     },
     {
       "rewardId": 364,
@@ -6464,7 +6464,7 @@
       "starLabel": "Бронзовая",
       "slug": "bf_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bf_08/specimen_bf_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bf_08/specimen_bf_08_bronze.webp"
     },
     {
       "rewardId": 365,
@@ -6482,7 +6482,7 @@
       "starLabel": "Бронзовая",
       "slug": "cb_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cb_08/specimen_cb_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cb_08/specimen_cb_08_bronze.webp"
     },
     {
       "rewardId": 366,
@@ -6500,7 +6500,7 @@
       "starLabel": "Бронзовая",
       "slug": "ce_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ce_08/specimen_ce_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ce_08/specimen_ce_08_bronze.webp"
     },
     {
       "rewardId": 367,
@@ -6518,7 +6518,7 @@
       "starLabel": "Бронзовая",
       "slug": "cf_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cf_08/specimen_cf_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cf_08/specimen_cf_08_bronze.webp"
     },
     {
       "rewardId": 368,
@@ -6536,7 +6536,7 @@
       "starLabel": "Бронзовая",
       "slug": "db_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/db_08/specimen_db_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/db_08/specimen_db_08_bronze.webp"
     },
     {
       "rewardId": 369,
@@ -6554,7 +6554,7 @@
       "starLabel": "Бронзовая",
       "slug": "dd_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dd_08/specimen_dd_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dd_08/specimen_dd_08_bronze.webp"
     },
     {
       "rewardId": 370,
@@ -6572,7 +6572,7 @@
       "starLabel": "Бронзовая",
       "slug": "de_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/de_08/specimen_de_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/de_08/specimen_de_08_bronze.webp"
     },
     {
       "rewardId": 371,
@@ -6590,7 +6590,7 @@
       "starLabel": "Бронзовая",
       "slug": "fa_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fa_08/specimen_fa_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fa_08/specimen_fa_08_bronze.webp"
     },
     {
       "rewardId": 372,
@@ -6608,7 +6608,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_08/specimen_fb_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_08/specimen_fb_08_bronze.webp"
     },
     {
       "rewardId": 373,
@@ -6626,7 +6626,7 @@
       "starLabel": "Бронзовая",
       "slug": "fc_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fc_08/specimen_fc_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fc_08/specimen_fc_08_bronze.webp"
     },
     {
       "rewardId": 374,
@@ -6644,7 +6644,7 @@
       "starLabel": "Бронзовая",
       "slug": "fd_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fd_08/specimen_fd_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fd_08/specimen_fd_08_bronze.webp"
     },
     {
       "rewardId": 375,
@@ -6680,7 +6680,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_bronze.webp"
     },
     {
       "rewardId": 377,
@@ -6698,7 +6698,7 @@
       "starLabel": "Серебряная",
       "slug": "ad_09",
       "iconVariant": "silver",
-      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_silver_silver.webp"
+      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_silver.webp"
     },
     {
       "rewardId": 378,
@@ -6716,7 +6716,7 @@
       "starLabel": "Золотая",
       "slug": "ad_09",
       "iconVariant": "gold",
-      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_gold_gold.webp"
+      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_gold.webp"
     },
     {
       "rewardId": 379,
@@ -6752,7 +6752,7 @@
       "starLabel": "Бронзовая",
       "slug": "aa_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/aa_08/specimen_aa_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/aa_08/specimen_aa_08_bronze.webp"
     },
     {
       "rewardId": 381,
@@ -6788,7 +6788,7 @@
       "starLabel": "Бронзовая",
       "slug": "ab_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ab_08/specimen_ab_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ab_08/specimen_ab_08_bronze.webp"
     },
     {
       "rewardId": 384,
@@ -6824,7 +6824,7 @@
       "starLabel": "Бронзовая",
       "slug": "bb_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bb_08/specimen_bb_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bb_08/specimen_bb_08_bronze.webp"
     },
     {
       "rewardId": 386,
@@ -6860,7 +6860,7 @@
       "starLabel": "Бронзовая",
       "slug": "be_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/be_08/specimen_be_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/be_08/specimen_be_08_bronze.webp"
     },
     {
       "rewardId": 388,
@@ -6896,7 +6896,7 @@
       "starLabel": "Бронзовая",
       "slug": "ca_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ca_08/specimen_ca_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ca_08/specimen_ca_08_bronze.webp"
     },
     {
       "rewardId": 390,
@@ -6932,7 +6932,7 @@
       "starLabel": "Бронзовая",
       "slug": "cc_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cc_08/specimen_cc_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cc_08/specimen_cc_08_bronze.webp"
     },
     {
       "rewardId": 393,
@@ -6968,7 +6968,7 @@
       "starLabel": "Бронзовая",
       "slug": "dc_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dc_08/specimen_dc_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dc_08/specimen_dc_08_bronze.webp"
     },
     {
       "rewardId": 395,
@@ -7022,7 +7022,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_08",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_08/specimen_fe_08_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_08/specimen_fe_08_bronze.webp"
     },
     {
       "rewardId": 398,
@@ -7076,7 +7076,7 @@
       "starLabel": "Бронзовая",
       "slug": "ac_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ac_09/specimen_ac_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ac_09/specimen_ac_09_bronze.webp"
     },
     {
       "rewardId": 402,
@@ -7112,7 +7112,7 @@
       "starLabel": "Бронзовая",
       "slug": "ae_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ae_09/specimen_ae_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ae_09/specimen_ae_09_bronze.webp"
     },
     {
       "rewardId": 404,
@@ -7148,7 +7148,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_09/specimen_bd_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bd_09/specimen_bd_09_bronze.webp"
     },
     {
       "rewardId": 406,
@@ -7184,7 +7184,7 @@
       "starLabel": "Бронзовая",
       "slug": "be_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/be_09/specimen_be_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/be_09/specimen_be_09_bronze.webp"
     },
     {
       "rewardId": 408,
@@ -7256,7 +7256,7 @@
       "starLabel": "Бронзовая",
       "slug": "cc_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cc_09/specimen_cc_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cc_09/specimen_cc_09_bronze.webp"
     },
     {
       "rewardId": 412,
@@ -7292,7 +7292,7 @@
       "starLabel": "Бронзовая",
       "slug": "cd_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cd_09/specimen_cd_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cd_09/specimen_cd_09_bronze.webp"
     },
     {
       "rewardId": 414,
@@ -7328,7 +7328,7 @@
       "starLabel": "Бронзовая",
       "slug": "cf_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cf_09/specimen_cf_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cf_09/specimen_cf_09_bronze.webp"
     },
     {
       "rewardId": 416,
@@ -7364,7 +7364,7 @@
       "starLabel": "Бронзовая",
       "slug": "de_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/de_09/specimen_de_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/de_09/specimen_de_09_bronze.webp"
     },
     {
       "rewardId": 418,
@@ -7400,7 +7400,7 @@
       "starLabel": "Бронзовая",
       "slug": "df_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/df_09/specimen_df_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/df_09/specimen_df_09_bronze.webp"
     },
     {
       "rewardId": 420,
@@ -7436,7 +7436,7 @@
       "starLabel": "Бронзовая",
       "slug": "ea_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ea_09/specimen_ea_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ea_09/specimen_ea_09_bronze.webp"
     },
     {
       "rewardId": 422,
@@ -7490,7 +7490,7 @@
       "starLabel": "Бронзовая",
       "slug": "ec_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ec_09/specimen_ec_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ec_09/specimen_ec_09_bronze.webp"
     },
     {
       "rewardId": 425,
@@ -7526,7 +7526,7 @@
       "starLabel": "Бронзовая",
       "slug": "fd_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fd_09/specimen_fd_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fd_09/specimen_fd_09_bronze.webp"
     },
     {
       "rewardId": 427,
@@ -7562,7 +7562,7 @@
       "starLabel": "Бронзовая",
       "slug": "aa_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/aa_09/specimen_aa_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/aa_09/specimen_aa_09_bronze.webp"
     },
     {
       "rewardId": 429,
@@ -7634,7 +7634,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_09/specimen_ba_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_09/specimen_ba_09_bronze.webp"
     },
     {
       "rewardId": 433,
@@ -7670,7 +7670,7 @@
       "starLabel": "Бронзовая",
       "slug": "bb_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bb_09/specimen_bb_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bb_09/specimen_bb_09_bronze.webp"
     },
     {
       "rewardId": 435,
@@ -7706,7 +7706,7 @@
       "starLabel": "Бронзовая",
       "slug": "bc_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bc_09/specimen_bc_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bc_09/specimen_bc_09_bronze.webp"
     },
     {
       "rewardId": 437,
@@ -7742,7 +7742,7 @@
       "starLabel": "Бронзовая",
       "slug": "cb_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cb_09/specimen_cb_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cb_09/specimen_cb_09_bronze.webp"
     },
     {
       "rewardId": 439,
@@ -7778,7 +7778,7 @@
       "starLabel": "Бронзовая",
       "slug": "ce_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ce_09/specimen_ce_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ce_09/specimen_ce_09_bronze.webp"
     },
     {
       "rewardId": 441,
@@ -7814,7 +7814,7 @@
       "starLabel": "Бронзовая",
       "slug": "db_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/db_09/specimen_db_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/db_09/specimen_db_09_bronze.webp"
     },
     {
       "rewardId": 443,
@@ -7850,7 +7850,7 @@
       "starLabel": "Бронзовая",
       "slug": "dc_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dc_09/specimen_dc_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dc_09/specimen_dc_09_bronze.webp"
     },
     {
       "rewardId": 445,
@@ -7886,7 +7886,7 @@
       "starLabel": "Бронзовая",
       "slug": "dd_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dd_09/specimen_dd_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dd_09/specimen_dd_09_bronze.webp"
     },
     {
       "rewardId": 447,
@@ -7922,7 +7922,7 @@
       "starLabel": "Бронзовая",
       "slug": "ed_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ed_09/specimen_ed_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ed_09/specimen_ed_09_bronze.webp"
     },
     {
       "rewardId": 449,
@@ -7958,7 +7958,7 @@
       "starLabel": "Бронзовая",
       "slug": "ee_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ee_09/specimen_ee_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ee_09/specimen_ee_09_bronze.webp"
     },
     {
       "rewardId": 451,
@@ -7994,7 +7994,7 @@
       "starLabel": "Бронзовая",
       "slug": "ef_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ef_09/specimen_ef_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ef_09/specimen_ef_09_bronze.webp"
     },
     {
       "rewardId": 453,
@@ -8030,7 +8030,7 @@
       "starLabel": "Бронзовая",
       "slug": "fa_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fa_09/specimen_fa_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fa_09/specimen_fa_09_bronze.webp"
     },
     {
       "rewardId": 455,
@@ -8066,7 +8066,7 @@
       "starLabel": "Бронзовая",
       "slug": "fb_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fb_09/specimen_fb_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fb_09/specimen_fb_09_bronze.webp"
     },
     {
       "rewardId": 457,
@@ -8102,7 +8102,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_09/specimen_fe_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_09/specimen_fe_09_bronze.webp"
     },
     {
       "rewardId": 459,
@@ -8138,7 +8138,7 @@
       "starLabel": "Бронзовая",
       "slug": "ff_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ff_09/specimen_ff_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ff_09/specimen_ff_09_bronze.webp"
     },
     {
       "rewardId": 461,
@@ -8174,7 +8174,7 @@
       "starLabel": "Бронзовая",
       "slug": "ad_09",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ad_09/specimen_ad_09_bronze.webp"
     },
     {
       "rewardId": 463,
@@ -8210,7 +8210,7 @@
       "starLabel": "Бронзовая",
       "slug": "aa_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/aa_10/specimen_aa_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/aa_10/specimen_aa_10_bronze.webp"
     },
     {
       "rewardId": 465,
@@ -8264,7 +8264,7 @@
       "starLabel": "Бронзовая",
       "slug": "ba_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ba_10/specimen_ba_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ba_10/specimen_ba_10_bronze.webp"
     },
     {
       "rewardId": 468,
@@ -8318,7 +8318,7 @@
       "starLabel": "Бронзовая",
       "slug": "bd_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/bd_10/specimen_bd_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/bd_10/specimen_bd_10_bronze.webp"
     },
     {
       "rewardId": 471,
@@ -8372,7 +8372,7 @@
       "starLabel": "Бронзовая",
       "slug": "cd_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/cd_10/specimen_cd_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/cd_10/specimen_cd_10_bronze.webp"
     },
     {
       "rewardId": 474,
@@ -8408,7 +8408,7 @@
       "starLabel": "Бронзовая",
       "slug": "db_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/db_10/specimen_db_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/db_10/specimen_db_10_bronze.webp"
     },
     {
       "rewardId": 476,
@@ -8444,7 +8444,7 @@
       "starLabel": "Бронзовая",
       "slug": "dd_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/dd_10/specimen_dd_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/dd_10/specimen_dd_10_bronze.webp"
     },
     {
       "rewardId": 478,
@@ -8480,7 +8480,7 @@
       "starLabel": "Бронзовая",
       "slug": "eb_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/eb_10/specimen_eb_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/eb_10/specimen_eb_10_bronze.webp"
     },
     {
       "rewardId": 480,
@@ -8516,7 +8516,7 @@
       "starLabel": "Бронзовая",
       "slug": "ec_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ec_10/specimen_ec_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ec_10/specimen_ec_10_bronze.webp"
     },
     {
       "rewardId": 482,
@@ -8552,7 +8552,7 @@
       "starLabel": "Бронзовая",
       "slug": "ee_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ee_10/specimen_ee_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ee_10/specimen_ee_10_bronze.webp"
     },
     {
       "rewardId": 484,
@@ -8606,7 +8606,7 @@
       "starLabel": "Бронзовая",
       "slug": "fe_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_10/specimen_fe_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/fe_10/specimen_fe_10_bronze.webp"
     },
     {
       "rewardId": 487,
@@ -8642,7 +8642,7 @@
       "starLabel": "Бронзовая",
       "slug": "ff_10",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ff_10/specimen_ff_10_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ff_10/specimen_ff_10_bronze.webp"
     },
     {
       "rewardId": 489,
@@ -8678,7 +8678,7 @@
       "starLabel": "Бронзовая",
       "slug": "ac_11",
       "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/ac_11/specimen_ac_11_bronze_bronze.webp"
+      "icon": "/textures_by_mutant/ac_11/specimen_ac_11_bronze.webp"
     }
   ]
 }
