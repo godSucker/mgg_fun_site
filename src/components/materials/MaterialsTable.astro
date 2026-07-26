@@ -21,6 +21,7 @@ export interface MaterialRow {
   description?: string;
   texture?: string;
   levels?: BuildingLevel[];
+  badge?: string;
   percent?: string | number | null;
   value?: string | number | null;
   rarity?: string | null;
@@ -148,7 +149,10 @@ const toChip = (s: SourceInfo) => {
                   {row.levels[0].description || 'Описание пока не добавлено'}
                 </span>
               ) : (
-                row.description ? row.description : <span class="muted">Описание пока не добавлено</span>
+                <>
+                  {row.badge && <strong class="desc-badge">{row.badge}</strong>}
+                  {row.description ? row.description : <span class="muted">Описание пока не добавлено</span>}
+                </>
               )}
             </div>
             <div class="td srcs" role="cell">
@@ -362,6 +366,12 @@ const toChip = (s: SourceInfo) => {
   }
 
   .muted { color: #94a3b8; }
+
+  .desc-badge {
+    display: inline-block; color: #fbbf24; margin-right: 0.4rem;
+    background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 6px; padding: 0.05rem 0.4rem; font-size: 0.82rem;
+  }
 
   .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .chip {
