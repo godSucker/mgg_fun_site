@@ -1,5 +1,9 @@
 {
   "reminderThresholdDays": 3,
+  "yandexBalance": {
+    "intervalDays": 15,
+    "lastSent": null
+  },
   "services": [
     {
       "id": "yandex-cloud",

@@ -113,14 +113,27 @@ jobs:
               return d.toISOString().slice(0, 10);
             }
 
+            // Баланс Yandex не привязан к дате платежа - шлём отдельным
+            // напоминанием раз в yandexBalance.intervalDays дней, а не
+            // подмешиваем в список платежей (там не сумма трат, а баланс счёта,
+            // это разные вещи и в одном списке путает).
+            const yb = data.yandexBalance ?? { intervalDays: 15, lastSent: null };
+            const daysSinceYandex = yb.lastSent
+              ? Math.round((today.getTime() - new Date(yb.lastSent).getTime()) / 86400000)
+              : Infinity;
+            if (process.env.YANDEX_BALANCE && daysSinceYandex >= yb.intervalDays) {
+              lines.push(
+                `\u{1F4B0} Баланс Yandex Cloud: ${process.env.YANDEX_BALANCE} (баланс счёта, не «потрачено за месяц» — это разные числа, Yandex Billing API не отдаёт трату напрямую)`,
+              );
+              yb.lastSent = today.toISOString().slice(0, 10);
+              data.yandexBalance = yb;
+            }
+
             for (const s of data.services) {
               const due = new Date(s.nextDue);
               due.setHours(0, 0, 0, 0);
               const daysLeft = Math.round((due.getTime() - today.getTime()) / 86400000);
-              let sum = s.amount == null ? "сумма плавает, смотри биллинг" : `${s.amount} ${s.currency}`;
-              if (s.id === "yandex-cloud" && process.env.YANDEX_BALANCE) {
-                sum = `баланс аккаунта: ${process.env.YANDEX_BALANCE} (не то же самое, что "потрачено за месяц", но лучшее, что даёт API)`;
-              }
+              const sum = s.amount == null ? "сумма плавает, смотри биллинг" : `${s.amount} ${s.currency}`;
 
               // Просрочено - сдвигаем nextDue на следующий цикл, чтобы напоминание
               // не срабатывало вечно на уже прошедшую дату (это НЕ означает
