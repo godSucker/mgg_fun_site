@@ -298,27 +298,19 @@ async function markPaymentPaid(
 // ".сфера "Имя"" + 3 строки рядов - ручное добавление сферовки мутанта
 // (в игре сферы выставляются вручную, автопарса из XML нет). Формат:
 //   .сфера "Мистер Икс"
-//   атака_7 ; усиление_4 ; спец скорость_5
-//   здоровье_6 ; усиление_4 ; спец скорость_5
-//   усиление_3 ; усиление_4 ; спец скорость_5
+//   атака ; усиление ; спец скорость
+//   здоровье ; усиление
+//   усиление ; усиление ; спец скорость
+// Уровень сферы НЕ указывается - у всех базовых сфер фиксированный
+// уровень 5, у особых - 3 (реальный уровень определяет владелец мутанта
+// в игре руками, бот его не знает и не спрашивает). Количество сфер в
+// ряду не фиксировано - модалка (MutantModal.svelte) рендерит {#each row}
+// произвольной длины.
 const ORBING_TRIGGER = '.сфера'
 const ORBING_PATH = 'src/data/mutants/orbing.json'
 
-// Макс. уровень базовой сферы: 7 для атаки/крита/здоровья, 6 для остальных
-// (см. реальные файлы в public/orbs/basic) - у особых сфер всегда 5.
-const ORB_BASIC_MAX_LEVEL: Record<string, number> = {
-  attack: 7,
-  critical: 7,
-  life: 7,
-  strengthen: 6,
-  shield: 6,
-  slash: 6,
-  weaken: 6,
-  regenerate: 6,
-  retaliate: 6,
-  xp: 6,
-}
-const ORB_SPECIAL_MAX_LEVEL = 5
+const ORB_BASIC_LEVEL = 5
+const ORB_SPECIAL_LEVEL = 3
 
 // "контратака"/"отражение" - два разных русских названия одной и той же
 // сферы (retaliate) в разных источниках; проверяется ДО "атак", иначе
@@ -340,17 +332,16 @@ const ORB_WORD_MAP: Array<[RegExp, string]> = [
 interface ParsedOrbCell {
   special: boolean
   slug: string
-  level: number
 }
 
 function parseOrbCell(raw: string): ParsedOrbCell | { error: string } {
-  let cell = raw.trim().toLowerCase()
-  const levelMatch = cell.match(/[_\s]*(\d+)\s*$/)
-  if (!levelMatch || levelMatch.index == null) {
-    return { error: `не нашёл уровень (число) в "${raw.trim()}"` }
-  }
-  const level = parseInt(levelMatch[1], 10)
-  cell = cell.slice(0, levelMatch.index).trim()
+  // Число уровня больше не нужно, но если кто-то по привычке допишет "_5" -
+  // просто игнорируем, а не считаем ошибкой формата.
+  let cell = raw
+    .trim()
+    .toLowerCase()
+    .replace(/[_\s]*\d+\s*$/, '')
+    .trim()
 
   let special = false
   const specialPrefixes = [/^особ(ая|ой)?\s*сфер[аы]?\s*/, /^спец\.?\s*/]
@@ -372,15 +363,11 @@ function parseOrbCell(raw: string): ParsedOrbCell | { error: string } {
   if (!slug) return { error: `не распознал тип сферы в "${raw.trim()}"` }
   if (slug === 'speed') special = true // спец-only тип, приставка не обязательна
 
-  const maxLevel = special ? ORB_SPECIAL_MAX_LEVEL : ORB_BASIC_MAX_LEVEL[slug]
-  if (level < 1 || level > maxLevel) {
-    return { error: `у "${raw.trim()}" уровень должен быть от 1 до ${maxLevel}` }
-  }
-  return { special, slug, level }
+  return { special, slug }
 }
 
 function orbCellToFilename(cell: ParsedOrbCell): string {
-  const lvl = String(cell.level).padStart(2, '0')
+  const lvl = String(cell.special ? ORB_SPECIAL_LEVEL : ORB_BASIC_LEVEL).padStart(2, '0')
   if (cell.special) {
     const base = cell.slug === 'speed' ? 'speed' : `add${cell.slug}`
     return `special/orb_special_${base}_${lvl}.webp`
@@ -403,8 +390,8 @@ function parseOrbingRows(messageText: string): string[][] | { error: string } {
       .split(';')
       .map((c) => c.trim())
       .filter((c) => c.length > 0)
-    if (cells.length !== 3) {
-      return { error: `ряд ${i + 1}: нужно ровно 3 сферы через " ; ", получено: ${cells.length}` }
+    if (cells.length === 0) {
+      return { error: `ряд ${i + 1}: нужна хотя бы одна сфера` }
     }
     const row: string[] = []
     for (const cell of cells) {
@@ -578,7 +565,7 @@ export const POST: APIRoute = async ({ request }) => {
         const nameMatch = firstLine.match(/"([^"]+)"/)
         if (!nameMatch) {
           return await reply(
-            '🔴 Формат:\n.сфера "Имя мутанта"\nатака_7 ; усиление_4 ; спец скорость_5\nздоровье_6 ; усиление_4 ; спец скорость_5\nусиление_3 ; усиление_4 ; спец скорость_5',
+            '🔴 Формат:\n.сфера "Имя мутанта"\nатака ; усиление ; спец скорость\nздоровье ; усиление ; спец скорость\nусиление ; усиление ; спец скорость',
           )
         }
 
