@@ -1231,5 +1231,24 @@
         "basic/orb_slot.webp"
       ]
     ]
+  },
+  "specimen_cf_14": {
+    "rows": [
+      [
+        "basic/orb_basic_attack_05.webp",
+        "basic/orb_basic_attack_05.webp",
+        "special/orb_special_speed_03.webp"
+      ],
+      [
+        "basic/orb_basic_attack_05.webp",
+        "basic/orb_basic_attack_05.webp",
+        "special/orb_special_speed_03.webp"
+      ],
+      [
+        "basic/orb_basic_attack_05.webp",
+        "basic/orb_basic_attack_05.webp",
+        "special/orb_special_speed_03.webp"
+      ]
+    ]
   }
 }
