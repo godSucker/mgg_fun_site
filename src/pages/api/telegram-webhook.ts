@@ -331,18 +331,15 @@ async function uploadAnnouncementImage(
   const imgBuffer = Buffer.from(await imgRes.arrayBuffer())
   const repoPath = `public/announcements/${id}.${ext}`
 
-  const putRes = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${repoPath}`,
-    {
-      method: 'PUT',
-      headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: `Announcements: картинка для анонса ${id}`,
-        content: imgBuffer.toString('base64'),
-        branch: 'main',
-      }),
-    },
-  )
+  const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${repoPath}`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: `Announcements: картинка для анонса ${id}`,
+      content: imgBuffer.toString('base64'),
+      branch: 'main',
+    }),
+  })
   if (!putRes.ok) return null
   return `/announcements/${id}.${ext}`
 }
@@ -434,7 +431,9 @@ function parseOrbingRows(messageText: string): string[][] | { error: string } {
     .filter((l) => l.length > 0)
   const rowLines = lines.slice(1)
   if (rowLines.length !== 3) {
-    return { error: `нужно ровно 3 строки с рядами сфер (после строки с именем), получено: ${rowLines.length}` }
+    return {
+      error: `нужно ровно 3 строки с рядами сфер (после строки с именем), получено: ${rowLines.length}`,
+    }
   }
   const rows: string[][] = []
   for (let i = 0; i < rowLines.length; i++) {
@@ -470,7 +469,9 @@ async function resolveMutantIdByName(
   const exact = list.filter((m) => m.name.toLowerCase() === q)
   if (exact.length === 1) return { id: exact[0].id, name: exact[0].name }
   if (exact.length > 1) {
-    return { error: `несколько мутантов с именем "${nameQuery}": ${exact.map((m) => m.id).join(', ')}` }
+    return {
+      error: `несколько мутантов с именем "${nameQuery}": ${exact.map((m) => m.id).join(', ')}`,
+    }
   }
 
   const partial = list.filter((m) => m.name.toLowerCase().includes(q))
@@ -626,7 +627,9 @@ export const POST: APIRoute = async ({ request }) => {
         const photos = replyTo.photo as Array<{ file_id: string }> | undefined
 
         if (!combinedText && (!photos || photos.length === 0)) {
-          return await reply('🔴 В пересланном сообщении нет ни текста, ни фото — публиковать нечего')
+          return await reply(
+            '🔴 В пересланном сообщении нет ни текста, ни фото — публиковать нечего',
+          )
         }
 
         const id = String(Date.now())
@@ -642,7 +645,12 @@ export const POST: APIRoute = async ({ request }) => {
           )
         }
 
-        const file = await fetchGithubJsonFile(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, ANNOUNCEMENTS_PATH)
+        const file = await fetchGithubJsonFile(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          ANNOUNCEMENTS_PATH,
+        )
         if (!file) {
           return await reply('🔴 Не удалось загрузить announcements.json')
         }
@@ -695,12 +703,22 @@ export const POST: APIRoute = async ({ request }) => {
           return await reply(`🔴 ${rows.error}`)
         }
 
-        const resolved = await resolveMutantIdByName(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, nameMatch[1])
+        const resolved = await resolveMutantIdByName(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          nameMatch[1],
+        )
         if ('error' in resolved) {
           return await reply(`🔴 ${resolved.error}`)
         }
 
-        const orbingFile = await fetchGithubJsonFile(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, ORBING_PATH)
+        const orbingFile = await fetchGithubJsonFile(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          ORBING_PATH,
+        )
         if (!orbingFile) {
           return await reply('🔴 Не удалось загрузить orbing.json')
         }

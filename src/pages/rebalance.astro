@@ -6,7 +6,7 @@ import history from '@/data/mutants/rebalance-history.json';
 import mutants from '@/data/mutants/mutants.json';
 import { textureUrl } from '@/lib/texture-cdn';
 import { ABILITY_RU } from '@/lib/mutant-dicts';
-import { getGeneIcon } from '@/lib/mutant-icons';
+import { getGeneIcon, STAR_KEYS, STAR_MULTIPLIERS } from '@/lib/mutant-icons';
 import { sortMutantsByGene } from '@/lib/mutant-sort';
 
 type AbilityField = 'pct' | 'atk1' | 'atk2';
@@ -68,13 +68,20 @@ interface MutantMeta {
   // от звезды не зависят и не масштабируются.
   starMultiplier: number;
 }
-// Множитель самой высокой доступной звезды: normal (нет multiplier) = 1.0,
-// иначе максимум среди bronze/silver/gold/platinum, если они есть у мутанта.
+// Множитель самой высокой доступной звезды - та же логика, что и в
+// MutantModal.svelte (availableStars/currentMultiplier): доступность звезды
+// определяется НАЛИЧИЕМ ключа в stars (а не наличием поля multiplier внутри
+// него), а сам множитель - explicit multiplier если он есть, иначе фолбэк на
+// канонический STAR_MULTIPLIERS по имени ключа. Раньше здесь проверялось
+// truthy у star.multiplier - при отсутствующем поле звезда молча считалась
+// недоступной (max=1), хотя модалка её бы показала.
 const maxStarMultiplier = (stars?: Record<string, { multiplier?: number }>): number => {
   if (!stars) return 1;
   let max = 1;
-  for (const star of Object.values(stars)) {
-    if (star.multiplier && star.multiplier > max) max = star.multiplier;
+  for (const key of STAR_KEYS) {
+    if (!stars[key]) continue;
+    const m = stars[key].multiplier ?? STAR_MULTIPLIERS[key] ?? 1;
+    if (m > max) max = m;
   }
   return max;
 };
