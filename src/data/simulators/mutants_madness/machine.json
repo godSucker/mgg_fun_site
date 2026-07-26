@@ -6791,24 +6791,6 @@
       "icon": "/textures_by_mutant/ab_08/specimen_ab_08_bronze_bronze.webp"
     },
     {
-      "rewardId": 383,
-      "amount": 1,
-      "odds": 3000,
-      "type": "entity",
-      "id": "Specimen_AE_08",
-      "picture": null,
-      "isBigwin": false,
-      "isSuperJackpot": false,
-      "skin": null,
-      "stars": null,
-      "research": 7,
-      "name": "Андромеда",
-      "starLabel": null,
-      "slug": "ae_08",
-      "iconVariant": "normal",
-      "icon": "/textures_by_mutant/ae_08/specimen_ae_08_normal.webp"
-    },
-    {
       "rewardId": 384,
       "amount": 1,
       "odds": 10000,
@@ -6953,24 +6935,6 @@
       "icon": "/textures_by_mutant/cc_08/specimen_cc_08_bronze_bronze.webp"
     },
     {
-      "rewardId": 392,
-      "amount": 1,
-      "odds": 3000,
-      "type": "entity",
-      "id": "Specimen_DA_08",
-      "picture": null,
-      "isBigwin": false,
-      "isSuperJackpot": false,
-      "skin": null,
-      "stars": null,
-      "research": 7,
-      "name": "Асайлан",
-      "starLabel": null,
-      "slug": "da_08",
-      "iconVariant": "normal",
-      "icon": "/textures_by_mutant/da_08/specimen_da_08_normal.webp"
-    },
-    {
       "rewardId": 393,
       "amount": 1,
       "odds": 10000,
@@ -7077,24 +7041,6 @@
       "slug": "ff_08",
       "iconVariant": "normal",
       "icon": "/textures_by_mutant/ff_08/specimen_ff_08_normal.webp"
-    },
-    {
-      "rewardId": 399,
-      "amount": 1,
-      "odds": 7500,
-      "type": "entity",
-      "id": "Specimen_FE_08",
-      "picture": null,
-      "isBigwin": false,
-      "isSuperJackpot": false,
-      "skin": "bronze",
-      "stars": 1,
-      "research": 7,
-      "name": "Маджин Зам",
-      "starLabel": "Бронзовая",
-      "slug": "fe_08",
-      "iconVariant": "bronze",
-      "icon": "/textures_by_mutant/fe_08/specimen_fe_08_bronze_bronze.webp"
     },
     {
       "rewardId": 400,
