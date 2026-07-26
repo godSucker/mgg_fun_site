@@ -3,48 +3,56 @@
     "id": "Building_Forge",
     "name": "Кузня",
     "description": "Приносит 5 золота раз в 12 часов",
-    "texture": "/buildings/gold_hc1.webp"
+    "texture": "/buildings/forge_hc1.png"
   },
   {
     "id": "Building_Gold_Smelter",
     "name": "Плавильня",
     "description": "Приносит 50 золота раз в 2 суток",
-    "texture": "/buildings/gold_hc2.webp"
+    "texture": "/buildings/gold_furnace_hc2.png"
   },
   {
     "id": "Building_Med_Lab",
     "name": "Мед. Лаборатория",
     "description": "Здание для крафта аптечек",
-    "texture": "/buildings/medlab.webp"
+    "texture": "/buildings/hospital.png"
   },
   {
     "id": "Building_Evo_Center",
     "name": "Эво. Центр",
     "description": "Здания для повышения уровня ЭВО",
-    "texture": "/buildings/evo.webp"
+    "texture": "/buildings/techcenter.png"
   },
   {
     "id": "Building_Exchange",
     "name": "Обменник",
     "description": "Здание в котором можно обменивать жетоны джекпота",
-    "texture": "/buildings/jackpot.webp"
+    "texture": "/buildings/jackpot_sink_global.png"
   },
   {
     "id": "Building_Incubator",
     "name": "Инкубатор",
     "description": "Здание в котором выводятся мутанты",
-    "texture": "/buildings/incub.webp"
+    "levels": [
+      { "level": 1, "texture": "/buildings/incubator_1.png", "description": "" },
+      { "level": 2, "texture": "/buildings/incubator_2.png", "description": "" },
+      { "level": 3, "texture": "/buildings/incubator_3.png", "description": "" }
+    ]
   },
   {
     "id": "Building_Trial_Hall",
     "name": "Зал Испытаний",
     "description": "Здание в котором можно обменивать жетоны испытаний",
-    "texture": "/buildings/event.webp"
+    "texture": "/buildings/item_maker.png"
   },
   {
     "id": "Building_Breeding_Center",
     "name": "Центр Скрещивания",
     "description": "Здание в котором можно скрещивать мутантов",
-    "texture": "/buildings/merge.webp"
+    "levels": [
+      { "level": 1, "texture": "/buildings/breeding_center_1.png", "description": "" },
+      { "level": 2, "texture": "/buildings/breeding_center_2.png", "description": "" },
+      { "level": 3, "texture": "/buildings/breeding_center_3.png", "description": "" }
+    ]
   }
 ]

@@ -108,11 +108,17 @@ const orbsData = (Array.isArray(orbsDataRaw) ? orbsDataRaw : []).filter((o) => {
 const materialsRows = (Array.isArray(materialData) ? materialData : []).map(normRow);
 const charmsRows    = (Array.isArray(charmsData) ? charmsData : []).map(normRow);
 const orbsRows      = (Array.isArray(orbsData) ? orbsData : []).map(normRow);
-const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b: RawItem & { texture?: string }) => ({
+interface BuildingLevel {
+  level: number;
+  texture: string;
+  description?: string;
+}
+const buildingsRows = (Array.isArray(buildingsData) ? buildingsData : []).map((b: RawItem & { texture?: string; levels?: BuildingLevel[] }) => ({
   id: String(b?.id || '').trim(),
   name: b?.name || (b?.id || ''),
   description: b?.description || '',
-  texture: b?.texture || `/buildings/${b?.id}.webp`
+  texture: b?.texture || `/buildings/${b?.id}.webp`,
+  levels: b?.levels
 }));
 
 // ---------- зоны: поддержка строк/объектов из zones.json ----------
@@ -233,7 +239,7 @@ const TABS = [
     <div id="zones-normal" class="zones-grid" data-kind="normal">
       {zonesNormal.map((z) => (
         <div class="zone-card" aria-label={z.name} title={z.name}>
-          <div class="zone-cover"><img src={textureUrl(z.texture)} alt={z.name} loading="lazy" /></div>
+          <div class="zone-cover"><img src={textureUrl(z.texture)} alt={z.name} loading="lazy" draggable="false" oncontextmenu="return false" /></div>
           <div class="zone-title">{z.name}</div>
           {z.description && <div class="zone-desc">{z.description}</div>}
           {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
@@ -245,7 +251,7 @@ const TABS = [
     <div id="zones-luxe" class="zones-grid" data-kind="luxe" hidden>
       {zonesLuxe.map((z) => (
         <div class="zone-card" aria-label={z.name} title={z.name}>
-          <div class="zone-cover"><img src={textureUrl(z.texture)} alt={z.name} loading="lazy" /></div>
+          <div class="zone-cover"><img src={textureUrl(z.texture)} alt={z.name} loading="lazy" draggable="false" oncontextmenu="return false" /></div>
           <div class="zone-title">{z.name}</div>
           {z.description && <div class="zone-desc">{z.description}</div>}
           {z.storage != null && <div class="zone-cap"><span>Хранит до:</span> <strong>{fmt(z.storage)}</strong> серебра</div>}
