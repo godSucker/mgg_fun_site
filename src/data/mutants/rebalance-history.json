@@ -1,1 +1,2997 @@
-[]
+[
+  {
+    "date": "2026-07-26T14:42:02.704Z",
+    "entries": [
+      {
+        "id": "specimen_a_01",
+        "name": "Робот",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6385,
+            "new": 7094
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1450,
+            "new": 1611
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2896,
+            "new": 3218
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.32,
+            "new": 4
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 435,
+            "new": 483,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_aa_01",
+        "name": "Андроид",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5441,
+            "new": 6045
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1822,
+            "new": 2024
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1046,
+            "new": 1162
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 7.2,
+            "new": 6.67
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 546,
+            "new": 607,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ab_01",
+        "name": "Некробот",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 4201,
+            "new": 4668
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1341,
+            "new": 1490
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1341,
+            "new": 1490
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 7.71,
+            "new": 7.14
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 402,
+            "new": 447,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ac_01",
+        "name": "Ниндзябот",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5023,
+            "new": 5581
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2060,
+            "new": 2289
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2060,
+            "new": 2289
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.4,
+            "new": 5
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 927,
+            "new": 1030,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ad_01",
+        "name": "Жукобот",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6451,
+            "new": 7168
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3464,
+            "new": 3849
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3464,
+            "new": 3849
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.73,
+            "new": 3.45
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1040,
+            "new": 1155,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ae_01",
+        "name": "Колосс",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5812,
+            "new": 6458
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2612,
+            "new": 2902
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2612,
+            "new": 2902
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.7,
+            "new": 4.35
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1045,
+            "new": 1161,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_af_01",
+        "name": "Бог Машин",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 4897,
+            "new": 5441
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1938,
+            "new": 2153
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1938,
+            "new": 2153
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.68,
+            "new": 5.26
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 969,
+            "new": 1077,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_b_01",
+        "name": "Зомби",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5002,
+            "new": 5558
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1741,
+            "new": 1934
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1741,
+            "new": 1934
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.75,
+            "new": 6.25
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 609,
+            "new": 677,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ba_01",
+        "name": "Зомборг",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6479,
+            "new": 7199
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2313,
+            "new": 2570
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2313,
+            "new": 2570
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.91,
+            "new": 4.55
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1273,
+            "new": 1414,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bb_01",
+        "name": "Король Лич",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 7550,
+            "new": 8389
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3209,
+            "new": 3565
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1843,
+            "new": 2048
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.5,
+            "new": 4.17
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1765,
+            "new": 1961,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_aa_02",
+        "name": "Голиаф",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 12902,
+            "new": 14336
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 7016,
+            "new": 7796
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 4683,
+            "new": 5203
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.16,
+            "new": 3.85
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2806,
+            "new": 3118,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fc_02",
+        "name": "Капитан Мир",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 11548,
+            "new": 12831
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 5648,
+            "new": 6275
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 5648,
+            "new": 6275
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.32,
+            "new": 4
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1412,
+            "new": 1569,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fc_03",
+        "name": "Ориас",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 13844,
+            "new": 15382
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 6248,
+            "new": 6942
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 6248,
+            "new": 6942
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.86,
+            "new": 3.57
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1875,
+            "new": 2083,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ed_04",
+        "name": "Енот-Летун",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5858,
+            "new": 6509
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1808,
+            "new": 2009
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1808,
+            "new": 2009
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 13.5,
+            "new": 12.5
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 724,
+            "new": 804,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fa_04",
+        "name": "Банкир",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 9249,
+            "new": 10277
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3833,
+            "new": 4259
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3833,
+            "new": 4259
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.4,
+            "new": 5
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 959,
+            "new": 1065,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cd_05",
+        "name": "Свин-потрошитель",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 16076,
+            "new": 17862
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 8947,
+            "new": 9941
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 8947,
+            "new": 9941
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.49,
+            "new": 3.23
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1789,
+            "new": 1988,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_af_06",
+        "name": "Репликация Евы",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 9242,
+            "new": 10269
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2590,
+            "new": 2878
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2590,
+            "new": 2878
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 9.82,
+            "new": 9.09
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 906,
+            "new": 1007,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cb_06",
+        "name": "Скарлетт",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 9874,
+            "new": 10971
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 5027,
+            "new": 5585
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 5027,
+            "new": 5585
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6,
+            "new": 5.56
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2262,
+            "new": 2513,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_de_06",
+        "name": "Дарвин",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 11636,
+            "new": 12929
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3819,
+            "new": 4243
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3819,
+            "new": 4243
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.35,
+            "new": 5.88
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1451,
+            "new": 1612,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_df_06",
+        "name": "Рубака",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 11186,
+            "new": 12429
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 4465,
+            "new": 4961
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 4465,
+            "new": 4961
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.68,
+            "new": 5.26
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1786,
+            "new": 1984,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ab_07",
+        "name": "Крушила",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 11267,
+            "new": 12519
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 6571,
+            "new": 7301
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 6571,
+            "new": 7301
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.32,
+            "new": 4
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2957,
+            "new": 3285,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cc_07",
+        "name": "Спартак",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 16251,
+            "new": 18057
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 9477,
+            "new": 10530
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 4426,
+            "new": 4918
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.6,
+            "new": 3.33
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 3317,
+            "new": 3685,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cd_07",
+        "name": "Джонни Сноуи",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 14581,
+            "new": 16201
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 6255,
+            "new": 6950
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 6255,
+            "new": 6950
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.73,
+            "new": 3.45
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2502,
+            "new": 2780,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_dc_07",
+        "name": "Норен",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 15226,
+            "new": 16918
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 7701,
+            "new": 8557
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 7701,
+            "new": 8557
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.16,
+            "new": 3.85
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2310,
+            "new": 2567,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ab_02",
+        "name": "Темновзор",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5455,
+            "new": 6061
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2580,
+            "new": 2867
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2580,
+            "new": 2867
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.5,
+            "new": 4.17
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 774,
+            "new": 860,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ac_02",
+        "name": "Капитан Гаечный Ключ",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 8221,
+            "new": 9134
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2847,
+            "new": 3163
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2847,
+            "new": 3163
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.14,
+            "new": 4.76
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1708,
+            "new": 1898,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ba_02",
+        "name": "Страхолюдочка",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6104,
+            "new": 6782
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1313,
+            "new": 1459
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1313,
+            "new": 1459
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 8.31,
+            "new": 7.69
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 368,
+            "new": 409,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ad_02",
+        "name": "Механорог",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5535,
+            "new": 6150
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2215,
+            "new": 2461
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2215,
+            "new": 2461
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.68,
+            "new": 5.26
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 975,
+            "new": 1083,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cc_02",
+        "name": "Бак Морис",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 10249,
+            "new": 11388
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 5293,
+            "new": 5881
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3120,
+            "new": 3467
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.6,
+            "new": 3.33
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1165,
+            "new": 1294,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cf_02",
+        "name": "Тор",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6728,
+            "new": 7476
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3686,
+            "new": 4095
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3686,
+            "new": 4095
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.73,
+            "new": 3.45
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 922,
+            "new": 1024,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_de_02",
+        "name": "Космо-Конг",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6185,
+            "new": 6872
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2587,
+            "new": 2874
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2587,
+            "new": 2874
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.7,
+            "new": 4.35
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1293,
+            "new": 1437,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ea_02",
+        "name": "Долгоног",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5072,
+            "new": 5636
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1808,
+            "new": 2009
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1808,
+            "new": 2009
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.75,
+            "new": 6.25
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 543,
+            "new": 603,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_aa_03",
+        "name": "H.U.M.A.N.",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6592,
+            "new": 7324
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2731,
+            "new": 3034
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1572,
+            "new": 1747
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.4,
+            "new": 5
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1093,
+            "new": 1214,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ac_03",
+        "name": "Дезингер",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 8403,
+            "new": 9337
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3595,
+            "new": 3994
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3595,
+            "new": 3994
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.73,
+            "new": 3.45
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1438,
+            "new": 1598,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ae_03",
+        "name": "Инвадрон",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6627,
+            "new": 7363
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3531,
+            "new": 3923
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3531,
+            "new": 3923
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.86,
+            "new": 3.57
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1059,
+            "new": 1177,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_af_03",
+        "name": "Бородыш",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6900,
+            "new": 7667
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 4096,
+            "new": 4551
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 4096,
+            "new": 4551
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.5,
+            "new": 4.17
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1024,
+            "new": 1138,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ba_03",
+        "name": "Тачдаун",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6957,
+            "new": 7730
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3370,
+            "new": 3744
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3370,
+            "new": 3744
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.86,
+            "new": 3.57
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1617,
+            "new": 1797,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bb_03",
+        "name": "Проклятый гонщик",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 7301,
+            "new": 8112
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1120,
+            "new": 1244
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 695,
+            "new": 772
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 10.8,
+            "new": 10
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 504,
+            "new": 560,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bc_03",
+        "name": "Микки Крюгер",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 4964,
+            "new": 5515
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1744,
+            "new": 1938
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1744,
+            "new": 1938
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 8.31,
+            "new": 7.69
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 872,
+            "new": 969,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bd_03",
+        "name": "Жуткий мишка",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5269,
+            "new": 5854
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1734,
+            "new": 1927
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1734,
+            "new": 1927
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.75,
+            "new": 6.25
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 868,
+            "new": 964,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cb_03",
+        "name": "Рагнар",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5535,
+            "new": 6150
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2398,
+            "new": 2664
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2398,
+            "new": 2664
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.14,
+            "new": 4.76
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 959,
+            "new": 1066,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cc_03",
+        "name": "Зена",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 2969,
+            "new": 3299
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1759,
+            "new": 1954
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1229,
+            "new": 1365
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 12,
+            "new": 11.11
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 352,
+            "new": 391,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ce_03",
+        "name": "Страж Галактики",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6248,
+            "new": 6942
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3423,
+            "new": 3803
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3423,
+            "new": 3803
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.73,
+            "new": 3.45
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 856,
+            "new": 951,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ae_02",
+        "name": "Либраро",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 8936,
+            "new": 9929
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2156,
+            "new": 2395
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2156,
+            "new": 2395
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 9.82,
+            "new": 9.09
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 862,
+            "new": 958,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_af_02",
+        "name": "Виргон",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6778,
+            "new": 7531
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2047,
+            "new": 2274
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2047,
+            "new": 2274
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 11.37,
+            "new": 10.53
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1433,
+            "new": 1592,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bd_02",
+        "name": "Канцерния",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 8596,
+            "new": 9551
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 4156,
+            "new": 4618
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 4156,
+            "new": 4618
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.14,
+            "new": 4.76
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2702,
+            "new": 3002,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_be_02",
+        "name": "Каприка",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6448,
+            "new": 7164
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3704,
+            "new": 4115
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3704,
+            "new": 4115
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 7.2,
+            "new": 6.67
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2222,
+            "new": 2469,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cd_02",
+        "name": "Стрелотавр",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6512,
+            "new": 7235
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 4668,
+            "new": 5187
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 4668,
+            "new": 5187
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.4,
+            "new": 5
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1400,
+            "new": 1556,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ce_02",
+        "name": "Джеминиум",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 8786,
+            "new": 9762
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3721,
+            "new": 4134
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3721,
+            "new": 4134
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.7,
+            "new": 4.35
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1489,
+            "new": 1654,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bb_02",
+        "name": "Костеглод",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6170,
+            "new": 6856
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1787,
+            "new": 1985
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1022,
+            "new": 1135
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 7.71,
+            "new": 7.14
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 894,
+            "new": 993,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bf_02",
+        "name": "Черноличник",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 7410,
+            "new": 8233
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1162,
+            "new": 1291
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1162,
+            "new": 1291
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 9.82,
+            "new": 9.09
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 627,
+            "new": 697,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_da_02",
+        "name": "Арахно",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 7750,
+            "new": 8611
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2836,
+            "new": 3151
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2836,
+            "new": 3151
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4,
+            "new": 3.7
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2269,
+            "new": 2521,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_db_02",
+        "name": "Зомбат",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 4019,
+            "new": 4466
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 853,
+            "new": 948
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 853,
+            "new": 948
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 12.7,
+            "new": 11.76
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 682,
+            "new": 758,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_dd_02",
+        "name": "Мастер Коготь",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 7441,
+            "new": 8268
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3749,
+            "new": 4165
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2156,
+            "new": 2395
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.16,
+            "new": 3.85
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1499,
+            "new": 1666,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_df_02",
+        "name": "Сатир-шаман",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 5114,
+            "new": 5682
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1559,
+            "new": 1732
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1559,
+            "new": 1732
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 7.2,
+            "new": 6.67
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 779,
+            "new": 866,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ef_02",
+        "name": "Мистер Икс",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 10481,
+            "new": 11645
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2162,
+            "new": 2402
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2162,
+            "new": 2402
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.4,
+            "new": 5
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1297,
+            "new": 1441,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_dc_03",
+        "name": "Гаргантус",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6719,
+            "new": 7465
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2815,
+            "new": 3128
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 2815,
+            "new": 3128
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.14,
+            "new": 4.76
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2111,
+            "new": 2346,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fd_03",
+        "name": "Белый Ханзо",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6754,
+            "new": 7504
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 5423,
+            "new": 6026
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 5423,
+            "new": 6026
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4,
+            "new": 3.7
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1627,
+            "new": 1808,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bf_04",
+        "name": "Император галактики",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 7350,
+            "new": 8167
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 1906,
+            "new": 2118
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1906,
+            "new": 2118
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.75,
+            "new": 6.25
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1525,
+            "new": 1694,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_a_03",
+        "name": "Гаруда",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 11218,
+            "new": 12464
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3074,
+            "new": 3416
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1923,
+            "new": 2137
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 9,
+            "new": 8.33
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1383,
+            "new": 1537,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_b_03",
+        "name": "Джек Скеллингтон",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 10007,
+            "new": 11119
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 2741,
+            "new": 3046
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 1580,
+            "new": 1755
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 7.71,
+            "new": 7.14
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1371,
+            "new": 1523,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_c_03",
+        "name": "Крионос",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 11461,
+            "new": 12734
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 5605,
+            "new": 6228
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3222,
+            "new": 3580
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.32,
+            "new": 4
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1401,
+            "new": 1557,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_d_03",
+        "name": "Пасхальный Грозаяц",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 14805,
+            "new": 16450
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 7452,
+            "new": 8280
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3724,
+            "new": 4138
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.5,
+            "new": 4.17
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2236,
+            "new": 2484,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ac_04",
+        "name": "Робот Марио",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 8491,
+            "new": 9434
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3135,
+            "new": 3483
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3135,
+            "new": 3483
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.35,
+            "new": 5.88
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1254,
+            "new": 1393,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ac_06",
+        "name": "гадюка",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 30,
+            "old": 6276,
+            "new": 6973
+          },
+          {
+            "stat": "atk1",
+            "level": null,
+            "old": 3320,
+            "new": 3689
+          },
+          {
+            "stat": "atk2",
+            "level": null,
+            "old": 3320,
+            "new": 3689
+          },
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.35,
+            "new": 5.88
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": null,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1726,
+            "new": 1918,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          }
+        ]
+      }
+    ]
+  }
+]
