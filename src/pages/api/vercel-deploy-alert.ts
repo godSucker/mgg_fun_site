@@ -30,7 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   let payload: {
     type?: string
-    payload?: { deployment?: { url?: string; target?: string }; project?: { name?: string } }
+    payload?: { deployment?: { url?: string; name?: string }; target?: string | null }
   } = {}
   try {
     payload = JSON.parse(rawBody)
@@ -39,13 +39,16 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const type = payload.type ?? ''
-  const target = payload.payload?.deployment?.target ?? ''
+  // target лежит прямо в payload.payload.target, а НЕ в payload.payload.deployment.target -
+  // так было изначально написано неверно, из-за чего фильтр всегда считал
+  // деплой "не прод" и молча пропускал (без ошибки, 200 OK).
+  const target = payload.payload?.target ?? ''
   // Превью-деплои (на каждый PR/пуш в ветку) не интересны — только прод.
   if (target !== 'production') {
     return new Response('OK (ignored, not production)', { status: 200 })
   }
 
-  const project = payload.payload?.project?.name ?? 'archivist-library'
+  const project = payload.payload?.deployment?.name ?? 'archivist-library'
   const deployUrl = payload.payload?.deployment?.url
   const icon = type === 'deployment.succeeded' ? '✅' : type === 'deployment.error' ? '🔴' : 'ℹ️'
   const label =
