@@ -295,6 +295,157 @@ async function markPaymentPaid(
   return `✅ ${service.name}: следующий платёж — ${service.nextDue}`
 }
 
+// ".сфера "Имя"" + 3 строки рядов - ручное добавление сферовки мутанта
+// (в игре сферы выставляются вручную, автопарса из XML нет). Формат:
+//   .сфера "Мистер Икс"
+//   атака_7 ; усиление_4 ; спец скорость_5
+//   здоровье_6 ; усиление_4 ; спец скорость_5
+//   усиление_3 ; усиление_4 ; спец скорость_5
+const ORBING_TRIGGER = '.сфера'
+const ORBING_PATH = 'src/data/mutants/orbing.json'
+
+// Макс. уровень базовой сферы: 7 для атаки/крита/здоровья, 6 для остальных
+// (см. реальные файлы в public/orbs/basic) - у особых сфер всегда 5.
+const ORB_BASIC_MAX_LEVEL: Record<string, number> = {
+  attack: 7,
+  critical: 7,
+  life: 7,
+  strengthen: 6,
+  shield: 6,
+  slash: 6,
+  weaken: 6,
+  regenerate: 6,
+  retaliate: 6,
+  xp: 6,
+}
+const ORB_SPECIAL_MAX_LEVEL = 5
+
+// "контратака"/"отражение" - два разных русских названия одной и той же
+// сферы (retaliate) в разных источниках; проверяется ДО "атак", иначе
+// подстрока "атака" внутри "контратака" даст ложное срабатывание.
+const ORB_WORD_MAP: Array<[RegExp, string]> = [
+  [/вытягивани/, 'regenerate'],
+  [/контратак|отражени/, 'retaliate'],
+  [/критическ/, 'critical'],
+  [/здоровь/, 'life'],
+  [/усилени/, 'strengthen'],
+  [/щит/, 'shield'],
+  [/ранени/, 'slash'],
+  [/проклят/, 'weaken'],
+  [/опыт/, 'xp'],
+  [/скорост/, 'speed'],
+  [/атак/, 'attack'],
+]
+
+interface ParsedOrbCell {
+  special: boolean
+  slug: string
+  level: number
+}
+
+function parseOrbCell(raw: string): ParsedOrbCell | { error: string } {
+  let cell = raw.trim().toLowerCase()
+  const levelMatch = cell.match(/[_\s]*(\d+)\s*$/)
+  if (!levelMatch || levelMatch.index == null) {
+    return { error: `не нашёл уровень (число) в "${raw.trim()}"` }
+  }
+  const level = parseInt(levelMatch[1], 10)
+  cell = cell.slice(0, levelMatch.index).trim()
+
+  let special = false
+  const specialPrefixes = [/^особ(ая|ой)?\s*сфер[аы]?\s*/, /^спец\.?\s*/]
+  for (const prefix of specialPrefixes) {
+    if (prefix.test(cell)) {
+      special = true
+      cell = cell.replace(prefix, '').trim()
+      break
+    }
+  }
+
+  let slug: string | null = null
+  for (const [re, s] of ORB_WORD_MAP) {
+    if (re.test(cell)) {
+      slug = s
+      break
+    }
+  }
+  if (!slug) return { error: `не распознал тип сферы в "${raw.trim()}"` }
+  if (slug === 'speed') special = true // спец-only тип, приставка не обязательна
+
+  const maxLevel = special ? ORB_SPECIAL_MAX_LEVEL : ORB_BASIC_MAX_LEVEL[slug]
+  if (level < 1 || level > maxLevel) {
+    return { error: `у "${raw.trim()}" уровень должен быть от 1 до ${maxLevel}` }
+  }
+  return { special, slug, level }
+}
+
+function orbCellToFilename(cell: ParsedOrbCell): string {
+  const lvl = String(cell.level).padStart(2, '0')
+  if (cell.special) {
+    const base = cell.slug === 'speed' ? 'speed' : `add${cell.slug}`
+    return `special/orb_special_${base}_${lvl}.webp`
+  }
+  return `basic/orb_basic_${cell.slug}_${lvl}.webp`
+}
+
+function parseOrbingRows(messageText: string): string[][] | { error: string } {
+  const lines = messageText
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+  const rowLines = lines.slice(1)
+  if (rowLines.length !== 3) {
+    return { error: `нужно ровно 3 строки с рядами сфер (после строки с именем), получено: ${rowLines.length}` }
+  }
+  const rows: string[][] = []
+  for (let i = 0; i < rowLines.length; i++) {
+    const cells = rowLines[i]
+      .split(';')
+      .map((c) => c.trim())
+      .filter((c) => c.length > 0)
+    if (cells.length !== 3) {
+      return { error: `ряд ${i + 1}: нужно ровно 3 сферы через " ; ", получено: ${cells.length}` }
+    }
+    const row: string[] = []
+    for (const cell of cells) {
+      const parsed = parseOrbCell(cell)
+      if ('error' in parsed) return { error: `ряд ${i + 1}: ${parsed.error}` }
+      row.push(orbCellToFilename(parsed))
+    }
+    rows.push(row)
+  }
+  return rows
+}
+
+async function resolveMutantIdByName(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  nameQuery: string,
+): Promise<{ id: string; name: string } | { error: string }> {
+  const file = await fetchGithubJsonFile(githubToken, owner, repo, 'src/data/mutants/mutants.json')
+  if (!file) return { error: 'не удалось загрузить mutants.json' }
+  const list = file.json as Array<{ id: string; name: string }>
+  const q = nameQuery.trim().toLowerCase()
+
+  const exact = list.filter((m) => m.name.toLowerCase() === q)
+  if (exact.length === 1) return { id: exact[0].id, name: exact[0].name }
+  if (exact.length > 1) {
+    return { error: `несколько мутантов с именем "${nameQuery}": ${exact.map((m) => m.id).join(', ')}` }
+  }
+
+  const partial = list.filter((m) => m.name.toLowerCase().includes(q))
+  if (partial.length === 1) return { id: partial[0].id, name: partial[0].name }
+  if (partial.length > 1) {
+    const preview = partial
+      .slice(0, 10)
+      .map((m) => `${m.name} (${m.id})`)
+      .join(', ')
+    return { error: `нашёл несколько похожих: ${preview}` }
+  }
+  return { error: `не нашёл мутанта "${nameQuery}"` }
+}
+
 export const POST: APIRoute = async ({ request }) => {
   const BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN
   const GITHUB_TOKEN = import.meta.env.GITHUB_TOKEN
@@ -407,6 +558,60 @@ export const POST: APIRoute = async ({ request }) => {
           status: 200,
           headers: { 'Content-Type': 'application/json' },
         })
+      }
+      // ".сфера \"Имя\"" + 3 строки рядов - см. комментарий у ORBING_TRIGGER
+      if (text.trim().toLowerCase().startsWith(ORBING_TRIGGER)) {
+        const targetChatId = chatId
+        const reply = async (msg: string) => {
+          await sendTelegramMessage(BOT_TOKEN, targetChatId, `[Сфера]\n${msg}`)
+          return new Response(JSON.stringify({ ok: true }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          })
+        }
+
+        if (!GITHUB_TOKEN || !REPO_OWNER || !REPO_NAME) {
+          return await reply('🔴 GitHub credentials не настроены')
+        }
+
+        const firstLine = text.split('\n')[0]
+        const nameMatch = firstLine.match(/"([^"]+)"/)
+        if (!nameMatch) {
+          return await reply(
+            '🔴 Формат:\n.сфера "Имя мутанта"\nатака_7 ; усиление_4 ; спец скорость_5\nздоровье_6 ; усиление_4 ; спец скорость_5\nусиление_3 ; усиление_4 ; спец скорость_5',
+          )
+        }
+
+        const rows = parseOrbingRows(text)
+        if ('error' in rows) {
+          return await reply(`🔴 ${rows.error}`)
+        }
+
+        const resolved = await resolveMutantIdByName(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, nameMatch[1])
+        if ('error' in resolved) {
+          return await reply(`🔴 ${resolved.error}`)
+        }
+
+        const orbingFile = await fetchGithubJsonFile(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, ORBING_PATH)
+        if (!orbingFile) {
+          return await reply('🔴 Не удалось загрузить orbing.json')
+        }
+        const orbingData = orbingFile.json as Record<string, { rows: string[][] }>
+        orbingData[resolved.id] = { rows }
+
+        const ok = await putGithubJsonFile(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          ORBING_PATH,
+          orbingFile.sha,
+          orbingData,
+          `Orbing: обновить сферовку "${resolved.name}"`,
+        )
+        if (!ok) {
+          return await reply('🔴 Не удалось сохранить orbing.json')
+        }
+        return await reply(`✅ Сферовка "${resolved.name}" (${resolved.id}) обновлена`)
       }
     }
 
