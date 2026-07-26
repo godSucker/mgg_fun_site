@@ -122,9 +122,7 @@ jobs:
               ? Math.round((today.getTime() - new Date(yb.lastSent).getTime()) / 86400000)
               : Infinity;
             if (process.env.YANDEX_BALANCE && daysSinceYandex >= yb.intervalDays) {
-              lines.push(
-                `\u{1F4B0} Баланс Yandex Cloud: ${process.env.YANDEX_BALANCE} (баланс счёта, не «потрачено за месяц» — это разные числа, Yandex Billing API не отдаёт трату напрямую)`,
-              );
+              lines.push(`\u{1F4B0} Баланс Yandex Cloud: ${process.env.YANDEX_BALANCE}`);
               yb.lastSent = today.toISOString().slice(0, 10);
               data.yandexBalance = yb;
             }

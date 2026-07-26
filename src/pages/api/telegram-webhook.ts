@@ -32,7 +32,11 @@ const YANDEX_BILLING_ACCOUNT_ID = 'dn28giqm4gc781aj82ca'
 // Публичный billing API не отдаёт "потрачено в этом цикле", только текущий
 // баланс счёта - см. комментарий в payments-reminder.yml.
 async function getYandexBalance(saKeyJson: string): Promise<string> {
-  const key = JSON.parse(saKeyJson) as { id: string; service_account_id: string; private_key: string }
+  const key = JSON.parse(saKeyJson) as {
+    id: string
+    service_account_id: string
+    private_key: string
+  }
   const b64url = (buf: Buffer) =>
     buf.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 
@@ -67,7 +71,7 @@ async function getYandexBalance(saKeyJson: string): Promise<string> {
   )
   const acct = await acctRes.json()
   const balance = Number(acct.balance).toFixed(2)
-  return `💰 Баланс Yandex Cloud: ${balance} ${acct.currency}\n(это баланс счёта, не «потрачено за месяц» — Yandex не отдаёт это число напрямую)`
+  return `💰 Баланс Yandex Cloud: ${balance} ${acct.currency}`
 }
 
 // Команда пометки оплаты: ".оплатил <id>" — переводит nextDue на следующий
@@ -131,7 +135,8 @@ function formatPaymentsList(data: PaymentsData): string {
   const lines = data.services.map((s) => {
     const d = daysUntil(s.nextDue)
     const icon = d < 0 ? '🔴' : d <= data.reminderThresholdDays ? '🟡' : '🟢'
-    const when = d < 0 ? `просрочено на ${Math.abs(d)} дн.` : d === 0 ? 'сегодня!' : `через ${d} дн.`
+    const when =
+      d < 0 ? `просрочено на ${Math.abs(d)} дн.` : d === 0 ? 'сегодня!' : `через ${d} дн.`
     const sum = s.amount == null ? '— сумма плавает, см. биллинг' : `— ${s.amount} ${s.currency}`
     return `${icon}  *${s.name}*\n     ${sum}\n     📅 ${s.nextDue} · ${when}`
   })
@@ -379,7 +384,11 @@ export const POST: APIRoute = async ({ request }) => {
             await sendTelegramMessage(BOT_TOKEN, chatId, info)
           } catch (err) {
             const message = err instanceof Error ? err.message : String(err)
-            await sendTelegramMessage(BOT_TOKEN, chatId, `🔴 Не удалось получить баланс: ${message}`)
+            await sendTelegramMessage(
+              BOT_TOKEN,
+              chatId,
+              `🔴 Не удалось получить баланс: ${message}`,
+            )
           }
         }
         return new Response(JSON.stringify({ ok: true }), {

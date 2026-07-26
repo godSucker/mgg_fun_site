@@ -6,14 +6,6 @@
   },
   "services": [
     {
-      "id": "yandex-cloud",
-      "name": "Показать баланс Яндекс",
-      "amount": null,
-      "currency": "RUB",
-      "period": "monthly",
-      "nextDue": "2026-08-20"
-    },
-    {
       "id": "vps",
       "name": "VPS-ретранслятор",
       "amount": 250,
