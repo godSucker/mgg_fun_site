@@ -112,7 +112,10 @@ const mutantMeta = (id: string): MutantMeta => {
     }
   }
   const lvl30 = m?.base_stats?.lvl30;
-  const ab = m?.abilities?.[0];
+  // Только "_plus"-вариант способности показывается на сайте (см. компаратор
+  // в sync-mutants.ts) - база всегда идёт первой в abilities[], поэтому
+  // "первый элемент" был неверным по умолчанию для ЛЮБОГО мутанта.
+  const ab = m?.abilities?.find((a) => a.name.endsWith('_plus'));
   const meta: MutantMeta = {
     head,
     genes: m?.genes ?? [],
