@@ -543,7 +543,7 @@
     aria-labelledby="mutant-title"
     onkeydown={onKeydownTrap}
     tabindex="-1"
-    class="modal-2k relative w-full max-w-5xl grid md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl h-[96svh] md:h-auto md:max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
+    class="modal-2k relative w-full max-w-5xl grid grid-rows-[auto_1fr] md:grid-rows-none md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl h-[96svh] md:h-auto md:max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
     <!-- Mobile close button -->
     <button
