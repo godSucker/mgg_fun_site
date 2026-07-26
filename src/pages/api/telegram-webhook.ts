@@ -15,10 +15,59 @@ const TIER_TRIGGER = '.тир'
 const STATUS_LABEL = '📊 Статус сайта'
 const LASTSYNC_LABEL = '🔄 Последний синк'
 const PAYMENTS_LABEL = '💳 Напоминалка'
+const YANDEX_BALANCE_LABEL = '💰 Баланс Яндекс'
 const REPLY_KEYBOARD = {
-  keyboard: [[{ text: STATUS_LABEL }, { text: LASTSYNC_LABEL }], [{ text: PAYMENTS_LABEL }]],
+  keyboard: [
+    [{ text: STATUS_LABEL }, { text: LASTSYNC_LABEL }],
+    [{ text: PAYMENTS_LABEL }, { text: YANDEX_BALANCE_LABEL }],
+  ],
   resize_keyboard: true,
   is_persistent: true,
+}
+
+const YANDEX_BILLING_ACCOUNT_ID = 'dn28giqm4gc781aj82ca'
+
+// Живой баланс биллинг-аккаунта Yandex Cloud - тот же JWT-flow, что и в
+// payments-reminder.yml (там для крона, здесь - для кнопки по требованию).
+// Публичный billing API не отдаёт "потрачено в этом цикле", только текущий
+// баланс счёта - см. комментарий в payments-reminder.yml.
+async function getYandexBalance(saKeyJson: string): Promise<string> {
+  const key = JSON.parse(saKeyJson) as { id: string; service_account_id: string; private_key: string }
+  const b64url = (buf: Buffer) =>
+    buf.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+
+  const now = Math.floor(Date.now() / 1000)
+  const header = { alg: 'PS256', typ: 'JWT', kid: key.id }
+  const payload = {
+    iss: key.service_account_id,
+    aud: 'https://iam.api.cloud.yandex.net/iam/v1/tokens',
+    iat: now,
+    exp: now + 3600,
+  }
+  const unsigned = `${b64url(Buffer.from(JSON.stringify(header)))}.${b64url(Buffer.from(JSON.stringify(payload)))}`
+  const crypto = await import('node:crypto')
+  const signature = crypto.sign('RSA-SHA256', Buffer.from(unsigned), {
+    key: key.private_key,
+    padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
+    saltLength: 32,
+  })
+  const jwt = `${unsigned}.${b64url(signature)}`
+
+  const tokenRes = await fetch('https://iam.api.cloud.yandex.net/iam/v1/tokens', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jwt }),
+  })
+  const tokenData = await tokenRes.json()
+  if (!tokenData.iamToken) throw new Error('no iamToken in IAM response')
+
+  const acctRes = await fetch(
+    `https://billing.api.cloud.yandex.net/billing/v1/billingAccounts/${YANDEX_BILLING_ACCOUNT_ID}`,
+    { headers: { Authorization: `Bearer ${tokenData.iamToken}` } },
+  )
+  const acct = await acctRes.json()
+  const balance = Number(acct.balance).toFixed(2)
+  return `💰 Баланс Yandex Cloud: ${balance} ${acct.currency}\n(это баланс счёта, не «потрачено за месяц» — Yandex не отдаёт это число напрямую)`
 }
 
 // Команда пометки оплаты: ".оплатил <id>" — переводит nextDue на следующий
@@ -78,15 +127,15 @@ function advanceUntilFuture(dateStr: string, period: PaymentService['period']): 
 }
 
 function formatPaymentsList(data: PaymentsData): string {
-  if (data.services.length === 0) return 'Список платежей пуст.'
+  if (data.services.length === 0) return '📋 Список платежей пуст.'
   const lines = data.services.map((s) => {
     const d = daysUntil(s.nextDue)
-    const icon = d < 0 ? '🔴' : d <= data.reminderThresholdDays ? '🟡' : '✅'
-    const when = d < 0 ? `просрочено на ${Math.abs(d)} дн.` : d === 0 ? 'сегодня' : `через ${d} дн.`
-    const sum = s.amount == null ? 'сумма плавает, смотри биллинг' : `${s.amount} ${s.currency}`
-    return `${icon} ${s.name} — ${sum} — ${s.nextDue} (${when})`
+    const icon = d < 0 ? '🔴' : d <= data.reminderThresholdDays ? '🟡' : '🟢'
+    const when = d < 0 ? `просрочено на ${Math.abs(d)} дн.` : d === 0 ? 'сегодня!' : `через ${d} дн.`
+    const sum = s.amount == null ? '— сумма плавает, см. биллинг' : `— ${s.amount} ${s.currency}`
+    return `${icon}  *${s.name}*\n     ${sum}\n     📅 ${s.nextDue} · ${when}`
   })
-  return lines.join('\n')
+  return `📋 *Ближайшие платежи*\n\n${lines.join('\n\n')}`
 }
 
 async function sendTelegramMessage(
@@ -94,6 +143,7 @@ async function sendTelegramMessage(
   chatId: number | string,
   text: string,
   replyMarkup?: unknown,
+  parseMode?: 'Markdown',
 ) {
   try {
     await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -103,6 +153,7 @@ async function sendTelegramMessage(
         chat_id: chatId,
         text,
         ...(replyMarkup ? { reply_markup: replyMarkup } : {}),
+        ...(parseMode ? { parse_mode: parseMode } : {}),
       }),
     })
   } catch {
@@ -307,7 +358,29 @@ export const POST: APIRoute = async ({ request }) => {
       if (text === '/payments' || text === PAYMENTS_LABEL) {
         if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
           const info = await getPaymentsMessage(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
-          await sendTelegramMessage(BOT_TOKEN, chatId, `[Напоминалка]\n${info}`)
+          await sendTelegramMessage(BOT_TOKEN, chatId, info, undefined, 'Markdown')
+        }
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      if (text === '/yandex' || text === YANDEX_BALANCE_LABEL) {
+        const YC_SA_KEY_JSON = import.meta.env.YC_SA_KEY_JSON
+        if (!YC_SA_KEY_JSON) {
+          await sendTelegramMessage(
+            BOT_TOKEN,
+            chatId,
+            '🔴 YC_SA_KEY_JSON не настроен в переменных окружения Vercel.',
+          )
+        } else {
+          try {
+            const info = await getYandexBalance(YC_SA_KEY_JSON)
+            await sendTelegramMessage(BOT_TOKEN, chatId, info)
+          } catch (err) {
+            const message = err instanceof Error ? err.message : String(err)
+            await sendTelegramMessage(BOT_TOKEN, chatId, `🔴 Не удалось получить баланс: ${message}`)
+          }
         }
         return new Response(JSON.stringify({ ok: true }), {
           status: 200,
