@@ -6,6 +6,7 @@ import mutantNamesData from '../data/mutant_names.json';
 import { getMutantTexturePath, getRewardTexturePath, getRewardLabel } from '../lib/bingo-textures';
 import { bingoLabel } from '../lib/mutant-dicts';
 import { textureUrl } from '../lib/texture-cdn';
+import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
 
 interface BingoMutant {
   specimenId: string;
@@ -282,7 +283,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                               const hasSkin = !isMissing && mutant.skin && mutant.skin !== '_any' && mutant.skin.trim() !== '';
                               
                               return (
-                                <div class="grid-cell mutant-cell" class:missing-mutant={isMissing} title={getMutantName(mutant.specimenId)}>
+                                <div class="grid-cell mutant-cell" class:missing-mutant={isMissing} title={getMutantName(mutant.specimenId)} data-specimen-id={!isMissing ? mutant.specimenId : undefined}>
                                   <div class="mutant-content">
                                     <img src={textureUrl(texturePath)} alt="" loading="lazy" class="mutant-img" />
                                     {hasSkin && <span class="skin-badge">✦</span>}
@@ -351,6 +352,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
       );
     })}
   </div>
+  <BingoMutantModal client:load />
 </BaseLayout>
 
 <script is:inline>
@@ -366,6 +368,19 @@ function getSubBingos(bingo: Bingo): Bingo[] {
         tabs.forEach(t => t.setAttribute("aria-selected", "false"));
         btn.setAttribute("aria-selected", "true");
         btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      });
+    });
+
+    // Клик по мутанту в сетке бинго - открыть его модалку (тот же паттерн,
+    // что и на странице тир-листа: MutantModal, смонтированная отдельным
+    // Svelte-островом, слушает это событие).
+    document.querySelectorAll(".mutant-cell[data-specimen-id]").forEach((cell) => {
+      cell.addEventListener("click", () => {
+        window.dispatchEvent(
+          new CustomEvent("archivist:open-mutant", {
+            detail: { specimenId: cell.dataset.specimenId },
+          }),
+        );
       });
     });
   });

@@ -10,6 +10,17 @@
 
   let { items = [], skins = [], bingos = [], title = '', bingoIndex = [] } = $props();
 
+  let showScrollTop = $state(false);
+  $effect(() => {
+    const onScroll = () => { showScrollTop = window.scrollY > 600; };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  });
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   const _cache = new Map<string, any[]>();
   function memo<T>(key: string, calc: () => T): T {
     if (_cache.has(key)) return _cache.get(key) as T;
@@ -616,9 +627,38 @@
   {#if openItem}
     <MutantModal open={true} mutant={openItem} star={rarityType(openItem)} skins={skinLookup.get(baseId(openItem.id)) ?? []} onclose={closeModal} />
   {/if}
+
+  {#if showScrollTop}
+    <button class="scroll-top-btn" onclick={scrollToTop} aria-label="Наверх" title="Наверх">
+      ↑
+    </button>
+  {/if}
 </div>
 
 <style>
+  .scroll-top-btn {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 40;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e2e8f0;
+    font-size: 1.3rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+  .scroll-top-btn:hover {
+    background: rgba(51, 65, 85, 0.95);
+  }
+
   /* Апскейл на ≥2K */
   @media (min-width: 1921px){ .page-2k { font-size: 1.0625rem; } }
   @media (min-width: 1921px){

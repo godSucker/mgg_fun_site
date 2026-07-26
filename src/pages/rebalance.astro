@@ -58,6 +58,8 @@ interface MutantMeta {
   abilityAtk2: number | null;
   abilityName: string | null;
   speed: number | null;
+  atk1Aoe: boolean;
+  atk2Aoe: boolean;
   // Все статы в mutants.json посчитаны при множителе 1.0 (raw) - см.
   // scripts/sync-mutants.ts calculateFinalStats(..., 1.0). Страница ребаланса
   // должна показывать мутанта в его МАКСИМАЛЬНОЙ доступной звезде (герои/легенды -
@@ -95,7 +97,8 @@ const mutantMeta = (id: string): MutantMeta => {
       tier?: string;
       stars?: Record<string, { images?: string[]; multiplier?: number }>;
       base_stats?: {
-        lvl30?: { hp?: number; atk1?: number; atk2?: number; speed?: number; ability?: number };
+        lvl1?: { hp?: number; atk1_AOE?: boolean; atk2_AOE?: boolean };
+        lvl30?: { hp?: number; atk1?: number; atk2?: number; speed?: number; ability?: number; atk1_AOE?: boolean; atk2_AOE?: boolean };
         abilityPct2?: number;
       };
       abilities?: { name: string; pct: number; value_atk1_lvl30?: number; value_atk2_lvl30?: number }[];
@@ -111,6 +114,7 @@ const mutantMeta = (id: string): MutantMeta => {
       }
     }
   }
+  const lvl1 = m?.base_stats?.lvl1;
   const lvl30 = m?.base_stats?.lvl30;
   // Только "_plus"-вариант способности показывается на сайте (см. компаратор
   // в sync-mutants.ts) - база всегда идёт первой в abilities[], поэтому
@@ -120,7 +124,12 @@ const mutantMeta = (id: string): MutantMeta => {
     head,
     genes: m?.genes ?? [],
     tier: String(m?.tier ?? '').trim(),
-    hp: lvl30?.hp ?? null,
+    // HP - реальный левел-скейлинг (lvl1 vs lvl30 - разные игровые цифры),
+    // страница показывает статы 1 уровня, как в игре у только что заведённого
+    // мутанта. Атака же lvl1/lvl30 в base_stats - НЕ уровень, а переключатель
+    // atk*_base/atk*p_base ("обычная"/"усиленная") - см. компаратор в
+    // sync-mutants.ts, поэтому атаку продолжаем брать из lvl30 (усиленная).
+    hp: lvl1?.hp ?? null,
     atk1: lvl30?.atk1 ?? null,
     atk2: lvl30?.atk2 ?? null,
     abilityPct: m?.base_stats?.abilityPct2 ?? ab?.pct ?? null,
@@ -128,6 +137,8 @@ const mutantMeta = (id: string): MutantMeta => {
     abilityAtk2: ab?.value_atk2_lvl30 ?? null,
     abilityName: ab?.name ?? null,
     speed: lvl30?.speed ?? null,
+    atk1Aoe: lvl30?.atk1_AOE ?? lvl1?.atk1_AOE ?? false,
+    atk2Aoe: lvl30?.atk2_AOE ?? lvl1?.atk2_AOE ?? false,
     starMultiplier: maxStarMultiplier(m?.stars),
   };
   mutantMetaCache.set(id, meta);
@@ -150,6 +161,8 @@ interface MutantRow {
   hp: Pair | null;
   atk1: Pair | null;
   atk2: Pair | null;
+  atk1Aoe: boolean;
+  atk2Aoe: boolean;
   abilities: AbilityRow[];
   speed: Pair | null;
 }
@@ -169,10 +182,10 @@ function buildRow(entry: RebalanceEntry): MutantRow {
   const scaled = (v: number | null): number | null =>
     v == null ? null : Math.round(v * meta.starMultiplier);
 
-  // HP: lvl30 — если нет изменения, показываем текущее значение
-  const hp30 = find('hp', 30);
-  const hp: Pair = hp30
-    ? { old: scaled(hp30.old), new: scaled(hp30.new) }
+  // HP: lvl1 — если нет изменения, показываем текущее значение
+  const hp1 = find('hp', 1);
+  const hp: Pair = hp1
+    ? { old: scaled(hp1.old), new: scaled(hp1.new) }
     : { old: scaled(meta.hp), new: scaled(meta.hp) };
 
   // Атака 1/2: "усиленная" версия (level: null)
@@ -225,6 +238,8 @@ function buildRow(entry: RebalanceEntry): MutantRow {
     hp,
     atk1,
     atk2,
+    atk1Aoe: meta.atk1Aoe,
+    atk2Aoe: meta.atk2Aoe,
     abilities,
     speed,
   };
@@ -317,11 +332,11 @@ const pctDeltaCls = (pct: Pair | null): string => {
                 </div>
 
                 <div class="rb-cell rb-stat" role="cell" data-label="Атака 1">
-                  <StatBox oldVal={row.atk1.old} newVal={row.atk1.new} />
+                  <StatBox oldVal={row.atk1.old} newVal={row.atk1.new} aoe={row.atk1Aoe} />
                 </div>
 
                 <div class="rb-cell rb-stat" role="cell" data-label="Атака 2">
-                  <StatBox oldVal={row.atk2.old} newVal={row.atk2.new} />
+                  <StatBox oldVal={row.atk2.old} newVal={row.atk2.new} aoe={row.atk2Aoe} />
                 </div>
 
                 <div class="rb-cell rb-stat" role="cell" data-label="Способность">

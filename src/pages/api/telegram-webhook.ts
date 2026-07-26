@@ -354,7 +354,9 @@ async function uploadAnnouncementImage(
 // уровень 5, у особых - 3 (реальный уровень определяет владелец мутанта
 // в игре руками, бот его не знает и не спрашивает). Количество сфер в
 // ряду не фиксировано - модалка (MutantModal.svelte) рендерит {#each row}
-// произвольной длины.
+// произвольной длины. Рядов может быть от 1 до 3 (не у всех мутантов
+// заполнены все 3 в игре). Разделитель сфер в ряду - ";" или ",". Имя
+// мутанта можно писать в кавычках или без них.
 const ORBING_TRIGGER = '.сфера'
 const ORBING_PATH = 'src/data/mutants/orbing.json'
 
@@ -368,7 +370,7 @@ const ORB_WORD_MAP: Array<[RegExp, string]> = [
   [/вытягивани/, 'regenerate'],
   [/контратак|отражени/, 'retaliate'],
   [/критическ/, 'critical'],
-  [/здоровь/, 'life'],
+  [/^хп$|здоровь/, 'life'],
   [/усилени/, 'strengthen'],
   [/щит/, 'shield'],
   [/ранени/, 'slash'],
@@ -430,15 +432,15 @@ function parseOrbingRows(messageText: string): string[][] | { error: string } {
     .map((l) => l.trim())
     .filter((l) => l.length > 0)
   const rowLines = lines.slice(1)
-  if (rowLines.length !== 3) {
+  if (rowLines.length < 1 || rowLines.length > 3) {
     return {
-      error: `нужно ровно 3 строки с рядами сфер (после строки с именем), получено: ${rowLines.length}`,
+      error: `нужно от 1 до 3 строк с рядами сфер (после строки с именем), получено: ${rowLines.length}`,
     }
   }
   const rows: string[][] = []
   for (let i = 0; i < rowLines.length; i++) {
     const cells = rowLines[i]
-      .split(';')
+      .split(/[;,]/)
       .map((c) => c.trim())
       .filter((c) => c.length > 0)
     if (cells.length === 0) {
@@ -691,10 +693,17 @@ export const POST: APIRoute = async ({ request }) => {
         }
 
         const firstLine = text.split('\n')[0]
-        const nameMatch = firstLine.match(/"([^"]+)"/)
-        if (!nameMatch) {
+        const quotedMatch = firstLine.match(/"([^"]+)"/)
+        // Кавычки необязательны - если их нет, именем считается всё после
+        // триггера на первой строке.
+        const nameRaw = quotedMatch
+          ? quotedMatch[1]
+          : firstLine
+              .slice(firstLine.toLowerCase().indexOf(ORBING_TRIGGER) + ORBING_TRIGGER.length)
+              .trim()
+        if (!nameRaw) {
           return await reply(
-            '🔴 Формат:\n.сфера "Имя мутанта"\nатака ; усиление ; спец скорость\nздоровье ; усиление ; спец скорость\nусиление ; усиление ; спец скорость',
+            '🔴 Формат:\n.сфера Имя мутанта\nатака ; усиление ; спец скорость\nздоровье ; усиление ; спец скорость\nусиление ; усиление ; спец скорость',
           )
         }
 
@@ -703,12 +712,7 @@ export const POST: APIRoute = async ({ request }) => {
           return await reply(`🔴 ${rows.error}`)
         }
 
-        const resolved = await resolveMutantIdByName(
-          GITHUB_TOKEN,
-          REPO_OWNER,
-          REPO_NAME,
-          nameMatch[1],
-        )
+        const resolved = await resolveMutantIdByName(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, nameRaw)
         if ('error' in resolved) {
           return await reply(`🔴 ${resolved.error}`)
         }

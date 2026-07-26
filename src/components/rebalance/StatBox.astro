@@ -1,9 +1,12 @@
 ---
+import { textureUrl } from '@/lib/texture-cdn';
+
 interface Props {
   oldVal: number | null;
   newVal: number | null;
+  aoe?: boolean;
 }
-const { oldVal, newVal } = Astro.props;
+const { oldVal, newVal, aoe = false } = Astro.props;
 
 const fmtNum = (n: number | null) => (n == null ? '—' : n.toLocaleString('ru-RU'));
 
@@ -20,6 +23,7 @@ const cls = directionCls();
 ---
 
 <div class="statbox">
+  {aoe && <img class="aoe-icon" src={textureUrl('/genes/atk_multiple.webp')} alt="AOE" title="AOE-атака" loading="lazy" decoding="async" />}
   <span class="vals">
     <span class="old-val">{fmtNum(oldVal)}</span>
     <span class="arrow">→</span>
@@ -55,5 +59,12 @@ const cls = directionCls();
   .arrow {
     color: #64748b;
     margin: 0 0.2rem;
+  }
+  .aoe-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    margin-right: 0.25rem;
+    flex-shrink: 0;
   }
 </style>
