@@ -58,7 +58,26 @@ interface MutantMeta {
   abilityAtk2: number | null;
   abilityName: string | null;
   speed: number | null;
+  // Все статы в mutants.json посчитаны при множителе 1.0 (raw) - см.
+  // scripts/sync-mutants.ts calculateFinalStats(..., 1.0). Страница ребаланса
+  // должна показывать мутанта в его МАКСИМАЛЬНОЙ доступной звезде (герои/легенды -
+  // платина, зодиаки - серебро, особые - обычная), поэтому здесь считаем множитель
+  // звезды один раз и масштабируем им все hp/atk1/atk2/ability-atk значения ниже.
+  // Формула линейна (finalStat = base * multiplier * levelScale), так что
+  // домножение уже готового числа эквивалентно пересчёту с нуля - speed/pct
+  // от звезды не зависят и не масштабируются.
+  starMultiplier: number;
 }
+// Множитель самой высокой доступной звезды: normal (нет multiplier) = 1.0,
+// иначе максимум среди bronze/silver/gold/platinum, если они есть у мутанта.
+const maxStarMultiplier = (stars?: Record<string, { multiplier?: number }>): number => {
+  if (!stars) return 1;
+  let max = 1;
+  for (const star of Object.values(stars)) {
+    if (star.multiplier && star.multiplier > max) max = star.multiplier;
+  }
+  return max;
+};
 const mutantMetaCache = new Map<string, MutantMeta>();
 const mutantMeta = (id: string): MutantMeta => {
   if (mutantMetaCache.has(id)) return mutantMetaCache.get(id)!;
@@ -67,7 +86,7 @@ const mutantMeta = (id: string): MutantMeta => {
       id: string;
       genes?: string[];
       tier?: string;
-      stars?: Record<string, { images?: string[] }>;
+      stars?: Record<string, { images?: string[]; multiplier?: number }>;
       base_stats?: {
         lvl30?: { hp?: number; atk1?: number; atk2?: number; speed?: number; ability?: number };
         abilityPct2?: number;
@@ -99,6 +118,7 @@ const mutantMeta = (id: string): MutantMeta => {
     abilityAtk2: ab?.value_atk2_lvl30 ?? null,
     abilityName: ab?.name ?? null,
     speed: lvl30?.speed ?? null,
+    starMultiplier: maxStarMultiplier(m?.stars),
   };
   mutantMetaCache.set(id, meta);
   return meta;
@@ -132,21 +152,28 @@ function buildRow(entry: RebalanceEntry): MutantRow {
   const find = (stat: StatChange['stat'], level: 1 | 30 | null) =>
     entry.changes.find((c) => c.stat === stat && c.level === level);
 
+  // Все числа (и текущие из meta, и исторические old/new из rebalance-history.json)
+  // посчитаны в данных при множителе 1.0 (normal-звезда) - домножаем на множитель
+  // максимальной доступной звезды мутанта, чтобы показать "усиленные" (боевые)
+  // значения так, как они реально выглядят в игре на макс. звезде.
+  const scaled = (v: number | null): number | null =>
+    v == null ? null : Math.round(v * meta.starMultiplier);
+
   // HP: lvl30 — если нет изменения, показываем текущее значение
   const hp30 = find('hp', 30);
   const hp: Pair = hp30
-    ? { old: hp30.old, new: hp30.new }
-    : { old: meta.hp, new: meta.hp };
+    ? { old: scaled(hp30.old), new: scaled(hp30.new) }
+    : { old: scaled(meta.hp), new: scaled(meta.hp) };
 
   // Атака 1/2: "усиленная" версия (level: null)
   const atk1Change = find('atk1', null);
   const atk1: Pair = atk1Change
-    ? { old: atk1Change.old, new: atk1Change.new }
-    : { old: meta.atk1, new: meta.atk1 };
+    ? { old: scaled(atk1Change.old), new: scaled(atk1Change.new) }
+    : { old: scaled(meta.atk1), new: scaled(meta.atk1) };
   const atk2Change = find('atk2', null);
   const atk2: Pair = atk2Change
-    ? { old: atk2Change.old, new: atk2Change.new }
-    : { old: meta.atk2, new: meta.atk2 };
+    ? { old: scaled(atk2Change.old), new: scaled(atk2Change.new) }
+    : { old: scaled(meta.atk2), new: scaled(meta.atk2) };
 
   // Способности: группируем field-diffs по названию способности
   const abilityChanges = entry.changes.filter((c) => c.stat === 'abilities');
@@ -161,15 +188,16 @@ function buildRow(entry: RebalanceEntry): MutantRow {
     const atk2C = forField('atk2');
     return {
       label: ABILITY_RU[name] ?? name,
+      // pct - это проценты от атаки, а не сам стат, звезда на них не влияет
       pct: pctC
         ? { old: pctC.old, new: pctC.new }
         : { old: meta.abilityPct, new: meta.abilityPct },
       atk1: atk1C
-        ? { old: atk1C.old, new: atk1C.new }
-        : { old: meta.abilityAtk1, new: meta.abilityAtk1 },
+        ? { old: scaled(atk1C.old), new: scaled(atk1C.new) }
+        : { old: scaled(meta.abilityAtk1), new: scaled(meta.abilityAtk1) },
       atk2: atk2C
-        ? { old: atk2C.old, new: atk2C.new }
-        : { old: meta.abilityAtk2, new: meta.abilityAtk2 },
+        ? { old: scaled(atk2C.old), new: scaled(atk2C.new) }
+        : { old: scaled(meta.abilityAtk2), new: scaled(meta.abilityAtk2) },
     };
   });
 
@@ -209,7 +237,8 @@ const pctDeltaCls = (pct: Pair | null): string => {
     <h1>Ребаланс мутантов</h1>
     <p class="intro">
       Здесь автоматически фиксируются все изменения статов после ребалансов игры: было → стало по
-      каждому мутанту.<br />В таблице указаны только усиленные версии атак и способности.
+      каждому мутанту.<br />В таблице указаны только усиленные версии атак и способности, в
+      максимальной доступной звезде мутанта.
     </p>
 
     {runs.length > 0 && (
