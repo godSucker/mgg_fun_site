@@ -48,8 +48,6 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response('OK (ignored, not production)', { status: 200 })
   }
 
-  const project = payload.payload?.deployment?.name ?? 'archivist-library'
-  const deployUrl = payload.payload?.deployment?.url
   const icon = type === 'deployment.succeeded' ? '✅' : type === 'deployment.error' ? '🔴' : 'ℹ️'
   const label =
     type === 'deployment.succeeded'
@@ -62,14 +60,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response('OK (ignored event type)', { status: 200 })
   }
 
-  const text = [
-    `[Vercel]`,
-    `${icon} ${label}`,
-    `Проект: ${project}`,
-    deployUrl ? `https://${deployUrl}` : null,
-  ]
-    .filter(Boolean)
-    .join('\n')
+  const text = `[Vercel]\n${icon} ${label}`
 
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: 'POST',
