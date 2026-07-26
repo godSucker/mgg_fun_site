@@ -1,0 +1,131 @@
+---
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import announcementsData from '@/data/announcements.json';
+
+interface Announcement {
+  id: string;
+  date: string;
+  text: string;
+  imagePath?: string | null;
+  sourceUrl?: string | null;
+}
+
+const announcements = ((announcementsData as Announcement[]) ?? [])
+  .slice()
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout title="Анонсы — Archivist-Library">
+  <main class="announcements-page">
+    <h1>Анонсы</h1>
+    <p class="intro">Новости и анонсы по игре Mutants Genetic Gladiators.</p>
+
+    {announcements.length === 0 ? (
+      <div class="empty">Анонсов пока нет — заглядывай позже.</div>
+    ) : (
+      <div class="feed">
+        {announcements.map((a) => (
+          <article class="card">
+            {a.imagePath && (
+              <div class="card-image">
+                <img src={a.imagePath} alt="" loading="lazy" decoding="async" />
+              </div>
+            )}
+            <div class="card-body">
+              <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+              <p class="card-text">{a.text}</p>
+              {a.sourceUrl && (
+                <a class="card-source" href={a.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  Источник →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  .announcements-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .intro {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+  .empty {
+    padding: 2rem;
+    text-align: center;
+    color: #94a3b8;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+  }
+  .feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .card-image {
+    width: 100%;
+    max-height: 420px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+  .card-date {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgb(96, 165, 250);
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .card-text {
+    color: #e2e8f0;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .card-source {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgb(96, 165, 250);
+    text-decoration: none;
+  }
+  .card-source:hover {
+    text-decoration: underline;
+  }
+</style>

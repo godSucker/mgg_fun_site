@@ -295,6 +295,58 @@ async function markPaymentPaid(
   return `✅ ${service.name}: следующий платёж — ${service.nextDue}`
 }
 
+// ".анонс" - публикация анонса на /announcements. У Bot API нет способа
+// получить пост по ссылке, а форвард в Telegram нельзя дополнить своей
+// подписью (для текстовых постов) - зато РЕПЛАЙ на сообщение всегда несёт
+// полный reply_to_message с оригинальным текстом/фото. Поэтому рабочий поток:
+// 1) переслать пост из канала в чат с ботом, 2) ОТВЕТИТЬ (Reply) на него
+// текстом ".анонс" (можно дописать свой текст после - он добавится как
+// подводка перед оригинальным текстом поста).
+const ANNOUNCE_TRIGGER = '.анонс'
+const ANNOUNCEMENTS_PATH = 'src/data/announcements.json'
+
+interface Announcement {
+  id: string
+  date: string
+  text: string
+  imagePath: string | null
+}
+
+async function uploadAnnouncementImage(
+  botToken: string,
+  githubToken: string,
+  owner: string,
+  repo: string,
+  fileId: string,
+  id: string,
+): Promise<string | null> {
+  const fileRes = await fetch(`https://api.telegram.org/bot${botToken}/getFile?file_id=${fileId}`)
+  const fileInfo = await fileRes.json()
+  if (!fileInfo.ok) return null
+
+  const filePath: string = fileInfo.result.file_path
+  const ext = filePath.split('.').pop() || 'jpg'
+  const imgRes = await fetch(`https://api.telegram.org/file/bot${botToken}/${filePath}`)
+  if (!imgRes.ok) return null
+  const imgBuffer = Buffer.from(await imgRes.arrayBuffer())
+  const repoPath = `public/announcements/${id}.${ext}`
+
+  const putRes = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${repoPath}`,
+    {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `Announcements: картинка для анонса ${id}`,
+        content: imgBuffer.toString('base64'),
+        branch: 'main',
+      }),
+    },
+  )
+  if (!putRes.ok) return null
+  return `/announcements/${id}.${ext}`
+}
+
 // ".сфера "Имя"" + 3 строки рядов - ручное добавление сферовки мутанта
 // (в игре сферы выставляются вручную, автопарса из XML нет). Формат:
 //   .сфера "Мистер Икс"
@@ -547,6 +599,75 @@ export const POST: APIRoute = async ({ request }) => {
         })
       }
       // ".сфера \"Имя\"" + 3 строки рядов - см. комментарий у ORBING_TRIGGER
+      // ".анонс" как ОТВЕТ (Reply) на пересланный пост - см. комментарий у ANNOUNCE_TRIGGER
+      if (text.trim().toLowerCase().startsWith(ANNOUNCE_TRIGGER)) {
+        const targetChatId = chatId
+        const reply = async (msg: string) => {
+          await sendTelegramMessage(BOT_TOKEN, targetChatId, `[Анонс]\n${msg}`)
+          return new Response(JSON.stringify({ ok: true }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          })
+        }
+
+        const replyTo = body.message.reply_to_message
+        if (!replyTo) {
+          return await reply(
+            '🔴 Перешли пост из канала в этот чат, затем ОТВЕТЬ (Reply, не просто напиши) на него текстом ".анонс"',
+          )
+        }
+        if (!GITHUB_TOKEN || !REPO_OWNER || !REPO_NAME) {
+          return await reply('🔴 GitHub credentials не настроены')
+        }
+
+        const sourceText: string = replyTo.caption ?? replyTo.text ?? ''
+        const extra = text.slice(ANNOUNCE_TRIGGER.length).trim()
+        const combinedText = (extra ? `${extra}\n\n${sourceText}` : sourceText).trim()
+        const photos = replyTo.photo as Array<{ file_id: string }> | undefined
+
+        if (!combinedText && (!photos || photos.length === 0)) {
+          return await reply('🔴 В пересланном сообщении нет ни текста, ни фото — публиковать нечего')
+        }
+
+        const id = String(Date.now())
+        let imagePath: string | null = null
+        if (photos && photos.length > 0) {
+          imagePath = await uploadAnnouncementImage(
+            BOT_TOKEN,
+            GITHUB_TOKEN,
+            REPO_OWNER,
+            REPO_NAME,
+            photos[photos.length - 1].file_id,
+            id,
+          )
+        }
+
+        const file = await fetchGithubJsonFile(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, ANNOUNCEMENTS_PATH)
+        if (!file) {
+          return await reply('🔴 Не удалось загрузить announcements.json')
+        }
+        const list = (file.json as Announcement[]) ?? []
+        list.push({
+          id,
+          date: new Date().toISOString().slice(0, 10),
+          text: combinedText,
+          imagePath,
+        })
+
+        const ok = await putGithubJsonFile(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          ANNOUNCEMENTS_PATH,
+          file.sha,
+          list,
+          `Announcements: новый анонс ${id}`,
+        )
+        if (!ok) {
+          return await reply('🔴 Не удалось сохранить announcements.json')
+        }
+        return await reply(`✅ Опубликовано: https://archivist-library.com/announcements`)
+      }
       if (text.trim().toLowerCase().startsWith(ORBING_TRIGGER)) {
         const targetChatId = chatId
         const reply = async (msg: string) => {
