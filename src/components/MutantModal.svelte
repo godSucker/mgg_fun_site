@@ -523,6 +523,29 @@
         await tick();
         try { modalRef?.scrollTo({ top: 0, behavior: 'auto' }); } catch {}
         focusFirst();
+        // Картинки (герой, сферовки) догружаются после первого тика и могут
+        // сдвинуть высоту контента ниже точки скролла - браузер иногда
+        // компенсирует это автоскроллом (scroll anchoring). Переустанавливаем
+        // scrollTop ещё раз после загрузки всех img внутри модалки - но только
+        // пока пользователь ещё не сам поскроллил (короткое окно после
+        // открытия), иначе будем мешать обычному скроллу вниз.
+        const openedAt = Date.now();
+        let userScrolled = false;
+        const onUserScroll = () => { userScrolled = true; };
+        modalRef?.addEventListener('wheel', onUserScroll, { passive: true, once: true });
+        modalRef?.addEventListener('touchmove', onUserScroll, { passive: true, once: true });
+        const imgs = Array.from(modalRef?.querySelectorAll('img') ?? []) as HTMLImageElement[];
+        for (const img of imgs) {
+          if (img.complete) continue;
+          img.addEventListener(
+            'load',
+            () => {
+              if (userScrolled || Date.now() - openedAt > 1500) return;
+              try { modalRef?.scrollTo({ top: 0, behavior: 'auto' }); } catch {}
+            },
+            { once: true },
+          );
+        }
       })();
     }
   });
@@ -543,7 +566,8 @@
     aria-labelledby="mutant-title"
     onkeydown={onKeydownTrap}
     tabindex="-1"
-    class="modal-2k relative w-full max-w-5xl grid grid-rows-[auto_1fr] md:grid-rows-none md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl h-[96svh] md:h-auto md:max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
+    style="overflow-anchor: none;"
+    class="modal-2k relative w-full max-w-5xl grid grid-rows-[auto_auto_1fr] md:grid-rows-none md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl min-h-[96svh] md:h-auto md:max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
     <!-- Mobile close button -->
     <button
@@ -554,7 +578,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <!-- Left -->
-    <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10 overflow-hidden">
+    <div class="bg-gradient-to-b from-slate-900/80 to-slate-800/70 rounded-xl p-2 md:p-3 flex flex-col items-center ring-1 ring-white/10">
       <!-- Звёзды и скины в одном ряду (сбоку друг от друга). -->
       <!-- Ряд звёзд показываем и при единственной звезде, если есть скины: -->
       <!-- эта кнопка работает как «убрать скин» (Крушила и другие SPECIAL с GACHA-скином). -->
