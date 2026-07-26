@@ -1,0 +1,163 @@
+name: Payments Reminder
+
+# Личный список платежей за сервисы (Vercel, VPS, домен и т.п.) хранится в
+# src/data/payments.json - см. команду ".оплатил <id>" и кнопку "Напоминалка"
+# в telegram-webhook.ts. Этот воркфлоу - "проактивная" половина фичи: бот сам
+# напоминает, когда дата приближается, вместо того чтобы ждать, пока кто-то
+# нажмёт кнопку. Крон гоняется раз в сутки, но само сообщение в Telegram
+# шлётся только в 2 точки цикла (за reminderThresholdDays дней и в день "0") -
+# не каждый день из окна, чтобы не спамить одним и тем же несколько дней подряд.
+on:
+  schedule:
+    - cron: '0 6 * * *' # 09:00 МСК
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Клонирование репозитория
+        uses: actions/checkout@v4
+
+      # У Yandex Cloud нет прямого поля "потрачено в этом цикле" в публичном
+      # billing API - есть только текущий баланс аккаунта (billingAccounts.get),
+      # который сам себе не равен "трата за месяц" (может расти после
+      # автопополнения). Показываем баланс как лучшее доступное приближение,
+      # честно подписывая, что это не гарантированно "сумма трат".
+      # Аутентификация - JWT, подписанный ключом сервис-аккаунта (YC_SA_KEY_JSON),
+      # обменивается на IAM-токен: yc CLI даёт только 12-часовой токен из-под
+      # интерактивного логина, для крона нужен именно service account key flow.
+      - name: Yandex Cloud - актуальный баланс
+        id: yandex
+        if: env.YC_SA_KEY_JSON != ''
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_BILLING_ACCOUNT_ID: dn28giqm4gc781aj82ca
+        run: |
+          node --input-type=module -e '
+            import crypto from "node:crypto";
+
+            const key = JSON.parse(process.env.YC_SA_KEY_JSON);
+            const billingAccountId = process.env.YC_BILLING_ACCOUNT_ID;
+            const b64url = (buf) =>
+              Buffer.from(buf).toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+            const now = Math.floor(Date.now() / 1000);
+            const header = { alg: "PS256", typ: "JWT", kid: key.id };
+            const payload = {
+              iss: key.service_account_id,
+              aud: "https://iam.api.cloud.yandex.net/iam/v1/tokens",
+              iat: now,
+              exp: now + 3600,
+            };
+            const unsigned = `${b64url(JSON.stringify(header))}.${b64url(JSON.stringify(payload))}`;
+            const signature = crypto.sign("RSA-SHA256", Buffer.from(unsigned), {
+              key: key.private_key,
+              padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
+              saltLength: 32,
+            });
+            const jwt = `${unsigned}.${b64url(signature)}`;
+
+            try {
+              const tokenRes = await fetch("https://iam.api.cloud.yandex.net/iam/v1/tokens", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ jwt }),
+              });
+              const tokenData = await tokenRes.json();
+              if (!tokenData.iamToken) throw new Error("no iamToken in response");
+
+              const acctRes = await fetch(
+                `https://billing.api.cloud.yandex.net/billing/v1/billingAccounts/${billingAccountId}`,
+                { headers: { Authorization: `Bearer ${tokenData.iamToken}` } },
+              );
+              const acct = await acctRes.json();
+              const balance = Number(acct.balance);
+              await import("node:fs").then((fs) =>
+                fs.appendFileSync(process.env.GITHUB_OUTPUT, `balance=${balance.toFixed(2)} ${acct.currency}\n`),
+              );
+            } catch (err) {
+              console.error("Yandex balance fetch failed:", err);
+              await import("node:fs").then((fs) => fs.appendFileSync(process.env.GITHUB_OUTPUT, "balance=\n"));
+            }
+          '
+
+      - name: Проверка дат и напоминание
+        id: check
+        env:
+          YANDEX_BALANCE: ${{ steps.yandex.outputs.balance }}
+        run: |
+          node --input-type=module -e '
+            import fs from "node:fs";
+            const path = "src/data/payments.json";
+            const data = JSON.parse(fs.readFileSync(path, "utf-8"));
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const threshold = data.reminderThresholdDays ?? 3;
+            const lines = [];
+
+            function advanceOneCycle(dateStr, period) {
+              const d = new Date(dateStr);
+              const day = d.getDate();
+              if (period === "yearly") {
+                d.setFullYear(d.getFullYear() + 1);
+              } else {
+                d.setDate(1);
+                d.setMonth(d.getMonth() + 1);
+                const daysInTargetMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+                d.setDate(Math.min(day, daysInTargetMonth));
+              }
+              return d.toISOString().slice(0, 10);
+            }
+
+            for (const s of data.services) {
+              const due = new Date(s.nextDue);
+              due.setHours(0, 0, 0, 0);
+              const daysLeft = Math.round((due.getTime() - today.getTime()) / 86400000);
+              let sum = s.amount == null ? "сумма плавает, смотри биллинг" : `${s.amount} ${s.currency}`;
+              if (s.id === "yandex-cloud" && process.env.YANDEX_BALANCE) {
+                sum = `баланс аккаунта: ${process.env.YANDEX_BALANCE} (не то же самое, что "потрачено за месяц", но лучшее, что даёт API)`;
+              }
+
+              // Просрочено - сдвигаем nextDue на следующий цикл, чтобы напоминание
+              // не срабатывало вечно на уже прошедшую дату (это НЕ означает
+              // "платёж прошёл автоматически" - оплату всё ещё подтверждает
+              // человек через ".оплатил", дата планового напоминания просто уезжает).
+              if (daysLeft < 0) {
+                let next = s.nextDue;
+                while (new Date(next).getTime() <= today.getTime()) {
+                  next = advanceOneCycle(next, s.period);
+                }
+                s.nextDue = next;
+                lines.push(`\u{1F534} ${s.name} - дата прошла, следующая: ${s.nextDue} (не забудь оплатить и нажать ".оплатил ${s.id}" при след. цикле)`);
+              } else if (daysLeft === threshold || daysLeft === 0) {
+                const when = daysLeft === 0 ? "сегодня" : `через ${daysLeft} дн.`;
+                lines.push(`\u{1F7E1} ${s.name} - ${sum} - ${s.nextDue} (${when})`);
+              }
+            }
+
+            fs.writeFileSync(path, JSON.stringify(data, null, 2) + "\n");
+            fs.writeFileSync("/tmp/reminder.txt", lines.join("\n"));
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_reminders=${lines.length > 0}\n`);
+          '
+
+      - name: Алерт в Telegram
+        if: steps.check.outputs.has_reminders == 'true'
+        run: |
+          MSG=$(printf '[Напоминалка]\n%s' "$(cat /tmp/reminder.txt)")
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            --data-urlencode "text=$MSG"
+
+      - name: Сохранение сдвинутых дат
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🔔 Payments: обновление дат напоминаний'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
+          branch: main
+          file_pattern: 'src/data/payments.json'

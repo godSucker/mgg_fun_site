@@ -7,13 +7,86 @@ const VALID_TIERS = ['1', '1+', '1-', '2', '2+', '2-', '3', '3+', '3-', '4', 'un
 // пытаться распарситься как тиры.
 const TIER_TRIGGER = '.тир'
 
-const MENU_KEYBOARD = {
-  inline_keyboard: [
-    [
-      { text: '📊 Статус сайта', callback_data: 'status' },
-      { text: '🔄 Последний синк', callback_data: 'lastsync' },
-    ],
-  ],
+// Кнопки статуса/синка/напоминалки: раньше были inline-кнопками, которые
+// появлялись только под ответом на /start - нужно было каждый раз печатать
+// команду, чтобы их снова увидеть. Reply-keyboard же остаётся приколотой в
+// интерфейсе Telegram (над полем ввода) постоянно, после первой отправки -
+// не команда, а обычная часть интерфейса чата.
+const STATUS_LABEL = '📊 Статус сайта'
+const LASTSYNC_LABEL = '🔄 Последний синк'
+const PAYMENTS_LABEL = '💳 Напоминалка'
+const REPLY_KEYBOARD = {
+  keyboard: [[{ text: STATUS_LABEL }, { text: LASTSYNC_LABEL }], [{ text: PAYMENTS_LABEL }]],
+  resize_keyboard: true,
+  is_persistent: true,
+}
+
+// Команда пометки оплаты: ".оплатил <id>" — переводит nextDue на следующий
+// цикл (месяц/год) и коммитит payments.json, чтобы напоминание не срабатывало
+// вечно на уже оплаченную дату.
+const PAID_TRIGGER = '.оплатил'
+
+interface PaymentService {
+  id: string
+  name: string
+  amount: number | null
+  currency: string
+  period: 'monthly' | 'yearly'
+  nextDue: string
+}
+interface PaymentsData {
+  reminderThresholdDays: number
+  services: PaymentService[]
+}
+
+function daysUntil(dateStr: string): number {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const due = new Date(dateStr)
+  due.setHours(0, 0, 0, 0)
+  return Math.round((due.getTime() - today.getTime()) / 86400000)
+}
+
+// Продвигает дату на один цикл вперёд (месяц/год), сохраняя число месяца -
+// в отличие от "+30 дней", не уезжает от исходного дня (20-е) со временем.
+function advanceOneCycle(dateStr: string, period: PaymentService['period']): string {
+  const d = new Date(dateStr)
+  const day = d.getDate()
+  if (period === 'yearly') {
+    d.setFullYear(d.getFullYear() + 1)
+  } else {
+    // setMonth() переполняется в следующий месяц для 29-31 числа, если в
+    // целевом месяце столько дней нет (31 янв -> 3 марта вместо 28 фев) -
+    // ставим 1-е число перед сдвигом, потом клэмпим обратно на последний
+    // день месяца, если исходное число больше, чем дней в целевом месяце.
+    d.setDate(1)
+    d.setMonth(d.getMonth() + 1)
+    const daysInTargetMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()
+    d.setDate(Math.min(day, daysInTargetMonth))
+  }
+  return d.toISOString().slice(0, 10)
+}
+
+function advanceUntilFuture(dateStr: string, period: PaymentService['period']): string {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  let next = dateStr
+  while (new Date(next).getTime() <= today.getTime()) {
+    next = advanceOneCycle(next, period)
+  }
+  return next
+}
+
+function formatPaymentsList(data: PaymentsData): string {
+  if (data.services.length === 0) return 'Список платежей пуст.'
+  const lines = data.services.map((s) => {
+    const d = daysUntil(s.nextDue)
+    const icon = d < 0 ? '🔴' : d <= data.reminderThresholdDays ? '🟡' : '✅'
+    const when = d < 0 ? `просрочено на ${Math.abs(d)} дн.` : d === 0 ? 'сегодня' : `через ${d} дн.`
+    const sum = s.amount == null ? 'сумма плавает, смотри биллинг' : `${s.amount} ${s.currency}`
+    return `${icon} ${s.name} — ${sum} — ${s.nextDue} (${when})`
+  })
+  return lines.join('\n')
 }
 
 async function sendTelegramMessage(
@@ -37,18 +110,6 @@ async function sendTelegramMessage(
   }
 }
 
-async function answerCallbackQuery(botToken: string, callbackQueryId: string) {
-  try {
-    await fetch(`https://api.telegram.org/bot${botToken}/answerCallbackQuery`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ callback_query_id: callbackQueryId }),
-    })
-  } catch {
-    // best effort
-  }
-}
-
 async function checkSiteHealth(): Promise<string> {
   try {
     const res = await fetch('https://archivist-library.com', {
@@ -68,11 +129,7 @@ async function checkSiteHealth(): Promise<string> {
   }
 }
 
-async function getLastSyncInfo(
-  githubToken: string,
-  owner: string,
-  repo: string,
-): Promise<string> {
+async function getLastSyncInfo(githubToken: string, owner: string, repo: string): Promise<string> {
   try {
     const res = await fetch(
       `https://api.github.com/repos/${owner}/${repo}/actions/workflows/sync-cron.yml/runs?per_page=1`,
@@ -86,13 +143,100 @@ async function getLastSyncInfo(
     if (!run) {
       return 'ℹ️ Прогонов sync-cron ещё не было'
     }
-    const statusIcon = run.conclusion === 'success' ? '✅' : run.conclusion === 'failure' ? '🔴' : '⏳'
+    const statusIcon =
+      run.conclusion === 'success' ? '✅' : run.conclusion === 'failure' ? '🔴' : '⏳'
     const when = new Date(run.created_at).toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })
     return `${statusIcon} Последний прогон: ${when} МСК — ${run.conclusion ?? run.status}\n${run.html_url}`
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
     return `🔴 Ошибка запроса к GitHub: ${message}`
   }
+}
+
+const PAYMENTS_PATH = 'src/data/payments.json'
+
+// GitHub Contents API возвращает content пустым для больших файлов - тот же
+// download_url-фолбэк, что и для mutants.json в обработчике тиров ниже.
+async function fetchGithubJsonFile(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  path: string,
+): Promise<{ json: unknown; sha: string } | null> {
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+    headers: { Authorization: `Bearer ${githubToken}` },
+  })
+  if (!res.ok) return null
+  const data = await res.json()
+  let text: string
+  if (data.content && data.content.length > 0) {
+    text = Buffer.from(data.content, 'base64').toString('utf-8')
+  } else if (data.download_url) {
+    const downloadRes = await fetch(data.download_url)
+    if (!downloadRes.ok) return null
+    text = await downloadRes.text()
+  } else {
+    return null
+  }
+  return { json: JSON.parse(text), sha: data.sha }
+}
+
+async function putGithubJsonFile(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  path: string,
+  sha: string,
+  json: unknown,
+  message: string,
+): Promise<boolean> {
+  const content = Buffer.from(JSON.stringify(json, null, 2) + '\n', 'utf-8').toString('base64')
+  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, content, sha, branch: 'main' }),
+  })
+  return res.ok
+}
+
+async function getPaymentsMessage(
+  githubToken: string,
+  owner: string,
+  repo: string,
+): Promise<string> {
+  const file = await fetchGithubJsonFile(githubToken, owner, repo, PAYMENTS_PATH)
+  if (!file) return '🔴 Не удалось загрузить список платежей'
+  return formatPaymentsList(file.json as PaymentsData)
+}
+
+// ".оплатил <id>" - сдвигает nextDue на periodDays вперёд и коммитит,
+// чтобы напоминание не срабатывало вечно на уже оплаченную дату.
+async function markPaymentPaid(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  serviceId: string,
+): Promise<string> {
+  const file = await fetchGithubJsonFile(githubToken, owner, repo, PAYMENTS_PATH)
+  if (!file) return '🔴 Не удалось загрузить список платежей'
+  const data = file.json as PaymentsData
+  const service = data.services.find((s) => s.id === serviceId)
+  if (!service) {
+    const ids = data.services.map((s) => s.id).join(', ')
+    return `🔴 Не найден сервис "${serviceId}". Доступные id: ${ids}`
+  }
+  service.nextDue = advanceUntilFuture(service.nextDue, service.period)
+  const ok = await putGithubJsonFile(
+    githubToken,
+    owner,
+    repo,
+    PAYMENTS_PATH,
+    file.sha,
+    data,
+    `Payments: отметить "${service.name}" оплаченным`,
+  )
+  if (!ok) return '🔴 Не удалось сохранить изменения'
+  return `✅ ${service.name}: следующий платёж — ${service.nextDue}`
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -126,40 +270,23 @@ export const POST: APIRoute = async ({ request }) => {
     const rawBody = await request.text()
     const body = JSON.parse(rawBody)
 
-    // Нажатие инлайн-кнопки — отдельный тип апдейта, не обычное сообщение.
-    if (body.callback_query) {
-      const cq = body.callback_query
-      const cbChatId = cq.message?.chat?.id ?? null
-      if (cbChatId != null && BOT_TOKEN) {
-        if (cq.data === 'status') {
-          const health = await checkSiteHealth()
-          await sendTelegramMessage(BOT_TOKEN, cbChatId, `[Статус]\n${health}`)
-        } else if (cq.data === 'lastsync') {
-          if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
-            const info = await getLastSyncInfo(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
-            await sendTelegramMessage(BOT_TOKEN, cbChatId, `[Синк]\n${info}`)
-          }
-        }
-      }
-      if (BOT_TOKEN) await answerCallbackQuery(BOT_TOKEN, cq.id)
-      return new Response(JSON.stringify({ ok: true }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      })
-    }
-
     chatId = body.message?.chat?.id ?? null
     const text: string = body.message?.text ?? ''
 
     if (chatId != null && BOT_TOKEN) {
       if (text === '/start' || text === '/menu') {
-        await sendTelegramMessage(BOT_TOKEN, chatId, 'Меню:', MENU_KEYBOARD)
+        await sendTelegramMessage(
+          BOT_TOKEN,
+          chatId,
+          'Готово — кнопки теперь всегда под полем ввода, команды печатать не нужно.',
+          REPLY_KEYBOARD,
+        )
         return new Response(JSON.stringify({ ok: true }), {
           status: 200,
           headers: { 'Content-Type': 'application/json' },
         })
       }
-      if (text === '/status') {
+      if (text === '/status' || text === STATUS_LABEL) {
         const health = await checkSiteHealth()
         await sendTelegramMessage(BOT_TOKEN, chatId, `[Статус]\n${health}`)
         return new Response(JSON.stringify({ ok: true }), {
@@ -167,10 +294,32 @@ export const POST: APIRoute = async ({ request }) => {
           headers: { 'Content-Type': 'application/json' },
         })
       }
-      if (text === '/lastsync') {
+      if (text === '/lastsync' || text === LASTSYNC_LABEL) {
         if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
           const info = await getLastSyncInfo(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
           await sendTelegramMessage(BOT_TOKEN, chatId, `[Синк]\n${info}`)
+        }
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      if (text === '/payments' || text === PAYMENTS_LABEL) {
+        if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME) {
+          const info = await getPaymentsMessage(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
+          await sendTelegramMessage(BOT_TOKEN, chatId, `[Напоминалка]\n${info}`)
+        }
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      // ".оплатил <id>" - сдвинуть дату следующего платежа вперёд
+      if (text.toLowerCase().startsWith(PAID_TRIGGER)) {
+        const serviceId = text.slice(PAID_TRIGGER.length).trim()
+        if (GITHUB_TOKEN && REPO_OWNER && REPO_NAME && serviceId) {
+          const result = await markPaymentPaid(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, serviceId)
+          await sendTelegramMessage(BOT_TOKEN, chatId, `[Напоминалка]\n${result}`)
         }
         return new Response(JSON.stringify({ ok: true }), {
           status: 200,
@@ -297,7 +446,11 @@ export const POST: APIRoute = async ({ request }) => {
       console.log(`Updated ${count} tiers`)
 
       if (chatId != null && BOT_TOKEN) {
-        await sendTelegramMessage(BOT_TOKEN, chatId, `[Тиры]\n✅ Успех! Обновлено ${count} тиров мутантов.`)
+        await sendTelegramMessage(
+          BOT_TOKEN,
+          chatId,
+          `[Тиры]\n✅ Успех! Обновлено ${count} тиров мутантов.`,
+        )
       }
 
       return new Response(
