@@ -1,17 +1,79 @@
 # Frame-selection + pose logic reused verbatim from
 # 4443/FULL_TEXTURES/batch_render_stands.py (rig-derived, CI-safe).
 import copy
+import math
 import xml.etree.ElementTree as ET
 from collections import Counter
 import compositor as comp
 
 
-FRAME_OVERRIDES = {}
+FRAME_OVERRIDES = {
+    'cd_12': 2.0,    # Kapitan Orlan -- default frame 23 caught mid-spin (3 circle FX)
+    'ba_11': 0.0,    # Povelitel dorog -- default frame 39 caught a full smoke burst
+    'ad_08': 70.0,   # Kotik Reyndzher -- default frame 5 is motion-blurred
+    'cc_06': 2.0,    # El Grigno -- default frame 31 caught the revolver-spin swirl
+    'dc_04': 0.0,    # Sezann -- default frame 14 caught the pistol-spin swirl
+    'de_06': 78.0,   # Darvin -- default frame 53 caught mid-transformation smoke
+    'ee_04': 0.0,    # Letayushchiy Dzhordson -- default frame 35 left a residual ball-spin artifact
+    'cd_07': 36.0,   # Dzhonni Snoui -- default frame 12 caught the mid-transform translucent blend; 36 is the clean settled wolf form
+    'ef_99': 100.0,  # Mag singulyarnosti -- MUST pin: dropping COMPOSITE_DROPS shifts rest_frame()'s
+                     # own scoring off 100 (verified: lands on 59), which wakes a different
+                     # top-level composite that carries its own trailing streaks
+    'ea_07': 96.0,   # Kapitan Patriot -- default frame 24 swings the shield out with a visible
+                     # gap from the arm; 96 holds it tucked closer to the body. Shield's own
+                     # alpha=0.8 is baked into every one of its keys (constant, not
+                     # frame-dependent) -- that translucency is the shield's material, not a
+                     # bug, left alone.
+    'ed_07': 34.0,   # Paramik -- pin: dropping COMPOSITE_DROPS shifts rest_frame() off 34
+                     # (lands on 47), same class of issue as ef_99 above.
+    'de_14': 0.0,    # Sverkhmassivnaya beskonechnost -- pin to the frame de14_manual_graft()
+                     # assumes (see below); rest_frame() would already land here, this just
+                     # makes the dependency explicit and immune to future heuristic changes.
+    'de_05': 0.0,    # Halkomyak -- pin to the frame de05_manual_fix() assumes (see below).
+}
 
 
 POSE_OVERRIDES = {
     'ca_14': {'segment': 0, 'frame': 22.0, 'mirror': True},
 }
+
+
+# Some rigs bundle the whole figure -- body AND a persistent effect layer --
+# under one top-level Composite whose child Sprite holds the real per-part
+# list, and that effect layer is live across the ENTIRE animation span (no
+# frame excludes it, so FRAME_OVERRIDES cannot help). Found by isolating each
+# nested composite in turn and rendering it alone: aa_03's frame-encompassing
+# starburst is nested-composite 0 under top-level composite 1; ef_99's comet
+# trails + trailing dust are nested-composites 0-4 under top-level composite
+# 24. Keyed by (path-of-top-level-indices) -> set of nested indices to drop.
+COMPOSITE_DROPS = {
+    'aa_03': [((1,), 0)],
+    'ef_99': [((24,), 0), ((24,), 1), ((24,), 2), ((24,), 3), ((24,), 4)],
+    'ed_07': [((), 3)],  # Paramik -- top-level composite 3 is the glow blob, isolated clean
+}
+
+
+def drop_composites(sprite, code):
+    """Return a deep copy of `sprite` with COMPOSITE_DROPS[code] removed.
+
+    Resolves each (path, idx) against a composite list snapshotted ONCE per
+    path before removing anything: removing by index while re-querying
+    findall() after each removal shifts every later index (dropping [0,1,2]
+    off a 26-item list actually dropped originals {0,2,4} -- verified the
+    hard way), so indices for the same path must be collected first and the
+    elements removed by identity, not by a freshly recomputed position."""
+    out = copy.deepcopy(sprite)
+    by_path = {}
+    for path, idx in COMPOSITE_DROPS.get(code, []):
+        by_path.setdefault(path, []).append(idx)
+    for path, indices in by_path.items():
+        target = out
+        for p in path:
+            target = target.findall('Composite')[p].find('Sprite')
+        comps = target.findall('Composite')
+        for el in [comps[i] for i in indices]:
+            target.remove(el)
+    return out
 
 
 def baked_frame(sprite):
@@ -298,3 +360,106 @@ def render_override(xml_path, png, sid, sprite, spec, out_path):
         img = ImageOps.mirror(img)
     img.save(out_path)
     return img
+
+
+# Sverkhmassivnaya beskonechnost (de_14) is a three-headed dragon whose body
+# rig bundles everything under one top-level Composite -> Sprite holding 23
+# nested composites. Three of those (indices 10, 21, 22) are head art keyed
+# to position windows that never overlap frame 0 or each other, so no single
+# global frame -- with or without FRAME_OVERRIDES/COMPOSITE_DROPS -- can show
+# a correctly assembled creature; the production render was quietly missing
+# a whole head plus a neck-ring segment (composite 6), which has its OWN
+# separate bug: its 3-way texture toggle is keyed visible only on frames 2-3,
+# entirely outside frame 0, so it vanished from every render regardless of
+# head placement.
+#
+# Assembled by hand against a reference screenshot: an interactive tool
+# isolated each of the 23 composites on a shared canvas (each patched to a
+# synthetic frame-0 key so its own content-visibility window couldn't hide
+# it, borrowing position from any point along its native trajectory) and let
+# a human drag pieces into place, since eyeballing 3D-projected dragon-head
+# alignment is not something the frame-selection heuristics below can do.
+# Result, confirmed against the reference:
+#   - composite 11 is a redundant/misplaced head once 10 is placed
+#     correctly -- dropped entirely.
+#   - composite 10 (a head) reads correctly using the pose from its own
+#     trajectory frame 178, no extra offset needed.
+#   - composite 20 (the other head) needed BOTH a different trajectory point
+#     (102, not its natural frame-0 pose) AND a (+108, -11) nudge on top.
+#   - composite 21 (a mane/collar behind one head) is invisible in the
+#     default render (position window starts at frame 67) but belongs in
+#     the assembled pose at its own trajectory frame 124.
+# All four use frame=0 as the graft's shared timeline (FRAME_OVERRIDES pins
+# rendering to 0.0 above), matching how each was authored here.
+DE14_HEAD_SOURCE_FRAME = {10: 178.0, 20: 102.0, 21: 124.0}
+DE14_HEAD_OFFSET = {10: (0.0, 0.0), 20: (108.0, -11.0), 21: (0.0, 0.0)}
+DE14_DROP = {11}
+
+
+def de14_manual_graft(sprite):
+    """Return a deep copy of de_14's sprite with the manually-assembled
+    3-head pose baked in -- see the block comment above."""
+    out = copy.deepcopy(sprite)
+    comp0 = out.findall('Composite')[0]
+    child = comp0.find('Sprite')
+    nested = child.findall('Composite')  # snapshot before any removal
+
+    targets = {i: nested[i] for i in list(DE14_HEAD_SOURCE_FRAME) + [6]}
+    for i in DE14_DROP:
+        child.remove(nested[i])
+
+    for idx, source_frame in DE14_HEAD_SOURCE_FRAME.items():
+        comp_el = targets[idx]
+        keys = comp_el.findall('Key')
+        x, y, ang, sx, sy = comp.interp_key(keys, source_frame)
+        odx, ody = DE14_HEAD_OFFSET[idx]
+        for k in list(keys):
+            comp_el.remove(k)
+        ET.SubElement(comp_el, 'Key', {
+            'frame': '0', 'x': str(x + odx), 'y': str(y + ody),
+            'angle': str(math.degrees(ang)), 'scaleX': str(sx), 'scaleY': str(sy),
+        })
+
+    # composite 6's neck-ring segment: its middle texture variant (the 2nd of
+    # 3 nested composites -- the other two are either always hidden or keyed
+    # even later) is only keyed visible on frames 2-3. Retime those two Keys
+    # down by 2 so the segment survives evaluation at the shared frame 0
+    # instead of silently vanishing (found the same way as the heads: content
+    # was verified visible by rendering this composite in isolation at
+    # frame 2).
+    ring = targets[6].find('Sprite').findall('Composite')[1]
+    for k in ring.findall('Key'):
+        f = float(k.get('frame', 0))
+        if f == 2.0:
+            k.set('frame', '0')
+        elif f == 3.0:
+            k.set('frame', '1')
+
+    return out
+
+
+# Halkomyak (de_05) is a hamster-in-a-wheel mech; the hamster itself lives in
+# top-level composite 6, whose own outer Keys trace the wheel's spin (a full
+# 360-degree loop across frames 0-52) and whose child Sprite holds 7 nested
+# Composites -- one per running-pose sprite -- keyed two frames apart (0-1,
+# 2-3, 4-5, ... 12-13). Every one of those 14 Keys carries visible="false" on
+# BOTH ends, so no pose is ever shown at any frame: the hamster is invisible
+# in every render regardless of frame choice, which is why it read as an
+# empty wheel. The 7 poses were compared side by side (contact sheet) against
+# a reference render; pose index 3 (source Keys at frames 6/7) reads closest
+# to it -- forward-facing, both ears visible, brow furrowed. Retimed down to
+# 0/1 (matching this file's frame=0.0 pin above) and un-hidden.
+def de05_manual_fix(sprite):
+    """Return a deep copy of de_05's sprite with the hamster's pose 3 shown."""
+    out = copy.deepcopy(sprite)
+    wheel = out.findall('Composite')[6].find('Sprite').findall('Composite')[0]
+    pose = wheel.find('Sprite').findall('Composite')[3]
+    for k in pose.findall('Key'):
+        f = float(k.get('frame', 0))
+        if f == 6.0:
+            k.set('frame', '0')
+        elif f == 7.0:
+            k.set('frame', '1')
+        if k.get('visible') == 'false':
+            del k.attrib['visible']
+    return out

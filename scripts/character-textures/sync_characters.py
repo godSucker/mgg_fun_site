@@ -62,6 +62,18 @@ UA = "archivist-library-texture-sync/1.0"
 # use for their textures. Excluded from every pass, including skins.
 EXCLUDED_CODES = {"a_02", "b_02", "c_02"}
 
+# cc_03 (Zena): her face's eye/eyebrow art references atlas regions that come
+# back blank on EVERY fetched CDN tier (base included); the only tier with
+# non-blank pixels at those exact coordinates is bronze, and cropping it
+# shows unrelated tier-recolored content, not eyes -- the source art simply
+# is not present in any live atlas, so the compositor has nothing correct to
+# build from no matter which frame/graft is tried. public/textures_by_mutant
+# /cc_03/FULL_cc_03*.png were replaced with this repo's pre-existing
+# reference renders (which do have correct eyes on every tier) instead.
+# Frozen here so a future atlas refresh doesn't silently re-render and
+# overwrite them with the eyeless compositor output.
+FROZEN_CODES = {"cc_03"}
+
 
 # --------------------------------------------------------------------------- #
 # HTTP
@@ -273,6 +285,8 @@ def choose_frame(sprite):
 
 def render_target(t):
     """Fetch atlas, render, save. Returns 'ok' | 'review' | 'fail:<msg>'."""
+    if t.code in FROZEN_CODES:
+        return "ok"  # manually-placed reference render, see FROZEN_CODES comment
     os.makedirs(os.path.dirname(t.out_path), exist_ok=True)
     os.makedirs(CACHE, exist_ok=True)
     atlas_file = os.path.join(CACHE, os.path.basename(t.atlas_url))
@@ -290,11 +304,18 @@ def render_target(t):
             F.render_override("", atlas_file, sid, t.sprite,
                               F.POSE_OVERRIDES[t.code], t.out_path)
         else:
-            if F.segmented_rig(t.sprite):
+            sprite = t.sprite
+            if t.code in F.COMPOSITE_DROPS:
+                sprite = F.drop_composites(sprite, t.code)
+            if t.code == 'de_14':
+                sprite = F.de14_manual_graft(sprite)
+            if t.code == 'de_05':
+                sprite = F.de05_manual_fix(sprite)
+            if F.segmented_rig(sprite):
                 review = True  # segmented dance rig -> render is a guess, flag it
-            frame = choose_frame(t.sprite)
-            img = comp.compose("", atlas_file, t.sprite.get("id"), None,
-                               frame=frame, quiet=True, sprite=t.sprite)
+            frame = choose_frame(sprite)
+            img = comp.compose("", atlas_file, sprite.get("id"), None,
+                               frame=frame, quiet=True, sprite=sprite)
             if img is None:
                 return "fail:no visible images"
             img.save(t.out_path)
