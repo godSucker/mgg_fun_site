@@ -2,7 +2,7 @@
   "reminderThresholdDays": 3,
   "yandexBalance": {
     "intervalDays": 15,
-    "lastSent": null
+    "lastSent": "2026-07-27"
   },
   "services": [
     {
