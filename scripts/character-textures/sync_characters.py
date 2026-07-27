@@ -311,6 +311,8 @@ def render_target(t):
                 sprite = F.de14_manual_graft(sprite)
             if t.code == 'de_05':
                 sprite = F.de05_manual_fix(sprite)
+            if t.code in F.COMPOSITE_REORDER:
+                sprite = F.reorder_composites(sprite, t.code)
             if F.segmented_rig(sprite):
                 review = True  # segmented dance rig -> render is a guess, flag it
             frame = choose_frame(sprite)

@@ -463,3 +463,34 @@ def de05_manual_fix(sprite):
         if k.get('visible') == 'false':
             del k.attrib['visible']
     return out
+
+
+# Some rigs list a composite EARLIER in document order than something meant
+# to sit in front of it, and compose() paints top-level composites in
+# sprite.findall('Composite') order (each paste lands on top of the last) --
+# so listing the background piece later buries whatever came before it.
+# ad_03 (Bykoskok)'s driver head (composite 0) renders correctly on its own
+# but is fully hidden behind the turret shell (composite 3) in the combined
+# render purely because of this ordering; the reference clearly shows the
+# driver poking out above the hatch. Moving the listed indices to the end of
+# the draw order (in the given sequence) fixes the stacking without
+# touching any position/frame data.
+COMPOSITE_REORDER = {
+    'ad_03': [0],  # driver's head -- must paint after (on top of) the turret shell
+}
+
+
+def reorder_composites(sprite, code):
+    """Return a deep copy of `sprite` with COMPOSITE_REORDER[code]'s
+    top-level composites moved to the end of the draw order, in order."""
+    out = copy.deepcopy(sprite)
+    indices = COMPOSITE_REORDER.get(code, [])
+    if not indices:
+        return out
+    comps = out.findall('Composite')
+    targets = [comps[i] for i in indices]
+    for el in targets:
+        out.remove(el)
+    for el in targets:
+        out.append(el)
+    return out
