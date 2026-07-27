@@ -494,3 +494,42 @@ def reorder_composites(sprite, code):
     for el in targets:
         out.append(el)
     return out
+
+
+# ff_13 (Sakuraboshi) has a "many-armed" ghost-limb effect meant to read as
+# stronger on higher star tiers: 5 nested composite groups inside the rest
+# pose (top-level composite 0), each holding 3 keyframed arm-trail Images
+# that were authored as an in-animation motion blur -- alpha keyed between 0
+# and 0.5 across a 100-frame staff-spin cycle that only fully plays during
+# combat, never in the static "stand" render. At the rest frame (0) most of
+# that alpha is at or near 0, so the (correctly colored -- verified against
+# the atlas crop directly, this is not a web/mobile atlas mismatch like
+# ed_14/ee_01) limbs are nearly invisible. The base-tier atlas is blank at
+# these exact coordinates (confirmed: alpha=0 across the whole crop) while
+# bronze/silver/gold/platinum all carry the same painted art there, so the
+# "more arms on higher tiers" design already lives in which atlas is bound
+# -- boosting the alpha keys is safe on base (nothing to draw regardless).
+# For each of the 3 keyframed pieces per group, borrow whichever keyframe
+# has that piece's own highest alpha and force it fully opaque at frame 0.
+FF13_ARM_GROUPS = [0, 3, 6, 8, 20]
+
+
+def ff13_boost_arms(sprite):
+    """Return a deep copy of ff_13's sprite with its ghost-arm trails
+    forced to full opacity at the rest frame -- see comment above."""
+    out = copy.deepcopy(sprite)
+    comp0 = out.findall('Composite')[0]
+    nested = comp0.find('Sprite').findall('Composite')
+    for gi in FF13_ARM_GROUPS:
+        for piece in nested[gi].find('Sprite').findall('Composite'):
+            keys = piece.findall('Key')
+            best = max(keys, key=lambda k: float(k.get('alpha', 1.0)))
+            x, y, ang, sx, sy = comp.interp_key(keys, float(best.get('frame', 0)))
+            for k in list(keys):
+                piece.remove(k)
+            ET.SubElement(piece, 'Key', {
+                'frame': '0', 'x': str(x), 'y': str(y),
+                'angle': str(math.degrees(ang)), 'scaleX': str(sx), 'scaleY': str(sy),
+                'alpha': '1.0',
+            })
+    return out

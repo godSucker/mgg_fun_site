@@ -313,6 +313,8 @@ def render_target(t):
                 sprite = F.de05_manual_fix(sprite)
             if t.code in F.COMPOSITE_REORDER:
                 sprite = F.reorder_composites(sprite, t.code)
+            if t.code == 'ff_13':
+                sprite = F.ff13_boost_arms(sprite)
             if F.segmented_rig(sprite):
                 review = True  # segmented dance rig -> render is a guess, flag it
             frame = choose_frame(sprite)
