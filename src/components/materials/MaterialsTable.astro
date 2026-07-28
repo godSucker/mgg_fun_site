@@ -25,6 +25,7 @@ export interface MaterialRow {
   percent?: string | number | null;
   value?: string | number | null;
   rarity?: string | null;
+  group?: string;
 }
 
 interface Props {
@@ -69,6 +70,19 @@ const toChip = (s: SourceInfo) => {
   const note = s.note ? ` (${s.note})` : '';
   return `${icon} ${s.type}${where}${note}`;
 };
+
+// Строки с одинаковым group идут подряд (предполагается порядок в исходном
+// массиве) - перед первой строкой новой группы вставляем заголовок-разделитель.
+let prevGroup: string | undefined;
+const withGroupHeaders = rows.flatMap((row) => {
+  const items: Array<{ kind: 'header' | 'row'; row?: MaterialRow; label?: string }> = [];
+  if (row.group && row.group !== prevGroup) {
+    items.push({ kind: 'header', label: row.group });
+  }
+  prevGroup = row.group;
+  items.push({ kind: 'row', row });
+  return items;
+});
 ---
 
 <section class="materials" data-title={title}>
@@ -90,7 +104,15 @@ const toChip = (s: SourceInfo) => {
     </div>
 
     <div class="tbody" role="rowgroup">
-      {rows.map((row) => {
+      {withGroupHeaders.map((item) => {
+        if (item.kind === 'header') {
+          return (
+            <div class="group-header" role="row">
+              <span>{item.label}</span>
+            </div>
+          );
+        }
+        const row = item.row as MaterialRow;
         const srcs = sourcesMap[row.id] ?? [];
         return (
           <div class="tr" role="row" data-id={row.id}>
@@ -299,6 +321,17 @@ const toChip = (s: SourceInfo) => {
   .th { font-weight: 600; color: #9ec5fe; font-size: 0.9rem; }
 
   .tbody .tr:hover { background: rgba(30, 58, 138, 0.18); }
+
+  .group-header {
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #9ec5fe;
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.6));
+    border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+  }
 
   /* уровень-свитчер (инкубатор/скрещивалка) */
   .level-widget { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin-left: 3px; }

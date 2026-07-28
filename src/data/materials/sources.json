@@ -38,5 +38,269 @@
       "type": "division",
       "where": "Награда дивизиона"
     }
+  ],
+  "Material_7th_Anniversary_Token": [
+    {
+      "type": "event",
+      "where": "7-я годовщина игры (2020)"
+    }
+  ],
+  "Material_Easter21_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2021"
+    }
+  ],
+  "Material_Easter22_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2022"
+    }
+  ],
+  "Material_Easter26_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2026"
+    }
+  ],
+  "Material_Easter_2019_Chocobase": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2019"
+    }
+  ],
+  "Material_Easter_2019_Chocoplus": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2019"
+    }
+  ],
+  "Material_Easter_2019_Chocomax": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2019"
+    }
+  ],
+  "Material_Valentines22_Token": [
+    {
+      "type": "event",
+      "where": "Ивент ко Дню Св. Валентина 2022"
+    }
+  ],
+  "Material_Valentines26_Token": [
+    {
+      "type": "event",
+      "where": "Ивент ко Дню Св. Валентина 2026"
+    }
+  ],
+  "Material_Xmas24_Token": [
+    {
+      "type": "event",
+      "where": "Рождественский ивент 2024"
+    }
+  ],
+  "Material_Xmas25_Token": [
+    {
+      "type": "event",
+      "where": "Рождественский ивент 2025"
+    }
+  ],
+  "Material_Mystery25_Token": [
+    {
+      "type": "event",
+      "where": "Таинственные ивенты 2025"
+    }
+  ],
+  "Material_Mystery26_Token": [
+    {
+      "type": "event",
+      "where": "Таинственные ивенты 2026"
+    }
+  ],
+  "Material_Easter_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент"
+    }
+  ],
+  "Material_Plague_Token": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2020"
+    }
+  ],
+  "Material_Toybox_Token": [
+    {
+      "type": "event",
+      "where": "Рождество 2020"
+    }
+  ],
+  "Material_Pyramid_Token": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2021"
+    }
+  ],
+  "Material_Stygian_Token": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2021"
+    }
+  ],
+  "Material_Rime_Token": [
+    {
+      "type": "event",
+      "where": "Рождество 2021"
+    }
+  ],
+  "Material_Data_Token": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2022"
+    }
+  ],
+  "Material_Snowstorm_Token": [
+    {
+      "type": "event",
+      "where": "Рождество 2022"
+    }
+  ],
+  "Material_Cherub_Token": [
+    {
+      "type": "event",
+      "where": "Ивент ко Дню Св. Валентина 2023"
+    }
+  ],
+  "Material_Spelunking_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2023"
+    }
+  ],
+  "Material_Weirdtech_Token": [
+    {
+      "type": "event",
+      "where": "Мистический ивент «Weirdtech»"
+    }
+  ],
+  "Material_Overlay_Token": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2023"
+    }
+  ],
+  "Material_Trick_Token": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2023"
+    }
+  ],
+  "Material_Capsule_Token": [
+    {
+      "type": "event",
+      "where": "Рождество 2023"
+    }
+  ],
+  "Material_Cuteness_Token": [
+    {
+      "type": "event",
+      "where": "Ивент ко Дню Св. Валентина 2024"
+    }
+  ],
+  "Material_Moai_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2024"
+    }
+  ],
+  "Material_Conspiracy_Token": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2024"
+    }
+  ],
+  "Material_Crawling_Token": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2024"
+    }
+  ],
+  "Material_Runic_Token": [
+    {
+      "type": "event",
+      "where": "Ивент ко Дню Св. Валентина 2025"
+    }
+  ],
+  "Material_BUN_Token": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2025"
+    }
+  ],
+  "Material_Masks_Token": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2025"
+    }
+  ],
+  "Material_Grave_Token": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2022"
+    }
+  ],
+  "Material_Love_Token": [
+    {
+      "type": "event",
+      "where": "Ивент ко Дню Св. Валентина (~2019-2020)"
+    }
+  ],
+  "Material_Preorder_Token": [
+    {
+      "type": "event",
+      "where": "Предзаказ мутанта Specimen_AC_10 (золотой)"
+    }
+  ],
+  "Preorder_Token_DE_10_gold": [
+    {
+      "type": "event",
+      "where": "Предзаказ мутанта Specimen_DE_10 (золотой)"
+    }
+  ],
+  "Material_Signal_Token": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2025"
+    }
+  ],
+  "Material_Dark_Matter": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2019"
+    }
+  ],
+  "Material_Antimatter": [
+    {
+      "type": "event",
+      "where": "Годовщина игры 2019"
+    }
+  ],
+  "Material_Winter_Orange": [
+    {
+      "type": "event",
+      "where": "Рождество 2019"
+    }
+  ],
+  "Material_Winter_Coal": [
+    {
+      "type": "event",
+      "where": "Рождество 2019"
+    }
+  ],
+  "Material_Halloween_Soul": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2018"
+    }
   ]
 }

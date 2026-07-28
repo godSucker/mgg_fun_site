@@ -13,6 +13,17 @@ import bingosData from '../../data/bingos.json';
 import { bingoLabel } from '../../lib/mutant-dicts';
 import { getItemTexture } from '../../lib/craft-simulator';
 import { textureUrl } from '../../lib/texture-cdn';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Страница prerender-ится в build-time, когда public/ реально лежит на диске -
+// поэтому вместо жёстко зашитого .webp можно проверить, какой файл
+// действительно существует (новые текстуры кладём как .png, старые - .webp).
+const PUBLIC_MATERIALS_DIR = path.resolve('public/materials');
+function guessMaterialTexture(id: string): string {
+  if (fs.existsSync(path.join(PUBLIC_MATERIALS_DIR, `${id}.png`))) return `/materials/${id}.png`;
+  return `/materials/${id}.webp`;
+}
 
 const NO_ZOOM_VIEWPORT = "width=device-width, initial-scale=1";
 
@@ -25,6 +36,8 @@ interface RawItem {
   pct?: number | string | null;
   value?: number | string | null;
   rarity?: string | null;
+  texture?: string | null;
+  group?: string | null;
 }
 
 const normRow = (item: RawItem) => {
@@ -34,8 +47,14 @@ const normRow = (item: RawItem) => {
   const percent = item?.percent ?? item?.pct ?? null;
   const value = item?.value ?? null;
   const rarity = item?.rarity ?? null;
+  const group = item?.group ?? undefined;
 
-  let texture = getItemTexture?.(id);
+  // Явный item.texture (курируемая замена конкретно под этот ID) должен
+  // побеждать getItemTexture() - иначе точечные оверрайды в ITEM_TEXTURES
+  // (craft-simulator.ts, напр. старые мелкие /tokens/*.webp для Mystery25/26)
+  // тихо перекрывают свежую загруженную текстуру, и на странице остаётся
+  // старая картинка без единой ошибки в консоли.
+  let texture = item?.texture || getItemTexture?.(id);
 
   // точечные подмены по названию
   const lname = String(name).trim().toLowerCase();
@@ -44,9 +63,9 @@ const normRow = (item: RawItem) => {
     if (lname === 'банка спирта')  texture = '/materials/bigbig_med.webp';
   }
 
-  if (!texture) texture = `/materials/${id}.webp`;
+  if (!texture) texture = guessMaterialTexture(id);
 
-  return { id, name, description, percent, value, rarity, texture };
+  return { id, name, description, percent, value, rarity, texture, group };
 };
 
 function formatBingoTitle(title: string, id: string) {
