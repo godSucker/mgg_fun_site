@@ -41,6 +41,24 @@ jobs:
         timeout-minutes: 25
         run: npx tsx scripts/sync-mutants.ts full
 
+      - name: 4.05 Сохранение кэша отсутствующих текстур
+        # Парсер пишет scripts/missing-textures-cache.json на диск инкрементально,
+        # по мере обнаружения каждой недостающей текстуры (см. saveMissingTextureCache()
+        # в sync-mutants.ts) - именно чтобы этот прогресс не терялся при таймауте.
+        # Поэтому always(), а не гейт на steps.parser.outcome: если парсер СНОВА
+        # упрётся в 25-минутный лимит, кэш всё равно должен закоммититься, иначе
+        # следующий прогон опять будет вслепую ждать 15с таймаут на те же самые
+        # заведомо отсутствующие текстуры.
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-Sync: кэш отсутствующих текстур"
+          commit_user_name: "MGG Parser Bot"
+          commit_user_email: "bot@archivist-library.com"
+          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          branch: main
+          file_pattern: 'scripts/missing-textures-cache.json'
+
       - name: 4.1 Установка Python (рендер full-текстур)
         uses: actions/setup-python@v5
         with:

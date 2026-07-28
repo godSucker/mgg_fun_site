@@ -15,6 +15,12 @@ const CONFIG = {
   DATA_DIR: path.join(process.cwd(), 'src/data/mutants'),
   TEXTURES_DIR: path.join(process.cwd(), 'public/textures_by_mutant'),
   TEMP_DIR: path.join(process.cwd(), 'temp'),
+  // Не под scripts/.cache/ (тот в .gitignore целиком) — этот файл должен
+  // коммититься и переживать прогоны CI, иначе негативный кэш бесполезен.
+  MISSING_TEXTURE_CACHE_PATH: path.join(process.cwd(), 'scripts/missing-textures-cache.json'),
+  // Раз в столько дней повторно пробуем скачать текстуру, отмеченную отсутствующей
+  // (вдруг Kobojo всё-таки добавили арт) — не бесконечно доверяем негативному кэшу.
+  MISSING_TEXTURE_RECHECK_DAYS: 14,
 
   RATINGS: ['normal', 'bronze', 'silver', 'gold', 'platinum'] as const,
   MULTIPLIERS: {
@@ -80,6 +86,36 @@ interface UnifiedMutant {
 
 function roundSpeed(speed: number): number {
   return Math.round(speed * 100) / 100
+}
+
+// Негативный кэш "текстуры точно нет на Kobojo" — ключ specimen_id_rating,
+// значение — ISO-таймстамп последней подтверждённой проверки. Без него парсер
+// каждый день заново дожидается 15с таймаута axios на КАЖДУЮ комбинацию
+// мутант+рейтинг, которых физически нет на CDN (и таких сотни).
+let missingTextureCache: Record<string, string> | null = null
+let missingTextureCacheDirty = false
+
+async function loadMissingTextureCache(): Promise<Record<string, string>> {
+  if (missingTextureCache) return missingTextureCache
+  try {
+    missingTextureCache = JSON.parse(await fs.readFile(CONFIG.MISSING_TEXTURE_CACHE_PATH, 'utf-8'))
+  } catch {
+    missingTextureCache = {}
+  }
+  return missingTextureCache!
+}
+
+async function saveMissingTextureCache(): Promise<void> {
+  if (!missingTextureCache || !missingTextureCacheDirty) return
+  await fs.writeFile(
+    CONFIG.MISSING_TEXTURE_CACHE_PATH,
+    JSON.stringify(missingTextureCache, null, 2) + '\n',
+  )
+}
+
+function isMissingTextureCacheFresh(isoTimestamp: string): boolean {
+  const ageMs = Date.now() - new Date(isoTimestamp).getTime()
+  return ageMs < CONFIG.MISSING_TEXTURE_RECHECK_DAYS * 24 * 60 * 60 * 1000
 }
 
 async function downloadFile(url: string, targetPath: string): Promise<boolean> {
@@ -165,6 +201,15 @@ async function downloadSpecimen(mutantId: string, rating: string): Promise<boole
     }
   }
 
+  // Негативный кэш: если уже подтверждали недавно, что этой текстуры нет на
+  // Kobojo — не ходим в сеть заново, экономим 15с таймаут на пустышку.
+  const cache = await loadMissingTextureCache()
+  const cacheKey = `${idLower}${suffix}`
+  const cachedAt = cache[cacheKey]
+  if (cachedAt && isMissingTextureCacheFresh(cachedAt)) {
+    return false
+  }
+
   // На Kobojo normal-портрет лежит без суффикса
   const remoteSuffix = rating === 'normal' ? '' : suffix
   const kobojoUrl = `${CONFIG.KOBOJO_IMG_BASE}specimen_${idLower}${remoteSuffix}.png`
@@ -177,9 +222,20 @@ async function downloadSpecimen(mutantId: string, rating: string): Promise<boole
     if (res.status === 200 && res.data.length > 100) {
       await fs.mkdir(targetDir, { recursive: true })
       await sharp(res.data).webp({ quality: 95 }).toFile(iconPath)
+      if (cacheKey in cache) {
+        delete cache[cacheKey]
+        missingTextureCacheDirty = true
+        // Пишем сразу, а не в конце main(): если процесс убьют по CI-таймауту
+        // (как и произошло в прошлый раз), накопленный в памяти кэш иначе пропадёт.
+        await saveMissingTextureCache()
+      }
       return true
     }
   } catch {}
+
+  cache[cacheKey] = new Date().toISOString()
+  missingTextureCacheDirty = true
+  await saveMissingTextureCache()
   return false
 }
 
@@ -534,8 +590,10 @@ async function sync(options: {
 
     // Режим FULL: проверяем наличие текстур у существующих мутантов
     let newTexturesDownloaded = false
+    let ratingsFromExistingCheck: string[] | null = null
     if (skipExisting && processedIds.has(mutantId.toUpperCase())) {
       const ratings = await getAvailableRatings(mutantId, 'full', isGacha)
+      ratingsFromExistingCheck = ratings
       const neededRatings = isGacha ? ['normal'] : CONFIG.RATINGS
       const missing = neededRatings.filter((r) => !ratings.includes(r))
       if (missing.length === 0) {
@@ -547,11 +605,12 @@ async function sync(options: {
       }
     }
 
-    const textureRatings = await getAvailableRatings(
-      mutantId,
-      skipExisting ? 'full' : 'stats',
-      isGacha,
-    )
+    // Переиспользуем результат проверки выше вместо повторного похода в сеть за
+    // теми же самыми рейтингами (раньше это удваивало сетевые запросы на каждого
+    // мутанта с неполным набором звёзд — основная причина раздувания времени прогона).
+    const textureRatings =
+      ratingsFromExistingCheck ??
+      (await getAvailableRatings(mutantId, skipExisting ? 'full' : 'stats', isGacha))
 
     if (textureRatings.length === 0 && mutantId !== 'FB_14') {
       console.log(`[SKIP] ${mutantId}: текстуры не найдены`)
