@@ -4,7 +4,9 @@ import type { APIRoute } from 'astro'
 // Hooks) шлёт events типа "deployment.succeeded"/"deployment.error" на этот
 // URL, подписывая тело HMAC-SHA1 секретом, который задаётся при создании
 // вебхука в Vercel. Пересылаем результат в тот же Telegram-бот, что и
-// остальные алерты (uptime-alert.ts, spend-alert.ts).
+// остальные алерты (uptime-alert.ts, spend-alert.ts). Шлём алерты и для
+// прода, и для превью-деплоев (веток) - с явной пометкой в тексте, чтобы
+// не перепутать по одному только сообщению.
 export const POST: APIRoute = async ({ request }) => {
   const BOT_TOKEN = import.meta.env.TELEGRAM_BOT_TOKEN
   const CHAT_ID = import.meta.env.TELEGRAM_CHAT_ID
@@ -30,7 +32,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   let payload: {
     type?: string
-    payload?: { deployment?: { url?: string; name?: string }; target?: string | null }
+    payload?: {
+      deployment?: { url?: string; name?: string; meta?: { githubCommitRef?: string } }
+      target?: string | null
+    }
   } = {}
   try {
     payload = JSON.parse(rawBody)
@@ -39,28 +44,27 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const type = payload.type ?? ''
-  // target лежит прямо в payload.payload.target, а НЕ в payload.payload.deployment.target -
-  // так было изначально написано неверно, из-за чего фильтр всегда считал
-  // деплой "не прод" и молча пропускал (без ошибки, 200 OK).
-  const target = payload.payload?.target ?? ''
-  // Превью-деплои (на каждый PR/пуш в ветку) не интересны — только прод.
-  if (target !== 'production') {
-    return new Response('OK (ignored, not production)', { status: 200 })
-  }
-
-  const icon = type === 'deployment.succeeded' ? '✅' : type === 'deployment.error' ? '🔴' : 'ℹ️'
-  const label =
-    type === 'deployment.succeeded'
-      ? 'Деплой прода завершён успешно'
-      : type === 'deployment.error'
-        ? 'Деплой прода упал с ошибкой'
-        : type
-
   if (type !== 'deployment.succeeded' && type !== 'deployment.error') {
     return new Response('OK (ignored event type)', { status: 200 })
   }
 
-  const text = `[Vercel]\n${icon} ${label}`
+  // target лежит прямо в payload.payload.target, а НЕ в payload.payload.deployment.target.
+  // Vercel отдаёт "production" для прод-деплоев и null для всех остальных
+  // (превью на любую другую ветку/PR) - проверено на реальном деплое ветки
+  // preview. Раньше всё не-production молча игнорировалось (без уведомления);
+  // теперь шлём и то, и то, но с явной пометкой среды.
+  const isProd = payload.payload?.target === 'production'
+  const branch = payload.payload?.deployment?.meta?.githubCommitRef
+  const url = payload.payload?.deployment?.url
+
+  const icon = type === 'deployment.succeeded' ? '✅' : '🔴'
+  const envLabel = isProd ? 'ПРОД' : 'PREVIEW'
+  const verb = type === 'deployment.succeeded' ? 'завершён успешно' : 'упал с ошибкой'
+  const branchSuffix = branch && !isProd ? ` (${branch})` : ''
+
+  const lines = [`[Vercel] ${icon} Деплой ${envLabel}${branchSuffix} ${verb}`]
+  if (url) lines.push(`https://${url}`)
+  const text = lines.join('\n')
 
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: 'POST',
