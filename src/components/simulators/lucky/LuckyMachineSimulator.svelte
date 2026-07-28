@@ -38,7 +38,7 @@
     stars: { label: 'Звёзды', icon: '/stars/all_stars.webp', metaLabel: 'Ресурсов суммарно' },
     spheres: { label: 'Сферы', icon: '/orbs/basic/orb_slot.webp', metaLabel: 'Ресурсов суммарно' },
     boosters: { label: 'Бустеры', icon: '/boosters/charm_xpx2_7.webp', metaLabel: 'Ресурсов суммарно' },
-    tokens: { label: 'Жетоны', icon: '/tokens/material_gacha_token.webp', metaLabel: 'Ресурсов суммарно' },
+    tokens: { label: 'Жетоны', icon: '/materials/Material_Gacha_Token.png', metaLabel: 'Ресурсов суммарно' },
     mutants: { label: 'Мутанты', icon: '/etc/icon_larva.webp', metaLabel: 'Выпало суммарно' },
     jackpots: { label: 'Джекпоты', icon: '/cash/jackpot.webp', metaLabel: 'Выпало суммарно' },
   };
@@ -213,7 +213,7 @@
             <div class="stat-body"><span class="label">Всего прокрутов</span><strong>{formatNumber(result.totalSpins)}</strong></div>
           </div>
           <div class="stat-card">
-            <img class="stat-icon" src={textureUrl("/tokens/material_jackpot_token.webp")} alt="" />
+            <img class="stat-icon" src={textureUrl("/materials/Material_Jackpot_Token.png")} alt="" />
             <div class="stat-body"><span class="label">Платных</span><strong>{formatNumber(result.paidSpins)}</strong></div>
           </div>
           <div class="stat-card highlight">
@@ -233,7 +233,7 @@
             <div class="stat-body"><span class="label">Выиграно серебра</span><strong>{formatNumber(result.silverWon)}</strong></div>
           </div>
           <div class="stat-card">
-            <img class="stat-icon" src={textureUrl("/tokens/material_gacha_token.webp")} alt="" />
+            <img class="stat-icon" src={textureUrl("/materials/Material_Gacha_Token.png")} alt="" />
             <div class="stat-body"><span class="label">Жетоны</span><strong>{formatNumber(result.tokenItems)}</strong></div>
           </div>
         </section>

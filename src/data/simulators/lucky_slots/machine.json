@@ -272,7 +272,7 @@
       "name": "Жетон генератора",
       "description": "Для крутки других автоматов",
       "category": "token",
-      "icon": "/tokens/material_gacha_token.webp"
+      "icon": "/materials/Material_Gacha_Token.png"
     },
     {
       "rewardId": 19,

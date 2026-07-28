@@ -267,9 +267,9 @@ const ITEM_TEXTURES: Record<string, string> = {
   Star_Platinum: '/stars/star_platinum.webp',
 
   // Tokens
-  Material_Gacha_Token: '/tokens/material_gacha_token.webp',
-  Material_Event_Token: '/tokens/material_event_token.webp',
-  Material_Jackpot_Token: '/tokens/material_jackpot_token.webp',
+  Material_Gacha_Token: '/materials/Material_Gacha_Token.png',
+  Material_Event_Token: '/materials/Material_Event_Token.png',
+  Material_Jackpot_Token: '/materials/Material_Jackpot_Token.png',
   Material_Mystery25_Token: '/tokens/material_mystery25_token.webp',
   Material_Mystery26_Token: '/tokens/material_mystery26_token.webp',
 
@@ -290,7 +290,7 @@ const ITEM_TEXTURES: Record<string, string> = {
   // Текстуры для перемещённых рецептов Black Hole
   little_rewards_01: '/materials/big_xp.webp',
   big_rewards_01: '/stars/star_silver.webp', // Star_Silver
-  big_rewards_02: '/tokens/material_gacha_token.webp', // Generator Token Craft
+  big_rewards_02: '/materials/Material_Gacha_Token.png', // Generator Token Craft
 }
 
 const SPECIAL_ORB_TEXTURE_BLACKLIST = new Set([

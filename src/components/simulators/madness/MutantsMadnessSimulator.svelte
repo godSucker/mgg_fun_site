@@ -82,7 +82,7 @@
     },
     tokens: {
       label: 'Жетоны',
-      icon: '/tokens/material_jackpot_token.webp',
+      icon: '/materials/Material_Jackpot_Token.png',
       metaLabel: 'Ресурсов суммарно',
     },
     mutants: {
@@ -371,7 +371,7 @@
     <div class="summary-grid" role="presentation">
       <div class="summary-card token-spins">
         <div class="summary-icon" aria-hidden="true">
-          <img src={textureUrl("/tokens/material_jackpot_token.webp")} alt="" loading="lazy" />
+          <img src={textureUrl("/materials/Material_Jackpot_Token.png")} alt="" loading="lazy" />
         </div>
         <div class="summary-body">
           <span class="title">Прокруты за жетоны джекпота</span>

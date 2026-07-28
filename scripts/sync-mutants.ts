@@ -189,7 +189,10 @@ async function loadLocalFiles() {
 // мутантов JSON ссылался на несуществующий specimen_x_normal.webp. Единственное
 // место, где строится это имя — раньше оно дублировалось в getAvailableRatings()
 // 'stats'-ветке и уже один раз разъехалось с этим неймингом.
-function specimenIconPath(mutantId: string, rating: string): { targetDir: string; iconPath: string } {
+function specimenIconPath(
+  mutantId: string,
+  rating: string,
+): { targetDir: string; iconPath: string } {
   const idLower = mutantId.toLowerCase()
   const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower)
   const iconName = `specimen_${idLower}_${rating}.webp`
