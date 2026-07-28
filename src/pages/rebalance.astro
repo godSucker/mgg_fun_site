@@ -130,8 +130,8 @@ const mutantMeta = (id: string): MutantMeta => {
     // atk*_base/atk*p_base ("обычная"/"усиленная") - см. компаратор в
     // sync-mutants.ts, поэтому атаку продолжаем брать из lvl30 (усиленная).
     hp: lvl1?.hp ?? null,
-    atk1: lvl30?.atk1 ?? null,
-    atk2: lvl30?.atk2 ?? null,
+    atk1: m?.base_stats?.atk1p_base ?? null,
+    atk2: m?.base_stats?.atk2p_base ?? null,
     abilityPct: m?.base_stats?.abilityPct2 ?? ab?.pct ?? null,
     abilityAtk1: ab?.value_atk1_lvl30 ?? null,
     abilityAtk2: ab?.value_atk2_lvl30 ?? null,
