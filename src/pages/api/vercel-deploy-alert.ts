@@ -32,10 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   let payload: {
     type?: string
-    payload?: {
-      deployment?: { url?: string; name?: string; meta?: { githubCommitRef?: string } }
-      target?: string | null
-    }
+    payload?: { target?: string | null }
   } = {}
   try {
     payload = JSON.parse(rawBody)
@@ -52,19 +49,13 @@ export const POST: APIRoute = async ({ request }) => {
   // Vercel отдаёт "production" для прод-деплоев и null для всех остальных
   // (превью на любую другую ветку/PR) - проверено на реальном деплое ветки
   // preview. Раньше всё не-production молча игнорировалось (без уведомления);
-  // теперь шлём и то, и то, но с явной пометкой среды.
+  // теперь шлём и то, и то, но с явной пометкой среды. Без ссылки/ветки в тексте
+  // по запросу — только короткий статус.
   const isProd = payload.payload?.target === 'production'
-  const branch = payload.payload?.deployment?.meta?.githubCommitRef
-  const url = payload.payload?.deployment?.url
+  const envLabel = isProd ? 'прод' : 'превью'
+  const verb = type === 'deployment.succeeded' ? 'прошёл успешно' : 'упал с ошибкой'
 
-  const icon = type === 'deployment.succeeded' ? '✅' : '🔴'
-  const envLabel = isProd ? 'ПРОД' : 'PREVIEW'
-  const verb = type === 'deployment.succeeded' ? 'завершён успешно' : 'упал с ошибкой'
-  const branchSuffix = branch && !isProd ? ` (${branch})` : ''
-
-  const lines = [`[Vercel] ${icon} Деплой ${envLabel}${branchSuffix} ${verb}`]
-  if (url) lines.push(`https://${url}`)
-  const text = lines.join('\n')
+  const text = `Деплой на ${envLabel} ${verb}`
 
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: 'POST',
