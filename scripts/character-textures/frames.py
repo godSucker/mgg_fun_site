@@ -339,8 +339,16 @@ def segmented_rig(sprite):
     return seq >= 0.5 * len(spans)
 
 
-def render_override(xml_path, png, sid, sprite, spec, out_path):
-    """Render one specimen from POSE_OVERRIDES: one segment, own timeline."""
+def render_override(xml_path, png, sid, sprite, spec, out_path,
+                     crop_box=None, return_bbox=False):
+    """Render one specimen from POSE_OVERRIDES: one segment, own timeline.
+
+    `crop_box`/`return_bbox` forward to compose() so a caller rendering a
+    whole star-tier family (base/bronze/silver/gold/platinum, all sharing this
+    same POSE_OVERRIDES spec) can union their bboxes and re-render every tier
+    against one shared crop rectangle -- same reasoning as compose()'s own
+    docstring: mirroring happens AFTER the crop, so it doesn't affect which
+    rectangle is the right one to share."""
     import copy
     import xml.etree.ElementTree as ET
     from PIL import Image, ImageOps
@@ -352,13 +360,18 @@ def render_override(xml_path, png, sid, sprite, spec, out_path):
     ET.SubElement(seg, 'Key', {'frame': '0'})
     one = ET.Element('Sprite', sprite.attrib)
     one.append(seg)
-    img = comp.compose(xml_path, png, sid, None, frame=spec['frame'],
-                       quiet=True, sprite=one)
+    result = comp.compose(xml_path, png, sid, None, frame=spec['frame'],
+                          quiet=True, sprite=one, crop_box=crop_box,
+                          return_bbox=return_bbox)
+    img, bbox = result if return_bbox else (result, None)
     if img is None:
         raise RuntimeError('override render produced nothing')
     if spec.get('mirror'):
         img = ImageOps.mirror(img)
-    img.save(out_path)
+    if out_path:
+        img.save(out_path)
+    if return_bbox:
+        return img, bbox
     return img
 
 

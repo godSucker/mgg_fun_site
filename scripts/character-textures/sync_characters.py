@@ -229,7 +229,9 @@ def build_targets(mapping, skins, want_skins=True, only=None, workers=16):
     cands = []  # (code, sprite, url, out_path, kind)
     codes = [c for c in sorted(mapping) if c not in EXCLUDED_CODES]
     if only:
-        codes = [c for c in codes if c == only]
+        # `only` is a single code string OR a set/list of codes.
+        wanted = {only} if isinstance(only, str) else set(only)
+        codes = [c for c in codes if c in wanted]
 
     # by_mutant: base + star tiers (same geometry, swapped atlas)
     for code in codes:
@@ -284,7 +286,12 @@ def choose_frame(sprite):
 
 
 def render_target(t):
-    """Fetch atlas, render, save. Returns 'ok' | 'review' | 'fail:<msg>'."""
+    """Fetch atlas, render, save. Returns 'ok' | 'review' | 'fail:<msg>'.
+
+    Used for kind='skin' targets only -- each skin is a single independent
+    render (base geometry + one skin atlas), no sibling tiers to stay
+    anchored against, so its own getbbox() crop is fine as-is. base/tier
+    targets go through render_family() below instead, see its docstring."""
     if t.code in FROZEN_CODES:
         return "ok"  # manually-placed reference render, see FROZEN_CODES comment
     os.makedirs(os.path.dirname(t.out_path), exist_ok=True)
@@ -326,6 +333,104 @@ def render_target(t):
     except Exception as e:
         return "fail:%s" % e
     return "review" if review else "ok"
+
+
+def _union_bbox(boxes):
+    xs0 = [b[0] for b in boxes]
+    ys0 = [b[1] for b in boxes]
+    xs1 = [b[2] for b in boxes]
+    ys1 = [b[3] for b in boxes]
+    return (min(xs0), min(ys0), max(xs1), max(ys1))
+
+
+def render_family(code, sprite, members):
+    """Render every base/tier target of one specimen with a SHARED crop.
+
+    `members` is the list of Targets for this code (kind in base/tier),
+    already filtered to atlases that exist on the CDN. See compose()'s
+    docstring for why this is needed: the pre-crop canvas is identical across
+    tiers (same sprites.xml geometry), but a tier-appearing accessory (e.g. a
+    wing quad that's blank below silver) makes each tier's OWN getbbox() crop
+    a different rectangle of that shared canvas -- cropping independently
+    shifts the body the moment the accessory becomes visible. Fix: measure
+    every tier's own bbox first (pass 1, nothing saved), union them, then
+    render+save every tier against that one shared rectangle (pass 2).
+
+    Returns {out_path: 'ok'|'review'|'fail:<msg>'}."""
+    if code in FROZEN_CODES:
+        return {t.out_path: "ok" for t in members}  # manual reference renders, untouched
+
+    os.makedirs(CACHE, exist_ok=True)
+    atlas_files = {}
+    results = {}
+    for t in members:
+        atlas_file = os.path.join(CACHE, os.path.basename(t.atlas_url))
+        try:
+            data = http_bytes(t.atlas_url)
+            with open(atlas_file, "wb") as fh:
+                fh.write(data)
+            atlas_files[t.out_path] = atlas_file
+        except Exception as e:
+            results[t.out_path] = "fail:atlas download %s" % e
+    ok_members = [t for t in members if t.out_path in atlas_files]
+    if not ok_members:
+        return results
+
+    sprite_ref = ok_members[0].sprite  # same XML element for every member of a code
+    working = sprite_ref
+    if code in F.COMPOSITE_DROPS:
+        working = F.drop_composites(working, code)
+    if code == 'de_14':
+        working = F.de14_manual_graft(working)
+    if code == 'de_05':
+        working = F.de05_manual_fix(working)
+    if code in F.COMPOSITE_REORDER:
+        working = F.reorder_composites(working, code)
+    if code == 'ff_13':
+        working = F.ff13_boost_arms(working)
+    review = F.segmented_rig(working)  # segmented dance rig -> render is a guess, flag it
+    sid = working.get("id")
+    pose_spec = F.POSE_OVERRIDES.get(code)
+    frame = None if pose_spec else choose_frame(working)
+
+    def _render(t, out_path, crop_box, return_bbox):
+        atlas_file = atlas_files[t.out_path]
+        if pose_spec:
+            return F.render_override("", atlas_file, sid, working, pose_spec,
+                                     out_path, crop_box=crop_box, return_bbox=return_bbox)
+        return comp.compose("", atlas_file, sid, out_path, frame=frame,
+                            quiet=True, sprite=working, crop_box=crop_box,
+                            return_bbox=return_bbox)
+
+    boxes = []
+    measured = []
+    for t in ok_members:
+        try:
+            _, bbox = _render(t, None, None, True)
+        except Exception as e:
+            results[t.out_path] = "fail:%s" % e
+            continue
+        if bbox is None:
+            results[t.out_path] = "fail:no visible images"
+            continue
+        boxes.append(bbox)
+        measured.append(t)
+    if not boxes:
+        return results
+
+    union = _union_bbox(boxes)
+    for t in measured:
+        os.makedirs(os.path.dirname(t.out_path), exist_ok=True)
+        try:
+            img = _render(t, t.out_path, union, False)
+            if img is None:
+                results[t.out_path] = "fail:no visible images"
+                continue
+        except Exception as e:
+            results[t.out_path] = "fail:%s" % e
+            continue
+        results[t.out_path] = "review" if review else "ok"
+    return results
 
 
 # --------------------------------------------------------------------------- #
@@ -381,11 +486,12 @@ def summary(stats, review, failures):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--full", action="store_true", help="render everything (backfill)")
-    ap.add_argument("--only", help="single site code, e.g. aa_12")
+    ap.add_argument("--only", help="site code(s), comma-separated, e.g. aa_12 or aa_12,ab_03")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--sprites", help="local sprites.xml / stands.xml")
     ap.add_argument("--no-skins", action="store_true")
     args = ap.parse_args()
+    only = set(args.only.split(",")) if args.only else None
 
     root, mapping = fetch_stands(args.sprites)
     try:
@@ -402,14 +508,67 @@ def main():
               % (len(skins), sum(len(v) for v in skins.values())))
 
     print("[targets] probing CDN for existing atlases ...", flush=True)
-    targets = build_targets(mapping, skins, want_skins=not args.no_skins, only=args.only)
+    targets = build_targets(mapping, skins, want_skins=not args.no_skins, only=only)
     print("[targets] %d existing atlases" % len(targets))
 
     state = load_state()
     stats = {"new": 0, "ok": 0, "skip": 0}
     review, failures = [], []
     n = 0
+
+    # base/tier targets of the same code MUST render together: compose()'s
+    # pre-crop canvas is identical across a specimen's tiers (shared
+    # sprites.xml geometry), and cropping each tier to its own getbbox() is
+    # exactly the bug this rewrite fixes (see render_family()'s docstring) --
+    # a tier-only accessory (wings, etc.) becoming visible shifts the body
+    # inside its crop. Skins stay on the old one-target-one-render path: a
+    # skin has no sibling tiers to stay anchored against.
+    skin_targets = [t for t in targets if t.kind == "skin"]
+    families = {}
     for t in targets:
+        if t.kind in ("base", "tier"):
+            families.setdefault(t.code, []).append(t)
+
+    for code in sorted(families):
+        members = families[code]
+        rels = {t.out_path: os.path.relpath(t.out_path, REPO) for t in members}
+        needs_render = args.full or any(
+            state.get(rels[t.out_path]) != t.sig or not os.path.exists(t.out_path)
+            for t in members
+        )
+        if not needs_render:
+            stats["skip"] += len(members)
+            continue
+        # Any sig change invalidates the WHOLE family's shared crop, so every
+        # member gets re-rendered here even if its own atlas didn't change.
+        stats["new"] += len(members)
+        results = render_family(code, members[0].sprite, members)
+        for t in members:
+            rel = rels[t.out_path]
+            res = results.get(t.out_path, "fail:not rendered")
+            if res in ("ok", "review"):
+                stats["ok"] += 1
+                state[rel] = t.sig
+                if res == "review":
+                    review.append(code)
+                    print("  REVIEW %s (segmented rig)" % rel)
+            else:
+                failures.append((rel, res))
+                print("  FAIL %s -> %s" % (rel, res))
+        prev_n = n
+        n += len(members)
+        if n // 25 > prev_n // 25:
+            print("  ... %d rendered" % n, flush=True)
+            save_state(state)  # checkpoint: a mid-run timeout must not discard
+            # everything rendered so far, or a heavy day (many real content
+            # changes) can never make net progress across cron runs.
+        if args.limit and n >= args.limit:
+            print("[limit] stopping at %d" % n)
+            break
+
+    for t in skin_targets:
+        if args.limit and n >= args.limit:
+            break
         rel = os.path.relpath(t.out_path, REPO)
         if not args.full and state.get(rel) == t.sig and os.path.exists(t.out_path):
             stats["skip"] += 1
@@ -430,9 +589,7 @@ def main():
         n += 1
         if n % 25 == 0:
             print("  ... %d rendered" % n, flush=True)
-            save_state(state)  # checkpoint: a mid-run timeout must not discard
-            # everything rendered so far, or a heavy day (many real content
-            # changes) can never make net progress across cron runs.
+            save_state(state)
         if args.limit and n >= args.limit:
             print("[limit] stopping at %d" % n)
             break

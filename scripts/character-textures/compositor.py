@@ -245,7 +245,8 @@ def collect_quads(sprite, frame):
 
 
 def compose(xml_path, atlas_path, sprite_id, output_path, frame=0.0,
-            scale=1.0, quiet=False, atlas=None, sprite=None, ss=1):
+            scale=1.0, quiet=False, atlas=None, sprite=None, ss=1,
+            crop_box=None, return_bbox=False):
     """Render one frame. `scale` shrinks the output (cheap previews used to
     score many candidate frames against the game's own portrait); `atlas` and
     `sprite` let a caller pass already-parsed objects to avoid re-loading them
@@ -256,7 +257,21 @@ def compose(xml_path, atlas_path, sprite_id, output_path, frame=0.0,
     every part boundary is aliased -- and since half the specimens ship a
     DOWNSCALED atlas (packSz up to 1.44x the texture, see below), those jagged
     edges then get stretched. Supersampling costs ss^2 render time and fixes
-    the edges; it cannot invent detail the shipped atlas never had."""
+    the edges; it cannot invent detail the shipped atlas never had.
+
+    `crop_box` / `return_bbox`: the pre-crop canvas is built from the sprite's
+    OWN geometry (dstX/dstY etc. from sprites.xml), so it is byte-identical in
+    size and absolute coordinates across every star-tier atlas of the same
+    specimen -- only the ATLAS PIXELS painted onto it differ (e.g. a wing quad
+    exists in the geometry at every tier, but its atlas region is blank below
+    silver). Cropping each tier to its OWN getbbox() therefore anchors each
+    tier's output to a DIFFERENT rectangle of that shared canvas -- the body
+    visibly shifts (and rescales, since the modal fits by height) the moment
+    an accessory becomes visible on a higher tier. Callers rendering a whole
+    tier family should pass `return_bbox=True` for a first, unsaved pass per
+    tier to collect each own bbox, union them, then re-render every tier with
+    `crop_box=<union>` so all outputs share one crop rectangle. `crop_box=None`
+    keeps the old single-tier behaviour (self getbbox())."""
     if atlas is None:
         atlas = Image.open(atlas_path).convert('RGBA')
     AW, AH = atlas.size
@@ -264,13 +279,13 @@ def compose(xml_path, atlas_path, sprite_id, output_path, frame=0.0,
         sprite = parse_xml(xml_path, sprite_id)
     if sprite is None:
         print("sprite %s not found" % sprite_id)
-        return
+        return (None, None) if return_bbox else None
     quads = collect_quads(sprite, frame)
     eff = scale * ss
     if eff != 1.0:
         quads = [(tuple(v * eff for v in M), im) for M, im in quads]
     if not quads:
-        return None
+        return (None, None) if return_bbox else None
     if not quiet:
         print("visible images at frame %.1f: %d" % (frame, len(quads)))
 
@@ -362,7 +377,8 @@ def compose(xml_path, atlas_path, sprite_id, output_path, frame=0.0,
         canvas.paste(warped, (0, 0),
                      Image.composite(warped.split()[3], Image.new('L', (W, H), 0), mask))
 
-    bbox = canvas.getbbox()
+    own_bbox = canvas.getbbox()
+    bbox = crop_box if crop_box is not None else own_bbox
     if bbox:
         canvas = canvas.crop(bbox)
     if ss != 1:
@@ -372,6 +388,8 @@ def compose(xml_path, atlas_path, sprite_id, output_path, frame=0.0,
         canvas.save(output_path)
         if not quiet:
             print("saved %s (%dx%d)" % (output_path, canvas.width, canvas.height))
+    if return_bbox:
+        return canvas, own_bbox
     return canvas
 
 
