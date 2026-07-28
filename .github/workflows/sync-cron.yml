@@ -100,7 +100,7 @@ jobs:
         id: check-changes
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
         run: |
-          if git diff --quiet src/data/mutants/*.json public/textures_by_mutant/ public/textures_by_skins/ scripts/character-textures/rendered.json 2>/dev/null; then
+          if git diff --quiet src/data/mutants/*.json public/textures_by_mutant/ public/textures_by_skins/ scripts/character-textures/rendered.json scripts/missing-skin-textures-cache.json 2>/dev/null; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "ℹ️  Изменений не обнаружено"
           else
@@ -120,7 +120,7 @@ jobs:
           commit_user_email: "bot@archivist-library.com"
           commit_author: "MGG Parser Bot <bot@archivist-library.com>"
           branch: main
-          file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/** scripts/character-textures/rendered.json'
+          file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/** scripts/character-textures/rendered.json scripts/missing-skin-textures-cache.json'
 
       - name: 7. Синхронизация ассетов с Яндекс CDN (инкремент по git diff)
         # Раньше здесь был `aws s3 sync` по 20 папкам. На свежем раннере git checkout

@@ -6,6 +6,14 @@ on:
 permissions:
   contents: write
 
+# Общая группа с sync-cron.yml/parser-textures-only.yml: все три читают-меняют-
+# перезаписывают ВЕСЬ mutants.json целиком. Без общей группы ручной запуск,
+# совпавший с дневным cron, - гонка чтения-изменения-записи на весь файл,
+# а не просто конфликт при пуше.
+concurrency:
+  group: sync-cron
+  cancel-in-progress: false
+
 jobs:
   rebalance-job:
     runs-on: ubuntu-latest

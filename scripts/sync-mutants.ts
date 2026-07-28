@@ -88,6 +88,19 @@ function roundSpeed(speed: number): number {
   return Math.round(speed * 100) / 100
 }
 
+// Слабые стартовые варианты (Specimen_A_02/B_02/C_02 = Слабый Робот/Зомби/Воин)
+// никогда не парсятся и не пишутся в mutants.json. ID-сет — основной бэкстоп;
+// проверка по локализации ("слабый"/"weak") дополнительно ловит другие такие же
+// варианты по имени, если игра когда-нибудь добавит ещё — но НЕ заменяет ID-сет,
+// так как локализация может отсутствовать/быть пустой для конкретного id.
+const WEAK_MUTANT_IDS = new Set(['SPECIMEN_A_02', 'SPECIMEN_B_02', 'SPECIMEN_C_02'])
+
+function isWeakMutant(descriptorId: string, locMap: Map<string, string>): boolean {
+  if (WEAK_MUTANT_IDS.has(descriptorId.toUpperCase())) return true
+  const locName = (locMap.get(descriptorId.toLowerCase()) || '').toLowerCase()
+  return locName.includes('слабый') || locName.includes('weak')
+}
+
 // Негативный кэш "текстуры точно нет на Kobojo" — ключ specimen_id_rating,
 // значение — ISO-таймстамп последней подтверждённой проверки. Без него парсер
 // каждый день заново дожидается 15с таймаута axios на КАЖДУЮ комбинацию
@@ -170,16 +183,24 @@ async function loadLocalFiles() {
  * Скачивает specimen текстуру с Kobojo CDN если её нет на диске.
  * Возвращает true если текстура доступна (была или скачана).
  */
-async function downloadSpecimen(mutantId: string, rating: string): Promise<boolean> {
+// ВАЖНО: имя файла всегда с суффиксом рейтинга (в т.ч. _normal) — именно такой
+// путь пишет buildImagePaths() в mutants.json и проверяет режим stats.
+// Раньше normal сохранялся без суффикса (specimen_x.webp), из-за чего у новых
+// мутантов JSON ссылался на несуществующий specimen_x_normal.webp. Единственное
+// место, где строится это имя — раньше оно дублировалось в getAvailableRatings()
+// 'stats'-ветке и уже один раз разъехалось с этим неймингом.
+function specimenIconPath(mutantId: string, rating: string): { targetDir: string; iconPath: string } {
   const idLower = mutantId.toLowerCase()
   const targetDir = path.join(CONFIG.TEXTURES_DIR, idLower)
-  // ВАЖНО: имя файла всегда с суффиксом рейтинга (в т.ч. _normal) — именно такой
-  // путь пишет buildImagePaths() в mutants.json и проверяет режим stats.
-  // Раньше normal сохранялся без суффикса (specimen_x.webp), из-за чего у новых
-  // мутантов JSON ссылался на несуществующий specimen_x_normal.webp.
+  const iconName = `specimen_${idLower}_${rating}.webp`
+  return { targetDir, iconPath: path.join(targetDir, iconName) }
+}
+
+async function downloadSpecimen(mutantId: string, rating: string): Promise<boolean> {
+  const idLower = mutantId.toLowerCase()
+  const { targetDir, iconPath } = specimenIconPath(mutantId, rating)
   const suffix = `_${rating}`
   const iconName = `specimen_${idLower}${suffix}.webp`
-  const iconPath = path.join(targetDir, iconName)
 
   try {
     await fs.access(iconPath)
@@ -257,9 +278,7 @@ async function getAvailableRatings(
       const ok = await downloadSpecimen(mutantId, rating)
       if (ok) found.push(rating)
     } else {
-      const idLower = mutantId.toLowerCase()
-      const suffix = `_${rating}`
-      const iconPath = path.join(CONFIG.TEXTURES_DIR, idLower, `specimen_${idLower}${suffix}.webp`)
+      const { iconPath } = specimenIconPath(mutantId, rating)
       try {
         await fs.access(iconPath)
         found.push(rating)
@@ -559,15 +578,10 @@ async function sync(options: {
   if (compareBeforeUpdate)
     console.log(`[INFO] Режим REBALANCE: Обновление только изменившихся данных`)
 
-  const WEAK_MUTANT_IDS = new Set(['SPECIMEN_A_02', 'SPECIMEN_B_02', 'SPECIMEN_C_02'])
-
   const descriptors = findAllEntityDescriptors(gameDefs)
   const specimenDescriptors = descriptors.filter((d) => {
     if (!d.id || !d.id.startsWith('Specimen_')) return false
-    if (WEAK_MUTANT_IDS.has(d.id.toUpperCase())) return false
-    const locName = (locMap.get(d.id.toLowerCase()) || '').toLowerCase()
-    if (locName.includes('слабый') || locName.includes('weak')) return false
-    return true
+    return !isWeakMutant(d.id, locMap)
   })
 
   let modifiedCount = 0
@@ -588,6 +602,8 @@ async function sync(options: {
     const typeUpper = (tags.type || '').toUpperCase()
     const isGacha = typeUpper === 'GACHA'
 
+    const existingEntry = existingData.get(baseId)
+
     // Режим FULL: проверяем наличие текстур у существующих мутантов
     let newTexturesDownloaded = false
     let ratingsFromExistingCheck: string[] | null = null
@@ -600,7 +616,14 @@ async function sync(options: {
         stats.skipped++
         continue
       } else {
-        newTexturesDownloaded = true
+        // ВАЖНО: missing.length > 0 значит только "чего-то не хватает", а не
+        // "что-то реально скачалось" - у хронически неполных мутантов (звёзд,
+        // которых физически нет на Kobojo) missing никогда не станет пустым, и
+        // без этой проверки [STARS UPDATED]/stats.newStars врали бы каждый день
+        // на записях без единой новой звезды. Настоящий сигнал - появление
+        // рейтинга, которого раньше не было в existingEntry.stars.
+        const existingRatings = new Set(Object.keys(existingEntry?.stars ?? {}))
+        newTexturesDownloaded = ratings.some((r) => !existingRatings.has(r))
         console.log(`[TEXTURES MISSING] ${mutantId}: не найдены текстуры для ${missing.join(', ')}`)
       }
     }
@@ -612,7 +635,7 @@ async function sync(options: {
       ratingsFromExistingCheck ??
       (await getAvailableRatings(mutantId, skipExisting ? 'full' : 'stats', isGacha))
 
-    if (textureRatings.length === 0 && mutantId !== 'FB_14') {
+    if (textureRatings.length === 0) {
       console.log(`[SKIP] ${mutantId}: текстуры не найдены`)
       continue
     }
@@ -735,7 +758,6 @@ async function sync(options: {
     const atk2Gene = parsedAtk2Gene || genesChar[1]?.toLowerCase() || 'neutro'
 
     // Сохраняем tier из существующей записи (не затираем)
-    const existingEntry = existingData.get(baseId)
     const preservedTier = existingEntry?.tier ?? ''
 
     const entry: UnifiedMutant = {
@@ -856,12 +878,31 @@ async function sync(options: {
 
   // Удаление мутантов без текстур
   if (!skipExisting) {
-    for (const id of existingData.keys()) {
-      const mutId = id.replace(/^specimen_/, '').toUpperCase()
-      if (!xmlMutantIds.has(mutId)) {
-        console.log(`[DELETE] ${id}: отсутствует в XML`)
-        existingData.delete(id)
-        stats.deleted++
+    const existingCountBeforeDelete = existingData.size
+    // Страховка от частично оборванной загрузки gamedefinitions.xml: массовое
+    // снятие мутантов из игры за один день реально не происходит, а Kobojo
+    // теоретически может отдать усечённый ответ (downloadFile() не проверяет
+    // размер тела для XML, в отличие от текстур). Если из XML пришло заметно
+    // меньше id, чем уже в mutants.json - это почти наверняка сбой загрузки,
+    // а не легитимное удаление; пропускаем проход и громко предупреждаем,
+    // а не тихо стираем половину ростера.
+    const MIN_XML_COVERAGE_RATIO = 0.9
+    if (xmlMutantIds.size < existingCountBeforeDelete * MIN_XML_COVERAGE_RATIO) {
+      console.log(
+        `[WARN] XML содержит только ${xmlMutantIds.size} id против ${existingCountBeforeDelete} в mutants.json — похоже на обрыв загрузки. Удаление отсутствующих пропущено.`,
+      )
+    } else {
+      for (const id of existingData.keys()) {
+        const mutId = id.replace(/^specimen_/, '').toUpperCase()
+        if (!xmlMutantIds.has(mutId)) {
+          console.log(`[DELETE] ${id}: отсутствует в XML`)
+          existingData.delete(id)
+          stats.deleted++
+          // Раньше удаление не увеличивало modifiedCount, поэтому прогон, где
+          // единственное изменение - легитимное удаление, ничего не записывал
+          // на диск (см. if (modifiedCount > 0) ниже).
+          modifiedCount++
+        }
       }
     }
   }
@@ -886,7 +927,8 @@ async function sync(options: {
     stats.updatedLocalization +
     stats.newStars +
     stats.skipped +
-    stats.errors
+    stats.errors +
+    stats.deleted
   console.log(`\nВсего обработано: ${totalProcessed} записей`)
   console.log('='.repeat(60) + '\n')
 
@@ -966,15 +1008,10 @@ async function syncTexturesOnly() {
     return
   }
 
-  const WEAK_MUTANT_IDS = new Set(['SPECIMEN_A_02', 'SPECIMEN_B_02', 'SPECIMEN_C_02'])
-
   const descriptors = findAllEntityDescriptors(gameDefs)
   const specimenDescriptors = descriptors.filter((d) => {
     if (!d.id || !d.id.startsWith('Specimen_')) return false
-    if (WEAK_MUTANT_IDS.has(d.id.toUpperCase())) return false
-    const locName = (locMap.get(d.id.toLowerCase()) || '').toLowerCase()
-    if (locName.includes('слабый') || locName.includes('weak')) return false
-    return true
+    return !isWeakMutant(d.id, locMap)
   })
 
   const stats = { checked: 0, complete: 0, errors: 0 }
