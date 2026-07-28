@@ -1,6 +1,4 @@
 ---
-import { textureUrl } from '@/lib/texture-cdn';
-
 interface Props {
   oldVal: number | null;
   newVal: number | null;
@@ -23,7 +21,7 @@ const cls = directionCls();
 ---
 
 <div class="statbox">
-  {aoe && <img class="aoe-icon" src={textureUrl('/genes/atk_multiple.webp')} alt="AOE" title="AOE-атака" loading="lazy" decoding="async" />}
+  {aoe && <span class="aoe-badge" title="AOE-атака">AOE</span>}
   <span class="vals">
     <span class="old-val">{fmtNum(oldVal)}</span>
     <span class="arrow">→</span>
@@ -60,11 +58,22 @@ const cls = directionCls();
     color: #64748b;
     margin: 0 0.2rem;
   }
-  .aoe-icon {
-    width: 14px;
-    height: 14px;
-    object-fit: contain;
-    margin-right: 0.25rem;
+  .aoe-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 13px;
+    padding: 0 3px;
+    margin-right: 0.3rem;
+    border-radius: 4px;
+    background: rgba(96, 165, 250, 0.16);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    color: #93c5fd;
+    font-size: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    line-height: 1;
     flex-shrink: 0;
+    align-self: center;
   }
 </style>
