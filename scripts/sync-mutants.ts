@@ -369,8 +369,8 @@ function compareStats(
   // lvl30 = atk*p_base. Показываем только усиленную (lvl30) версию по решению автора
   // сайта - "обычная" atk1_base/atk2_base читателю не нужна, отдельного растущего
   // от lvl1 к lvl30 показателя атаки в игре нет.
-  diffStat('atk1', 1, oldL30.atk1, newL30.atk1, 'atк1р')
-  diffStat('atk2', 1, oldL30.atk2, newL30.atk2, 'атк2р')
+  diffStat('atk1', 1, oldEntry.base_stats.atk1p_base, newEntry.base_stats.atk1p_base, 'атк1р')
+  diffStat('atk2', 1, oldEntry.base_stats.atk2p_base, newEntry.base_stats.atk2p_base, 'атк2р')
 
   // Способности: сравниваем по названию (пары old/new с одинаковым name),
   // диффим числовые поля по отдельности - раньше был один булев флаг
