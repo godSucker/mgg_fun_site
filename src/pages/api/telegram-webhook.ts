@@ -16,13 +16,45 @@ const STATUS_LABEL = '📊 Статус сайта'
 const LASTSYNC_LABEL = '🔄 Последний синк'
 const PAYMENTS_LABEL = '💳 Напоминалка'
 const YANDEX_BALANCE_LABEL = '💰 Баланс Яндекс'
+const FORMATS_LABEL = '📐 Форматы'
 const REPLY_KEYBOARD = {
   keyboard: [
     [{ text: STATUS_LABEL }, { text: LASTSYNC_LABEL }],
     [{ text: PAYMENTS_LABEL }, { text: YANDEX_BALANCE_LABEL }],
+    [{ text: FORMATS_LABEL }],
   ],
   resize_keyboard: true,
   is_persistent: true,
+}
+
+// Шпаргалка по форматам ".сфера"/".анонс"/".тир" — держать текст в одном
+// месте с их реальными парсерами (ниже и в tier-parser.js), чтобы кнопка не
+// разъехалась с тем, что боту в действительности скормить можно.
+function getFormatsMessage(): string {
+  return [
+    '📐 *Форматы команд*',
+    '',
+    '🔮 *Сфера* — имя (кавычки не обязательны) и 1–3 строки рядов, сферы разделены `;` или `,`:',
+    '```',
+    '.сфера Мистер Икс',
+    'атака ; усиление ; спец скорость',
+    'здоровье ; усиление',
+    'усиление ; усиление ; спец скорость',
+    '```',
+    '',
+    '📢 *Анонс* — Reply на пост, пересланный из канала, текстом `.анонс` (что допишешь после — уйдёт подводкой перед постом):',
+    '```',
+    '.анонс',
+    '```',
+    '',
+    '🏆 *Тир* — .txt-файл, в подписи к файлу обязательно `.тир`; строки внутри файла — любой из форматов:',
+    '```',
+    'Азимов (2+)',
+    'Робот,2-',
+    'Голиаф:3',
+    '```',
+    '_Валидные тиры: 1, 1+, 1-, 2, 2+, 2-, 3, 3+, 3-, 4, un-tired_',
+  ].join('\n')
 }
 
 const YANDEX_BILLING_ACCOUNT_ID = 'dn28giqm4gc781aj82ca'
@@ -558,6 +590,13 @@ export const POST: APIRoute = async ({ request }) => {
           const info = await getPaymentsMessage(GITHUB_TOKEN, REPO_OWNER, REPO_NAME)
           await sendTelegramMessage(BOT_TOKEN, chatId, info, undefined, 'Markdown')
         }
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+      if (text === '/formats' || text === FORMATS_LABEL) {
+        await sendTelegramMessage(BOT_TOKEN, chatId, getFormatsMessage(), undefined, 'Markdown')
         return new Response(JSON.stringify({ ok: true }), {
           status: 200,
           headers: { 'Content-Type': 'application/json' },
