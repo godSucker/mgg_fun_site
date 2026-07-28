@@ -1,1 +1,1853 @@
-[]
+[
+  {
+    "date": "2026-07-28T11:06:30.685Z",
+    "entries": [
+      {
+        "id": "specimen_fd_03",
+        "name": "Белый Ханзо",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 1924,
+            "new": 2424
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6026,
+            "new": 6806
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 6026,
+            "new": 6806
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 33,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1808,
+            "new": 2246,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1808,
+            "new": 2246,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_a_03",
+        "name": "Гаруда",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 3416,
+            "new": 4196
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 2137,
+            "new": 2917
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 45,
+            "new": 50,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1537,
+            "new": 2098,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 962,
+            "new": 1459,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_b_03",
+        "name": "Джек Скеллингтон",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 3046,
+            "new": 4606
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 1755,
+            "new": 2925
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1523,
+            "new": 2303,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 878,
+            "new": 1463,
+            "ability": "ability_regen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_c_03",
+        "name": "Крионос",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6228,
+            "new": 7398
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3580,
+            "new": 4516
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 25,
+            "new": 33,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1557,
+            "new": 2441,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fc_04",
+        "name": "Мексикоатль",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 4087,
+            "new": 6037
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 4087,
+            "new": 6037
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 25,
+            "new": 40,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1022,
+            "new": 2415,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1022,
+            "new": 2415,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ce_05",
+        "name": "Солнечный Герцог",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 6.33,
+            "new": 6.45
+          },
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 1405,
+            "new": 1605
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 40,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1165,
+            "new": 1554,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1165,
+            "new": 1554,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_de_06",
+        "name": "Дарвин",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3315,
+            "new": 3615
+          }
+        ]
+      },
+      {
+        "id": "specimen_df_06",
+        "name": "Рубака",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3187,
+            "new": 3487
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 4961,
+            "new": 5741
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 4961,
+            "new": 5741
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 40,
+            "new": 50,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1984,
+            "new": 2871,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1984,
+            "new": 2871,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ac_07",
+        "name": "Робо Фуэрте",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 2181,
+            "new": 2381
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 5008,
+            "new": 5827
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 5008,
+            "new": 5827
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2504,
+            "new": 2914,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2504,
+            "new": 2914,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cd_07",
+        "name": "Джонни Сноуи",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6950,
+            "new": 7574
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 6950,
+            "new": 7738
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2780,
+            "new": 3030,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2780,
+            "new": 3095,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ea_08",
+        "name": "Леди Свобода",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3665,
+            "new": 3765
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 35,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2155,
+            "new": 2514,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2155,
+            "new": 2514,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ab_09",
+        "name": "Ворчун Клаус",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.35,
+            "new": 4.44
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 40,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1964,
+            "new": 2619,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1964,
+            "new": 2619,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bf_09",
+        "name": "Скелеторро",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4348,
+            "new": 4548
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 8596,
+            "new": 8986
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 8596,
+            "new": 8986
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 4298,
+            "new": 4493,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 4298,
+            "new": 4493,
+            "ability": "ability_regen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fd_10",
+        "name": "Мастер Лапа",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.45,
+            "new": 3.57
+          },
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3683,
+            "new": 3983
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 25,
+            "new": 30,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1966,
+            "new": 2359,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1966,
+            "new": 2359,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ad_11",
+        "name": "Яйцевидный мехарахнид",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 2360,
+            "new": 3140
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 4103,
+            "new": 4610
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 40,
+            "new": 60,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 944,
+            "new": 1884,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1641,
+            "new": 2766,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ca_11",
+        "name": "Риф",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 1277,
+            "new": 2677
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 3377,
+            "new": 5717
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3377,
+            "new": 5717
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 439,
+            "new": 743,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 439,
+            "new": 743,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ec_11",
+        "name": "Вирн Каизу",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 7375,
+            "new": 8935
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 7375,
+            "new": 8935
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2360,
+            "new": 2859,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2360,
+            "new": 2859,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bb_12",
+        "name": "Доктор-фонарщик",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 7862,
+            "new": 9032
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 5585,
+            "new": 6053
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 3774,
+            "new": 4335,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2681,
+            "new": 2905,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_cd_12",
+        "name": "Капитан Орлан",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3494,
+            "new": 3794
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 40,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1778,
+            "new": 2371,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_dd_12",
+        "name": "Солнечный лампирион",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6408,
+            "new": 7578
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3202,
+            "new": 4762
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2563,
+            "new": 3031,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1281,
+            "new": 1905,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_df_12",
+        "name": "Базилиск и эсдрагон",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3333,
+            "new": 4033
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 5386,
+            "new": 7570
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 5386,
+            "new": 7726
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 38,
+            "new": 40,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2047,
+            "new": 3028,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2047,
+            "new": 3090,
+            "ability": "ability_regen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ee_12",
+        "name": "Полярис",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 8701,
+            "new": 9481
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 48,
+            "new": 50,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 4176,
+            "new": 4741,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 3087,
+            "new": 3216,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fc_12",
+        "name": "Генералиссимус Шоколеон IV",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 5099,
+            "new": 5699
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 40,
+            "new": 30,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2364,
+            "new": 1773,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bf_13",
+        "name": "Слияние душ",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4547,
+            "new": 4847
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 35,
+            "new": 45,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2417,
+            "new": 3108,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ca_13",
+        "name": "Антерос",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3434,
+            "new": 3834
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6509,
+            "new": 7289
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 6509,
+            "new": 7289
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 32,
+            "new": 40,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2083,
+            "new": 2916,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2083,
+            "new": 2916,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_eb_13",
+        "name": "Ксиномас",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5.26,
+            "new": 5.41
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 7145,
+            "new": 7925
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 7145,
+            "new": 7925
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 32,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2144,
+            "new": 2536,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2144,
+            "new": 2536,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fa_13",
+        "name": "Бореальный геликоид",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 4438,
+            "new": 6388
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3292,
+            "new": 4072
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 60,
+            "new": 70,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2663,
+            "new": 4472,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1975,
+            "new": 2850,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_aa_99",
+        "name": "A00-C0R3-КОНТРОЛЬ",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4621,
+            "new": 4821
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 7258,
+            "new": 7726
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3986,
+            "new": 4766
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 55,
+            "new": 65,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 3992,
+            "new": 5022,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2192,
+            "new": 3098,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ae_99",
+        "name": "Случайним",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 3566,
+            "new": 3656
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 9064,
+            "new": 9454
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 5807,
+            "new": 6197
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 32,
+            "new": 30,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2900,
+            "new": 2836,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1858,
+            "new": 1859,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ca_99",
+        "name": "Мисси Пробужденная",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 2512,
+            "new": 2812
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 9442,
+            "new": 10612
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 9442,
+            "new": 10612
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 15,
+            "new": 20,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1416,
+            "new": 2122,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1416,
+            "new": 2122,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ce_99",
+        "name": "колосс",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 5780,
+            "new": 6031
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 12,
+            "new": 13,
+            "ability": "ability_retaliate_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1174,
+            "new": 1272,
+            "ability": "ability_retaliate_plus",
+            "field": "atk1"
+          }
+        ]
+      },
+      {
+        "id": "specimen_df_99",
+        "name": "Джиннозверь",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 2461,
+            "new": 4021
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 2461,
+            "new": 4021
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 35,
+            "new": 30,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 861,
+            "new": 1206,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 861,
+            "new": 1206,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_eb_99",
+        "name": "Диабло",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 9337,
+            "new": 9727
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 9337,
+            "new": 9727
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 34,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2801,
+            "new": 3307,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2801,
+            "new": 3307,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ed_99",
+        "name": "Ктопи",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4497,
+            "new": 4697
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6150,
+            "new": 6540
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3073,
+            "new": 3853
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2768,
+            "new": 2943,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1383,
+            "new": 1734,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ee_99",
+        "name": "Ирреальный анимус",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6486,
+            "new": 7266
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3241,
+            "new": 4411
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1946,
+            "new": 2180,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 972,
+            "new": 1323,
+            "ability": "ability_regen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ef_99",
+        "name": "Маг сингулярности",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4101,
+            "new": 4201
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 4399,
+            "new": 4516
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 7800,
+            "new": 8190
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 33,
+            "new": 38,
+            "ability": "ability_strengthen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1452,
+            "new": 1716,
+            "ability": "ability_strengthen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2574,
+            "new": 3112,
+            "ability": "ability_strengthen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fa_99",
+        "name": "Архангел",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4076,
+            "new": 5076
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 7262,
+            "new": 8822
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 7262,
+            "new": 8822
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2179,
+            "new": 2647,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2179,
+            "new": 2647,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ff_99",
+        "name": "Эмоциональная маскарада",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 10261,
+            "new": 10651
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 7063,
+            "new": 7453
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 37,
+            "new": 39,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 3797,
+            "new": 4154,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2613,
+            "new": 2907,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_ba_14",
+        "name": "Мехаргулья",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 2221,
+            "new": 2421
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 90,
+            "new": 110,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 6431,
+            "new": 7860,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 6431,
+            "new": 7860,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_bc_14",
+        "name": "Трикина тыква",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 9.09,
+            "new": 9.52
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 35,
+            "new": 44,
+            "ability": "ability_regen_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2072,
+            "new": 2605,
+            "ability": "ability_regen_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2168,
+            "new": 2725,
+            "ability": "ability_regen_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_db_14",
+        "name": "Ползучее безумие",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 6934,
+            "new": 8494
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 3845,
+            "new": 5600
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 40,
+            "new": 45,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2774,
+            "new": 3822,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1538,
+            "new": 2520,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_dc_14",
+        "name": "Ужас юрского периода",
+        "changes": [
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 7983,
+            "new": 8373
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 7983,
+            "new": 8373
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 60,
+            "new": 80,
+            "ability": "ability_slash_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 4790,
+            "new": 6698,
+            "ability": "ability_slash_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 4790,
+            "new": 6698,
+            "ability": "ability_slash_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_de_14",
+        "name": "Сверхмассивная бесконечность",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.77,
+            "new": 3.85
+          }
+        ]
+      },
+      {
+        "id": "specimen_ef_14",
+        "name": "К'Ю Т'ипай",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 9.09,
+            "new": 9.52
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": 33,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 1273,
+            "new": 1400,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 896,
+            "new": 986,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fa_14",
+        "name": "Фрактальный заклинатель",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 5,
+            "new": 5.41
+          },
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 1130,
+            "new": 1420
+          },
+          {
+            "stat": "atk1",
+            "level": 1,
+            "old": 1825,
+            "new": 5659
+          },
+          {
+            "stat": "atk2",
+            "level": 1,
+            "old": 1825,
+            "new": 5659
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 30,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 548,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 548,
+            "new": null,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": 32,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": 1811,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": null,
+            "new": 1811,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fb_14",
+        "name": "Загам, Великий Король Жадности",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 4.08,
+            "new": 4.17
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 25,
+            "new": 35,
+            "ability": "ability_weaken_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2292,
+            "new": 3209,
+            "ability": "ability_weaken_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 2292,
+            "new": 3209,
+            "ability": "ability_weaken_plus",
+            "field": "atk2"
+          }
+        ]
+      },
+      {
+        "id": "specimen_fd_14",
+        "name": "Ванирская королева Фрейя",
+        "changes": [
+          {
+            "stat": "hp",
+            "level": 1,
+            "old": 4088,
+            "new": 4288
+          }
+        ]
+      },
+      {
+        "id": "specimen_ff_14",
+        "name": "Сумеречный пророк",
+        "changes": [
+          {
+            "stat": "speed",
+            "level": null,
+            "old": 3.57,
+            "new": 3.64
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 40,
+            "new": 48,
+            "ability": "ability_shield_plus",
+            "field": "pct"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 4706,
+            "new": 5648,
+            "ability": "ability_shield_plus",
+            "field": "atk1"
+          },
+          {
+            "stat": "abilities",
+            "level": null,
+            "old": 3158,
+            "new": 3789,
+            "ability": "ability_shield_plus",
+            "field": "atk2"
+          }
+        ]
+      }
+    ]
+  }
+]
