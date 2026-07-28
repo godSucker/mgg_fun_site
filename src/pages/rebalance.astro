@@ -189,11 +189,11 @@ function buildRow(entry: RebalanceEntry): MutantRow {
     : { old: scaled(meta.hp), new: scaled(meta.hp) };
 
   // Атака 1/2: "усиленная" версия (level: null)
-  const atk1Change = find('atk1', null);
+  const atk1Change = find('atk1', 1);
   const atk1: Pair = atk1Change
     ? { old: scaled(atk1Change.old), new: scaled(atk1Change.new) }
     : { old: scaled(meta.atk1), new: scaled(meta.atk1) };
-  const atk2Change = find('atk2', null);
+  const atk2Change = find('atk2', 1);
   const atk2: Pair = atk2Change
     ? { old: scaled(atk2Change.old), new: scaled(atk2Change.new) }
     : { old: scaled(meta.atk2), new: scaled(meta.atk2) };
