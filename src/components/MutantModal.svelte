@@ -555,7 +555,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
-  class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-start md:items-center justify-center p-2 md:p-3 overflow-y-auto overscroll-contain"
+  class="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-start md:items-[safe_center] justify-center p-2 md:p-3 overflow-y-auto overscroll-contain"
   onclick={(e) => { if (e.target === e.currentTarget) close(); }}
   aria-hidden="false"
 >
@@ -567,7 +567,7 @@
     onkeydown={onKeydownTrap}
     tabindex="-1"
     style="overflow-anchor: none;"
-    class="modal-2k relative w-full max-w-5xl grid grid-rows-[auto_auto_1fr] md:grid-rows-none md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl min-h-[96svh] md:h-auto md:max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
+    class="modal-2k relative w-full max-w-5xl grid grid-rows-[auto_auto_1fr] md:grid-rows-none md:grid-cols-[minmax(0,38%)_minmax(0,62%)] gap-2 md:gap-4 bg-slate-800/70 rounded-2xl min-h-[96svh] md:min-h-0 md:h-auto md:max-h-[92svh] overflow-y-auto ring-1 ring-white/10"
   >
     <!-- Mobile close button -->
     <button
