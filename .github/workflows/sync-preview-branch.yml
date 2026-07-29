@@ -6,6 +6,13 @@ name: Sync preview branch with main
 # иногда уходит вперёд main своими уникальными коммитами. Force-push
 # main -> preview стёр бы их, поэтому здесь безопасный merge (main в preview),
 # а не перезапись ветки.
+#
+# Мерж делается через GitHub Merges API, а не через `actions/checkout` +
+# локальный `git merge`: у репозитория ~3 ГБ истории (годы текстур), и
+# fetch-depth: 0 на каждый пуш в main занимал 10+ минут ради пары команд git.
+# API-мерж не требует клонирования вообще - выполняется на стороне GitHub за
+# секунды и всё равно создаёт обычный merge-коммит + push, который Vercel
+# видит как штатный webhook на ветку preview.
 on:
   push:
     branches: [main]
@@ -22,48 +29,43 @@ jobs:
   sync-preview:
     runs-on: ubuntu-latest
     steps:
-      - name: Клонирование репозитория (полная история)
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Настройка git-идентичности бота
-        run: |
-          git config user.name "Preview Sync Bot"
-          git config user.email "bot@archivist-library.com"
-
-      - name: Merge main -> preview
+      - name: Merge main -> preview (GitHub Merges API)
         id: merge
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git fetch origin main preview
-          git checkout -B preview origin/preview
+          resp=$(curl -s -w '\n%{http_code}' -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/merges" \
+            -d '{"base":"preview","head":"main","commit_message":"🤖 Sync preview: подтянуть main"}')
+          body=$(echo "$resp" | sed '$d')
+          code=$(echo "$resp" | tail -n1)
+          echo "$body"
 
-          if git merge origin/main --no-edit; then
-            echo "conflict=false" >> "$GITHUB_OUTPUT"
+          case "$code" in
+            201) echo "status=merged" >> "$GITHUB_OUTPUT" ;;
+            204) echo "status=up_to_date" >> "$GITHUB_OUTPUT" ;;
+            409)
+              echo "status=conflict" >> "$GITHUB_OUTPUT"
+              echo "::error::Merge main -> preview завершился конфликтом - ветка preview не тронута, нужен ручной merge"
+              exit 1
+              ;;
+            *)
+              echo "status=error" >> "$GITHUB_OUTPUT"
+              echo "::error::Merges API вернул неожиданный код $code"
+              exit 1
+              ;;
+          esac
+
+      - name: Алерт в Telegram при ошибке
+        if: failure()
+        run: |
+          if [ "${{ steps.merge.outputs.status }}" = "conflict" ]; then
+            MSG="[Preview Sync] 🔴 Не удалось смержить main в preview - конфликт, нужен ручной merge"
           else
-            git merge --abort
-            echo "conflict=true" >> "$GITHUB_OUTPUT"
-            echo "::error::Merge main -> preview завершился конфликтом, ветка preview не тронута - нужно смержить вручную."
-            exit 1
+            MSG="[Preview Sync] 🔴 Merges API вернул ошибку при синхронизации main -> preview - нужна ручная проверка"
           fi
-
-      - name: Push preview
-        id: push
-        if: steps.merge.outputs.conflict == 'false'
-        run: git push origin preview
-
-      - name: Алерт в Telegram при конфликте мержа
-        if: steps.merge.outputs.conflict == 'true'
-        run: |
-          MSG="[Preview Sync] 🔴 Не удалось смержить main в preview - конфликт, нужен ручной merge"
-          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
-            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
-            -d text="$MSG"
-
-      - name: Алерт в Telegram при ошибке push
-        if: steps.push.outcome == 'failure'
-        run: |
-          MSG="[Preview Sync] 🔴 Push main -> preview не прошёл (не конфликт мержа, возможно гонка/права доступа) - нужна ручная проверка"
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
             -d text="$MSG"
