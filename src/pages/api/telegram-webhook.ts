@@ -37,10 +37,11 @@ function getFormatsMessage(): string {
     '🔮 *Сфера* — имя (кавычки не обязательны) и 1–3 строки рядов, сферы разделены `;` или `,`:',
     '```',
     '.сфера Мистер Икс',
-    'атака ; усиление ; спец скорость',
+    'атака ; усиление ; особый скорость',
     'здоровье ; усиление',
-    'усиление ; усиление ; спец скорость',
+    'усиление ; усиление ; особый скорость',
     '```',
+    'Можно и .txt-файлом (с `.сфера` в подписи) — несколько блоков подряд, каждый разделён строкой из одного `_`.',
     '',
     '📢 *Анонс* — Reply на пост, пересланный из канала, текстом `.анонс` (что допишешь после — уйдёт подводкой перед постом):',
     '```',
@@ -399,17 +400,17 @@ const ORB_SPECIAL_LEVEL = 3
 // сферы (retaliate) в разных источниках; проверяется ДО "атак", иначе
 // подстрока "атака" внутри "контратака" даст ложное срабатывание.
 const ORB_WORD_MAP: Array<[RegExp, string]> = [
-  [/вытягивани/, 'regenerate'],
-  [/контратак|отражени/, 'retaliate'],
+  [/вытягивани|реген|отхил/, 'regenerate'],
+  [/контратак|отражени|отраж/, 'retaliate'],
   [/критическ/, 'critical'],
   [/^хп$|здоровь/, 'life'],
-  [/усилени/, 'strengthen'],
+  [/усилени|усил/, 'strengthen'],
   [/щит/, 'shield'],
-  [/ранени/, 'slash'],
-  [/проклят/, 'weaken'],
+  [/ранени|рана/, 'slash'],
+  [/проклят|пониж/, 'weaken'],
   [/опыт/, 'xp'],
   [/скорост/, 'speed'],
-  [/атак/, 'attack'],
+  [/атак|атк/, 'attack'],
 ]
 
 interface ParsedOrbCell {
@@ -427,7 +428,9 @@ function parseOrbCell(raw: string): ParsedOrbCell | { error: string } {
     .trim()
 
   let special = false
-  const specialPrefixes = [/^особ(ая|ой)?\s*сфер[аы]?\s*/, /^спец\.?\s*/]
+  // "особый"/"особая"/"особое" и т.п. - без обязательного слова "сфера" после
+  // (реальные сообщения из бота приходят как "особый усил", а не "особая сфера усил").
+  const specialPrefixes = [/^особ\S*\s*(сфер[аы]\s*)?/, /^спец\.?\s*(сфер[аы]\s*)?/]
   for (const prefix of specialPrefixes) {
     if (prefix.test(cell)) {
       special = true
@@ -458,7 +461,34 @@ function orbCellToFilename(cell: ParsedOrbCell): string {
   return `basic/orb_basic_${cell.slug}_${lvl}.webp`
 }
 
-function parseOrbingRows(messageText: string): string[][] | { error: string } {
+type OrbCellValue = string | [string, string]
+
+function isOrbError(x: unknown): x is { error: string } {
+  return typeof x === 'object' && x !== null && !Array.isArray(x) && 'error' in x
+}
+
+// "усил/пониж" - ОДНА физическая сфера с двумя эффектами (в игре бывают
+// такие гибриды). Порядок половинок сохраняется как записано - модалка
+// рисует первую половинку слева/сверху, вторую справа/снизу.
+function parseCombinedOrCell(cell: string): OrbCellValue | { error: string } {
+  if (!cell.includes('/')) {
+    const parsed = parseOrbCell(cell)
+    if (isOrbError(parsed)) return parsed
+    return orbCellToFilename(parsed)
+  }
+  const parts = cell.split('/').map((p) => p.trim())
+  if (parts.length !== 2 || !parts[0] || !parts[1]) {
+    return { error: `неверный формат совмещённой сферы "${cell}"` }
+  }
+  const [aRaw, bRaw] = parts
+  const parsedA = parseOrbCell(aRaw)
+  if (isOrbError(parsedA)) return parsedA
+  const parsedB = parseOrbCell(bRaw)
+  if (isOrbError(parsedB)) return parsedB
+  return [orbCellToFilename(parsedA), orbCellToFilename(parsedB)]
+}
+
+function parseOrbingRows(messageText: string): OrbCellValue[][] | { error: string } {
   const lines = messageText
     .split('\n')
     .map((l) => l.trim())
@@ -469,7 +499,7 @@ function parseOrbingRows(messageText: string): string[][] | { error: string } {
       error: `нужно от 1 до 3 строк с рядами сфер (после строки с именем), получено: ${rowLines.length}`,
     }
   }
-  const rows: string[][] = []
+  const rows: OrbCellValue[][] = []
   for (let i = 0; i < rowLines.length; i++) {
     const cells = rowLines[i]
       .split(/[;,]/)
@@ -478,15 +508,110 @@ function parseOrbingRows(messageText: string): string[][] | { error: string } {
     if (cells.length === 0) {
       return { error: `ряд ${i + 1}: нужна хотя бы одна сфера` }
     }
-    const row: string[] = []
+    const row: OrbCellValue[] = []
     for (const cell of cells) {
-      const parsed = parseOrbCell(cell)
-      if ('error' in parsed) return { error: `ряд ${i + 1}: ${parsed.error}` }
-      row.push(orbCellToFilename(parsed))
+      const parsed = parseCombinedOrCell(cell)
+      if (isOrbError(parsed)) return { error: `ряд ${i + 1}: ${parsed.error}` }
+      row.push(parsed)
     }
     rows.push(row)
   }
   return rows
+}
+
+// Разбирает один блок ".сфера Имя" + ряды (текст сообщения ИЛИ один блок
+// внутри файла с несколькими сферовками). Общая логика для обоих источников.
+function parseOrbingBlock(
+  blockText: string,
+): { nameRaw: string; rows: OrbCellValue[][] } | { error: string } {
+  const firstLine = blockText.split('\n')[0] ?? ''
+  const quotedMatch = firstLine.match(/"([^"]+)"/)
+  const nameRaw = quotedMatch
+    ? quotedMatch[1]
+    : firstLine
+        .slice(firstLine.toLowerCase().indexOf(ORBING_TRIGGER) + ORBING_TRIGGER.length)
+        .trim()
+  if (!nameRaw) return { error: 'не указано имя мутанта после .сфера' }
+
+  const rows = parseOrbingRows(blockText)
+  if ('error' in rows) return rows
+  return { nameRaw, rows }
+}
+
+// Файл со сферовками - несколько блоков ".сфера Имя" + ряды, разделённых
+// строкой, содержащей только "_". Каждый блок парсится и резолвится по
+// имени так же, как одиночное сообщение; сохранение в orbing.json - ОДНОЙ
+// пачкой (один fetch + один commit), а не по мутанту, чтобы не ловить
+// конфликт sha при последовательных PUT.
+async function processOrbingFile(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  fileContent: string,
+): Promise<string> {
+  const blocks: string[][] = [[]]
+  for (const line of fileContent.split(/\r?\n/)) {
+    if (line.trim() === '_') {
+      blocks.push([])
+    } else {
+      blocks[blocks.length - 1].push(line)
+    }
+  }
+  const textBlocks = blocks.map((lines) => lines.join('\n').trim()).filter((b) => b.length > 0)
+
+  if (textBlocks.length === 0) {
+    return `🔴 в файле не найдено ни одного блока "${ORBING_TRIGGER}"`
+  }
+
+  const results: string[] = []
+  const updates: Array<{ id: string; name: string; rows: OrbCellValue[][] }> = []
+
+  for (const block of textBlocks) {
+    const label = block.split('\n')[0]
+    if (!block.toLowerCase().startsWith(ORBING_TRIGGER)) {
+      results.push(`🔴 блок пропущен (нет "${ORBING_TRIGGER}" в начале): "${label}"`)
+      continue
+    }
+    const parsed = parseOrbingBlock(block)
+    if ('error' in parsed) {
+      results.push(`🔴 ${label}: ${parsed.error}`)
+      continue
+    }
+    const resolved = await resolveMutantIdByName(githubToken, owner, repo, parsed.nameRaw)
+    if ('error' in resolved) {
+      results.push(`🔴 ${parsed.nameRaw}: ${resolved.error}`)
+      continue
+    }
+    updates.push({ id: resolved.id, name: resolved.name, rows: parsed.rows })
+  }
+
+  if (updates.length > 0) {
+    const orbingFile = await fetchGithubJsonFile(githubToken, owner, repo, ORBING_PATH)
+    if (!orbingFile) {
+      results.push('🔴 не удалось загрузить orbing.json')
+    } else {
+      const orbingData = orbingFile.json as Record<string, { rows: OrbCellValue[][] }>
+      for (const u of updates) {
+        orbingData[u.id] = { rows: u.rows }
+      }
+      const ok = await putGithubJsonFile(
+        githubToken,
+        owner,
+        repo,
+        ORBING_PATH,
+        orbingFile.sha,
+        orbingData,
+        `Orbing: обновить сферовку из файла (${updates.length})`,
+      )
+      results.push(
+        ok
+          ? `✅ обновлено (${updates.length}): ${updates.map((u) => `${u.name}`).join(', ')}`
+          : '🔴 не удалось сохранить orbing.json',
+      )
+    }
+  }
+
+  return results.join('\n')
 }
 
 async function resolveMutantIdByName(
@@ -731,25 +856,15 @@ export const POST: APIRoute = async ({ request }) => {
           return await reply('🔴 GitHub credentials не настроены')
         }
 
-        const firstLine = text.split('\n')[0]
-        const quotedMatch = firstLine.match(/"([^"]+)"/)
-        // Кавычки необязательны - если их нет, именем считается всё после
-        // триггера на первой строке.
-        const nameRaw = quotedMatch
-          ? quotedMatch[1]
-          : firstLine
-              .slice(firstLine.toLowerCase().indexOf(ORBING_TRIGGER) + ORBING_TRIGGER.length)
-              .trim()
-        if (!nameRaw) {
+        const parsed = parseOrbingBlock(text)
+        if ('error' in parsed) {
           return await reply(
-            '🔴 Формат:\n.сфера Имя мутанта\nатака ; усиление ; спец скорость\nздоровье ; усиление ; спец скорость\nусиление ; усиление ; спец скорость',
+            parsed.error === 'не указано имя мутанта после .сфера'
+              ? '🔴 Формат:\n.сфера Имя мутанта\nатака ; усиление ; спец скорость\nздоровье ; усиление ; спец скорость\nусиление ; усиление ; спец скорость'
+              : `🔴 ${parsed.error}`,
           )
         }
-
-        const rows = parseOrbingRows(text)
-        if ('error' in rows) {
-          return await reply(`🔴 ${rows.error}`)
-        }
+        const { nameRaw, rows } = parsed
 
         const resolved = await resolveMutantIdByName(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, nameRaw)
         if ('error' in resolved) {
@@ -765,7 +880,7 @@ export const POST: APIRoute = async ({ request }) => {
         if (!orbingFile) {
           return await reply('🔴 Не удалось загрузить orbing.json')
         }
-        const orbingData = orbingFile.json as Record<string, { rows: string[][] }>
+        const orbingData = orbingFile.json as Record<string, { rows: OrbCellValue[][] }>
         orbingData[resolved.id] = { rows }
 
         const ok = await putGithubJsonFile(
@@ -790,6 +905,35 @@ export const POST: APIRoute = async ({ request }) => {
       // распарситься как тиры).
       const caption: string = body.message.caption ?? ''
       const trigger = `${text} ${caption}`.toLowerCase()
+
+      // .сфера-файл: несколько блоков ".сфера Имя" + ряды, разделённых
+      // строкой "_" - см. комментарий у processOrbingFile.
+      if (trigger.includes(ORBING_TRIGGER)) {
+        if (!GITHUB_TOKEN || !REPO_OWNER || !REPO_NAME) {
+          throw new Error('GitHub credentials are not configured')
+        }
+        const fileId = body.message.document.file_id
+        const fileResponse = await fetch(
+          `https://api.telegram.org/bot${BOT_TOKEN}/getFile?file_id=${fileId}`,
+        )
+        const fileInfo = await fileResponse.json()
+        if (!fileInfo.ok) {
+          throw new Error('Failed to get file from Telegram')
+        }
+        const filePath = fileInfo.result.file_path
+        const fileUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${filePath}`
+        const fileContent = await (await fetch(fileUrl)).text()
+
+        const result = await processOrbingFile(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, fileContent)
+        if (chatId != null && BOT_TOKEN) {
+          await sendTelegramMessage(BOT_TOKEN, chatId, `[Сфера]\n${result}`)
+        }
+        return new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
+
       if (!trigger.includes(TIER_TRIGGER)) {
         return new Response(JSON.stringify({ ok: true, skipped: true }), {
           status: 200,

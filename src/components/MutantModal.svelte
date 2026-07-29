@@ -790,17 +790,39 @@
               <div class="flex items-center justify-center gap-3">
                 {#each row as orbFile}
                   <div class="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 relative group">
-                    <img
-                      src={textureUrl(orbFile.startsWith('special/') ? '/orbs/special/orb_slot_spe.webp' : '/orbs/basic/orb_slot.webp')}
-                      alt=""
-                      class="absolute inset-0 w-full h-full opacity-40"
-                    />
-                    <img
-                      src={textureUrl(`/orbs/${orbFile}`)}
-                      alt="Orb"
-                      class="relative z-10 w-full h-full drop-shadow-md transition-transform group-hover:scale-110"
-                      loading="lazy"
-                    />
+                    {#if Array.isArray(orbFile)}
+                      <img
+                        src={textureUrl(orbFile[0].startsWith('special/') ? '/orbs/special/orb_slot_spe.webp' : '/orbs/basic/orb_slot.webp')}
+                        alt=""
+                        class="absolute inset-0 w-full h-full opacity-40"
+                      />
+                      <img
+                        src={textureUrl(`/orbs/${orbFile[0]}`)}
+                        alt="Orb"
+                        class="absolute inset-0 z-10 w-full h-full drop-shadow-md transition-transform group-hover:scale-110"
+                        style="clip-path: inset(0 50% 0 0);"
+                        loading="lazy"
+                      />
+                      <img
+                        src={textureUrl(`/orbs/${orbFile[1]}`)}
+                        alt="Orb"
+                        class="absolute inset-0 z-10 w-full h-full drop-shadow-md transition-transform group-hover:scale-110"
+                        style="clip-path: inset(0 0 0 50%);"
+                        loading="lazy"
+                      />
+                    {:else}
+                      <img
+                        src={textureUrl(orbFile.startsWith('special/') ? '/orbs/special/orb_slot_spe.webp' : '/orbs/basic/orb_slot.webp')}
+                        alt=""
+                        class="absolute inset-0 w-full h-full opacity-40"
+                      />
+                      <img
+                        src={textureUrl(`/orbs/${orbFile}`)}
+                        alt="Orb"
+                        class="relative z-10 w-full h-full drop-shadow-md transition-transform group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    {/if}
                   </div>
                 {/each}
               </div>
