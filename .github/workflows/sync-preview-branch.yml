@@ -1,0 +1,69 @@
+name: Sync preview branch with main
+
+# Прод (main) и превью (ветка preview, отдельное Vercel-окружение) должны
+# совпадать после каждого прод-деплоя, но НЕ наоборот: пуш в preview - это
+# обычный рабочий процесс (тестируем правки до мержа в main), поэтому preview
+# иногда уходит вперёд main своими уникальными коммитами. Force-push
+# main -> preview стёр бы их, поэтому здесь безопасный merge (main в preview),
+# а не перезапись ветки.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-preview-branch
+  cancel-in-progress: false
+
+jobs:
+  sync-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Клонирование репозитория (полная история)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Настройка git-идентичности бота
+        run: |
+          git config user.name "Preview Sync Bot"
+          git config user.email "bot@archivist-library.com"
+
+      - name: Merge main -> preview
+        id: merge
+        run: |
+          git fetch origin main preview
+          git checkout -B preview origin/preview
+
+          if git merge origin/main --no-edit; then
+            echo "conflict=false" >> "$GITHUB_OUTPUT"
+          else
+            git merge --abort
+            echo "conflict=true" >> "$GITHUB_OUTPUT"
+            echo "::error::Merge main -> preview завершился конфликтом, ветка preview не тронута - нужно смержить вручную."
+            exit 1
+          fi
+
+      - name: Push preview
+        id: push
+        if: steps.merge.outputs.conflict == 'false'
+        run: git push origin preview
+
+      - name: Алерт в Telegram при конфликте мержа
+        if: steps.merge.outputs.conflict == 'true'
+        run: |
+          MSG="[Preview Sync] 🔴 Не удалось смержить main в preview - конфликт, нужен ручной merge"
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="$MSG"
+
+      - name: Алерт в Telegram при ошибке push
+        if: steps.push.outcome == 'failure'
+        run: |
+          MSG="[Preview Sync] 🔴 Push main -> preview не прошёл (не конфликт мержа, возможно гонка/права доступа) - нужна ручная проверка"
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="$MSG"

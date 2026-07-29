@@ -126,6 +126,18 @@ async function saveMissingTextureCache(): Promise<void> {
   )
 }
 
+// Гарантирует, что файл существует на диске ещё до того, как парсер что-либо
+// найдёт. Иначе на прогоне без единой пропущенной текстуры (dirty так и не
+// станет true) file_pattern в sync-cron.yml, ссылающийся на этот путь, падает
+// с "pathspec did not match any files" и валит весь commit-шаг git-auto-commit-action.
+async function ensureMissingTextureCacheFile(): Promise<void> {
+  try {
+    await fs.access(CONFIG.MISSING_TEXTURE_CACHE_PATH)
+  } catch {
+    await fs.writeFile(CONFIG.MISSING_TEXTURE_CACHE_PATH, '{}\n')
+  }
+}
+
 function isMissingTextureCacheFresh(isoTimestamp: string): boolean {
   const ageMs = Date.now() - new Date(isoTimestamp).getTime()
   return ageMs < CONFIG.MISSING_TEXTURE_RECHECK_DAYS * 24 * 60 * 60 * 1000
@@ -1058,6 +1070,8 @@ async function main() {
   console.log(`\n${'='.repeat(60)}`)
   console.log(`ПАРСЕР V4 | РЕЖИМ: ${mode.toUpperCase()}`)
   console.log('='.repeat(60) + '\n')
+
+  await ensureMissingTextureCacheFile()
 
   switch (mode) {
     case 'full':
