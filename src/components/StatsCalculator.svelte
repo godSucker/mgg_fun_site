@@ -546,6 +546,7 @@
     if (renderParams.special) {
       specialSlot = ORBS.special.find((o) => o.id === renderParams.special) || ORBS.basic.find((o) => o.id === renderParams.special) || null;
     }
+    if (renderParams.atkMultipliers) atkMultipliers = renderParams.atkMultipliers;
     if (renderParams.compare && renderParams.id2) {
       compareMode = true;
       const m2 = ALL_MUTANTS.find((x: any) => x.id === renderParams.id2);
@@ -558,6 +559,7 @@
       if (renderParams.special2) {
         specialSlot2 = ORBS.special.find((o) => o.id === renderParams.special2) || ORBS.basic.find((o) => o.id === renderParams.special2) || null;
       }
+      if (renderParams.atkMultipliers2) atkMultipliers2 = renderParams.atkMultipliers2;
     }
   }
 
@@ -1255,6 +1257,7 @@
         stars,
         orbs: basicSlots.map((o: any) => o?.id || null),
         special: specialSlot?.id || null,
+        atkMultipliers,
       };
       if (isCompare) {
         state.compare = true;
@@ -1263,6 +1266,7 @@
         state.stars2 = stars2;
         state.orbs2 = basicSlots2.map((o: any) => o?.id || null);
         state.special2 = specialSlot2?.id || null;
+        state.atkMultipliers2 = atkMultipliers2;
       }
 
       const stateStr = encodeURIComponent(JSON.stringify(state));

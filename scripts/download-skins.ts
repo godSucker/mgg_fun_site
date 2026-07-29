@@ -31,6 +31,19 @@ async function saveMissingCache(): Promise<void> {
   await fs.writeFile(MISSING_CACHE_PATH, JSON.stringify(missingCache, null, 2) + '\n')
 }
 
+// Гарантирует, что файл существует на диске, даже если в этом прогоне не было
+// ни одной ошибки скачивания (missingCacheDirty так и останется false). Иначе
+// file_pattern в sync-cron.yml, ссылающийся на этот путь, падает с "pathspec
+// did not match any files" и валит весь commit-шаг git-auto-commit-action -
+// вместе с реальными изменениями (skins.json, rendered.json) в том же шаге.
+async function ensureMissingCacheFile(): Promise<void> {
+  try {
+    await fs.access(MISSING_CACHE_PATH)
+  } catch {
+    await fs.writeFile(MISSING_CACHE_PATH, '{}\n')
+  }
+}
+
 function isCacheFresh(isoTimestamp: string): boolean {
   const ageMs = Date.now() - new Date(isoTimestamp).getTime()
   return ageMs < RECHECK_DAYS * 24 * 60 * 60 * 1000
@@ -99,6 +112,8 @@ async function main() {
   const skins: SkinEntry[] = data.specimens
 
   console.log(`[INFO] Всего скинов: ${skins.length}`)
+
+  await ensureMissingCacheFile()
 
   const stats = { downloaded: 0, exists: 0, errors: 0, skipped: 0 }
 

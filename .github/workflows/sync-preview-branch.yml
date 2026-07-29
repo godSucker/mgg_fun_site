@@ -1,0 +1,71 @@
+name: Sync preview branch with main
+
+# Прод (main) и превью (ветка preview, отдельное Vercel-окружение) должны
+# совпадать после каждого прод-деплоя, но НЕ наоборот: пуш в preview - это
+# обычный рабочий процесс (тестируем правки до мержа в main), поэтому preview
+# иногда уходит вперёд main своими уникальными коммитами. Force-push
+# main -> preview стёр бы их, поэтому здесь безопасный merge (main в preview),
+# а не перезапись ветки.
+#
+# Мерж делается через GitHub Merges API, а не через `actions/checkout` +
+# локальный `git merge`: у репозитория ~3 ГБ истории (годы текстур), и
+# fetch-depth: 0 на каждый пуш в main занимал 10+ минут ради пары команд git.
+# API-мерж не требует клонирования вообще - выполняется на стороне GitHub за
+# секунды и всё равно создаёт обычный merge-коммит + push, который Vercel
+# видит как штатный webhook на ветку preview.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-preview-branch
+  cancel-in-progress: false
+
+jobs:
+  sync-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge main -> preview (GitHub Merges API)
+        id: merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          resp=$(curl -s -w '\n%{http_code}' -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/merges" \
+            -d '{"base":"preview","head":"main","commit_message":"🤖 Sync preview: подтянуть main"}')
+          body=$(echo "$resp" | sed '$d')
+          code=$(echo "$resp" | tail -n1)
+          echo "$body"
+
+          case "$code" in
+            201) echo "status=merged" >> "$GITHUB_OUTPUT" ;;
+            204) echo "status=up_to_date" >> "$GITHUB_OUTPUT" ;;
+            409)
+              echo "status=conflict" >> "$GITHUB_OUTPUT"
+              echo "::error::Merge main -> preview завершился конфликтом - ветка preview не тронута, нужен ручной merge"
+              exit 1
+              ;;
+            *)
+              echo "status=error" >> "$GITHUB_OUTPUT"
+              echo "::error::Merges API вернул неожиданный код $code"
+              exit 1
+              ;;
+          esac
+
+      - name: Алерт в Telegram при ошибке
+        if: failure()
+        run: |
+          if [ "${{ steps.merge.outputs.status }}" = "conflict" ]; then
+            MSG="[Preview Sync] 🔴 Не удалось смержить main в preview - конфликт, нужен ручной merge"
+          else
+            MSG="[Preview Sync] 🔴 Merges API вернул ошибку при синхронизации main -> preview - нужна ручная проверка"
+          fi
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            -d text="$MSG"
