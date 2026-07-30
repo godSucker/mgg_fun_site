@@ -129,6 +129,32 @@
       ]
     },
     {
+      "id": "Specimen_AA_04",
+      "name": "Полиглоб",
+      "genes": [
+        "A",
+        "A"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2499,
+          "atk1": 559,
+          "atk2": 324
+        },
+        "lvl30": {
+          "hp": 9746,
+          "atk1": 3274,
+          "atk2": 1888
+        }
+      },
+      "star": "gold",
+      "skin": "hexcity",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_aa_04_hexcity.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_aa_04_hexcity.webp"
+      ]
+    },
+    {
       "id": "Specimen_AA_06",
       "name": "Геркулес",
       "genes": [
@@ -5479,6 +5505,32 @@
       ]
     },
     {
+      "id": "Specimen_EC_08",
+      "name": "Спектр",
+      "genes": [
+        "E",
+        "C"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 1112,
+          "atk1": 1054,
+          "atk2": 1054
+        },
+        "lvl30": {
+          "hp": 4336,
+          "atk1": 6571,
+          "atk2": 6571
+        }
+      },
+      "star": "gold",
+      "skin": "hexcity",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_ec_08_hexcity.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ec_08_hexcity.webp"
+      ]
+    },
+    {
       "id": "Specimen_EC_09",
       "name": "Щиткалибур",
       "genes": [
@@ -6129,6 +6181,32 @@
       ]
     },
     {
+      "id": "Specimen_EF_11",
+      "name": "Диментио",
+      "genes": [
+        "E",
+        "F"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2311,
+          "atk1": 698,
+          "atk2": 698
+        },
+        "lvl30": {
+          "hp": 9012,
+          "atk1": 8567,
+          "atk2": 8567
+        }
+      },
+      "star": "gold",
+      "skin": "hexcity",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_ef_11_hexcity.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ef_11_hexcity.webp"
+      ]
+    },
+    {
       "id": "Specimen_F_01",
       "name": "Демон",
       "genes": [
@@ -6557,8 +6635,8 @@
         },
         "lvl30": {
           "hp": 13350,
-          "atk1": 4777,
-          "atk2": 4777
+          "atk1": 7057,
+          "atk2": 7057
         }
       },
       "star": "silver",
