@@ -404,7 +404,10 @@ const pctDeltaCls = (pct: Pair | null): string => {
 
 <style>
   .rebalance-page {
-    max-width: 1200px;
+    /* rem, не px: 2K/4K апскейл масштабирует шрифт через html{font-size}
+       (см. global.css) - если контейнер зафиксирован в px, текст (в rem)
+       растёт быстрее ширины колонок и вылезает за разделители (AOE-бейдж). */
+    max-width: 75rem;
     margin: 0 auto;
     padding: 1.5rem 1rem 3rem;
   }

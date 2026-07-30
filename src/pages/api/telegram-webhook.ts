@@ -1010,7 +1010,19 @@ export const POST: APIRoute = async ({ request }) => {
       // Update via GitHub API
       const currentMutants = JSON.parse(mutantsJson)
 
+      // Каждый загруженный файл - это ПОЛНЫЙ снимок тир-листа (все тиры разом,
+      // см. VALID_TIERS), а не диффом поверх старого. Раньше цикл только
+      // проставлял tier тем, кто есть в parsedTiers, но никогда не снимал tier
+      // с мутантов, выпавших из списка - они копились в mutants.json навсегда.
+      // Поэтому сначала снимаем tier со всех, потом проставляем свежий набор.
       let count = 0
+      let cleared = 0
+      for (const m of currentMutants as { id?: string; tier?: string }[]) {
+        if (m.id && !(m.id in parsedTiers) && m.tier != null) {
+          delete m.tier
+          cleared++
+        }
+      }
       for (const [mutantId, newTier] of Object.entries(parsedTiers)) {
         const idx = currentMutants.findIndex((m: { id?: string }) => m.id === mutantId)
         if (idx !== -1) {
@@ -1031,7 +1043,7 @@ export const POST: APIRoute = async ({ request }) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            message: `Update: ${count} tiers from Telegram`,
+            message: `Update: ${count} tiers from Telegram (снято ${cleared})`,
             content: encoded,
             sha: mutantsData.sha,
             branch: 'main',
@@ -1043,13 +1055,13 @@ export const POST: APIRoute = async ({ request }) => {
         throw new Error('Failed to update file')
       }
 
-      console.log(`Updated ${count} tiers`)
+      console.log(`Updated ${count} tiers, cleared ${cleared} stale`)
 
       if (chatId != null && BOT_TOKEN) {
         await sendTelegramMessage(
           BOT_TOKEN,
           chatId,
-          `[Тиры]\n✅ Успех! Обновлено ${count} тиров мутантов.`,
+          `[Тиры]\n✅ Успех! Обновлено ${count} тиров, снято ${cleared} у выпавших из списка.`,
         )
       }
 

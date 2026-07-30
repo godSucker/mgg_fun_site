@@ -109,7 +109,7 @@
 </script>
 
 <div class="cta-banner">
-  <a href="https://t.me/absolutely_poxuy" target="_blank" rel="noopener noreferrer">
+  <a href="https://t.me/Donut_Safe" target="_blank" rel="noopener noreferrer">
     <span class="cta-icon">🚀</span>
     <span class="cta-text">
       Хочешь попасть в ТОП?
