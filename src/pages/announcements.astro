@@ -93,7 +93,7 @@ const currentEvent = Object.entries(eventCounts).sort((a, b) => b[1] - a[1])[0]?
   <main class="anons">
     <header class="hero">
       <span class="eyebrow">Датамайн · бета-сервер</span>
-      <h1>Что сейчас в игре</h1>
+      <h1>Анонсы игры</h1>
       <p class="lede">
         {currentEvent ? (
           <>Точный срез текущего события беты — «{currentEvent}». Для каждой коробки
@@ -104,6 +104,7 @@ const currentEvent = Object.entries(eventCounts).sort((a, b) => b[1] - a[1])[0]?
           предметы и случайные варианты — то, что обычно видно только после покупки.</>
         )}
       </p>
+      <span class="prelim">Предварительно</span>
       <div class="tally">
         <span><b>{offerCount}</b> предложений</span>
         <span><b>{counts.bingo ?? 0}</b> бинго</span>
@@ -341,6 +342,12 @@ const currentEvent = Object.entries(eventCounts).sort((a, b) => b[1] - a[1])[0]?
     margin: 0 auto;
     padding: 2rem 1rem 4rem;
   }
+  .anons img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
+  }
 
   /* hero */
   .hero {
@@ -367,6 +374,21 @@ const currentEvent = Object.entries(eventCounts).sort((a, b) => b[1] - a[1])[0]?
     max-width: 60ch;
     line-height: 1.6;
     margin: 0 0 1.2rem;
+  }
+  .prelim {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    border: 1px dashed rgba(255, 122, 107, 0.4);
+    background: rgba(255, 122, 107, 0.07);
+    border-radius: 999px;
+    padding: 0.32rem 0.85rem;
+    margin-bottom: 1.4rem;
   }
   .tally {
     display: flex;
