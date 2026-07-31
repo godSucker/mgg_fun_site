@@ -128,6 +128,17 @@
 
   let activeFacilityId: FacilityId = $state(facilities[0]?.id ?? 'metal');
   let sidebarOpen = $state(false);
+  // Свёрнуто по умолчанию только визуально (CSS, см. @media max-width:1023px) -
+  // на десктопе всегда открыто, здесь просто общий тоггл-стейт для мобилки.
+  let introOpen = $state(false);
+
+  function ingredientTypesLabel(n: number): string {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return 'тип';
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'типа';
+    return 'типов';
+  }
 
   let activeIncentiveId: string = $state(incentiveRewards[0]?.id ?? '');
   let activeIncentive = $derived(
@@ -229,75 +240,6 @@
   );
 </script>
 
-<section class="craft-hero">
-  <div class="craft-hero__card">
-    <span class="badge">Sim • Black Hole Lab</span>
-    <h1>Black Hole Craft Lab</h1>
-    <p>
-      Четыре станции крафта на одной странице. Повторяет реальные рецепты Metal Factory,
-      Transformatron, Supplies Lab и Black Hole: берём данные из игры, считаем шансы и бонусы.
-    </p>
-    <dl class="hero-stats" aria-label="Основные показатели симулятора">
-      <div>
-        <dt>Рецептов</dt>
-        <dd>{totalRecipes}</dd>
-      </div>
-      <div>
-        <dt>Уникальных наград</dt>
-        <dd>{uniqueRewardIds.size}</dd>
-      </div>
-      <div>
-        <dt>Максимальный бонус за качество</dt>
-        <dd>{(maxBonus / 10).toFixed(1)}%</dd>
-      </div>
-    </dl>
-  </div>
-</section>
-
-<section class="incentive-panel">
-  <div class="incentive-card">
-    <div class="incentive-card__info">
-      <span class="badge badge--soft">Доп. награды</span>
-      <h2>Выбери активный бонус</h2>
-      <p>
-        Симулятор учитывает шанс бонусной награды. Выбери бустер или предмет, который активен у тебя
-        в игре. Можно отключить бонус для чистой математики.
-      </p>
-    </div>
-    <div class="incentive-card__controls">
-      <label for="incentive-select">Активный бонус</label>
-      <select
-        id="incentive-select"
-        bind:value={activeIncentiveId}
-        aria-label="Активная дополнительная награда"
-      >
-        <option value="">Без бонуса</option>
-        {#each incentiveRewards as incentive, index (index)}
-          <option value={incentive.id}>
-            {translateItemId(incentive.id)} — {(incentive.per1000 / 10).toFixed(1)}%
-          </option>
-        {/each}
-      </select>
-    </div>
-    {#if activeIncentive}
-      <div class="incentive-card__stats">
-        <div>
-          <span class="metric-label">Награда</span>
-          <span class="metric-value">{translateItemId(activeIncentive.id)}</span>
-        </div>
-        <div>
-          <span class="metric-label">Шанс</span>
-          <span class="metric-value">{(activeIncentive.probability * 100).toFixed(1)}%</span>
-        </div>
-        <div>
-          <span class="metric-label">Длительность</span>
-          <span class="metric-value">{formatDurationMinutes(activeIncentive.duration)}</span>
-        </div>
-      </div>
-    {/if}
-  </div>
-</section>
-
 <div class="facility-tabs" role="tablist" aria-label="Станции крафта">
   {#each facilities as facility (facility.id)}
     <button
@@ -311,6 +253,91 @@
       <span class="facility-tabs__tagline">{facility.tagline}</span>
     </button>
   {/each}
+</div>
+
+<div class="craft-intro" class:open={introOpen}>
+  <!-- На десктопе (см. @media в стилях ниже) этот тоггл визуально не активен -
+       hero и бонус-блок всегда развёрнуты, кнопка скрыта. Сворачивание нужно
+       только на мобилке, чтобы выбор станции не уезжал вниз за длинным
+       описанием инструмента. -->
+  <button
+    type="button"
+    class="craft-intro-toggle"
+    onclick={() => introOpen = !introOpen}
+    aria-expanded={introOpen}
+  >
+    <span class="badge">Sim • Black Hole Lab</span>
+    <span class="craft-intro-toggle__title">Black Hole Craft Lab — о симуляторе и бонусах</span>
+    <svg class="sidebar-toggle__chevron" class:rotated={introOpen} width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <section class="craft-hero">
+    <div class="craft-hero__card">
+      <h1>Black Hole Craft Lab</h1>
+      <p>
+        Четыре станции крафта на одной странице. Повторяет реальные рецепты Metal Factory,
+        Transformatron, Supplies Lab и Black Hole: берём данные из игры, считаем шансы и бонусы.
+      </p>
+      <dl class="hero-stats" aria-label="Основные показатели симулятора">
+        <div>
+          <dt>Рецептов</dt>
+          <dd>{totalRecipes}</dd>
+        </div>
+        <div>
+          <dt>Уникальных наград</dt>
+          <dd>{uniqueRewardIds.size}</dd>
+        </div>
+        <div>
+          <dt>Максимальный бонус за качество</dt>
+          <dd>{(maxBonus / 10).toFixed(1)}%</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="incentive-panel">
+    <div class="incentive-card">
+      <div class="incentive-card__info">
+        <span class="badge badge--soft">Доп. награды</span>
+        <h2>Выбери активный бонус</h2>
+        <p>
+          Симулятор учитывает шанс бонусной награды. Выбери бустер или предмет, который активен у тебя
+          в игре. Можно отключить бонус для чистой математики.
+        </p>
+      </div>
+      <div class="incentive-card__controls">
+        <label for="incentive-select">Активный бонус</label>
+        <select
+          id="incentive-select"
+          bind:value={activeIncentiveId}
+          aria-label="Активная дополнительная награда"
+        >
+          <option value="">Без бонуса</option>
+          {#each incentiveRewards as incentive, index (index)}
+            <option value={incentive.id}>
+              {translateItemId(incentive.id)} — {(incentive.per1000 / 10).toFixed(1)}%
+            </option>
+          {/each}
+        </select>
+      </div>
+      {#if activeIncentive}
+        <div class="incentive-card__stats">
+          <div>
+            <span class="metric-label">Награда</span>
+            <span class="metric-value">{translateItemId(activeIncentive.id)}</span>
+          </div>
+          <div>
+            <span class="metric-label">Шанс</span>
+            <span class="metric-value">{(activeIncentive.probability * 100).toFixed(1)}%</span>
+          </div>
+          <div>
+            <span class="metric-label">Длительность</span>
+            <span class="metric-value">{formatDurationMinutes(activeIncentive.duration)}</span>
+          </div>
+        </div>
+      {/if}
+    </div>
+  </section>
 </div>
 
 {#if activeFacility}
@@ -665,7 +692,7 @@
                     : 'Рецепт'}
                 </h3>
                 <p class="recipe-card__subtitle">
-                  {currentRecipe.ingredients.length} типов ингредиентов • {totalIngredientPieces} предметов
+                  {currentRecipe.ingredients.length} {ingredientTypesLabel(currentRecipe.ingredients.length)} ингредиентов • {totalIngredientPieces} предметов
                 </p>
               </div>
               <div class="recipe-card__meta">
@@ -876,6 +903,9 @@
   section + section {
     margin-top: 3rem;
   }
+
+  /* Тоггл сворачивания intro — виден только на мобилке (см. @media ниже) */
+  .craft-intro-toggle { display: none; }
 
   /* --- HERO СЕКЦИЯ --- */
   .craft-hero {
@@ -1569,23 +1599,45 @@
     .incentive-card__info h2 { font-size: 1.2rem; margin: 0.4rem 0; }
     .incentive-card__info p { font-size: 0.85rem; line-height: 1.5; }
 
-    /* 4. Табы — горизонтальный скролл, компактные */
-    .facility-tabs {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      justify-content: flex-start;
-      padding: 0 0.5rem 0.75rem;
-      margin: 1.2rem 0 1rem;
-      gap: 0.5rem;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+    /* Intro (hero + бонус) — сворачиваемый блок, чтобы выбор станции (табы)
+       был первым, что видно, а не после длинного описания. На десктопе этот
+       медиа-запрос вообще не применяется - там всё всегда развёрнуто. */
+    .craft-intro-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.6);
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
     }
-    .facility-tabs::-webkit-scrollbar { display: none; }
+    .craft-intro-toggle__title {
+      flex: 1;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(226, 232, 240, 0.85);
+    }
+    .craft-intro:not(.open) .craft-hero,
+    .craft-intro:not(.open) .incentive-panel {
+      display: none;
+    }
+
+    /* 4. Табы — 2x2 сетка, все станции видны без скролла */
+    .facility-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0;
+      margin: 0 0 1rem;
+      gap: 0.6rem;
+    }
     .facility-tabs button {
-      flex: 0 0 75%;
-      max-width: 260px;
       min-width: auto;
-      padding: 0.65rem 0.8rem;
+      padding: 0.65rem 0.7rem;
       border-radius: 14px;
       gap: 0.15rem;
     }
