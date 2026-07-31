@@ -1,5 +1,169 @@
 [
     {
+        "title": "morphology_anniversary26",
+        "id": "anniversary_26",
+        "mutants": [
+            {
+                "specimenId": "Specimen_AA_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EF_11",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_FD_09",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_BE_09",
+                "skin": "masks"
+            },
+            {
+                "specimenId": "Specimen_FA_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_BC_11",
+                "skin": "masks"
+            },
+            {
+                "specimenId": "Specimen_AE_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EB_09",
+                "skin": "masks"
+            },
+            {
+                "specimenId": "Specimen_CD_09",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_EC_08",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_DA_11",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_DB_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_FA_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FE_03",
+                "skin": "wireframe"
+            },
+            {
+                "specimenId": "Specimen_CE_07",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_EB_07",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_BA_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_AA_04",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_FF_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FE_10",
+                "skin": "masks"
+            },
+            {
+                "specimenId": "Specimen_AA_11",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_EE_06",
+                "skin": "masks"
+            },
+            {
+                "specimenId": "Specimen_EE_09",
+                "skin": "wireframe"
+            },
+            {
+                "specimenId": "Specimen_BE_11",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_CF_99",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Star_Bronze",
+                "amount": 10,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_xp_04",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Mystery26_Token",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 40,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_addweaken_04",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 2000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 5
+    },
+    {
         "title": "morphology_starter",
         "id": "Starter",
         "mutants": [
@@ -585,136 +749,496 @@
         ]
     },
     {
-        "title": "----morphology_2026_events",
+        "title": "morphology_2026_events",
         "id": "2026_events",
         "mutants": [
-            { "specimenId": "Specimen_BC_10", "skin": "valentines" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_AE_09", "skin": "valentines" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_CE_11", "skin": "valentines" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_AB_15", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" }
+            {
+                "specimenId": "Specimen_BC_10",
+                "skin": "valentines"
+            },
+            {
+                "specimenId": "Specimen_EB_03",
+                "skin": "easter"
+            },
+            {
+                "specimenId": "Specimen_EC_08",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EF_11",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BE_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AE_09",
+                "skin": "valentines"
+            },
+            {
+                "specimenId": "Specimen_AA_04",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CE_11",
+                "skin": "valentines"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BB_06",
+                "skin": "easter"
+            },
+            {
+                "specimenId": "Specimen_B_12",
+                "skin": "easter"
+            },
+            {
+                "specimenId": "Specimen_AB_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            }
         ],
         "rewards": [
-            { "name": "Material_Gacha_Token", "amount": 2, "type": "entity" },
-            { "name": "Star_Silver", "amount": 5, "type": "entity" },
-            { "name": "orb_basic_life_06", "amount": 2, "type": "entity" },
-            { "name": "gold", "amount": 500, "type": "hardcurrency" },
-            { "name": "Star_Platinum", "amount": 1, "type": "entity" },
-            { "name": "Material_Event_Token", "amount": 15, "type": "entity" },
-            { "name": "Star_Gold", "amount": 1, "type": "entity" },
-            { "name": "Material_Jackpot_Token", "amount": 40, "type": "entity" },
-            { "name": "gold", "amount": 500, "type": "hardcurrency" },
-            { "name": "Material_Mystery26_Token", "amount": 5, "type": "entity" },
-            { "name": "gold", "amount": 2000, "type": "hardcurrency" }
-        ]
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_life_06",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 500,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 15,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 40,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 500,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_Mystery26_Token",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 2000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 5
     },
     {
-        "title": "----morphology_2026_skins",
+        "title": "morphology_2026_skins",
         "id": "2026_skins",
         "mutants": [
-            { "specimenId": "Specimen_EC_05", "skin": "kings" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_BC_10", "skin": "valentines" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_AD_02", "skin": "xinnian" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" }
+            {
+                "specimenId": "Specimen_EC_05",
+                "skin": "kings"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EB_11",
+                "skin": "summer"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AB_03",
+                "skin": "worker"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BD_11",
+                "skin": "patrick"
+            },
+            {
+                "specimenId": "Specimen_BC_10",
+                "skin": "valentines"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AD_02",
+                "skin": "xinnian"
+            },
+            {
+                "specimenId": "Specimen_EC_08",
+                "skin": "hexcity"
+            },
+            {
+                "specimenId": "Specimen_EC_10",
+                "skin": "revolution"
+            },
+            {
+                "specimenId": "Specimen_AE_05",
+                "skin": "blueplanet"
+            },
+            {
+                "specimenId": "Specimen_BB_06",
+                "skin": "easter"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EF_06",
+                "skin": "europe"
+            },
+            {
+                "specimenId": "Specimen_AB_11",
+                "skin": "honeybee"
+            },
+            {
+                "specimenId": "Specimen_DA_03",
+                "skin": "spring"
+            },
+            {
+                "specimenId": "Specimen_EB_10",
+                "skin": "aprilfools"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_ED_09",
+                "skin": "carnival"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CC_06",
+                "skin": "independence"
+            }
         ],
         "rewards": [
-            { "name": "Star_Silver", "amount": 4, "type": "entity" },
-            { "name": "Material_Event_Token", "amount": 20, "type": "entity" },
-            { "name": "gold", "amount": 1000, "type": "hardcurrency" },
-            { "name": "orb_basic_attack_06", "amount": 2, "type": "entity" },
-            { "name": "Star_Gold", "amount": 2, "type": "entity" },
-            { "name": "Material_Jackpot_Token", "amount": 50, "type": "entity" },
-            { "name": "orb_basic_xp_04", "amount": 3, "type": "entity" },
-            { "name": "gold", "amount": 1000, "type": "hardcurrency" },
-            { "name": "Material_Gacha_Token", "amount": 2, "type": "entity" },
-            { "name": "Star_Platinum", "amount": 2, "type": "entity" },
-            { "name": "gold", "amount": 3200, "type": "hardcurrency" }
-        ]
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 50,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_xp_04",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1000,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 20,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1000,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "orb_basic_attack_06",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3200,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 5
     },
     {
-        "title": "----morphology_2026_mutants",
+        "title": "morphology_2026_mutants",
         "id": "2026_mutants",
         "mutants": [
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_AD_14", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_AB_15", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" },
-            { "specimenId": "Specimen_FF_98", "skin": "_any" }
+            {
+                "specimenId": "Specimen_BF_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FC_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BE_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DD_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AD_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_D_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FA_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_E_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AB_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AA_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CE_14",
+                "skin": "_any"
+            }
         ],
         "rewards": [
-            { "name": "gold", "amount": 1100, "type": "hardcurrency" },
-            { "name": "Material_Gacha_Token", "amount": 3, "type": "entity" },
-            { "name": "Material_Event_Token", "amount": 20, "type": "entity" },
-            { "name": "Material_Jackpot_Token", "amount": 75, "type": "entity" },
-            { "name": "orb_basic_life_06", "amount": 2, "type": "entity" },
-            { "name": "gold", "amount": 1100, "type": "hardcurrency" },
-            { "name": "Material_XP1000", "amount": 50, "type": "entity" },
-            { "name": "Star_Silver", "amount": 5, "type": "entity" },
-            { "name": "Star_Gold", "amount": 2, "type": "entity" },
-            { "name": "Star_Platinum", "amount": 2, "type": "entity" },
-            { "name": "gold", "amount": 3800, "type": "hardcurrency" }
-        ]
+            {
+                "name": "gold",
+                "amount": 1100,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_XP1000",
+                "amount": 50,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1100,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 20,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 75,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_life_06",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3800,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 5
     },
     {
         "title": "---morphology_anniversary25",
@@ -4931,7 +5455,7 @@
         ]
     },
     {
-        "title": "-morphology_season_1_platinum",
+        "title": "morphology_season_1_platinum",
         "id": "bingo_plat",
         "mutants": [
             {
@@ -5145,7 +5669,8 @@
                 "amount": 2,
                 "type": "entity"
             }
-        ]
+        ],
+        "columns": 6
     },
     {
         "title": "-morphology_starter_platinum",
@@ -5866,7 +6391,6 @@
             }
         ]
     },
-
     {
         "title": "morphology_event_2024",
         "id": "event_2024",
@@ -5983,5 +6507,1523 @@
                 "type": "hardcurrency"
             }
         ]
+    },
+    {
+        "title": "morphology_event_xmas2016",
+        "id": "event_xmas2016",
+        "mutants": [
+            {
+                "specimenId": "Specimen_EC_04",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_ED_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FC_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CF_07",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_F_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AF_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AB_09",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 25,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_03",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "softcurrency",
+                "amount": 10000000,
+                "type": "softcurrency"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 2000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 3,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2017",
+        "id": "event_xmas2017",
+        "mutants": [
+            {
+                "specimenId": "Specimen_FF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FC_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_ED_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_F_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FB_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CF_07",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EC_04",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AB_09",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AF_99",
+                "skin": "winter"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 30,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_03",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "softcurrency",
+                "amount": 20000000,
+                "type": "softcurrency"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 2500,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 3,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2018",
+        "id": "event_xmas2018",
+        "mutants": [
+            {
+                "specimenId": "Specimen_DF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_ED_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_99",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_F_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_A_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_strengthen_05",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 30,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_04",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 2800,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 3,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2019",
+        "id": "event_xmas2019",
+        "mutants": [
+            {
+                "specimenId": "Specimen_DF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_ED_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DC_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CF_07",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BD_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_99",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DC_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_BC_08",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_A_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CC_11",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 35,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_attack_05",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_xp_04",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_05",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2020",
+        "id": "event_xmas2020",
+        "mutants": [
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BC_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FC_01",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AE_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_A_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EC_04",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DA_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AD_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CF_07",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CD_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DC_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_12",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 35,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_attack_05",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_xp_04",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_05",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2021",
+        "id": "event_xmas2021",
+        "mutants": [
+            {
+                "specimenId": "Specimen_AB_09",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AF_99",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FB_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CC_11",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AB_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_BC_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FF_04",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FA_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_F_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AE_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FE_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FE_12",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "orb_basic_life_05",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_05",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 35,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_attack_05",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2022",
+        "id": "event_xmas2022",
+        "mutants": [
+            {
+                "specimenId": "Specimen_CC_11",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DE_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_C_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FE_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AD_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FE_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EC_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AC_11",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FA_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AE_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_F_03",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AF_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_A_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DF_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FA_13",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_life_06",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_04",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Snowstorm_Token",
+                "amount": 200,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 35,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_attack_06",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2023",
+        "id": "event_xmas2023",
+        "mutants": [
+            {
+                "specimenId": "Specimen_AC_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EC_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AE_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AE_07",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FE_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_BD_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_99",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FA_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DE_03",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FE_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FD_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_BD_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AD_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FA_13",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 15,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_attack_06",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_critical_05",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Capsule_Token",
+                "amount": 200,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2024",
+        "id": "event_xmas2024",
+        "mutants": [
+            {
+                "specimenId": "Specimen_CC_11",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CF_07",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FE_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AE_11",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EF_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_BA_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DC_11",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AF_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FA_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AC_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FE_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AA_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AE_07",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DA_05",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FF_14",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_critical_05",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Xmas24_Token",
+                "amount": 200,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Silver",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 15,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_life_06",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_xmas2025",
+        "id": "event_xmas2025",
+        "mutants": [
+            {
+                "specimenId": "Specimen_CC_11",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DD_09",
+                "skin": "xmas25"
+            },
+            {
+                "specimenId": "Specimen_EC_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AC_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FF_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BD_09",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AE_07",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_CD_11",
+                "skin": "xmas25"
+            },
+            {
+                "specimenId": "Specimen_FA_09",
+                "skin": "xmas25"
+            },
+            {
+                "specimenId": "Specimen_DA_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_F_12",
+                "skin": "xmas25"
+            },
+            {
+                "specimenId": "Specimen_DE_15",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DC_11",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_EE_08",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_DD_04",
+                "skin": "xmas25"
+            },
+            {
+                "specimenId": "Specimen_AB_06",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FC_10",
+                "skin": "advent"
+            },
+            {
+                "specimenId": "Specimen_AC_11",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FE_12",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AE_11",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_FA_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DC_10",
+                "skin": "winter"
+            },
+            {
+                "specimenId": "Specimen_AB_08",
+                "skin": "xmas25"
+            },
+            {
+                "specimenId": "Specimen_BD_10",
+                "skin": "winter"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Star_Silver",
+                "amount": 6,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 40,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_life_06",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Xmas25_Token",
+                "amount": 250,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 12,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Mystery25_Token",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "orb_basic_attack_06",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 5,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 5,
+        "archived": true
+    },
+    {
+        "title": "morphology_anniversary21",
+        "id": "anniversary_21",
+        "mutants": [
+            {
+                "specimenId": "Specimen_FA_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AF_07",
+                "skin": "opalescent"
+            },
+            {
+                "specimenId": "Specimen_EE_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DF_09",
+                "skin": "purgatory"
+            },
+            {
+                "specimenId": "Specimen_ED_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DB_09",
+                "skin": "nebula"
+            },
+            {
+                "specimenId": "Specimen_EB_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CF_08",
+                "skin": "solarflare"
+            },
+            {
+                "specimenId": "Specimen_EF_99",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 25,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_04",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "softcurrency",
+                "amount": 10000000,
+                "type": "softcurrency"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1500,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 3,
+        "archived": true
+    },
+    {
+        "title": "morphology_anniversary24",
+        "id": "anniversary_24",
+        "mutants": [
+            {
+                "specimenId": "Specimen_BF_05",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_AA_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DB_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_CF_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_AE_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FA_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_CD_09",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_EE_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DA_11",
+                "skin": "anniversary"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "softcurrency",
+                "amount": 10000000,
+                "type": "softcurrency"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 10,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1600,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 3,
+        "archived": true
+    },
+    {
+        "title": "morphology_10years",
+        "id": "10years",
+        "mutants": [
+            {
+                "specimenId": "Specimen_AB_05",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_CE_07",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_FA_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_FD_09",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_CF_99",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BD_06",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_AA_11",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_BA_10",
+                "skin": "anniversary"
+            },
+            {
+                "specimenId": "Specimen_AF_06",
+                "skin": "anniversary"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 50,
+                "type": "entity"
+            },
+            {
+                "name": "orb_special_speed_04",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 1,
+                "type": "entity"
+            },
+            {
+                "name": "softcurrency",
+                "amount": 10000000,
+                "type": "softcurrency"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 3,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1800,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 3,
+        "archived": true
+    },
+    {
+        "title": "morphology_event_2023",
+        "id": "event_2023",
+        "mutants": [
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DD_05",
+                "skin": "cybernetics"
+            },
+            {
+                "specimenId": "Specimen_BB_09",
+                "skin": "halloween"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BB_07",
+                "skin": "spring"
+            },
+            {
+                "specimenId": "Specimen_ED_10",
+                "skin": "valentines"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_BC_14",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EB_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_EF_04",
+                "skin": "easter"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_CA_13",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_FF_98",
+                "skin": "_any"
+            },
+            {
+                "specimenId": "Specimen_DC_09",
+                "skin": "aprilfools"
+            },
+            {
+                "specimenId": "Specimen_DE_13",
+                "skin": "_any"
+            }
+        ],
+        "rewards": [
+            {
+                "name": "gold",
+                "amount": 1600,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "Material_Event_Token",
+                "amount": 30,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Gold",
+                "amount": 4,
+                "type": "entity"
+            },
+            {
+                "name": "Material_XP1000",
+                "amount": 100,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Gacha_Token",
+                "amount": 6,
+                "type": "entity"
+            },
+            {
+                "name": "Material_Jackpot_Token",
+                "amount": 75,
+                "type": "entity"
+            },
+            {
+                "name": "Star_Platinum",
+                "amount": 2,
+                "type": "entity"
+            },
+            {
+                "name": "gold",
+                "amount": 1400,
+                "type": "hardcurrency"
+            },
+            {
+                "name": "gold",
+                "amount": 3000,
+                "type": "hardcurrency"
+            }
+        ],
+        "columns": 4,
+        "archived": true
     }
 ]

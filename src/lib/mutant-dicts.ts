@@ -10,7 +10,7 @@ export const GENE_RU: Record<string, string> = {
   D: 'Зверь',
   E: 'Галактик',
   F: 'Мифик',
-};
+}
 
 // Переводы для значений бинго. Если ключ не найден, возвращается исходный ключ.
 export const BINGO_RU: Record<string, string> = {
@@ -48,8 +48,23 @@ export const BINGO_RU: Record<string, string> = {
   event_2020: 'Ивенты 2020',
   event_2021: 'Ивенты 2021',
   event_2022: 'Ивенты 2022',
+  event_2023: 'Ивенты 2023',
   event_2024: 'Ивенты 2024',
   events: 'Праздники',
+  event_xmas2016: 'Ёлка 2016',
+  event_xmas2017: 'Ёлка 2017',
+  event_xmas2018: 'Ёлка 2018',
+  event_xmas2019: 'Ёлка 2019',
+  event_xmas2020: 'Ёлка 2020',
+  event_xmas2021: 'Ёлка 2021',
+  event_xmas2022: 'Ёлка 2022',
+  event_xmas2023: 'Ёлка 2023',
+  event_xmas2024: 'Ёлка 2024',
+  event_xmas2025: 'Ёлка 2025',
+  anniversary_21: 'Годовщина 2021',
+  anniversary_24: 'Годовщина 2024',
+  anniversary_26: 'Годовщина 2026',
+  '10years': '10 лет игре',
   heroic: 'Герои',
   legend: 'Легенды',
   reactor: 'Реактор',
@@ -69,7 +84,7 @@ export const BINGO_RU: Record<string, string> = {
   starter_plat: 'Платиновое бинго',
   zodiac: 'Зодиаки',
   zodiac_silver: 'Серебряные зодиаки',
-};
+}
 
 // Переводы типов мутантов. Если тип не найден, возвращается исходное значение.
 export const TYPE_RU: Record<string, string> = {
@@ -86,8 +101,8 @@ export const TYPE_RU: Record<string, string> = {
   LEGEND: 'Легенды',
   RECIPE: 'Секреты',
   SEASONAL: 'Ивенты',
-  VIDEOGAME: 'Видеоигры'
-};
+  VIDEOGAME: 'Видеоигры',
+}
 
 // Названия для разных уровней звёздной редкости.
 export const STAR_LABEL: Record<string, string> = {
@@ -96,7 +111,7 @@ export const STAR_LABEL: Record<string, string> = {
   silver: 'Серебро',
   gold: 'Золото',
   platinum: 'Платина',
-};
+}
 
 // Цвета (классы Tailwind) для бейджа звёздной редкости в модалке.
 export const STAR_COLOR: Record<string, string> = {
@@ -105,38 +120,41 @@ export const STAR_COLOR: Record<string, string> = {
   silver: 'bg-slate-400/60 text-slate-900 ring-slate-300/40',
   gold: 'bg-yellow-500/60 text-yellow-900 ring-yellow-300/40',
   platinum: 'bg-cyan-500/60 text-cyan-900 ring-cyan-300/40',
-};
+}
 
 /**
  * Возвращает строку, объединяющую русские названия генов для заданного кода.
  * Например, 'AB' -> 'Киборг+Нежить'. Неизвестные символы возвращаются как есть.
  */
 export function geneLabel(code: string): string {
-  if (!code) return '';
-  return code.toUpperCase().split('').map((ch) => GENE_RU[ch] || ch).join('+');
+  if (!code) return ''
+  return code
+    .toUpperCase()
+    .split('')
+    .map((ch) => GENE_RU[ch] || ch)
+    .join('+')
 }
 
 /**
  * Переводит ключ бинго в русское название. Если нет перевода, возвращает исходный ключ.
  */
 export function bingoLabel(key: string): string {
-  if (!key) return '';
-  const lower = key.toLowerCase();
-  return BINGO_RU[lower] || BINGO_RU[key] || key;
+  if (!key) return ''
+  const lower = key.toLowerCase()
+  return BINGO_RU[lower] || BINGO_RU[key] || key
 }
 
-
 export const ABILITY_RU: Record<string, string> = {
-  ability_shield: "Щит",
-  ability_shield_plus: "Щит",
-  ability_regen: "Вытягивание жизни",
-  ability_regen_plus: "Вытягивание жизни",
-  ability_retaliate: "Отражение",
-  ability_retaliate_plus: "Отражение",
-  ability_slash: "Рана",
-  ability_slash_plus: "Рана",
-  ability_strengthen: "Усиление",
-  ability_strengthen_plus: "Усиление",
-  ability_weaken: "Проклятие",
-  ability_weaken_plus: "Проклятие",
-};
+  ability_shield: 'Щит',
+  ability_shield_plus: 'Щит',
+  ability_regen: 'Вытягивание жизни',
+  ability_regen_plus: 'Вытягивание жизни',
+  ability_retaliate: 'Отражение',
+  ability_retaliate_plus: 'Отражение',
+  ability_slash: 'Рана',
+  ability_slash_plus: 'Рана',
+  ability_strengthen: 'Усиление',
+  ability_strengthen_plus: 'Усиление',
+  ability_weaken: 'Проклятие',
+  ability_weaken_plus: 'Проклятие',
+}

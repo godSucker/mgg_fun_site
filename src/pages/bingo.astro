@@ -26,9 +26,14 @@ interface Bingo {
   mutants: BingoMutant[];
   rewards: BingoReward[];
   columns?: number;
+  archived?: boolean;
 }
 
 const bingos: Bingo[] = bingosData as Bingo[];
+// Архивные (снятые из игры) бинго уходят в хвост списка вкладок, но порядок
+// среди активных/среди архивных не меняется (стабильная сортировка).
+const sortedBingos: Bingo[] = [...bingos].sort((a, b) => Number(!!a.archived) - Number(!!b.archived));
+const firstArchivedIndex = sortedBingos.findIndex((b) => b.archived);
 
 const GENE_ICONS = {
   A: '/genes/icon_gene_a.webp',
@@ -74,7 +79,10 @@ function getBingoLayout(bingo: Bingo) {
     'research_6', 'research_7', 'research_8', 'research_9', 'research_10', 'research_11',
     'reactor', 'legend', 'bingo_bronze', 'bingo_silver', 'bingo_gold', 'bingo_plat',
     'zodiac', 'zodiac_silver', 'events', 'amazons', 'rumble', 'starter_plat',
-    'heroic', 'event_2019', 'event_2020', 'event_2021', 'event_2022', 'event_2024'
+    'heroic', 'event_2019', 'event_2020', 'event_2021', 'event_2022', 'event_2023', 'event_2024',
+    'event_xmas2016', 'event_xmas2017', 'event_xmas2018', 'event_xmas2019', 'event_xmas2020',
+    'event_xmas2021', 'event_xmas2022', 'event_xmas2023', 'event_xmas2024', 'event_xmas2025',
+    'anniversary_21', 'anniversary_24', 'anniversary_26', '10years'
   ].includes(bingo.id);
   const topHeaders: string[] = Array(cols).fill('');
   const sideHeaders: string[] = Array(rows).fill('');
@@ -83,7 +91,10 @@ function getBingoLayout(bingo: Bingo) {
     topHeaders[1] = GENE_ICONS.A;
     topHeaders[2] = GENE_ICONS.B;
     topHeaders[3] = GENE_ICONS.C;
-  } else if (['2025_skins', '2025_mutants', '2025_events', '2026_skins', '2026_mutants', '2026_events'].includes(bingo.id)) {
+  } else if ([
+    '2025_skins', '2025_mutants', '2025_events', '2026_skins', '2026_mutants', '2026_events',
+    'event_xmas2025', 'anniversary_26',
+  ].includes(bingo.id)) {
     for (let i = 0; i < cols; i++) topHeaders[i] = `/bingo/up_${i + 1}.webp`;
     for (let i = 0; i < rows; i++) sideHeaders[i] = `/bingo/up_${i + 1}.webp`;
   } else if (bingo.id === 'anniversary_25') {
@@ -123,8 +134,13 @@ function getBingoLayout(bingo: Bingo) {
     // Ивенты 2020 - фоновые иконки
     for (let i = 0; i < cols; i++) topHeaders[i] = `/bingo/events_up_${i + 1}.webp`;
     for (let i = 0; i < rows; i++) sideHeaders[i] = `/bingo/events_left_${i + 1}.webp`;
-  } else if (['event_2021', 'event_2022', 'event_2024'].includes(bingo.id)) {
-    // Ивенты 2021, 2022, 2024 - одинаковые фоновые иконки
+  } else if ([
+    'event_2021', 'event_2022', 'event_2023', 'event_2024',
+    'event_xmas2016', 'event_xmas2017', 'event_xmas2018', 'event_xmas2019', 'event_xmas2020',
+    'event_xmas2021', 'event_xmas2022', 'event_xmas2023', 'event_xmas2024',
+    'anniversary_21', 'anniversary_24', '10years',
+  ].includes(bingo.id)) {
+    // Ёлки/годовщины/ивенты одного визуального семейства - одинаковые фоновые иконки
     for (let i = 0; i < cols; i++) topHeaders[i] = `/bingo/multi_up_${i + 1}.webp`;
     for (let i = 0; i < rows; i++) sideHeaders[i] = `/bingo/events_left_${i + 1}.webp`;
   } else if (['cross_mutation', 'research_1', 'research_2', 'research_3', 'research_4', 'research_5',
@@ -193,22 +209,28 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   </section>
 
   <div class="bingo-tabs">
-    {bingos.map((bingo, idx) => (
-      <button
-        class="bingo-tab"
-        type="button"
-        data-bingo-index={idx}
-        data-bingo-id={bingo.id}
-        aria-selected={idx === 0}
-      >
-        <span class={`bingo-icon-span icon-${bingo.id}`}></span>
-        {formatBingoTitle(bingo.title, bingo.id)}
-      </button>
+    {sortedBingos.map((bingo, idx) => (
+      <>
+        {idx === firstArchivedIndex && idx > 0 && <span class="bingo-tabs-separator" aria-hidden="true">|</span>}
+        <button
+          class="bingo-tab"
+          type="button"
+          data-bingo-index={idx}
+          data-bingo-id={bingo.id}
+          aria-selected={idx === 0}
+        >
+          <span class={`bingo-icon-span icon-${bingo.id}`}></span>
+          <span class="bingo-tab-label">
+            {formatBingoTitle(bingo.title, bingo.id)}
+            {bingo.archived && <span class="bingo-archived-tag">Архивное</span>}
+          </span>
+        </button>
+      </>
     ))}
   </div>
 
   <div class="bingo-content">
-    {bingos.map((originalBingo, bingoIdx) => {
+    {sortedBingos.map((originalBingo, bingoIdx) => {
       const subBingos = getSubBingos(originalBingo);
 
       return (
@@ -223,6 +245,7 @@ function getSubBingos(bingo: Bingo): Bingo[] {
               <div class="bingo-card-title-wrapper">
                 <span class={`bingo-header-icon icon-${originalBingo.id}`}></span>
                 <h2 class="bingo-card-title">{formatBingoTitle(originalBingo.title, originalBingo.id)}</h2>
+                {originalBingo.archived && <span class="bingo-archived-tag card">Архивное</span>}
               </div>
             </div>
 
@@ -404,7 +427,11 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   .bingo-tab { appearance: none; border: 1px solid rgba(48, 54, 61, 0.5); background: rgba(22, 27, 34, 0.95); color: #94a3b8; border-radius: 8px 8px 0 0; padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; white-space: nowrap; } 
   .bingo-tab:hover { background: rgba(30, 58, 138, 0.2); color: #fff; }
   .bingo-tab[aria-selected="true"] { background: rgba(30, 58, 138, 0.4); color: #60a5fa; border-bottom-color: transparent; }
-  .bingo-icon-span { width: 28px; height: 28px; background-size: contain; background-repeat: no-repeat; margin-right: 10px; }
+  .bingo-icon-span { width: 28px; height: 28px; background-size: contain; background-repeat: no-repeat; margin-right: 10px; flex-shrink: 0; }
+  .bingo-tab-label { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+  .bingo-tabs-separator { align-self: center; color: rgba(96, 165, 250, 0.35); font-size: 1.4rem; font-weight: 300; padding: 0 0.35rem; user-select: none; }
+  .bingo-archived-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: #f59e0b; }
+  .bingo-archived-tag.card { margin-left: 0.6rem; padding: 0.15rem 0.5rem; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 6px; background: rgba(245, 158, 11, 0.1); }
 
   .bingo-content {
     max-width: 1400px;
@@ -733,6 +760,21 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   .icon-bingo_plat { background-image: url('https://cdn.archivist-library.com/bingo/bingo_platinum.webp'); }
   .icon-starter_plat { background-image: url('https://cdn.archivist-library.com/bingo/bingo_starter_platinum.webp'); }
   .icon-Starter { background-image: url('https://cdn.archivist-library.com/bingo/bingo_starter.webp'); }
+  .icon-event_2023 { background-image: url('https://cdn.archivist-library.com/bingo/bingo_special.webp'); }
+  .icon-event_xmas2016,
+  .icon-event_xmas2017,
+  .icon-event_xmas2018,
+  .icon-event_xmas2019,
+  .icon-event_xmas2020,
+  .icon-event_xmas2021,
+  .icon-event_xmas2022,
+  .icon-event_xmas2023,
+  .icon-event_xmas2024,
+  .icon-event_xmas2025,
+  .icon-10years { background-image: url('https://cdn.archivist-library.com/bingo/bingo_special.webp'); }
+  .icon-anniversary_21,
+  .icon-anniversary_24,
+  .icon-anniversary_26 { background-image: url('https://cdn.archivist-library.com/bingo/bingo_anniversery.webp'); }
 
   /* --- MOBILE RESPONSIVE --- */
   @media (max-width: 768px) {
