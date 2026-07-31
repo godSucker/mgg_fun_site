@@ -33,6 +33,7 @@
     gacha: '/mut_icons/icon_gacha.webp',
     secret_breeding: '/mut_icons/icon_recipe.webp',
     breeding: '/buildings/breeding_center_1.png',
+    breeding_duplicate: '/buildings/breeding_center_1.png',
     box: '/buildings/building_mystery.png',
     bundle: '/mut_icons/donate.png',
     event_raid: '/etc/icon_atk.webp',
