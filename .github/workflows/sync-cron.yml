@@ -60,6 +60,25 @@ jobs:
           branch: main
           file_pattern: 'src/data/bingos.json'
 
+      - name: 3.3 Авто-синк каталога боксов (shopitems.xml, s-beta)
+        # Полностью механическая сборка (ключ - настоящий itemId, не текст) - не
+        # obtain.json-подобная кураторская правка, поэтому можно писать каждый день
+        # без риска. Докачивает новые иконки боксов в public/boxes/ автоматически.
+        # См. scripts/build-boxes.ts.
+        id: boxes-sync
+        run: npx tsx scripts/build-boxes.ts
+
+      - name: 3.4 Сохранение изменений boxes.json + иконок
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-Sync: каталог боксов"
+          commit_user_name: "MGG Parser Bot"
+          commit_user_email: "bot@archivist-library.com"
+          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          branch: main
+          file_pattern: 'src/data/boxes.json public/boxes/**'
+
       - name: 4. Запуск Парсера (Режим FULL)
         id: parser
         timeout-minutes: 25
@@ -206,7 +225,7 @@ jobs:
         if: always()
         run: |
           pip install awscli
-          for dir in skins etc genes cash tokens orbs bingo orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
+          for dir in skins etc genes cash tokens orbs bingo boxes orbing materials stars zones ability avatars boosters buildings med mut_icons sims; do
             if [ -d "public/$dir" ]; then
               echo "Syncing $dir..."
               aws s3 sync "public/$dir/" "s3://archivist-cdn/$dir/" \
