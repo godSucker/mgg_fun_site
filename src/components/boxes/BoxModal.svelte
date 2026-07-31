@@ -53,6 +53,24 @@
     return [...map.values()]
   }
 
+  // Шанс = доля слотов в пуле (mutants.length + rewards.length, т.к. в части боксов
+  // мутанты и утешительные награды делят один и тот же пул - см. Mystery_Anniversary26_1
+  // и подобные "1 к 6" скин-бинго боксы, память boxes-page-shopitems-pipeline).
+  function groupedMutants(b: Box) {
+    const total = b.mutants.length + b.rewards.length
+    const map = new Map<string, { mutant: BoxMutantRef; count: number }>()
+    for (const m of b.mutants) {
+      const key = `${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`
+      const existing = map.get(key)
+      if (existing) existing.count++
+      else map.set(key, { mutant: m, count: 1 })
+    }
+    return [...map.values()].map(({ mutant, count }) => ({
+      mutant,
+      chance: total > 0 ? (count / total) * 100 : 0,
+    }))
+  }
+
   let open = $state(false)
   let box: Box | null = $state(null)
 
@@ -95,7 +113,7 @@
     class="fixed inset-0 z-[90] bg-black/70 backdrop-blur-sm flex items-start justify-center p-2 md:p-4 overflow-y-auto overscroll-contain"
     onclick={(e) => { if (e.target === e.currentTarget) close() }}
   >
-    <div class="modal-panel w-full max-w-2xl mt-4 md:mt-10 mb-4 rounded-xl bg-slate-950 ring-1 ring-white/10 shadow-2xl" role="dialog" aria-modal="true" aria-label={box.name}>
+    <div class="modal-panel w-full max-w-2xl mt-10 md:mt-20 mb-6 rounded-xl bg-slate-950 ring-1 ring-white/10 shadow-2xl" role="dialog" aria-modal="true" aria-label={box.name}>
       <div class="modal-head flex items-start gap-4 p-4 border-b border-white/10">
         {#if box.icon}
           <img class="box-icon" src={textureUrl(box.icon)} alt="" loading="lazy" decoding="async" />
@@ -127,7 +145,7 @@
 
         {#if box.mutants.length}
           <div class="mutant-grid">
-            {#each box.mutants as m, i (i)}
+            {#each groupedMutants(box) as { mutant: m, chance }, i (i)}
               <button class="mutant-cell" onclick={() => openMutant(m.id)}>
                 <span class="mutant-cell-img">
                   {#if mutantIcon(m)}
@@ -142,6 +160,7 @@
                   {#if m.skin}
                     <span class="skin-text" title={`Скин: ${m.skin}`}>скин «{m.skin}»</span>
                   {/if}
+                  <span class="chance-text">{chance.toFixed(1)}%</span>
                 </span>
               </button>
             {/each}
@@ -177,7 +196,25 @@
 
   .mutant-cell-tags { display: flex; flex-direction: column; align-items: center; gap: 2px; }
   .tier-icon { width: 14px; height: 14px; }
+  .chance-text { font-size: 9.5px; font-weight: 600; color: #86efac; }
   .skin-text { font-size: 9px; color: #a5b4fc; word-break: break-word; }
+
+  @media (min-width: 1440px) {
+    .modal-panel { max-width: 48rem; }
+    .box-icon { width: 80px; height: 80px; }
+    .mutant-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.75rem; }
+    .mutant-cell-img { width: 54px; height: 54px; }
+    .mutant-cell-name { font-size: 12.5px; }
+    .chance-text { font-size: 10.5px; }
+  }
+  @media (min-width: 1921px) {
+    .modal-panel { max-width: 58rem; }
+    .box-icon { width: 96px; height: 96px; }
+    .mutant-grid { grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 0.9rem; }
+    .mutant-cell-img { width: 62px; height: 62px; }
+    .mutant-cell-name { font-size: 14px; }
+    .chance-text { font-size: 11.5px; }
+  }
 
   @media (prefers-reduced-motion: no-preference) {
     .modal-panel { animation: modal-in 0.18s ease-out; }
