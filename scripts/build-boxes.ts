@@ -131,9 +131,7 @@ async function main() {
 
   await fs.mkdir(BOXES_ICON_DIR, { recursive: true })
   const existingIcons = new Set(
-    fssync
-      .readdirSync(BOXES_ICON_DIR)
-      .map((f) => path.basename(f, path.extname(f))),
+    fssync.readdirSync(BOXES_ICON_DIR).map((f) => path.basename(f, path.extname(f))),
   )
 
   // Известный баг игровых данных: picture="luckybox_legend_gold_duo$$" (лишний "$$"
@@ -242,7 +240,9 @@ async function main() {
   const withMutants = boxes.filter((b) => b.mutants.length > 0).length
   const resourceOnly = boxes.filter((b) => b.mutants.length === 0).length
   const withoutIcon = boxes.filter((b) => !b.icon).length
-  console.log(`[BOXES] ${boxes.length} боксов (${withMutants} с мутантами, ${resourceOnly} чисто ресурсных)`)
+  console.log(
+    `[BOXES] ${boxes.length} боксов (${withMutants} с мутантами, ${resourceOnly} чисто ресурсных)`,
+  )
   console.log(`[BOXES] Иконок докачано: ${downloaded}, без иконки: ${withoutIcon}`)
 }
 
