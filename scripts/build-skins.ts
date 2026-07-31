@@ -22,7 +22,7 @@ import path from 'node:path'
 import axios from 'axios'
 
 const REPO = process.cwd()
-const GACHA_URL = 'https://s-ak.kobojo.com/mutants/gameconfig/gacha.xml'
+const GACHA_URL = 'https://s-beta.kobojo.com/mutants/gameconfig/gacha.xml'
 const SKIN_BASE = 'textures_by_skins/textures_by_skin'
 const FULL_DIR = path.join(REPO, 'public', SKIN_BASE, 'full')
 const SEMI_DIR = path.join(REPO, 'public', SKIN_BASE, 'semi-full')
