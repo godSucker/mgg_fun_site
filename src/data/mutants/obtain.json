@@ -288,6 +288,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-388-LuckyBox Tank (800 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_03": [
@@ -468,6 +472,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Музыка"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_04": [
@@ -674,6 +682,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 1300 жетонов Hexcity"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_05": [
@@ -775,6 +787,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_06": [
@@ -885,6 +901,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Вестерн"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_07": [
@@ -1121,6 +1141,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_09": [
@@ -1218,6 +1242,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_10": [
@@ -1293,6 +1321,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_aa_11": [
@@ -1514,6 +1546,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Мрачная Жница + Бог Машин"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_03": [
@@ -1616,6 +1652,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_04": [
@@ -1876,6 +1916,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Солдаты"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_05": [
@@ -2101,6 +2145,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_07": [
@@ -2121,6 +2169,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Пляж"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_08": [
@@ -2247,6 +2299,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 1250 новогодних жетонов 2025"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_09": [
@@ -2279,6 +2335,10 @@
       "type": "bundle",
       "where": "Набор: Пакет Ворчуна Клауса (от $9.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ab_10": [
@@ -2501,6 +2561,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Андроид + Марсианский Воин"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_03": [
@@ -2769,6 +2833,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Фэнтези"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_04": [
@@ -2800,6 +2868,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Шахматы"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_05": [
@@ -3073,6 +3145,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_06": [
@@ -3142,6 +3218,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_07": [
@@ -3283,6 +3363,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_09": [
@@ -3427,6 +3511,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_10": [
@@ -3559,6 +3647,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ac_12": [
@@ -3864,6 +3956,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_03": [
@@ -3941,6 +4037,10 @@
       "type": "bundle",
       "where": "Набор: Сундук «Исследование II» (450 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_04": [
@@ -4158,6 +4258,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_05": [
@@ -4339,6 +4443,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Солдаты"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_06": [
@@ -4506,6 +4614,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_07": [
@@ -4699,6 +4811,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_08": [
@@ -4831,6 +4947,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_09": [
@@ -4932,6 +5052,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ad_10": [
@@ -5237,6 +5361,10 @@
       "type": "bundle",
       "where": "Набор: Сундук «Исследование I» (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_03": [
@@ -5487,6 +5615,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_04": [
@@ -5504,6 +5636,10 @@
       "type": "bundle",
       "where": "Набор: Супрамен Х (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_05": [
@@ -5544,6 +5680,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Темновзор + Коммодор Акула"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_06": [
@@ -5747,6 +5887,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_07": [
@@ -5904,6 +6048,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_08": [
@@ -5984,6 +6132,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_09": [
@@ -6100,6 +6252,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_10": [
@@ -6132,6 +6288,10 @@
       "type": "bundle",
       "where": "Набор: Робосамурай (4 000 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ae_11": [
@@ -6186,6 +6346,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_ae_12": [
@@ -6403,6 +6567,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-281-LuckyBox Mythic (550 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_03": [
@@ -6675,6 +6843,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_04": [
@@ -6946,6 +7118,14 @@
     {
       "type": "gacha",
       "where": "Реактор — Космические войны"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_af_05": [
@@ -6974,6 +7154,10 @@
       "where": "Награда за бинго «Праздники»",
       "bingoId": "events",
       "archived": false
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_06": [
@@ -6996,6 +7180,10 @@
       "type": "bundle",
       "where": "Набор: Репликация Евы (2 000 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_07": [
@@ -7060,6 +7248,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_08": [
@@ -7207,6 +7399,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Пляж"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_09": [
@@ -7306,6 +7502,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_af_10": [
@@ -7875,6 +8075,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Драконежить + Рептоид"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_03": [
@@ -8119,6 +8323,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Злодеи"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_04": [
@@ -8361,6 +8569,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_05": [
@@ -8587,6 +8799,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_06": [
@@ -8783,6 +8999,14 @@
     {
       "type": "gacha",
       "where": "Реактор — Шахматы"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_ba_07": [
@@ -8989,6 +9213,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_08": [
@@ -9131,6 +9359,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_09": [
@@ -9307,6 +9539,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_10": [
@@ -9406,6 +9642,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 150 жетонов джекпота"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ba_11": [
@@ -9647,6 +9887,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Растения"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_03": [
@@ -9866,6 +10110,10 @@
     {
       "type": "gacha",
       "where": "Реактор — olympians"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_04": [
@@ -10073,6 +10321,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_05": [
@@ -10199,6 +10451,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_06": [
@@ -10315,6 +10571,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_07": [
@@ -10554,6 +10814,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Пляж"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_09": [
@@ -10686,6 +10950,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bb_10": [
@@ -10913,6 +11181,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Капитан Гаечный Ключ + Темновзор"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_03": [
@@ -11096,6 +11368,10 @@
       "where": "Награда за бинго «Исследование 1»",
       "bingoId": "research_1",
       "archived": false
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_04": [
@@ -11127,6 +11403,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Солдаты"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_05": [
@@ -11373,6 +11653,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_06": [
@@ -11570,6 +11854,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_07": [
@@ -11748,6 +12036,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_08": [
@@ -11896,6 +12188,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_09": [
@@ -12023,6 +12319,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_10": [
@@ -12112,6 +12412,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: pit saber 11"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bc_11": [
@@ -12326,6 +12630,10 @@
       "type": "bundle",
       "where": "Набор: Сундук «Исследование I» (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_03": [
@@ -12529,6 +12837,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Кино"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_04": [
@@ -12777,6 +13089,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Стихии"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_05": [
@@ -12988,6 +13304,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Фэнтези"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_06": [
@@ -13200,6 +13520,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_07": [
@@ -13337,6 +13661,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 13 зимнего угля"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_09": [
@@ -13498,6 +13826,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 50 жетонов джекпота"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_10": [
@@ -13584,6 +13916,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bd_11": [
@@ -13791,6 +14127,10 @@
       "where": "Награда за бинго «Золотое разведение»",
       "bingoId": "bingo_gold",
       "archived": false
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_01": [
@@ -13932,6 +14272,10 @@
       "type": "bundle",
       "where": "Набор: Сундук «Исследование I» (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_03": [
@@ -14058,6 +14402,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_04": [
@@ -14078,6 +14426,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Пожиратель + Капитан Костьмилягу"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_05": [
@@ -14279,6 +14631,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Лучадоры"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_06": [
@@ -14481,6 +14837,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_07": [
@@ -14644,6 +15004,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_08": [
@@ -14770,6 +15134,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_09": [
@@ -14891,6 +15259,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_be_10": [
@@ -15234,6 +15606,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Стимпанк"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_03": [
@@ -15316,6 +15692,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-281-LuckyBox Mythic (550 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_04": [
@@ -15628,6 +16008,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_06": [
@@ -15831,6 +16215,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Музыка"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_07": [
@@ -15993,6 +16381,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_08": [
@@ -16105,6 +16497,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_09": [
@@ -16127,6 +16523,10 @@
       "type": "bundle",
       "where": "Набор: Краткосрочное предложение: Сундук «Исследование VIII» (800 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_bf_10": [
@@ -16571,6 +16971,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Бог Машин + Гэндолфус"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_03": [
@@ -16687,6 +17091,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_04": [
@@ -16983,6 +17391,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_05": [
@@ -17235,6 +17647,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_06": [
@@ -17461,6 +17877,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Растения"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_07": [
@@ -17637,6 +18057,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Олимпиада"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_08": [
@@ -17784,6 +18208,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Олимпиада"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_09": [
@@ -17825,6 +18253,14 @@
       "type": "bundle",
       "where": "Набор: Specimen CA 09 hc (999 999 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_ca_10": [
@@ -17910,6 +18346,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ca_11": [
@@ -18099,6 +18539,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Прилипала + Марсианский Воин"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_03": [
@@ -18356,6 +18800,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Кино"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_04": [
@@ -18643,6 +19091,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_05": [
@@ -18680,6 +19132,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-18-LuckyBox Saber V2 (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_06": [
@@ -18716,6 +19172,10 @@
       "type": "bundle",
       "where": "Набор: золотой Скарлетт (2 000 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_07": [
@@ -18790,6 +19250,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_08": [
@@ -18927,6 +19391,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_09": [
@@ -19059,6 +19527,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cb_10": [
@@ -19198,6 +19670,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_cb_13": [
@@ -19526,6 +20002,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Кино"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_03": [
@@ -19764,6 +20244,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Космические войны"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_04": [
@@ -19790,6 +20274,10 @@
     {
       "type": "gacha",
       "where": "Реактор — olympians"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_05": [
@@ -19926,6 +20414,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_06": [
@@ -20047,6 +20539,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_07": [
@@ -20063,6 +20559,10 @@
       "type": "box",
       "where": "Лаки-бокс: Огромный таинственный контейнер",
       "icon": "/boxes/mystery_hyperheavy2.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_08": [
@@ -20149,6 +20649,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_09": [
@@ -20255,6 +20759,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cc_10": [
@@ -20591,6 +21099,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-18-LuckyBox Saber V2 (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_03": [
@@ -20752,6 +21264,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_04": [
@@ -21030,6 +21546,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_05": [
@@ -21056,6 +21576,10 @@
       "type": "bundle",
       "where": "Набор: Пакет «Свин-потрошитель» (от $19.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_06": [
@@ -21298,6 +21822,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Солдаты"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_07": [
@@ -21324,6 +21852,10 @@
       "type": "bundle",
       "where": "Набор: Джонни Сноуи (2 000 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_08": [
@@ -21541,6 +22073,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_10": [
@@ -21606,6 +22142,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: pit zoo 12"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cd_11": [
@@ -21882,6 +22422,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-18-LuckyBox Saber V2 (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_03": [
@@ -22167,6 +22711,10 @@
     {
       "type": "gacha",
       "where": "Реактор — olympians"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_04": [
@@ -22409,6 +22957,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_05": [
@@ -22673,6 +23225,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_07": [
@@ -22768,6 +23324,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_08": [
@@ -22915,6 +23475,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_09": [
@@ -23010,6 +23574,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ce_10": [
@@ -23481,6 +24049,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Солдаты"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_03": [
@@ -23742,6 +24314,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Лучадоры"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_04": [
@@ -24028,6 +24604,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Шахматы"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_05": [
@@ -24260,6 +24840,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_06": [
@@ -24296,6 +24880,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Вестерн"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_07": [
@@ -24358,6 +24946,10 @@
       "type": "bundle",
       "where": "Набор: Большой Санта (от $9.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_08": [
@@ -24535,6 +25127,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_09": [
@@ -24677,6 +25273,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_cf_10": [
@@ -25125,6 +25725,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_da_03": [
@@ -25150,6 +25754,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Ракшаса + Ниндзябот"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_da_04": [
@@ -25388,6 +25996,14 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_da_05": [
@@ -25630,6 +26246,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_da_06": [
@@ -25867,6 +26487,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_da_07": [
@@ -26050,6 +26674,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_da_08": [
@@ -26125,6 +26753,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_da_09": [
@@ -26221,6 +26853,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_da_11": [
@@ -26514,6 +27150,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_03": [
@@ -26750,6 +27390,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_04": [
@@ -26780,6 +27424,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Вестерн"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_05": [
@@ -26802,6 +27450,10 @@
       "type": "bundle",
       "where": "Набор: Буян (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_06": [
@@ -27008,6 +27660,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Фэнтези"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_07": [
@@ -27106,6 +27762,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_08": [
@@ -27243,6 +27903,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_09": [
@@ -27388,6 +28052,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_10": [
@@ -27488,6 +28156,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_db_11": [
@@ -27665,6 +28337,10 @@
       "type": "bundle",
       "where": "Набор: Сундук «Исследование I» (350 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_03": [
@@ -27958,6 +28634,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_05": [
@@ -28204,6 +28884,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Лучадоры"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_06": [
@@ -28426,6 +29110,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_07": [
@@ -28453,6 +29141,10 @@
       "type": "bundle",
       "where": "Набор: Престижный пакет «Бахамут» (от $49.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_08": [
@@ -28604,6 +29296,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Растения"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_09": [
@@ -28731,6 +29427,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dc_10": [
@@ -29080,6 +29780,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_03": [
@@ -29271,6 +29975,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_04": [
@@ -29458,6 +30166,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_05": [
@@ -29579,6 +30291,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_06": [
@@ -29664,6 +30380,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_07": [
@@ -29817,6 +30537,14 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_dd_08": [
@@ -29939,6 +30667,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_09": [
@@ -30046,6 +30778,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_10": [
@@ -30132,6 +30868,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_dd_11": [
@@ -30509,6 +31249,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_03": [
@@ -30630,6 +31374,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_04": [
@@ -30886,6 +31634,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Лучадоры"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_05": [
@@ -31147,6 +31899,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Музыка"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_06": [
@@ -31197,6 +31953,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-6-Medium Pack V8 (от $9.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_07": [
@@ -31359,6 +32119,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_08": [
@@ -31510,6 +32274,14 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_de_09": [
@@ -31619,6 +32391,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Растения"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_de_10": [
@@ -31949,6 +32725,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_03": [
@@ -32174,6 +32954,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_04": [
@@ -32406,6 +33190,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Стихии"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_05": [
@@ -32648,6 +33436,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_06": [
@@ -32663,6 +33455,10 @@
       "type": "box",
       "where": "Лаки-бокс: Сундук «Исследование V»",
       "icon": "/boxes/mystery_research_5.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_07": [
@@ -32856,6 +33652,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_08": [
@@ -32916,6 +33716,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_09": [
@@ -33060,6 +33864,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_df_10": [
@@ -33956,6 +34764,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_03": [
@@ -34046,6 +34858,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-281-LuckyBox Galactic (500 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_04": [
@@ -34297,6 +35113,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_05": [
@@ -34564,6 +35384,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_06": [
@@ -34791,6 +35615,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_07": [
@@ -34944,6 +35772,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_08": [
@@ -34961,6 +35793,10 @@
       "type": "bundle",
       "where": "Набор: Леди Свобода (от $9.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_09": [
@@ -35098,6 +35934,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ea_10": [
@@ -35435,6 +36275,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Стихии"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_03": [
@@ -35495,6 +36339,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Астромаг + Страхолюдочка"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_04": [
@@ -35766,6 +36614,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Кино"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_05": [
@@ -36023,6 +36875,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Стихии"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_06": [
@@ -36186,6 +37042,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_08": [
@@ -36268,6 +37128,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_10": [
@@ -36344,6 +37208,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_eb_11": [
@@ -36674,6 +37542,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_03": [
@@ -36937,6 +37809,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Злодеи"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_04": [
@@ -36989,6 +37865,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-281-LuckyBox Galactic (500 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_05": [
@@ -37261,6 +38141,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_06": [
@@ -37454,6 +38338,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_08": [
@@ -37538,6 +38426,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_09": [
@@ -37670,6 +38562,14 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_ec_10": [
@@ -37749,6 +38649,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 150 жетонов джекпота"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ec_11": [
@@ -38046,6 +38950,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_03": [
@@ -38300,6 +39208,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Кино"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_04": [
@@ -38346,6 +39258,10 @@
       "where": "Награда за бинго «Легенды»",
       "bingoId": "legend",
       "archived": false
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_05": [
@@ -38777,6 +39693,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_07": [
@@ -38999,6 +39919,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_08": [
@@ -39146,6 +40070,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_09": [
@@ -39278,6 +40206,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ed_10": [
@@ -39748,6 +40680,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_03": [
@@ -39988,6 +40924,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_04": [
@@ -40189,6 +41129,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Музыка"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_05": [
@@ -40316,6 +41260,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_06": [
@@ -40488,6 +41436,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_07": [
@@ -40598,6 +41550,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Пляж"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_08": [
@@ -40847,6 +41803,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_10": [
@@ -40908,6 +41868,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ee_11": [
@@ -41136,6 +42100,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-281-LuckyBox Mythic (550 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_04": [
@@ -41424,6 +42392,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_05": [
@@ -41696,6 +42668,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_06": [
@@ -41927,6 +42903,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_07": [
@@ -42104,6 +43084,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_08": [
@@ -42131,6 +43115,10 @@
       "type": "bundle",
       "where": "Набор: Сэйяцу (от $9.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_09": [
@@ -42293,6 +43281,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ef_10": [
@@ -42839,6 +43831,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fa_03": [
@@ -43082,6 +44078,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fa_04": [
@@ -43113,6 +44113,10 @@
       "type": "bundle",
       "where": "Набор: Предложение контейнеров мификов (400 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fa_05": [
@@ -43335,6 +44339,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fa_06": [
@@ -43528,6 +44536,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fa_08": [
@@ -43654,6 +44666,14 @@
     {
       "type": "gacha",
       "where": "Реактор — Олимпиада"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Lucky Slots»"
     }
   ],
   "specimen_fa_09": [
@@ -43777,6 +44797,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fa_10": [
@@ -44171,6 +45195,10 @@
       "type": "bundle",
       "where": "Набор: #levelUp-281-LuckyBox Mythic (550 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_03": [
@@ -44405,6 +45433,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Боссы"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_04": [
@@ -44617,6 +45649,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_05": [
@@ -44838,6 +45874,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Музыка"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_06": [
@@ -45040,6 +46080,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_07": [
@@ -45148,6 +46192,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_08": [
@@ -45290,6 +46338,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_09": [
@@ -45417,6 +46469,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_10": [
@@ -45517,6 +46573,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: hyperborea 13"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fb_11": [
@@ -45747,6 +46807,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Супергерои"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fc_03": [
@@ -45779,6 +46843,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Фэнтези"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fc_05": [
@@ -45815,6 +46883,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Фэнтези"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fc_06": [
@@ -45895,6 +46967,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fc_07": [
@@ -46051,6 +47127,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Вестерн"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fc_08": [
@@ -46179,6 +47259,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fc_09": [
@@ -46481,6 +47565,10 @@
     {
       "type": "secret_breeding",
       "where": "Секретное скрещивание: Лорд Преисподней + Благородный дракон"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_03": [
@@ -46724,6 +47812,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_05": [
@@ -46932,6 +48024,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_06": [
@@ -47138,6 +48234,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Олимпиада"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_07": [
@@ -47203,6 +48303,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_08": [
@@ -47337,6 +48441,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_09": [
@@ -47459,6 +48567,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 50 жетонов джекпота"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fd_10": [
@@ -47692,6 +48804,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_03": [
@@ -48122,6 +49238,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Лучадоры"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_05": [
@@ -48176,6 +49296,10 @@
       "where": "Награда за бинго «Серебряные зодиаки»",
       "bingoId": "zodiac_silver",
       "archived": false
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_06": [
@@ -48369,6 +49493,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Шахматы"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_07": [
@@ -48526,6 +49654,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_08": [
@@ -48673,6 +49805,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Пляж"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_09": [
@@ -48830,6 +49966,10 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 30 жетонов игрушек"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_10": [
@@ -48959,6 +50099,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_fe_11": [
@@ -49160,6 +50304,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_01": [
@@ -49361,6 +50509,10 @@
     {
       "type": "pvp",
       "where": "Награда за прогресс в ПВП/арене"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_03": [
@@ -49536,6 +50688,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_04": [
@@ -49769,6 +50925,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_05": [
@@ -49961,6 +51121,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_06": [
@@ -50158,6 +51322,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Вестерн"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_07": [
@@ -50174,6 +51342,10 @@
       "type": "box",
       "where": "Лаки-бокс: Огромный таинственный контейнер",
       "icon": "/boxes/mystery_hyperheavy2.png"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_08": [
@@ -50290,6 +51462,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_09": [
@@ -50407,6 +51583,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_10": [
@@ -50488,6 +51668,10 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    },
+    {
+      "type": "roulette",
+      "where": "Рулетка «Mutants Madness»"
     }
   ],
   "specimen_ff_11": [
