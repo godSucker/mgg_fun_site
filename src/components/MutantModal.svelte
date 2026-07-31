@@ -21,6 +21,22 @@
     getGeneIcon,
   } from '@/lib/mutant-icons';
   import { baseMutantId as baseId } from '@/lib/utils';
+  import obtainData from '@/data/mutants/obtain.json';
+
+  const OBTAIN_ICON: Record<string, string> = {
+    gold_shop: '/cash/hardcurrency.webp',
+    credits_shop: '/cash/softcurrency.webp',
+    donate: '/mut_icons/donate.png',
+    jackpot_hall: '/materials/Material_Jackpot_Token.png',
+    event_hall: '/materials/Material_Event_Token.png',
+    bingo: '/etc/icon_bingo.webp',
+    gacha: '/mut_icons/icon_gacha.webp',
+    secret_breeding: '/mut_icons/icon_recipe.webp',
+    breeding: '/buildings/breeding_center_1.png',
+    box: '/buildings/building_mystery.png',
+    bundle: '/mut_icons/donate.png',
+    crossover: '/mut_icons/limited.webp',
+  };
 
   let { open = false, mutant = null, star = 'normal', skins = [], onclose = undefined }: {
     open?: boolean;
@@ -758,6 +774,24 @@
         {/if}
       </div>
 
+      <!-- Способы получения -->
+      {#if mutant?.id && obtainData[mutant.id]?.length}
+        <details class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
+          <summary class="text-xs text-slate-300 cursor-pointer select-none list-none flex items-center justify-between">
+            <span class="row-icon"><img class="stat-icon" src={textureUrl('/cash/hardcurrency.webp')} alt="" aria-hidden="true" loading="lazy" decoding="async" />Как получить ({obtainData[mutant.id].length})</span>
+            <span class="details-chevron text-slate-400">▾</span>
+          </summary>
+          <div class="flex flex-col gap-1.5 mt-2">
+            {#each obtainData[mutant.id] as o}
+              <div class="flex items-center gap-2 text-[12px] text-slate-200">
+                <img class="w-4 h-4 shrink-0 object-contain" src={textureUrl(OBTAIN_ICON[o.type] ?? '/etc/icon_bingo.webp')} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                <span class="break-words">{o.where}</span>
+              </div>
+            {/each}
+          </div>
+        </details>
+      {/if}
+
       <!-- Misc -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 p-2 overflow-hidden">
         <div class="text-xs text-slate-300 mb-1">Прочее</div>
@@ -859,6 +893,9 @@
   .mut-dt { color: rgba(255,255,255,.6); }
   .mut-dd { color: rgba(255,255,255,.9); }
   .break-words { overflow-wrap: break-word; word-break: break-word; }
+  summary::-webkit-details-marker { display: none; }
+  .details-chevron { transition: transform 0.15s ease; }
+  details[open] .details-chevron { transform: rotate(180deg); }
 
   .gene-ico {
     position: relative;
