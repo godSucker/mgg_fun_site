@@ -789,7 +789,9 @@
           <div class="flex flex-col gap-1.5 mt-2">
             {#each obtainData[mutant.id] as o}
               <div class="flex items-center gap-2 text-[12px] text-slate-200">
-                <img class={`${o.type === 'box' || o.type === 'breeding' || o.type === 'breeding_duplicate' ? 'w-11 h-11' : 'w-7 h-7'} shrink-0 object-contain rounded`} src={textureUrl(o.icon ?? OBTAIN_ICON[o.type] ?? '/etc/icon_bingo.webp')} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                <span class="w-11 h-11 shrink-0 flex items-center justify-center">
+                  <img class={`${o.type === 'box' || o.type === 'breeding' || o.type === 'breeding_duplicate' ? 'w-11 h-11' : 'w-7 h-7'} object-contain rounded`} src={textureUrl(o.icon ?? OBTAIN_ICON[o.type] ?? '/etc/icon_bingo.webp')} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                </span>
                 <span class="break-words">{o.where}</span>
               </div>
             {/each}
