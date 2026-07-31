@@ -3,7 +3,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import sharp from 'sharp'
 
-const KOBOJO_IMG_BASE = 'https://s-ak.kobojo.com/mutants/assets/thumbnails/'
+const KOBOJO_IMG_BASE = 'https://s-beta.kobojo.com/mutants/assets/thumbnails/'
 const SKINS_DIR = path.join(process.cwd(), 'public/textures_by_skins/textures_by_skin/semi-full')
 const SKINS_JSON = path.join(process.cwd(), 'src/data/mutants/skins.json')
 // Не под scripts/.cache/ (тот в .gitignore целиком) - должен коммититься и

@@ -9,8 +9,8 @@ import { calculateFinalStats as calcFinalStatsUnified } from '../src/lib/stats/u
 
 const CONFIG = {
   LOC_RU_URL: 'https://s-beta.kobojo.com/mutants/gameconfig/localisation_ru.txt',
-  GAME_DEFS_URL: 'https://s-ak.kobojo.com/mutants/gameconfig/gamedefinitions.xml',
-  KOBOJO_IMG_BASE: 'https://s-ak.kobojo.com/mutants/assets/thumbnails/',
+  GAME_DEFS_URL: 'https://s-beta.kobojo.com/mutants/gameconfig/gamedefinitions.xml',
+  KOBOJO_IMG_BASE: 'https://s-beta.kobojo.com/mutants/assets/thumbnails/',
 
   DATA_DIR: path.join(process.cwd(), 'src/data/mutants'),
   TEXTURES_DIR: path.join(process.cwd(), 'public/textures_by_mutant'),

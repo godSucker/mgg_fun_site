@@ -36,6 +36,30 @@ jobs:
       - name: 3. Установка зависимостей
         run: npm ci
 
+      - name: 3.1 Авто-синк бинго-досок (morphology, s-beta)
+        # Независим от парсера мутантов - тянет content_mb.csv + все доски morphology
+        # с s-beta. Additive-only: новые доски (ни по title, ни по составу мутантов
+        # не совпавшие с существующими) добавляются целиком; для уже известных досок
+        # доливаются ТОЛЬКО плейсхолдер-слоты (мутант, которого нет в mutants.json -
+        # см. Specimen_FF_98 в 2026_events/mutants/skins), награды/columns/archived
+        # существующих досок не трогаются. См. scripts/sync-bingo.ts.
+        id: bingo-sync
+        run: npx tsx scripts/sync-bingo.ts
+
+      - name: 3.2 Сохранение изменений bingos.json
+        # always(): даже если сам синк упал на середине (сеть), хотим закоммитить то,
+        # что успело записаться (запись атомарная на файл целиком в конце скрипта,
+        # так что либо весь прогон применился, либо ничего).
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-Sync: бинго-доски (morphology)"
+          commit_user_name: "MGG Parser Bot"
+          commit_user_email: "bot@archivist-library.com"
+          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          branch: main
+          file_pattern: 'src/data/bingos.json'
+
       - name: 4. Запуск Парсера (Режим FULL)
         id: parser
         timeout-minutes: 25
@@ -58,6 +82,14 @@ jobs:
           commit_author: "MGG Parser Bot <bot@archivist-library.com>"
           branch: main
           file_pattern: 'scripts/missing-textures-cache.json'
+
+      - name: 4.06 Сторож "как получить" (obtain.json)
+        # Сверяет свежий mutants.json с obtain.json и флагает мутантов без записи -
+        # obtain.json НЕ трогается, это кураторские данные (см. 7 коммитов 2026-07-31
+        # с ручной калибровкой наследование vs реальный обтейн и т.п.). Гейт на успех
+        # парсера - без свежего mutants.json сверять не с чем.
+        if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
+        run: npx tsx scripts/detect-missing-obtain.ts
 
       - name: 4.1 Установка Python (рендер full-текстур)
         uses: actions/setup-python@v5
@@ -200,6 +232,14 @@ jobs:
             echo "ℹ️ **Статус:** Изменений не обнаружено" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f scripts/.cache/bingo-summary.md ]; then
+            cat scripts/.cache/bingo-summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f scripts/.cache/obtain-summary.md ]; then
+            cat scripts/.cache/obtain-summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
           if [ -f scripts/.cache/parser-summary.md ]; then
             cat scripts/.cache/parser-summary.md >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY

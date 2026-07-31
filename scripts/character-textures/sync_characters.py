@@ -42,7 +42,7 @@ sys.path.insert(0, HERE)
 import compositor as comp  # noqa: E402
 import frames as F         # noqa: E402
 
-CDN = "https://s-ak.kobojo.com/mutants"
+CDN = "https://s-beta.kobojo.com/mutants"
 SPRITES_URL = CDN + "/gameconfig/sprites.xml"
 GACHA_URL = CDN + "/gameconfig/gacha.xml"
 ATLAS_BASE = CDN + "/assets/character"
