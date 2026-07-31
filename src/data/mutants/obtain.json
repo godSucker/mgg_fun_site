@@ -55,11 +55,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -143,7 +138,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Тайная коробка «Закатный курорт (1 000 золота)",
+      "where": "Набор: Тайная коробка «Закатный курорт» (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -278,11 +273,6 @@
       "type": "bundle",
       "where": "Набор: Anniversary Box Mystery (5 000 000 серебра)",
       "icon": "/cash/softcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -432,26 +422,6 @@
     {
       "type": "bundle",
       "where": "Набор: Легендарный киберконтейнер (350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -641,31 +611,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -1504,11 +1449,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -1878,31 +1818,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -2106,26 +2021,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер «Мертвяк» (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -2806,37 +2701,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Комплект механика (2 999 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -2871,11 +2741,6 @@
     {
       "type": "bundle",
       "where": "Набор: Робот Марио (1 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Пакет «Щит» (1 699 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -3111,11 +2976,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Уникальное предложение (от $19.99)",
-      "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Уникальное предложение (от $9.99)",
       "icon": "/mut_icons/donate.png"
     },
@@ -3123,31 +2983,6 @@
       "type": "bundle",
       "where": "Набор: Уникальное предложение (от $99.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -3762,11 +3597,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Спецпредложение «Жукобот» (20 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -3945,26 +3775,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -4031,7 +3841,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -4237,31 +4047,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -4426,26 +4211,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -4587,26 +4352,6 @@
     {
       "type": "bundle",
       "where": "Набор: Платиновый Биоеж (2 500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -4783,26 +4528,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотая Бензиновая оса (1 700 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -5277,11 +5002,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Спецпредложение «Колосс» (25 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -5357,7 +5077,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -5582,41 +5302,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Пакет «Щит» (1 699 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой танковый пакет (2 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -5863,26 +5548,6 @@
     {
       "type": "bundle",
       "where": "Набор: Эффективный пакет (3 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -6336,7 +6001,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Тайная коробка «Закатный курорт (1 000 золота)",
+      "where": "Набор: Тайная коробка «Закатный курорт» (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -6562,7 +6227,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -6823,37 +6488,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -7088,42 +6728,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой молниеносный пакет (2 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -7731,7 +7341,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Тайная коробка «Закатный курорт (1 000 золота)",
+      "where": "Набор: Тайная коробка «Закатный курорт» (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -8297,36 +7907,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой танковый пакет (2 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -8560,26 +8140,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -8789,26 +8349,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -8971,26 +8511,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой Z-0 (2 200 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -9189,26 +8709,6 @@
       "type": "bundle",
       "where": "Набор: Бабайка (от $1.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -9808,11 +9308,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Спецпредложение «Король Лич» (40 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -10075,42 +9570,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Престижный пакет (от $49.99)",
-      "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Легендарный золотой контейнер (900 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -10300,31 +9765,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -11131,11 +10571,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Спецпредложение «Тёмный Лорд» (45 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -11340,26 +10775,6 @@
     {
       "type": "bundle",
       "where": "Набор: Предложение контейнеров (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -11643,26 +11058,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -11843,26 +11238,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -12026,16 +11401,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой Болотник (2 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -12558,11 +11923,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Спецпредложение «Драконежить» (50 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -12629,7 +11989,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -12813,26 +12173,6 @@
     {
       "type": "bundle",
       "where": "Набор: Легендарный киберконтейнер (600 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -13063,31 +12403,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -13291,26 +12606,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -13497,26 +12792,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер «Мертвяк» (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -14193,11 +13468,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Спецпредложение «Зомбонавт» (55 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -14267,7 +13537,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -14616,26 +13886,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -14825,26 +14075,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -14993,16 +14223,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер «Мертвяк» (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -15679,7 +14899,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -15980,37 +15200,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -16192,26 +15387,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -16347,26 +15522,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер «Мертвяк» (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -16907,11 +16062,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -17360,36 +16510,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Пакет «Икс-27» (от $19.99)",
-      "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -17629,26 +16749,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -17854,26 +16954,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -18035,16 +17115,6 @@
     {
       "type": "bundle",
       "where": "Набор: Серебряный Рокки Болтбоа (1 200 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -18757,37 +17827,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Эксклюзивный пакет (от $1.99)",
-      "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Рубакаконтейнер (350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Легендарный киберконтейнер (600 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -19057,36 +18102,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Пакет «Контратака» (2 099 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -19981,26 +18996,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -20209,31 +19204,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -21001,11 +19971,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -21081,7 +20046,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -21213,7 +20178,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Тайная коробка «Закатный курорт (1 000 золота)",
+      "where": "Набор: Тайная коробка «Закатный курорт» (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -21513,36 +20478,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой молниеносный пакет (2 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -21785,26 +20720,6 @@
     {
       "type": "bundle",
       "where": "Набор: Рубакаконтейнер (350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -22321,11 +21236,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -22402,7 +21312,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -22672,36 +21582,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет «Контратака» (2 099 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -22922,26 +21802,6 @@
     {
       "type": "bundle",
       "where": "Набор: Рубакаконтейнер (350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -23189,26 +22049,6 @@
     {
       "type": "bundle",
       "where": "Набор: Рубакаконтейнер (350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -24002,26 +22842,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -24033,11 +22853,6 @@
     {
       "type": "bundle",
       "where": "Набор: Пакет «Силы добра» (2 999 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -24271,37 +23086,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -24555,42 +23345,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Эксклюзивный пакет (от $19.99)",
-      "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -24809,26 +23569,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -24904,7 +23644,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Тайная коробка «Закатный курорт (1 000 золота)",
+      "where": "Набор: Тайная коробка «Закатный курорт» (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -25959,31 +24699,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -26213,26 +24928,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Комплект механика (2 999 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -26448,31 +25143,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -26630,26 +25300,6 @@
     {
       "type": "bundle",
       "where": "Набор: Пакет молниеносной скорости (3 000 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -27344,37 +25994,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Пакет «Силы зла» (2 999 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -27610,26 +26235,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер «Мертвяк» (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -28245,11 +26850,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -28321,7 +26921,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -28603,31 +27203,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -28857,26 +27432,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -29074,26 +27629,6 @@
       "type": "bundle",
       "where": "Набор: Бабка-волчанка (от $4.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -29962,26 +28497,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -30139,26 +28654,6 @@
     {
       "type": "bundle",
       "where": "Набор: Кернунн (1 300 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -30524,16 +29019,6 @@
     {
       "type": "bundle",
       "where": "Набор: Платиновый Шершеляшар (2 600 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -31009,11 +29494,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     }
@@ -31226,31 +29706,6 @@
     {
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -31610,31 +30065,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -31874,31 +30304,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -32109,16 +30514,6 @@
       "type": "bundle",
       "where": "Набор: Особый пакет на День благодарения (от $1.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -32605,11 +31000,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -32936,26 +31326,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -33153,26 +31523,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер (199 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -33406,37 +31756,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -33618,26 +31943,6 @@
       "type": "bundle",
       "where": "Набор: Specimen DF 07 rc (от $4.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -34144,11 +32449,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -34335,37 +32635,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -34493,11 +32768,6 @@
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -34741,26 +33011,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -34839,7 +33089,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -35070,26 +33320,6 @@
     {
       "type": "bundle",
       "where": "Набор: Усиленный контейнер (199 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -35354,31 +33584,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет «Контратака» (2 099 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -35589,26 +33794,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -35752,16 +33937,6 @@
       "type": "bundle",
       "where": "Набор: Пакет ветерана (от $49.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -36120,11 +34295,6 @@
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -36588,26 +34758,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -36838,37 +34988,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -37032,16 +35157,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
     },
@@ -37124,7 +35239,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Платиновая  Королева Сильвидра (3 000 золота)",
+      "where": "Набор: Платиновая Королева Сильвидра (3 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -37770,37 +35885,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -38105,37 +36195,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -38298,26 +36363,6 @@
       "type": "bundle",
       "where": "Набор: Инквизитор (от $1.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -38535,7 +36580,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Тайная коробка «Закатный курорт (1 000 золота)",
+      "where": "Набор: Тайная коробка «Закатный курорт» (1 000 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -38803,11 +36848,6 @@
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -39166,37 +37206,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -39413,26 +37428,6 @@
       "type": "bundle",
       "where": "Набор: Пакет ветерана «Инсектрон» (от $19.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -39663,26 +37658,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -39874,26 +37849,6 @@
     {
       "type": "bundle",
       "where": "Набор: Пакет Tеррор (2 200 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -40522,11 +38477,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     }
@@ -40882,37 +38832,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -41078,26 +39003,6 @@
     {
       "type": "bundle",
       "where": "Набор: Lucky Box Bingo 3 Old (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -41389,26 +39294,6 @@
       "type": "bundle",
       "where": "Набор: Серебряный Королева Раккти (11 900 000 серебра)",
       "icon": "/cash/softcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -42071,7 +39956,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -42338,31 +40223,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Предложение Евы (от $9.99)",
-      "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -42379,11 +40239,6 @@
     {
       "type": "bundle",
       "where": "Набор: Пакет «Силы зла» (2 999 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -42623,26 +40478,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -42654,11 +40489,6 @@
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -42867,26 +40697,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Галактический контейнер (500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -43038,26 +40848,6 @@
     {
       "type": "bundle",
       "where": "Набор: Пакет «Бдительность» (1 800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -43718,11 +41508,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -44051,26 +41836,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -44311,26 +42076,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -44509,21 +42254,6 @@
       "type": "bundle",
       "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Эксклюзивный пакет (от $99.99)",
-      "icon": "/mut_icons/donate.png"
     },
     {
       "type": "bundle",
@@ -45101,11 +42831,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -45160,7 +42885,7 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Пакет  «Созвездие» (6 500 золота)",
+      "where": "Набор: Пакет «Созвездие» (6 500 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -45389,37 +43114,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -45608,37 +43308,12 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -45838,26 +43513,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -46033,26 +43688,6 @@
     {
       "type": "bundle",
       "where": "Набор: Предложение контейнеров мификов (400 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -46728,11 +44363,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     }
@@ -46781,11 +44411,6 @@
       "type": "bundle",
       "where": "Набор: Капитан Мир (от $39)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -47091,16 +44716,6 @@
     {
       "type": "bundle",
       "where": "Набор: Предложение контейнеров (500 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -47778,26 +45393,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -47989,26 +45584,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -48180,26 +45755,6 @@
     {
       "type": "bundle",
       "where": "Набор: Предложение контейнеров мификов (400 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -48687,11 +46242,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     }
@@ -48950,26 +46500,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -49193,26 +46723,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -49224,11 +46734,6 @@
     {
       "type": "bundle",
       "where": "Набор: Пакет «Силы добра» (2 999 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-Молниеносный (800 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -49462,26 +46967,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -49629,16 +47114,6 @@
       "type": "bundle",
       "where": "Набор: Пакет ветерана «Король жуков» (от $19.99)",
       "icon": "/mut_icons/donate.png"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
     },
     {
       "type": "bundle",
@@ -50380,11 +47855,6 @@
       "icon": "/cash/hardcurrency.webp"
     },
     {
-      "type": "bundle",
-      "where": "Набор: Контейнер с мутантом-танком (800 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
       "type": "breeding",
       "where": "Скрещивание — можно вывести"
     },
@@ -50660,26 +48130,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -50896,26 +48346,6 @@
     },
     {
       "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
       "where": "Набор: Контейнер мификов (550 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
@@ -51077,26 +48507,6 @@
     {
       "type": "bundle",
       "where": "Набор: Предложение контейнеров мификов (400 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
@@ -51273,26 +48683,6 @@
     {
       "type": "bundle",
       "where": "Набор: Предложение контейнеров мификов (400 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Легендарный золотой контейнер (900 золота)",
-      "icon": "/cash/hardcurrency.webp"
-    },
-    {
-      "type": "bundle",
-      "where": "Набор: Золотой легендарный контейнер х2 (1 350 золота)",
       "icon": "/cash/hardcurrency.webp"
     },
     {
