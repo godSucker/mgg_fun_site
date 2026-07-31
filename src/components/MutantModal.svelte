@@ -39,6 +39,7 @@
     pvp: '/mut_icons/icon_pvp.webp',
     roulette: '/sims/roulette.webp',
     crossover: '/mut_icons/limited.webp',
+    unavailable: '/etc/icon_timer.webp',
   };
 
   let { open = false, mutant = null, star = 'normal', skins = [], onclose = undefined }: {

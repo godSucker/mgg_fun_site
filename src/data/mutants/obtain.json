@@ -2494,6 +2494,24 @@
       "where": "Ивент/рейд: dungeons"
     }
   ],
+  "specimen_ab_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
+  "specimen_ab_15": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
+  "specimen_ab_99": [
+    {
+      "type": "crossover",
+      "where": "Кроссовер — получить через игру Mutants: Genesis в Steam"
+    }
+  ],
   "specimen_ac_01": [
     {
       "type": "box",
@@ -5134,6 +5152,12 @@
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
     }
   ],
+  "specimen_ad_11": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
   "specimen_ad_12": [
     {
       "type": "gold_shop",
@@ -6435,6 +6459,12 @@
       "type": "bundle",
       "where": "Набор: easter26 mutants t1 (от $99.99)",
       "icon": "/mut_icons/donate.png"
+    }
+  ],
+  "specimen_ae_99": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_af_01": [
@@ -9749,6 +9779,12 @@
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
     }
   ],
+  "specimen_ba_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
   "specimen_bb_01": [
     {
       "type": "box",
@@ -12497,6 +12533,12 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_bc_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_bd_01": [
@@ -18392,6 +18434,12 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_ca_13": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_ca_14": [
@@ -28170,7 +28218,13 @@
     },
     {
       "type": "crossover",
-      "where": "Кроссовер — прогресс до локации Asyrith Mines в Celsius Heroes (Celsius Online)"
+      "where": "Кроссовер — прогресс до локации Asyrith Mines в Celsius Heroes (Celsius Online), уже не получить"
+    }
+  ],
+  "specimen_db_12": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_db_13": [
@@ -28200,6 +28254,12 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_db_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_dc_01": [
@@ -29592,6 +29652,12 @@
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
     }
   ],
+  "specimen_dc_12": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
   "specimen_dc_13": [
     {
       "type": "gold_shop",
@@ -29619,6 +29685,12 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_dc_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_dd_01": [
@@ -30957,6 +31029,12 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_dd_15": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_de_01": [
@@ -33941,7 +34019,7 @@
     },
     {
       "type": "crossover",
-      "where": "Кроссовер — награда за 23 уровень в Primal Legends"
+      "where": "Кроссовер — награда за 23 уровень в Primal Legends, уже не получить"
     }
   ],
   "specimen_df_11": [
@@ -35959,6 +36037,12 @@
       "type": "bundle",
       "where": "Набор: Суперпакет «Юбилейная» (3 500 золота)",
       "icon": "/cash/hardcurrency.webp"
+    }
+  ],
+  "specimen_ea_11": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_ea_12": [
@@ -41903,6 +41987,12 @@
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
     }
   ],
+  "specimen_ee_12": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
   "specimen_ee_13": [
     {
       "type": "gold_shop",
@@ -43449,6 +43539,12 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_ef_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_ef_99": [
@@ -47474,7 +47570,7 @@
     },
     {
       "type": "crossover",
-      "where": "Кроссовер — победа над боссом Нимродом на стадии Babel Tower в Celsius Heroes (Celsius Online)"
+      "where": "Кроссовер — победа над боссом Нимродом на стадии Babel Tower в Celsius Heroes (Celsius Online), уже не получить"
     }
   ],
   "specimen_fd_01": [
@@ -48636,6 +48732,18 @@
     {
       "type": "breeding",
       "where": "Скрещивание — можно вывести, ТОЛЬКО если один из родителей уже этот мутант (наследование)"
+    }
+  ],
+  "specimen_fd_13": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
+    }
+  ],
+  "specimen_fd_14": [
+    {
+      "type": "unavailable",
+      "where": "Уже не получить"
     }
   ],
   "specimen_fe_01": [
