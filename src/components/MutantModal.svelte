@@ -35,6 +35,8 @@
     breeding: '/buildings/breeding_center_1.png',
     box: '/buildings/building_mystery.png',
     bundle: '/mut_icons/donate.png',
+    event_raid: '/etc/icon_atk.webp',
+    pvp: '/mut_icons/icon_pvp.webp',
     crossover: '/mut_icons/limited.webp',
   };
 
