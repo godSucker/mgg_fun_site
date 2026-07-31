@@ -199,6 +199,26 @@ const categories = ['Все', ...new Set(boxes.map((b) => b.category).filter(Boo
 
   .empty-state { text-align: center; color: #64748b; padding: 2rem 0; }
 
+  /* Крупные экраны (FHD+) - без этого сетка просто плодит те же 150px-карточки
+     в 10+ колонок, всё выглядит мелко. Раздвигаем сами карточки, не только
+     их количество в ряд. */
+  @media (min-width: 1440px) {
+    .box-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.1rem; }
+    .box-card-frame { width: 92px; height: 92px; }
+    .box-card-icon { width: 68px; height: 68px; }
+    .box-card-name { font-size: 14px; }
+    .box-card-cat { font-size: 11px; }
+    .box-card-count { font-size: 11.5px; }
+  }
+  @media (min-width: 1921px) {
+    .box-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.4rem; }
+    .box-card-frame { width: 112px; height: 112px; }
+    .box-card-icon { width: 84px; height: 84px; }
+    .box-card-name { font-size: 16px; }
+    .box-card-cat { font-size: 12.5px; }
+    .box-card-count { font-size: 13px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .box-card { transition: none; }
   }

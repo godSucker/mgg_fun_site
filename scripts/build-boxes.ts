@@ -234,14 +234,39 @@ async function main() {
     boxes.push(box)
   }
 
-  boxes.sort((a, b) => b.mutants.length - a.mutants.length)
-  await fs.writeFile(OUT_PATH, JSON.stringify(boxes, null, 2) + '\n', 'utf-8')
+  // Игра часто выставляет один и тот же продукт под несколькими itemId одновременно
+  // (напр. базовый "LuckyBox_Cyber" + триггерные обёртки "#levelUp-N-LuckyBox_Cyber"
+  // для попапов) - с точки зрения игрока это один и тот же бокс с одинаковым
+  // содержимым. Схлопываем по полной сигнатуре (иконка+мутанты+награды), а не
+  // только по названию - разные боксы с совпадающим названием (см.
+  // boxes-page-shopitems-pipeline память) остаются раздельными карточками.
+  const boxSignature = (b: BoxEntry) =>
+    [
+      b.icon ?? '',
+      ...b.mutants.map((m) => `${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`).sort(),
+      ...b.rewards.map((r) => `${r.type}|${r.name}|${r.amount}`).sort(),
+    ].join('\n')
 
-  const withMutants = boxes.filter((b) => b.mutants.length > 0).length
-  const resourceOnly = boxes.filter((b) => b.mutants.length === 0).length
-  const withoutIcon = boxes.filter((b) => !b.icon).length
+  const bySignature = new Map<string, BoxEntry>()
+  for (const box of boxes) {
+    const sig = boxSignature(box)
+    const existing = bySignature.get(sig)
+    // Предпочитаем "чистый" itemId (не #trigger-обёртку) как каноничный.
+    if (!existing || (existing.itemId.startsWith('#') && !box.itemId.startsWith('#'))) {
+      bySignature.set(sig, box)
+    }
+  }
+  const dedupedBoxes = [...bySignature.values()]
+  const duplicatesRemoved = boxes.length - dedupedBoxes.length
+  dedupedBoxes.sort((a, b) => b.mutants.length - a.mutants.length)
+
+  await fs.writeFile(OUT_PATH, JSON.stringify(dedupedBoxes, null, 2) + '\n', 'utf-8')
+
+  const withMutants = dedupedBoxes.filter((b) => b.mutants.length > 0).length
+  const resourceOnly = dedupedBoxes.filter((b) => b.mutants.length === 0).length
+  const withoutIcon = dedupedBoxes.filter((b) => !b.icon).length
   console.log(
-    `[BOXES] ${boxes.length} боксов (${withMutants} с мутантами, ${resourceOnly} чисто ресурсных)`,
+    `[BOXES] ${dedupedBoxes.length} боксов (${withMutants} с мутантами, ${resourceOnly} чисто ресурсных, ${duplicatesRemoved} дублей схлопнуто)`,
   )
   console.log(`[BOXES] Иконок докачано: ${downloaded}, без иконки: ${withoutIcon}`)
 }
