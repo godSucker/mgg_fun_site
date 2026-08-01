@@ -1,0 +1,448 @@
+[
+  {
+    "id": "season_jungle_bells_1",
+    "name": "Jungle Bells 1",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_AB_09",
+    "mutantAtMap": "9",
+    "categories": [
+      "материалы/жетоны"
+    ]
+  },
+  {
+    "id": "season_jungle_bells_2",
+    "name": "Jungle Bells 2",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_DA_11",
+    "mutantAtMap": "9",
+    "categories": [
+      "материалы/жетоны"
+    ]
+  },
+  {
+    "id": "season_jungle_bells_3",
+    "name": "Jungle Bells 3",
+    "nameAuthored": false,
+    "mapCount": 5,
+    "mutantId": "Specimen_AD_10",
+    "mutantAtMap": "4",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "season_anniversary_18_1",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_AF_99",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_18_2",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EB_99",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_18_3",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_BB_09",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_18_4",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FA_99",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_18_5",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CA_10",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_18_6",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EF_99",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_jungle",
+    "name": "Амазонка",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EF_07",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_ice",
+    "name": "Антарктика",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CA_06",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_vegas",
+    "name": "Вегас",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_ED_09",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_olympus",
+    "name": "Гора Олимп",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_BE_06",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_rome",
+    "name": "Колизей",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FC_08",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_rome_hardcore",
+    "name": "Колизей",
+    "nameAuthored": false,
+    "mapCount": 5,
+    "mutantId": "Specimen_EE_10",
+    "mutantAtMap": "4",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "season_space",
+    "name": "Космопорт",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FE_08",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_halloween",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CD_03",
+    "mutantAtMap": "3",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны"
+    ]
+  },
+  {
+    "id": "season_anniversary_1",
+    "name": "Кризис",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FA_99",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "season_anniversary_2",
+    "name": "Кризис",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FC_02",
+    "mutantAtMap": "8",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_3",
+    "name": "Кризис",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EB_99",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "season_moon",
+    "name": "Луна",
+    "nameAuthored": false,
+    "mapCount": 5,
+    "mutantId": "Specimen_BB_07",
+    "mutantAtMap": "4",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "season_mars",
+    "name": "Марс",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_DF_07",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_miami",
+    "name": "Пляжные бои Майами",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FD_06",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_rapanui",
+    "name": "Рапа-Нуи",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FE_06",
+    "mutantAtMap": "9",
+    "categories": [
+      "амулеты",
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_gotham",
+    "name": "Темный город",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CE_06",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_japan",
+    "name": "Япония",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FF_05",
+    "mutantAtMap": "9",
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_anniversary_19_1",
+    "name": "Aftermath",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "материалы/жетоны"
+    ]
+  },
+  {
+    "id": "season_anniversary_19_2",
+    "name": "Aftermath",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "материалы/жетоны"
+    ]
+  },
+  {
+    "id": "season_anniversary_19_3",
+    "name": "Aftermath",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "материалы/жетоны"
+    ]
+  },
+  {
+    "id": "season_xmas_19",
+    "name": "Jungle Bells",
+    "nameAuthored": false,
+    "mapCount": 30,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_halloween_1",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 8,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "season_halloween_19",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 20,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы",
+      "хабитаты(здания)"
+    ]
+  },
+  {
+    "id": "season_halloween_2",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 8,
+    "mutantId": null,
+    "mutantAtMap": null,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны"
+    ]
+  }
+]

@@ -25,6 +25,24 @@
     enemies: MutantLite[]
   }
   interface Division { id: string; name: string; recommendation: string; maps: DivisionMap[] }
+  interface DungeonEntry {
+    id: string
+    name: string
+    nameAuthored: boolean
+    mutant: MutantLite | null
+    fightCount: number
+    bossCount: number
+    categories: string[]
+  }
+  interface EventLadderEntry {
+    id: string
+    name: string
+    mapCount: number
+    mutant: MutantLite | null
+    mutantAtMap: string | null
+    categories: string[]
+  }
+  interface SpecialLadders { experiment: DungeonEntry[]; challenge: DungeonEntry[] }
 
   let {
     legendaries = [],
@@ -32,12 +50,18 @@
     farmers = [],
     speedOrbs = [],
     divisions = [],
+    raids = [],
+    eventLadders = [],
+    specialLadders = { experiment: [], challenge: [] },
   }: {
     legendaries: MutantLite[]
     zodiac: ZodiacEntry[]
     farmers: FarmerRow[]
     speedOrbs: SpeedOrbRow[]
     divisions: Division[]
+    raids: DungeonEntry[]
+    eventLadders: EventLadderEntry[]
+    specialLadders: SpecialLadders
   } = $props()
 
   let activeDivision = $state(0)
@@ -53,9 +77,9 @@
     { key: 'quests', label: 'Квесты', ready: false },
     { key: 'farmers', label: 'Фармеры серебра', ready: true },
     { key: 'divisions', label: 'Дивизионы', ready: true },
-    { key: 'event-ladders', label: 'Ивенты-лесенки', ready: false },
-    { key: 'special-ladders', label: 'Ивентовые лесенки', ready: false },
-    { key: 'raids', label: 'Рейды', ready: false },
+    { key: 'event-ladders', label: 'Ивенты-лесенки', ready: true },
+    { key: 'special-ladders', label: 'Ивентовые лесенки', ready: true },
+    { key: 'raids', label: 'Рейды', ready: true },
     { key: 'pvp-seasons', label: 'ПВП-сезоны', ready: false },
   ]
 
@@ -80,6 +104,12 @@
   function fmtPct(n: number): string {
     return n.toFixed(1).replace('.', ',')
   }
+
+  function fmtCats(cats: string[]): string {
+    return cats.length ? cats.join(', ') : '—'
+  }
+
+  let activeSpecialSection = $state<'experiment' | 'challenge'>('experiment')
 </script>
 
 <div class="tab-bar" role="tablist">
@@ -354,6 +384,134 @@
         {/each}
       </div>
     {/if}
+  {:else if activeTab === 'raids'}
+    <div class="text-block">
+      <p>
+        Рейды (внутриигровая категория «Рейд») — самые долгие забеги в игре (200–300 боёв), но зато каждый
+        ГАРАНТИРОВАННО даёт уникального мутанта на одном из боссов по пути. У части рейдов в игре нет отдельного
+        текстового названия — такие названия придуманы нами по тематике арта и помечены курсивом.
+      </p>
+    </div>
+    <div class="farmers-table-wrap">
+      <table class="farmers-table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Мутант-награда</th>
+            <th>Боёв / боссов</th>
+            <th>Прочие награды</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each raids as r (r.id)}
+            <tr>
+              <td class:authored-name={r.nameAuthored}>{r.name}</td>
+              <td>
+                {#if r.mutant}
+                  <button class="farmer-chip" onclick={() => openMutant(r.mutant.id)}>
+                    {#if r.mutant.icon}<img src={textureUrl(r.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                    <span>{r.mutant.name}</span>
+                  </button>
+                {:else}
+                  —
+                {/if}
+              </td>
+              <td class="num">{r.fightCount} / {r.bossCount}</td>
+              <td class="verdict-cell">{fmtCats(r.categories)}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  {:else if activeTab === 'event-ladders'}
+    <div class="text-block">
+      <p>
+        Ивенты-лесенки (внутриигровая категория pve-event) — сезонные забеги по нескольким картам с растущей
+        сложностью. Почти все дают уникального мутанта за прохождение одной из карт (не обязательно последней).
+      </p>
+    </div>
+    <div class="farmers-table-wrap">
+      <table class="farmers-table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Карт</th>
+            <th>Мутант-награда</th>
+            <th>Прочие награды</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each eventLadders as e (e.id)}
+            <tr>
+              <td>{e.name}</td>
+              <td class="num">{e.mapCount}</td>
+              <td>
+                {#if e.mutant}
+                  <button class="farmer-chip" onclick={() => openMutant(e.mutant.id)}>
+                    {#if e.mutant.icon}<img src={textureUrl(e.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                    <span>{e.mutant.name}</span>
+                  </button>
+                  <span class="pct">(карта №{Number(e.mutantAtMap) + 1})</span>
+                {:else}
+                  —
+                {/if}
+              </td>
+              <td class="verdict-cell">{fmtCats(e.categories)}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  {:else if activeTab === 'special-ladders'}
+    <div class="text-block">
+      <p>
+        Ивентовые лесенки (внутриигровая категория «Эксперимент») — доп. хардкорные забеги (100–150 боёв) на тему тех
+        же ивентов, что и обычные лесенки. Только часть из них (гейт по гену, «Ямы») даёт уникального мутанта, у
+        остальных — чистый фарм жетонов/орб/звёзд. Отдельно показаны «Испытания» — короткие мини-забеги, которые
+        мутанта не дают никогда.
+      </p>
+    </div>
+    <div class="division-switcher">
+      <button class="division-btn" class:active={activeSpecialSection === 'experiment'} onclick={() => (activeSpecialSection = 'experiment')}>
+        Эксперименты ({specialLadders.experiment.length})
+      </button>
+      <button class="division-btn" class:active={activeSpecialSection === 'challenge'} onclick={() => (activeSpecialSection = 'challenge')}>
+        Испытания, без мутантов ({specialLadders.challenge.length})
+      </button>
+    </div>
+    <div class="farmers-table-wrap">
+      <table class="farmers-table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            {#if activeSpecialSection === 'experiment'}<th>Мутант-награда</th>{/if}
+            <th>Боёв / боссов</th>
+            <th>Прочие награды</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each specialLadders[activeSpecialSection] as d (d.id)}
+            <tr>
+              <td class:authored-name={d.nameAuthored}>{d.name}</td>
+              {#if activeSpecialSection === 'experiment'}
+                <td>
+                  {#if d.mutant}
+                    <button class="farmer-chip" onclick={() => openMutant(d.mutant.id)}>
+                      {#if d.mutant.icon}<img src={textureUrl(d.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                      <span>{d.mutant.name}</span>
+                    </button>
+                  {:else}
+                    —
+                  {/if}
+                </td>
+              {/if}
+              <td class="num">{d.fightCount} / {d.bossCount}</td>
+              <td class="verdict-cell">{fmtCats(d.categories)}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
   {:else}
     <div class="soon-block">
       <p>Этот раздел ещё в разработке — данные вытаскиваются из игры.</p>
@@ -415,6 +573,7 @@
   .verdict-cell { min-width: 260px; font-size: 0.76rem; color: #94a3b8; line-height: 1.4; }
   .breedable-yes { color: #86efac; font-weight: 600; white-space: nowrap; }
   .breedable-no { color: #fca5a5; font-weight: 600; white-space: nowrap; }
+  .authored-name { font-style: italic; }
 
   .speed-table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; max-height: 640px; overflow-y: auto; }
   .speed-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; min-width: 560px; }

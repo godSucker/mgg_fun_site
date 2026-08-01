@@ -8,6 +8,9 @@ import farmerRows from '../data/guides/farmers.json';
 import speedOrbs from '../data/guides/speed-orbs.json';
 import divisionsData from '../data/guides/divisions.json';
 import divisionLocations from '../data/guides/division-locations.json';
+import raidsData from '../data/guides/raids.json';
+import eventLaddersData from '../data/guides/event-ladders.json';
+import specialLaddersData from '../data/guides/special-ladders.json';
 import materialsData from '../data/materials/material.json';
 import orbsData from '../data/materials/orbs.json';
 import charmsData from '../data/materials/charms.json';
@@ -136,6 +139,38 @@ const divisions = (divisionsData as DivisionRaw[]).map((camp) => ({
     };
   }),
 }));
+
+interface DungeonRaw { id: string; name: string; nameAuthored: boolean; mutantId: string | null; fightCount: number; bossCount: number; categories: string[] }
+interface EventLadderRaw { id: string; name: string; mapCount: number; mutantId: string | null; mutantAtMap: string | null; categories: string[] }
+
+function resolveDungeon(d: DungeonRaw) {
+  return {
+    id: d.id,
+    name: d.name,
+    nameAuthored: d.nameAuthored,
+    mutant: d.mutantId ? resolve(d.mutantId.toLowerCase()) : null,
+    fightCount: d.fightCount,
+    bossCount: d.bossCount,
+    categories: d.categories,
+  };
+}
+
+const raids = (raidsData as DungeonRaw[]).map(resolveDungeon);
+
+const eventLadders = (eventLaddersData as EventLadderRaw[]).map((e) => ({
+  id: e.id,
+  name: e.name,
+  mapCount: e.mapCount,
+  mutant: e.mutantId ? resolve(e.mutantId.toLowerCase()) : null,
+  mutantAtMap: e.mutantAtMap,
+  categories: e.categories,
+}));
+
+const specialLaddersRaw = specialLaddersData as { experiment: DungeonRaw[]; challenge: DungeonRaw[] };
+const specialLadders = {
+  experiment: specialLaddersRaw.experiment.map(resolveDungeon),
+  challenge: specialLaddersRaw.challenge.map(resolveDungeon),
+};
 ---
 
 <BaseLayout
@@ -148,7 +183,17 @@ const divisions = (divisionsData as DivisionRaw[]).map((camp) => ({
     <p>Гайды и справочники по игровым механикам, собранные сообществом.</p>
   </section>
 
-  <GuidesBrowser client:load legendaries={legendaries} zodiac={zodiac} farmers={farmers} speedOrbs={speedOrbs} divisions={divisions} />
+  <GuidesBrowser
+    client:load
+    legendaries={legendaries}
+    zodiac={zodiac}
+    farmers={farmers}
+    speedOrbs={speedOrbs}
+    divisions={divisions}
+    raids={raids}
+    eventLadders={eventLadders}
+    specialLadders={specialLadders}
+  />
   <BingoMutantModal client:load />
 </BaseLayout>
 

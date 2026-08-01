@@ -1,0 +1,1042 @@
+{
+  "experiment": [
+    {
+      "id": "hellfire_13",
+      "name": "Адское пламя",
+      "nameAuthored": true,
+      "mutantId": "Specimen_FC_10",
+      "fightCount": 66,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "hyperborea_13",
+      "name": "Гиперборея",
+      "nameAuthored": true,
+      "mutantId": "Specimen_FB_10",
+      "fightCount": 60,
+      "bossCount": 6,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "celestial_12",
+      "name": "Небесное тело",
+      "nameAuthored": true,
+      "mutantId": "Specimen_FA_11",
+      "fightCount": 50,
+      "bossCount": 9,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "neon_14",
+      "name": "Неон",
+      "nameAuthored": true,
+      "mutantId": "Specimen_DA_11",
+      "fightCount": 52,
+      "bossCount": 2,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "starter",
+      "name": "Первый эксперимент",
+      "nameAuthored": true,
+      "mutantId": "Specimen_EB_11",
+      "fightCount": 51,
+      "bossCount": 3,
+      "categories": [
+        "амулеты",
+        "материалы/жетоны",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "pit_galactic_11",
+      "name": "Яма: Галактик",
+      "nameAuthored": true,
+      "mutantId": "Specimen_BE_10",
+      "fightCount": 45,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "pit_zoo_12",
+      "name": "Яма: Зверь",
+      "nameAuthored": true,
+      "mutantId": "Specimen_CD_10",
+      "fightCount": 45,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "pit_cyber_12",
+      "name": "Яма: Киборг",
+      "nameAuthored": true,
+      "mutantId": "Specimen_FA_10",
+      "fightCount": 45,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "pit_mystic_12",
+      "name": "Яма: Мифик",
+      "nameAuthored": true,
+      "mutantId": "Specimen_CF_10",
+      "fightCount": 45,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "pit_necro_12",
+      "name": "Яма: Нежить",
+      "nameAuthored": true,
+      "mutantId": "Specimen_BB_10",
+      "fightCount": 45,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "pit_saber_11",
+      "name": "Яма: Рубака",
+      "nameAuthored": true,
+      "mutantId": "Specimen_BC_10",
+      "fightCount": 45,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas20_1",
+      "name": "Jungle Bells 1",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 80,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas21_1",
+      "name": "Jungle Bells 1",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 3,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas20_2",
+      "name": "Jungle Bells 2",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 80,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas21_2",
+      "name": "Jungle Bells 2",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas20_3",
+      "name": "Jungle Bells 3",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 80,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "hexcity_1",
+      "name": "Гекс-Сити",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 12,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "valentines",
+      "name": "День всех влюблённых",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "valentines23",
+      "name": "День всех влюблённых 2023",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "valentines24",
+      "name": "День всех влюблённых 2024",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "valentines25",
+      "name": "День всех влюблённых 2025",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 12,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "valentines26",
+      "name": "День всех влюблённых 2026",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 18,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "god",
+      "name": "Играя в Бога",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 16,
+      "bossCount": 21,
+      "categories": []
+    },
+    {
+      "id": "toyz",
+      "name": "Игрушки",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 15,
+      "bossCount": 1,
+      "categories": []
+    },
+    {
+      "id": "halloween24",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 12,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "halloween23",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "halloween22",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "halloween20",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 3,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "easter21",
+      "name": "Пасха 2021",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "easter22",
+      "name": "Пасха 2022",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 12,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "easter23",
+      "name": "Пасха 2023",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "easter24",
+      "name": "Пасха 2024",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 11,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "easter25",
+      "name": "Пасха 2025",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 12,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "easter26",
+      "name": "Пасха 2026",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 14,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas22_1",
+      "name": "Рождество 2022 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas22_2",
+      "name": "Рождество 2022 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas23_1",
+      "name": "Рождество 2023 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas23_2",
+      "name": "Рождество 2023 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 6,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas24_1",
+      "name": "Рождество 2024 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 12,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas24_2",
+      "name": "Рождество 2024 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 15,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas25_1",
+      "name": "Рождество 2025 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 11,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "xmas25_2",
+      "name": "Рождество 2025 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 18,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "weirdtech",
+      "name": "Странные технологии",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "halloween21",
+      "name": "Хэллоуин 2021",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "halloween25",
+      "name": "Хэллоуин 2025",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 37,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_20_1",
+      "name": "Юбилей 2020 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 3,
+      "categories": [
+        "амулеты",
+        "звёзды",
+        "материалы/жетоны",
+        "орбы",
+        "хабитаты(здания)"
+      ]
+    },
+    {
+      "id": "anniversary_20_2",
+      "name": "Юбилей 2020 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 3,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_21_1",
+      "name": "Юбилей 2021 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_21_2",
+      "name": "Юбилей 2021 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 10,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_22_1",
+      "name": "Юбилей 2022 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_22_2",
+      "name": "Юбилей 2022 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 121,
+      "bossCount": 5,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_23_1",
+      "name": "Юбилей 2023 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 100,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_23_2",
+      "name": "Юбилей 2023 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 4,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_23_3",
+      "name": "Юбилей 2023 №3",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 140,
+      "bossCount": 6,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_24_1",
+      "name": "Юбилей 2024 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 13,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_24_2",
+      "name": "Юбилей 2024 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 21,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_25_1",
+      "name": "Юбилей 2025 №1",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 120,
+      "bossCount": 14,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "anniversary_25_2",
+      "name": "Юбилей 2025 №2",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 20,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    }
+  ],
+  "challenge": [
+    {
+      "id": "jungle_bells_1",
+      "name": "Jungle Bells 1",
+      "nameAuthored": false,
+      "fightCount": 50,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "jungle_bells_2",
+      "name": "Jungle Bells 2",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "jungle_bells_3",
+      "name": "Jungle Bells 3",
+      "nameAuthored": false,
+      "fightCount": 50,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "jungle_16",
+      "name": "Амазонка",
+      "nameAuthored": false,
+      "fightCount": 101,
+      "bossCount": 1,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны"
+      ]
+    },
+    {
+      "id": "ice_16",
+      "name": "Антарктика",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "galacless",
+      "name": "Без Галактиков",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "zooless",
+      "name": "Без Зверей",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "cyberless",
+      "name": "Без Киборгов",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "mysticless",
+      "name": "Без Мификов",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "necroless",
+      "name": "Без Нежити",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "saberless",
+      "name": "Без Рубак",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "vegas_16",
+      "name": "Вегас",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "olympus_16",
+      "name": "Гора Олимп",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "амулеты",
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "rome_16",
+      "name": "Колизей",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "rome_hardcore",
+      "name": "Колизей",
+      "nameAuthored": false,
+      "fightCount": 50,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "space_16",
+      "name": "Космопорт",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "амулеты",
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "halloween",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "halloween_1",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "halloween_2",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "moon_3",
+      "name": "Луна",
+      "nameAuthored": false,
+      "fightCount": 50,
+      "bossCount": 0,
+      "categories": [
+        "материалы/жетоны"
+      ]
+    },
+    {
+      "id": "mars_16",
+      "name": "Марс",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "амулеты",
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "miami_16",
+      "name": "Пляжные бои Майами",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "rapanui_16",
+      "name": "Рапа-Нуи",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "амулеты",
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "gotham_16",
+      "name": "Темный город",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "амулеты",
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    },
+    {
+      "id": "triangle_abc",
+      "name": "Треугольник A-B-C",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "triangle_def",
+      "name": "Треугольник D-E-F",
+      "nameAuthored": true,
+      "fightCount": 15,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "halloween2018_1",
+      "name": "Хэллоуин 2018 (I)",
+      "nameAuthored": true,
+      "fightCount": 80,
+      "bossCount": 1,
+      "categories": [
+        "материалы/жетоны"
+      ]
+    },
+    {
+      "id": "halloween2018_2",
+      "name": "Хэллоуин 2018 (II)",
+      "nameAuthored": true,
+      "fightCount": 80,
+      "bossCount": 1,
+      "categories": [
+        "материалы/жетоны"
+      ]
+    },
+    {
+      "id": "japan_16",
+      "name": "Япония",
+      "nameAuthored": false,
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": [
+        "звёзды",
+        "материалы/жетоны",
+        "орбы"
+      ]
+    }
+  ]
+}

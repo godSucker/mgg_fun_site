@@ -1,0 +1,210 @@
+[
+  {
+    "id": "architecture",
+    "name": "Архитектура",
+    "nameAuthored": true,
+    "mutantId": "Specimen_AB_13",
+    "fightCount": 300,
+    "bossCount": 17,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "asteroids",
+    "name": "Астероиды",
+    "nameAuthored": true,
+    "mutantId": "Specimen_E_13",
+    "fightCount": 300,
+    "bossCount": 16,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "abyss",
+    "name": "Бездна",
+    "nameAuthored": true,
+    "mutantId": "Specimen_EA_15",
+    "fightCount": 300,
+    "bossCount": 16,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "insanity_2",
+    "name": "Безумие II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_EF_12",
+    "fightCount": 200,
+    "bossCount": 3,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "library_2",
+    "name": "Библиотека II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_FF_12",
+    "fightCount": 300,
+    "bossCount": 13,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "verne_2",
+    "name": "Верн II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_AC_12",
+    "fightCount": 201,
+    "bossCount": 10,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "everlastingsands",
+    "name": "Вечные пески",
+    "nameAuthored": true,
+    "mutantId": "Specimen_CE_13",
+    "fightCount": 300,
+    "bossCount": 16,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "dumas_2",
+    "name": "Дюма II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_C_13",
+    "fightCount": 300,
+    "bossCount": 20,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "inferno_2",
+    "name": "Инферно II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_FB_12",
+    "fightCount": 200,
+    "bossCount": 28,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "kalevala_2",
+    "name": "Калевала II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_F_13",
+    "fightCount": 300,
+    "bossCount": 15,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "cryptid_2",
+    "name": "Криптид II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_D_13",
+    "fightCount": 300,
+    "bossCount": 25,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "mafia",
+    "name": "Мафия",
+    "nameAuthored": true,
+    "mutantId": "Specimen_CD_14",
+    "fightCount": 300,
+    "bossCount": 17,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "musashi_2",
+    "name": "Мусаси II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_CF_12",
+    "fightCount": 200,
+    "bossCount": 6,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "unliving_2",
+    "name": "Немертвые II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_B_13",
+    "fightCount": 300,
+    "bossCount": 12,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "pirates",
+    "name": "Пираты",
+    "nameAuthored": true,
+    "mutantId": "Specimen_CB_14",
+    "fightCount": 300,
+    "bossCount": 16,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  },
+  {
+    "id": "factory_2",
+    "name": "Фабрика II",
+    "nameAuthored": true,
+    "mutantId": "Specimen_A_13",
+    "fightCount": 300,
+    "bossCount": 11,
+    "categories": [
+      "звёзды",
+      "материалы/жетоны",
+      "орбы"
+    ]
+  }
+]
