@@ -6,11 +6,14 @@
 //   - hp: пишет lvl1.hp (raw), lvl30.hp линейно = lvl1.hp * 3.9 (формула
 //     unified-calculator.ts, levelScale(30)/levelScale(1) = 3.9/1.0) - точная реконструкция.
 //   - speed: единственный показатель без разбивки на уровни - точная реконструкция.
-//   - atk1/atk2: трекер пишет ТОЛЬКО atk*p_base (эффективный lvl30-рейт),
-//     обычный atk*_base (используется при level<10/15, т.е. для lvl1) никогда
-//     не сравнивается и не восстановим. lvl1-топы по атаке/абилкам для прошлых
-//     дат физически недоступны - соответствующие массивы остаются пустыми,
-//     UI должен показать "нет данных для этой даты", а не молчать неточными числами.
+//   - atk1/atk2: трекер пишет СЫРОЙ atk*p_base (эффективный lvl30-рейт, БЕЗ
+//     масштаба уровня) - при реконструкции его нужно домножить на 3.9
+//     (levelScale(30), та же константа что у HP), иначе получится значение
+//     уровня как будто это уровень 1. Обычный atk*_base (используется при
+//     level<10/15, т.е. для lvl1) никогда не сравнивается и не восстановим.
+//     lvl1-топы по атаке/абилкам для прошлых дат физически недоступны -
+//     соответствующие массивы остаются пустыми, UI должен показать "нет
+//     данных для этой даты", а не молчать неточными числами.
 //   - abilities atk1/atk2: та же история, значение в rebalance-history уже
 //     равно value_atk1_lvl30 (проверено на реальных цифрах). pct - отдельный
 //     трекнутый показатель, не зависит от уровня.
@@ -158,8 +161,13 @@ function buildSnapshot(id: string, label: string, mutants: Mutant[], run: Rebala
     const hpLvl1Raw = hpChange?.old ?? m.base_stats.lvl1.hp
     const hpLvl30Raw = run ? hpLvl1Raw * 3.9 : m.base_stats.lvl30.hp
     const speedRaw = speedChange?.old ?? m.base_stats.lvl1.speed
-    const atk1Lvl30Raw = atk1Change?.old ?? m.base_stats.lvl30.atk1
-    const atk2Lvl30Raw = atk2Change?.old ?? m.base_stats.lvl30.atk2
+    // ВАЖНО: rebalance-history хранит СЫРОЙ atk1p_base/atk2p_base (без масштаба
+    // уровня), а m.base_stats.lvl30.atk1/atk2 - уже готовое значение НА 30
+    // уровне (raw * levelScale(30), levelScale(30) = 3.9 - та же константа,
+    // что и для HP). Забыть умножить на 3.9 здесь = "до ребаланса" тихо
+    // показывает атаку как будто на 1 уровне при выбранном 30-м.
+    const atk1Lvl30Raw = atk1Change ? atk1Change.old! * 3.9 : m.base_stats.lvl30.atk1
+    const atk2Lvl30Raw = atk2Change ? atk2Change.old! * 3.9 : m.base_stats.lvl30.atk2
 
     level30.hp.push({ ...base, value: Math.round(hpLvl30Raw * mult) })
     level1.hp.push({ ...base, value: Math.round(hpLvl1Raw * mult) })
