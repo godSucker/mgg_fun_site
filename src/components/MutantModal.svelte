@@ -22,6 +22,47 @@
   } from '@/lib/mutant-icons';
   import { baseMutantId as baseId } from '@/lib/utils';
   import obtainData from '@/data/mutants/obtain.json';
+  import toplistsData from '@/data/mutants/toplists.json';
+
+  // Топ/анти-топ бейджи - берём только "текущий" (последний) снапшот toplists.json,
+  // который пересобирается build-toplists.ts при каждом обновлении mutants.json,
+  // поэтому теги всегда актуальны без отдельной ручной синхронизации.
+  const RANK_CATEGORIES: { key: string; label: string; abilities?: boolean }[] = [
+    { key: 'atk1', label: 'атаке' },
+    { key: 'atk2', label: 'масс. атаке' },
+    { key: 'hp', label: 'ХП' },
+    { key: 'speed', label: 'скорости' },
+    { key: 'silver', label: 'серебру' },
+    { key: 'ability_shield_plus', label: ABILITY_RU.ability_shield_plus, abilities: true },
+    { key: 'ability_regen_plus', label: ABILITY_RU.ability_regen_plus, abilities: true },
+    { key: 'ability_retaliate_plus', label: ABILITY_RU.ability_retaliate_plus, abilities: true },
+    { key: 'ability_slash_plus', label: ABILITY_RU.ability_slash_plus, abilities: true },
+    { key: 'ability_strengthen_plus', label: ABILITY_RU.ability_strengthen_plus, abilities: true },
+    { key: 'ability_weaken_plus', label: ABILITY_RU.ability_weaken_plus, abilities: true },
+  ];
+  const RANK_BADGE_THRESHOLD = 10;
+
+  function computeRankBadges(mutantId: string | undefined): { label: string; rank: number; total: number; worst: boolean }[] {
+    if (!mutantId) return [];
+    const current = (toplistsData as any[]).find((s) => s.id === 'current');
+    if (!current) return [];
+    const bucket = current.levels['30'];
+    const badges: { label: string; rank: number; total: number; worst: boolean }[] = [];
+    for (const cat of RANK_CATEGORIES) {
+      const list = cat.abilities ? bucket.abilities[cat.key] : bucket[cat.key];
+      if (!list?.length) continue;
+      const idx = list.findIndex((e: any) => e.id === mutantId);
+      if (idx === -1) continue;
+      const rank = idx + 1;
+      const total = list.length;
+      // Серебро - плоский показатель уровня, а не боевая эффективность:
+      // анти-топ по нему бессмыслен (см. TopMutantsBrowser.svelte).
+      if (rank <= RANK_BADGE_THRESHOLD) badges.push({ label: cat.label, rank, total, worst: false });
+      else if (cat.key !== 'silver' && rank > total - RANK_BADGE_THRESHOLD)
+        badges.push({ label: cat.label, rank: total - rank + 1, total, worst: true });
+    }
+    return badges.sort((a, b) => a.rank - b.rank).slice(0, 4);
+  }
 
   const OBTAIN_ICON: Record<string, string> = {
     gold_shop: '/cash/hardcurrency.webp',
@@ -52,6 +93,8 @@
   } = $props();
 
   const close = () => onclose?.();
+
+  const rankBadges = $derived(computeRankBadges(mutant?.id));
 
   // ===== Star switching =====
   const STAR_SWITCHER_BLOCKED = new Set(['specimen_bf_11', 'specimen_ce_10']);
@@ -684,6 +727,16 @@
           <span class={`px-2 py-1 rounded-full text-[10px] ring-1 ${STAR_COLOR[shownStar]}`}>{STAR_LABEL[shownStar] ?? shownStar}</span>
         </div>
       </div>
+
+      {#if rankBadges.length}
+        <div class="flex flex-wrap gap-1.5">
+          {#each rankBadges as b}
+            <span class={`px-2 py-0.5 rounded-full text-[10px] font-semibold ring-1 ${b.worst ? 'bg-red-500/15 text-red-200 ring-red-500/40' : 'bg-amber-400/15 text-amber-200 ring-amber-400/40'}`}>
+              {b.worst ? '⚠️' : '🏆'} #{b.rank} {b.worst ? 'снизу' : ''} по {b.label} (30 ур.)
+            </span>
+          {/each}
+        </div>
+      {/if}
 
       <!-- Lvl 1 -->
       <div class="rounded-lg bg-slate-900/60 ring-1 ring-white/10 px-2 py-1.5 overflow-hidden">

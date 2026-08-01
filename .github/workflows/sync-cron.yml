@@ -147,6 +147,13 @@ jobs:
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
         run: npx tsx scripts/build-skins.ts
 
+      - name: 4.6 Пересборка топ-листов (toplists.json)
+        # Рейтинги /top-mutants и бейджи рангов в MutantModal должны быть в ногу
+        # с любым изменением статов/абилок - пересчитываем при каждом успешном
+        # прогоне парсера, а не только когда сам rebalance-history.json меняется.
+        if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
+        run: npx tsx scripts/build-toplists.ts
+
       - name: 5. Проверка изменений
         id: check-changes
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}

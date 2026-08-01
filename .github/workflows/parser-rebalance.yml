@@ -35,6 +35,12 @@ jobs:
       - name: 4. Запуск Парсера (Режим REBALANCE)
         run: npx tsx scripts/sync-mutants.ts rebalance
 
+      - name: 4.1 Пересборка топ-листов (toplists.json)
+        # Именно этот режим дописывает rebalance-history.json - новую "точку
+        # времени" для /top-mutants нужно пересчитать здесь же, а не ждать
+        # следующего дневного sync-cron.
+        run: npx tsx scripts/build-toplists.ts
+
       - name: 5. Проверка изменений
         id: check-changes
         run: |
