@@ -1,0 +1,84 @@
+---
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import mutantsData from '../data/mutants/mutants.json';
+import legendaryIds from '../data/guides/legendaries.json';
+import zodiacEntries from '../data/guides/zodiac.json';
+import farmerRows from '../data/guides/farmers.json';
+import GuidesBrowser from '../components/guides/GuidesBrowser.svelte';
+import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
+
+const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'];
+
+interface Mutant {
+  id: string;
+  name: string;
+  genes?: string[];
+  stars: Record<string, { images?: string[] } | undefined>;
+  base_stats: { lvl1: { silver: number } };
+}
+
+const mutantsById = new Map((mutantsData as Mutant[]).map((m) => [m.id, m]));
+
+function maxStar(m: Mutant): string {
+  for (const key of STAR_ORDER) if (m.stars?.[key]) return key;
+  return 'normal';
+}
+function mutantIcon(m: Mutant): string {
+  const star = maxStar(m);
+  const raw = m.stars?.[star]?.images?.[0];
+  if (!raw) return '';
+  return raw.startsWith('/') ? raw : `/${raw}`;
+}
+function resolve(id: string) {
+  const m = mutantsById.get(id);
+  if (!m) return null;
+  return { id: m.id, name: m.name, genes: m.genes ?? [], icon: mutantIcon(m) };
+}
+
+const legendaries = (legendaryIds as string[]).map(resolve).filter((x): x is NonNullable<typeof x> => x !== null);
+
+const zodiac = (zodiacEntries as { id: string; sign: string; dateFrom: string; dateTo: string }[])
+  .map((z) => {
+    const m = resolve(z.id);
+    return m ? { ...z, ...m } : null;
+  })
+  .filter((x): x is NonNullable<typeof x> => x !== null);
+
+const SILVER_BASELINE = 42; // обычный стартовый мутант, см. src/data/mutants/mutants.json specimen_a_01
+
+interface FarmerRow {
+  ids: string[];
+  breedable: 'yes' | 'no';
+  price: string;
+  rating: number;
+  verdict: string;
+}
+
+const farmers = (farmerRows as FarmerRow[]).map((row) => {
+  const mutants = row.ids.map(resolve).filter((x): x is NonNullable<typeof x> => x !== null);
+  const silverPerHour = mutantsById.get(row.ids[0])?.base_stats.lvl1.silver ?? 0;
+  const relative = Math.round((silverPerHour / SILVER_BASELINE) * 100) / 100;
+  return { ...row, mutants, silverPerHour, relative };
+});
+---
+
+<BaseLayout
+  title="Полезные материалы"
+  description="Гайды и справочники по Mutants Genetic Gladiators: выводимые легендарки, зодиакальные даты, тандем, PvP-механики, фармеры серебра и другое."
+  canonical="https://archivist-library.com/guides"
+>
+  <section class="intro">
+    <h1>Полезные материалы</h1>
+    <p>Гайды и справочники по игровым механикам, собранные сообществом.</p>
+  </section>
+
+  <GuidesBrowser client:load legendaries={legendaries} zodiac={zodiac} farmers={farmers} />
+  <BingoMutantModal client:load />
+</BaseLayout>
+
+<style>
+  .intro { margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid rgba(96, 165, 250, 0.25); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .intro h1 { margin: 0; font-size: clamp(1.5rem, 5vw, 2rem); color: #e2e8f0; font-weight: 800; text-shadow: 0 3px 10px rgba(96, 165, 250, 0.4); }
+  .intro p { margin: 0.35rem 0 0; color: #94a3b8; font-size: 0.9rem; }
+</style>
