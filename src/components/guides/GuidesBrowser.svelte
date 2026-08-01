@@ -524,9 +524,9 @@
     <div class="text-block">
       <p>
         Ивентовые лесенки (внутриигровая категория «Эксперимент») — доп. хардкорные забеги (100–150 боёв) на тему тех
-        же ивентов, что и обычные лесенки. Только часть из них (гейт по гену, «Ямы») даёт уникального мутанта, у
-        остальных — чистый фарм жетонов/орб/звёзд. Отдельно показаны «Испытания» — короткие мини-забеги, которые
-        мутанта не дают никогда.
+        же ивентов, что и обычные лесенки. Часть из них (гейт по гену, «Ямы») даёт уникального мутанта, у остальных —
+        чистый фарм жетонов/орб/звёзд. Отдельно показаны «Испытания» — более короткие мини-забеги; большинство тоже
+        не даёт мутантов, но есть исключения (Хэллоуин и Jungle Bells старых лет).
       </p>
     </div>
     <div class="division-switcher">
@@ -534,7 +534,7 @@
         Эксперименты ({specialLadders.experiment.length})
       </button>
       <button class="division-btn" class:active={activeSpecialSection === 'challenge'} onclick={() => (activeSpecialSection = 'challenge')}>
-        Испытания, без мутантов ({specialLadders.challenge.length})
+        Испытания ({specialLadders.challenge.length})
       </button>
     </div>
     <div class="farmers-table-wrap">
@@ -542,7 +542,7 @@
         <thead>
           <tr>
             <th>Название</th>
-            {#if activeSpecialSection === 'experiment'}<th>Мутант-награда</th>{/if}
+            <th>Мутант-награда</th>
             <th>Боёв / боссов</th>
             <th>Прочие награды</th>
           </tr>
@@ -551,18 +551,16 @@
           {#each specialLadders[activeSpecialSection] as d (d.id)}
             <tr>
               <td class:authored-name={d.nameAuthored}>{d.name}</td>
-              {#if activeSpecialSection === 'experiment'}
-                <td>
-                  {#if d.mutant}
-                    <button class="farmer-chip" onclick={() => openMutant(d.mutant.id)}>
-                      {#if d.mutant.icon}<img src={textureUrl(d.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
-                      <span>{d.mutant.name}</span>
-                    </button>
-                  {:else}
-                    —
-                  {/if}
-                </td>
-              {/if}
+              <td>
+                {#if d.mutant}
+                  <button class="farmer-chip" onclick={() => openMutant(d.mutant.id)}>
+                    {#if d.mutant.icon}<img src={textureUrl(d.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                    <span>{d.mutant.name}</span>
+                  </button>
+                {:else}
+                  —
+                {/if}
+              </td>
               <td class="num">{d.fightCount} / {d.bossCount}</td>
               <td class="verdict-cell">{fmtCats(d.categories)}</td>
             </tr>

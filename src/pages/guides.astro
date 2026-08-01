@@ -88,7 +88,7 @@ function resolveReward(reward: RewardRaw | null): ResolvedReward {
   if (!reward) return { label: '—' };
   const amount = reward.amount ? String(reward.amount) : '';
   if (reward.type === 'softcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} серебра` };
-  if (reward.type === 'hardcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} кристаллов` };
+  if (reward.type === 'hardcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} золота` };
   if (reward.type === 'custom' && reward.id?.startsWith('allele-')) {
     return { label: `Открывает ген ${reward.id.split('-')[1]} для скрещивания` };
   }

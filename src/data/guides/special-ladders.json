@@ -756,6 +756,7 @@
       "id": "jungle_bells_1",
       "name": "Jungle Bells 1",
       "nameAuthored": false,
+      "mutantId": "Specimen_DD_06",
       "fightCount": 50,
       "bossCount": 0,
       "categories": []
@@ -764,6 +765,7 @@
       "id": "jungle_bells_2",
       "name": "Jungle Bells 2",
       "nameAuthored": false,
+      "mutantId": "Specimen_BA_06",
       "fightCount": 100,
       "bossCount": 0,
       "categories": []
@@ -772,7 +774,44 @@
       "id": "jungle_bells_3",
       "name": "Jungle Bells 3",
       "nameAuthored": false,
+      "mutantId": "Specimen_AD_10",
       "fightCount": 50,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "rome_hardcore",
+      "name": "Колизей",
+      "nameAuthored": false,
+      "mutantId": "Specimen_EE_10",
+      "fightCount": 50,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "halloween",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": "Specimen_CD_03",
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "halloween_1",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": "Specimen_BC_05",
+      "fightCount": 100,
+      "bossCount": 0,
+      "categories": []
+    },
+    {
+      "id": "halloween_2",
+      "name": "Кошмар Хеллоуина",
+      "nameAuthored": false,
+      "mutantId": "Specimen_AB_08",
+      "fightCount": 100,
       "bossCount": 0,
       "categories": []
     },
@@ -780,6 +819,7 @@
       "id": "jungle_16",
       "name": "Амазонка",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 101,
       "bossCount": 1,
       "categories": [
@@ -791,6 +831,7 @@
       "id": "ice_16",
       "name": "Антарктика",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -803,6 +844,7 @@
       "id": "galacless",
       "name": "Без Галактиков",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -811,6 +853,7 @@
       "id": "zooless",
       "name": "Без Зверей",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -819,6 +862,7 @@
       "id": "cyberless",
       "name": "Без Киборгов",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -827,6 +871,7 @@
       "id": "mysticless",
       "name": "Без Мификов",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -835,6 +880,7 @@
       "id": "necroless",
       "name": "Без Нежити",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -843,6 +889,7 @@
       "id": "saberless",
       "name": "Без Рубак",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -851,6 +898,7 @@
       "id": "vegas_16",
       "name": "Вегас",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -863,6 +911,7 @@
       "id": "olympus_16",
       "name": "Гора Олимп",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -876,6 +925,7 @@
       "id": "rome_16",
       "name": "Колизей",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -885,17 +935,10 @@
       ]
     },
     {
-      "id": "rome_hardcore",
-      "name": "Колизей",
-      "nameAuthored": false,
-      "fightCount": 50,
-      "bossCount": 0,
-      "categories": []
-    },
-    {
       "id": "space_16",
       "name": "Космопорт",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -906,33 +949,10 @@
       ]
     },
     {
-      "id": "halloween",
-      "name": "Кошмар Хеллоуина",
-      "nameAuthored": false,
-      "fightCount": 100,
-      "bossCount": 0,
-      "categories": []
-    },
-    {
-      "id": "halloween_1",
-      "name": "Кошмар Хеллоуина",
-      "nameAuthored": false,
-      "fightCount": 100,
-      "bossCount": 0,
-      "categories": []
-    },
-    {
-      "id": "halloween_2",
-      "name": "Кошмар Хеллоуина",
-      "nameAuthored": false,
-      "fightCount": 100,
-      "bossCount": 0,
-      "categories": []
-    },
-    {
       "id": "moon_3",
       "name": "Луна",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 50,
       "bossCount": 0,
       "categories": [
@@ -943,6 +963,7 @@
       "id": "mars_16",
       "name": "Марс",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -956,6 +977,7 @@
       "id": "miami_16",
       "name": "Пляжные бои Майами",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -968,6 +990,7 @@
       "id": "rapanui_16",
       "name": "Рапа-Нуи",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -981,6 +1004,7 @@
       "id": "gotham_16",
       "name": "Темный город",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [
@@ -994,6 +1018,7 @@
       "id": "triangle_abc",
       "name": "Треугольник A-B-C",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -1002,6 +1027,7 @@
       "id": "triangle_def",
       "name": "Треугольник D-E-F",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
       "categories": []
@@ -1010,6 +1036,7 @@
       "id": "halloween2018_1",
       "name": "Хэллоуин 2018 (I)",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 80,
       "bossCount": 1,
       "categories": [
@@ -1020,6 +1047,7 @@
       "id": "halloween2018_2",
       "name": "Хэллоуин 2018 (II)",
       "nameAuthored": true,
+      "mutantId": null,
       "fightCount": 80,
       "bossCount": 1,
       "categories": [
@@ -1030,6 +1058,7 @@
       "id": "japan_16",
       "name": "Япония",
       "nameAuthored": false,
+      "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
       "categories": [

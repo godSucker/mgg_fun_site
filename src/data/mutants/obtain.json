@@ -173,6 +173,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Фабрика II"
     }
   ],
   "specimen_a_14": [
@@ -1594,6 +1598,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "campaign",
+      "where": "Дивизион Альфа: Детройт"
     }
   ],
   "specimen_ab_04": [
@@ -2194,6 +2202,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Кошмар Хеллоуина"
     }
   ],
   "specimen_ab_09": [
@@ -2230,6 +2242,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Jungle Bells 1"
     }
   ],
   "specimen_ab_10": [
@@ -2383,6 +2399,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Архитектура"
     }
   ],
   "specimen_ab_14": [
@@ -3512,6 +3532,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Верн II"
     }
   ],
   "specimen_ac_13": [
@@ -4864,6 +4888,14 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Jungle Bells 3"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Jungle Bells 3"
     }
   ],
   "specimen_ad_11": [
@@ -7382,6 +7414,10 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Uprising"
     }
   ],
   "specimen_b_01": [
@@ -7591,6 +7627,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Немертвые II"
     }
   ],
   "specimen_b_14": [
@@ -8538,6 +8578,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Lucky Slots»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Jungle Bells 2"
     }
   ],
   "specimen_ba_07": [
@@ -8727,6 +8771,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Фиолетовые"
     }
   ],
   "specimen_ba_08": [
@@ -10146,6 +10194,10 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Луна"
     }
   ],
   "specimen_bb_08": [
@@ -10408,6 +10460,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Uprising"
     }
   ],
   "specimen_bb_10": [
@@ -10488,6 +10544,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: pit necro 12"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Яма: Нежить"
     }
   ],
   "specimen_bb_11": [
@@ -11064,6 +11124,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Кошмар Хеллоуина"
     }
   ],
   "specimen_bc_06": [
@@ -11791,6 +11855,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Яма: Рубака"
     }
   ],
   "specimen_bc_11": [
@@ -13688,6 +13756,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "campaign",
+      "where": "Дивизион Бета: Безымянные руины"
     }
   ],
   "specimen_be_04": [
@@ -14081,6 +14153,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Гора Олимп"
     }
   ],
   "specimen_be_07": [
@@ -14611,6 +14687,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: pit galactic 11"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Яма: Галактик"
     }
   ],
   "specimen_be_11": [
@@ -15964,6 +16044,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Дюма II"
     }
   ],
   "specimen_c_14": [
@@ -16964,6 +17048,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Антарктика"
     }
   ],
   "specimen_ca_07": [
@@ -17422,6 +17510,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Uprising"
     }
   ],
   "specimen_ca_11": [
@@ -18738,6 +18830,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Пираты"
     }
   ],
   "specimen_cc_01": [
@@ -19981,6 +20077,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Космические войны"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Охоться на этих кроликов!"
     }
   ],
   "specimen_cd_02": [
@@ -20237,6 +20337,14 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Кошмар Хеллоуина"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Кошмар Хеллоуина"
     }
   ],
   "specimen_cd_04": [
@@ -20743,6 +20851,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Желтые усилители!"
     }
   ],
   "specimen_cd_07": [
@@ -21063,6 +21175,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Яма: Зверь"
     }
   ],
   "specimen_cd_11": [
@@ -21172,6 +21288,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Мафия"
     }
   ],
   "specimen_ce_01": [
@@ -22068,6 +22188,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Темный город"
     }
   ],
   "specimen_ce_07": [
@@ -22513,6 +22637,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Вечные пески"
     }
   ],
   "specimen_ce_14": [
@@ -24101,6 +24229,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: pit mystic 12"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Яма: Мифик"
     }
   ],
   "specimen_cf_11": [
@@ -24126,6 +24258,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Мусаси II"
     }
   ],
   "specimen_cf_13": [
@@ -24319,6 +24455,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Криптид II"
     }
   ],
   "specimen_d_14": [
@@ -25153,6 +25293,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Зима пришла!"
     }
   ],
   "specimen_da_07": [
@@ -25570,6 +25714,14 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 1000 жетонов Hexcity"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Jungle Bells 2"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Неон"
     }
   ],
   "specimen_da_12": [
@@ -28887,6 +29039,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Jungle Bells 1"
     }
   ],
   "specimen_dd_07": [
@@ -30799,6 +30955,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Синие усилители!"
     }
   ],
   "specimen_de_10": [
@@ -31551,6 +31711,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "campaign",
+      "where": "Дивизион Омега: Новый Нью-Дели"
     }
   ],
   "specimen_df_05": [
@@ -31966,6 +32130,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Марс"
     }
   ],
   "specimen_df_08": [
@@ -32688,6 +32856,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Астероиды"
     }
   ],
   "specimen_e_14": [
@@ -34222,6 +34394,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Бездна"
     }
   ],
   "specimen_ea_99": [
@@ -35377,6 +35553,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: starter"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Первый эксперимент"
     }
   ],
   "specimen_eb_12": [
@@ -35435,6 +35615,14 @@
       "type": "bundle",
       "where": "Набор: Пакет ветерана «10-летня» (от $49.99)",
       "icon": "/mut_icons/donate.png"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Uprising"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Кризис"
     }
   ],
   "specimen_ec_01": [
@@ -38160,6 +38348,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Вегас"
     }
   ],
   "specimen_ed_10": [
@@ -39749,6 +39941,18 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Колизей"
+    },
+    {
+      "type": "event_raid",
+      "where": "Испытание: Колизей"
+    },
+    {
+      "type": "campaign",
+      "where": "Дивизион Гига: Безымянные руины"
     }
   ],
   "specimen_ee_11": [
@@ -40872,6 +41076,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Амазонка"
     }
   ],
   "specimen_ef_08": [
@@ -41159,6 +41367,10 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Фиолетовые усилители!"
     }
   ],
   "specimen_ef_11": [
@@ -41204,6 +41416,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Безумие II"
     }
   ],
   "specimen_ef_13": [
@@ -41261,6 +41477,10 @@
       "type": "bundle",
       "where": "Набор: Anniversary Super Pack 2021 (3 500 золота)",
       "icon": "/cash/hardcurrency.webp"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Uprising"
     }
   ],
   "specimen_f_01": [
@@ -41435,6 +41655,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Калевала II"
     }
   ],
   "specimen_f_14": [
@@ -42617,6 +42841,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: pit cyber 12"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Яма: Киборг"
     }
   ],
   "specimen_fa_11": [
@@ -42665,6 +42893,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: celestial 12"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Небесное тело"
     }
   ],
   "specimen_fa_12": [
@@ -42782,6 +43014,14 @@
       "type": "bundle",
       "where": "Набор: Праздничный пакет (10 000 000 серебра)",
       "icon": "/cash/softcurrency.webp"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Uprising"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Кризис"
     }
   ],
   "specimen_fb_01": [
@@ -44205,6 +44445,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Гиперборея"
     }
   ],
   "specimen_fb_11": [
@@ -44243,6 +44487,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Инферно II"
     }
   ],
   "specimen_fb_13": [
@@ -44429,6 +44677,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Кризис"
     }
   ],
   "specimen_fc_03": [
@@ -44739,6 +44991,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "quest",
+      "where": "Квест: Фиолетовые усилители!"
     }
   ],
   "specimen_fc_08": [
@@ -44871,6 +45127,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Колизей"
     }
   ],
   "specimen_fc_09": [
@@ -44975,6 +45235,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивентовая лесенка: Адское пламя"
     }
   ],
   "specimen_fc_11": [
@@ -45783,6 +46047,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Пляжные бои Майами"
     }
   ],
   "specimen_fd_07": [
@@ -46981,6 +47249,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Рапа-Нуи"
     }
   ],
   "specimen_fe_07": [
@@ -47283,6 +47555,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Космопорт"
     }
   ],
   "specimen_fe_09": [
@@ -48531,6 +48807,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "event_raid",
+      "where": "Ивент-лесенка: Япония"
     }
   ],
   "specimen_ff_06": [
@@ -49124,6 +49404,10 @@
     {
       "type": "event_raid",
       "where": "Ивент/рейд: dungeons"
+    },
+    {
+      "type": "event_raid",
+      "where": "Рейд: Библиотека II"
     }
   ],
   "specimen_ff_13": [
