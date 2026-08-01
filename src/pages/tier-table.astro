@@ -1,0 +1,102 @@
+---
+// Рабочий инструмент, не публичный раздел - см. prompt_tablica_mutantov.md.
+// Живёт за Vercel Deployment Protection превью-домена, поэтому сознательно
+// не добавлен в BaseLayout nav (доступен только по прямой ссылке).
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import mutantsData from '../data/mutants/mutants.json';
+import tierTableData from '../data/mutants/tier-table.json';
+import rebalanceHistory from '../data/mutants/rebalance-history.json';
+import { sortMutantsByGene } from '../lib/mutant-sort';
+import TierTableBrowser from '../components/tiertable/TierTableBrowser.svelte';
+
+const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'];
+const STAR_MULTIPLIERS: Record<string, number> = { normal: 1.0, bronze: 1.1, silver: 1.3, gold: 1.75, platinum: 2.0 };
+
+interface LevelStats {
+  hp: number;
+  speed: number;
+  atk1_gene?: string;
+  atk2_gene?: string;
+  atk1_AOE?: boolean;
+  atk2_AOE?: boolean;
+}
+interface Ability {
+  name: string;
+  pct: number;
+  value_atk1_lvl30: number;
+  value_atk2_lvl30: number;
+}
+interface Mutant {
+  id: string;
+  name: string;
+  genes?: string[];
+  type?: string;
+  stars: Record<string, { images?: string[] } | undefined>;
+  base_stats: { lvl1: LevelStats; atk1p_base?: number; atk2p_base?: number };
+  abilities?: Ability[];
+}
+
+function maxStar(m: Mutant): string {
+  for (const key of STAR_ORDER) if (m.stars?.[key]) return key;
+  return 'normal';
+}
+function mutantIcon(m: Mutant, star: string): string {
+  const raw = m.stars?.[star]?.images?.[0];
+  if (!raw) return '';
+  return raw.startsWith('/') ? raw : `/${raw}`;
+}
+
+// Дата последнего ребаланса на мутанта - сейчас в истории один прогон,
+// но берём максимум на случай будущих (несколько точек в rebalance-history.json).
+const lastRebalanceById = new Map<string, string>();
+for (const run of rebalanceHistory as { date: string; entries: { id: string }[] }[]) {
+  for (const entry of run.entries) {
+    const prev = lastRebalanceById.get(entry.id);
+    if (!prev || run.date > prev) lastRebalanceById.set(entry.id, run.date);
+  }
+}
+
+// Фиксированный порядковый номер - та же сортировка, что на /mutants, посчитана
+// один раз и не пересчитывается при смене сортировки/фильтров в самой таблице.
+const orderedMutants = (mutantsData as Mutant[]).slice().sort(sortMutantsByGene);
+
+const tierTable = tierTableData as Record<string, { before: string; after: string }>;
+
+const rows = orderedMutants.map((m, i) => {
+  const star = maxStar(m);
+  const mult = STAR_MULTIPLIERS[star];
+  const lvl1 = m.base_stats.lvl1;
+  const plusAbility = (m.abilities ?? []).find((a) => a.name?.endsWith('_plus'));
+  const abilityKey = plusAbility?.name?.replace(/^ability_/, '').replace(/_plus$/, '') ?? null;
+
+  return {
+    number: i + 1,
+    id: m.id,
+    name: m.name,
+    icon: mutantIcon(m, star),
+    type: m.type ?? '',
+    lastRebalance: lastRebalanceById.get(m.id) ?? null,
+    gene1: (m.genes?.[0] ?? '').toUpperCase(),
+    gene2: (m.genes?.[1] ?? 'neutro').toUpperCase(),
+    speed: lvl1.speed,
+    hp: Math.round(lvl1.hp * mult),
+    atk1: Math.round((m.base_stats.atk1p_base ?? 0) * mult),
+    atk1Gene: lvl1.atk1_gene ?? '',
+    atk1Aoe: !!lvl1.atk1_AOE,
+    atk2: Math.round((m.base_stats.atk2p_base ?? 0) * mult),
+    atk2Gene: lvl1.atk2_gene ?? '',
+    atk2Aoe: !!lvl1.atk2_AOE,
+    abilityKey,
+    abilityPct: plusAbility?.pct ?? null,
+    abilityAtk1: plusAbility?.value_atk1_lvl30 ?? null,
+    abilityAtk2: plusAbility?.value_atk2_lvl30 ?? null,
+    tierBefore: tierTable[m.id]?.before ?? '-',
+    tierAfter: tierTable[m.id]?.after ?? '-',
+  };
+});
+---
+
+<BaseLayout title="Таблица мутантов" description="Рабочая таблица статов и тиров мутантов" canonical="https://archivist-library.com/tier-table">
+  <TierTableBrowser client:load rows={rows} />
+</BaseLayout>

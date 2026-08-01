@@ -1,0 +1,2218 @@
+{
+  "specimen_a_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ab_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_01": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_af_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_b_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_c_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cd_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_d_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_e_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_f_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_01": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ab_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_02": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_cd_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_02": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ab_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_03": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ae_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_03": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cd_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_03": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_da_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_a_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_b_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_c_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_d_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_e_03": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_f_03": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ab_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cd_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_b_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_f_04": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_05": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ab_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cd_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_05": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_cf_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_05": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_de_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_05": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ea_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_05": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_a_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_b_05": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_c_05": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ab_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_06": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ad_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cd_06": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ce_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_06": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ec_06": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_ed_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_06": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_fc_06": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_fd_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_06": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_07": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ab_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_07": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ad_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_07": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_be_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_07": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_cc_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cd_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_07": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_cf_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_07": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_db_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_07": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_eb_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ef_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_07": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_fe_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_07": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_08": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ab_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_08": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_af_08": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ba_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_08": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_cb_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cd_08": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ce_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_08": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_db_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_08": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_de_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ec_08": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ed_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_08": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ef_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_08": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_09": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ab_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_09": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ae_09": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_af_09": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ba_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bb_09": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_bc_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_09": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cd_09": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ce_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_09": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_db_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_09": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ec_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_09": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ef_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_09": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_09": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_aa_10": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ab_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_10": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ad_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_af_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_10": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_bb_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_10": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_bd_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_10": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_cb_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_10": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_cd_10": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ce_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_da_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_db_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_10": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_de_10": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_df_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_10": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_eb_10": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ec_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_10": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ef_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_10": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_fb_10": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_fc_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_10": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_10": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_aa_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ab_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_11": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ad_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ae_11": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_af_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ba_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_bb_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_bd_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_11": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_bf_11": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ca_11": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_cb_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_11": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cd_11": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ce_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_cf_11": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_da_11": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_db_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_11": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_de_11": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_df_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_eb_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ec_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ee_11": {
+    "before": "1",
+    "after": "1"
+  },
+  "specimen_ef_11": {
+    "before": "1-",
+    "after": "1-"
+  },
+  "specimen_fa_11": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_fb_11": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_fc_11": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_fd_11": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_11": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ff_11": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_aa_12": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_ab_12": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_ac_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ad_12": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_ae_12": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_af_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ba_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_bb_12": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_bc_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_12": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_be_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_bf_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ca_12": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cb_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cc_12": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_cd_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_12": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_cf_12": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_da_12": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_db_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_12": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_dd_12": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_de_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_df_12": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_ea_12": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_eb_12": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_ec_12": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_ed_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ee_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ef_12": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_fa_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_fb_12": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_fc_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fd_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_fe_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_12": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_b_12": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_d_12": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_e_12": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_f_12": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_aa_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ab_13": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_ac_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ad_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ae_13": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_af_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ba_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_bb_13": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_bc_13": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_bd_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_be_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bf_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cb_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cc_13": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_cd_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ce_13": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_cf_13": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_da_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_db_13": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_dc_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_dd_13": {
+    "before": "1",
+    "after": "1"
+  },
+  "specimen_de_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_df_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ea_13": {
+    "before": "1",
+    "after": "1"
+  },
+  "specimen_eb_13": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ec_13": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_ed_13": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_ee_13": {
+    "before": "1-",
+    "after": "1-"
+  },
+  "specimen_ef_13": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_fa_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_13": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_fc_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_fd_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_13": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_13": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_a_13": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_b_13": {
+    "before": "1-",
+    "after": "1-"
+  },
+  "specimen_c_13": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_d_13": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_e_13": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_f_13": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_aa_99": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ab_99": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ae_99": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_af_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bd_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ca_99": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_ce_99": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cf_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_df_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_99": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_eb_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ed_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ee_99": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_ef_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_99": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_fe_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ff_99": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ab_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ac_14": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ad_14": {
+    "before": "1-",
+    "after": "1-"
+  },
+  "specimen_ae_14": {
+    "before": "4",
+    "after": "4"
+  },
+  "specimen_af_14": {
+    "before": "1",
+    "after": "1"
+  },
+  "specimen_ba_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_bc_14": {
+    "before": "3-",
+    "after": "3-"
+  },
+  "specimen_bd_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ca_14": {
+    "before": "1",
+    "after": "1"
+  },
+  "specimen_cb_14": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_cc_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_cd_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_cf_14": {
+    "before": "1-",
+    "after": "1-"
+  },
+  "specimen_da_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_db_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dc_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_14": {
+    "before": "2-",
+    "after": "2-"
+  },
+  "specimen_de_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_14": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_ed_14": {
+    "before": "2+",
+    "after": "2+"
+  },
+  "specimen_ef_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fb_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_fd_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fe_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ff_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_a_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_b_14": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_c_14": {
+    "before": "2",
+    "after": "2"
+  },
+  "specimen_f_14": {
+    "before": "3",
+    "after": "3"
+  },
+  "specimen_ab_15": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_de_15": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_e_14": {
+    "before": "3+",
+    "after": "3+"
+  },
+  "specimen_bf_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ce_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_be_15": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_ea_15": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_d_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_dd_15": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_aa_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fc_14": {
+    "before": "-",
+    "after": "-"
+  },
+  "specimen_fa_14": {
+    "before": "-",
+    "after": "-"
+  }
+}
