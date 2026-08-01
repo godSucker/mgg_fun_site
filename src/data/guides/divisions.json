@@ -1,0 +1,2058 @@
+[
+  {
+    "campaign_id": "0",
+    "name_ru": "Дивизион Альфа",
+    "recommendation": "Стартовый дивизион — открывается сразу и легко проходится базовым стартовым ростером на первых уровнях эво.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Specimen_AB_03",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          1,
+          10
+        ],
+        "enemy_ids": [
+          "Specimen_A_01",
+          "Specimen_A_02",
+          "Specimen_BA_01",
+          "Specimen_B_01",
+          "Specimen_B_02",
+          "Specimen_C_01",
+          "Specimen_C_02"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "custom",
+          "id": "allele-D",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          2,
+          15
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_B_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_C_01",
+          "Specimen_D_01"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "softcurrency",
+          "id": null,
+          "amount": "200000"
+        },
+        "fight_count": 9,
+        "level_range": [
+          4,
+          30
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "5"
+        },
+        "fight_count": 9,
+        "level_range": [
+          4,
+          7
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": {
+          "type": "custom",
+          "id": "allele-E",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          5,
+          35
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_E_01"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Bronze",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          8,
+          48
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "100"
+        },
+        "fight_count": 9,
+        "level_range": [
+          4,
+          21
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BE_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CE_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_EE_01"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "custom",
+          "id": "allele-F",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          4,
+          25
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_FF_01",
+          "Specimen_F_01"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": null,
+        "fight_count": 9,
+        "level_range": [
+          6,
+          25
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AF_01",
+          "Specimen_BB_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_BF_01",
+          "Specimen_CC_01",
+          "Specimen_CE_01",
+          "Specimen_CF_01",
+          "Specimen_DD_01",
+          "Specimen_DE_01",
+          "Specimen_DF_01",
+          "Specimen_D_01",
+          "Specimen_EB_01",
+          "Specimen_EF_01",
+          "Specimen_E_01",
+          "Specimen_FA_01",
+          "Specimen_FB_01",
+          "Specimen_FC_01",
+          "Specimen_FD_01",
+          "Specimen_FE_01",
+          "Specimen_F_01"
+        ]
+      }
+    ]
+  },
+  {
+    "campaign_id": "1",
+    "name_ru": "Дивизион Бета",
+    "recommendation": "Комфортно проходится после первых бронзовых/серебряных мутантов — сложность растёт плавно, фарм наград не требует спешки.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "softcurrency",
+          "id": null,
+          "amount": "500000"
+        },
+        "fight_count": 9,
+        "level_range": [
+          11,
+          55
+        ],
+        "enemy_ids": [
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_B_01",
+          "Specimen_C_01"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Bronze",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          12,
+          65
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_B_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_C_01",
+          "Specimen_DD_01",
+          "Specimen_D_01"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "10"
+        },
+        "fight_count": 9,
+        "level_range": [
+          13,
+          70
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "200"
+        },
+        "fight_count": 9,
+        "level_range": [
+          6,
+          35
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": null,
+        "fight_count": 9,
+        "level_range": [
+          12,
+          85
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_E_01"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Silver",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          15,
+          85
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Gacha_Token",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          10,
+          35
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BE_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CE_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_EE_01"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Charm_Xpx2_7",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          10,
+          40
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_FF_01",
+          "Specimen_F_01"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Specimen_BE_03",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          10,
+          50
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AF_01",
+          "Specimen_BB_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_BF_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_CF_01",
+          "Specimen_DD_01",
+          "Specimen_DE_01",
+          "Specimen_DF_01",
+          "Specimen_D_01",
+          "Specimen_EF_01",
+          "Specimen_E_01",
+          "Specimen_FA_01",
+          "Specimen_FB_01",
+          "Specimen_FC_01",
+          "Specimen_FD_01",
+          "Specimen_FE_01",
+          "Specimen_F_01"
+        ]
+      }
+    ]
+  },
+  {
+    "campaign_id": "2",
+    "name_ru": "Дивизион Дельта",
+    "recommendation": "Требует уже прокачанной серебряной-золотой команды — уровни противников заметно растут к концу дивизиона.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Silver",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          12,
+          80
+        ],
+        "enemy_ids": [
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_B_01",
+          "Specimen_C_01"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "300"
+        },
+        "fight_count": 9,
+        "level_range": [
+          14,
+          85
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_B_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_C_01",
+          "Specimen_D_01"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Silver",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          16,
+          105
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "15"
+        },
+        "fight_count": 9,
+        "level_range": [
+          10,
+          40
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": null,
+        "fight_count": 9,
+        "level_range": [
+          19,
+          130
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_E_01"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Silver",
+          "amount": "3"
+        },
+        "fight_count": 9,
+        "level_range": [
+          23,
+          145
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Gacha_Token",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          15,
+          65
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BE_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CE_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_EE_01"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Gold",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          17,
+          70
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_FF_01",
+          "Specimen_F_01"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "500"
+        },
+        "fight_count": 9,
+        "level_range": [
+          20,
+          70
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AF_01",
+          "Specimen_BB_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_BF_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_CF_01",
+          "Specimen_DD_01",
+          "Specimen_DE_01",
+          "Specimen_DF_01",
+          "Specimen_D_01",
+          "Specimen_EF_01",
+          "Specimen_E_01",
+          "Specimen_FA_01",
+          "Specimen_FB_01",
+          "Specimen_FC_01",
+          "Specimen_FD_01",
+          "Specimen_FE_01",
+          "Specimen_F_01"
+        ]
+      }
+    ]
+  },
+  {
+    "campaign_id": "3",
+    "name_ru": "Дивизион Омега",
+    "recommendation": "Для игроков со сформированным golden/platinum-ростером — здесь начинают попадаться серьёзные скачки уровня противников.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "25"
+        },
+        "fight_count": 9,
+        "level_range": [
+          15,
+          130
+        ],
+        "enemy_ids": [
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_B_01",
+          "Specimen_C_01"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "500"
+        },
+        "fight_count": 9,
+        "level_range": [
+          17,
+          150
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_A_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_B_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_C_01",
+          "Specimen_D_01"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Charm_Xpx3_7",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          22,
+          160
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Specimen_DF_04",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          15,
+          65
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DD_01"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "25"
+        },
+        "fight_count": 9,
+        "level_range": [
+          26,
+          225
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_E_01"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "600"
+        },
+        "fight_count": 9,
+        "level_range": [
+          22,
+          60
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_CB_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_DA_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01",
+          "Specimen_FC_01"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Gacha_Token",
+          "amount": "3"
+        },
+        "fight_count": 9,
+        "level_range": [
+          25,
+          80
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BB_01",
+          "Specimen_BC_01",
+          "Specimen_BE_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CE_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_DE_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_EE_01"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Gold",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          27,
+          85
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AE_01",
+          "Specimen_BA_01",
+          "Specimen_BC_01",
+          "Specimen_BD_01",
+          "Specimen_CA_01",
+          "Specimen_CB_01",
+          "Specimen_CD_01",
+          "Specimen_DA_01",
+          "Specimen_DB_01",
+          "Specimen_DC_01",
+          "Specimen_EA_01",
+          "Specimen_EB_01",
+          "Specimen_EC_01",
+          "Specimen_ED_01",
+          "Specimen_FF_01",
+          "Specimen_F_01"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": null,
+        "fight_count": 9,
+        "level_range": [
+          33,
+          100
+        ],
+        "enemy_ids": [
+          "Specimen_AB_01",
+          "Specimen_AC_01",
+          "Specimen_AD_01",
+          "Specimen_AF_01",
+          "Specimen_BB_01",
+          "Specimen_BD_01",
+          "Specimen_BE_01",
+          "Specimen_BF_01",
+          "Specimen_CC_01",
+          "Specimen_CD_01",
+          "Specimen_CE_01",
+          "Specimen_CF_01",
+          "Specimen_DD_01",
+          "Specimen_DE_01",
+          "Specimen_DF_01",
+          "Specimen_D_01",
+          "Specimen_EF_01",
+          "Specimen_E_01",
+          "Specimen_FA_01",
+          "Specimen_FB_01",
+          "Specimen_FC_01",
+          "Specimen_FD_01",
+          "Specimen_FE_01",
+          "Specimen_F_01"
+        ]
+      }
+    ]
+  },
+  {
+    "campaign_id": "4",
+    "name_ru": "Дивизион Супра",
+    "recommendation": "Мидгейм-контент: без нескольких сильных платиновых мутантов и вложений в статы застрять легко.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Gacha_Token",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          38,
+          80
+        ],
+        "enemy_ids": [
+          "Specimen_BA_03",
+          "Specimen_BB_03",
+          "Specimen_BC_04",
+          "Specimen_BF_05",
+          "Specimen_CA_02",
+          "Specimen_CC_02",
+          "Specimen_CC_04",
+          "Specimen_CD_03",
+          "Specimen_DD_03",
+          "Specimen_EA_02",
+          "Specimen_EB_04",
+          "Specimen_EF_02",
+          "Specimen_FA_04"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": "",
+          "amount": "850"
+        },
+        "fight_count": 9,
+        "level_range": [
+          40,
+          80
+        ],
+        "enemy_ids": [
+          "Specimen_AC_02",
+          "Specimen_AF_04",
+          "Specimen_BB_02",
+          "Specimen_DA_03",
+          "Specimen_DB_02",
+          "Specimen_DC_03",
+          "Specimen_DE_03",
+          "Specimen_EB_03",
+          "Specimen_ED_03",
+          "Specimen_EE_02",
+          "Specimen_FC_04",
+          "Specimen_FE_03",
+          "Specimen_FF_02"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Charm_Xpx3_3",
+          "amount": "10"
+        },
+        "fight_count": 9,
+        "level_range": [
+          56,
+          220
+        ],
+        "enemy_ids": [
+          "Specimen_AB_02",
+          "Specimen_AB_03",
+          "Specimen_BA_04",
+          "Specimen_BC_03",
+          "Specimen_BD_03",
+          "Specimen_DE_02",
+          "Specimen_DF_02",
+          "Specimen_DF_03",
+          "Specimen_EB_02",
+          "Specimen_FC_02",
+          "Specimen_FD_04",
+          "Specimen_FF_03"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Gold",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          44,
+          88
+        ],
+        "enemy_ids": [
+          "Specimen_AA_03",
+          "Specimen_AC_04",
+          "Specimen_BB_04",
+          "Specimen_BF_04",
+          "Specimen_B_03",
+          "Specimen_C_03",
+          "Specimen_DE_05",
+          "Specimen_DF_99",
+          "Specimen_D_03",
+          "Specimen_EC_03",
+          "Specimen_EC_04",
+          "Specimen_ED_02",
+          "Specimen_FE_02",
+          "Specimen_F_03"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Event_Token",
+          "amount": "5"
+        },
+        "fight_count": 9,
+        "level_range": [
+          45,
+          91
+        ],
+        "enemy_ids": [
+          "Specimen_AA_02",
+          "Specimen_AE_03",
+          "Specimen_BF_02",
+          "Specimen_CA_03",
+          "Specimen_CA_04",
+          "Specimen_CF_01",
+          "Specimen_DA_02",
+          "Specimen_DD_02",
+          "Specimen_DF_04",
+          "Specimen_EC_02",
+          "Specimen_EE_03"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Habitat_ABCDEF_2_HC",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          63,
+          120
+        ],
+        "enemy_ids": [
+          "Specimen_AC_03",
+          "Specimen_AE_04",
+          "Specimen_BA_02",
+          "Specimen_BC_02",
+          "Specimen_BD_99",
+          "Specimen_CB_02",
+          "Specimen_CE_04",
+          "Specimen_DB_03",
+          "Specimen_DC_04",
+          "Specimen_DE_04",
+          "Specimen_FA_03",
+          "Specimen_FD_03",
+          "Specimen_FE_04"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Platinum",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          58,
+          99
+        ],
+        "enemy_ids": [
+          "Specimen_AD_03",
+          "Specimen_AE_02",
+          "Specimen_AF_02",
+          "Specimen_BD_02",
+          "Specimen_BE_02",
+          "Specimen_BF_03",
+          "Specimen_CD_02",
+          "Specimen_CE_02",
+          "Specimen_DC_02",
+          "Specimen_EA_03",
+          "Specimen_EF_03",
+          "Specimen_FB_02",
+          "Specimen_FE_05"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": "",
+          "amount": "1000"
+        },
+        "fight_count": 9,
+        "level_range": [
+          51,
+          103
+        ],
+        "enemy_ids": [
+          "Specimen_AD_02",
+          "Specimen_AF_03",
+          "Specimen_CB_04",
+          "Specimen_CC_03",
+          "Specimen_CD_04",
+          "Specimen_CE_03",
+          "Specimen_CF_03",
+          "Specimen_CF_04",
+          "Specimen_DB_04",
+          "Specimen_EF_04",
+          "Specimen_FB_04",
+          "Specimen_FC_03",
+          "Specimen_FF_04"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": null,
+        "fight_count": 9,
+        "level_range": [
+          71,
+          140
+        ],
+        "enemy_ids": [
+          "Specimen_AB_04",
+          "Specimen_AD_04",
+          "Specimen_A_03",
+          "Specimen_BE_03",
+          "Specimen_CB_03",
+          "Specimen_CF_02",
+          "Specimen_ED_04",
+          "Specimen_FA_02",
+          "Specimen_FB_03",
+          "Specimen_FD_02"
+        ]
+      }
+    ]
+  },
+  {
+    "campaign_id": "5",
+    "name_ru": "Дивизион Мега",
+    "recommendation": "Для развитых аккаунтов — уровни противников уже сопоставимы с эндгейм-контентом, нужен сбалансированный ростер по генам.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Event_Token",
+          "amount": "10"
+        },
+        "fight_count": 9,
+        "level_range": [
+          57,
+          115
+        ],
+        "enemy_ids": [
+          "Specimen_BA_03",
+          "Specimen_BB_03",
+          "Specimen_BC_04",
+          "Specimen_BF_05",
+          "Specimen_CA_02",
+          "Specimen_CC_02",
+          "Specimen_CC_04",
+          "Specimen_CD_03",
+          "Specimen_DD_03",
+          "Specimen_EA_02",
+          "Specimen_EB_04",
+          "Specimen_EF_02",
+          "Specimen_FA_04"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Gacha_Token",
+          "amount": "3"
+        },
+        "fight_count": 9,
+        "level_range": [
+          59,
+          117
+        ],
+        "enemy_ids": [
+          "Specimen_AC_02",
+          "Specimen_AF_04",
+          "Specimen_BB_02",
+          "Specimen_DA_03",
+          "Specimen_DB_02",
+          "Specimen_DC_03",
+          "Specimen_DE_03",
+          "Specimen_EB_03",
+          "Specimen_ED_03",
+          "Specimen_EE_02",
+          "Specimen_FC_04",
+          "Specimen_FE_03",
+          "Specimen_FF_02"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "1500"
+        },
+        "fight_count": 9,
+        "level_range": [
+          82,
+          330
+        ],
+        "enemy_ids": [
+          "Specimen_AB_02",
+          "Specimen_AB_03",
+          "Specimen_BA_04",
+          "Specimen_BC_03",
+          "Specimen_BD_03",
+          "Specimen_DE_02",
+          "Specimen_DF_02",
+          "Specimen_DF_03",
+          "Specimen_EB_02",
+          "Specimen_FC_02",
+          "Specimen_FD_04",
+          "Specimen_FF_03"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Platinum",
+          "amount": "2"
+        },
+        "fight_count": 9,
+        "level_range": [
+          63,
+          125
+        ],
+        "enemy_ids": [
+          "Specimen_AA_03",
+          "Specimen_AC_04",
+          "Specimen_BB_04",
+          "Specimen_BF_04",
+          "Specimen_B_03",
+          "Specimen_C_03",
+          "Specimen_DE_05",
+          "Specimen_DF_99",
+          "Specimen_D_03",
+          "Specimen_EC_03",
+          "Specimen_EC_04",
+          "Specimen_ED_02",
+          "Specimen_FE_02",
+          "Specimen_F_03"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Event_Token",
+          "amount": "10"
+        },
+        "fight_count": 9,
+        "level_range": [
+          65,
+          129
+        ],
+        "enemy_ids": [
+          "Specimen_AA_02",
+          "Specimen_AE_03",
+          "Specimen_BF_02",
+          "Specimen_CA_03",
+          "Specimen_CA_04",
+          "Specimen_CF_01",
+          "Specimen_DA_02",
+          "Specimen_DD_02",
+          "Specimen_DF_04",
+          "Specimen_EC_02",
+          "Specimen_EE_03"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "50"
+        },
+        "fight_count": 9,
+        "level_range": [
+          89,
+          170
+        ],
+        "enemy_ids": [
+          "Specimen_AC_03",
+          "Specimen_AE_04",
+          "Specimen_BA_02",
+          "Specimen_BC_02",
+          "Specimen_BD_99",
+          "Specimen_CB_02",
+          "Specimen_CE_04",
+          "Specimen_DB_03",
+          "Specimen_DC_04",
+          "Specimen_DE_04",
+          "Specimen_FA_03",
+          "Specimen_FD_03",
+          "Specimen_FE_04"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Habitat_ABCDEF_3_HC",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          69,
+          137
+        ],
+        "enemy_ids": [
+          "Specimen_AD_03",
+          "Specimen_AE_02",
+          "Specimen_AF_02",
+          "Specimen_BD_02",
+          "Specimen_BE_02",
+          "Specimen_BF_03",
+          "Specimen_CD_02",
+          "Specimen_CE_02",
+          "Specimen_DC_02",
+          "Specimen_EA_03",
+          "Specimen_EF_03",
+          "Specimen_FB_02",
+          "Specimen_FE_05"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": "",
+          "amount": "2000"
+        },
+        "fight_count": 9,
+        "level_range": [
+          71,
+          141
+        ],
+        "enemy_ids": [
+          "Specimen_AD_02",
+          "Specimen_AF_03",
+          "Specimen_CB_04",
+          "Specimen_CC_03",
+          "Specimen_CD_04",
+          "Specimen_CE_03",
+          "Specimen_CF_03",
+          "Specimen_CF_04",
+          "Specimen_DB_04",
+          "Specimen_EF_04",
+          "Specimen_FB_04",
+          "Specimen_FC_03",
+          "Specimen_FF_04"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "2000"
+        },
+        "fight_count": 9,
+        "level_range": [
+          96,
+          200
+        ],
+        "enemy_ids": [
+          "Specimen_AB_04",
+          "Specimen_AD_04",
+          "Specimen_A_03",
+          "Specimen_BE_03",
+          "Specimen_CB_03",
+          "Specimen_CF_02",
+          "Specimen_ED_04",
+          "Specimen_FA_02",
+          "Specimen_FB_03",
+          "Specimen_FD_02"
+        ]
+      }
+    ]
+  },
+  {
+    "campaign_id": "6",
+    "name_ru": "Дивизион Гига",
+    "recommendation": "Эндгейм-дивизион — самые высокие уровни противников в кампании, стоит идти сюда с полностью прокачанной топ-командой.",
+    "maps": [
+      {
+        "map_id": "0",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Event_Token",
+          "amount": "15"
+        },
+        "fight_count": 9,
+        "level_range": [
+          105,
+          210
+        ],
+        "enemy_ids": [
+          "Specimen_AA_05",
+          "Specimen_AA_06",
+          "Specimen_AA_07",
+          "Specimen_AF_09",
+          "Specimen_BB_05",
+          "Specimen_BB_06",
+          "Specimen_BB_07",
+          "Specimen_BD_08",
+          "Specimen_BF_06",
+          "Specimen_CC_05",
+          "Specimen_CC_06",
+          "Specimen_CC_07",
+          "Specimen_DD_05",
+          "Specimen_DD_06",
+          "Specimen_DD_07",
+          "Specimen_DE_07",
+          "Specimen_EE_05",
+          "Specimen_EE_06",
+          "Specimen_EE_07",
+          "Specimen_FB_08",
+          "Specimen_FC_10",
+          "Specimen_FD_08",
+          "Specimen_FD_09",
+          "Specimen_FE_06",
+          "Specimen_FE_08",
+          "Specimen_FF_05",
+          "Specimen_FF_06",
+          "Specimen_FF_07"
+        ]
+      },
+      {
+        "map_id": "1",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Gacha_Token",
+          "amount": "4"
+        },
+        "fight_count": 9,
+        "level_range": [
+          110,
+          220
+        ],
+        "enemy_ids": [
+          "Specimen_AC_07",
+          "Specimen_AD_05",
+          "Specimen_AD_07",
+          "Specimen_AE_09",
+          "Specimen_BA_07",
+          "Specimen_BA_08",
+          "Specimen_BB_08",
+          "Specimen_BC_08",
+          "Specimen_BD_11",
+          "Specimen_BF_06",
+          "Specimen_CA_10",
+          "Specimen_CB_07",
+          "Specimen_CC_09",
+          "Specimen_CD_10",
+          "Specimen_CE_05",
+          "Specimen_DA_05",
+          "Specimen_DD_06",
+          "Specimen_DF_07",
+          "Specimen_EB_06",
+          "Specimen_EC_07",
+          "Specimen_EC_09",
+          "Specimen_EE_05",
+          "Specimen_FA_06",
+          "Specimen_FA_10",
+          "Specimen_FB_06",
+          "Specimen_FC_09",
+          "Specimen_FE_06",
+          "Specimen_FE_08"
+        ]
+      },
+      {
+        "map_id": "2",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": null,
+          "amount": "2250"
+        },
+        "fight_count": 9,
+        "level_range": [
+          115,
+          230
+        ],
+        "enemy_ids": [
+          "Specimen_AA_06",
+          "Specimen_AC_06",
+          "Specimen_AC_08",
+          "Specimen_AE_06",
+          "Specimen_AF_08",
+          "Specimen_BA_07",
+          "Specimen_BE_06",
+          "Specimen_BE_07",
+          "Specimen_BE_08",
+          "Specimen_BF_06",
+          "Specimen_BF_10",
+          "Specimen_CA_06",
+          "Specimen_CA_08",
+          "Specimen_CC_08",
+          "Specimen_CC_09",
+          "Specimen_CE_05",
+          "Specimen_CF_05",
+          "Specimen_CF_10",
+          "Specimen_DB_08",
+          "Specimen_DD_06",
+          "Specimen_DD_08",
+          "Specimen_DF_09",
+          "Specimen_EC_05",
+          "Specimen_ED_07",
+          "Specimen_ED_10",
+          "Specimen_EE_08",
+          "Specimen_FA_07",
+          "Specimen_FA_08",
+          "Specimen_FD_05",
+          "Specimen_FD_09",
+          "Specimen_FE_08",
+          "Specimen_FE_99"
+        ]
+      },
+      {
+        "map_id": "3",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Star_Platinum",
+          "amount": "3"
+        },
+        "fight_count": 9,
+        "level_range": [
+          121,
+          240
+        ],
+        "enemy_ids": [
+          "Specimen_AB_05",
+          "Specimen_AB_08",
+          "Specimen_AD_10",
+          "Specimen_AE_05",
+          "Specimen_BA_05",
+          "Specimen_BB_09",
+          "Specimen_BC_05",
+          "Specimen_BC_06",
+          "Specimen_BD_07",
+          "Specimen_BE_05",
+          "Specimen_BF_06",
+          "Specimen_BF_08",
+          "Specimen_CA_05",
+          "Specimen_CA_06",
+          "Specimen_CA_10",
+          "Specimen_CB_08",
+          "Specimen_CD_06",
+          "Specimen_CD_10",
+          "Specimen_CE_07",
+          "Specimen_CE_08",
+          "Specimen_CF_08",
+          "Specimen_CF_10",
+          "Specimen_DA_06",
+          "Specimen_DA_07",
+          "Specimen_DA_08",
+          "Specimen_DA_10",
+          "Specimen_DD_09",
+          "Specimen_DE_07",
+          "Specimen_DF_10",
+          "Specimen_EA_05",
+          "Specimen_EA_10",
+          "Specimen_EB_99",
+          "Specimen_EC_06",
+          "Specimen_ED_06",
+          "Specimen_ED_10",
+          "Specimen_EF_05",
+          "Specimen_EF_10",
+          "Specimen_FB_05",
+          "Specimen_FC_08",
+          "Specimen_FD_06",
+          "Specimen_FD_09",
+          "Specimen_FE_07",
+          "Specimen_FF_08"
+        ]
+      },
+      {
+        "map_id": "4",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Event_Token",
+          "amount": "15"
+        },
+        "fight_count": 9,
+        "level_range": [
+          131,
+          220
+        ],
+        "enemy_ids": [
+          "Specimen_AC_09",
+          "Specimen_AD_06",
+          "Specimen_AD_08",
+          "Specimen_AE_10",
+          "Specimen_AF_06",
+          "Specimen_AF_10",
+          "Specimen_BA_06",
+          "Specimen_BA_09",
+          "Specimen_BC_07",
+          "Specimen_BD_05",
+          "Specimen_BD_06",
+          "Specimen_BE_10",
+          "Specimen_BF_05",
+          "Specimen_CA_09",
+          "Specimen_CB_05",
+          "Specimen_CB_06",
+          "Specimen_CD_08",
+          "Specimen_CE_04",
+          "Specimen_CE_06",
+          "Specimen_CE_09",
+          "Specimen_CF_07",
+          "Specimen_DA_08",
+          "Specimen_DB_06",
+          "Specimen_DB_09",
+          "Specimen_DC_09",
+          "Specimen_DE_06",
+          "Specimen_DF_06",
+          "Specimen_EA_07",
+          "Specimen_EB_08",
+          "Specimen_EC_08",
+          "Specimen_EC_09",
+          "Specimen_EC_10",
+          "Specimen_ED_05",
+          "Specimen_ED_08",
+          "Specimen_FA_05",
+          "Specimen_FA_07",
+          "Specimen_FA_09",
+          "Specimen_FA_99",
+          "Specimen_FB_07",
+          "Specimen_FB_10",
+          "Specimen_FC_06",
+          "Specimen_FE_09",
+          "Specimen_F_04"
+        ]
+      },
+      {
+        "map_id": "5",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Material_Jackpot_Token",
+          "amount": "75"
+        },
+        "fight_count": 9,
+        "level_range": [
+          140,
+          230
+        ],
+        "enemy_ids": [
+          "Specimen_AA_08",
+          "Specimen_AA_09",
+          "Specimen_AB_07",
+          "Specimen_AB_09",
+          "Specimen_AD_04",
+          "Specimen_AD_09",
+          "Specimen_AF_05",
+          "Specimen_BA_10",
+          "Specimen_BD_99",
+          "Specimen_BE_04",
+          "Specimen_BE_09",
+          "Specimen_BF_07",
+          "Specimen_CA_09",
+          "Specimen_CB_09",
+          "Specimen_CC_05",
+          "Specimen_CF_04",
+          "Specimen_CF_06",
+          "Specimen_CF_09",
+          "Specimen_DC_04",
+          "Specimen_DC_06",
+          "Specimen_DE_08",
+          "Specimen_EA_04",
+          "Specimen_EA_08",
+          "Specimen_ED_09",
+          "Specimen_EE_09",
+          "Specimen_FB_04",
+          "Specimen_FB_09",
+          "Specimen_FC_07",
+          "Specimen_FD_10",
+          "Specimen_FF_09"
+        ]
+      },
+      {
+        "map_id": "6",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Habitat_ABCDEF_3_HC",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          151,
+          240
+        ],
+        "enemy_ids": [
+          "Specimen_AA_01",
+          "Specimen_AB_06",
+          "Specimen_AB_10",
+          "Specimen_AC_04",
+          "Specimen_AC_05",
+          "Specimen_AC_10",
+          "Specimen_AD_06",
+          "Specimen_AE_04",
+          "Specimen_AE_07",
+          "Specimen_AE_08",
+          "Specimen_BB_01",
+          "Specimen_BC_08",
+          "Specimen_BC_09",
+          "Specimen_BC_10",
+          "Specimen_BD_09",
+          "Specimen_CC_01",
+          "Specimen_CD_09",
+          "Specimen_CF_07",
+          "Specimen_CF_08",
+          "Specimen_DB_05",
+          "Specimen_DC_05",
+          "Specimen_DC_07",
+          "Specimen_DC_08",
+          "Specimen_DC_10",
+          "Specimen_DD_03",
+          "Specimen_DE_05",
+          "Specimen_DE_09",
+          "Specimen_DF_07",
+          "Specimen_DF_08",
+          "Specimen_EA_06",
+          "Specimen_EA_09",
+          "Specimen_EB_05",
+          "Specimen_EB_07",
+          "Specimen_EB_09",
+          "Specimen_EB_10",
+          "Specimen_EF_06",
+          "Specimen_EF_07",
+          "Specimen_EF_09",
+          "Specimen_FA_08",
+          "Specimen_FA_09",
+          "Specimen_FB_08",
+          "Specimen_FC_05",
+          "Specimen_FD_07",
+          "Specimen_FD_08",
+          "Specimen_FE_05",
+          "Specimen_FE_07",
+          "Specimen_FE_08"
+        ]
+      },
+      {
+        "map_id": "7",
+        "finishing_reward": {
+          "type": "hardcurrency",
+          "id": "",
+          "amount": "2275"
+        },
+        "fight_count": 9,
+        "level_range": [
+          130,
+          250
+        ],
+        "enemy_ids": [
+          "Specimen_AB_09",
+          "Specimen_AC_05",
+          "Specimen_AC_06",
+          "Specimen_AC_07",
+          "Specimen_AD_03",
+          "Specimen_AE_02",
+          "Specimen_AF_02",
+          "Specimen_AF_05",
+          "Specimen_AF_99",
+          "Specimen_BC_06",
+          "Specimen_BD_02",
+          "Specimen_BD_09",
+          "Specimen_BD_10",
+          "Specimen_BE_02",
+          "Specimen_BF_03",
+          "Specimen_CA_05",
+          "Specimen_CB_10",
+          "Specimen_CD_02",
+          "Specimen_CD_07",
+          "Specimen_CE_02",
+          "Specimen_CE_07",
+          "Specimen_CF_07",
+          "Specimen_DA_04",
+          "Specimen_DA_05",
+          "Specimen_DB_07",
+          "Specimen_DB_08",
+          "Specimen_DC_02",
+          "Specimen_DF_05",
+          "Specimen_EA_03",
+          "Specimen_EB_08",
+          "Specimen_EC_04",
+          "Specimen_EC_06",
+          "Specimen_ED_04",
+          "Specimen_EF_03",
+          "Specimen_FA_10",
+          "Specimen_FB_02",
+          "Specimen_FC_06",
+          "Specimen_FD_09",
+          "Specimen_FE_10"
+        ]
+      },
+      {
+        "map_id": "8",
+        "finishing_reward": {
+          "type": "entity",
+          "id": "Specimen_EE_10",
+          "amount": "1"
+        },
+        "fight_count": 9,
+        "level_range": [
+          160,
+          300
+        ],
+        "enemy_ids": [
+          "Specimen_AA_10",
+          "Specimen_AE_10",
+          "Specimen_AF_07",
+          "Specimen_A_05",
+          "Specimen_BB_10",
+          "Specimen_BF_09",
+          "Specimen_B_04",
+          "Specimen_B_05",
+          "Specimen_CA_07",
+          "Specimen_CC_10",
+          "Specimen_CD_06",
+          "Specimen_CE_10",
+          "Specimen_CE_11",
+          "Specimen_CE_99",
+          "Specimen_CF_05",
+          "Specimen_C_05",
+          "Specimen_DA_09",
+          "Specimen_DD_09",
+          "Specimen_DD_10",
+          "Specimen_DE_10",
+          "Specimen_EE_08",
+          "Specimen_EE_10",
+          "Specimen_EF_08",
+          "Specimen_FC_08",
+          "Specimen_FD_04",
+          "Specimen_FF_10"
+        ]
+      }
+    ]
+  }
+]

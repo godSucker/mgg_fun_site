@@ -5,6 +5,12 @@ import mutantsData from '../data/mutants/mutants.json';
 import legendaryIds from '../data/guides/legendaries.json';
 import zodiacEntries from '../data/guides/zodiac.json';
 import farmerRows from '../data/guides/farmers.json';
+import speedOrbs from '../data/guides/speed-orbs.json';
+import divisionsData from '../data/guides/divisions.json';
+import divisionLocations from '../data/guides/division-locations.json';
+import materialsData from '../data/materials/material.json';
+import orbsData from '../data/materials/orbs.json';
+import charmsData from '../data/materials/charms.json';
 import GuidesBrowser from '../components/guides/GuidesBrowser.svelte';
 import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
 
@@ -61,6 +67,75 @@ const farmers = (farmerRows as FarmerRow[]).map((row) => {
   const relative = Math.round((silverPerHour / SILVER_BASELINE) * 100) / 100;
   return { ...row, mutants, silverPerHour, relative };
 });
+
+const STAR_LABEL: Record<string, string> = { Star_Bronze: 'Бронза', Star_Silver: 'Серебро', Star_Gold: 'Золото', Star_Platinum: 'Платина' };
+const materialsById = new Map((materialsData as { id: string; name: string }[]).map((m) => [m.id, m.name]));
+const orbsById = new Map((orbsData as { id: string; name: string }[]).map((m) => [m.id, m.name]));
+const charmsById = new Map((charmsData as { id: string; name: string }[]).map((m) => [m.id, m.name]));
+
+function prettifyId(id: string): string {
+  return id.replace(/_/g, ' ').replace(/\bHC\b/, '').trim();
+}
+
+interface RewardRaw { type: string; id?: string | null; amount?: string | number | null }
+interface ResolvedReward { label: string; mutant?: { id: string; name: string; genes: string[]; icon: string } }
+
+function resolveReward(reward: RewardRaw | null): ResolvedReward {
+  if (!reward) return { label: '—' };
+  const amount = reward.amount ? String(reward.amount) : '';
+  if (reward.type === 'softcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} серебра` };
+  if (reward.type === 'hardcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} кристаллов` };
+  if (reward.type === 'custom' && reward.id?.startsWith('allele-')) {
+    return { label: `Открывает ген ${reward.id.split('-')[1]} для скрещивания` };
+  }
+  if (reward.type === 'entity' && reward.id) {
+    if (reward.id.startsWith('Specimen_')) {
+      const m = resolve(reward.id.toLowerCase());
+      if (m) return { label: `Мутант: ${m.name}`, mutant: m };
+      return { label: `Мутант: ${reward.id}` };
+    }
+    if (STAR_LABEL[reward.id]) return { label: `Звезда «${STAR_LABEL[reward.id]}»${amount && amount !== '1' ? ` ×${amount}` : ''}` };
+    if (reward.id.startsWith('Habitat_')) {
+      const match = reward.id.match(/_(\d+)_HC$/);
+      const size = match ? Number(match[1]) + 1 : null;
+      return { label: size ? `Люкс-зона x${size}` : prettifyId(reward.id) };
+    }
+    const name = materialsById.get(reward.id) ?? charmsById.get(reward.id) ?? orbsById.get(reward.id);
+    if (name) return { label: `${name}${amount && amount !== '1' ? ` ×${amount}` : ''}` };
+    return { label: `${prettifyId(reward.id)}${amount && amount !== '1' ? ` ×${amount}` : ''}` };
+  }
+  return { label: '—' };
+}
+
+const locationsByMapId = new Map((divisionLocations as { map_id: string; name: string; lore: string }[]).map((l) => [l.map_id, l]));
+
+interface DivisionMapRaw {
+  map_id: string;
+  finishing_reward: RewardRaw | null;
+  fight_count: number;
+  level_range: [number, number];
+  enemy_ids: string[];
+}
+interface DivisionRaw { campaign_id: string; name_ru: string; recommendation: string; maps: DivisionMapRaw[] }
+
+const divisions = (divisionsData as DivisionRaw[]).map((camp) => ({
+  id: camp.campaign_id,
+  name: camp.name_ru,
+  recommendation: camp.recommendation,
+  maps: camp.maps.map((m) => {
+    const loc = locationsByMapId.get(m.map_id);
+    const enemies = m.enemy_ids.map((id) => resolve(id.toLowerCase())).filter((x): x is NonNullable<typeof x> => x !== null);
+    return {
+      mapId: m.map_id,
+      locationName: loc?.name ?? `Локация ${Number(m.map_id) + 1}`,
+      lore: loc?.lore ?? '',
+      reward: resolveReward(m.finishing_reward),
+      fightCount: m.fight_count,
+      levelRange: m.level_range,
+      enemies,
+    };
+  }),
+}));
 ---
 
 <BaseLayout
@@ -73,7 +148,7 @@ const farmers = (farmerRows as FarmerRow[]).map((row) => {
     <p>Гайды и справочники по игровым механикам, собранные сообществом.</p>
   </section>
 
-  <GuidesBrowser client:load legendaries={legendaries} zodiac={zodiac} farmers={farmers} />
+  <GuidesBrowser client:load legendaries={legendaries} zodiac={zodiac} farmers={farmers} speedOrbs={speedOrbs} divisions={divisions} />
   <BingoMutantModal client:load />
 </BaseLayout>
 

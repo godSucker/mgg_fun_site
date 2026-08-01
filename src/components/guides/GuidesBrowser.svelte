@@ -14,8 +14,33 @@
     silverPerHour: number
     relative: number
   }
+  interface SpeedOrbRow { base: number; l3: number; l3pct: number; l4: number; l4pct: number; l5: number; l5pct: number }
+  interface DivisionMap {
+    mapId: string
+    locationName: string
+    lore: string
+    reward: { label: string; mutant?: MutantLite }
+    fightCount: number
+    levelRange: [number, number]
+    enemies: MutantLite[]
+  }
+  interface Division { id: string; name: string; recommendation: string; maps: DivisionMap[] }
 
-  let { legendaries = [], zodiac = [], farmers = [] }: { legendaries: MutantLite[]; zodiac: ZodiacEntry[]; farmers: FarmerRow[] } = $props()
+  let {
+    legendaries = [],
+    zodiac = [],
+    farmers = [],
+    speedOrbs = [],
+    divisions = [],
+  }: {
+    legendaries: MutantLite[]
+    zodiac: ZodiacEntry[]
+    farmers: FarmerRow[]
+    speedOrbs: SpeedOrbRow[]
+    divisions: Division[]
+  } = $props()
+
+  let activeDivision = $state(0)
 
   const FEATURED_LEGENDARY = 'specimen_cc_02' // Бак Морис
 
@@ -24,10 +49,10 @@
     { key: 'zodiac', label: 'Зодиакальные даты', ready: true },
     { key: 'tandem', label: 'Тандем', ready: true },
     { key: 'pvp-bug', label: 'PvP-фича', ready: true },
-    { key: 'speed-orbs', label: 'Сферы скорости', ready: false },
+    { key: 'speed-orbs', label: 'Сферы скорости', ready: true },
     { key: 'quests', label: 'Квесты', ready: false },
     { key: 'farmers', label: 'Фармеры серебра', ready: true },
-    { key: 'divisions', label: 'Дивизионы', ready: false },
+    { key: 'divisions', label: 'Дивизионы', ready: true },
     { key: 'event-ladders', label: 'Ивенты-лесенки', ready: false },
     { key: 'special-ladders', label: 'Ивентовые лесенки', ready: false },
     { key: 'raids', label: 'Рейды', ready: false },
@@ -46,6 +71,14 @@
 
   function fmtSilver(n: number): string {
     return n.toLocaleString('ru-RU')
+  }
+
+  function fmtSpeed(n: number): string {
+    return n.toFixed(2).replace('.', ',')
+  }
+
+  function fmtPct(n: number): string {
+    return n.toFixed(1).replace('.', ',')
   }
 </script>
 
@@ -235,6 +268,92 @@
         </tbody>
       </table>
     </div>
+  {:else if activeTab === 'speed-orbs'}
+    <div class="text-block">
+      <p>
+        Таблица точного прироста от сфер скорости 3–5 уровня. Когда даёшь мутанту ту или иную сферу скорости, %
+        прироста не всегда соответствует указанным на самой сфере 15%, 18% и 20% — в скобках указан реальный прирост
+        для каждой конкретной базовой скорости.
+      </p>
+      <p>
+        Как можно заметить, почти везде прирост от сферы выше номинала, особенно на больших скоростях, где может
+        набегать по 1–2 лишних процента. Похоже, что каждая прибавка со сферы прописывалась разработчиками вручную, а
+        не считалась по единой формуле — скорость с той или иной сферой у части мутантов совпадает с чужой стоковой
+        скоростью или скоростью с другим уровнем сферы.
+      </p>
+    </div>
+    <div class="speed-table-wrap">
+      <table class="speed-table">
+        <thead>
+          <tr>
+            <th>Скорость</th>
+            <th>Сфера 3 (+15%)</th>
+            <th>Сфера 4 (+18%)</th>
+            <th>Сфера 5 (+20%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each speedOrbs as row, i (i)}
+            <tr>
+              <td class="num base-speed">{fmtSpeed(row.base)}</td>
+              <td class="num">{fmtSpeed(row.l3)} <span class="pct">(+{fmtPct(row.l3pct)}%)</span></td>
+              <td class="num">{fmtSpeed(row.l4)} <span class="pct">(+{fmtPct(row.l4pct)}%)</span></td>
+              <td class="num">{fmtSpeed(row.l5)} <span class="pct">(+{fmtPct(row.l5pct)}%)</span></td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
+  {:else if activeTab === 'divisions'}
+    <div class="text-block">
+      <p>
+        7 дивизионов кампании (Альфа → Гига), в каждом по 9 карт — одни и те же 9 локаций, но с растущим уровнем
+        противников и наградами. Рекомендации по эво-уровню и составу команды — наша оценка, в игре таких подсказок нет.
+      </p>
+    </div>
+    <div class="division-switcher">
+      {#each divisions as d, i (d.id)}
+        <button class="division-btn" class:active={activeDivision === i} onclick={() => (activeDivision = i)}>{d.name}</button>
+      {/each}
+    </div>
+    {#if divisions[activeDivision]}
+      <div class="division-rec">{divisions[activeDivision].recommendation}</div>
+      <div class="division-maps">
+        {#each divisions[activeDivision].maps as m, i (m.mapId)}
+          <div class="division-map-card">
+            <div class="division-map-head">
+              <span class="division-map-num">Карта {i + 1}</span>
+              <span class="division-map-title">{m.locationName}</span>
+            </div>
+            <p class="division-map-lore">{m.lore}</p>
+            <div class="division-map-meta">
+              <span>Боёв: <strong>{m.fightCount}</strong></span>
+              <span>Уровни врагов: <strong>{m.levelRange[0]}–{m.levelRange[1]}</strong></span>
+            </div>
+            <div class="division-map-reward">
+              Награда за прохождение:
+              {#if m.reward.mutant}
+                <button class="farmer-chip" onclick={() => openMutant(m.reward.mutant.id)}>
+                  {#if m.reward.mutant.icon}<img src={textureUrl(m.reward.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                  <span>{m.reward.mutant.name}</span>
+                </button>
+              {:else}
+                <strong>{m.reward.label}</strong>
+              {/if}
+            </div>
+            {#if m.enemies.length}
+              <div class="division-enemies">
+                {#each m.enemies as e (e.id)}
+                  <button class="enemy-icon" onclick={() => openMutant(e.id)} title={e.name}>
+                    {#if e.icon}<img src={textureUrl(e.icon)} alt={e.name} loading="lazy" decoding="async" />{/if}
+                  </button>
+                {/each}
+              </div>
+            {/if}
+          </div>
+        {/each}
+      </div>
+    {/if}
   {:else}
     <div class="soon-block">
       <p>Этот раздел ещё в разработке — данные вытаскиваются из игры.</p>
@@ -296,6 +415,34 @@
   .verdict-cell { min-width: 260px; font-size: 0.76rem; color: #94a3b8; line-height: 1.4; }
   .breedable-yes { color: #86efac; font-weight: 600; white-space: nowrap; }
   .breedable-no { color: #fca5a5; font-weight: 600; white-space: nowrap; }
+
+  .speed-table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; max-height: 640px; overflow-y: auto; }
+  .speed-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; min-width: 560px; }
+  .speed-table th { position: sticky; top: 0; background: #161b22; color: #94a3b8; text-align: right; padding: 0.4rem 0.6rem; font-weight: 700; white-space: nowrap; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .speed-table th:first-child { text-align: left; }
+  .speed-table td { padding: 0.32rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #cbd5f5; }
+  .speed-table .base-speed { font-weight: 700; color: #e2e8f0; text-align: left; }
+  .speed-table .pct { color: #64748b; font-size: 0.72rem; }
+
+  .division-switcher { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .division-btn { appearance: none; border: 1px solid rgba(48, 54, 61, 0.6); background: rgba(15, 23, 42, 0.6); color: #94a3b8; border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+  .division-btn:hover { color: #e2e8f0; border-color: rgba(96,165,250,0.3); }
+  .division-btn.active { background: rgba(30, 58, 138, 0.4); color: #60a5fa; border-color: rgba(96,165,250,0.4); }
+  .division-rec { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.65rem 0.9rem; margin-bottom: 1rem; font-size: 0.85rem; color: #bfdbfe; }
+  .division-maps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+  .division-map-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .division-map-head { display: flex; align-items: baseline; gap: 0.5rem; }
+  .division-map-num { font-size: 10.5px; text-transform: uppercase; color: #64748b; font-weight: 700; }
+  .division-map-title { font-size: 0.92rem; font-weight: 800; color: #e2e8f0; }
+  .division-map-lore { margin: 0; font-size: 0.76rem; color: #94a3b8; line-height: 1.45; }
+  .division-map-meta { display: flex; gap: 0.9rem; font-size: 0.76rem; color: #94a3b8; }
+  .division-map-meta strong { color: #cbd5f5; }
+  .division-map-reward { font-size: 0.78rem; color: #94a3b8; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+  .division-map-reward strong { color: #86efac; }
+  .division-enemies { display: flex; flex-wrap: wrap; gap: 4px; max-height: 84px; overflow-y: auto; }
+  .enemy-icon { width: 26px; height: 26px; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.3); border: none; padding: 0; cursor: pointer; }
+  .enemy-icon img { width: 100%; height: 100%; object-fit: cover; }
+  .enemy-icon:hover { outline: 2px solid rgba(96,165,250,0.5); }
 
   .soon-block { color: #64748b; padding: 2rem 0; text-align: center; font-size: 0.9rem; }
 
