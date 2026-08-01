@@ -8,6 +8,7 @@ import farmerRows from '../data/guides/farmers.json';
 import speedOrbs from '../data/guides/speed-orbs.json';
 import divisionsData from '../data/guides/divisions.json';
 import divisionLocations from '../data/guides/division-locations.json';
+import questsData from '../data/guides/quests.json';
 import raidsData from '../data/guides/raids.json';
 import eventLaddersData from '../data/guides/event-ladders.json';
 import specialLaddersData from '../data/guides/special-ladders.json';
@@ -140,6 +141,15 @@ const divisions = (divisionsData as DivisionRaw[]).map((camp) => ({
   }),
 }));
 
+interface QuestRaw { id: string; title: string; caption: string; rewards: RewardRaw[] }
+
+const quests = (questsData as QuestRaw[]).map((q) => ({
+  id: q.id,
+  title: q.title,
+  caption: q.caption,
+  rewards: q.rewards.map(resolveReward),
+}));
+
 interface DungeonRaw { id: string; name: string; nameAuthored: boolean; mutantId: string | null; fightCount: number; bossCount: number; categories: string[] }
 interface EventLadderRaw { id: string; name: string; mapCount: number; mutantId: string | null; mutantAtMap: string | null; categories: string[] }
 
@@ -190,6 +200,7 @@ const specialLadders = {
     farmers={farmers}
     speedOrbs={speedOrbs}
     divisions={divisions}
+    quests={quests}
     raids={raids}
     eventLadders={eventLadders}
     specialLadders={specialLadders}

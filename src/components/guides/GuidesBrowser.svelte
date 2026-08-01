@@ -43,6 +43,8 @@
     categories: string[]
   }
   interface SpecialLadders { experiment: DungeonEntry[]; challenge: DungeonEntry[] }
+  interface QuestReward { label: string; mutant?: MutantLite }
+  interface Quest { id: string; title: string; caption: string; rewards: QuestReward[] }
 
   let {
     legendaries = [],
@@ -50,6 +52,7 @@
     farmers = [],
     speedOrbs = [],
     divisions = [],
+    quests = [],
     raids = [],
     eventLadders = [],
     specialLadders = { experiment: [], challenge: [] },
@@ -59,6 +62,7 @@
     farmers: FarmerRow[]
     speedOrbs: SpeedOrbRow[]
     divisions: Division[]
+    quests: Quest[]
     raids: DungeonEntry[]
     eventLadders: EventLadderEntry[]
     specialLadders: SpecialLadders
@@ -74,7 +78,7 @@
     { key: 'tandem', label: 'Тандем', ready: true },
     { key: 'pvp-bug', label: 'PvP-фича', ready: true },
     { key: 'speed-orbs', label: 'Сферы скорости', ready: true },
-    { key: 'quests', label: 'Квесты', ready: false },
+    { key: 'quests', label: 'Квесты', ready: true },
     { key: 'farmers', label: 'Фармеры серебра', ready: true },
     { key: 'divisions', label: 'Дивизионы', ready: true },
     { key: 'event-ladders', label: 'Ивенты-лесенки', ready: true },
@@ -110,6 +114,17 @@
   }
 
   let activeSpecialSection = $state<'experiment' | 'challenge'>('experiment')
+
+  let questSearch = $state('')
+  let filteredQuests = $derived(
+    questSearch.trim()
+      ? quests.filter(
+          (q) =>
+            q.title.toLowerCase().includes(questSearch.trim().toLowerCase()) ||
+            q.caption.toLowerCase().includes(questSearch.trim().toLowerCase()),
+        )
+      : quests,
+  )
 </script>
 
 <div class="tab-bar" role="tablist">
@@ -333,6 +348,49 @@
           {/each}
         </tbody>
       </table>
+    </div>
+  {:else if activeTab === 'quests'}
+    <div class="text-block">
+      <p>
+        Основные (не ивентовые) квесты игры с наградой — ачивки, сюжетные патчи и системные задания. Игра хранит
+        5300+ миссий, но у большинства сюжетных/обучающих реплик нет ни названия, ни отдельной награды — сюда попали
+        только те, что реально выглядят как квест: название → условие → награда.
+      </p>
+    </div>
+    <input class="quest-search" type="search" placeholder="Поиск по названию или условию…" bind:value={questSearch} />
+    <div class="farmers-table-wrap">
+      <table class="farmers-table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Условие</th>
+            <th>Награда</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each filteredQuests as q (q.id)}
+            <tr>
+              <td class="quest-title">{q.title}</td>
+              <td class="verdict-cell">{q.caption}</td>
+              <td class="quest-rewards">
+                {#each q.rewards as r, i (i)}
+                  {#if r.mutant}
+                    <button class="farmer-chip" onclick={() => openMutant(r.mutant.id)}>
+                      {#if r.mutant.icon}<img src={textureUrl(r.mutant.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                      <span>{r.mutant.name}</span>
+                    </button>
+                  {:else}
+                    <span>{r.label}</span>
+                  {/if}
+                {/each}
+              </td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+      {#if !filteredQuests.length}
+        <p class="soon-block">Ничего не найдено.</p>
+      {/if}
     </div>
   {:else if activeTab === 'divisions'}
     <div class="text-block">
@@ -574,6 +632,15 @@
   .breedable-yes { color: #86efac; font-weight: 600; white-space: nowrap; }
   .breedable-no { color: #fca5a5; font-weight: 600; white-space: nowrap; }
   .authored-name { font-style: italic; }
+  .quest-search {
+    display: block; width: 100%; max-width: 360px; margin-bottom: 0.75rem; padding: 0.45rem 0.7rem;
+    background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+    color: #e2e8f0; font-size: 0.85rem;
+  }
+  .quest-search:focus { outline: none; border-color: rgba(96,165,250,0.4); }
+  .quest-title { font-weight: 700; color: #e2e8f0; min-width: 180px; }
+  .quest-rewards { display: flex; flex-direction: column; gap: 3px; min-width: 160px; }
+  .quest-rewards span { font-size: 0.78rem; color: #94a3b8; }
 
   .speed-table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; max-height: 640px; overflow-y: auto; }
   .speed-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; min-width: 560px; }
