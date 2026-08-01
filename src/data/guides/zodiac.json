@@ -1,0 +1,14 @@
+[
+  { "id": "specimen_bf_03", "sign": "Овен", "dateFrom": "21.03", "dateTo": "20.04" },
+  { "id": "specimen_ad_03", "sign": "Телец", "dateFrom": "21.04", "dateTo": "20.05" },
+  { "id": "specimen_ce_02", "sign": "Близнецы", "dateFrom": "21.05", "dateTo": "21.06" },
+  { "id": "specimen_bd_02", "sign": "Рак", "dateFrom": "22.06", "dateTo": "22.07" },
+  { "id": "specimen_dc_02", "sign": "Лев", "dateFrom": "23.07", "dateTo": "23.08" },
+  { "id": "specimen_af_02", "sign": "Дева", "dateFrom": "24.08", "dateTo": "23.09" },
+  { "id": "specimen_ae_02", "sign": "Весы", "dateFrom": "24.09", "dateTo": "23.10" },
+  { "id": "specimen_fb_02", "sign": "Скорпион", "dateFrom": "24.10", "dateTo": "22.11" },
+  { "id": "specimen_cd_02", "sign": "Стрелец", "dateFrom": "23.11", "dateTo": "21.12" },
+  { "id": "specimen_be_02", "sign": "Козерог", "dateFrom": "22.12", "dateTo": "20.01" },
+  { "id": "specimen_ef_03", "sign": "Водолей", "dateFrom": "21.01", "dateTo": "20.02" },
+  { "id": "specimen_ea_03", "sign": "Рыбы", "dateFrom": "21.02", "dateTo": "20.03" }
+]
