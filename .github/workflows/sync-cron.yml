@@ -53,10 +53,10 @@ jobs:
         if: always()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Auto-Sync: бинго-доски (morphology)"
-          commit_user_name: "MGG Parser Bot"
-          commit_user_email: "bot@archivist-library.com"
-          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          commit_message: '🤖 Auto-Sync: бинго-доски (morphology)'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
           branch: main
           file_pattern: 'src/data/bingos.json'
 
@@ -72,12 +72,20 @@ jobs:
         if: always()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Auto-Sync: каталог боксов"
-          commit_user_name: "MGG Parser Bot"
-          commit_user_email: "bot@archivist-library.com"
-          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          commit_message: '🤖 Auto-Sync: каталог боксов'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
           branch: main
           file_pattern: 'src/data/boxes.json public/boxes/**'
+
+      - name: 3.5 Сторож ротации обменников (джекпот/ивент)
+        # Building_Tokens_Jackpot/Building_Event_1 в gamedefinitions.xml - фиксированные
+        # слоты, чьё содержимое ПЕРЕЗАПИСЫВАЕТСЯ при новой ротации (не накапливается на
+        # CDN) - см. память re-binary-formulas-plan. Только отчёт: obtain.json не трогается,
+        # это кураторские данные (см. detect-missing-obtain.ts). Не завязан на парсер -
+        # тянет свой gamedefinitions.xml независимо.
+        run: npx tsx scripts/detect-exchange-rotation.ts
 
       - name: 4. Запуск Парсера (Режим FULL)
         id: parser
@@ -95,10 +103,10 @@ jobs:
         if: always()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Auto-Sync: кэш отсутствующих текстур"
-          commit_user_name: "MGG Parser Bot"
-          commit_user_email: "bot@archivist-library.com"
-          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          commit_message: '🤖 Auto-Sync: кэш отсутствующих текстур'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
           branch: main
           file_pattern: 'scripts/missing-textures-cache.json'
 
@@ -173,10 +181,10 @@ jobs:
         if: ${{ !cancelled() && steps.parser.outcome == 'success' && steps.check-changes.outputs.has_changes == 'true' }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 Auto-Sync: Обновление данных мутантов"
-          commit_user_name: "MGG Parser Bot"
-          commit_user_email: "bot@archivist-library.com"
-          commit_author: "MGG Parser Bot <bot@archivist-library.com>"
+          commit_message: '🤖 Auto-Sync: Обновление данных мутантов'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
           branch: main
           file_pattern: 'src/data/mutants/*.json public/textures_by_mutant/** public/textures_by_skins/** scripts/character-textures/rendered.json scripts/missing-skin-textures-cache.json'
 
@@ -264,6 +272,10 @@ jobs:
           fi
           if [ -f scripts/.cache/obtain-summary.md ]; then
             cat scripts/.cache/obtain-summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f scripts/.cache/exchange-summary.md ]; then
+            cat scripts/.cache/exchange-summary.md >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
           if [ -f scripts/.cache/parser-summary.md ]; then
