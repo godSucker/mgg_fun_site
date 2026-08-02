@@ -144,7 +144,6 @@ export function calculateBreeding(
 ): BreedingResult[] {
   if (!p1 || !p2) return []
 
-  const candidates: BreedingResult[] = []
   const seenIds = new Set<string>()
 
   const p1Name = normalizeName(p1.name)
@@ -155,31 +154,26 @@ export function calculateBreeding(
   // ========================================
   // STEP 1: SECRET RECIPES (Highest Priority)
   // ========================================
+  // "Секрет" - это не гарантированный (100%) результат, а исключение из правила
+  // canBreedByType: этого потомка в принципе НЕЛЬЗЯ получить ни от какой другой
+  // пары (тип заблокирован для всех, кроме указанной здесь пары), но раз уж пара
+  // верная - шанс считается по тем же формулам веса, что и у обычных кандидатов
+  // (см. STEP 3/4), и делит один пул вероятностей с ними. Раньше секрет жёстко
+  // получал 100% В ДОПОЛНЕНИЕ к обычным кандидатам, которые сами суммировались
+  // в свои 100% - итого пользователю показывалось ~200% на одну пару родителей.
   const secretMatch = secretCombos.find((combo) => {
     const cP1 = normalizeName(combo.parents[0])
     const cP2 = normalizeName(combo.parents[1])
     return (cP1 === p1Name && cP2 === p2Name) || (cP1 === p2Name && cP2 === p1Name)
   })
 
+  const secretChild = secretMatch
+    ? allMutants.find((m) => normalizeName(m.name) === normalizeName(secretMatch.childName))
+    : undefined
+  if (secretChild) seenIds.add(String(secretChild.id))
+
   // Calculate duration for secrets
   const pairDuration = calculateDuration(p1, p2, buildingLevel, star1, star2)
-
-  if (secretMatch) {
-    const secretChild = allMutants.find(
-      (m) => normalizeName(m.name) === normalizeName(secretMatch.childName),
-    )
-    if (secretChild) {
-      candidates.push({
-        child: secretChild,
-        isSecret: true,
-        tag: 'РЕЦЕПТ',
-        probability: 100,
-        weight: 0,
-        duration: pairDuration,
-      })
-      seenIds.add(String(secretChild.id))
-    }
-  }
 
   // ========================================
   // STEP 1.5: PLATINUM FUSION (Guaranteed Result)
@@ -207,10 +201,37 @@ export function calculateBreeding(
   const possibleOffspring = calculatePossibleOffspring(p1Genes, p2Genes)
   const lo = getLengthOut(p1Genes, p2Genes)
 
+  function computeWeight(m: Mutant): number {
+    const multiplier = getWeightMultiplier(getGeneStr(m.genes), lo)
+    if (multiplier <= 0) return 0
+    const isRecipeType = (m.type || '').toLowerCase() === 'recipe'
+    const baseChance = Number(m.chance) || 0
+    const levelBonus = isRecipeType
+      ? LEVEL_BONUS_ODDS[buildingLevel] + LEVEL_BONUS_ODDS_RECIPE[buildingLevel]
+      : LEVEL_BONUS_ODDS[buildingLevel]
+    return (baseChance + levelBonus) * multiplier
+  }
+
   // ========================================
   // STEP 3 & 4: FIND MATCHING MUTANTS AND FILTER BY TYPE
   // ========================================
   const rawCandidates: BreedingResult[] = []
+
+  // Секретный потомок делит один пул вероятностей с обычными кандидатами (см.
+  // комментарий у STEP 1) - его вес считается по той же формуле, но БЕЗ
+  // проверок matchesOffspringGenes/canBreedByType: секрет по определению
+  // нарушает обычные правила скрещивания (иначе он не был бы "секретом", а
+  // просто обычным кандидатом с этой парой родителей).
+  if (secretChild) {
+    rawCandidates.push({
+      child: secretChild,
+      isSecret: true,
+      tag: 'РЕЦЕПТ',
+      probability: 0,
+      weight: computeWeight(secretChild),
+      duration: pairDuration,
+    })
+  }
 
   for (const m of allMutants) {
     const mId = String(m.id)
@@ -227,17 +248,9 @@ export function calculateBreeding(
     }
 
     const tag = getBreedingTag(m, p1Id, p2Id)
-    const multiplier = getWeightMultiplier(mGenes, lo)
+    const weight = computeWeight(m)
 
-    if (multiplier <= 0) continue
-
-    const isRecipeType = (m.type || '').toLowerCase() === 'recipe'
-    const baseChance = Number(m.chance) || 0
-    const levelBonus = isRecipeType
-      ? LEVEL_BONUS_ODDS[buildingLevel] + LEVEL_BONUS_ODDS_RECIPE[buildingLevel]
-      : LEVEL_BONUS_ODDS[buildingLevel]
-    const effectiveOdds = baseChance + levelBonus
-    const weight = effectiveOdds * multiplier
+    if (weight <= 0) continue
 
     rawCandidates.push({
       child: m,
@@ -258,14 +271,10 @@ export function calculateBreeding(
     c.probability = totalWeight > 0 ? (c.weight / totalWeight) * 100 : 0
   }
 
-  // Add secrets to final list (100% probability)
-  const secrets = candidates.filter((c) => c.isSecret)
-  const allResults = [...secrets, ...rawCandidates]
-
   // ========================================
   // STEP 6: SORT RESULTS
   // ========================================
-  return allResults.sort((a, b) => {
+  return rawCandidates.sort((a, b) => {
     if (a.isSecret !== b.isSecret) return a.isSecret ? -1 : 1
     if (a.tag === 'КОПИЯ' && b.tag !== 'КОПИЯ') return -1
     if (b.tag === 'КОПИЯ' && a.tag !== 'КОПИЯ') return 1
@@ -366,11 +375,17 @@ export function findParentsFor(
       const p1 = allMutants.find((m) => normalizeName(m.name) === normalizeName(r.parents[0]))
       const p2 = allMutants.find((m) => normalizeName(m.name) === normalizeName(r.parents[1]))
       if (p1 && p2) {
+        // Тот же реальный шанс, что и в прямом калькуляторе (calculateBreeding),
+        // а не жёсткие 100% - секрет делит вероятность с обычными кандидатами
+        // этой же пары родителей.
+        const match = calculateBreeding(p1, p2, allMutants, buildingLevel, star1, star2).find(
+          (res) => normalizeName(res.child.name) === tName,
+        )
         results.push({
           p1,
           p2,
           isSecret: true,
-          probability: 100,
+          probability: match?.probability ?? 0,
           duration: calculateDuration(p1, p2, buildingLevel, star1, star2),
         })
       }
