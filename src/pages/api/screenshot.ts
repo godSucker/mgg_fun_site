@@ -1,5 +1,32 @@
 import type { APIRoute } from 'astro'
-import { chromium } from 'playwright-core'
+import { chromium, type Browser } from 'playwright-core'
+
+// Fluid Compute reuses warm function instances between requests, so we keep
+// one Chromium process alive at module scope instead of launching/closing it
+// per request - @sparticuz/chromium's cold start (extracting + spawning the
+// binary) was the dominant chunk of the reported 6-12s screenshot latency.
+let browserPromise: Promise<Browser> | null = null
+
+async function getBrowser(): Promise<Browser> {
+  if (browserPromise) {
+    try {
+      const existing = await browserPromise
+      if (existing.isConnected()) return existing
+    } catch {
+      // previous launch failed - fall through and retry below
+    }
+    browserPromise = null
+  }
+  browserPromise = (async () => {
+    const Chromium = (await import('@sparticuz/chromium')).default
+    const execPath = await Chromium.executablePath()
+    return chromium.launch({
+      executablePath: execPath,
+      args: Chromium.args,
+    })
+  })()
+  return browserPromise
+}
 
 export const GET: APIRoute = async ({ url }) => {
   const stateParam = url.searchParams.get('state')
@@ -10,16 +37,10 @@ export const GET: APIRoute = async ({ url }) => {
   const origin = url.origin
   const renderUrl = `${origin}/panel-render?state=${encodeURIComponent(stateParam)}`
 
-  let browser
+  let page
   try {
-    const Chromium = (await import('@sparticuz/chromium')).default
-    const execPath = await Chromium.executablePath()
-    browser = await chromium.launch({
-      executablePath: execPath,
-      args: Chromium.args,
-    })
-
-    const page = await browser.newPage({
+    const browser = await getBrowser()
+    page = await browser.newPage({
       deviceScaleFactor: 2,
       viewport: { width: 1400, height: 900 },
     })
@@ -144,7 +165,7 @@ export const GET: APIRoute = async ({ url }) => {
     return new Response(`Screenshot error: ${message}`, { status: 500 })
   } finally {
     try {
-      await browser?.close()
+      await page?.close()
     } catch {}
   }
 }
