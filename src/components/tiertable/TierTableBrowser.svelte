@@ -97,23 +97,23 @@
     | 'abilityPct'
     | 'abilityAtk1'
     | 'abilityAtk2'
-    | null
-  let sortKey: SortKey = $state(null)
-  let sortDir: 'asc' | 'desc' = $state('asc')
 
-  function setSort(key: NonNullable<SortKey>) {
-    if (sortKey === key) {
-      sortDir = sortDir === 'asc' ? 'desc' : 'asc'
+  // Многоуровневая сортировка: стек последних 2 активных колонок, а не одно
+  // поле. При клике на новую колонку старая "первичная" сортировка становится
+  // tie-breaker'ом для строк с равным значением новой - не теряется полностью.
+  let sortHistory: { key: SortKey; dir: 'asc' | 'desc' }[] = $state([])
+
+  function setSort(key: SortKey) {
+    if (sortHistory[0]?.key === key) {
+      sortHistory = [{ key, dir: sortHistory[0].dir === 'asc' ? 'desc' : 'asc' }, ...sortHistory.slice(1)]
     } else {
-      sortKey = key
-      sortDir = 'asc'
+      sortHistory = [{ key, dir: 'asc' as const }, ...sortHistory.filter((s) => s.key !== key)].slice(0, 2)
     }
   }
 
   function resetAll() {
     filters = { tierBefore: new Set(), tierAfter: new Set(), gene1: new Set(), gene2: new Set(), abilityKey: new Set() }
-    sortKey = null
-    sortDir = 'asc'
+    sortHistory = []
     openFilter = null
   }
 
@@ -129,7 +129,7 @@
     })
   })
 
-  function rowValue(r: Row, key: NonNullable<SortKey>): number {
+  function rowValue(r: Row, key: SortKey): number {
     switch (key) {
       case 'number': return r.number
       case 'tierBefore': return TIER_RANK[tiers.get(r.id)!.before] ?? 99
@@ -145,31 +145,38 @@
     }
   }
 
+  // lastRebalance - особый случай: строки без даты всегда идут последними,
+  // независимо от направления сортировки (не просто "маленькое значение").
+  function compareByKey(a: Row, b: Row, key: SortKey, dir: 'asc' | 'desc'): number {
+    if (key === 'lastRebalance') {
+      if (a.lastRebalance == null && b.lastRebalance == null) return 0
+      if (a.lastRebalance == null) return 1
+      if (b.lastRebalance == null) return -1
+      const cmp = a.lastRebalance.localeCompare(b.lastRebalance)
+      return dir === 'asc' ? cmp : -cmp
+    }
+    const cmp = rowValue(a, key) - rowValue(b, key)
+    return dir === 'asc' ? cmp : -cmp
+  }
+
   const sortedRows = $derived.by(() => {
     const list = [...filteredRows]
-    if (sortKey === 'lastRebalance') {
-      const withDate = list.filter((r) => r.lastRebalance)
-      const withoutDate = list.filter((r) => !r.lastRebalance)
-      withDate.sort((a, b) => {
-        const cmp = (a.lastRebalance as string).localeCompare(b.lastRebalance as string)
-        return sortDir === 'asc' ? cmp : -cmp
-      })
-      return [...withDate, ...withoutDate]
-    }
-    if (sortKey) {
-      const key = sortKey
+    if (sortHistory.length === 0) {
+      // Дефолт: Тир до (лучше -> выше), при равенстве - скорость по убыванию.
       list.sort((a, b) => {
-        const cmp = rowValue(a, key) - rowValue(b, key)
-        return sortDir === 'asc' ? cmp : -cmp
+        const ta = TIER_RANK[tiers.get(a.id)!.before] ?? 99
+        const tb = TIER_RANK[tiers.get(b.id)!.before] ?? 99
+        if (ta !== tb) return ta - tb
+        return b.speed - a.speed
       })
       return list
     }
-    // Дефолт: Тир до (лучше -> выше), при равенстве - скорость по убыванию.
     list.sort((a, b) => {
-      const ta = TIER_RANK[tiers.get(a.id)!.before] ?? 99
-      const tb = TIER_RANK[tiers.get(b.id)!.before] ?? 99
-      if (ta !== tb) return ta - tb
-      return b.speed - a.speed
+      for (const { key, dir } of sortHistory) {
+        const cmp = compareByKey(a, b, key, dir)
+        if (cmp !== 0) return cmp
+      }
+      return 0
     })
     return list
   })
@@ -246,10 +253,23 @@
     if (!iso) return '-'
     return new Date(iso).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' })
   }
-  function sortIndicator(key: NonNullable<SortKey>): string {
-    if (sortKey !== key) return ''
-    return sortDir === 'asc' ? '▲' : '▼'
+  function sortIndicator(key: SortKey): string {
+    const entry = sortHistory.find((s) => s.key === key)
+    if (!entry) return ''
+    const arrow = entry.dir === 'asc' ? '▲' : '▼'
+    return sortHistory[0]?.key === key ? arrow : `${arrow}₂`
   }
+
+  // Закрытие панели фильтра по клику вне её - иначе висит открытой, пока не
+  // кликнут по её же кнопке ещё раз.
+  $effect(() => {
+    if (openFilter === null) return
+    function onDocClick(e: MouseEvent) {
+      if (!(e.target as HTMLElement).closest('.filterable')) openFilter = null
+    }
+    document.addEventListener('click', onDocClick)
+    return () => document.removeEventListener('click', onDocClick)
+  })
 </script>
 
 <div class="toolbar">
@@ -268,6 +288,25 @@
 
 <div class="table-wrap">
   <table>
+    <colgroup>
+      <col style="width: 3%" />
+      <col style="width: 3%" />
+      <col style="width: 10%" />
+      <col style="width: 6%" />
+      <col style="width: 5%" />
+      <col style="width: 5%" />
+      <col style="width: 5%" />
+      <col style="width: 4%" />
+      <col style="width: 4%" />
+      <col style="width: 5%" />
+      <col style="width: 6%" />
+      <col style="width: 9%" />
+      <col style="width: 9%" />
+      <col style="width: 4%" />
+      <col style="width: 6%" />
+      <col style="width: 8%" />
+      <col style="width: 8%" />
+    </colgroup>
     <thead>
       <tr>
         <th class="sortable" onclick={() => setSort('number')}>№ {sortIndicator('number')}</th>
@@ -319,7 +358,7 @@
             </div>
           {/if}
         </th>
-        <th class="sortable" onclick={() => setSort('speed')}>Спд {sortIndicator('speed')}</th>
+        <th class="sortable" onclick={() => setSort('speed')}>Скорость {sortIndicator('speed')}</th>
         <th class="sortable" onclick={() => setSort('hp')}>HP {sortIndicator('hp')}</th>
         <th class="sortable" onclick={() => setSort('atk1')}>Атк1 {sortIndicator('atk1')}</th>
         <th class="sortable" onclick={() => setSort('atk2')}>Атк2 {sortIndicator('atk2')}</th>
@@ -349,8 +388,10 @@
           </td>
           <td class="name-cell">{r.name}</td>
           <td class="type-cell">
-            {#if getTypeIcon(r.type)}<img class="mini-ico" src={textureUrl(getTypeIcon(r.type))} alt="" loading="lazy" decoding="async" />{/if}
-            {TYPE_RU[r.type] ?? r.type}
+            <span class="type-cell-inner">
+              {#if getTypeIcon(r.type)}<img class="mini-ico" src={textureUrl(getTypeIcon(r.type))} alt="" loading="lazy" decoding="async" />{/if}
+              <span>{TYPE_RU[r.type] ?? r.type}</span>
+            </span>
           </td>
           <td class="rebalance-cell">
             {#if r.lastRebalance}<a href="/rebalance">{fmtDate(r.lastRebalance)}</a>{:else}-{/if}
@@ -370,14 +411,16 @@
           <td class="num">{r.speed}</td>
           <td class="num">{fmt(r.hp)}</td>
           <td class="num">
-            {fmt(r.atk1)}
-            {#if getGeneIcon(r.atk1Gene)}<img class="mini-ico inline-ico" src={textureUrl(getGeneIcon(r.atk1Gene))} alt="" loading="lazy" decoding="async" />{/if}
-            {#if r.atk1Aoe}<span class="aoe-badge" title="Площадная атака">AOE</span>{/if}
+            <span class="atk-cell-inner">
+              {#if getGeneIcon(r.atk1Gene)}<img class="mini-ico inline-ico" src={textureUrl(getGeneIcon(r.atk1Gene))} alt="" loading="lazy" decoding="async" />{/if}
+              <span class:aoe-text={r.atk1Aoe} title={r.atk1Aoe ? 'Площадная атака' : undefined}>{fmt(r.atk1)}</span>
+            </span>
           </td>
           <td class="num">
-            {fmt(r.atk2)}
-            {#if getGeneIcon(r.atk2Gene)}<img class="mini-ico inline-ico" src={textureUrl(getGeneIcon(r.atk2Gene))} alt="" loading="lazy" decoding="async" />{/if}
-            {#if r.atk2Aoe}<span class="aoe-badge" title="Площадная атака">AOE</span>{/if}
+            <span class="atk-cell-inner">
+              {#if getGeneIcon(r.atk2Gene)}<img class="mini-ico inline-ico" src={textureUrl(getGeneIcon(r.atk2Gene))} alt="" loading="lazy" decoding="async" />{/if}
+              <span class:aoe-text={r.atk2Aoe} title={r.atk2Aoe ? 'Площадная атака' : undefined}>{fmt(r.atk2)}</span>
+            </span>
           </td>
           <td class="ability-cell">
             {#if r.abilityKey && ABILITY_ICONS[r.abilityKey]}
@@ -404,12 +447,15 @@
   .btn-primary:hover:not(:disabled) { background: rgba(34,197,94,0.32); }
   .status-msg { font-size: 0.78rem; color: #93c5fd; }
 
-  .table-wrap { max-height: 82vh; overflow: auto; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
-  table { border-collapse: collapse; width: 100%; font-size: 0.74rem; }
+  .table-wrap {
+    max-height: 82vh; min-height: 320px; overflow: auto; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; background: rgba(13,17,23,0.94);
+  }
+  table { border-collapse: collapse; width: 100%; font-size: 0.74rem; table-layout: fixed; }
   thead th {
     position: sticky; top: 0; z-index: 2; background: #161b22; color: #94a3b8;
     text-align: left; padding: 0.3rem 0.4rem; font-weight: 700; white-space: nowrap;
-    border-bottom: 1px solid rgba(255,255,255,0.12); user-select: none;
+    border-bottom: 1px solid rgba(255,255,255,0.12); border-right: 1px solid rgba(255,255,255,0.08); user-select: none;
   }
   th.sortable { cursor: pointer; }
   th.sortable:hover { color: #e2e8f0; }
@@ -424,20 +470,25 @@
   .filter-pop label { display: flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; font-weight: 400; color: #cbd5f5; cursor: pointer; padding: 1px 3px; }
   .filter-pop label:hover { background: rgba(255,255,255,0.06); }
 
-  tbody td { padding: 0.15rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.04); white-space: nowrap; color: #cbd5f5; }
+  tbody td {
+    padding: 0.15rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-right: 1px solid rgba(255,255,255,0.05); white-space: nowrap; color: #cbd5f5;
+    overflow: hidden; text-overflow: ellipsis;
+  }
   tbody tr:hover td { background: rgba(255,255,255,0.03); }
   tr.dirty-row td { box-shadow: inset 0 0 0 9999px rgba(96,165,250,0.05); }
 
   .num { text-align: right; font-variant-numeric: tabular-nums; }
-  .icon-cell img { width: 24px; height: 24px; object-fit: cover; border-radius: 4px; vertical-align: middle; }
-  .name-cell { font-weight: 600; color: #e2e8f0; max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
-  .type-cell { color: #94a3b8; }
+  .icon-cell img { width: 28px; height: 28px; object-fit: cover; border-radius: 4px; vertical-align: middle; }
+  .name-cell { font-weight: 600; color: #e2e8f0; overflow: hidden; text-overflow: ellipsis; }
+  .type-cell-inner { display: flex; align-items: center; gap: 0.3rem; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; }
   .rebalance-cell a { color: #60a5fa; text-decoration: none; }
   .rebalance-cell a:hover { text-decoration: underline; }
 
   .mini-ico { width: 14px; height: 14px; vertical-align: middle; object-fit: contain; }
-  .inline-ico { margin-left: 2px; }
-  .aoe-badge { margin-left: 3px; font-size: 8px; font-weight: 800; color: #fca5a5; border: 1px solid rgba(252,165,165,0.5); border-radius: 3px; padding: 0 2px; vertical-align: middle; }
+  .gene-cell .mini-ico, .ability-cell .mini-ico { width: 17px; height: 17px; }
+  .atk-cell-inner { display: inline-flex; align-items: center; gap: 3px; justify-content: flex-end; }
+  .aoe-text { color: #f87171; }
 
   .gene-cell { text-align: center; }
   .ability-cell { text-align: center; }
@@ -448,6 +499,10 @@
     font-weight: 800; font-size: 0.74rem; padding: 0.15rem 0.2rem; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   }
   .tier-cell select:focus-visible { outline: 2px solid #38bdf8; outline-offset: -2px; }
+  /* Нативный дропдаун <select> рендерит option-список ОС/браузером - без
+     этого он белый на белом в тёмной теме (Chromium поддерживает стилизацию
+     option, в отличие от большинства других элементов формы). */
+  .tier-cell select option { background: #0d1117; color: #c9d1d9; }
 
   @media (max-width: 767px) {
     .table-wrap { max-height: 75vh; }
