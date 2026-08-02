@@ -14,13 +14,17 @@
     type: 'entity' | 'hardcurrency' | 'softcurrency'
     amount: number
   }
+  interface BoxGroup {
+    chance: number | null
+    mutants: BoxMutantRef[]
+    rewards: BoxReward[]
+  }
   interface Box {
     itemId: string
     icon: string | null
     category: string
     name: string
-    mutants: BoxMutantRef[]
-    rewards: BoxReward[]
+    groups: BoxGroup[]
   }
 
   const boxes = boxesData as Box[]
@@ -40,39 +44,41 @@
     return getMutantTexturePath(m.id, m.skin ?? '_any', variant)
   }
 
-  // Одинаковые ресурсы (напр. 24 звезды в LuckyBox_Stars) сворачиваем по count -
-  // это пул случайного выбора, показывать 24 одинаковые строки бессмысленно.
-  function groupedRewards(rewards: BoxReward[]) {
-    const map = new Map<string, { reward: BoxReward; count: number }>()
-    for (const r of rewards) {
-      const key = `${r.type}|${r.name}|${r.amount}`
+  function allMutants(b: Box): BoxMutantRef[] {
+    return b.groups.flatMap((g) => g.mutants)
+  }
+
+  // Игра розыгрывает бокс по группам (не по плоскому списку статей) - Tag
+  // key="option"/rand_X на ShopItem группирует несколько ArticleItem в ОДИН
+  // атомарный исход (мутант + бонусный жетон выпадают вместе, это не два
+  // независимых слота, см. Mystery_Anniversary26_1 - "Шанс 1 к 6" в тултипе
+  // игры, а не 1 к 11 как посчитал бы наивный плоский пул). Схлопываем группы
+  // с одинаковым содержимым (в боксах на сотни мутантов реальных групп может
+  // быть меньше, чем кажется) суммированием их шанса.
+  function groupedOutcomes(b: Box) {
+    const map = new Map<string, { chance: number | null; mutants: BoxMutantRef[]; rewards: BoxReward[] }>()
+    for (const g of b.groups) {
+      const key = [
+        ...g.mutants.map((m) => `m:${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`),
+        ...g.rewards.map((r) => `r:${r.type}|${r.name}|${r.amount}`),
+      ]
+        .sort()
+        .join(',')
       const existing = map.get(key)
-      if (existing) existing.count++
-      else map.set(key, { reward: r, count: 1 })
+      if (existing) {
+        if (existing.chance != null && g.chance != null) existing.chance += g.chance
+      } else {
+        map.set(key, { chance: g.chance, mutants: g.mutants, rewards: g.rewards })
+      }
     }
     return [...map.values()]
   }
 
-  // Шанс = доля слотов в пуле (mutants.length + rewards.length, т.к. в части боксов
-  // мутанты и утешительные награды делят один и тот же пул - см. Mystery_Anniversary26_1
-  // и подобные "1 к 6" скин-бинго боксы, память boxes-page-shopitems-pipeline).
-  function groupedMutants(b: Box) {
-    const total = b.mutants.length + b.rewards.length
-    const map = new Map<string, { mutant: BoxMutantRef; count: number }>()
-    for (const m of b.mutants) {
-      const key = `${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`
-      const existing = map.get(key)
-      if (existing) existing.count++
-      else map.set(key, { mutant: m, count: 1 })
-    }
-    return [...map.values()].map(({ mutant, count }) => ({
-      mutant,
-      chance: total > 0 ? (count / total) * 100 : 0,
-    }))
-  }
-
   let open = $state(false)
   let box: Box | null = $state(null)
+  let outcomes = $derived(box ? groupedOutcomes(box) : [])
+  let guaranteed = $derived(outcomes.filter((o) => o.chance == null))
+  let pool = $derived(outcomes.filter((o) => o.chance != null))
 
   function onOpen(e: Event) {
     const itemId = (e as CustomEvent).detail?.boxId as string | undefined
@@ -121,49 +127,74 @@
         <div class="flex-1 min-w-0">
           {#if box.category}<div class="text-[11px] uppercase tracking-wide text-blue-300/80">{box.category}</div>{/if}
           <h2 class="text-lg font-bold text-white leading-snug break-words">{box.name}</h2>
-          {#if box.mutants.length}<div class="text-xs text-slate-400 mt-1">Мутантов в дроп-листе: {box.mutants.length}</div>{/if}
+          {#if allMutants(box).length}<div class="text-xs text-slate-400 mt-1">Мутантов в дроп-листе: {allMutants(box).length}</div>{/if}
         </div>
         <button class="close-btn shrink-0" onclick={close} aria-label="Закрыть">&times;</button>
       </div>
 
       <div class="p-4 flex flex-col gap-4">
-        {#if box.rewards.length}
+        {#if guaranteed.length}
           <div>
-            <div class="section-title">Прочие награды</div>
+            <div class="section-title">Гарантированно в комплекте</div>
             <div class="reward-row">
-              {#each groupedRewards(box.rewards) as { reward, count } (reward.type + reward.name + reward.amount)}
-                <span class="reward-chip">
-                  {#if getRewardTexturePath(reward)}
-                    <img src={textureUrl(getRewardTexturePath(reward))} alt="" loading="lazy" decoding="async" />
-                  {/if}
-                  {getRewardLabel(reward)}{#if count > 1}<span class="reward-count">×{count} слотов</span>{/if}
-                </span>
+              {#each guaranteed as o, i (i)}
+                {#each o.rewards as reward, j (j)}
+                  <span class="reward-chip">
+                    {#if getRewardTexturePath(reward)}
+                      <img src={textureUrl(getRewardTexturePath(reward))} alt="" loading="lazy" decoding="async" />
+                    {/if}
+                    {getRewardLabel(reward)}
+                  </span>
+                {/each}
+                {#each o.mutants as m (m.id)}
+                  <button class="reward-chip" onclick={() => openMutant(m.id)}>
+                    {#if mutantIcon(m)}
+                      <img src={textureUrl(mutantIcon(m))} alt="" loading="lazy" decoding="async" />
+                    {/if}
+                    {m.name}
+                  </button>
+                {/each}
               {/each}
             </div>
           </div>
         {/if}
 
-        {#if box.mutants.length}
-          <div class="mutant-grid">
-            {#each groupedMutants(box) as { mutant: m, chance }, i (i)}
-              <button class="mutant-cell" onclick={() => openMutant(m.id)}>
-                <span class="mutant-cell-img">
-                  {#if mutantIcon(m)}
-                    <img src={textureUrl(mutantIcon(m))} alt="" loading="lazy" decoding="async" />
-                  {/if}
-                </span>
-                <span class="mutant-cell-name">{m.name}</span>
-                <span class="mutant-cell-tags">
-                  {#if m.tier && TIER_ICON[m.tier]}
-                    <img class="tier-icon" src={textureUrl(TIER_ICON[m.tier])} alt={m.tier} title={m.tier} loading="lazy" decoding="async" />
-                  {/if}
-                  {#if m.skin}
-                    <span class="skin-text" title={`Скин: ${m.skin}`}>скин «{m.skin}»</span>
-                  {/if}
-                  <span class="chance-text">{chance.toFixed(1)}%</span>
-                </span>
-              </button>
-            {/each}
+        {#if pool.length}
+          <div>
+            {#if guaranteed.length}<div class="section-title">Розыгрыш</div>{/if}
+            <div class="mutant-grid">
+              {#each pool as o, i (i)}
+                <div class="mutant-cell" class:multi={o.mutants.length + o.rewards.length > 1}>
+                  <div class="cell-items">
+                    {#each o.mutants as m (m.id)}
+                      <button class="cell-item" onclick={() => openMutant(m.id)}>
+                        <span class="mutant-cell-img">
+                          {#if mutantIcon(m)}
+                            <img src={textureUrl(mutantIcon(m))} alt="" loading="lazy" decoding="async" />
+                          {/if}
+                        </span>
+                        <span class="mutant-cell-name">{m.name}</span>
+                        {#if m.tier && TIER_ICON[m.tier]}
+                          <img class="tier-icon" src={textureUrl(TIER_ICON[m.tier])} alt={m.tier} title={m.tier} loading="lazy" decoding="async" />
+                        {/if}
+                        {#if m.skin}
+                          <span class="skin-text" title={`Скин: ${m.skin}`}>скин «{m.skin}»</span>
+                        {/if}
+                      </button>
+                    {/each}
+                    {#each o.rewards as reward (reward.type + reward.name + reward.amount)}
+                      <span class="cell-item cell-item-reward">
+                        {#if getRewardTexturePath(reward)}
+                          <img src={textureUrl(getRewardTexturePath(reward))} alt="" loading="lazy" decoding="async" />
+                        {/if}
+                        <span class="mutant-cell-name">{getRewardLabel(reward)}</span>
+                      </span>
+                    {/each}
+                  </div>
+                  <span class="chance-text">{o.chance?.toFixed(1)}%</span>
+                </div>
+              {/each}
+            </div>
           </div>
         {/if}
       </div>
@@ -181,20 +212,26 @@
   .reward-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .reward-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; padding: 0.25rem 0.6rem 0.25rem 0.3rem; font-size: 11.5px; color: #e2e8f0; }
   .reward-chip img { width: 20px; height: 20px; object-fit: contain; }
-  .reward-count { color: #64748b; margin-left: 0.15rem; }
+  button.reward-chip { appearance: none; cursor: pointer; font: inherit; }
+  button.reward-chip:hover { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.35); }
 
   .mutant-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 0.6rem; max-height: 50vh; overflow-y: auto; }
 
-  .mutant-cell { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 0.5rem 0.35rem; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); cursor: pointer; text-align: center; }
-  .mutant-cell:hover { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.35); }
-  .mutant-cell:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+  .mutant-cell { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 0.5rem 0.35rem; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); text-align: center; }
+  .mutant-cell.multi { background: rgba(96,165,250,0.05); border-color: rgba(96,165,250,0.15); }
+
+  .cell-items { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 0.4rem; }
+  .cell-item { display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; padding: 0; cursor: pointer; text-align: center; }
+  button.cell-item:hover .mutant-cell-name { color: #93c5fd; }
+  button.cell-item:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+  .cell-item-reward { cursor: default; }
 
   .mutant-cell-img { width: 44px; height: 44px; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; }
   .mutant-cell-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cell-item-reward img { width: 28px; height: 28px; object-fit: contain; }
 
   .mutant-cell-name { font-size: 11px; color: #cbd5f5; line-height: 1.15; word-break: break-word; }
 
-  .mutant-cell-tags { display: flex; flex-direction: column; align-items: center; gap: 2px; }
   .tier-icon { width: 14px; height: 14px; }
   .chance-text { font-size: 9.5px; font-weight: 600; color: #86efac; }
   .skin-text { font-size: 9px; color: #a5b4fc; word-break: break-word; }
