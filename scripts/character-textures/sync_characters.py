@@ -72,7 +72,16 @@ EXCLUDED_CODES = {"a_02", "b_02", "c_02"}
 # reference renders (which do have correct eyes on every tier) instead.
 # Frozen here so a future atlas refresh doesn't silently re-render and
 # overwrite them with the eyeless compositor output.
-FROZEN_CODES = {"cc_03"}
+#
+# ff_05 (Glubber): same class of bug as ed_14/ee_01 (see memory
+# character-textures-batch-fixes-2026-07) -- the web-PNG atlas's alpha
+# channel is degraded (interior alpha 93-255, not flat 0/255), so the body
+# composite that should be fully transparent renders as a faint visible
+# ghost behind the wings. Not a compositor code bug -- the correct alpha
+# only exists in the mobile/ETC1 atlas, which isn't reachable without a
+# live Frida capture. public/textures_by_mutant/ff_05/FULL_ff_05*.png were
+# replaced with this repo's pre-existing reference renders instead.
+FROZEN_CODES = {"cc_03", "ff_05"}
 
 
 # --------------------------------------------------------------------------- #

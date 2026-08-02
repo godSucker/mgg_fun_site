@@ -17,6 +17,10 @@ import materialData from '../data/materials/material.json';
 import { translateItemId, getItemTexture } from '../lib/craft-simulator';
 import { getLocalisedName } from '../lib/localisation';
 import { getMutantTexturePath } from '../lib/bingo-textures';
+import { getGeneIcon, STAR_KEYS, STAR_MULTIPLIERS } from '../lib/mutant-icons';
+import { GENE_RU } from '../lib/mutant-dicts';
+import { calculateFinalStats } from '../lib/stats/unified-calculator';
+import divisionFightsData from '../data/guides/division-fights.json';
 import GuidesBrowser from '../components/guides/GuidesBrowser.svelte';
 import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
 
@@ -42,6 +46,11 @@ function mutantIcon(m: Mutant): string {
   if (!raw) return '';
   return raw.startsWith('/') ? raw : `/${raw}`;
 }
+function mutantIconAtStar(m: Mutant, star: string): string {
+  const raw = m.stars?.[star]?.images?.[0];
+  if (!raw) return mutantIcon(m);
+  return raw.startsWith('/') ? raw : `/${raw}`;
+}
 function mutantFullArt(m: Mutant): string {
   const star = maxStar(m);
   const folder = m.id.replace(/^specimen_/, '');
@@ -57,10 +66,26 @@ function resolve(id: string) {
 
 const legendaries = (legendaryIds as string[]).map(resolve).filter((x): x is NonNullable<typeof x> => x !== null);
 
-const zodiac = (zodiacEntries as { id: string; sign: string; dateFrom: string; dateTo: string }[])
+const zodiac = (
+  zodiacEntries as {
+    id: string;
+    sign: string;
+    dateFrom: string;
+    dateTo: string;
+    priceNormal?: number;
+    priceSilver?: number;
+  }[]
+)
   .map((z) => {
-    const m = resolve(z.id);
-    return m ? { ...z, ...m } : null;
+    const m = mutantsById.get(z.id);
+    const resolved = resolve(z.id);
+    if (!m || !resolved) return null;
+    return {
+      ...z,
+      ...resolved,
+      iconNormal: mutantIconAtStar(m, 'normal'),
+      iconSilver: mutantIconAtStar(m, 'silver'),
+    };
   })
   .filter((x): x is NonNullable<typeof x> => x !== null);
 
@@ -114,7 +139,8 @@ function resolveReward(reward: RewardRaw | null): ResolvedReward {
     return { label: `${Number(amount).toLocaleString('ru-RU')} опыта`, icon: getItemTexture('Material_XP1000') };
   }
   if (reward.type === 'custom' && reward.id?.startsWith('allele-')) {
-    return { label: `Открывает ген ${reward.id.split('-')[1]} для скрещивания`, icon: null };
+    const gene = reward.id.split('-')[1];
+    return { label: `Открывает ген «${GENE_RU[gene] ?? gene}» для скрещивания`, icon: getGeneIcon(gene) };
   }
   if (reward.type === 'entity' && reward.id) {
     if (reward.id.startsWith('Specimen_')) {
@@ -155,21 +181,66 @@ interface DivisionMapRaw {
 }
 interface DivisionRaw { campaign_id: string; name_ru: string; recommendation: number; maps: DivisionMapRaw[] }
 
-const divisions = (divisionsData as DivisionRaw[]).map((camp) => ({
+interface FighterRaw { id: string; level: number; stars: number; boss: boolean; adjustment?: { speedPct: number; lifePct: number; attackPct: number } }
+interface WaveRaw { number: number; fighters: FighterRaw[] }
+interface FightRaw { fightId: number; waves: WaveRaw[] }
+interface MapFightsRaw { campaignId: string; mapId: string; fights: FightRaw[] }
+
+const divisionFightsByMap = new Map(
+  (divisionFightsData as MapFightsRaw[]).map((mf) => [`${mf.campaignId}_${mf.mapId}`, mf.fights]),
+);
+
+function resolveFighter(f: FighterRaw) {
+  const m = mutantsById.get(f.id.toLowerCase());
+  if (!m) return null;
+  const starKey = STAR_KEYS[f.stars] ?? 'normal';
+  const icon = mutantIconAtStar(m, m.stars?.[starKey] ? starKey : maxStar(m));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const stats = calculateFinalStats(m.base_stats as any, f.level, STAR_MULTIPLIERS[starKey]);
+  if (f.adjustment) {
+    stats.hp = Math.round((stats.hp * f.adjustment.lifePct) / 100);
+    stats.atk1 = Math.round((stats.atk1 * f.adjustment.attackPct) / 100);
+    stats.atk2 = Math.round((stats.atk2 * f.adjustment.attackPct) / 100);
+    stats.speed = Math.round((stats.speed * f.adjustment.speedPct) / 100 * 100) / 100;
+  }
+  return { id: m.id, name: m.name, icon, level: f.level, boss: f.boss, stats };
+}
+
+const divisionsRaw = divisionsData as DivisionRaw[];
+
+// В нескольких дивизионах у ровно одной карты finishing_reward отсутствует в
+// исходных данных - это переход в следующий дивизион (подтверждено в самой
+// игре), а не пробел парсера.
+const divisions = divisionsRaw.map((camp, campIndex) => ({
   id: camp.campaign_id,
   name: camp.name_ru,
   recommendedLevel: camp.recommendation,
   maps: camp.maps.map((m) => {
     const loc = locationsByMapId.get(m.map_id);
     const enemies = m.enemy_ids.map((id) => resolve(id.toLowerCase())).filter((x): x is NonNullable<typeof x> => x !== null);
+    const nextName = divisionsRaw[campIndex + 1]?.name_ru;
+    const reward = m.finishing_reward
+      ? resolveReward(m.finishing_reward)
+      : {
+          label: nextName ? `Открывает ${nextName.replace(/^Дивизион /, 'дивизион ')}` : 'Переход в следующий дивизион',
+          icon: null,
+        };
+    const fights = (divisionFightsByMap.get(`${camp.campaign_id}_${m.map_id}`) ?? []).map((f) => ({
+      fightId: f.fightId,
+      waves: f.waves.map((w) => ({
+        number: w.number,
+        fighters: w.fighters.map(resolveFighter).filter((x): x is NonNullable<typeof x> => x !== null),
+      })),
+    }));
     return {
       mapId: m.map_id,
       locationName: loc?.name ?? `Локация ${Number(m.map_id) + 1}`,
       lore: loc?.lore ?? '',
-      reward: resolveReward(m.finishing_reward),
+      reward,
       fightCount: m.fight_count,
       levelRange: m.level_range,
       enemies,
+      fights,
     };
   }),
 }));
