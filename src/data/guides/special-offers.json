@@ -5474,7 +5474,7 @@
     "id": "levelup-57-luckybox_legend_gold_duo",
     "shopItemId": "LuckyBox_Legend_Gold_Duo",
     "name": "Золотой легендарный контейнер х2",
-    "icon": null,
+    "icon": "/special-offers/lucky_box_xmas_gold.png",
     "level": 57,
     "cost": {
       "amount": 1350,
@@ -9330,7 +9330,7 @@
     "id": "levelup-178-luckybox_legend_gold_duo",
     "shopItemId": "LuckyBox_Legend_Gold_Duo",
     "name": "Золотой легендарный контейнер х2",
-    "icon": null,
+    "icon": "/special-offers/lucky_box_xmas_gold.png",
     "level": 178,
     "cost": {
       "amount": 1350,
@@ -12847,7 +12847,7 @@
     "id": "levelup-232-luckybox_legend_gold_duo",
     "shopItemId": "LuckyBox_Legend_Gold_Duo",
     "name": "Золотой легендарный контейнер х2",
-    "icon": null,
+    "icon": "/special-offers/lucky_box_xmas_gold.png",
     "level": 232,
     "cost": {
       "amount": 1350,

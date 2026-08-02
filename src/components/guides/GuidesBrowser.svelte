@@ -783,7 +783,7 @@
     padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;
   }
   .offer-card-head { display: flex; align-items: center; gap: 0.6rem; }
-  .offer-card-icon { width: 40px; height: 40px; object-fit: contain; border-radius: 8px; background: rgba(0,0,0,0.25); flex-shrink: 0; }
+  .offer-card-icon { width: 56px; height: 56px; object-fit: contain; border-radius: 8px; background: rgba(0,0,0,0.25); flex-shrink: 0; }
   .offer-card-info { min-width: 0; }
   .offer-card-name { font-size: 0.85rem; font-weight: 700; color: #e2e8f0; line-height: 1.2; }
   .offer-card-cost { font-size: 0.75rem; color: #fbbf24; font-weight: 600; margin-top: 2px; }

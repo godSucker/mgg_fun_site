@@ -116,7 +116,11 @@ async function main() {
       const byCaption = lookup(strippedKey) ?? lookup(caption)
       if (byCaption && byCaption.length <= 80) return balanceQuotes(byCaption)
     }
-    return itemId.replace(/^#\w+-\d+-/, '').replace(/^#/, '').replace(/_/g, ' ').trim()
+    return itemId
+      .replace(/^#\w+-\d+-/, '')
+      .replace(/^#/, '')
+      .replace(/_/g, ' ')
+      .trim()
   }
 
   await fs.mkdir(ICON_DIR, { recursive: true })
@@ -124,7 +128,16 @@ async function main() {
     fssync.readdirSync(ICON_DIR).map((f) => path.basename(f, path.extname(f))),
   )
 
-  async function ensureIcon(picture: string | undefined): Promise<string | null> {
+  // Известный баг игровых данных: picture="luckybox_legend_gold_duo$$" (лишний "$$"
+  // прямо в атрибуте) -> 404 даже на CDN Kobojo (тот же баг, что в build-boxes.ts,
+  // коммит 33a819c77). Дуо-бокс визуально идентичен обычному "Золотому легендарному
+  // контейнеру" (только награды x2) - переиспользуем его иконку, а не левую ёлочную.
+  const BROKEN_PICTURE_FALLBACK: Record<string, string> = {
+    luckybox_legend_gold_duo$$: 'lucky_box_xmas_gold',
+  }
+
+  async function ensureIcon(pictureRaw: string | undefined): Promise<string | null> {
+    const picture = pictureRaw ? (BROKEN_PICTURE_FALLBACK[pictureRaw] ?? pictureRaw) : pictureRaw
     if (!picture) return null
     if (existingIcons.has(picture)) return `/special-offers/${picture}.png`
     try {
@@ -156,7 +169,12 @@ async function main() {
       }
       const cosmeticSkin = skinVal && !isTier ? skinVal : null
       return {
-        mutant: { id: idLower, name: mutantNameById.get(idLower) ?? typeId, tier, skin: cosmeticSkin },
+        mutant: {
+          id: idLower,
+          name: mutantNameById.get(idLower) ?? typeId,
+          tier,
+          skin: cosmeticSkin,
+        },
       }
     }
     const amount = tags.amount != null ? Number(tags.amount) : 1
@@ -222,8 +240,7 @@ async function main() {
       ? {
           amount: Number(costMatch[1]),
           type: (costMatch[2] === 'softcurrency' ? 'softcurrency' : 'hardcurrency') as
-            | 'hardcurrency'
-            | 'softcurrency',
+            'hardcurrency' | 'softcurrency',
         }
       : null
     const realPriceMatch = body.match(/<RealPrices Currency="USD" Value="([^"]+)"/)
@@ -280,7 +297,9 @@ async function main() {
 
   await fs.writeFile(OUT_PATH, JSON.stringify(offers, null, 2) + '\n', 'utf-8')
 
-  console.log(`[SPECIAL-OFFERS] ${offers.length} офферов на ${new Set(offers.map((o) => o.level)).size} уровнях`)
+  console.log(
+    `[SPECIAL-OFFERS] ${offers.length} офферов на ${new Set(offers.map((o) => o.level)).size} уровнях`,
+  )
   console.log(`[SPECIAL-OFFERS] Иконок докачано: ${downloaded}`)
 }
 
