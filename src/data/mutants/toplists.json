@@ -22,8 +22,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 2960
           },
           {
@@ -1373,8 +1373,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 1334
           },
           {
@@ -3895,8 +3895,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 1480
           },
           {
@@ -4905,8 +4905,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 7100
           },
           {
@@ -5031,8 +5031,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 5852
           },
           {
@@ -9373,8 +9373,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 7.69
           },
           {
@@ -10276,8 +10276,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 5.56
           },
           {
@@ -15241,8 +15241,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 42
           },
           {
@@ -15458,8 +15458,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 42
           },
           {
@@ -18313,8 +18313,8 @@
             {
               "id": "specimen_ce_10",
               "name": "Капитан Ахаба",
-              "star": "platinum",
-              "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+              "star": "normal",
+              "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
               "pct": 20,
               "value": 267
             },
@@ -19333,8 +19333,8 @@
             {
               "id": "specimen_bf_11",
               "name": "Ахерон",
-              "star": "platinum",
-              "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+              "star": "normal",
+              "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
               "pct": 41,
               "value": 1214
             },
@@ -20993,8 +20993,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 16060
           },
           {
@@ -22120,8 +22120,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 8814
           },
           {
@@ -24796,8 +24796,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 10374
           },
           {
@@ -25869,8 +25869,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 27690
           },
           {
@@ -25995,8 +25995,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 22822
           },
           {
@@ -30337,8 +30337,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 7.69
           },
           {
@@ -31240,8 +31240,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 5.56
           },
           {
@@ -36205,8 +36205,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 1260
           },
           {
@@ -36422,8 +36422,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 1260
           },
           {
@@ -39285,8 +39285,8 @@
             {
               "id": "specimen_ce_10",
               "name": "Капитан Ахаба",
-              "star": "platinum",
-              "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+              "star": "normal",
+              "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
               "pct": 20,
               "value": 1762
             },
@@ -40297,8 +40297,8 @@
             {
               "id": "specimen_bf_11",
               "name": "Ахерон",
-              "star": "platinum",
-              "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+              "star": "normal",
+              "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
               "pct": 41,
               "value": 6584
             },
@@ -41958,8 +41958,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 7100
           },
           {
@@ -42084,8 +42084,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 5852
           },
           {
@@ -46433,8 +46433,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 7.69
           },
           {
@@ -47336,8 +47336,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 5.56
           },
           {
@@ -52301,8 +52301,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 42
           },
           {
@@ -52518,8 +52518,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 42
           },
           {
@@ -53615,8 +53615,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 16060
           },
           {
@@ -54700,8 +54700,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 8814
           },
           {
@@ -57411,8 +57411,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 10374
           },
           {
@@ -58484,8 +58484,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 27690
           },
           {
@@ -58610,8 +58610,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 22823
           },
           {
@@ -62959,8 +62959,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 7.69
           },
           {
@@ -63862,8 +63862,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 5.56
           },
           {
@@ -68827,8 +68827,8 @@
           {
             "id": "specimen_ce_10",
             "name": "Капитан Ахаба",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
             "value": 1260
           },
           {
@@ -69044,8 +69044,8 @@
           {
             "id": "specimen_bf_11",
             "name": "Ахерон",
-            "star": "platinum",
-            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+            "star": "normal",
+            "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
             "value": 1260
           },
           {
@@ -71899,8 +71899,8 @@
             {
               "id": "specimen_ce_10",
               "name": "Капитан Ахаба",
-              "star": "platinum",
-              "icon": "/textures_by_mutant/ce_10/specimen_ce_10_platinum.webp",
+              "star": "normal",
+              "icon": "/textures_by_mutant/ce_10/specimen_ce_10_normal.webp",
               "pct": 20,
               "value": 1762
             },
@@ -72919,8 +72919,8 @@
             {
               "id": "specimen_bf_11",
               "name": "Ахерон",
-              "star": "platinum",
-              "icon": "/textures_by_mutant/bf_11/specimen_bf_11_platinum.webp",
+              "star": "normal",
+              "icon": "/textures_by_mutant/bf_11/specimen_bf_11_normal.webp",
               "pct": 41,
               "value": 6584
             },
