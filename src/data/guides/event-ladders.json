@@ -1,0 +1,3027 @@
+[
+  {
+    "id": "season_jungle_bells_1",
+    "name": "Jungle Bells 1",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_AB_09",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_AB_09",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_jungle_bells_2",
+    "name": "Jungle Bells 2",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_DA_11",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Snowball",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_DA_11",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_jungle_bells_3",
+    "name": "Jungle Bells 3",
+    "nameAuthored": false,
+    "mapCount": 5,
+    "mutantId": "Specimen_AD_10",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Xpx2_97",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_speed_03",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_AD_10",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_18_1",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_AF_99",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addshield_03_ephemeral_20",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 15
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_A_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_shield_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_AF_99",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_18_2",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EB_99",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_speed_02_ephemeral_20",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_E_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_strengthen_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_EB_99",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_18_3",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_BB_09",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addregenerate_03_ephemeral_20",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 15
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_B_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_regenerate_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_BB_09",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_18_4",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FA_99",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_life_03_ephemeral_30",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_F_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_weaken_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FA_99",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_18_5",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CA_10",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_C_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_retaliate_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_CA_10",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_18_6",
+    "name": "Uprising",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EF_99",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_life_05_ephemeral_10",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 12
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_05_ephemeral_10",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_D_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_slash_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_EF_99",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_jungle",
+    "name": "Амазонка",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EF_07",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_LP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_strengthen_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Critical_3",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 20
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_F_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_EF_07",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_ice",
+    "name": "Антарктика",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CA_06",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_speed_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Critical_3",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_A_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_CA_06",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_vegas",
+    "name": "Вегас",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_ED_09",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_LP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_strengthen_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Critical_3",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 20
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_D_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_ED_09",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_olympus",
+    "name": "Гора Олимп",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_BE_06",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_slash_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Regenx4_3",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_E_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_BE_06",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_rome",
+    "name": "Колизей",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FC_08",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Regenx4_3",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_F_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FC_08",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_rome_hardcore",
+    "name": "Колизей",
+    "nameAuthored": false,
+    "mapCount": 5,
+    "mutantId": "Specimen_EE_10",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 20
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_speed_03",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_EE_10",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_space",
+    "name": "Космопорт",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FE_08",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Anticritical_3",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_E_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FE_08",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_halloween",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CD_03",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Critical_3",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Anticritical_3",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_CD_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 15
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Regenx2_3",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Regenx4_3",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_1",
+    "name": "Кризис",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FA_99",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 5,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 5,
+        "reward": {
+          "id": "orb_special_speed_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 5,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 5,
+        "reward": {
+          "id": "orb_special_addretaliate_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 5,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 5,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 5,
+        "reward": {
+          "id": "orb_basic_life_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 5,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 5,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 5,
+        "reward": {
+          "id": "Specimen_FA_99",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_2",
+    "name": "Кризис",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FC_02",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addshield_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 15
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_ABCDEF_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FC_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_3",
+    "name": "Кризис",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_EB_99",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 5,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 5,
+        "reward": {
+          "id": "orb_special_speed_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 5,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 5,
+        "reward": {
+          "id": "orb_special_addstrengthen_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 5,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 15
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 5,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 5,
+        "reward": {
+          "id": "orb_basic_attack_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 5,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 5,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 5,
+        "reward": {
+          "id": "Specimen_EB_99",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_moon",
+    "name": "Луна",
+    "nameAuthored": false,
+    "mapCount": 5,
+    "mutantId": "Specimen_BB_07",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_03",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_BB_07",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_mars",
+    "name": "Марс",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_DF_07",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_slash_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Anticritical_3",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_D_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_DF_07",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_miami",
+    "name": "Пляжные бои Майами",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FD_06",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_speed_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addretaliate_02",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_D_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FD_06",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_rapanui",
+    "name": "Рапа-Нуи",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FE_06",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Charm_Anticritical_3",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_F_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FE_06",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_gotham",
+    "name": "Темный город",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_CE_06",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_life_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addregenerate_03_ephemeral_20",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_C_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_CE_06",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_japan",
+    "name": "Япония",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": "Specimen_FF_05",
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Love_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Love_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Love_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Love_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_F_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Love_Token",
+          "amount": 7
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Love_Token",
+          "amount": 9
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Specimen_FF_05",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_19_1",
+    "name": "Aftermath",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 4
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_19_2",
+    "name": "Aftermath",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 4
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 6
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 8
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 9
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 10
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_anniversary_19_3",
+    "name": "Aftermath",
+    "nameAuthored": false,
+    "mapCount": 10,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 7
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Dark_Matter",
+          "amount": 20
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_xmas_19",
+    "name": "Jungle Bells",
+    "nameAuthored": false,
+    "mapCount": 30,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_05_ephemeral_10",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_05_ephemeral_10",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "10",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_xp_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "11",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 4
+        }
+      },
+      {
+        "mapId": "12",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_05_ephemeral_10",
+          "amount": 4
+        }
+      },
+      {
+        "mapId": "13",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "14",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "15",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "16",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "17",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 6
+        }
+      },
+      {
+        "mapId": "18",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "19",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "20",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 7
+        }
+      },
+      {
+        "mapId": "21",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 15
+        }
+      },
+      {
+        "mapId": "22",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_life_05",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "23",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 8
+        }
+      },
+      {
+        "mapId": "24",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "25",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "26",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 9
+        }
+      },
+      {
+        "mapId": "27",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addshield_05",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "28",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_ABCDEF_3_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "29",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Winter_Coal",
+          "amount": 10
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_halloween_1",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 8,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 8
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addregenerate_03",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Halloween_Soul",
+          "amount": 30
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_halloween_19",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 20,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_05_ephemeral_10",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Bronze",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_life_03",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Banshee_Veil",
+          "amount": 2
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "8",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "9",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "10",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Banshee_Veil",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "11",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_regenerate_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "12",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "13",
+        "fightCount": 10,
+        "reward": {
+          "id": "Habitat_ABCDEF_2_HC",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "14",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 8
+        }
+      },
+      {
+        "mapId": "15",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_basic_attack_05",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "16",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "17",
+        "fightCount": 10,
+        "reward": {
+          "id": "orb_special_addregenerate_04",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "18",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Platinum",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "19",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Claiomh_Solais",
+          "amount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "season_halloween_2",
+    "name": "Кошмар Хеллоуина",
+    "nameAuthored": false,
+    "mapCount": 8,
+    "mutantId": null,
+    "maps": [
+      {
+        "mapId": "0",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 5
+        }
+      },
+      {
+        "mapId": "1",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Silver",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "2",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Jackpot_Token",
+          "amount": 10
+        }
+      },
+      {
+        "mapId": "3",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Event_Token",
+          "amount": 3
+        }
+      },
+      {
+        "mapId": "4",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_XP1000",
+          "amount": 8
+        }
+      },
+      {
+        "mapId": "5",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Gacha_Token",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "6",
+        "fightCount": 10,
+        "reward": {
+          "id": "Star_Gold",
+          "amount": 1
+        }
+      },
+      {
+        "mapId": "7",
+        "fightCount": 10,
+        "reward": {
+          "id": "Material_Halloween_Soul",
+          "amount": 40
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,3631 @@
+[
+  {
+    "id": "114a",
+    "title": "VIP",
+    "caption": "Использовать 50 000 тандемных атак",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "250"
+      }
+    ]
+  },
+  {
+    "id": "43a",
+    "title": "А вот это уже больно!",
+    "caption": "Нанести 1,5 млн ед. суммарного урона",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "А три головы — лучше!",
+    "caption": "Получи Цербера",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "125a",
+    "title": "Благосклонность удачи",
+    "caption": "Выиграть 25 сражений, в которых всех врагов убивает один мутант",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "68a",
+    "title": "Бойня",
+    "caption": "Устранены 500 мутантов с геном зооморфа",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "46",
+    "title": "Большая псарня!",
+    "caption": "Приобрети сектор зооморфов 2-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "43",
+    "title": "Бороться и искать, найти и не подохнуть!",
+    "caption": "Получи Благородный дракон",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "119",
+    "title": "Быстрая инкубация",
+    "caption": "Ускорь инкубацию",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "20000"
+      }
+    ]
+  },
+  {
+    "id": "152",
+    "title": "Быстрая постройка",
+    "caption": "Ускорь строительство только что приобретенного сектора",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "352",
+    "title": "Быстрая постройка",
+    "caption": "Ускорь строительство сектора",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "В джазе только... некроботы!",
+    "caption": "Получи Некробота",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "123a",
+    "title": "В последний момент",
+    "caption": "Выиграть 25 сражений с менее чем 100 очками здоровья у последнего мутанта",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "4410",
+    "title": "В реальных условиях",
+    "caption": "Побеждайте в PvE-сражениях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Bronze",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "67",
+    "title": "В центре внимания",
+    "caption": "Выиграй следующее сражение и получи 3-й уровень славы",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "5000"
+      }
+    ]
+  },
+  {
+    "id": "267",
+    "title": "В центре внимания",
+    "caption": "Выиграй следующее сражение и получи 3-й уровень славы",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "5000"
+      }
+    ]
+  },
+  {
+    "id": "73",
+    "title": "Ваше здоровье!",
+    "caption": "Используй «Полное лечение», чтобы вылечить мутанта",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "20000"
+      }
+    ]
+  },
+  {
+    "id": "59a",
+    "title": "Ветер развеет ваш прах...",
+    "caption": "Устранены 2000 мутантов с геном нежити",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "48",
+    "title": "Вместе — не тесно!",
+    "caption": "Приобрети сектор зооморфов 3-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "84a",
+    "title": "Во всем виновата проклятая система!",
+    "caption": "Проиграть 50 000 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "55a",
+    "title": "Возвращайтесь в могилы!",
+    "caption": "Устранены 5 мутантов с геном нежити",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "52",
+    "title": "Воздушный замок",
+    "caption": "Приобрети сектор мификов 3-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "4477",
+    "title": "Восстановление сил",
+    "caption": "Больше крови!",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Event_Token",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "7a",
+    "title": "Вот это другое дело!",
+    "caption": "Выиграть 25 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "71",
+    "title": "Врача! Мутанту плохо!",
+    "caption": "Построй медлабораторию",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "4436",
+    "title": "Время ожидания",
+    "caption": "Проводите часы инкубации",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Building_Hospital_1",
+        "amount": null
+      },
+      {
+        "type": "entity",
+        "id": "Star_Bronze",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "67a",
+    "title": "Всех под нож!",
+    "caption": "Устранены 100 мутантов с геном зооморфа",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "44a",
+    "title": "Вызовите еще одну «скорую»!",
+    "caption": "Нанести 7,5 млн ед. суммарного урона",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "69a",
+    "title": "Вымирание",
+    "caption": "Устранены 2000 мутантов с геном зооморфа",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "143",
+    "title": "Выпустить зверя",
+    "caption": "Одолей Босса Зверей в Мексикополисе (2-й турнир)",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "358",
+    "title": "Высвободи мощь!",
+    "caption": "Обрати внимание на новую звезду в Центре разведения.",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "4449",
+    "title": "Высококачественное серебро",
+    "caption": "Изготовление звезды",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_regenerate_04",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "144",
+    "title": "Галактическая коррупция",
+    "caption": "Одолей Босса Пришельцев в Шанхае (5-й турнир)",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "63a",
+    "title": "Генеральное сражение",
+    "caption": "Устранены 500 мутантов с геном рубаки",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "38a",
+    "title": "Генератор ДНК",
+    "caption": "Приобрести 12 золотых мутантов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "50"
+      }
+    ]
+  },
+  {
+    "id": "39a",
+    "title": "Генетическое совершенство",
+    "caption": "Приобрести 40 золотых мутантов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "200"
+      }
+    ]
+  },
+  {
+    "id": "17a",
+    "title": "Гений генной инженерии",
+    "caption": "Завершить скрещивание 500 раз",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "25a",
+    "title": "Генный лорд",
+    "caption": "Приобрести 200 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "22a",
+    "title": "Главарь шайки",
+    "caption": "Приобрести 25 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "78a",
+    "title": "Гроза драконов",
+    "caption": "Устранены 500 мутантов с мифическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "4489",
+    "title": "Грубая тренировка",
+    "caption": "Победить в PvP-сражениях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_critical_05",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "122a",
+    "title": "Да у тебя талант!",
+    "caption": "Выиграть 25 сражений у команд более высокого уровня, не потеряв ни одного мутанта",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "57a",
+    "title": "Дави их дальше!",
+    "caption": "Устранены 100 мутантов с геном нежити",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "111a",
+    "title": "Дай пять!",
+    "caption": "Использовать 50 тандемных атак",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "117a",
+    "title": "Дар убеждения",
+    "caption": "Отправить 500 подарков",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "116a",
+    "title": "Дареному коню...",
+    "caption": "Отправить 50 подарков",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "118a",
+    "title": "Даровитый человек",
+    "caption": "Отправить 5000 подарков",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "40"
+      }
+    ]
+  },
+  {
+    "id": "90a",
+    "title": "Двойники",
+    "caption": "Выиграть 5 одинаковых мутантов в лотерее Центра разведения",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "4424",
+    "title": "Дегенеративные гены",
+    "caption": "Убить мертвяков; Убить рубак; Уничтожить зооморфов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_attack_04",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Дезинсекция",
+    "caption": "Получи Жукобота",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "До последней капли!",
+    "caption": "Получи Короля-Лича",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "49",
+    "title": "До размеров вселенной...",
+    "caption": "Приобрети сектор галактиков 2-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "4451",
+    "title": "Долгий спор",
+    "caption": "Потратьте 12 часов на гибридизацию",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Gacha_Token",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "4504",
+    "title": "Домашние ремесла",
+    "caption": "Заняться изготовлением",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Building_Hospital_1",
+        "amount": null
+      },
+      {
+        "type": "entity",
+        "id": "Star_Platinum",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "13a",
+    "title": "Доминатор",
+    "caption": "Выиграть 100 сражений подряд на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "200"
+      }
+    ]
+  },
+  {
+    "id": "28a",
+    "title": "Дорогие побрякушки",
+    "caption": "Получено 100 миллионов кредитов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "564",
+    "title": "Доступны тысячи вариантов!",
+    "caption": "Найди рецепт с двумя ингредиентами.; Найди рецепт с тремя ингредиентами.; Найди рецепт с пятью ингредиентами.",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "1000"
+      },
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "50"
+      }
+    ]
+  },
+  {
+    "id": "112a",
+    "title": "Друзья навеки",
+    "caption": "Использовать 500 тандемных атак",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "40",
+    "title": "Дух из машины",
+    "caption": "Получи Бога Машин",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "38",
+    "title": "Есть ли жизнь на...",
+    "caption": "Получи Марсианского Воина",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "98a",
+    "title": "Еще один гвоздь в крышку гроба",
+    "caption": "Потерять в сражениях 5000 своих мутантов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "title": "Жизнь собачья",
+    "caption": "Построй сектор зооморфов",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "title": "Жуткие монстры, мурашки по спине...",
+    "caption": "Получи Мерзокоролеву",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "4475",
+    "title": "Запасные части",
+    "caption": "Заняться изготовлением",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_attack_05",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Запретительное предписание",
+    "caption": "Получи Амбала",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "4488",
+    "title": "Заряд энергии",
+    "caption": "Принять участие в PvP-боях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "9a",
+    "title": "Звездная болезнь",
+    "caption": "Выиграть 500 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "title": "Звездное ранчо",
+    "caption": "Построй сектор галактиков",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "34",
+    "title": "Зомби детям не игрушка",
+    "caption": "Получи Драконежить",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "title": "И я плыву самым необычным образом...",
+    "caption": "Получи Зомбонавта",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "89a",
+    "title": "Игра окончена",
+    "caption": "Проиграть 50 000 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "33",
+    "title": "Игуана тоже человек!",
+    "caption": "Получи Рептоида",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "50",
+    "title": "Из космоса",
+    "caption": "Приобрети сектор галактиков 3 уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "66a",
+    "title": "Из них уже песок сыплется!",
+    "caption": "Устранены 25 мутантов с геном зооморфа",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "19a",
+    "title": "Избавляясь от ненужного...",
+    "caption": "Продать 20 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "51a",
+    "title": "Износ противника",
+    "caption": "Устранены 25 мутантов с геном киборга",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "103a",
+    "title": "Инкубатор вместо матери",
+    "caption": "Потратить 3600 часов на выращивание личинок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "250"
+      }
+    ]
+  },
+  {
+    "id": "2468",
+    "title": "Инопланетные материалы",
+    "caption": "Уничтожить галактиков",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_strengthen_02",
+        "amount": "8"
+      }
+    ]
+  },
+  {
+    "id": "2469",
+    "title": "Инопланетные материалы",
+    "caption": "Больше крови!",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "2470",
+    "title": "Инопланетные материалы",
+    "caption": "Принять участие в PvP-боях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Gold",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "74a",
+    "title": "Как в «Дне независимости»!",
+    "caption": "Устранены 2000 мутантов с галактическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "80a",
+    "title": "Как это могло произойти?",
+    "caption": "Проиграть 5 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "Какая милая киска!",
+    "caption": "Получи Киску Кайдзю",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "47",
+    "title": "Капитальный ремонт",
+    "caption": "Приобрети сектор киборгов 3-го уровня; Приобрети сектор нежити 3-го уровня; Приобрети сектор рубак 3-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "94a",
+    "title": "Клоны",
+    "caption": "Выиграть 1000 одинаковых мутантов в лотерее Центра разведения",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "250"
+      }
+    ]
+  },
+  {
+    "id": "4501",
+    "title": "Клятва Гиппократа",
+    "caption": "Выполняйте заказы в медицинской лаборатории",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "24a",
+    "title": "Коллекционер",
+    "caption": "Приобрести 100 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "110a",
+    "title": "Командный дух",
+    "caption": "Использовать 5 тандемных атак",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "45",
+    "title": "Комната для гостей",
+    "caption": "Приобрети сектор киборгов 2-го уровня; Приобрети сектор нежити 2-го уровня; Приобрети сектор рубак 2-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "53a",
+    "title": "Короткое замыкание",
+    "caption": "Устранены 500 мутантов с геном киборга",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "3a",
+    "title": "Кровь за кровь",
+    "caption": "Выиграть 100 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "39",
+    "title": "Ксенофоб",
+    "caption": "Получи Ксеноса",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "60a",
+    "title": "Кулачный бой",
+    "caption": "Устранены 5 мутантов с геном рубаки",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "129a",
+    "title": "Курица, несущая золотые яйца",
+    "caption": "Найти 10 золотых яиц",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "4437",
+    "title": "Лабораторная установка",
+    "caption": "Построй медлабораторию",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_xp_01",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "title": "Легендарное исследование",
+    "caption": "Приобрети Демона",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "37",
+    "title": "Липкое происшествие",
+    "caption": "Получи Прилипалу",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "115a",
+    "title": "Магазин подарков",
+    "caption": "Отправить 10 подарков",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "102a",
+    "title": "Масштабное разведение",
+    "caption": "Потратить 720 часов на выращивание личинок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "50"
+      }
+    ]
+  },
+  {
+    "id": "4411",
+    "title": "Медицинские жидкости",
+    "caption": "Больше крови!",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Event_Token",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "4438",
+    "title": "Медицинский прототип",
+    "caption": "Выполняйте заказы в медицинской лаборатории",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "41a",
+    "title": "Мелкая царапина",
+    "caption": "Нанести 50 000 ед. суммарного урона",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "71a",
+    "title": "Месть «Ностромо»",
+    "caption": "Устранены 25 мутантов с галактическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "44",
+    "title": "Месть Лавкрафта",
+    "caption": "Получи Ктулху",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "15a",
+    "title": "Месть деревенщины!",
+    "caption": "Завершить скрещивание 25 раз",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Мечты Темного Лорда",
+    "caption": "Получи Темного Лорда",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "72",
+    "title": "Микстуры — или смерть!",
+    "caption": "Сделай заказ в медлаборатории",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "272",
+    "title": "Микстуры — или смерть!",
+    "caption": "Сделай заказ в медлаборатории",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "26a",
+    "title": "Миллионер из трущоб",
+    "caption": "Получен 1 миллион кредитов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "51",
+    "title": "Мифическая комната",
+    "caption": "Приобрети сектор мификов 2-го уровня",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "36",
+    "title": "Может потребоваться уборка!",
+    "caption": "Получи Опустошителя",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Монстров и зрелищ!",
+    "caption": "Купи личинку Зверя и вырасти ее в инкубаторе.",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "33a",
+    "title": "Монструозный монстр",
+    "caption": "Натренировать мутанта со злобогеном до уровня 20",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "4412",
+    "title": "Мутагены",
+    "caption": "Наполняйте шкалы мутостерона",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Muto50",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "70",
+    "title": "Мутант на раскаленной крыше",
+    "caption": "Стань обладателем сектора киборгов; Стань обладателем сектора нежити; Стань обладателем сектора рубак",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "270",
+    "title": "Мутант на раскаленной крыше",
+    "caption": "Стань обладателем сектора киборгов",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "633",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 10",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "634",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 20",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "3"
+      }
+    ]
+  },
+  {
+    "id": "635",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 30",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "4"
+      }
+    ]
+  },
+  {
+    "id": "636",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 50",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "637",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 100",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "638",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 150",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "715",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 175",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "822",
+    "title": "Мутантское безумие!",
+    "caption": "Получи уровень 200",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "117",
+    "title": "Мутация, мутация, мутация!",
+    "caption": "Начни новое скрещивание",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "48a",
+    "title": "Мутостероновая фантастика!",
+    "caption": "Мутостероном наполнены 250 пробирок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "29a",
+    "title": "На широкую ногу!",
+    "caption": "Получен 1 миллиард кредитов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "87a",
+    "title": "Нажми A, чтобы продолжить",
+    "caption": "Проиграть 500 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "2483",
+    "title": "Найти Мисси",
+    "caption": "Победить в PvE-сражениях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Gacha_Token",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "2484",
+    "title": "Найти Мисси",
+    "caption": "Потратить 96 часа на скрещивание",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_special_speed_03",
+        "amount": "3"
+      }
+    ]
+  },
+  {
+    "id": "2485",
+    "title": "Найти Мисси",
+    "caption": "Выиграть последнее сражение текущего события",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_critical_03",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "61a",
+    "title": "Налет",
+    "caption": "Устранены 25 мутантов с геном рубаки",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "16a",
+    "title": "Научное любопытство",
+    "caption": "Завершить скрещивание 100 раз",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "36a",
+    "title": "Начало династии",
+    "caption": "Приобрести серебряного мутанта со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "title": "Наше вам с кисточкой...",
+    "caption": "Получи Галактического Охотника",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "72a",
+    "title": "Не на моей планете!",
+    "caption": "Устранены 100 мутантов с галактическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "131a",
+    "title": "Не обменявшись яйцами!",
+    "caption": "Реализовать все основные пасхальные рецепты",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "50"
+      }
+    ]
+  },
+  {
+    "id": "4476",
+    "title": "Не пренебрегайте тренировками...",
+    "caption": "Повысить уровень существ",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "69",
+    "title": "Не протолкнуться",
+    "caption": "Разблокируй новое расширение",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "5000"
+      }
+    ]
+  },
+  {
+    "id": "269",
+    "title": "Не протолкнуться",
+    "caption": "Разблокируй новое расширение",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "5000"
+      }
+    ]
+  },
+  {
+    "id": "45a",
+    "title": "Небольшая дозаправка",
+    "caption": "Мутостероном наполнены 10 пробирок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "447",
+    "title": "Небольшой бонус",
+    "caption": "Создать 4 предмета",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "550"
+      }
+    ]
+  },
+  {
+    "id": "359",
+    "title": "Небывалая мощь!",
+    "caption": "Победить в PvE-сражениях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Platinum",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "130a",
+    "title": "Нельзя сделать омлет…",
+    "caption": "Найти 1 платиновое яйцо",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "108a",
+    "title": "Немного божьего дара",
+    "caption": "Потратить 3600 часов на скрещивание",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "250"
+      }
+    ]
+  },
+  {
+    "id": "120a",
+    "title": "Непобедимый боец",
+    "caption": "Выиграть 25 сражений кампании, не потеряв ни одного мутанта",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "2438",
+    "title": "Непонятная технология",
+    "caption": "Убить киборгов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_shield_02",
+        "amount": "4"
+      }
+    ]
+  },
+  {
+    "id": "2439",
+    "title": "Непонятная технология",
+    "caption": "Выиграть 50-е сражение текущего события",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "2440",
+    "title": "Непонятная технология",
+    "caption": "Убить киборгов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_special_addshield_02",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "4450",
+    "title": "Непрерывное производство",
+    "caption": "Выполняйте заказы в медицинской лаборатории",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "121a",
+    "title": "Неприкасаемый боец",
+    "caption": "Выиграть 25 сражений Всемирного турнира, не потеряв ни одного мутанта",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "81a",
+    "title": "Неудачный день",
+    "caption": "Проиграть 50 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "64a",
+    "title": "Новая мировая война",
+    "caption": "Устранены 2000 мутантов с геном рубаки",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "6a",
+    "title": "Новичкам везет",
+    "caption": "Выиграть 5 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "109a",
+    "title": "Новое поколение",
+    "caption": "Потратить 17 000 часов на скрещивание",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "500"
+      }
+    ]
+  },
+  {
+    "id": "97a",
+    "title": "Новые жертвы",
+    "caption": "Потерять в сражениях 500 своих мутантов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "title": "Новый Олимп",
+    "caption": "Построй сектор мификов",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "30",
+    "title": "Ночь оживших машин!",
+    "caption": "Получи Зомборга",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "32a",
+    "title": "Одержимость тренировками",
+    "caption": "Натренировать мутанта со злобогеном до уровня 15",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "128a",
+    "title": "Одно яйцо может скрывать другое",
+    "caption": "Найти 15 серебряных яиц",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "40a",
+    "title": "Ой!",
+    "caption": "Нанести 10 000 ед. суммарного урона",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "8a",
+    "title": "Окажи нам честь",
+    "caption": "Выиграть 100 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "4490",
+    "title": "Оказание помощи",
+    "caption": "Продавать мутантов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Gold",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "70a",
+    "title": "Они среди нас!",
+    "caption": "Устранены 5 мутантов с галактическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "95a",
+    "title": "Они ушли от нас слишком рано...",
+    "caption": "Потерять в сражениях 5 своих мутантов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "563",
+    "title": "Опыт!",
+    "caption": "Получи крупную награду за объединение 7 любых предметов в Черной дыре.",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "400"
+      },
+      {
+        "type": "entity",
+        "id": "Material_Gacha_Token",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "127a",
+    "title": "Охота за яйцами",
+    "caption": "Найти 20 бронзовых яиц",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "76a",
+    "title": "Охота на ведьм",
+    "caption": "Устранены 25 мутантов с мифическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "56a",
+    "title": "Охота на зомби",
+    "caption": "Устранены 25 мутантов с геном нежити",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "26",
+    "title": "Падам-падам-падам!",
+    "caption": "Получи Валькирию",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "35a",
+    "title": "Первая ступень",
+    "caption": "Приобрести бронзового мутанта со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "50a",
+    "title": "Перезагрузка",
+    "caption": "Устранены 5 мутантов с геном киборга",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "32",
+    "title": "Песнь сирены",
+    "caption": "Получи Королеву Банши",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "31a",
+    "title": "Планка поднята!",
+    "caption": "Натренировать мутанта со злобогеном до уровня 10",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "18a",
+    "title": "По дешевке...",
+    "caption": "Продать 5 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "29",
+    "title": "По ком звонит колокол",
+    "caption": "Получи Лорда Преисподней",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "457",
+    "title": "Повысь свои шансы!",
+    "caption": "Используй кнопку суперизготовления",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "250"
+      },
+      {
+        "type": "entity",
+        "id": "Material_Gacha_Token",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "74",
+    "title": "Подарки для коллег-капитанов",
+    "caption": "Отправь 5 подарков друзьям",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "5000"
+      }
+    ]
+  },
+  {
+    "id": "119a",
+    "title": "Подарок небес",
+    "caption": "Отправить 50 000 подарков",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "75"
+      }
+    ]
+  },
+  {
+    "id": "2393",
+    "title": "Подготовить его возвращение",
+    "caption": "Повысить уровень существ",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Bronze",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "2394",
+    "title": "Подготовить его возвращение",
+    "caption": "Завершить 15 скрещивания (или 15 слияние)",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_XP1000",
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "2395",
+    "title": "Подготовить его возвращение",
+    "caption": "Потратить 5 часов на выращивание личинок",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "104a",
+    "title": "Подготовка решает все",
+    "caption": "Потратить 17 000 часов на выращивание личинок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "500"
+      }
+    ]
+  },
+  {
+    "id": "2423",
+    "title": "Покормить Ктопи",
+    "caption": "Использовать тандемные атаки",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_XP1000",
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "2424",
+    "title": "Покормить Ктопи",
+    "caption": "Продать 25 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_special_speed_01",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "2425",
+    "title": "Покормить Ктопи",
+    "caption": "Уничтожить зооморфов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_critical_01",
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "21a",
+    "title": "Полный комплект",
+    "caption": "Приобрести 10 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "73a",
+    "title": "Получите и распишитесь!",
+    "caption": "Устранены 500 мутантов с галактическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "85a",
+    "title": "Попробуй еще раз",
+    "caption": "Проиграть 5 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Поцелуй Андроида",
+    "caption": "Получи Андроида",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "68",
+    "title": "Почем сегодня личинки?",
+    "caption": "Стань обладателем Робота; Стань обладателем Зомби; Стань обладателем Воина",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      },
+      {
+        "type": "entity",
+        "id": "Building_Hospital_1",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "268",
+    "title": "Почем сегодня личинки?",
+    "caption": "Стань обладателем Робота",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "54a",
+    "title": "Прах к праху, ржавчину к ржавчине",
+    "caption": "Устранены 2000 мутантов с геном киборга",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "445",
+    "title": "Превращает ваши сферы!",
+    "caption": "Создать сферу в Трансформатрон",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "100"
+      },
+      {
+        "type": "entity",
+        "id": "Star_Bronze",
+        "amount": "4"
+      }
+    ]
+  },
+  {
+    "id": "46a",
+    "title": "Приведем все в порядок!",
+    "caption": "Мутостероном наполнены 25 пробирок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "27",
+    "title": "Прическа — не лезет расческа!",
+    "caption": "Получи Горгону",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "12a",
+    "title": "Продолжай в том же духе!",
+    "caption": "Выиграть 25 сражений подряд на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "86a",
+    "title": "Проигрыш!",
+    "caption": "Проиграть 50 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "34a",
+    "title": "Прости меня за это создание!",
+    "caption": "Натренировать мутанта со злобогеном до уровня 25",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "1a",
+    "title": "Путь на арену",
+    "caption": "Выиграть 5 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "65a",
+    "title": "Ради их же блага",
+    "caption": "Устранены 5 мутантов с геном зооморфа",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "92a",
+    "title": "Разительное сходство",
+    "caption": "Выиграть 100 одинаковых мутантов в лотерее Центра разведения",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "93a",
+    "title": "Разлученные при рождении",
+    "caption": "Выиграть 250 одинаковых мутантов в лотерее Центра разведения",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "100"
+      }
+    ]
+  },
+  {
+    "id": "131",
+    "title": "Расширяя горизонты",
+    "caption": "Улучши свой Эволюционный центр",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "4423",
+    "title": "Регенеративные гены",
+    "caption": "Убить киборгов; Уничтожить галактиков; Убить мификов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_life_04",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "168",
+    "title": "Рождение звезды",
+    "caption": "Помести существо в сектор",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "title": "С любовью к пришельцам",
+    "caption": "Приобрети Пришельца",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "2498",
+    "title": "Самый лучший излучатель",
+    "caption": "Убить рубак",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "7"
+      }
+    ]
+  },
+  {
+    "id": "2499",
+    "title": "Самый лучший излучатель",
+    "caption": "Мутостероном наполнены 50 пробирок",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Event_Token",
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "2500",
+    "title": "Самый лучший излучатель",
+    "caption": "Повысить уровень существ",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Gold",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "52a",
+    "title": "Сбой в системе",
+    "caption": "Устранены 100 мутантов с геном киборга",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "133",
+    "title": "Сбор средств",
+    "caption": "Собери спонсорские средства в секторе мутантов",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "333",
+    "title": "Сбор средств",
+    "caption": "Собери спонсорские средства в секторе мутантов",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "443",
+    "title": "Секрет Урбана",
+    "caption": "Открыть меню изготовления",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "50"
+      },
+      {
+        "type": "entity",
+        "id": "Star_Bronze",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "398",
+    "title": "Секрет виртуального мира",
+    "caption": "Получить Перехватчицу",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "393",
+    "title": "Секрет древнего воина",
+    "caption": "Получить Буши",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "397",
+    "title": "Секрет древнего механика",
+    "caption": "Получить Капитана Гаечный Ключ",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "394",
+    "title": "Секрет египетского бога",
+    "caption": "Получить Гора",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "395",
+    "title": "Секрет игрушки-призрака",
+    "caption": "Получить Страхолюдочку",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "399",
+    "title": "Секрет кибербогомола",
+    "caption": "Получить Мантидроида",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "396",
+    "title": "Секрет кошмаров",
+    "caption": "Получить Темновзора",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "402",
+    "title": "Секрет машины со слизью",
+    "caption": "Получить Киберслизня",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "30"
+      }
+    ]
+  },
+  {
+    "id": "401",
+    "title": "Секрет проклятого пирата",
+    "caption": "Получить Коммодора Акулу",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "400",
+    "title": "Секрет черной дыры",
+    "caption": "Получить Пожирателя",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "4464",
+    "title": "Секретный ингредиент!",
+    "caption": "Производите продукты, используя медкапсулы",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_XP1000",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "4502",
+    "title": "Силовая тренировка",
+    "caption": "Повысить уровень существ",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Event_Token",
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "75a",
+    "title": "Сказочное побоище",
+    "caption": "Устранены 5 мутантов с мифическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "360",
+    "title": "Скрещивай мутантов!",
+    "caption": "Получить платинового мутанта.",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_critical_03",
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "105a",
+    "title": "Скрещивание — дело несложное",
+    "caption": "Потратить 24 часа на скрещивание",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "42",
+    "title": "Следи за палочкой!",
+    "caption": "Получи Гэндолфуса",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "91a",
+    "title": "Словно близнецы",
+    "caption": "Выиграть 25 одинаковых мутантов в лотерее Центра разведения",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "58a",
+    "title": "Смерть мертвецам!",
+    "caption": "Устранены 500 мутантов с геном нежити",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "23a",
+    "title": "Смотритель зоопарка",
+    "caption": "Приобрести 50 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "4503",
+    "title": "Снятие стресса",
+    "caption": "Больше крови!",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Gacha_Token",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "135",
+    "title": "Сомневаешься? Проверь!",
+    "caption": "Открой «Мутантопедию»",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "500"
+      }
+    ]
+  },
+  {
+    "id": "448",
+    "title": "Стань инженером",
+    "caption": "Создать 15 предметов",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "300"
+      },
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "446",
+    "title": "Стань инженером-мастером",
+    "caption": "Создать 80 предметов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "1000"
+      },
+      {
+        "type": "entity",
+        "id": "Star_Gold",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "449",
+    "title": "Стань инженером-экспертом",
+    "caption": "Создать 35 предметов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "title": "Странный случай в космосе",
+    "caption": "Получи Колосса",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "62a",
+    "title": "Схватка",
+    "caption": "Устранены 100 мутантов с геном рубаки",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "25",
+    "title": "Счастливые деньки",
+    "caption": "Получи Барона Лэнди",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "242",
+    "title": "Тайна морей",
+    "caption": "Получить Капитана Костьмилягу",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "31",
+    "title": "Тактика скрытности",
+    "caption": "Получи Ниндзябота",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "124a",
+    "title": "Талант к комбинациям",
+    "caption": "Провести 25 комбинированных атак, каждая из которых убивает сразу нескольких мутантов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "28",
+    "title": "Там, за туманностями...",
+    "caption": "Получи Небулона",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "41",
+    "title": "Танец с дьяволом при лунном свете",
+    "caption": "Получи Мрачную Жницу",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "403",
+    "title": "Тачдаун снова на арене!",
+    "caption": "Чтобы открыть секретный рецепт, необходимо запустить 3 процесса гибридизации.; Получить Тачдауна.",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_regenerate_01",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "456",
+    "title": "Твое первое изготовление!",
+    "caption": "Используй металлозавод для создания серебряной звезды.",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_attack",
+        "amount": "9"
+      },
+      {
+        "type": "entity",
+        "id": "orb_basic_slash",
+        "amount": "9"
+      }
+    ]
+  },
+  {
+    "id": "120",
+    "title": "Твой первый «Злобоген»",
+    "caption": "Начни сражение «Игрок против игрока» во Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      },
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "500"
+      }
+    ]
+  },
+  {
+    "id": "96a",
+    "title": "Те, кто пал, выполняя свой долг...",
+    "caption": "Потерять в сражениях 50 своих мутантов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "11a",
+    "title": "Тебя ждет большой успех!",
+    "caption": "Выиграть 5 сражений подряд на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "47a",
+    "title": "Температура повышается...",
+    "caption": "Мутостероном наполнены 100 пробирок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "2408",
+    "title": "Тентакулярная сеть",
+    "caption": "Заключить контракты в медлаборатории",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_attack_01",
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "2409",
+    "title": "Тентакулярная сеть",
+    "caption": "Повысить уровень существ",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_life_01",
+        "amount": "25"
+      }
+    ]
+  },
+  {
+    "id": "2410",
+    "title": "Тентакулярная сеть",
+    "caption": "Собери спонсорские средства в секторе мутантов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Bronze",
+        "amount": "3"
+      }
+    ]
+  },
+  {
+    "id": "99a",
+    "title": "Теперь они в лучшем из миров...",
+    "caption": "Потерять в сражениях 50 000 своих мутантов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "101a",
+    "title": "Теплое гнездышко...",
+    "caption": "Потратить 168 часов на выращивание личинок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "100a",
+    "title": "Тесный сосуд",
+    "caption": "Потратить 24 часа на выращивание личинок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "2453",
+    "title": "Техническая помощь",
+    "caption": "Создать 50 предметов",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Event_Token",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "2454",
+    "title": "Техническая помощь",
+    "caption": "Выиграть 45-е сражение текущего события",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_xp_01",
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "2455",
+    "title": "Техническая помощь",
+    "caption": "Создать сферу в Трансформатрон",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "3"
+      }
+    ]
+  },
+  {
+    "id": "24",
+    "title": "Технотеррор",
+    "caption": "Получи Кибермонаха",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "35",
+    "title": "Тигры — это не только ценный...",
+    "caption": "Получи Ракшасу",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "126a",
+    "title": "Тотальное истребление",
+    "caption": "Убить 25 мутантов, не позволив им провести ни одной атаки",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "30a",
+    "title": "Тренировки учащаются",
+    "caption": "Натренировать мутанта со злобогеном до уровня 5",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "953",
+    "title": "Троянский конь",
+    "caption": "Выиграть 50-е сражение текущего события",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Event_Token",
+        "amount": "3"
+      }
+    ]
+  },
+  {
+    "id": "83a",
+    "title": "Тс-с-с... Ничего не было!",
+    "caption": "Проиграть 5000 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "79a",
+    "title": "Тут и сказке конец...",
+    "caption": "Устранены 2000 мутантов с мифическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "88a",
+    "title": "Ты труп",
+    "caption": "Проиграть 5000 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "77a",
+    "title": "Убийца великанов",
+    "caption": "Устранены 100 мутантов с мифическим геном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "145",
+    "title": "Ужас из глубин",
+    "caption": "Одолей Босса Лордов Преисподней в Новом Париже (8-й турнир)",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "4462",
+    "title": "Улучшенная медицина",
+    "caption": "Улучшите медпакеты с помощью Черной дыры",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Silver",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "49a",
+    "title": "Универсальный донор",
+    "caption": "Мутостероном наполнена 1000 пробирок",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "title": "Универсальный солдат",
+    "caption": "Получи Кошмарыцаря Севера",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "118",
+    "title": "Ускоренная мутация",
+    "caption": "Ускорь скрещивание",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "20000"
+      }
+    ]
+  },
+  {
+    "id": "153",
+    "title": "Ускоренный рост",
+    "caption": "Ускорь инкубацию новой личинки",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "353",
+    "title": "Ускоренный рост",
+    "caption": "Ускорь инкубацию новой личинки",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "10000"
+      }
+    ]
+  },
+  {
+    "id": "106a",
+    "title": "Фабрика по выпуску мутантов",
+    "caption": "Потратить 168 часов на скрещивание",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "4a",
+    "title": "Фаворит ринга",
+    "caption": "Выиграть 500 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "15"
+      }
+    ]
+  },
+  {
+    "id": "107a",
+    "title": "Характер по заказу",
+    "caption": "Потратить 720 часов на скрещивание",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "50"
+      }
+    ]
+  },
+  {
+    "id": "27a",
+    "title": "Хлеб с маслом",
+    "caption": "Получено 10 миллионов кредитов",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "2a",
+    "title": "Хлеба и зрелищ!",
+    "caption": "Выиграть 25 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "5"
+      }
+    ]
+  },
+  {
+    "id": "4425",
+    "title": "Частичная перекалибровка",
+    "caption": "Убить мертвяков; Уничтожить галактиков",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_critical_04",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "title": "Человек со звезды ждет в небесах...",
+    "caption": "Получи Астросерфера",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "10a",
+    "title": "Чемпион Вселенной",
+    "caption": "Выиграть 2000 сражений на Всемирном турнире",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "562",
+    "title": "Черная дыра",
+    "caption": "Создай бронзовую звезду, объединив 7 жетонов «Джекпот» в Черной дыре.",
+    "rewards": [
+      {
+        "type": "experience",
+        "id": null,
+        "amount": "300"
+      },
+      {
+        "type": "entity",
+        "id": "Material_Jackpot_Token",
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "37a",
+    "title": "Чистая кровь",
+    "caption": "Приобрести золотого мутанта со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "Что со мной, доктор?",
+    "caption": "Получи Ниндзяйку",
+    "rewards": [
+      {
+        "type": "softcurrency",
+        "id": null,
+        "amount": "1000"
+      }
+    ]
+  },
+  {
+    "id": "20a",
+    "title": "Экспортер",
+    "caption": "Продать 100 образцов со злобогеном",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "113a",
+    "title": "Экстраверт",
+    "caption": "Использовать 5000 тандемных атак",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "100"
+      }
+    ]
+  },
+  {
+    "id": "14a",
+    "title": "Эта штука живая!",
+    "caption": "Завершить скрещивание 5 раз",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": null
+      }
+    ]
+  },
+  {
+    "id": "82a",
+    "title": "Это было так неожиданно!",
+    "caption": "Проиграть 500 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "42a",
+    "title": "Это не повод для слез",
+    "caption": "Нанести 300 000 ед. суммарного урона",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "10"
+      }
+    ]
+  },
+  {
+    "id": "4463",
+    "title": "Эффективный уход",
+    "caption": "Больше крови!",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_life_05",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "2512",
+    "title": "Я сказал «Нет»! Разве что...",
+    "caption": "Принять участие в PvP-боях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Material_Gacha_Token",
+        "amount": "2"
+      }
+    ]
+  },
+  {
+    "id": "2513",
+    "title": "Я сказал «Нет»! Разве что...",
+    "caption": "Победить в PvP-сражениях",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "Star_Platinum",
+        "amount": "1"
+      }
+    ]
+  },
+  {
+    "id": "2514",
+    "title": "Я сказал «Нет»! Разве что...",
+    "caption": "Потратить 5 часов на выращивание личинок",
+    "rewards": [
+      {
+        "type": "entity",
+        "id": "orb_basic_xp_03",
+        "amount": "8"
+      }
+    ]
+  },
+  {
+    "id": "5a",
+    "title": "Я — Спартак!",
+    "caption": "Выиграть 2000 сражений кампании",
+    "rewards": [
+      {
+        "type": "hardcurrency",
+        "id": null,
+        "amount": "20"
+      }
+    ]
+  }
+]

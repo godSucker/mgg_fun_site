@@ -513,9 +513,7 @@
                                                 </div>
                                             </div>
                                             <div class="card-meta">
-                                                {#if !res.isSecret}
-                                                    <span class="prob-badge">{formatProb(res.probability)}</span>
-                                                {/if}
+                                                <span class="prob-badge">{formatProb(res.probability)}</span>
                                                 <span class="time">⏱ {formatMinutes(getIncubTime(res.child, resultStar))}</span>
                                                 {#if res.isSecret || secretNames.has(normalize(getName(res.child)))}
                                                     <span class="secret-tag">★ Секрет</span>

@@ -45,13 +45,27 @@ interface BoxReward {
   type: 'entity' | 'hardcurrency' | 'softcurrency'
   amount: number
 }
+// Одна "группа" = один атомарный результат розыгрыша бокса. Игра группирует
+// ArticleItem через Tag key="option" value="X" + вес в Tag key="rand_X" на
+// самом ShopItem (пример: Mystery_Anniversary26_1 - 6 опций по весу 30 =
+// честные 1/6, при этом 5 из 6 опций бандлят мутанта С токеном как ОДИН
+// исход, а не два независимых слота пула). У части старых боксов вместо
+// этого вес висит прямо на ArticleItem через Tag key="rand" (без буквы) -
+// тогда группа = один ArticleItem. Если у ArticleItem нет вообще никакого
+// rand/option - это гарантированное содержимое бокса (chance: null),
+// не часть лотереи (см. Anniversary_Box_Mystery - гарантированный XP1000
+// + рандомный мутант).
+interface BoxGroup {
+  chance: number | null
+  mutants: BoxMutantRef[]
+  rewards: BoxReward[]
+}
 interface BoxEntry {
   itemId: string
   icon: string | null
   category: string
   name: string
-  mutants: BoxMutantRef[]
-  rewards: BoxReward[]
+  groups: BoxGroup[]
 }
 
 function parseAttrs(attrStr: string): Record<string, string> {
@@ -161,7 +175,50 @@ async function main() {
   const boxIconBasenames = existingIcons // расширяется по мере скачивания новых
 
   const shopItemRe = /<ShopItem\b([^>]*)>([\s\S]*?)<\/ShopItem>/g
-  const articleRe = /<ArticleItem typeId="([^"]+)">([\s\S]*?)<\/ArticleItem>/g
+  // Часть ArticleItem самозакрывающиеся (<ArticleItem typeId="X" />, обычно у
+  // предметов без своих Tag) - альтернатива в регексе нужна явно, иначе жадный/
+  // ленивый поиск закрывающего </ArticleItem> у самозакрывающегося тега случайно
+  // проглатывает СЛЕДУЮЩИЙ ArticleItem целиком вместе с его тегами (был баг:
+  // Material_XP1000 без тегов "крал" Tag key="rand" у следующего Specimen_AC_03).
+  const articleRe = /<ArticleItem\b([^>]*?)(?:\/>|>([\s\S]*?)<\/ArticleItem>)/g
+  const topLevelTagRe = /<Tag key="([^"]+)" value="([^"]*)"\s*\/>/g
+
+  function toMutantOrReward(
+    typeId: string,
+    tags: Record<string, string>,
+  ): { mutant: BoxMutantRef } | { reward: BoxReward } {
+    const idLower = typeId.toLowerCase()
+    if (mutantIds.has(idLower)) {
+      const skinVal = tags.skin
+      const isTier = skinVal != null && TIER_WORDS.has(skinVal.toLowerCase())
+      const starsTag = tags.stars
+      let tier: string | null = null
+      if (isTier) tier = TIER_RU[skinVal.toLowerCase()]
+      else if (starsTag != null && STAR_INDEX_TO_TIER[Number(starsTag)]) {
+        tier = TIER_RU[STAR_INDEX_TO_TIER[Number(starsTag)]]
+      }
+      const cosmeticSkin = skinVal && !isTier ? skinVal : null
+      return {
+        mutant: {
+          id: idLower,
+          name: mutantNameById.get(idLower) ?? typeId,
+          tier,
+          skin: cosmeticSkin,
+        },
+      }
+    }
+    const amount = tags.amount != null ? Number(tags.amount) : 1
+    // Игра встречает валюту двумя разными способами: старые ArticleItem
+    // используют typeId="gold"/"silver" (или пустой typeId = золото), новые
+    // (бандлы/спец. предложения) - typeId="hardcurrency"/"softcurrency" напрямую.
+    if (/^(gold|hardcurrency)$/i.test(typeId) || typeId === '') {
+      return { reward: { name: 'gold', type: 'hardcurrency', amount } }
+    }
+    if (/^(silver|softcurrency)$/i.test(typeId)) {
+      return { reward: { name: 'silver', type: 'softcurrency', amount } }
+    }
+    return { reward: { name: typeId, type: 'entity', amount } }
+  }
 
   const boxes: BoxEntry[] = []
   let downloaded = 0
@@ -181,11 +238,23 @@ async function main() {
     let am: RegExpExecArray | null
     articleRe.lastIndex = 0
     while ((am = articleRe.exec(body))) {
+      const articleAttrs = parseAttrs(am[1])
       const tags: Record<string, string> = {}
-      for (const tm of am[2].matchAll(/key="([^"]+)" value="([^"]*)"/g)) tags[tm[1]] = tm[2]
-      articles.push({ typeId: am[1], tags })
+      if (am[2]) {
+        for (const tm of am[2].matchAll(/key="([^"]+)" value="([^"]*)"/g)) tags[tm[1]] = tm[2]
+      }
+      // amount может быть атрибутом самого ArticleItem (amount="5" typeId="...")
+      // или Tag key="amount" - оба варианта встречаются в данных.
+      if (articleAttrs.amount != null && tags.amount == null) tags.amount = articleAttrs.amount
+      articles.push({ typeId: articleAttrs.typeId ?? '', tags })
     }
     if (articles.length === 0) continue // не гача-пул (обычный магазинный товар) - пропускаем
+
+    // Веса опций (rand_a, rand_b_gld, ...) висят на самом ShopItem, вне <ArticleItems>.
+    const shopTags: Record<string, string> = {}
+    topLevelTagRe.lastIndex = 0
+    let tm2: RegExpExecArray | null
+    while ((tm2 = topLevelTagRe.exec(body))) shopTags[tm2[1]] = tm2[2]
 
     const iconBefore = existingIcons.has(picture)
     const icon = await ensureIcon(picture)
@@ -199,39 +268,50 @@ async function main() {
         ? 'Мистери-бокс'
         : ''
 
-    const box: BoxEntry = { itemId, icon, category, name, mutants: [], rewards: [] }
-
+    // Группируем ArticleItem по Tag key="option" - все статьи с одинаковым
+    // значением option образуют один атомарный исход розыгрыша (пример: мутант
+    // + бонусный жетон выпадают ВМЕСТЕ, а не как два независимых слота пула).
+    // Статьи без option - каждая своя отдельная группа (старые боксы вешают вес
+    // прямо на ArticleItem через Tag key="rand", без буквенной группировки).
+    const orderedKeys: string[] = []
+    const articlesByOption = new Map<string, typeof articles>()
     for (const art of articles) {
-      const idLower = art.typeId.toLowerCase()
-      if (mutantIds.has(idLower)) {
-        const skinVal = art.tags.skin
-        const isTier = skinVal != null && TIER_WORDS.has(skinVal.toLowerCase())
-        const starsTag = art.tags.stars
-        let tier: string | null = null
-        if (isTier) tier = TIER_RU[skinVal.toLowerCase()]
-        else if (starsTag != null && STAR_INDEX_TO_TIER[Number(starsTag)]) {
-          tier = TIER_RU[STAR_INDEX_TO_TIER[Number(starsTag)]]
-        }
-        const cosmeticSkin = skinVal && !isTier ? skinVal : null
-        box.mutants.push({
-          id: idLower,
-          name: mutantNameById.get(idLower) ?? art.typeId,
-          tier,
-          skin: cosmeticSkin,
-        })
-      } else {
-        const amount = art.tags.amount != null ? Number(art.tags.amount) : 1
-        if (/^gold$/i.test(art.typeId) || art.typeId === '') {
-          box.rewards.push({ name: 'gold', type: 'hardcurrency', amount })
-        } else if (/^silver$/i.test(art.typeId)) {
-          box.rewards.push({ name: 'silver', type: 'softcurrency', amount })
-        } else {
-          box.rewards.push({ name: art.typeId, type: 'entity', amount })
-        }
+      const key = art.tags.option ?? `__solo_${orderedKeys.length}`
+      if (!articlesByOption.has(key)) {
+        articlesByOption.set(key, [])
+        orderedKeys.push(key)
       }
+      articlesByOption.get(key)!.push(art)
     }
 
-    boxes.push(box)
+    // Вес группы: Tag rand_<option> на ShopItem, иначе Tag rand на самой статье
+    // (только для solo-групп), иначе группа гарантирована (не часть лотереи).
+    const rawGroups = orderedKeys.map((key) => {
+      const arts = articlesByOption.get(key)!
+      const fromOptionTag = key.startsWith('__solo_') ? undefined : shopTags[`rand_${key}`]
+      const fromSoloTag = arts.length === 1 ? arts[0].tags.rand : undefined
+      const weightStr = fromOptionTag ?? fromSoloTag
+      const weight = weightStr != null ? Number(weightStr) : null
+      return { arts, weight }
+    })
+
+    const totalWeight = rawGroups.reduce((sum, g) => sum + (g.weight ?? 0), 0)
+
+    const groups: BoxGroup[] = rawGroups.map(({ arts, weight }) => {
+      const group: BoxGroup = {
+        chance: weight != null && totalWeight > 0 ? (weight / totalWeight) * 100 : null,
+        mutants: [],
+        rewards: [],
+      }
+      for (const art of arts) {
+        const resolved = toMutantOrReward(art.typeId, art.tags)
+        if ('mutant' in resolved) group.mutants.push(resolved.mutant)
+        else group.rewards.push(resolved.reward)
+      }
+      return group
+    })
+
+    boxes.push({ itemId, icon, category, name, groups })
   }
 
   // Игра часто выставляет один и тот же продукт под несколькими itemId одновременно
@@ -240,11 +320,23 @@ async function main() {
   // содержимым. Схлопываем по полной сигнатуре (иконка+мутанты+награды), а не
   // только по названию - разные боксы с совпадающим названием (см.
   // boxes-page-shopitems-pipeline память) остаются раздельными карточками.
+  const countMutants = (b: BoxEntry) => b.groups.reduce((n, g) => n + g.mutants.length, 0)
+
   const boxSignature = (b: BoxEntry) =>
     [
       b.icon ?? '',
-      ...b.mutants.map((m) => `${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`).sort(),
-      ...b.rewards.map((r) => `${r.type}|${r.name}|${r.amount}`).sort(),
+      ...b.groups
+        .map(
+          (g) =>
+            `${g.chance != null ? g.chance.toFixed(4) : 'guaranteed'}:` +
+            [
+              ...g.mutants.map((m) => `m:${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`),
+              ...g.rewards.map((r) => `r:${r.type}|${r.name}|${r.amount}`),
+            ]
+              .sort()
+              .join(','),
+        )
+        .sort(),
     ].join('\n')
 
   const bySignature = new Map<string, BoxEntry>()
@@ -258,12 +350,12 @@ async function main() {
   }
   const dedupedBoxes = [...bySignature.values()]
   const duplicatesRemoved = boxes.length - dedupedBoxes.length
-  dedupedBoxes.sort((a, b) => b.mutants.length - a.mutants.length)
+  dedupedBoxes.sort((a, b) => countMutants(b) - countMutants(a))
 
   await fs.writeFile(OUT_PATH, JSON.stringify(dedupedBoxes, null, 2) + '\n', 'utf-8')
 
-  const withMutants = dedupedBoxes.filter((b) => b.mutants.length > 0).length
-  const resourceOnly = dedupedBoxes.filter((b) => b.mutants.length === 0).length
+  const withMutants = dedupedBoxes.filter((b) => countMutants(b) > 0).length
+  const resourceOnly = dedupedBoxes.filter((b) => countMutants(b) === 0).length
   const withoutIcon = dedupedBoxes.filter((b) => !b.icon).length
   console.log(
     `[BOXES] ${dedupedBoxes.length} боксов (${withMutants} с мутантами, ${resourceOnly} чисто ресурсных, ${duplicatesRemoved} дублей схлопнуто)`,

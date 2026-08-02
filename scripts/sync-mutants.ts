@@ -686,12 +686,20 @@ async function sync(options: {
     // Определяем какие звёзды доступны
     const starsObj: Record<string, StarInfo> = {}
 
+    // CAPTAINPEACE ("особые" одиночные мутанты вроде Ахерона/Капитана Ахаба) не
+    // проходят через систему звёзд в игре вообще - у них нет <Star>-тегов в XML,
+    // а bronze/silver/gold/platinum иногда всё равно находятся среди текстур на
+    // CDN (случайные лишние файлы) и раньше ошибочно добавлялись сюда с
+    // множителем как у настоящих звёзд. Берём только normal, как и для
+    // подавляющего большинства CAPTAINPEACE-мутантов, у которых лишних текстур нет.
     if (isGacha) {
       const trueRating = getTrueRating(typeUpper, gachaMult)
       starsObj[trueRating] = {
         images: buildImagePaths(mutantId, 'normal'),
         ...(trueRating !== 'normal' && { multiplier: gachaMult }),
       }
+    } else if (typeUpper === 'CAPTAINPEACE') {
+      starsObj.normal = { images: buildImagePaths(mutantId, 'normal') }
     } else {
       for (const rating of textureRatings) {
         starsObj[rating] = {

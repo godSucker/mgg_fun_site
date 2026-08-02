@@ -17,22 +17,33 @@ interface BoxReward {
   type: 'entity' | 'hardcurrency' | 'softcurrency';
   amount: number;
 }
+interface BoxGroup {
+  chance: number | null;
+  mutants: BoxMutantRef[];
+  rewards: BoxReward[];
+}
 interface Box {
   itemId: string;
   icon: string | null;
   category: string;
   name: string;
-  mutants: BoxMutantRef[];
-  rewards: BoxReward[];
+  groups: BoxGroup[];
 }
 
 const boxes = boxesData as Box[];
+
+function allMutants(box: Box): BoxMutantRef[] {
+  return box.groups.flatMap((g) => g.mutants);
+}
+function allRewards(box: Box): BoxReward[] {
+  return box.groups.flatMap((g) => g.rewards);
+}
 
 const TIER_RANK: Record<string, number> = { 'платина': 4, 'золото': 3, 'серебро': 2, 'бронза': 1 };
 
 function rarityRank(box: Box): number {
   let best = 0;
-  for (const m of box.mutants) if (m.tier) best = Math.max(best, TIER_RANK[m.tier] ?? 0);
+  for (const m of allMutants(box)) if (m.tier) best = Math.max(best, TIER_RANK[m.tier] ?? 0);
   return best;
 }
 
@@ -78,7 +89,7 @@ const categories = ['Все', ...new Set(boxes.map((b) => b.category).filter(Boo
         <span class="box-card-meta">
           {box.category && <span class="box-card-cat">{box.category}</span>}
           <span class="box-card-count">
-            {box.mutants.length > 0 ? `${box.mutants.length} мутантов` : `${box.rewards.length} наград`}
+            {allMutants(box).length > 0 ? `${allMutants(box).length} мутантов` : `${allRewards(box).length} наград`}
           </span>
         </span>
       </button>

@@ -511,6 +511,11 @@ function getRawTexture(itemId: string): string | null {
   }
 
   if (itemId.startsWith('Charm_')) {
+    // Charm_*_97/98/99 (более редкие уровни бустеров) были добавлены позже и лежат
+    // как оригинальные PascalCase .png, а не lowercase .webp как остальные уровни.
+    if (/_9[789]$/.test(itemId)) {
+      return `/boosters/${itemId}.png`
+    }
     return `/boosters/${itemId.toLowerCase()}.webp`
   }
 
