@@ -12,9 +12,11 @@ import questsData from '../data/guides/quests.json';
 import raidsData from '../data/guides/raids.json';
 import eventLaddersData from '../data/guides/event-ladders.json';
 import specialLaddersData from '../data/guides/special-ladders.json';
-import materialsData from '../data/materials/material.json';
-import orbsData from '../data/materials/orbs.json';
-import charmsData from '../data/materials/charms.json';
+import specialOffersData from '../data/guides/special-offers.json';
+import materialData from '../data/materials/material.json';
+import { translateItemId, getItemTexture } from '../lib/craft-simulator';
+import { getLocalisedName } from '../lib/localisation';
+import { getMutantTexturePath } from '../lib/bingo-textures';
 import GuidesBrowser from '../components/guides/GuidesBrowser.svelte';
 import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
 
@@ -40,10 +42,17 @@ function mutantIcon(m: Mutant): string {
   if (!raw) return '';
   return raw.startsWith('/') ? raw : `/${raw}`;
 }
+function mutantFullArt(m: Mutant): string {
+  const star = maxStar(m);
+  const folder = m.id.replace(/^specimen_/, '');
+  const suffix = star === 'normal' ? '' : `_${star}`;
+  return `/textures_by_mutant/${folder}/FULL_${folder}${suffix}.png`;
+}
+
 function resolve(id: string) {
   const m = mutantsById.get(id);
   if (!m) return null;
-  return { id: m.id, name: m.name, genes: m.genes ?? [], icon: mutantIcon(m) };
+  return { id: m.id, name: m.name, genes: m.genes ?? [], icon: mutantIcon(m), fullArt: mutantFullArt(m) };
 }
 
 const legendaries = (legendaryIds as string[]).map(resolve).filter((x): x is NonNullable<typeof x> => x !== null);
@@ -72,43 +81,67 @@ const farmers = (farmerRows as FarmerRow[]).map((row) => {
   return { ...row, mutants, silverPerHour, relative };
 });
 
-const STAR_LABEL: Record<string, string> = { Star_Bronze: 'Бронза', Star_Silver: 'Серебро', Star_Gold: 'Золото', Star_Platinum: 'Платина' };
-const materialsById = new Map((materialsData as { id: string; name: string }[]).map((m) => [m.id, m.name]));
-const orbsById = new Map((orbsData as { id: string; name: string }[]).map((m) => [m.id, m.name]));
-const charmsById = new Map((charmsData as { id: string; name: string }[]).map((m) => [m.id, m.name]));
-
 function prettifyId(id: string): string {
   return id.replace(/_/g, ' ').replace(/\bHC\b/, '').trim();
 }
 
+// Событийные жетоны (Material_*_Token) не всегда есть в localisation_ru.txt /
+// craft-simulator.ts, но почти всегда описаны на /materials (material.json).
+interface MaterialEntry { id: string; name?: string; texture?: string }
+const materialsById = new Map((materialData as MaterialEntry[]).map((m) => [m.id, m]));
+function getMaterialName(id: string): string | null {
+  return materialsById.get(id)?.name ?? null;
+}
+function getMaterialTexture(id: string): string | null {
+  return materialsById.get(id)?.texture ?? null;
+}
+
 interface RewardRaw { type: string; id?: string | null; amount?: string | number | null }
-interface ResolvedReward { label: string; mutant?: { id: string; name: string; genes: string[]; icon: string } }
+interface MutantLiteFull { id: string; name: string; genes: string[]; icon: string; fullArt: string }
+interface ResolvedReward { label: string; icon: string | null; mutant?: MutantLiteFull }
 
 function resolveReward(reward: RewardRaw | null): ResolvedReward {
-  if (!reward) return { label: '—' };
+  if (!reward) return { label: '—', icon: null };
   const amount = reward.amount ? String(reward.amount) : '';
-  if (reward.type === 'softcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} серебра` };
-  if (reward.type === 'hardcurrency') return { label: `${Number(amount).toLocaleString('ru-RU')} золота` };
+  const amountSuffix = amount && amount !== '1' ? ` ×${amount}` : '';
+  if (reward.type === 'softcurrency') {
+    return { label: `${Number(amount).toLocaleString('ru-RU')} серебра`, icon: '/cash/softcurrency.webp' };
+  }
+  if (reward.type === 'hardcurrency') {
+    return { label: `${Number(amount).toLocaleString('ru-RU')} золота`, icon: '/cash/hardcurrency.webp' };
+  }
+  if (reward.type === 'experience') {
+    return { label: `${Number(amount).toLocaleString('ru-RU')} опыта`, icon: getItemTexture('Material_XP1000') };
+  }
   if (reward.type === 'custom' && reward.id?.startsWith('allele-')) {
-    return { label: `Открывает ген ${reward.id.split('-')[1]} для скрещивания` };
+    return { label: `Открывает ген ${reward.id.split('-')[1]} для скрещивания`, icon: null };
   }
   if (reward.type === 'entity' && reward.id) {
     if (reward.id.startsWith('Specimen_')) {
       const m = resolve(reward.id.toLowerCase());
-      if (m) return { label: `Мутант: ${m.name}`, mutant: m };
-      return { label: `Мутант: ${reward.id}` };
+      if (m) return { label: m.name, icon: m.icon, mutant: m };
+      return { label: translateItemId(reward.id), icon: null };
     }
-    if (STAR_LABEL[reward.id]) return { label: `Звезда «${STAR_LABEL[reward.id]}»${amount && amount !== '1' ? ` ×${amount}` : ''}` };
-    if (reward.id.startsWith('Habitat_')) {
+    if (reward.id.startsWith('Habitat_') || reward.id.startsWith('Building_')) {
       const match = reward.id.match(/_(\d+)_HC$/);
       const size = match ? Number(match[1]) + 1 : null;
-      return { label: size ? `Люкс-зона x${size}` : prettifyId(reward.id) };
+      const label = getLocalisedName(reward.id) ?? (size ? `Люкс-зона x${size}` : prettifyId(reward.id));
+      return { label, icon: null };
     }
-    const name = materialsById.get(reward.id) ?? charmsById.get(reward.id) ?? orbsById.get(reward.id);
-    if (name) return { label: `${name}${amount && amount !== '1' ? ` ×${amount}` : ''}` };
-    return { label: `${prettifyId(reward.id)}${amount && amount !== '1' ? ` ×${amount}` : ''}` };
+    // Временные ("заряд N боёв") орбы: orb_x_y_NN_ephemeral_10 - в локализации почти
+    // никогда нет точного ключа с конкретным числом зарядов, но базовый orb_x_y_NN есть.
+    const ephemeralMatch = reward.id.match(/^(.+)_ephemeral_(\d+)$/);
+    if (ephemeralMatch) {
+      const [, baseId, charges] = ephemeralMatch;
+      const baseName = getLocalisedName(reward.id) ?? getLocalisedName(baseId) ?? getMaterialName(baseId) ?? translateItemId(baseId);
+      return { label: `${baseName} (заряд ${charges})${amountSuffix}`, icon: getItemTexture(baseId) ?? getMaterialTexture(baseId) };
+    }
+    return {
+      label: `${getLocalisedName(reward.id) ?? getMaterialName(reward.id) ?? translateItemId(reward.id)}${amountSuffix}`,
+      icon: getItemTexture(reward.id) ?? getMaterialTexture(reward.id),
+    };
   }
-  return { label: '—' };
+  return { label: '—', icon: null };
 }
 
 const locationsByMapId = new Map((divisionLocations as { map_id: string; name: string; lore: string }[]).map((l) => [l.map_id, l]));
@@ -120,12 +153,12 @@ interface DivisionMapRaw {
   level_range: [number, number];
   enemy_ids: string[];
 }
-interface DivisionRaw { campaign_id: string; name_ru: string; recommendation: string; maps: DivisionMapRaw[] }
+interface DivisionRaw { campaign_id: string; name_ru: string; recommendation: number; maps: DivisionMapRaw[] }
 
 const divisions = (divisionsData as DivisionRaw[]).map((camp) => ({
   id: camp.campaign_id,
   name: camp.name_ru,
-  recommendation: camp.recommendation,
+  recommendedLevel: camp.recommendation,
   maps: camp.maps.map((m) => {
     const loc = locationsByMapId.get(m.map_id);
     const enemies = m.enemy_ids.map((id) => resolve(id.toLowerCase())).filter((x): x is NonNullable<typeof x> => x !== null);
@@ -150,8 +183,39 @@ const quests = (questsData as QuestRaw[]).map((q) => ({
   rewards: q.rewards.map(resolveReward),
 }));
 
-interface DungeonRaw { id: string; name: string; nameAuthored: boolean; mutantId: string | null; fightCount: number; bossCount: number; categories: string[] }
-interface EventLadderRaw { id: string; name: string; mapCount: number; mutantId: string | null; mutantAtMap: string | null; categories: string[] }
+interface RewardCurrency { softcurrency: number; hardcurrency: number; experience: number }
+interface RewardItem { id: string; amount: number }
+interface DungeonRewardsRaw { currency: RewardCurrency; items: RewardItem[] }
+interface DungeonRaw {
+  id: string;
+  name: string;
+  nameAuthored: boolean;
+  mutantId: string | null;
+  fightCount: number;
+  bossCount: number;
+  rewards: DungeonRewardsRaw;
+}
+interface EventLadderMapRaw { mapId: string; fightCount: number; reward: RewardItem | null }
+interface EventLadderRaw {
+  id: string;
+  name: string;
+  nameAuthored: boolean;
+  mapCount: number;
+  mutantId: string | null;
+  maps: EventLadderMapRaw[];
+}
+
+function resolveCurrencySummary(currency: RewardCurrency) {
+  const out: ResolvedReward[] = [];
+  if (currency.softcurrency) out.push(resolveReward({ type: 'softcurrency', amount: currency.softcurrency }));
+  if (currency.hardcurrency) out.push(resolveReward({ type: 'hardcurrency', amount: currency.hardcurrency }));
+  if (currency.experience) out.push(resolveReward({ type: 'experience', amount: currency.experience }));
+  return out;
+}
+
+function resolveItemList(items: RewardItem[]) {
+  return items.map((it) => resolveReward({ type: 'entity', id: it.id, amount: it.amount }));
+}
 
 function resolveDungeon(d: DungeonRaw) {
   return {
@@ -161,35 +225,91 @@ function resolveDungeon(d: DungeonRaw) {
     mutant: d.mutantId ? resolve(d.mutantId.toLowerCase()) : null,
     fightCount: d.fightCount,
     bossCount: d.bossCount,
-    categories: d.categories,
+    currency: resolveCurrencySummary(d.rewards.currency),
+    items: resolveItemList(d.rewards.items),
   };
 }
 
 const raids = (raidsData as DungeonRaw[]).map(resolveDungeon);
 
-const eventLadders = (eventLaddersData as EventLadderRaw[]).map((e) => ({
-  id: e.id,
-  name: e.name,
-  mapCount: e.mapCount,
-  mutant: e.mutantId ? resolve(e.mutantId.toLowerCase()) : null,
-  mutantAtMap: e.mutantAtMap,
-  categories: e.categories,
-}));
+const eventLadders = (eventLaddersData as EventLadderRaw[]).map((e) => {
+  const mutantIdLower = e.mutantId?.toLowerCase();
+  const tally = new Map<string, number>();
+  let fightCount = 0;
+  for (const m of e.maps) {
+    fightCount += m.fightCount;
+    if (m.reward && m.reward.id.toLowerCase() !== mutantIdLower) {
+      tally.set(m.reward.id, (tally.get(m.reward.id) ?? 0) + m.reward.amount);
+    }
+  }
+  return {
+    id: e.id,
+    name: e.name,
+    nameAuthored: e.nameAuthored,
+    mapCount: e.mapCount,
+    mutant: e.mutantId ? resolve(e.mutantId.toLowerCase()) : null,
+    fightCount,
+    items: resolveItemList(Array.from(tally, ([id, amount]) => ({ id, amount }))),
+  };
+});
 
 const specialLaddersRaw = specialLaddersData as { experiment: DungeonRaw[]; challenge: DungeonRaw[] };
 const specialLadders = {
   experiment: specialLaddersRaw.experiment.map(resolveDungeon),
   challenge: specialLaddersRaw.challenge.map(resolveDungeon),
 };
+
+interface SpecialOfferMutantRaw { id: string; name: string; tier: string | null; skin: string | null }
+interface SpecialOfferRewardRaw { name: string; type: 'entity' | 'hardcurrency' | 'softcurrency'; amount: number }
+interface SpecialOfferGroupRaw { chance: number | null; mutants: SpecialOfferMutantRaw[]; rewards: SpecialOfferRewardRaw[] }
+interface SpecialOfferRaw {
+  id: string;
+  shopItemId: string;
+  name: string;
+  icon: string | null;
+  level: number;
+  cost: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null;
+  realPriceUsd: number | null;
+  groups: SpecialOfferGroupRaw[];
+}
+
+const TIER_VARIANT: Record<string, 'bronze' | 'silver' | 'gold' | 'platinum'> = {
+  'бронза': 'bronze',
+  'серебро': 'silver',
+  'золото': 'gold',
+  'платина': 'platinum',
+};
+
+function resolveOfferMutant(m: SpecialOfferMutantRaw) {
+  const variant = m.tier ? (TIER_VARIANT[m.tier] ?? 'normal') : 'normal';
+  const icon = getMutantTexturePath(m.id, m.skin ?? '_any', variant);
+  return { id: m.id, name: m.name, tier: m.tier, skin: m.skin, icon };
+}
+
+const specialOffers = (specialOffersData as SpecialOfferRaw[]).map((o) => ({
+  id: o.id,
+  name: o.name,
+  icon: o.icon,
+  level: o.level,
+  cost: o.cost,
+  realPriceUsd: o.realPriceUsd,
+  groups: o.groups.map((g) => ({
+    chance: g.chance,
+    mutants: g.mutants.map(resolveOfferMutant),
+    rewards: g.rewards.map((r) =>
+      resolveReward({ type: r.type, id: r.type === 'entity' ? r.name : undefined, amount: r.amount }),
+    ),
+  })),
+}));
 ---
 
 <BaseLayout
-  title="Полезные материалы"
+  title="Полезности"
   description="Гайды и справочники по Mutants Genetic Gladiators: выводимые легендарки, зодиакальные даты, тандем, PvP-механики, фармеры серебра и другое."
   canonical="https://archivist-library.com/guides"
 >
   <section class="intro">
-    <h1>Полезные материалы</h1>
+    <h1>Полезности</h1>
     <p>Гайды и справочники по игровым механикам, собранные сообществом.</p>
   </section>
 
@@ -204,6 +324,7 @@ const specialLadders = {
     raids={raids}
     eventLadders={eventLadders}
     specialLadders={specialLadders}
+    specialOffers={specialOffers}
   />
   <BingoMutantModal client:load />
 </BaseLayout>

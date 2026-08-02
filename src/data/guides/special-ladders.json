@@ -7,11 +7,39 @@
       "mutantId": "Specimen_FC_10",
       "fightCount": 66,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 278400,
+          "hardcurrency": 0,
+          "experience": 20860
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "Habitat_A_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "hyperborea_13",
@@ -20,11 +48,35 @@
       "mutantId": "Specimen_FB_10",
       "fightCount": 60,
       "bossCount": 6,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 246000,
+          "hardcurrency": 0,
+          "experience": 24600
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "Habitat_C_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "celestial_12",
@@ -33,12 +85,39 @@
       "mutantId": "Specimen_FA_11",
       "fightCount": 50,
       "bossCount": 9,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 187250,
+          "hardcurrency": 0,
+          "experience": 14945
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_retaliate_03",
+            "amount": 1
+          },
+          {
+            "id": "Habitat_F_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "neon_14",
@@ -47,11 +126,31 @@
       "mutantId": "Specimen_DA_11",
       "fightCount": 52,
       "bossCount": 2,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 287000,
+          "hardcurrency": 0,
+          "experience": 24530
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Habitat_A_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "starter",
@@ -60,11 +159,31 @@
       "mutantId": "Specimen_EB_11",
       "fightCount": 51,
       "bossCount": 3,
-      "categories": [
-        "амулеты",
-        "материалы/жетоны",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 170800,
+          "hardcurrency": 0,
+          "experience": 17080
+        },
+        "items": [
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "Charm_Xpx3_3",
+            "amount": 1
+          },
+          {
+            "id": "Habitat_C_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "pit_galactic_11",
@@ -73,11 +192,31 @@
       "mutantId": "Specimen_BE_10",
       "fightCount": 45,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 118000,
+          "hardcurrency": 0,
+          "experience": 11500
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_strengthen_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "pit_zoo_12",
@@ -86,11 +225,31 @@
       "mutantId": "Specimen_CD_10",
       "fightCount": 45,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 172000,
+          "hardcurrency": 0,
+          "experience": 17200
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_slash_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "pit_cyber_12",
@@ -99,11 +258,31 @@
       "mutantId": "Specimen_FA_10",
       "fightCount": 45,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 118000,
+          "hardcurrency": 0,
+          "experience": 11500
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "pit_mystic_12",
@@ -112,11 +291,31 @@
       "mutantId": "Specimen_CF_10",
       "fightCount": 45,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 172000,
+          "hardcurrency": 0,
+          "experience": 17200
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_weaken_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "pit_necro_12",
@@ -125,11 +324,31 @@
       "mutantId": "Specimen_BB_10",
       "fightCount": 45,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 118000,
+          "hardcurrency": 0,
+          "experience": 11500
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_regenerate_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "pit_saber_11",
@@ -138,11 +357,31 @@
       "mutantId": "Specimen_BC_10",
       "fightCount": 45,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 172000,
+          "hardcurrency": 0,
+          "experience": 17200
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_retaliate_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "xmas20_1",
@@ -151,11 +390,35 @@
       "mutantId": null,
       "fightCount": 80,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 355000,
+          "hardcurrency": 0,
+          "experience": 35500
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Toybox_Token",
+            "amount": 200
+          },
+          {
+            "id": "orb_basic_xp_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "xmas21_1",
@@ -164,11 +427,55 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 3,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 466000,
+          "hardcurrency": 0,
+          "experience": 46600
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 3
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Rime_Token",
+            "amount": 100
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_weaken_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "xmas20_2",
@@ -177,11 +484,35 @@
       "mutantId": null,
       "fightCount": 80,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 355000,
+          "hardcurrency": 0,
+          "experience": 35500
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Toybox_Token",
+            "amount": 200
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_special_speed_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "xmas21_2",
@@ -190,11 +521,63 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 916000,
+          "hardcurrency": 0,
+          "experience": 97000
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 4
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 30
+          },
+          {
+            "id": "Material_Rime_Token",
+            "amount": 200
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 20
+          },
+          {
+            "id": "orb_basic_critical_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_xp_02",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "xmas20_3",
@@ -203,11 +586,39 @@
       "mutantId": null,
       "fightCount": 80,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 355000,
+          "hardcurrency": 0,
+          "experience": 35500
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Toybox_Token",
+            "amount": 200
+          },
+          {
+            "id": "orb_basic_weaken_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "hexcity_1",
@@ -216,11 +627,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 12,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Hexcity_Token",
+            "amount": 500
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "valentines",
@@ -229,11 +688,35 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 550000,
+          "hardcurrency": 0,
+          "experience": 55000
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Valentines22_Token",
+            "amount": 800
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_xp_04",
+            "amount": 4
+          }
+        ]
+      }
     },
     {
       "id": "valentines23",
@@ -242,11 +725,47 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 513000,
+          "hardcurrency": 0,
+          "experience": 51300
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 12
+          },
+          {
+            "id": "Material_Cherub_Token",
+            "amount": 100
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 30
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 17
+          },
+          {
+            "id": "orb_basic_strengthen_04",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "valentines24",
@@ -255,11 +774,51 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 513000,
+          "hardcurrency": 0,
+          "experience": 51300
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Cuteness_Token",
+            "amount": 200
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 30
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 17
+          },
+          {
+            "id": "orb_basic_strengthen_04",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_xp_04",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "valentines25",
@@ -268,11 +827,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 12,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_Runic_Token",
+            "amount": 920
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_xp_04",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "valentines26",
@@ -281,11 +888,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 18,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 4
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 5
+          },
+          {
+            "id": "Material_Valentines26_Token",
+            "amount": 1700
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_life_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_retaliate_03",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "god",
@@ -294,7 +949,19 @@
       "mutantId": null,
       "fightCount": 16,
       "bossCount": 21,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 399500,
+          "hardcurrency": 70,
+          "experience": 21800
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "toyz",
@@ -303,7 +970,19 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 1,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 35950,
+          "hardcurrency": 10,
+          "experience": 1980
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween24",
@@ -312,11 +991,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 12,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 528000,
+          "hardcurrency": 0,
+          "experience": 52800
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Crawling_Token",
+            "amount": 700
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 50
+          },
+          {
+            "id": "Material_Trick_Token",
+            "amount": 650
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_life_06",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween23",
@@ -325,11 +1052,55 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 452300,
+          "hardcurrency": 0,
+          "experience": 37200
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Trick_Token",
+            "amount": 1200
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 6
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_life_03",
+            "amount": 3
+          }
+        ]
+      }
     },
     {
       "id": "halloween22",
@@ -338,11 +1109,51 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 528000,
+          "hardcurrency": 0,
+          "experience": 52800
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Grave_Token",
+            "amount": 400
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 20
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_life_05",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_regenerate_03",
+            "amount": 4
+          }
+        ]
+      }
     },
     {
       "id": "halloween20",
@@ -351,12 +1162,51 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 3,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 569500,
+          "hardcurrency": 0,
+          "experience": 61000
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 3
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 20
+          },
+          {
+            "id": "orb_basic_weaken_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_addregenerate_03",
+            "amount": 3
+          },
+          {
+            "id": "Habitat_ABCDEF_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "easter21",
@@ -365,11 +1215,51 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 875000,
+          "hardcurrency": 0,
+          "experience": 87500
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 5
+          },
+          {
+            "id": "Material_Easter21_Token",
+            "amount": 200
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 30
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_slash_02",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "easter22",
@@ -378,11 +1268,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 12,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 654000,
+          "hardcurrency": 0,
+          "experience": 65400
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Easter22_Token",
+            "amount": 200
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 5
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_critical_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "easter23",
@@ -391,11 +1329,55 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 47000
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 5
+          },
+          {
+            "id": "Material_Spelunking_Token",
+            "amount": 1100
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 20
+          },
+          {
+            "id": "orb_basic_weaken_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_addshield_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "easter24",
@@ -404,11 +1386,63 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 11,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 546000,
+          "hardcurrency": 0,
+          "experience": 54600
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Moai_Token",
+            "amount": 500
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 5
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 23
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 7
+          },
+          {
+            "id": "orb_basic_life_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_strengthen_02",
+            "amount": 3
+          }
+        ]
+      }
     },
     {
       "id": "easter25",
@@ -417,11 +1451,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 12,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_BUN_Token",
+            "amount": 900
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_xp_04",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "easter26",
@@ -430,11 +1512,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 14,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 3
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Easter26_Token",
+            "amount": 1400
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 12
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 12
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_critical_02",
+            "amount": 6
+          },
+          {
+            "id": "orb_basic_life_01",
+            "amount": 12
+          }
+        ]
+      }
     },
     {
       "id": "xmas22_1",
@@ -443,11 +1573,51 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 422000,
+          "hardcurrency": 0,
+          "experience": 42200
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 7
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Snowstorm_Token",
+            "amount": 530
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_critical_04",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "xmas22_2",
@@ -456,11 +1626,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 638000,
+          "hardcurrency": 0,
+          "experience": 63800
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 6
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 5
+          },
+          {
+            "id": "Material_Snowstorm_Token",
+            "amount": 586
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_attack_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_slash_03",
+            "amount": 3
+          }
+        ]
+      }
     },
     {
       "id": "xmas23_1",
@@ -469,11 +1687,87 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 335000,
+          "hardcurrency": 0,
+          "experience": 33500
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 3
+          },
+          {
+            "id": "Material_Capsule_Token",
+            "amount": 800
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 5
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 13
+          },
+          {
+            "id": "Material_XP250",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_life_01",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_slash_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_addstrengthen_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "xmas23_2",
@@ -482,11 +1776,87 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 6,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 505000,
+          "hardcurrency": 0,
+          "experience": 50500
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 3
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 3
+          },
+          {
+            "id": "Material_Capsule_Token",
+            "amount": 1400
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 5
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 4
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 3
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 22
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_critical_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_life_01",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_regenerate_02",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_retaliate_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_strengthen_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_weaken_02",
+            "amount": 3
+          }
+        ]
+      }
     },
     {
       "id": "xmas24_1",
@@ -495,11 +1865,55 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 12,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "Material_Xmas24_Token",
+            "amount": 800
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "xmas24_2",
@@ -508,11 +1922,63 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 15,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 589000,
+          "hardcurrency": 0,
+          "experience": 58900
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 11
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 6
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 35
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "Material_Xmas24_Token",
+            "amount": 1000
+          },
+          {
+            "id": "orb_basic_critical_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_02",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_retaliate_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "xmas25_1",
@@ -521,11 +1987,59 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 11,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 287000,
+          "hardcurrency": 0,
+          "experience": 28700
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 4
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 2
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "Material_Xmas25_Token",
+            "amount": 1400
+          },
+          {
+            "id": "orb_basic_xp_01",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_addslash_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "xmas25_2",
@@ -534,11 +2048,55 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 18,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 363000,
+          "hardcurrency": 0,
+          "experience": 36300
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 4
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 5
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 17
+          },
+          {
+            "id": "Material_Xmas25_Token",
+            "amount": 1490
+          },
+          {
+            "id": "orb_basic_attack_02",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_xp_02",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "weirdtech",
@@ -547,11 +2105,55 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 501000,
+          "hardcurrency": 0,
+          "experience": 50100
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 5
+          },
+          {
+            "id": "Material_Weirdtech_Token",
+            "amount": 1300
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_shield_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween21",
@@ -560,11 +2162,63 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 914000,
+          "hardcurrency": 0,
+          "experience": 91400
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Stygian_Token",
+            "amount": 150
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 30
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_critical_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_weaken_02",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween25",
@@ -573,11 +2227,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 37,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 252000,
+          "hardcurrency": 0,
+          "experience": 25200
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_Signal_Token",
+            "amount": 510
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_20_1",
@@ -586,13 +2288,59 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 3,
-      "categories": [
-        "амулеты",
-        "звёзды",
-        "материалы/жетоны",
-        "орбы",
-        "хабитаты(здания)"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 485520,
+          "hardcurrency": 0,
+          "experience": 48552
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Material_7th_Anniversary_Token",
+            "amount": 196
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Xpx3_1",
+            "amount": 1
+          },
+          {
+            "id": "Habitat_ABCDEF_2_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_20_2",
@@ -601,11 +2349,59 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 3,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 485520,
+          "hardcurrency": 0,
+          "experience": 48552
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_7th_Anniversary_Token",
+            "amount": 196
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_xp_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_21_1",
@@ -614,11 +2410,59 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 989000,
+          "hardcurrency": 0,
+          "experience": 98900
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 17
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Pyramid_Token",
+            "amount": 50
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_attack_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_critical_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_xp_03",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_21_2",
@@ -627,11 +2471,63 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 10,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 989000,
+          "hardcurrency": 0,
+          "experience": 98900
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 4
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Pyramid_Token",
+            "amount": 80
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_05",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_xp_02",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_22_1",
@@ -640,11 +2536,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 477000,
+          "hardcurrency": 0,
+          "experience": 47700
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 3
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Data_Token",
+            "amount": 800
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Muto50",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_02",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_22_2",
@@ -653,11 +2597,55 @@
       "mutantId": null,
       "fightCount": 121,
       "bossCount": 5,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 52650,
+          "hardcurrency": 0,
+          "experience": 52650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Data_Token",
+            "amount": 800
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_03",
+            "amount": 5
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_23_1",
@@ -666,11 +2654,59 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 427500,
+          "hardcurrency": 0,
+          "experience": 42750
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_Overlay_Token",
+            "amount": 200
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 4
+          },
+          {
+            "id": "orb_basic_life_02",
+            "amount": 5
+          },
+          {
+            "id": "orb_special_speed_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_23_2",
@@ -679,11 +2715,63 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 4,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 602500,
+          "hardcurrency": 0,
+          "experience": 60250
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 4
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_Overlay_Token",
+            "amount": 220
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_life_01",
+            "amount": 4
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_23_3",
@@ -692,11 +2780,63 @@
       "mutantId": null,
       "fightCount": 140,
       "bossCount": 6,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 915000,
+          "hardcurrency": 0,
+          "experience": 91500
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 3
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "Material_Overlay_Token",
+            "amount": 660
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 20
+          },
+          {
+            "id": "orb_basic_attack_01",
+            "amount": 49
+          },
+          {
+            "id": "orb_basic_life_01",
+            "amount": 49
+          },
+          {
+            "id": "orb_basic_retaliate_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_xp_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_24_1",
@@ -705,11 +2845,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 13,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 535000,
+          "hardcurrency": 0,
+          "experience": 53500
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 3
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Conspiracy_Token",
+            "amount": 400
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_retaliate_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_24_2",
@@ -718,11 +2906,63 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 21,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 775000,
+          "hardcurrency": 0,
+          "experience": 77500
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 4
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Conspiracy_Token",
+            "amount": 610
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 5
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 30
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_shield_03",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_strengthen_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_xp_01",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_25_1",
@@ -731,11 +2971,59 @@
       "mutantId": null,
       "fightCount": 120,
       "bossCount": 14,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 535000,
+          "hardcurrency": 0,
+          "experience": 53500
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Masks_Token",
+            "amount": 890
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_shield_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_xp_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "anniversary_25_2",
@@ -744,11 +3032,63 @@
       "mutantId": null,
       "fightCount": 150,
       "bossCount": 20,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 840000,
+          "hardcurrency": 0,
+          "experience": 84000
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 3
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 35
+          },
+          {
+            "id": "Material_Masks_Token",
+            "amount": 2700
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_life_04",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_weaken_02",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_weaken_05",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_addretaliate_01",
+            "amount": 1
+          }
+        ]
+      }
     }
   ],
   "challenge": [
@@ -759,7 +3099,43 @@
       "mutantId": "Specimen_DD_06",
       "fightCount": 50,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 85000,
+          "hardcurrency": 30,
+          "experience": 6700
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_LP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_life_03_ephemeral_20",
+            "amount": 3
+          },
+          {
+            "id": "orb_basic_xp_03",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Critical_97",
+            "amount": 10
+          }
+        ]
+      }
     },
     {
       "id": "jungle_bells_2",
@@ -768,7 +3144,59 @@
       "mutantId": "Specimen_BA_06",
       "fightCount": 100,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 30,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_life_03_ephemeral_20",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_addslash_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_02_ephemeral_10",
+            "amount": 3
+          },
+          {
+            "id": "Charm_Anticritical_3",
+            "amount": 3
+          },
+          {
+            "id": "Charm_Anticritical_97",
+            "amount": 8
+          },
+          {
+            "id": "Charm_Regenx2_97",
+            "amount": 6
+          },
+          {
+            "id": "Habitat_E_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "jungle_bells_3",
@@ -777,7 +3205,39 @@
       "mutantId": "Specimen_AD_10",
       "fightCount": 50,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 85000,
+          "hardcurrency": 30,
+          "experience": 6700
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_life_03_ephemeral_20",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 3
+          },
+          {
+            "id": "Charm_Xpx2_97",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "rome_hardcore",
@@ -786,7 +3246,39 @@
       "mutantId": "Specimen_EE_10",
       "fightCount": 50,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 58000,
+          "hardcurrency": 0,
+          "experience": 4700
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 30
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 20
+          },
+          {
+            "id": "orb_special_addstrengthen_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 3
+          }
+        ]
+      }
     },
     {
       "id": "halloween",
@@ -795,7 +3287,59 @@
       "mutantId": "Specimen_CD_03",
       "fightCount": 100,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 470400,
+          "hardcurrency": 0,
+          "experience": 41690
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_life_03_ephemeral_20",
+            "amount": 3
+          },
+          {
+            "id": "Charm_Anticritical_3",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Critical_3",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Regenx2_3",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Regenx4_3",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween_1",
@@ -804,7 +3348,51 @@
       "mutantId": "Specimen_BC_05",
       "fightCount": 100,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 30,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 2
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_03_ephemeral_20",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_addshield_02",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_speed_02",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween_2",
@@ -813,7 +3401,55 @@
       "mutantId": "Specimen_AB_08",
       "fightCount": 100,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 30,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 3
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_attack_02",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_life_03_ephemeral_20",
+            "amount": 3
+          },
+          {
+            "id": "orb_special_speed_03",
+            "amount": 1
+          },
+          {
+            "id": "Habitat_ABCDEF_3_HC",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "jungle_16",
@@ -822,10 +3458,39 @@
       "mutantId": null,
       "fightCount": 101,
       "bossCount": 1,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 485000,
+          "hardcurrency": 0,
+          "experience": 43150
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 15
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          }
+        ]
+      }
     },
     {
       "id": "ice_16",
@@ -834,11 +3499,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_special_addregenerate_03",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "galacless",
@@ -847,7 +3540,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "zooless",
@@ -856,7 +3565,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "cyberless",
@@ -865,7 +3590,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "mysticless",
@@ -874,7 +3615,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "necroless",
@@ -883,7 +3640,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "saberless",
@@ -892,7 +3665,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "vegas_16",
@@ -901,11 +3690,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_LP1000",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_special_addslash_03",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "olympus_16",
@@ -914,12 +3731,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "амулеты",
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_special_addslash_03",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Regenx4_3",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "rome_16",
@@ -928,11 +3772,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_attack_04",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "space_16",
@@ -941,12 +3813,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "амулеты",
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_special_addweaken_03",
+            "amount": 2
+          },
+          {
+            "id": "Charm_Xpx3_3",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "moon_3",
@@ -955,9 +3854,19 @@
       "mutantId": null,
       "fightCount": 50,
       "bossCount": 0,
-      "categories": [
-        "материалы/жетоны"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 84700,
+          "hardcurrency": 0,
+          "experience": 6700
+        },
+        "items": [
+          {
+            "id": "Material_Event_Token",
+            "amount": 120
+          }
+        ]
+      }
     },
     {
       "id": "mars_16",
@@ -966,12 +3875,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "амулеты",
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 2
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_basic_strengthen_04",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Anticritical_3",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "miami_16",
@@ -980,11 +3916,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 5
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 10
+          },
+          {
+            "id": "orb_special_addweaken_03",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "rapanui_16",
@@ -993,12 +3957,39 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "амулеты",
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "orb_special_addshield_03",
+            "amount": 2
+          },
+          {
+            "id": "Charm_Anticritical_3",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "gotham_16",
@@ -1007,12 +3998,47 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "амулеты",
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_LP1000",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_special_addregenerate_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_addstrengthen_03",
+            "amount": 1
+          },
+          {
+            "id": "Charm_Critical_3",
+            "amount": 2
+          }
+        ]
+      }
     },
     {
       "id": "triangle_abc",
@@ -1021,7 +4047,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "triangle_def",
@@ -1030,7 +4072,23 @@
       "mutantId": null,
       "fightCount": 15,
       "bossCount": 0,
-      "categories": []
+      "rewards": {
+        "currency": {
+          "softcurrency": 44000,
+          "hardcurrency": 10,
+          "experience": 3700
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_shield_04",
+            "amount": 1
+          }
+        ]
+      }
     },
     {
       "id": "halloween2018_1",
@@ -1039,9 +4097,19 @@
       "mutantId": null,
       "fightCount": 80,
       "bossCount": 1,
-      "categories": [
-        "материалы/жетоны"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 286050,
+          "hardcurrency": 0,
+          "experience": 29450
+        },
+        "items": [
+          {
+            "id": "Material_Halloween_Soul",
+            "amount": 290
+          }
+        ]
+      }
     },
     {
       "id": "halloween2018_2",
@@ -1050,9 +4118,19 @@
       "mutantId": null,
       "fightCount": 80,
       "bossCount": 1,
-      "categories": [
-        "материалы/жетоны"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 286050,
+          "hardcurrency": 0,
+          "experience": 29450
+        },
+        "items": [
+          {
+            "id": "Material_Halloween_Soul",
+            "amount": 290
+          }
+        ]
+      }
     },
     {
       "id": "japan_16",
@@ -1061,11 +4139,51 @@
       "mutantId": null,
       "fightCount": 100,
       "bossCount": 0,
-      "categories": [
-        "звёзды",
-        "материалы/жетоны",
-        "орбы"
-      ]
+      "rewards": {
+        "currency": {
+          "softcurrency": 470000,
+          "hardcurrency": 0,
+          "experience": 41650
+        },
+        "items": [
+          {
+            "id": "Star_Platinum",
+            "amount": 2
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 1
+          },
+          {
+            "id": "Star_Bronze",
+            "amount": 1
+          },
+          {
+            "id": "Material_Event_Token",
+            "amount": 60
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 10
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 5
+          },
+          {
+            "id": "orb_basic_life_03",
+            "amount": 1
+          },
+          {
+            "id": "orb_special_addregenerate_03_ephemeral_20",
+            "amount": 3
+          }
+        ]
+      }
     }
   ]
 }
