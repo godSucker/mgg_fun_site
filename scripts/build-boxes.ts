@@ -199,7 +199,12 @@ async function main() {
       }
       const cosmeticSkin = skinVal && !isTier ? skinVal : null
       return {
-        mutant: { id: idLower, name: mutantNameById.get(idLower) ?? typeId, tier, skin: cosmeticSkin },
+        mutant: {
+          id: idLower,
+          name: mutantNameById.get(idLower) ?? typeId,
+          tier,
+          skin: cosmeticSkin,
+        },
       }
     }
     const amount = tags.amount != null ? Number(tags.amount) : 1
@@ -317,16 +322,18 @@ async function main() {
   const boxSignature = (b: BoxEntry) =>
     [
       b.icon ?? '',
-      ...b.groups.map(
-        (g) =>
-          `${g.chance != null ? g.chance.toFixed(4) : 'guaranteed'}:` +
-          [
-            ...g.mutants.map((m) => `m:${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`),
-            ...g.rewards.map((r) => `r:${r.type}|${r.name}|${r.amount}`),
-          ]
-            .sort()
-            .join(','),
-      ).sort(),
+      ...b.groups
+        .map(
+          (g) =>
+            `${g.chance != null ? g.chance.toFixed(4) : 'guaranteed'}:` +
+            [
+              ...g.mutants.map((m) => `m:${m.id}|${m.tier ?? ''}|${m.skin ?? ''}`),
+              ...g.rewards.map((r) => `r:${r.type}|${r.name}|${r.amount}`),
+            ]
+              .sort()
+              .join(','),
+        )
+        .sort(),
     ].join('\n')
 
   const bySignature = new Map<string, BoxEntry>()
