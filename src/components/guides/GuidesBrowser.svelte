@@ -4,7 +4,15 @@
 
   interface MutantLite { id: string; name: string; genes: string[]; icon: string; fullArt?: string }
   interface ResolvedItem { label: string; icon: string | null; mutant?: MutantLite }
-  interface ZodiacEntry extends MutantLite { sign: string; dateFrom: string; dateTo: string }
+  interface ZodiacEntry extends MutantLite {
+    sign: string
+    dateFrom: string
+    dateTo: string
+    iconNormal: string
+    iconSilver: string
+    priceNormal?: number
+    priceSilver?: number
+  }
   interface FarmerRow {
     ids: string[]
     mutants: MutantLite[]
@@ -16,6 +24,9 @@
     relative: number
   }
   interface SpeedOrbRow { base: number; l3: number; l3pct: number; l4: number; l4pct: number; l5: number; l5pct: number }
+  interface FightFighter { id: string; name: string; icon: string; level: number; boss: boolean; stats: { hp: number; atk1: number; atk2: number; ability: number; speed: number; silver: number } }
+  interface FightWave { number: number; fighters: FightFighter[] }
+  interface DivisionFight { fightId: number; waves: FightWave[] }
   interface DivisionMap {
     mapId: string
     locationName: string
@@ -24,6 +35,7 @@
     fightCount: number
     levelRange: [number, number]
     enemies: MutantLite[]
+    fights: DivisionFight[]
   }
   interface Division { id: string; name: string; recommendedLevel: number; maps: DivisionMap[] }
   interface DungeonEntry {
@@ -85,6 +97,25 @@
   } = $props()
 
   let activeDivision = $state(0)
+  let zodiacStar: 'normal' | 'silver' = $state('normal')
+  let offersModalOffer: SpecialOffer | null = $state(null)
+  let fightsModalMap: DivisionMap | null = $state(null)
+  function openFights(m: DivisionMap) {
+    fightsModalMap = m
+  }
+  function closeFights() {
+    fightsModalMap = null
+  }
+  $effect(() => {
+    if (!fightsModalMap && !offersModalOffer) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      closeFights()
+      offersModalOffer = null
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
   const FEATURED_LEGENDARY = 'specimen_cc_02' // Бак Морис
 
@@ -253,16 +284,28 @@
         реального мира. Брать их рекомендуем преимущественно ради коллекции и бинго.
       </p>
     </div>
+    <div class="zodiac-star-switcher">
+      <button class="division-btn" class:active={zodiacStar === 'normal'} onclick={() => (zodiacStar = 'normal')}>Обычная версия</button>
+      <button class="division-btn" class:active={zodiacStar === 'silver'} onclick={() => (zodiacStar = 'silver')}>Серебряная версия</button>
+    </div>
     <div class="zodiac-grid">
       {#each zodiac as z (z.id)}
+        {@const icon = zodiacStar === 'silver' ? z.iconSilver : z.iconNormal}
+        {@const price = zodiacStar === 'silver' ? z.priceSilver : z.priceNormal}
         <button class="zodiac-card" onclick={() => openMutant(z.id)}>
           <span class="zodiac-card-icon">
-            {#if z.icon}<img src={textureUrl(z.icon)} alt="" loading="lazy" decoding="async" />{/if}
+            {#if icon}<img src={textureUrl(icon)} alt="" loading="lazy" decoding="async" />{/if}
           </span>
           <span class="zodiac-card-body">
             <span class="zodiac-card-name">{z.name}</span>
             <span class="zodiac-card-sign">{z.sign}</span>
             <span class="zodiac-card-dates">{z.dateFrom} — {z.dateTo}</span>
+            {#if price != null}
+              <span class="zodiac-card-price">
+                <img src={textureUrl('/cash/hardcurrency.webp')} alt="" loading="lazy" decoding="async" />
+                {price.toLocaleString('ru-RU')}
+              </span>
+            {/if}
           </span>
         </button>
       {/each}
@@ -481,7 +524,6 @@
               <span class="division-map-num">Карта {i + 1}</span>
               <span class="division-map-title">{m.locationName}</span>
             </div>
-            <p class="division-map-lore">{m.lore}</p>
             <div class="division-map-meta">
               <span>Боёв: <strong>{m.fightCount}</strong></span>
               <span>Уровни врагов: <strong>{m.levelRange[0]}–{m.levelRange[1]}</strong></span>
@@ -500,18 +542,7 @@
                 </span>
               {/if}
             </div>
-            {#if m.enemies.length}
-              <div class="division-enemies-block">
-                <span class="division-enemies-label">Встречаются в боях ({m.enemies.length}):</span>
-                <div class="division-enemies">
-                  {#each m.enemies as e (e.id)}
-                    <button class="enemy-icon" onclick={() => openMutant(e.id)} title={e.name}>
-                      {#if e.icon}<img src={textureUrl(e.icon)} alt={e.name} loading="lazy" decoding="async" />{/if}
-                    </button>
-                  {/each}
-                </div>
-              </div>
-            {/if}
+            <button class="division-map-toggle" onclick={() => openFights(m)}>Посмотреть все бои</button>
           </div>
         {/each}
       </div>
@@ -569,7 +600,7 @@
         <div class="offer-level-title">Уровень {level}</div>
         <div class="offer-grid">
           {#each offers as o (o.id)}
-            <div class="offer-card">
+            <button class="offer-card" onclick={() => (offersModalOffer = o)}>
               <div class="offer-card-head">
                 {#if o.icon}<img class="offer-card-icon" src={textureUrl(o.icon)} alt="" loading="lazy" decoding="async" />{/if}
                 <div class="offer-card-info">
@@ -577,29 +608,8 @@
                   <div class="offer-card-cost">{fmtCost(o)}</div>
                 </div>
               </div>
-              <div class="offer-outcomes">
-                {#each o.groups.slice(0, 5) as g, i (i)}
-                  <div class="offer-outcome">
-                    {#each g.mutants as m (m.id)}
-                      <button class="farmer-chip" onclick={() => openMutant(m.id)}>
-                        {#if m.icon}<img src={textureUrl(m.icon)} alt="" loading="lazy" decoding="async" />{/if}
-                        <span>{m.name}{#if m.tier} ({m.tier}){/if}{#if m.skin} («{m.skin}»){/if}</span>
-                      </button>
-                    {/each}
-                    {#each g.rewards as r, j (j)}
-                      <span class="reward-inline">
-                        {#if r.icon}<img src={textureUrl(r.icon)} alt="" loading="lazy" decoding="async" />{/if}
-                        {r.label}
-                      </span>
-                    {/each}
-                    <span class="offer-outcome-chance">{g.chance != null ? `${g.chance.toFixed(1)}%` : 'гарантировано'}</span>
-                  </div>
-                {/each}
-                {#if o.groups.length > 5}
-                  <div class="offer-outcome-more">+{o.groups.length - 5} ещё</div>
-                {/if}
-              </div>
-            </div>
+              <div class="offer-card-outcomes-hint">Нажмите, чтобы открыть</div>
+            </button>
           {/each}
         </div>
       </div>
@@ -610,6 +620,95 @@
     </div>
   {/if}
 </div>
+
+{#if fightsModalMap}
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <div
+    class="fixed inset-0 z-[90] bg-black/70 backdrop-blur-sm flex items-start justify-center p-2 md:p-4 overflow-y-auto overscroll-contain"
+    onclick={(e) => { if (e.target === e.currentTarget) closeFights() }}
+  >
+    <div class="fights-modal-panel w-full max-w-[880px] mt-10 md:mt-16 mb-6 rounded-xl bg-slate-950 ring-1 ring-white/10 shadow-2xl" role="dialog" aria-modal="true" aria-label={fightsModalMap.locationName}>
+      <div class="fights-modal-head">
+        <div class="fights-modal-head-body">
+          <div class="fights-modal-title">{fightsModalMap.locationName}</div>
+          {#if fightsModalMap.lore}<p class="fights-modal-lore">{fightsModalMap.lore}</p>{/if}
+        </div>
+        <button class="close-btn" onclick={closeFights} aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="fights-modal-body">
+        {#each fightsModalMap.fights as fight, i (fight.fightId)}
+          <div class="fight-row">
+            <div class="fight-row-num">Бой {i + 1}</div>
+            <div class="fight-row-waves">
+              {#each fight.waves as wave (wave.number)}
+                <div class="fight-wave">
+                  {#if fight.waves.length > 1}<span class="fight-wave-label">Волна {wave.number}</span>{/if}
+                  <div class="fight-wave-fighters">
+                    {#each wave.fighters as f, j (j)}
+                      <button class="fighter-card" class:boss={f.boss} onclick={() => openMutant(f.id)}>
+                        {#if f.icon}<img src={textureUrl(f.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                        <div class="fighter-card-body">
+                          <span class="fighter-card-name">{f.name}{#if f.boss} <span class="fighter-boss-badge">БОСС</span>{/if}</span>
+                          <span class="fighter-card-level">Ур. {f.level}</span>
+                          <div class="fighter-card-stats">
+                            <span class="stat-chip stat-hp">HP {f.stats.hp.toLocaleString('ru-RU')}</span>
+                            <span class="stat-chip stat-atk">АТК1 {f.stats.atk1.toLocaleString('ru-RU')}</span>
+                            <span class="stat-chip stat-atk">АТК2 {f.stats.atk2.toLocaleString('ru-RU')}</span>
+                            <span class="stat-chip stat-speed">СКР {f.stats.speed}</span>
+                          </div>
+                        </div>
+                      </button>
+                    {/each}
+                  </div>
+                </div>
+              {/each}
+            </div>
+          </div>
+        {/each}
+      </div>
+    </div>
+  </div>
+{/if}
+
+{#if offersModalOffer}
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <div
+    class="fixed inset-0 z-[90] bg-black/70 backdrop-blur-sm flex items-start justify-center p-2 md:p-4 overflow-y-auto overscroll-contain"
+    onclick={(e) => { if (e.target === e.currentTarget) offersModalOffer = null }}
+  >
+    <div class="fights-modal-panel w-full max-w-2xl mt-10 md:mt-16 mb-6 rounded-xl bg-slate-950 ring-1 ring-white/10 shadow-2xl" role="dialog" aria-modal="true" aria-label={offersModalOffer.name}>
+      <div class="fights-modal-head">
+        {#if offersModalOffer.icon}<img class="offer-modal-icon" src={textureUrl(offersModalOffer.icon)} alt="" loading="lazy" decoding="async" />{/if}
+        <div class="fights-modal-head-body">
+          <div class="fights-modal-title">{offersModalOffer.name}</div>
+          <p class="fights-modal-lore">{fmtCost(offersModalOffer)} · уровень {offersModalOffer.level}</p>
+        </div>
+        <button class="close-btn" onclick={() => (offersModalOffer = null)} aria-label="Закрыть">&times;</button>
+      </div>
+      <div class="fights-modal-body">
+        {#each offersModalOffer.groups as g, i (i)}
+          <div class="offer-outcome">
+            {#each g.mutants as m (m.id)}
+              <button class="farmer-chip" onclick={() => openMutant(m.id)}>
+                {#if m.icon}<img src={textureUrl(m.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                <span>{m.name}{#if m.tier} ({m.tier}){/if}{#if m.skin} («{m.skin}»){/if}</span>
+              </button>
+            {/each}
+            {#each g.rewards as r, j (j)}
+              <span class="reward-inline">
+                {#if r.icon}<img src={textureUrl(r.icon)} alt="" loading="lazy" decoding="async" />{/if}
+                {r.label}
+              </span>
+            {/each}
+            <span class="offer-outcome-chance">{g.chance != null ? `${g.chance.toFixed(1)}%` : 'гарантировано'}</span>
+          </div>
+        {/each}
+      </div>
+    </div>
+  </div>
+{/if}
 
 <style>
   .tab-bar { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.1rem; }
@@ -646,6 +745,7 @@
   .mutant-card-icon img { width: 100%; height: 100%; object-fit: cover; }
   .mutant-card-name { font-size: 11.5px; font-weight: 600; color: #e2e8f0; line-height: 1.2; }
 
+  .zodiac-star-switcher { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
   .zodiac-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.65rem; }
   .zodiac-card { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.7rem; border-radius: 10px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.06); cursor: pointer; text-align: left; }
   .zodiac-card:hover { background: rgba(30, 41, 59, 0.85); border-color: rgba(96,165,250,0.3); }
@@ -655,6 +755,8 @@
   .zodiac-card-name { font-size: 12.5px; font-weight: 700; color: #e2e8f0; }
   .zodiac-card-sign { font-size: 11px; color: #60a5fa; }
   .zodiac-card-dates { font-size: 10.5px; color: #94a3b8; }
+  .zodiac-card-price { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 11px; font-weight: 700; color: #fbbf24; margin-top: 0.15rem; }
+  .zodiac-card-price img { width: 14px; height: 14px; object-fit: contain; }
 
   .farmer-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: transparent; border: none; color: #e2e8f0; font-size: 0.78rem; font-weight: 600; cursor: pointer; padding: 1px 0; text-align: left; }
   .farmer-chip:hover { color: #60a5fa; }
@@ -720,20 +822,54 @@
   .division-map-head { display: flex; align-items: baseline; gap: 0.5rem; }
   .division-map-num { font-size: 10.5px; text-transform: uppercase; color: #64748b; font-weight: 700; }
   .division-map-title { font-size: 0.92rem; font-weight: 800; color: #e2e8f0; }
-  .division-map-lore { margin: 0; font-size: 0.76rem; color: #94a3b8; line-height: 1.45; }
   .division-map-meta { display: flex; gap: 0.9rem; font-size: 0.76rem; color: #94a3b8; }
   .division-map-meta strong { color: #cbd5f5; }
   .division-map-reward { font-size: 0.78rem; color: #94a3b8; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
   .division-map-reward strong { color: #86efac; }
   .division-map-reward-label { color: #64748b; }
+  .division-map-toggle {
+    appearance: none; align-self: flex-start; border: 1px solid rgba(96,165,250,0.25); background: rgba(30, 58, 138, 0.15);
+    color: #60a5fa; border-radius: 6px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;
+  }
+  .division-map-toggle:hover { background: rgba(30, 58, 138, 0.3); }
   .reward-inline { display: inline-flex; align-items: center; gap: 5px; }
   .reward-inline img { width: 18px; height: 18px; object-fit: contain; }
-  .division-enemies-block { display: flex; flex-direction: column; gap: 4px; }
-  .division-enemies-label { font-size: 0.72rem; color: #64748b; }
-  .division-enemies { display: flex; flex-wrap: wrap; gap: 4px; max-height: 84px; overflow-y: auto; }
-  .enemy-icon { width: 26px; height: 26px; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.3); border: none; padding: 0; cursor: pointer; }
-  .enemy-icon img { width: 100%; height: 100%; object-fit: cover; }
-  .enemy-icon:hover { outline: 2px solid rgba(96,165,250,0.5); }
+
+  .fights-modal-panel { max-height: calc(100vh - 5rem); display: flex; flex-direction: column; }
+  .fights-modal-head { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .fights-modal-head-body { flex: 1; min-width: 0; }
+  .fights-modal-title { font-size: 1.05rem; font-weight: 800; color: #fff; }
+  .fights-modal-lore { margin: 0.3rem 0 0; font-size: 0.78rem; color: #94a3b8; line-height: 1.45; }
+  .close-btn { appearance: none; background: transparent; border: none; color: #94a3b8; font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.4rem; flex-shrink: 0; }
+  .close-btn:hover { color: #fff; }
+  .fights-modal-body { overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .fight-row { display: flex; flex-direction: column; gap: 0.4rem; }
+  .fight-row-num { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; }
+  .fight-row-waves { display: flex; flex-direction: column; gap: 0.5rem; }
+  .fight-wave { display: flex; flex-direction: column; gap: 0.3rem; }
+  .fight-wave-label { font-size: 10.5px; color: #f87171; font-weight: 700; text-transform: uppercase; }
+  .fight-wave-fighters { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .fighter-card {
+    display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.5rem 0.65rem; border-radius: 8px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: left;
+    flex: 1 1 220px; max-width: calc(33.333% - 0.4rem); min-width: 170px;
+  }
+  .fighter-card:hover { background: rgba(96,165,250,0.08); border-color: rgba(96,165,250,0.4); }
+  .fighter-card.boss { border-color: rgba(248,113,113,0.5); background: rgba(248,113,113,0.07); }
+  .fighter-card img { width: 34px; height: 34px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+  .fighter-card-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .fighter-card-name { font-size: 12px; font-weight: 700; color: #e2e8f0; }
+  .fighter-boss-badge { color: #f87171; font-size: 10px; margin-left: 0.4rem; }
+  .fighter-card-level { font-size: 10.5px; color: #94a3b8; }
+  .fighter-card-stats { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
+  .stat-chip { font-size: 9.5px; font-weight: 700; padding: 1.5px 5px; border-radius: 4px; white-space: nowrap; }
+  .stat-hp { color: #86efac; background: rgba(134,239,172,0.12); }
+  .stat-atk { color: #fb923c; background: rgba(251,146,60,0.12); }
+  .stat-speed { color: #60a5fa; background: rgba(96,165,250,0.12); }
+
+  @media (max-width: 640px) {
+    .fighter-card { max-width: 100%; }
+  }
 
   .activity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0.9rem; }
   .activity-card {
@@ -779,24 +915,28 @@
   }
   .offer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; }
   .offer-card {
-    background: rgba(15,23,42,0.7); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
-    padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;
+    appearance: none; width: 100%; background: rgba(15,23,42,0.7); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
+    padding: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; cursor: pointer; text-align: left;
   }
+  .offer-card:hover { background: rgba(30, 58, 138, 0.15); border-color: rgba(96,165,250,0.3); }
   .offer-card-head { display: flex; align-items: center; gap: 0.6rem; }
   .offer-card-icon { width: 56px; height: 56px; object-fit: contain; border-radius: 8px; background: rgba(0,0,0,0.25); flex-shrink: 0; }
   .offer-card-info { min-width: 0; }
   .offer-card-name { font-size: 0.85rem; font-weight: 700; color: #e2e8f0; line-height: 1.2; }
   .offer-card-cost { font-size: 0.75rem; color: #fbbf24; font-weight: 600; margin-top: 2px; }
-  .offer-outcomes { display: flex; flex-direction: column; gap: 0.35rem; }
+  .offer-card-outcomes-hint { font-size: 0.7rem; color: #60a5fa; }
   .offer-outcome {
     display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem;
     background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.3rem 0.5rem;
   }
   .offer-outcome-chance { margin-left: auto; font-size: 0.7rem; font-weight: 700; color: #86efac; white-space: nowrap; }
-  .offer-outcome-more { font-size: 0.72rem; color: #64748b; text-align: center; padding-top: 2px; }
+  .offer-modal-icon { width: 56px; height: 56px; object-fit: contain; border-radius: 8px; background: rgba(0,0,0,0.25); flex-shrink: 0; }
 
   @media (max-width: 767px) {
     .mutant-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
     .zodiac-grid { grid-template-columns: 1fr; }
+    .speed-table { min-width: 0; font-size: 0.68rem; }
+    .speed-table th, .speed-table td { padding: 0.28rem 0.3rem; }
+    .speed-table .pct { display: block; font-size: 0.62rem; }
   }
 </style>
