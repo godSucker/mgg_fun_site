@@ -208,10 +208,13 @@ async function main() {
       }
     }
     const amount = tags.amount != null ? Number(tags.amount) : 1
-    if (/^gold$/i.test(typeId) || typeId === '') {
+    // Игра встречает валюту двумя разными способами: старые ArticleItem
+    // используют typeId="gold"/"silver" (или пустой typeId = золото), новые
+    // (бандлы/спец. предложения) - typeId="hardcurrency"/"softcurrency" напрямую.
+    if (/^(gold|hardcurrency)$/i.test(typeId) || typeId === '') {
       return { reward: { name: 'gold', type: 'hardcurrency', amount } }
     }
-    if (/^silver$/i.test(typeId)) {
+    if (/^(silver|softcurrency)$/i.test(typeId)) {
       return { reward: { name: 'silver', type: 'softcurrency', amount } }
     }
     return { reward: { name: typeId, type: 'entity', amount } }

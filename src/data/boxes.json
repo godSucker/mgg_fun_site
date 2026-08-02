@@ -63495,8 +63495,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63513,8 +63513,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63531,8 +63531,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63549,8 +63549,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63567,8 +63567,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63585,8 +63585,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63603,8 +63603,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63621,8 +63621,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63639,8 +63639,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63657,8 +63657,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -63675,8 +63675,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -64143,8 +64143,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68550,8 +68550,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68604,8 +68604,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68658,8 +68658,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68712,8 +68712,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68766,8 +68766,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68820,8 +68820,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68874,8 +68874,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -68906,8 +68906,8 @@
             "amount": 2
           },
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 3000000
           }
         ]
@@ -70209,8 +70209,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           },
           {
@@ -71643,8 +71643,8 @@
             "amount": 2
           },
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -71711,8 +71711,8 @@
             "amount": 2
           },
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 3000000
           }
         ]
@@ -71745,8 +71745,8 @@
         ],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -77340,8 +77340,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77371,8 +77371,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77402,8 +77402,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77433,8 +77433,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77464,8 +77464,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77495,8 +77495,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77526,8 +77526,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77557,8 +77557,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77588,8 +77588,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77619,8 +77619,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77650,8 +77650,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77681,8 +77681,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77712,8 +77712,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77743,8 +77743,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -77774,8 +77774,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "hardcurrency",
-            "type": "entity",
+            "name": "gold",
+            "type": "hardcurrency",
             "amount": 1000
           }
         ]
@@ -78966,8 +78966,8 @@
         "mutants": [],
         "rewards": [
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 20000000
           }
         ]
@@ -79193,8 +79193,8 @@
             "amount": 1
           },
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 100000
           }
         ]
@@ -79209,8 +79209,8 @@
             "amount": 1
           },
           {
-            "name": "softcurrency",
-            "type": "entity",
+            "name": "silver",
+            "type": "softcurrency",
             "amount": 120000
           }
         ]
