@@ -134,12 +134,20 @@ const ITEM_TRANSLATIONS: Record<string, string> = {
   Material_Gacha_Token: 'Жетон генератора',
   Material_Event_Token: 'Жетон испытания',
   Material_Jackpot_Token: 'Жетон джекпота',
+  Material_Energy1: 'Пропуск',
   Material_Energy5: '5 пропусков',
   Material_Energy25: '25 пропусков',
+  Material_Mystery25_Token: 'Таинственный жетон 2025',
+  Material_Mystery26_Token: 'Таинственный жетон 2026',
+  Material_Crawling_Token: 'Жетон ползучего',
+  Material_Plague_Token: 'Жетон чумы',
+  Material_Trick_Token: 'Жетон фокусов',
 
   // Buildings
   Building_HC_1: 'Златокузня',
   Building_HC_2: 'Золотоплавильня',
+  Building_Hospital_1: 'Медлаборатория',
+  Building_Mystery: 'Мистический Анализатор',
 
   // Habitats (Zones)
   Habitat_A_3_HC: 'Люкс-зона КИБОРГОВ x4',
@@ -286,6 +294,13 @@ const ITEM_TEXTURES: Record<string, string> = {
   Material_Energy5: '/materials/ticket_5.webp',
   Material_Energy25: '/materials/ticket_25.webp',
   Material_Energy1: '/materials/ticket_1.webp',
+  Material_Crawling_Token: '/materials/Material_Crawling_Token.png',
+  Material_Plague_Token: '/materials/Material_Plague_Token.png',
+  Material_Trick_Token: '/materials/Material_Trick_Token.png',
+
+  // Buildings, выданные как награда (не здание на /materials, а сам предмет-приз)
+  Building_Hospital_1: '/buildings/hospital.png',
+  Building_Mystery: '/buildings/building_mystery.png',
 
   // Текстуры для перемещённых рецептов Black Hole
   little_rewards_01: '/materials/big_xp.webp',

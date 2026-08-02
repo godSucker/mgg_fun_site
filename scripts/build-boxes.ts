@@ -311,6 +311,21 @@ async function main() {
       return group
     })
 
+    // itemId содержит "mystery" по названию, но не всегда является боксом - магазин
+    // продаёт под тем же itemId-паттерном и одиночные предметы (здание "Анализатор
+    // тайны" = Building_Mystery, жетоны "Таинственный жетон 2025/2026" =
+    // Material_Mystery25/26_Token). Признак не-бокса: ровно одна группа, ровно одна
+    // награда, и её id совпадает с itemId - значит покупка просто выдаёт саму себя,
+    // без розыгрыша и без мутантов (см. baseId 6d6f36d91 обменников - похожая
+    // "перезаписывается по имени" ловушка, здесь другая природа).
+    const isSelfReferential =
+      groups.length === 1 &&
+      groups[0].mutants.length === 0 &&
+      groups[0].rewards.length === 1 &&
+      groups[0].rewards[0].type === 'entity' &&
+      groups[0].rewards[0].name.toLowerCase() === itemId.toLowerCase()
+    if (isSelfReferential) continue
+
     boxes.push({ itemId, icon, category, name, groups })
   }
 

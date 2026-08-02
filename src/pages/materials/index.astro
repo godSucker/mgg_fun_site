@@ -165,21 +165,33 @@ function metaFromStem(stem: string) {
   const desc  = geneKey
     ? `Ген: ${geneKey === 'abcdef' ? 'Любые гены' : geneName} • Вместимость: ${cap}`
     : '';
-  return { title, desc, geneKey, isLuxe };
+  return { title, desc, geneKey, isLuxe, level };
 }
 
-// правила хранения серебра
-function calcStorage(geneKey: string, isLuxe: boolean) {
+// Вместимость серебра (Tag key="bank" в gamedefinitions.xml, EntityDescriptor Habitat_*),
+// тир-зависимая - сверено 2026-08-02 напрямую с живым XML CDN. Обычные зоны: A/B/C и
+// D/E/F различаются, T1=T2, T3 - апгрейд. Люкс: одинаково для всех генов A-F, отдельно
+// для универсальной ABCDEF; люкс-тиры начинаются с 2 (нет T1).
+const STORAGE_NORMAL: Record<string, [number, number, number]> = {
+  a: [500, 500, 2500],
+  b: [500, 500, 2500],
+  c: [500, 500, 2500],
+  d: [5000, 5000, 15000],
+  e: [12000, 12000, 50000],
+  f: [25000, 25000, 80000],
+};
+const STORAGE_LUXE: Record<'gene' | 'abcdef', [number, number]> = {
+  gene: [200000, 320000],
+  abcdef: [320000, 400000],
+};
+
+function calcStorage(geneKey: string, isLuxe: boolean, level: number | null) {
+  if (level == null) return null;
   if (isLuxe) {
-    // Люкс: универсальные (abcdef) = 400000, остальные = 320000
-    return geneKey === 'abcdef' ? 400000 : 320000;
+    const arr = geneKey === 'abcdef' ? STORAGE_LUXE.abcdef : STORAGE_LUXE.gene;
+    return arr[level - 2] ?? null; // люкс: тир 2 -> индекс 0, тир 3 -> индекс 1
   }
-  // Обычные по гену
-  if (geneKey === 'a' || geneKey === 'b' || geneKey === 'c') return 9000;     // киборг/нежить/рубака
-  if (geneKey === 'd') return 30000;                                          // зооморф
-  if (geneKey === 'e') return 80000;                                          // галактик
-  if (geneKey === 'f') return 160000;                                         // мифик
-  return null;
+  return STORAGE_NORMAL[geneKey]?.[level - 1] ?? null;
 }
 
 const fmt = (n?: number | null) => new Intl.NumberFormat('ru-RU').format(n ?? 0);
@@ -192,7 +204,7 @@ function normalizeZone(list: ZoneItem[], base: string) {
     if (!file) continue;
     const stem = file.replace(/\.[^.]+$/, '');
     const meta = metaFromStem(stem);
-    const store = calcStorage(meta.geneKey, meta.isLuxe);
+    const store = calcStorage(meta.geneKey, meta.isLuxe, meta.level);
     rows.push({
       id: stem,
       name: (typeof it === 'object' && it.name) ? it.name : meta.title,
