@@ -603,6 +603,9 @@ async function sync(options: {
   console.log(`[SYNC] Найдено ${specimenDescriptors.length} записей. Обработка...\n`)
 
   const xmlMutantIds = new Set<string>()
+  // Новые мутанты в порядке встречи в XML - используется ниже для
+  // дописывания release-order.json (нумерация по дате выхода для /tier-table).
+  const newBaseIds: string[] = []
 
   for (const desc of specimenDescriptors) {
     const fullId = desc.id
@@ -895,6 +898,7 @@ async function sync(options: {
       existingData.set(baseId, entry)
       modifiedCount++
       stats.added++
+      newBaseIds.push(baseId)
       console.log(`[NEW] ${baseId}`)
     }
   }
@@ -991,6 +995,28 @@ async function sync(options: {
     console.log(`[DONE] mutants.json обновлён! (${outputArray.length} мутантов)`)
   } else {
     console.log('[DONE] Нет изменений.')
+  }
+
+  // Дописываем release-order.json (additive only, как bingos.json) - новым
+  // мутантам присваивается следующий свободный номер, в порядке встречи в XML.
+  // Номер закрепляется навсегда за specimen_id при первом появлении, файл
+  // никогда не перезаписывается целиком (см. prompt_tablica_combined_final.md).
+  if (newBaseIds.length > 0) {
+    const releaseOrderPath = path.join(CONFIG.DATA_DIR, 'release-order.json')
+    let releaseOrder: Record<string, number> = {}
+    try {
+      releaseOrder = JSON.parse(await fs.readFile(releaseOrderPath, 'utf-8'))
+    } catch {
+      console.warn('[RELEASE-ORDER] release-order.json не найден - создаю с нуля')
+    }
+    let nextNum = Object.values(releaseOrder).reduce((max, n) => Math.max(max, n), 0) + 1
+    for (const baseId of newBaseIds) {
+      if (releaseOrder[baseId] != null) continue
+      releaseOrder[baseId] = nextNum
+      nextNum++
+    }
+    await fs.writeFile(releaseOrderPath, JSON.stringify(releaseOrder, null, 2) + '\n', 'utf-8')
+    console.log(`[RELEASE-ORDER] Присвоены номера новым мутантам: ${newBaseIds.length}`)
   }
 
   // Дописываем историю ребаланса (append-only, новые записи в начало)
