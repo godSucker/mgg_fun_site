@@ -2,6 +2,7 @@
   // --- ИМПОРТЫ ДАННЫХ ---
   import mutantsRaw from '@/data/mutants/mutants.json';
   import orbsRaw from '@/data/materials/orbs.json';
+  import { orbingMap } from '@/lib/orbing-map';
   import { ABILITY_RU, TYPE_RU } from '@/lib/mutant-dicts';
   import { normalizeSearch } from '@/lib/search-normalize';
   import { calculateFinalStats } from '@/lib/stats/unified-calculator';
@@ -406,6 +407,45 @@
     return { basic, special };
   }
 
+  // Пресеты сфер из "сферовок" мутанта (вики-данные, та же карта, что и в
+  // модалке мутанта) - resolve по id из имени файла ("basic/orb_xxx_04.webp"
+  // -> "orb_xxx_04") в объекты каталога ORBS, чтобы применить одним кликом.
+  function findOrbingEntry(mutant){
+    if (!mutant) return null;
+    const id = String(mutant.id || '');
+    if (orbingMap[id]) return orbingMap[id];
+    const entry = Object.entries(orbingMap).find(([k]) => k.toLowerCase() === id.toLowerCase());
+    if (entry) return entry[1];
+    const bId = baseMutantId(id);
+    const entryBase = Object.entries(orbingMap).find(([k]) => k.toLowerCase() === bId.toLowerCase());
+    if (entryBase) return entryBase[1];
+    return null;
+  }
+
+  function resolveOrbCell(cell){
+    const file = Array.isArray(cell) ? cell[0] : cell;
+    const m = /^(?:basic|special)\/(.+)\.webp$/.exec(String(file || ''));
+    if (!m) return null;
+    const id = m[1];
+    if (id === 'orb_slot' || id === 'orb_slot_spe') return null; // пустой слот-плейсхолдер
+    return ORBS.basic.find((o) => o.id === id) || ORBS.special.find((o) => o.id === id) || null;
+  }
+
+  function getOrbingPresets(mutant){
+    const data = findOrbingEntry(mutant);
+    const rows = Array.isArray(data?.rows) ? data.rows : [];
+    const presets = [];
+    for (const row of rows) {
+      if (!Array.isArray(row) || row.length === 0) continue;
+      const resolved = row.map(resolveOrbCell);
+      if (resolved.every((o) => o === null)) continue; // строка целиком из плейсхолдеров - не реальный пресет
+      const special = resolved[resolved.length - 1];
+      const basic = resolved.slice(0, -1);
+      presets.push({ basic, special });
+    }
+    return presets;
+  }
+
   function isTemporaryOrb(orb){
     const id = String(orb?.id || '').toLowerCase();
     if (!id) return false;
@@ -650,6 +690,8 @@
     }
   }});
 
+  let orbingPresets = $derived(getOrbingPresets(selected));
+
   let allowedAbilityBases = $derived(buildAllowedAbilityBases(selected, specialSlot));
   let basicOrbOptions = $derived(filterBasicOrbs(ORBS.basic, allowedAbilityBases));
   let specialOrbOptions = $derived(ORBS.special.filter(o => !isOrbConflicting(o, selected)));
@@ -661,6 +703,7 @@
   }});
 
   // Второй мутант: orb options
+  let orbingPresets2 = $derived(getOrbingPresets(selected2));
   let allowedAbilityBases2 = $derived(buildAllowedAbilityBases(selected2, specialSlot2));
   let basicOrbOptions2 = $derived(filterBasicOrbs(ORBS.basic, allowedAbilityBases2));
   let specialOrbOptions2 = $derived(ORBS.special.filter(o => !isOrbConflicting(o, selected2)));
@@ -1150,6 +1193,23 @@
     openDropdown = null;
   }
 
+  function applyOrbingPreset(preset){
+    if (!preset) return;
+    const count = Number.isFinite(selected.basicSlotCount) ? selected.basicSlotCount : 3;
+    const basic = Array.from({ length: count }, (_, i) => preset.basic[i] ?? null);
+    basicSlots = basic;
+    specialSlot = isOrbConflicting(preset.special, selected) ? null : preset.special;
+    openDropdown = null;
+  }
+  function applyOrbingPreset2(preset){
+    if (!preset || !selected2) return;
+    const count = Number.isFinite(selected2.basicSlotCount) ? selected2.basicSlotCount : 3;
+    const basic = Array.from({ length: count }, (_, i) => preset.basic[i] ?? null);
+    basicSlots2 = basic;
+    specialSlot2 = isOrbConflicting(preset.special, selected2) ? null : preset.special;
+    openDropdown2 = null;
+  }
+
   function getMutantAbilityBases(mutant): Set<string> {
     const set = new Set<string>();
     const baseList = Array.isArray(mutant?.abilities) ? mutant.abilities : [];
@@ -1490,6 +1550,16 @@
         </div>
 
         <div class="hero-controls" bind:this={dropdownHost}>
+          {#if orbingPresets.length > 0}
+            <div class="orbing-presets">
+              <span class="orbing-presets-label">Сферовка из вики:</span>
+              {#each orbingPresets as preset, i}
+                <button class="orbing-preset-btn" onclick={() => applyOrbingPreset(preset)} title="Заполнить слоты этим набором">
+                  Пресет {i + 1}
+                </button>
+              {/each}
+            </div>
+          {/if}
           <div class="slots">
             <!-- базовые -->
             {#each basicSlots as orb, i}
@@ -1776,6 +1846,16 @@
         </div>
 
         <div class="hero-controls" bind:this={dropdownHost2}>
+          {#if orbingPresets2.length > 0}
+            <div class="orbing-presets">
+              <span class="orbing-presets-label">Сферовка из вики:</span>
+              {#each orbingPresets2 as preset, i}
+                <button class="orbing-preset-btn" onclick={() => applyOrbingPreset2(preset)} title="Заполнить слоты этим набором">
+                  Пресет {i + 1}
+                </button>
+              {/each}
+            </div>
+          {/if}
           <div class="slots">
             {#each basicSlots2 as orb, i}
               <div class="slot">
@@ -2426,6 +2506,16 @@
   @media (min-width: 768px) {
     .hero-controls { gap: 4px; }
   }
+
+  .orbing-presets{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px; margin-bottom:2px; }
+  .orbing-presets-label{ font-size:10px; color:#8b98ac; text-transform:uppercase; letter-spacing:0.04em; }
+  .orbing-preset-btn{
+    background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.35); color: #86efac;
+    border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 700; cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .orbing-preset-btn:hover{ background: rgba(34,197,94,0.28); border-color: rgba(34,197,94,0.55); transform: translateY(-1px); }
+  .orbing-preset-btn:active{ transform: translateY(0); }
 
   /* СЛОТЫ: защита от сплющивания + фикс сфер */
   .slots{ display:flex; gap:10px; justify-content:center; margin:0 0 0; position:relative; flex-wrap:wrap; }
