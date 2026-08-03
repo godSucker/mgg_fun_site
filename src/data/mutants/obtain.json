@@ -168,14 +168,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: factory 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Фабрика II"
     }
   ],
@@ -738,6 +730,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 50"
     }
   ],
   "specimen_aa_06": [
@@ -967,6 +963,10 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 97"
     }
   ],
   "specimen_aa_08": [
@@ -1193,6 +1193,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 100"
     }
   ],
   "specimen_aa_10": [
@@ -1602,6 +1606,30 @@
     {
       "type": "campaign",
       "where": "Дивизион Альфа: Детройт"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 17"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 34"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 49"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 53"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 72"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 86"
     }
   ],
   "specimen_ab_04": [
@@ -2205,7 +2233,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Испытание: Кошмар Хеллоуина"
+      "where": "Лесенки: Кошмар Хеллоуина"
     }
   ],
   "specimen_ab_09": [
@@ -2245,7 +2273,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Jungle Bells 1"
+      "where": "Лесенки: Jungle Bells 1"
     }
   ],
   "specimen_ab_10": [
@@ -2391,14 +2419,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: architecture"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -3524,14 +3544,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: verne 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -4891,11 +4903,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Jungle Bells 3"
-    },
-    {
-      "type": "event_raid",
-      "where": "Испытание: Jungle Bells 3"
+      "where": "Лесенки: Jungle Bells 3"
     }
   ],
   "specimen_ad_11": [
@@ -6535,6 +6543,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 61"
     }
   ],
   "specimen_af_04": [
@@ -7060,6 +7072,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 103"
     }
   ],
   "specimen_af_09": [
@@ -7417,7 +7433,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Uprising"
+      "where": "Лесенки: Uprising"
     }
   ],
   "specimen_b_01": [
@@ -7619,14 +7635,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: unliving 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -8581,7 +8589,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Испытание: Jungle Bells 2"
+      "where": "Лесенки: Jungle Bells 2"
     }
   ],
   "specimen_ba_07": [
@@ -9450,6 +9458,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 10"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 45"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 65"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 73"
     }
   ],
   "specimen_bb_03": [
@@ -9957,6 +9981,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 66"
     }
   ],
   "specimen_bb_06": [
@@ -10077,6 +10105,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 82"
     }
   ],
   "specimen_bb_07": [
@@ -10197,7 +10229,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Луна"
+      "where": "Лесенки: Луна"
     }
   ],
   "specimen_bb_08": [
@@ -10324,6 +10356,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 91"
     }
   ],
   "specimen_bb_09": [
@@ -10463,7 +10499,11 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Uprising"
+      "where": "Лесенки: Uprising"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 98"
     }
   ],
   "specimen_bb_10": [
@@ -10543,11 +10583,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pit necro 12"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Яма: Нежить"
+      "where": "Лесенки: Яма: Нежить"
     }
   ],
   "specimen_bb_11": [
@@ -11127,7 +11163,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Испытание: Кошмар Хеллоуина"
+      "where": "Лесенки: Кошмар Хеллоуина"
     }
   ],
   "specimen_bc_06": [
@@ -11850,15 +11886,11 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pit saber 11"
+      "where": "Лесенки: Яма: Рубака"
     },
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Яма: Рубака"
     }
   ],
   "specimen_bc_11": [
@@ -13760,6 +13792,22 @@
     {
       "type": "campaign",
       "where": "Дивизион Бета: Безымянные руины"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 18"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 35"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 57"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 79"
     }
   ],
   "specimen_be_04": [
@@ -14156,7 +14204,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Гора Олимп"
+      "where": "Лесенки: Гора Олимп"
     }
   ],
   "specimen_be_07": [
@@ -14686,11 +14734,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pit galactic 11"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Яма: Галактик"
+      "where": "Лесенки: Яма: Галактик"
     }
   ],
   "specimen_be_11": [
@@ -14919,6 +14963,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 6"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 23"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 41"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 87"
     }
   ],
   "specimen_bf_03": [
@@ -16039,14 +16099,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: dumas 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Дюма II"
     }
   ],
@@ -16335,6 +16387,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 19"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 36"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 55"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 77"
     }
   ],
   "specimen_ca_04": [
@@ -17051,7 +17119,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Антарктика"
+      "where": "Лесенки: Антарктика"
     }
   ],
   "specimen_ca_07": [
@@ -17513,7 +17581,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Uprising"
+      "where": "Лесенки: Uprising"
     }
   ],
   "specimen_ca_11": [
@@ -18825,14 +18893,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pirates"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Пираты"
     }
   ],
@@ -19488,6 +19548,14 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 58"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 81"
     }
   ],
   "specimen_cc_06": [
@@ -19833,6 +19901,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 94"
     }
   ],
   "specimen_cc_10": [
@@ -20340,11 +20412,27 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Кошмар Хеллоуина"
+      "where": "Лесенки: Кошмар Хеллоуина"
     },
     {
-      "type": "event_raid",
-      "where": "Испытание: Кошмар Хеллоуина"
+      "type": "pvp",
+      "where": "PVP: Сезон 16"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 33"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 52"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 76"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 88"
     }
   ],
   "specimen_cd_04": [
@@ -21170,15 +21258,11 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pit zoo 12"
+      "where": "Лесенки: Яма: Зверь"
     },
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Яма: Зверь"
     }
   ],
   "specimen_cd_11": [
@@ -21283,14 +21367,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: mafia"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Мафия"
     }
   ],
@@ -21362,6 +21438,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Готика"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 2"
     }
   ],
   "specimen_ce_02": [
@@ -22191,7 +22271,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Темный город"
+      "where": "Лесенки: Темный город"
     }
   ],
   "specimen_ce_07": [
@@ -22629,14 +22709,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: everlastingsands"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -23492,6 +23564,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 85"
     }
   ],
   "specimen_cf_05": [
@@ -24228,11 +24304,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pit mystic 12"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Яма: Мифик"
+      "where": "Лесенки: Яма: Мифик"
     }
   ],
   "specimen_cf_11": [
@@ -24250,14 +24322,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: musashi 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -24450,14 +24514,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: cryptid 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Криптид II"
     }
   ],
@@ -24604,6 +24660,18 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 3"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 38"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 71"
     }
   ],
   "specimen_da_03": [
@@ -25709,7 +25777,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: neon 14"
+      "where": "Лесенки: Неон"
     },
     {
       "type": "jackpot_hall",
@@ -25717,11 +25785,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Jungle Bells 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Неон"
+      "where": "Лесенки: Jungle Bells 2"
     }
   ],
   "specimen_da_12": [
@@ -25947,6 +26011,18 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 4"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 39"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 59"
     }
   ],
   "specimen_db_03": [
@@ -26802,6 +26878,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 99"
     }
   ],
   "specimen_db_10": [
@@ -28481,6 +28561,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 12"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 26"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 44"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 64"
     }
   ],
   "specimen_dd_03": [
@@ -28950,6 +29046,18 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 54"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 75"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 84"
     }
   ],
   "specimen_dd_06": [
@@ -29042,7 +29150,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Испытание: Jungle Bells 1"
+      "where": "Лесенки: Jungle Bells 1"
     }
   ],
   "specimen_dd_07": [
@@ -29430,6 +29538,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 96"
     }
   ],
   "specimen_dd_10": [
@@ -30001,6 +30113,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 21"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 37"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 56"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 78"
     }
   ],
   "specimen_de_04": [
@@ -31288,6 +31416,14 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 14"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 31"
     }
   ],
   "specimen_df_03": [
@@ -31496,6 +31632,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 68"
     }
   ],
   "specimen_df_04": [
@@ -32133,7 +32273,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Марс"
+      "where": "Лесенки: Марс"
     }
   ],
   "specimen_df_08": [
@@ -32851,14 +32991,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: asteroids"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Астероиды"
     }
   ],
@@ -33521,6 +33653,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 90"
     }
   ],
   "specimen_ea_05": [
@@ -34389,14 +34525,6 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: abyss"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
       "where": "Рейд: Бездна"
     }
   ],
@@ -34630,6 +34758,30 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 5"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 22"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 40"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 60"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 74"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 89"
     }
   ],
   "specimen_eb_03": [
@@ -35552,11 +35704,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: starter"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Первый эксперимент"
+      "where": "Лесенки: Первый эксперимент"
     }
   ],
   "specimen_eb_12": [
@@ -35618,11 +35766,11 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Uprising"
+      "where": "Лесенки: Uprising"
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Кризис"
+      "where": "Лесенки: Кризис"
     }
   ],
   "specimen_ec_01": [
@@ -35851,6 +35999,18 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 7"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 24"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 42"
     }
   ],
   "specimen_ec_03": [
@@ -37181,6 +37341,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 8"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 25"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 43"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 63"
     }
   ],
   "specimen_ed_03": [
@@ -38061,6 +38237,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 92"
     }
   ],
   "specimen_ed_08": [
@@ -38351,7 +38531,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Вегас"
+      "where": "Лесенки: Вегас"
     }
   ],
   "specimen_ed_10": [
@@ -38821,6 +39001,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 9"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 29"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 47"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 62"
     }
   ],
   "specimen_ee_03": [
@@ -39354,6 +39550,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 70"
     }
   ],
   "specimen_ee_06": [
@@ -39623,6 +39823,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 80"
     }
   ],
   "specimen_ee_08": [
@@ -39944,11 +40148,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Колизей"
-    },
-    {
-      "type": "event_raid",
-      "where": "Испытание: Колизей"
+      "where": "Лесенки: Колизей"
     },
     {
       "type": "campaign",
@@ -41079,7 +41279,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Амазонка"
+      "where": "Лесенки: Амазонка"
     }
   ],
   "specimen_ef_08": [
@@ -41371,6 +41571,10 @@
     {
       "type": "quest",
       "where": "Квест: Фиолетовые усилители!"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 102"
     }
   ],
   "specimen_ef_11": [
@@ -41408,14 +41612,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: insanity 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -41480,7 +41676,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Uprising"
+      "where": "Лесенки: Uprising"
     }
   ],
   "specimen_f_01": [
@@ -41647,14 +41843,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: kalevala 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -41844,6 +42032,22 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 11"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 28"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 46"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 67"
     }
   ],
   "specimen_fa_03": [
@@ -42840,11 +43044,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: pit cyber 12"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Яма: Киборг"
+      "where": "Лесенки: Яма: Киборг"
     }
   ],
   "specimen_fa_11": [
@@ -42892,11 +43092,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: celestial 12"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Небесное тело"
+      "where": "Лесенки: Небесное тело"
     }
   ],
   "specimen_fa_12": [
@@ -43017,11 +43213,11 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Uprising"
+      "where": "Лесенки: Uprising"
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Кризис"
+      "where": "Лесенки: Кризис"
     }
   ],
   "specimen_fb_01": [
@@ -43373,6 +43569,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 20"
     }
   ],
   "specimen_fb_04": [
@@ -43563,6 +43763,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 27"
     }
   ],
   "specimen_fb_05": [
@@ -44440,15 +44644,11 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: hyperborea 13"
+      "where": "Лесенки: Гиперборея"
     },
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Гиперборея"
     }
   ],
   "specimen_fb_11": [
@@ -44479,14 +44679,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: inferno 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
@@ -44680,7 +44872,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Кризис"
+      "where": "Лесенки: Кризис"
     }
   ],
   "specimen_fc_03": [
@@ -45130,7 +45322,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Колизей"
+      "where": "Лесенки: Колизей"
     }
   ],
   "specimen_fc_09": [
@@ -45230,15 +45422,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент/рейд: hellfire 13"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивентовая лесенка: Адское пламя"
+      "where": "Лесенки: Адское пламя"
     }
   ],
   "specimen_fc_11": [
@@ -46050,7 +46234,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Пляжные бои Майами"
+      "where": "Лесенки: Пляжные бои Майами"
     }
   ],
   "specimen_fd_07": [
@@ -46628,6 +46812,18 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 13"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 30"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 48"
     }
   ],
   "specimen_fe_03": [
@@ -47252,7 +47448,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Рапа-Нуи"
+      "where": "Лесенки: Рапа-Нуи"
     }
   ],
   "specimen_fe_07": [
@@ -47404,6 +47600,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 93"
     }
   ],
   "specimen_fe_08": [
@@ -47558,7 +47758,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Космопорт"
+      "where": "Лесенки: Космопорт"
     }
   ],
   "specimen_fe_09": [
@@ -48258,6 +48458,26 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 15"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 32"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 51"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 69"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 83"
     }
   ],
   "specimen_ff_03": [
@@ -48810,7 +49030,7 @@
     },
     {
       "type": "event_raid",
-      "where": "Ивент-лесенка: Япония"
+      "where": "Лесенки: Япония"
     }
   ],
   "specimen_ff_06": [
@@ -49252,6 +49472,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "pvp",
+      "where": "PVP: Сезон 101"
     }
   ],
   "specimen_ff_10": [
@@ -49396,14 +49620,6 @@
     {
       "type": "breeding_duplicate",
       "where": "Скрещивание НЕ даёт первую копию — только размножает уже имеющегося мутанта (один из родителей должен быть им самим)"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: library 2"
-    },
-    {
-      "type": "event_raid",
-      "where": "Ивент/рейд: dungeons"
     },
     {
       "type": "event_raid",
