@@ -445,7 +445,7 @@
   },
   "specimen_fd_03": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_fe_03": {
     "before": "-",
@@ -457,7 +457,7 @@
   },
   "specimen_a_03": {
     "before": "-",
-    "after": "2"
+    "after": "-"
   },
   "specimen_b_03": {
     "before": "-",
@@ -521,7 +521,7 @@
   },
   "specimen_be_04": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_bf_04": {
     "before": "-",
@@ -941,7 +941,7 @@
   },
   "specimen_ac_07": {
     "before": "4",
-    "after": "4"
+    "after": "3-"
   },
   "specimen_ad_07": {
     "before": "-",
@@ -1377,7 +1377,7 @@
   },
   "specimen_ad_10": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_ae_10": {
     "before": "-",
@@ -1493,7 +1493,7 @@
   },
   "specimen_fc_10": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_fd_10": {
     "before": "-",
@@ -1557,7 +1557,7 @@
   },
   "specimen_ca_11": {
     "before": "4",
-    "after": "4"
+    "after": "1+"
   },
   "specimen_cb_11": {
     "before": "-",
@@ -1745,7 +1745,7 @@
   },
   "specimen_df_12": {
     "before": "2",
-    "after": "2"
+    "after": "1"
   },
   "specimen_ea_12": {
     "before": "3-",
@@ -1993,7 +1993,7 @@
   },
   "specimen_af_99": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_bd_99": {
     "before": "-",
@@ -2037,7 +2037,7 @@
   },
   "specimen_fa_99": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_fc_99": {
     "before": "3+",
@@ -2096,8 +2096,8 @@
     "after": "3"
   },
   "specimen_cd_14": {
-    "before": "-",
-    "after": "-"
+    "before": "3+",
+    "after": "3+"
   },
   "specimen_cf_14": {
     "before": "1-",
@@ -2189,11 +2189,11 @@
   },
   "specimen_be_15": {
     "before": "-",
-    "after": "-"
+    "after": "4"
   },
   "specimen_ea_15": {
     "before": "-",
-    "after": "-"
+    "after": "2+"
   },
   "specimen_d_14": {
     "before": "-",
@@ -2209,7 +2209,7 @@
   },
   "specimen_fc_14": {
     "before": "-",
-    "after": "-"
+    "after": "3-"
   },
   "specimen_fa_14": {
     "before": "-",
