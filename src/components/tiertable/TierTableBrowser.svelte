@@ -291,11 +291,11 @@
     <colgroup>
       <col style="width: 3%" />
       <col style="width: 3%" />
-      <col style="width: 10%" />
+      <col style="width: 8.5%" />
       <col style="width: 6%" />
       <col style="width: 5%" />
       <col style="width: 5%" />
-      <col style="width: 5%" />
+      <col style="width: 6.5%" />
       <col style="width: 4%" />
       <col style="width: 4%" />
       <col style="width: 5%" />
@@ -455,7 +455,7 @@
   thead th {
     position: sticky; top: 0; z-index: 2; background: #161b22; color: #94a3b8;
     text-align: left; padding: 0.3rem 0.4rem; font-weight: 700; white-space: nowrap;
-    border-bottom: 1px solid rgba(255,255,255,0.12); border-right: 1px solid rgba(255,255,255,0.08); user-select: none;
+    border-bottom: 1px solid rgba(255,255,255,0.12); border-right: 2px solid rgba(255,255,255,0.1); user-select: none;
   }
   th.sortable { cursor: pointer; }
   th.sortable:hover { color: #e2e8f0; }
@@ -472,7 +472,7 @@
 
   tbody td {
     padding: 0.15rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.04);
-    border-right: 1px solid rgba(255,255,255,0.05); white-space: nowrap; color: #cbd5f5;
+    border-right: 2px solid rgba(255,255,255,0.07); white-space: nowrap; color: #cbd5f5;
     overflow: hidden; text-overflow: ellipsis;
   }
   tbody tr:hover td { background: rgba(255,255,255,0.03); }
@@ -486,7 +486,8 @@
   .rebalance-cell a:hover { text-decoration: underline; }
 
   .mini-ico { width: 14px; height: 14px; vertical-align: middle; object-fit: contain; }
-  .gene-cell .mini-ico, .ability-cell .mini-ico { width: 17px; height: 17px; }
+  .gene-cell .mini-ico, .ability-cell .mini-ico { width: 19px; height: 19px; }
+  .inline-ico { width: 16px; height: 16px; }
   .atk-cell-inner { display: inline-flex; align-items: center; gap: 3px; justify-content: flex-end; }
   .aoe-text { color: #f87171; }
 

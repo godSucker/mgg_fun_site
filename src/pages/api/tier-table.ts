@@ -10,6 +10,10 @@ import type { APIRoute } from 'astro'
 import mutantsData from '@/data/mutants/mutants.json'
 
 const TIER_TABLE_PATH = 'src/data/mutants/tier-table.json'
+// tier-table.json живёт ТОЛЬКО на ветке preview (не в main, см. память
+// tier-table-preview-pipeline) - Contents API без ?ref= читает дефолтную
+// ветку репозитория (main), где файла нет -> 404 -> "не удалось прочитать".
+const BRANCH = 'preview'
 const VALID_TIERS = new Set(['1+', '1', '1-', '2+', '2', '2-', '3+', '3', '3-', '4', '-'])
 
 interface Mutant {
@@ -24,9 +28,10 @@ async function fetchGithubJsonFile(
   repo: string,
   path: string,
 ): Promise<{ json: unknown; sha: string } | null> {
-  const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
-    headers: { Authorization: `Bearer ${githubToken}` },
-  })
+  const res = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${BRANCH}`,
+    { headers: { Authorization: `Bearer ${githubToken}` } },
+  )
   if (!res.ok) return null
   const data = await res.json()
   let text: string
@@ -55,7 +60,7 @@ async function putGithubJsonFile(
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message, content, sha, branch: 'main' }),
+    body: JSON.stringify({ message, content, sha, branch: BRANCH }),
   })
   return res.ok
 }
