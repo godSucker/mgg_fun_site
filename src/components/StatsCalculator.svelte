@@ -3057,5 +3057,19 @@
     .dropdown { width: 400px; }
     .controls { gap: 15px; }
     .stars { gap: 8px; }
+
+    /* Текст был слишком мелким на 2K-мониторах */
+    .row { font-size: 17px; min-height: 44px; }
+    .row b { font-size: 19px; }
+    .row .label { font-size: 16px; }
+    .mut-meta .name { font-size: 15px; }
+    .rar { font-size: 13px; }
+    .effect-name { font-size: 15px; }
+    .effect-percent { font-size: 15px; }
+    .effect-value { font-size: 18px; }
+    .effect-empty { font-size: 15px; }
+    .control { font-size: 14px; }
+    .lvl { font-size: 15px; }
+    .gene2-label { font-size: 12px; }
   }
 </style>
