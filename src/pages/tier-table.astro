@@ -69,6 +69,17 @@ const rows = orderedMutants.map((m, i) => {
   const lvl1 = m.base_stats.lvl1;
   const plusAbility = (m.abilities ?? []).find((a) => a.name?.endsWith('_plus'));
   const abilityKey = plusAbility?.name?.replace(/^ability_/, '').replace(/_plus$/, '') ?? null;
+  const abilityPct = plusAbility?.pct ?? null;
+
+  const atk1 = Math.round((m.base_stats.atk1p_base ?? 0) * mult);
+  const atk2 = Math.round((m.base_stats.atk2p_base ?? 0) * mult);
+
+  // Аб.Атк1/2 = атака × % абилки (не берём value_atk*_lvl30 из данных абилки -
+  // это отдельное игровое поле, юзер попросил именно пересчёт от статов).
+  // Retaliate по-прежнему считается только для Атк1 - для Атк2 не считаем.
+  const abilityAtk1 = abilityPct != null ? Math.round(atk1 * (abilityPct / 100)) : null;
+  const abilityAtk2 =
+    abilityPct != null && abilityKey !== 'retaliate' ? Math.round(atk2 * (abilityPct / 100)) : null;
 
   return {
     number: i + 1,
@@ -81,16 +92,16 @@ const rows = orderedMutants.map((m, i) => {
     gene2: (m.genes?.[1] ?? 'neutro').toUpperCase(),
     speed: lvl1.speed,
     hp: Math.round(lvl1.hp * mult),
-    atk1: Math.round((m.base_stats.atk1p_base ?? 0) * mult),
+    atk1,
     atk1Gene: lvl1.atk1_gene ?? '',
     atk1Aoe: !!lvl1.atk1_AOE,
-    atk2: Math.round((m.base_stats.atk2p_base ?? 0) * mult),
+    atk2,
     atk2Gene: lvl1.atk2_gene ?? '',
     atk2Aoe: !!lvl1.atk2_AOE,
     abilityKey,
-    abilityPct: plusAbility?.pct ?? null,
-    abilityAtk1: plusAbility?.value_atk1_lvl30 ?? null,
-    abilityAtk2: plusAbility?.value_atk2_lvl30 ?? null,
+    abilityPct,
+    abilityAtk1,
+    abilityAtk2,
     tierBefore: tierTable[m.id]?.before ?? '-',
     tierAfter: tierTable[m.id]?.after ?? '-',
   };
