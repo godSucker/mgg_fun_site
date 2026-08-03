@@ -84,6 +84,9 @@ export const GET: APIRoute = async ({ url }) => {
         .querySelectorAll('.compare-search-wrap')
         .forEach((el) => ((el as HTMLElement).style.display = 'none'))
       document
+        .querySelectorAll('.orbing-presets')
+        .forEach((el) => ((el as HTMLElement).style.display = 'none'))
+      document
         .querySelectorAll('.slot .x')
         .forEach((el) => ((el as HTMLElement).style.display = 'none'))
       document.querySelectorAll('.panel-header').forEach((el) => {
