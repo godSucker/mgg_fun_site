@@ -7,6 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import mutantsData from '../data/mutants/mutants.json';
 import tierTableData from '../data/mutants/tier-table.json';
 import rebalanceHistory from '../data/mutants/rebalance-history.json';
+import releaseOrderData from '../data/mutants/release-order.json';
 import { sortMutantsByGene } from '../lib/mutant-sort';
 import TierTableBrowser from '../components/tiertable/TierTableBrowser.svelte';
 
@@ -62,6 +63,7 @@ for (const run of rebalanceHistory as { date: string; entries: { id: string }[] 
 const orderedMutants = (mutantsData as Mutant[]).slice().sort(sortMutantsByGene);
 
 const tierTable = tierTableData as Record<string, { before: string; after: string }>;
+const releaseOrder = releaseOrderData as Record<string, number>;
 
 const rows = orderedMutants.map((m, i) => {
   const star = maxStar(m);
@@ -87,6 +89,7 @@ const rows = orderedMutants.map((m, i) => {
     name: m.name,
     icon: mutantIcon(m, star),
     type: m.type ?? '',
+    releaseNumber: releaseOrder[m.id] ?? null,
     lastRebalance: lastRebalanceById.get(m.id) ?? null,
     gene1: (m.genes?.[0] ?? '').toUpperCase(),
     gene2: (m.genes?.[1] ?? 'neutro').toUpperCase(),

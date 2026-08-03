@@ -9,6 +9,7 @@
     name: string
     icon: string
     type: string
+    releaseNumber: number | null
     lastRebalance: string | null
     gene1: string
     gene2: string
@@ -64,9 +65,34 @@
     abilityKey: new Set(),
   })
   let openFilter: FilterCol | null = $state(null)
+  // .toolbar-left скроллится по горизонтали (см. ниже) - это делает её
+  // ближайшим clipping-контейнером для абсолютно позиционированных потомков,
+  // так что дропдаун фильтра там обрезался бы снизу. Вместо absolute считаем
+  // его позицию от кнопки и рендерим как position:fixed - вне зоны обрезки.
+  let toolbarFilterPos: { top: number; left: number } | null = $state(null)
+  function openToolbarFilter(e: MouseEvent, col: FilterCol) {
+    e.stopPropagation()
+    if (openFilter === col) {
+      openFilter = null
+      return
+    }
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+    toolbarFilterPos = { top: rect.bottom + 4, left: rect.left }
+    openFilter = col
+  }
 
   const GENE_VALUES = ['A', 'B', 'C', 'D', 'E', 'F', 'NEUTRO']
   const ABILITY_VALUES = ['shield', 'regen', 'retaliate', 'slash', 'strengthen', 'weaken']
+
+  // Триггеры фильтров этих 4 колонок живут в общей верхней панели, не в
+  // заголовках таблицы (см. prompt_tablica_combined_final.md, часть A.1) -
+  // раньше сортировка и фильтр толкались в одном месте заголовка.
+  const TOOLBAR_FILTER_DEFS: { col: FilterCol; label: string }[] = [
+    { col: 'tierBefore', label: 'Тир до' },
+    { col: 'tierAfter', label: 'Тир после' },
+    { col: 'gene1', label: 'Ген 1' },
+    { col: 'gene2', label: 'Ген 2' },
+  ]
 
   function filterOptions(col: FilterCol): string[] {
     if (col === 'tierBefore' || col === 'tierAfter') return TIER_OPTIONS
@@ -87,6 +113,7 @@
 
   type SortKey =
     | 'number'
+    | 'releaseNumber'
     | 'lastRebalance'
     | 'tierBefore'
     | 'tierAfter'
@@ -94,6 +121,7 @@
     | 'hp'
     | 'atk1'
     | 'atk2'
+    | 'abilityKey'
     | 'abilityPct'
     | 'abilityAtk1'
     | 'abilityAtk2'
@@ -145,14 +173,36 @@
     }
   }
 
-  // lastRebalance - особый случай: строки без даты всегда идут последними,
-  // независимо от направления сортировки (не просто "маленькое значение").
+  function abilityLabel(r: Row): string | null {
+    if (!r.abilityKey) return null
+    return ABILITY_RU[`ability_${r.abilityKey}_plus`] ?? r.abilityKey
+  }
+
+  // lastRebalance/releaseNumber/abilityKey - особые случаи: строки без значения
+  // всегда идут последними, независимо от направления сортировки (не просто
+  // "маленькое значение", иначе они прыгали бы в начало при desc).
   function compareByKey(a: Row, b: Row, key: SortKey, dir: 'asc' | 'desc'): number {
     if (key === 'lastRebalance') {
       if (a.lastRebalance == null && b.lastRebalance == null) return 0
       if (a.lastRebalance == null) return 1
       if (b.lastRebalance == null) return -1
       const cmp = a.lastRebalance.localeCompare(b.lastRebalance)
+      return dir === 'asc' ? cmp : -cmp
+    }
+    if (key === 'releaseNumber') {
+      if (a.releaseNumber == null && b.releaseNumber == null) return 0
+      if (a.releaseNumber == null) return 1
+      if (b.releaseNumber == null) return -1
+      const cmp = a.releaseNumber - b.releaseNumber
+      return dir === 'asc' ? cmp : -cmp
+    }
+    if (key === 'abilityKey') {
+      const la = abilityLabel(a)
+      const lb = abilityLabel(b)
+      if (la == null && lb == null) return 0
+      if (la == null) return 1
+      if (lb == null) return -1
+      const cmp = la.localeCompare(lb, 'ru')
       return dir === 'asc' ? cmp : -cmp
     }
     const cmp = rowValue(a, key) - rowValue(b, key)
@@ -281,6 +331,21 @@
       {saving ? 'Сохраняю…' : `💾 Сохранить изменения${dirty.size ? ` (${dirty.size})` : ''}`}
     </button>
     <button class="btn" onclick={resetAll}>Сбросить всё</button>
+    <span class="toolbar-sep"></span>
+    {#each TOOLBAR_FILTER_DEFS as fd}
+      <div class="filterable">
+        <button class="btn filter-toolbar-btn" onclick={(e) => openToolbarFilter(e, fd.col)}>
+          {fd.label} {#if filters[fd.col].size}<span class="filter-badge">{filters[fd.col].size}</span>{/if} ▾
+        </button>
+        {#if openFilter === fd.col && toolbarFilterPos}
+          <div class="filter-pop filter-pop-fixed" style={`top:${toolbarFilterPos.top}px; left:${toolbarFilterPos.left}px;`}>
+            {#each filterOptions(fd.col) as v}
+              <label><input type="checkbox" checked={filters[fd.col].has(v)} onchange={() => toggleFilter(fd.col, v)} />{filterLabel(fd.col, v)}</label>
+            {/each}
+          </div>
+        {/if}
+      </div>
+    {/each}
     {#if statusMsg}<span class="status-msg">{statusMsg}</span>{/if}
   </div>
   <div class="toolbar-right">Показано: {sortedRows.length} / {rows.length}</div>
@@ -291,19 +356,20 @@
     <colgroup>
       <col style="width: 3%" />
       <col style="width: 3%" />
-      <col style="width: 8.5%" />
+      <col style="width: 8%" />
       <col style="width: 6%" />
-      <col style="width: 5%" />
+      <col style="width: 3.5%" />
+      <col style="width: 6%" />
       <col style="width: 5%" />
       <col style="width: 6.5%" />
       <col style="width: 4%" />
       <col style="width: 4%" />
-      <col style="width: 5%" />
       <col style="width: 6%" />
-      <col style="width: 9%" />
-      <col style="width: 9%" />
+      <col style="width: 6%" />
+      <col style="width: 6.5%" />
+      <col style="width: 6.5%" />
+      <col style="width: 6%" />
       <col style="width: 4%" />
-      <col style="width: 6%" />
       <col style="width: 8%" />
       <col style="width: 8%" />
     </colgroup>
@@ -313,57 +379,18 @@
         <th>Иконка</th>
         <th>Имя</th>
         <th>Тип</th>
+        <th class="sortable" onclick={() => setSort('releaseNumber')}>№2 {sortIndicator('releaseNumber')}</th>
         <th class="sortable" onclick={() => setSort('lastRebalance')}>Ребаланс {sortIndicator('lastRebalance')}</th>
-        <th class="sortable filterable">
-          <span onclick={() => setSort('tierBefore')}>Тир до {sortIndicator('tierBefore')}</span>
-          <button class="filter-btn" onclick={(e) => { e.stopPropagation(); openFilter = openFilter === 'tierBefore' ? null : 'tierBefore' }}>▾</button>
-          {#if openFilter === 'tierBefore'}
-            <div class="filter-pop">
-              {#each filterOptions('tierBefore') as v}
-                <label><input type="checkbox" checked={filters.tierBefore.has(v)} onchange={() => toggleFilter('tierBefore', v)} />{filterLabel('tierBefore', v)}</label>
-              {/each}
-            </div>
-          {/if}
-        </th>
-        <th class="sortable filterable">
-          <span onclick={() => setSort('tierAfter')}>Тир после {sortIndicator('tierAfter')}</span>
-          <button class="filter-btn" onclick={(e) => { e.stopPropagation(); openFilter = openFilter === 'tierAfter' ? null : 'tierAfter' }}>▾</button>
-          {#if openFilter === 'tierAfter'}
-            <div class="filter-pop">
-              {#each filterOptions('tierAfter') as v}
-                <label><input type="checkbox" checked={filters.tierAfter.has(v)} onchange={() => toggleFilter('tierAfter', v)} />{filterLabel('tierAfter', v)}</label>
-              {/each}
-            </div>
-          {/if}
-        </th>
-        <th class="filterable">
-          <span>Ген 1</span>
-          <button class="filter-btn" onclick={(e) => { e.stopPropagation(); openFilter = openFilter === 'gene1' ? null : 'gene1' }}>▾</button>
-          {#if openFilter === 'gene1'}
-            <div class="filter-pop">
-              {#each filterOptions('gene1') as v}
-                <label><input type="checkbox" checked={filters.gene1.has(v)} onchange={() => toggleFilter('gene1', v)} />{filterLabel('gene1', v)}</label>
-              {/each}
-            </div>
-          {/if}
-        </th>
-        <th class="filterable">
-          <span>Ген 2</span>
-          <button class="filter-btn" onclick={(e) => { e.stopPropagation(); openFilter = openFilter === 'gene2' ? null : 'gene2' }}>▾</button>
-          {#if openFilter === 'gene2'}
-            <div class="filter-pop">
-              {#each filterOptions('gene2') as v}
-                <label><input type="checkbox" checked={filters.gene2.has(v)} onchange={() => toggleFilter('gene2', v)} />{filterLabel('gene2', v)}</label>
-              {/each}
-            </div>
-          {/if}
-        </th>
+        <th class="sortable" onclick={() => setSort('tierBefore')}>Тир до {sortIndicator('tierBefore')}</th>
+        <th class="sortable" onclick={() => setSort('tierAfter')}>Тир после {sortIndicator('tierAfter')}</th>
+        <th>Ген 1</th>
+        <th>Ген 2</th>
         <th class="sortable" onclick={() => setSort('speed')}>Скорость {sortIndicator('speed')}</th>
         <th class="sortable" onclick={() => setSort('hp')}>HP {sortIndicator('hp')}</th>
         <th class="sortable" onclick={() => setSort('atk1')}>Атк1 {sortIndicator('atk1')}</th>
         <th class="sortable" onclick={() => setSort('atk2')}>Атк2 {sortIndicator('atk2')}</th>
-        <th class="filterable">
-          <span>Абилка</span>
+        <th class="sortable filterable">
+          <span onclick={() => setSort('abilityKey')}>Абилка {sortIndicator('abilityKey')}</span>
           <button class="filter-btn" onclick={(e) => { e.stopPropagation(); openFilter = openFilter === 'abilityKey' ? null : 'abilityKey' }}>▾</button>
           {#if openFilter === 'abilityKey'}
             <div class="filter-pop">
@@ -393,6 +420,7 @@
               <span>{TYPE_RU[r.type] ?? r.type}</span>
             </span>
           </td>
+          <td class="num">{r.releaseNumber ?? '-'}</td>
           <td class="rebalance-cell">
             {#if r.lastRebalance}<a href="/rebalance">{fmtDate(r.lastRebalance)}</a>{:else}-{/if}
           </td>
@@ -437,9 +465,16 @@
 </div>
 
 <style>
-  .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.6rem; }
-  .toolbar-left { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-  .toolbar-right { color: #64748b; font-size: 0.8rem; }
+  /* flex-wrap: nowrap намеренно - высота панели не должна расти на узких
+     экранах, вместо переноса строк .toolbar-left скроллится по горизонтали
+     (см. prompt_tablica_combined_final.md, A.1). */
+  .toolbar { display: flex; flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.6rem; }
+  .toolbar-left {
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: nowrap;
+    overflow-x: auto; overflow-y: hidden; min-width: 0; scrollbar-width: thin;
+  }
+  .toolbar-left .btn, .toolbar-left .status-msg, .toolbar-sep { flex-shrink: 0; }
+  .toolbar-right { color: #64748b; font-size: 0.8rem; flex-shrink: 0; white-space: nowrap; }
   .btn { appearance: none; border: 1px solid rgba(255,255,255,0.12); background: rgba(22,27,34,0.9); color: #cbd5f5; border-radius: 6px; padding: 0.35rem 0.7rem; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
   .btn:hover:not(:disabled) { background: rgba(51,65,85,0.8); }
   .btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -459,7 +494,11 @@
   }
   th.sortable { cursor: pointer; }
   th.sortable:hover { color: #e2e8f0; }
-  th.filterable { position: relative; display: table-cell; }
+  /* th.filterable сознательно БЕЗ position:relative - position:sticky на
+     thead th уже создаёт containing block для абсолютно позиционированного
+     .filter-pop. Явный relative здесь раньше перебивал sticky по специфичности
+     (0,1,1) против (0,0,2) у `thead th`, из-за чего заголовки этих колонок не
+     были закреплены при скролле - см. prompt_tablica_combined_final.md, A.3. */
   .filter-btn { appearance: none; border: none; background: transparent; color: #64748b; cursor: pointer; margin-left: 2px; font-size: 0.7rem; }
   .filter-btn:hover { color: #e2e8f0; }
   .filter-pop {
@@ -469,6 +508,17 @@
   }
   .filter-pop label { display: flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; font-weight: 400; color: #cbd5f5; cursor: pointer; padding: 1px 3px; }
   .filter-pop label:hover { background: rgba(255,255,255,0.06); }
+
+  /* Тулбар-версия .filterable (обёртка кнопок фильтра над таблицей) - ей, в
+     отличие от th.filterable, нужен свой relative-контейнер под .filter-pop. */
+  .toolbar-left .filterable { position: relative; }
+  .filter-pop-fixed { position: fixed; top: auto; left: auto; }
+  .toolbar-sep { width: 1px; align-self: stretch; background: rgba(255,255,255,0.1); margin: 0 0.1rem; }
+  .filter-toolbar-btn { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .filter-badge {
+    background: rgba(56,189,248,0.25); color: #7dd3fc; border-radius: 999px;
+    padding: 0 0.35rem; font-size: 0.68rem; font-weight: 700; line-height: 1.4;
+  }
 
   tbody td {
     padding: 0.15rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.04);
