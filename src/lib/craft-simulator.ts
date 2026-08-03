@@ -405,18 +405,79 @@ function parseIncentives(raw: string): IncentiveReward[] {
   const matches = raw.match(/<IncentiveReward[^>]*>/g)
   if (!matches) return []
 
-  return matches
-    .map((tag) => {
-      const attrs = parseAttributes(tag)
-      const per1000 = attrs.per1000 ? Number(attrs.per1000) : 0
+  return matches.map((tag) => {
+    const attrs = parseAttributes(tag)
+    const per1000 = attrs.per1000 ? Number(attrs.per1000) : 0
+    return {
+      duration: attrs.duration ? Number(attrs.duration) : 0,
+      id: attrs.id ?? 'unknown',
+      per1000,
+      probability: per1000 / 1000,
+    } satisfies IncentiveReward
+  })
+}
+
+// incentreward.txt is a straight dump of the <IncentiveLoop> the live game
+// server has been cycling through since 2015 (confirmed byte-for-byte against
+// gameconfig/craft.xml on the CDN, which wraps the same 18 entries in
+// <IncentiveLoop startdate="2015-11-28T12:00:00"> with the comment "Running,
+// total duration is 15d11h" - 22260 minutes, matches sum(duration) exactly).
+// File order = loop order = the thing that makes "duration" meaningful; do
+// NOT sort this array, only a *copy* for display purposes (see below).
+export const incentiveLoopOrder = parseIncentives(incentiveRaw)
+const INCENTIVE_LOOP_START_UTC = Date.UTC(2015, 10, 28, 12, 0, 0) // 10 = November (0-indexed)
+const INCENTIVE_LOOP_TOTAL_MINUTES = incentiveLoopOrder.reduce((sum, r) => sum + r.duration, 0)
+
+export interface IncentiveCycleState {
+  activeIndex: number
+  active: IncentiveReward | null
+  elapsedInSlotMinutes: number
+  remainingMinutes: number
+  totalCycleMinutes: number
+}
+
+// Deterministic position in the loop for any given moment - no live server
+// call needed, the whole cycle is a fixed public XML file on a fixed clock.
+// Caveat: assumes the server's "startdate" is UTC (undocumented in the XML,
+// standard assumption for this game's infra) - could be off by the server's
+// actual timezone if that assumption is wrong.
+export function getIncentiveCycleState(now: Date = new Date()): IncentiveCycleState {
+  if (INCENTIVE_LOOP_TOTAL_MINUTES <= 0 || incentiveLoopOrder.length === 0) {
+    return {
+      activeIndex: -1,
+      active: null,
+      elapsedInSlotMinutes: 0,
+      remainingMinutes: 0,
+      totalCycleMinutes: 0,
+    }
+  }
+  const elapsedTotal = (now.getTime() - INCENTIVE_LOOP_START_UTC) / 60000
+  const pos =
+    ((elapsedTotal % INCENTIVE_LOOP_TOTAL_MINUTES) + INCENTIVE_LOOP_TOTAL_MINUTES) %
+    INCENTIVE_LOOP_TOTAL_MINUTES
+  let cumulative = 0
+  for (let i = 0; i < incentiveLoopOrder.length; i++) {
+    const entry = incentiveLoopOrder[i]
+    if (pos < cumulative + entry.duration) {
       return {
-        duration: attrs.duration ? Number(attrs.duration) : 0,
-        id: attrs.id ?? 'unknown',
-        per1000,
-        probability: per1000 / 1000,
-      } satisfies IncentiveReward
-    })
-    .sort((a, b) => b.per1000 - a.per1000)
+        activeIndex: i,
+        active: entry,
+        elapsedInSlotMinutes: pos - cumulative,
+        remainingMinutes: cumulative + entry.duration - pos,
+        totalCycleMinutes: INCENTIVE_LOOP_TOTAL_MINUTES,
+      }
+    }
+    cumulative += entry.duration
+  }
+  // Unreachable unless floating-point rounding lands exactly on the boundary.
+  const last = incentiveLoopOrder[incentiveLoopOrder.length - 1]
+  return {
+    activeIndex: incentiveLoopOrder.length - 1,
+    active: last,
+    elapsedInSlotMinutes: last.duration,
+    remainingMinutes: 0,
+    totalCycleMinutes: INCENTIVE_LOOP_TOTAL_MINUTES,
+  }
 }
 
 const RECIPES = RAW_SOURCES.flatMap(({ category, raw }) => parseRecipes(raw, category))
@@ -428,7 +489,9 @@ export const craftRecipesByCategory: Record<CraftCategory, CraftRecipe[]> = {
   star: RECIPES.filter((recipe) => recipe.category === 'star'),
 }
 
-export const incentiveRewards = parseIncentives(incentiveRaw)
+// Дропдаун ручного выбора сортирует по шансу (старое поведение) - берём копию,
+// цикл ('incentiveLoopOrder' выше) остаётся в исходном порядке файла.
+export const incentiveRewards = [...incentiveLoopOrder].sort((a, b) => b.per1000 - a.per1000)
 
 export function translateItemId(itemId: string): string {
   // Проверка в словаре предметов

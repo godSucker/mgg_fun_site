@@ -3,6 +3,8 @@
   import {
     craftRecipesByCategory,
     incentiveRewards,
+    incentiveLoopOrder,
+    getIncentiveCycleState,
     translateItemId,
     describeIngredientRegex,
     getItemTexture,
@@ -140,12 +142,44 @@
     return 'типов';
   }
 
-  let activeIncentiveId: string = $state(incentiveRewards[0]?.id ?? '');
+  // Цикл доп. наград детерминирован (см. getIncentiveCycleState) - по умолчанию
+  // показываем реально активную сейчас награду, а не первую по списку. Ручной
+  // выбор в дропдауне переключает useCycleIncentive=false. cycleState = null до
+  // клиентского onMount (SSR-время сборки не годится для "текущего" момента).
+  // cycleState стартует null и на сервере, и при первой клиентской отрисовке
+  // (иначе структура DOM разъедется с SSR и гидратация astro-острова падает
+  // с ошибкой прямо в консоли) - заполняем его чуть позже через rAF, это уже
+  // обычное реактивное обновление после гидратации, а не часть самой гидратации.
+  let cycleState: ReturnType<typeof getIncentiveCycleState> | null = $state(null);
+  if (typeof window !== 'undefined') {
+    requestAnimationFrame(() => {
+      cycleState = getIncentiveCycleState();
+      setInterval(() => {
+        cycleState = getIncentiveCycleState();
+      }, 60000);
+    });
+  }
+  let useCycleIncentive = $state(true);
+  let activeIncentiveId: string = $state('');
+  // Индекс карточки в треке цикла, выбранной вручную кликом - отдельно от
+  // cycleState.activeIndex (реальная позиция цикла сейчас), чтобы можно было
+  // подсветить ОБА состояния разными маркерами, если они не совпадают.
+  // Выбор через дропдаун (не клик по карточке) не даёт однозначного индекса
+  // при повторяющихся id в цикле - тогда просто сбрасывается в null.
+  let selectedCycleIndex: number | null = $state(null);
   let activeIncentive = $derived(
-    activeIncentiveId === ''
-      ? null
-      : incentiveRewards.find((reward) => reward.id === activeIncentiveId) ?? null,
+    useCycleIncentive
+      ? (cycleState?.active ?? null)
+      : activeIncentiveId === ''
+        ? null
+        : (incentiveRewards.find((reward) => reward.id === activeIncentiveId) ?? null),
   );
+
+  function pickManualIncentive(id: string, cycleIndex: number | null = null) {
+    useCycleIncentive = false;
+    activeIncentiveId = id;
+    selectedCycleIndex = cycleIndex;
+  }
   let activeFacility = $derived(
     facilities.find((facility) => facility.id === activeFacilityId) ?? facilities[0] ?? null,
   );
@@ -297,21 +331,25 @@
 
   <section class="incentive-panel">
     <div class="incentive-card">
+      <div class="incentive-card__grid">
       <div class="incentive-card__info">
         <span class="badge badge--soft">Доп. награды</span>
         <h2>Выбери активный бонус</h2>
-        <p>
-          Симулятор учитывает шанс бонусной награды. Выбери бустер или предмет, который активен у тебя
-          в игре. Можно отключить бонус для чистой математики.
-        </p>
+        <p>Симулятор учитывает шанс бонусной награды.</p>
       </div>
       <div class="incentive-card__controls">
         <label for="incentive-select">Активный бонус</label>
         <select
           id="incentive-select"
-          bind:value={activeIncentiveId}
+          value={useCycleIncentive ? '__cycle__' : activeIncentiveId}
+          onchange={(e) => {
+            const v = (e.target as HTMLSelectElement).value;
+            if (v === '__cycle__') { useCycleIncentive = true; selectedCycleIndex = null; }
+            else { pickManualIncentive(v); }
+          }}
           aria-label="Активная дополнительная награда"
         >
+          <option value="__cycle__">Текущая по расписанию (авто)</option>
           <option value="">Без бонуса</option>
           {#each incentiveRewards as incentive, index (index)}
             <option value={incentive.id}>
@@ -333,6 +371,48 @@
           <div>
             <span class="metric-label">Длительность</span>
             <span class="metric-value">{formatDurationMinutes(activeIncentive.duration)}</span>
+          </div>
+          {#if useCycleIncentive && cycleState}
+            <div>
+              <span class="metric-label">Сменится через</span>
+              <span class="metric-value">{formatDurationMinutes(Math.round(cycleState.remainingMinutes))}</span>
+            </div>
+          {/if}
+        </div>
+      {/if}
+      </div>
+
+      {#if cycleState}
+        <div class="incentive-cycle">
+          <div class="incentive-cycle__header">
+            <span class="badge badge--soft">Цикл наград</span>
+            <span class="incentive-cycle__hint">
+              Игра крутит эти {incentiveLoopOrder.length} наград по кругу с фиксированной длительностью каждой
+              (полный круг — {formatDurationMinutes(cycleState.totalCycleMinutes)}). Ниже — вся
+              последовательность, подсвечена активная сейчас.
+            </span>
+          </div>
+          <div class="incentive-cycle__track">
+            {#each incentiveLoopOrder as entry, i (i)}
+              <button
+                class="incentive-cycle__slot"
+                class:active={i === cycleState.activeIndex}
+                class:selected={i === selectedCycleIndex}
+                onclick={() => pickManualIncentive(entry.id, i)}
+                title={`${translateItemId(entry.id)} — ${(entry.per1000 / 10).toFixed(1)}%, ${formatDurationMinutes(entry.duration)}`}
+              >
+                {#if i === cycleState.activeIndex}
+                  <span class="incentive-cycle__now">сейчас</span>
+                {:else if i === selectedCycleIndex}
+                  <span class="incentive-cycle__picked">выбрано</span>
+                {/if}
+                {#if getItemTexture(entry.id)}
+                  <img src={textureUrl(getItemTexture(entry.id) ?? '')} alt="" loading="lazy" />
+                {/if}
+                <span class="incentive-cycle__slot-name">{translateItemId(entry.id)}</span>
+                <span class="incentive-cycle__slot-meta">{(entry.per1000 / 10).toFixed(1)}% · {formatDurationMinutes(entry.duration)}</span>
+              </button>
+            {/each}
           </div>
         </div>
       {/if}
@@ -1014,13 +1094,19 @@
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    display: grid;
-    gap: 1.75rem;
     padding: 2.5rem;
     border-radius: 28px;
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(17, 24, 39, 0.92));
     border: 1px solid rgba(99, 102, 241, 0.25);
     box-shadow: 0 20px 40px rgba(30, 64, 175, 0.35);
+  }
+
+  /* Три инфо-блока (описание/выбор/статы) - отдельный грид, изолированный
+     от .incentive-cycle ниже, иначе auto-fit считает колонки по строке
+     цикла (grid-column: 1/-1) и оставляет в этой строке пустые треки. */
+  .incentive-card__grid {
+    display: grid;
+    gap: 1.75rem;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     align-items: start;
   }
@@ -1069,6 +1155,96 @@
     font-weight: 600;
     color: rgba(248, 250, 252, 0.92);
     word-break: break-word;
+  }
+
+  /* --- ЦИКЛ ДОП. НАГРАД --- */
+  .incentive-cycle {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+  }
+  .incentive-cycle__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .incentive-cycle__hint {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(203, 213, 225, 0.75);
+  }
+  .incentive-cycle__track {
+    display: flex;
+    gap: 0.6rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+  }
+  .incentive-cycle__slot {
+    position: relative;
+    flex: 0 0 auto;
+    width: 108px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.75rem 0.5rem;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(15, 23, 42, 0.55);
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: center;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+  .incentive-cycle__slot:hover {
+    border-color: rgba(148, 163, 184, 0.5);
+    transform: translateY(-2px);
+  }
+  .incentive-cycle__slot.active {
+    border-color: rgba(96, 165, 250, 0.9);
+    background: rgba(59, 130, 246, 0.22);
+    box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.4), 0 8px 20px rgba(30, 64, 175, 0.35);
+  }
+  /* Выбрано вручную (клик по карточке), но это НЕ то же самое, что реально
+     активно по циклу прямо сейчас - другой акцентный цвет, чтобы не путать. */
+  .incentive-cycle__slot.selected:not(.active) {
+    border-color: rgba(217, 119, 6, 0.9);
+    background: rgba(217, 119, 6, 0.18);
+    box-shadow: 0 0 0 1px rgba(217, 119, 6, 0.4), 0 8px 20px rgba(120, 53, 15, 0.35);
+  }
+  .incentive-cycle__slot img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+  .incentive-cycle__slot-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgba(226, 232, 240, 0.95);
+  }
+  .incentive-cycle__slot-meta {
+    font-size: 0.65rem;
+    color: rgba(203, 213, 225, 0.7);
+  }
+  .incentive-cycle__now,
+  .incentive-cycle__picked {
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    color: white;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .incentive-cycle__now {
+    background: #3b82f6;
+  }
+  .incentive-cycle__picked {
+    background: #d97706;
   }
 
   /* --- ТАБЫ --- */
@@ -1591,10 +1767,12 @@
     /* 3. Incentive — компактный */
     .incentive-panel { width: 100%; }
     .incentive-card {
-      grid-template-columns: 1fr;
       padding: 1rem;
-      gap: 1rem;
       border-radius: 20px;
+    }
+    .incentive-card__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
     .incentive-card__info h2 { font-size: 1.2rem; margin: 0.4rem 0; }
     .incentive-card__info p { font-size: 0.85rem; line-height: 1.5; }
