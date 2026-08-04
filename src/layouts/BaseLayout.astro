@@ -22,10 +22,6 @@ const pageDescription = description ??
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://archivist-library.com').href;
 const isHome = Astro.url.pathname === "/";
 
-// Временный баннер на время переключения DNS (гео-сплит, ~1 час пропагации).
-// Выключить: поставить false и задеплоить, либо просто удалить блок целиком.
-const SHOW_DNS_MAINTENANCE_BANNER = true;
-
 // SEO: structured data (schema.org). WebSite описывает сайт как единую сущность -
 // помогает Google связать бренд-запрос ("archivist-library") именно с этим доменом,
 // а не потеряться среди похожих названий. Organization даёт то же самое для карточки
@@ -131,15 +127,6 @@ const structuredData = [
         }
       }
       
-      .dns-maintenance-banner {
-        background: var(--color-blue-dark, #2563eb);
-        color: var(--color-text-light, #fff);
-        text-align: center;
-        font-size: 0.85rem;
-        line-height: 1.4;
-        padding: 0.5rem 1rem;
-      }
-
       /* Header styles */
       header {
         display: flex;
@@ -550,13 +537,6 @@ const structuredData = [
     </style>
   </head>
   <body>
-    {SHOW_DNS_MAINTENANCE_BANNER && (
-      <div class="dns-maintenance-banner">
-        Технические работы с DNS: в течение ~1 часа у части посетителей возможны
-        кратковременные сбои соединения. Если страница не открылась — обновите её
-        через пару минут.
-      </div>
-    )}
     <header>
       <div class="logo">
         {!isHome && (
