@@ -289,6 +289,7 @@
   });
 
   let tabCount = $derived(() => {
+    if (allSecrets) return guideResults.length;
     const base = sortField === 'recommended' ? byRecommended() :
                  sortField === 'duration' ? byTime() : byProbability();
     return base.length;
