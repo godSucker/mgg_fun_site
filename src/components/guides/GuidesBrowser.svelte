@@ -131,9 +131,27 @@
     { key: 'ladders', label: 'Лесенки', ready: true },
     { key: 'raids', label: 'Рейды', ready: true },
     { key: 'special-offers', label: 'Спец. предложения', ready: true },
+    { key: 'numbers', label: 'Числа и формулы', ready: true },
     // 'pvp-seasons' временно скрыт из списка - обсуждается отдельно, вернуть
     // после решения, не удалять.
   ]
+
+  const GENE_LABEL: Record<string, string> = {
+    A: 'Киборг', B: 'Нежить', C: 'Рубака', D: 'Зверь', E: 'Галактик', F: 'Мифик',
+  }
+  // Таблица преимуществ типов (StrengthsAndWeaknesses::getDamageModifier) -
+  // строка = атакующий, столбец = защищающийся, значение = модификатор урона в %.
+  const TYPE_TABLE: Record<string, Record<string, number>> = {
+    A: { A: 0, B: -25, C: 25, D: 50, E: -50, F: 0 },
+    B: { A: 25, B: 0, C: -25, D: 0, E: 50, F: -50 },
+    C: { A: -25, B: 25, C: 0, D: -50, E: 0, F: 50 },
+    D: { A: -50, B: 0, C: 50, D: 0, E: -25, F: 25 },
+    E: { A: 50, B: -50, C: 0, D: 25, E: 0, F: -25 },
+    F: { A: 0, B: 50, C: -50, D: -25, E: 25, F: 0 },
+  }
+  const GENE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+
+  const CRIT_ORB_PCT = [2, 5, 11, 13, 15, 17, 18, 19]
 
   let activeTab = $state('legendaries')
 
@@ -311,7 +329,7 @@
       {/each}
     </div>
   {:else if activeTab === 'tandem'}
-    <div class="text-block prose">
+    <div class="text-block guide-prose">
       <h2>Как работает тандем?</h2>
       <p>
         В тандем становится последний помещённый в инкубатор мутант, прокаченный на максимум опыта. Иначе говоря,
@@ -339,7 +357,7 @@
       </div>
     </div>
   {:else if activeTab === 'pvp-bug'}
-    <div class="text-block prose">
+    <div class="text-block guide-prose">
       <h2>Гайд на баг (или фичу) в PvP</h2>
       <p>
         Можете не переживать — бан за это точно не дают. Вы не используете никакой сторонний софт, а всего лишь
@@ -614,6 +632,132 @@
         </div>
       </div>
     {/each}
+  {:else if activeTab === 'numbers'}
+    <div class="text-block guide-prose numbers-tab">
+      <div class="note">
+        Раздел основан на реверс-инжиниринге игрового бинарника — не догадки и не подсчёты по наблюдениям.
+      </div>
+
+      <h2>Крит-шанс</h2>
+      <p>
+        Базовый шанс крита — <strong>5%</strong>. К нему добавляются все бонусы критшанса (чармы +
+        сферы), и вся сумма умножается на эти 5%, а не складывается напрямую:
+      </p>
+      <div class="formula-box">
+        шанс крита = 5% × (100 + чармы<sub>даю</sub> + чармы<sub>получаю</sub> + сферы<sub>крит</sub>) / 100
+      </div>
+      <p>
+        Сферы крит шанса дают <strong>2 → 5 → 11 → 13 → 15 → 17 → 18 → 19%</strong> и бустят именно
+        <strong> шанс</strong> крита, а не урон от него — в ру локализации написано иначе, и это опечатка
+        локализаторов. Чарм крита даёт +50% (тир меняет только длительность действия, не силу), антикрит-чарм
+        — −75% получаемого шанса.
+      </p>
+      <div class="chip-row">
+        {#each CRIT_ORB_PCT as pct, i (i)}
+          <span class="chip">+{pct}%</span>
+        {/each}
+      </div>
+
+      <h2>Формула урона</h2>
+      <p>Итоговый урон считается в три шага, в таком порядке:</p>
+      <div class="formula-box formula-steps">
+        <div><span class="step-num">1</span> крит — если сработал, урон удваивается (+100%)</div>
+        <div><span class="step-num">2</span> тип — модификатор из таблицы стихий ниже (±25% / ±50%)</div>
+        <div><span class="step-num">3</span> активные баффы/дебаффы (плоский бонус)</div>
+      </div>
+
+      <h2>Таблица пониж/повыш урона</h2>
+      <p>
+        Таблица показывает, сколько процентов урона атакующий добавляет или теряет против типа
+        защищающегося.
+      </p>
+      <div class="type-table-wrap">
+        <table class="type-table">
+          <thead>
+            <tr>
+              <th class="corner">атк ↓ / защ →</th>
+              {#each GENE_LETTERS as g (g)}
+                <th>{GENE_LABEL[g]}</th>
+              {/each}
+            </tr>
+          </thead>
+          <tbody>
+            {#each GENE_LETTERS as row (row)}
+              <tr>
+                <th>{GENE_LABEL[row]}</th>
+                {#each GENE_LETTERS as col (col)}
+                  {@const v = TYPE_TABLE[row][col]}
+                  <td class:pos={v > 0} class:neg={v < 0} class:neutral={v === 0}>
+                    {v > 0 ? `+${v}%` : v === 0 ? '—' : `${v}%`}
+                  </td>
+                {/each}
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Скрытые лимиты чисел</h2>
+      <p>
+        Игра считает часть значений в 32-битных числах, и при определённых пределах это ломается.
+      </p>
+      <div class="numbers-grid">
+        <div class="number-card bad">
+          <div class="number-card-title">HP мутанта</div>
+          <div class="number-card-value">≈21 474 836</div>
+          <p>
+            При базовом HP выше этого порога (без HP-сфер) значение переполняется и уходит в минус.
+            HP-сферы опускают порог ещё ниже — чем больше % бонуса, тем раньше ловит баг.
+          </p>
+        </div>
+        <div class="number-card bad">
+          <div class="number-card-title">Скорость мутанта</div>
+          <div class="number-card-value">&gt; 21 474 836</div>
+          <p>Тот же класс бага, что и с HP. Порог тут не зависит от сфер скорости.</p>
+        </div>
+        <div class="number-card bad">
+          <div class="number-card-title">Золото (баланс игрока)</div>
+          <div class="number-card-value">2 147 483 647</div>
+          <p>
+            При переходе через это значение весь баланс золота <strong>обнуляется до 0</strong> (не уходит
+            в минус — просто сгорает).
+          </p>
+        </div>
+        <div class="number-card ok">
+          <div class="number-card-title">Атака мутанта</div>
+          <div class="number-card-value">≈214 748 364</div>
+          <p>Это просто потолок значения — при его достижении атака перестаёт расти дальше, но не ломается и не уходит в минус.</p>
+        </div>
+        <div class="number-card ok">
+          <div class="number-card-title">Серебро (баланс игрока)</div>
+          <div class="number-card-value">9 223 372 036 854 775 807</div>
+          <p>Считается в 64-битном числе — реалистично упереться в этот предел невозможно.</p>
+        </div>
+        <div class="number-card ok">
+          <div class="number-card-title">Уровень эво / мутанта / игрока</div>
+          <div class="number-card-value">без лимита</div>
+          <p>Обычное сохранённое значение без вычислений на клиенте — переполняться нечему.</p>
+        </div>
+      </div>
+
+      <h2>Как думают боты (PvE и защита в PvP)</h2>
+      <p>
+        У ПвЕ-противников и защиты в PvP <strong>один и тот же ИИ</strong> — отдельного «защитного»
+        алгоритма не существует. У каждого бота есть скрытый параметр «сообразительности» (IQ), и на
+        каждый ход это решается заново:
+      </p>
+      <div class="formula-box formula-steps">
+        <div><span class="step-num">1</span> бросается случайное число от 0 до 99</div>
+        <div><span class="step-num">2</span> число ≥ IQ — случайный ход: случайная атака по случайной живой цели, вообще без расчётов</div>
+        <div><span class="step-num">3</span> число &lt; IQ — «умный» ход: бот честно симулирует урон для каждой пары атака×цель и берёт связку с лучшим итогом боя (если атака AOE — дальше цели не перебираются)</div>
+      </div>
+      <p>
+        Важный нюанс: во время этого перебора крит математически невозможен — бот сравнивает варианты
+        по гарантированному не-крит урону. Настоящий бросок крита происходит один раз, уже в момент
+        реального удара уже выбранным ходом — тем же кодом, что обрабатывает ваш собственный тап по
+        экрану.
+      </p>
+    </div>
   {:else}
     <div class="soon-block">
       <p>Этот раздел ещё в разработке — данные вытаскиваются из игры.</p>
@@ -725,15 +869,56 @@
   .text-block { color: #cbd5f5; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; max-width: 900px; }
   .text-block p { margin: 0 0 0.75rem; }
   .text-block strong { color: #e2e8f0; }
-  .text-block.prose {
+  .text-block.guide-prose {
     background: rgba(13, 17, 23, 0.72); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;
     padding: 1.1rem 1.3rem; max-width: 100%;
   }
-  .prose h2 { font-size: 1.15rem; color: #e2e8f0; margin: 0 0 0.6rem; }
-  .prose h3 { font-size: 1rem; color: #e2e8f0; margin: 1.1rem 0 0.5rem; }
-  .prose ol, .prose ul { margin: 0 0 0.75rem; padding-left: 1.3rem; }
-  .prose li { margin-bottom: 0.4rem; }
+  .guide-prose h2 { font-size: 1.15rem; color: #e2e8f0; margin: 0 0 0.6rem; }
+  .guide-prose h3 { font-size: 1rem; color: #e2e8f0; margin: 1.1rem 0 0.5rem; }
+  .guide-prose ol, .guide-prose ul { margin: 0 0 0.75rem; padding-left: 1.3rem; }
+  .guide-prose li { margin-bottom: 0.4rem; }
+  .guide-prose code {
+    background: rgba(96,165,250,0.1); color: #a5f3fc; border-radius: 4px; padding: 0.1rem 0.35rem;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em;
+  }
   .note { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.87rem; color: #bfdbfe; }
+
+  .numbers-tab .formula-box {
+    background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px;
+    padding: 0.85rem 1rem; margin: 0.6rem 0 0.9rem; font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.85rem; color: #a5f3fc; line-height: 1.6; overflow-x: auto;
+  }
+  .numbers-tab .formula-steps { display: flex; flex-direction: column; gap: 0.5rem; color: #e2e8f0; font-family: inherit; }
+  .numbers-tab .formula-steps > div { display: flex; align-items: baseline; gap: 0.6rem; }
+  .numbers-tab .step-num {
+    flex-shrink: 0; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: rgba(96,165,250,0.18);
+    color: #93c5fd; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .numbers-tab .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; }
+  .numbers-tab .chip {
+    background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #86efac;
+    border-radius: 999px; padding: 0.2rem 0.65rem; font-size: 0.78rem; font-weight: 600;
+  }
+
+  .type-table-wrap { overflow-x: auto; margin: 0 0 1.25rem; }
+  .type-table { border-collapse: collapse; width: 100%; min-width: 480px; font-size: 0.82rem; }
+  .type-table th, .type-table td { padding: 0.45rem 0.6rem; text-align: center; border: 1px solid rgba(255,255,255,0.07); }
+  .type-table thead th { color: #93c5fd; font-weight: 600; background: rgba(96,165,250,0.06); }
+  .type-table tbody th { color: #e2e8f0; font-weight: 600; text-align: left; background: rgba(96,165,250,0.06); }
+  .type-table td.pos { color: #86efac; font-weight: 600; }
+  .type-table td.neg { color: #fca5a5; font-weight: 600; }
+  .type-table td.neutral { color: #64748b; }
+  .type-table th.corner { color: #64748b; font-weight: 500; font-size: 0.75rem; }
+
+  .numbers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr)); gap: 0.85rem; margin: 0 0 1.25rem; }
+  .number-card { border-radius: 10px; padding: 0.9rem 1rem; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.07); }
+  .number-card.bad { border-color: rgba(248,113,113,0.3); }
+  .number-card.ok { border-color: rgba(34,197,94,0.3); }
+  .number-card-title { font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.3rem; }
+  .number-card-value { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.4rem; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .number-card.bad .number-card-value { color: #fca5a5; }
+  .number-card.ok .number-card-value { color: #86efac; }
+  .number-card p { margin: 0; font-size: 0.82rem; color: #94a3b8; line-height: 1.5; }
 
   .mutant-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.7rem; }
   .mutant-card { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding: 0.6rem 0.4rem; border-radius: 10px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.06); cursor: pointer; text-align: center; }
