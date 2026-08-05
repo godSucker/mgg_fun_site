@@ -16,6 +16,17 @@ export const GET: APIRoute = async ({ url }) => {
       const browser = await getBrowser()
       page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1140, height: 800 } })
 
+      // Превью-деплои закрыты Vercel SSO Protection - без bypass-заголовка
+      // headless-браузер попадает на стену авторизации вместо /tier-poster-render
+      // и .poster никогда не появляется (см. TierPoster timeout в логах).
+      const bypassSecret = import.meta.env.VERCEL_AUTOMATION_BYPASS_SECRET
+      if (bypassSecret) {
+        await page.setExtraHTTPHeaders({
+          'x-vercel-protection-bypass': bypassSecret,
+          'x-vercel-set-bypass-cookie': 'true',
+        })
+      }
+
       await page.goto(renderUrl, { waitUntil: 'domcontentloaded', timeout: 15000 })
       await Promise.all([
         page.waitForSelector('.poster', { timeout: 12000 }),
