@@ -57,7 +57,10 @@ const { cards, heading } = Astro.props as { cards: CardItem[]; heading?: string 
   /* Desktop styles */
   @media (min-width: 1024px) {
     .card-grid {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      /* rem, не px - на 2K/4K html{font-size} растёт (BaseLayout.astro),
+         колонки должны расти вместе с текстом карточек, иначе заголовки
+         переносятся криво при неизменной ширине колонки */
+      grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr));
       gap: 1rem;
     }
     
