@@ -1269,5 +1269,15 @@
         "special/orb_special_speed_03.webp"
       ]
     ]
+  },
+  "specimen_b_13": {
+    "rows": [
+      [
+        "basic/orb_basic_life_05.webp",
+        "basic/orb_basic_strengthen_05.webp",
+        "basic/orb_basic_strengthen_05.webp",
+        "special/orb_special_addstrengthen_03.webp"
+      ]
+    ]
   }
 }
