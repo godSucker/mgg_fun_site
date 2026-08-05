@@ -112,14 +112,16 @@
     return completedNow;
   }
 
-  function registerResult(result: SpinResult) {
+  function registerResult(result: SpinResult, chargeCost: boolean = true) {
     lastResult = result;
-    if (result.costType === 'token') {
-      tokensSpent += gacha.token_cost;
-      tokenSpins += 1;
-    } else {
-      goldSpent += gacha.hc_cost;
-      goldSpins += 1;
+    if (chargeCost) {
+      if (result.costType === 'token') {
+        tokensSpent += gacha.token_cost;
+        tokenSpins += 1;
+      } else {
+        goldSpent += gacha.hc_cost;
+        goldSpins += 1;
+      }
     }
 
     const key = result.item.specimen;
@@ -204,7 +206,7 @@
       isCompletionReward: true,
       completedNow: true,
       completionTrigger: trigger ?? completionReward.specimen,
-    });
+    }, false);
     if (!completionTrigger) {
       completionTrigger = getMutantName(trigger ?? completionReward.specimen);
     }
