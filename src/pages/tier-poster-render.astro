@@ -1,0 +1,209 @@
+---
+// SSR-only рендер-страница для api/tier-poster.ts (headless Chromium её
+// открывает и скриншотит .poster) - тот же паттерн, что panel-render.astro
+// для скриншота стат-панели. НЕ добавлена в BaseLayout/nav - служебная.
+export const prerender = false;
+import mutantsData from '../data/mutants/mutants.json';
+import { sortMutantsByGene } from '../lib/mutant-sort';
+
+const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'];
+
+interface Mutant {
+  id: string;
+  name: string;
+  genes?: string[];
+  stars: Record<string, { images?: string[] } | undefined>;
+}
+
+function maxStar(m: Mutant): string {
+  for (const key of STAR_ORDER) if (m.stars?.[key]) return key;
+  return 'normal';
+}
+function mutantIcon(m: Mutant, star: string): string {
+  const raw = m.stars?.[star]?.images?.[0];
+  if (!raw) return '';
+  return raw.startsWith('/') ? raw : `/${raw}`;
+}
+
+const CDN = 'https://cdn.archivist-library.com';
+function iconUrl(path: string): string {
+  return path ? `${CDN}${path}` : '';
+}
+
+// state - JSON {tiers: {mutantId: "1+"|"1"|"1-"|...|"4"}}, только тиренные
+// (без '-'/untiered - те в постер не попадают). Компактно - только id+тир,
+// остальные данные (иконка/имя/гены) берём из бандлового mutants.json на
+// сервере, не гоняем через URL.
+let tiers: Record<string, string> = {};
+let title = 'Тир-лист мутантов';
+try {
+  const stateParam = Astro.url.searchParams.get('state');
+  if (stateParam) {
+    const parsed = JSON.parse(stateParam);
+    if (parsed.tiers && typeof parsed.tiers === 'object') tiers = parsed.tiers;
+    if (typeof parsed.title === 'string' && parsed.title.trim()) title = parsed.title.trim();
+  }
+} catch {
+  // некорректный state - рендерим пустой постер, ошибку молча не проглатываем
+  // выше по цепочке (api/tier-poster.ts проверяет .poster на существование)
+}
+
+const TIER_COLORS: Record<string, string> = {
+  '1': '#dc2626',
+  '2': '#f97316',
+  '3': '#eab308',
+  '4': '#16a34a',
+};
+
+// Цвет фона ячейки = первый ген мутанта (A..F, по иконкам /genes/icon_gene_*)
+const GENE_COLORS: Record<string, string> = {
+  A: '#d4a017', // Киборг - золото
+  B: '#65a30d', // Нежить - ядовито-зелёный
+  C: '#b91c1c', // Рубака - красный
+  D: '#b45309', // Зверь - оранжево-коричневый
+  E: '#2563eb', // Галактик - синий
+  F: '#7e22ce', // Мифик - фиолетовый
+};
+const NEUTRAL_CELL = '#4b5563';
+
+interface Item {
+  id: string;
+  name: string;
+  icon: string;
+  gene1: string;
+  gene2: string;
+  arrow: 'up' | 'down' | null;
+}
+
+const byId = new Map((mutantsData as Mutant[]).map((m) => [m.id, m]));
+
+// base '1'..'4', suffix '+' -> зелёная стрелка вверх (сильнее внутри тира),
+// '-' -> красная вниз (слабее), без суффикса - без стрелки.
+const groups = new Map<string, { up: Item[]; mid: Item[]; down: Item[] }>();
+for (const base of ['1', '2', '3', '4']) groups.set(base, { up: [], mid: [], down: [] });
+
+for (const [id, tier] of Object.entries(tiers)) {
+  const m = byId.get(id);
+  if (!m) continue;
+  const base = tier.replace(/[+-]$/, '');
+  const bucket = groups.get(base);
+  if (!bucket) continue;
+  const star = maxStar(m);
+  const item: Item = {
+    id: m.id,
+    name: m.name,
+    icon: iconUrl(mutantIcon(m, star)),
+    gene1: (m.genes?.[0] ?? '').toUpperCase(),
+    gene2: (m.genes?.[1] ?? 'neutro').toUpperCase(),
+    arrow: tier.endsWith('+') ? 'up' : tier.endsWith('-') ? 'down' : null,
+  };
+  if (tier.endsWith('+')) bucket.up.push(item);
+  else if (tier.endsWith('-')) bucket.down.push(item);
+  else bucket.mid.push(item);
+}
+
+const sortItems = (items: Item[]) => items.slice().sort(sortMutantsByGene);
+for (const bucket of groups.values()) {
+  bucket.up = sortItems(bucket.up);
+  bucket.mid = sortItems(bucket.mid);
+  bucket.down = sortItems(bucket.down);
+}
+
+const dateLabel = new Date().toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' });
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin />
+  <link rel="stylesheet" href="/fonts/tt-supermolot-neue/tt-supermolot-neue.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #05070a; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, sans-serif; }
+    .poster { width: 1100px; padding: 20px; background: #05070a; display: flex; flex-direction: column; gap: 14px; }
+
+    .header {
+      background: #2b2f3a; border: 3px solid #7c3aed; border-radius: 10px;
+      padding: 18px 24px; display: flex; align-items: baseline; justify-content: space-between;
+    }
+    .header h1 { color: #e9e3ff; font-size: 30px; font-weight: 800; letter-spacing: 0.5px; }
+    .header .date { color: #a78bfa; font-size: 13px; font-weight: 600; white-space: nowrap; }
+
+    .tier-box { display: flex; border-radius: 10px; border-width: 3px; border-style: solid; background: #2b2f3a; overflow: hidden; }
+    .tier-box.empty { display: none; }
+    .tier-label {
+      writing-mode: horizontal-tb; width: 120px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 800; letter-spacing: 1px;
+    }
+    .tier-groups { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 10px; }
+    .tier-group { display: grid; grid-template-columns: repeat(13, 1fr); gap: 4px; }
+    .tier-group.hidden { display: none; }
+
+    .cell {
+      position: relative; aspect-ratio: 1; border-radius: 4px; overflow: hidden;
+    }
+    .cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cell .arrow {
+      position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; line-height: 1;
+      background: rgba(5,7,10,0.75);
+    }
+    .cell .arrow.up { color: #4ade80; box-shadow: 0 0 0 1.5px #22c55e; }
+    .cell .arrow.down { color: #f87171; box-shadow: 0 0 0 1.5px #ef4444; }
+
+    .footer {
+      background: #2b2f3a; border: 3px solid #2563eb; border-radius: 10px; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .footer .legend { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #cbd5e1; font-weight: 600; }
+    .footer .legend .up { color: #22c55e; }
+    .footer .legend .down { color: #ef4444; }
+    .footer .brand { color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 2px; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <div class="header">
+      <h1>{title}</h1>
+      <span class="date">актуально на {dateLabel}</span>
+    </div>
+
+    {['1', '2', '3', '4'].map((base) => {
+      const bucket = groups.get(base)!;
+      const total = bucket.up.length + bucket.mid.length + bucket.down.length;
+      const color = TIER_COLORS[base];
+      return (
+        <div class={`tier-box ${total === 0 ? 'empty' : ''}`} style={`border-color: ${color}`}>
+          <div class="tier-label" style={`color: ${color}`}>ТИР {base}</div>
+          <div class="tier-groups">
+            {(['up', 'mid', 'down'] as const).map((key) => {
+              const items = bucket[key];
+              if (items.length === 0) return null;
+              return (
+                <div class="tier-group">
+                  {items.map((it) => (
+                    <div class="cell" title={it.name} style={`background: ${GENE_COLORS[it.gene1] ?? NEUTRAL_CELL}`}>
+                      {it.icon && <img src={it.icon} alt={it.name} />}
+                      {it.arrow === 'up' && <span class="arrow up">▲</span>}
+                      {it.arrow === 'down' && <span class="arrow down">▼</span>}
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    })}
+
+    <div class="footer">
+      <div class="legend">
+        <span class="up">▲ - более сильные мутанты внутри тира</span>
+        <span class="down">▼ - более слабые мутанты внутри тира</span>
+      </div>
+      <span class="brand">ARCHIVIST-LIBRARY.COM</span>
+    </div>
+  </div>
+</body>
+</html>

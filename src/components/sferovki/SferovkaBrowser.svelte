@@ -169,8 +169,10 @@
   // черновик половинок, применяется по кнопке "Применить" одним действием,
   // не по каждому полу-выбору - те же соображения, что и батч-сохранение
   // тир-таблицы (не плодить промежуточные dirty-состояния на полпути).
+  // Попап теперь модальный, по центру экрана (фикс по фидбеку - привязка к
+  // кнопке слота вылезала за край на широких/узких экранах и заставляла
+  // скроллить). Оверлей сзади закрывает по клику, как обычная модалка.
   let openPicker: { id: string; rowIdx: number; kind: 'basic' | 'special'; index: number } | null = $state(null)
-  let pickerPos: { top: number; left: number } | null = $state(null)
   let comboMode = $state(false)
   let comboStaging: { a: string | null; b: string | null } = $state({ a: null, b: null })
 
@@ -180,8 +182,6 @@
       openPicker = null
       return
     }
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
-    pickerPos = { top: rect.bottom + 4, left: rect.left }
     openPicker = { id, rowIdx, kind, index }
     const cur = builds.get(id)![rowIdx][kind][index]
     if (Array.isArray(cur)) {
@@ -208,10 +208,6 @@
   function applyCombo(id: string, rowIdx: number, kind: 'basic' | 'special', index: number) {
     if (!comboStaging.a || !comboStaging.b) return
     pickOrb(id, rowIdx, kind, index, [comboStaging.a, comboStaging.b])
-  }
-
-  function typesFor(kind: 'basic' | 'special') {
-    return kind === 'basic' ? BASIC_ORB_TYPES : SPECIAL_ORB_TYPES
   }
 
   function slotDisplay(rb: RowBuild, kind: 'basic' | 'special', index: number): OrbCell {
@@ -254,14 +250,9 @@
     }
   }
 
-  $effect(() => {
-    if (openPicker === null) return
-    function onDocClick(e: MouseEvent) {
-      if (!(e.target as HTMLElement).closest('.orb-picker-wrap')) openPicker = null
-    }
-    document.addEventListener('click', onDocClick)
-    return () => document.removeEventListener('click', onDocClick)
-  })
+  function closePicker() {
+    openPicker = null
+  }
 </script>
 
 <div class="toolbar">
@@ -324,114 +315,26 @@
               <div class="orb-row">
                 <span class="row-label">{rowIdx + 1}</span>
                 {#each rb.basic as _, i}
-                  <div class="orb-picker-wrap">
-                    <button class="orb-slot" onclick={(e) => openSlot(e, r.id, rowIdx, 'basic', i)}>
-                      {#if Array.isArray(slotDisplay(rb, 'basic', i))}
-                        {@const cell = slotDisplay(rb, 'basic', i) as [string, string]}
-                        <img src={textureUrl(`/orbs/${cell[0]}`)} alt="" class="half half-a" />
-                        <img src={textureUrl(`/orbs/${cell[1]}`)} alt="" class="half half-b" />
-                      {:else}
-                        <img src={textureUrl(`/orbs/${slotDisplay(rb, 'basic', i)}`)} alt="" loading="lazy" decoding="async" />
-                      {/if}
-                    </button>
-                    {#if openPicker?.id === r.id && openPicker.rowIdx === rowIdx && openPicker.kind === 'basic' && openPicker.index === i && pickerPos}
-                      <div class="picker-pop" style={`top:${pickerPos.top}px; left:${pickerPos.left}px;`}>
-                        <div class="picker-modes">
-                          <button class:active={!comboMode} onclick={() => (comboMode = false)}>Одна</button>
-                          <button class:active={comboMode} onclick={() => (comboMode = true)}>Сдвоенная</button>
-                        </div>
-                        {#if !comboMode}
-                          <button class="picker-opt clear" onclick={() => pickOrb(r.id, rowIdx, 'basic', i, null)}>
-                            <img src={textureUrl(`/orbs/${EMPTY_BASIC_SLOT}`)} alt="" />
-                            <span>Очистить</span>
-                          </button>
-                          <div class="picker-grid">
-                            {#each BASIC_ORB_TYPES as t}
-                              <button class="picker-opt" onclick={() => pickOrb(r.id, rowIdx, 'basic', i, t.file)}>
-                                <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
-                                <span>{t.label}</span>
-                              </button>
-                            {/each}
-                          </div>
-                        {:else}
-                          <div class="combo-cols">
-                            <div class="combo-col">
-                              <div class="combo-col-title">Часть 1</div>
-                              {#each typesFor('basic') as t}
-                                <button class="picker-opt small" class:selected={comboStaging.a === t.file} onclick={() => (comboStaging = { ...comboStaging, a: t.file })}>
-                                  <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
-                                </button>
-                              {/each}
-                            </div>
-                            <div class="combo-col">
-                              <div class="combo-col-title">Часть 2</div>
-                              {#each typesFor('basic') as t}
-                                <button class="picker-opt small" class:selected={comboStaging.b === t.file} onclick={() => (comboStaging = { ...comboStaging, b: t.file })}>
-                                  <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
-                                </button>
-                              {/each}
-                            </div>
-                          </div>
-                          <button class="btn-apply" disabled={!comboStaging.a || !comboStaging.b} onclick={() => applyCombo(r.id, rowIdx, 'basic', i)}>Применить</button>
-                        {/if}
-                      </div>
+                  <button class="orb-slot" onclick={(e) => openSlot(e, r.id, rowIdx, 'basic', i)}>
+                    {#if Array.isArray(slotDisplay(rb, 'basic', i))}
+                      {@const cell = slotDisplay(rb, 'basic', i) as [string, string]}
+                      <img src={textureUrl(`/orbs/${cell[0]}`)} alt="" class="half half-a" />
+                      <img src={textureUrl(`/orbs/${cell[1]}`)} alt="" class="half half-b" />
+                    {:else}
+                      <img src={textureUrl(`/orbs/${slotDisplay(rb, 'basic', i)}`)} alt="" loading="lazy" decoding="async" />
                     {/if}
-                  </div>
+                  </button>
                 {/each}
                 {#each rb.special as _, i}
-                  <div class="orb-picker-wrap">
-                    <button class="orb-slot special" onclick={(e) => openSlot(e, r.id, rowIdx, 'special', i)}>
-                      {#if Array.isArray(slotDisplay(rb, 'special', i))}
-                        {@const cell = slotDisplay(rb, 'special', i) as [string, string]}
-                        <img src={textureUrl(`/orbs/${cell[0]}`)} alt="" class="half half-a" />
-                        <img src={textureUrl(`/orbs/${cell[1]}`)} alt="" class="half half-b" />
-                      {:else}
-                        <img src={textureUrl(`/orbs/${slotDisplay(rb, 'special', i)}`)} alt="" loading="lazy" decoding="async" />
-                      {/if}
-                    </button>
-                    {#if openPicker?.id === r.id && openPicker.rowIdx === rowIdx && openPicker.kind === 'special' && openPicker.index === i && pickerPos}
-                      <div class="picker-pop" style={`top:${pickerPos.top}px; left:${pickerPos.left}px;`}>
-                        <div class="picker-modes">
-                          <button class:active={!comboMode} onclick={() => (comboMode = false)}>Одна</button>
-                          <button class:active={comboMode} onclick={() => (comboMode = true)}>Сдвоенная</button>
-                        </div>
-                        {#if !comboMode}
-                          <button class="picker-opt clear" onclick={() => pickOrb(r.id, rowIdx, 'special', i, null)}>
-                            <img src={textureUrl(`/orbs/${EMPTY_SPECIAL_SLOT}`)} alt="" />
-                            <span>Очистить</span>
-                          </button>
-                          <div class="picker-grid">
-                            {#each SPECIAL_ORB_TYPES as t}
-                              <button class="picker-opt" onclick={() => pickOrb(r.id, rowIdx, 'special', i, t.file)}>
-                                <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
-                                <span>{t.label}</span>
-                              </button>
-                            {/each}
-                          </div>
-                        {:else}
-                          <div class="combo-cols">
-                            <div class="combo-col">
-                              <div class="combo-col-title">Часть 1</div>
-                              {#each typesFor('special') as t}
-                                <button class="picker-opt small" class:selected={comboStaging.a === t.file} onclick={() => (comboStaging = { ...comboStaging, a: t.file })}>
-                                  <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
-                                </button>
-                              {/each}
-                            </div>
-                            <div class="combo-col">
-                              <div class="combo-col-title">Часть 2</div>
-                              {#each typesFor('special') as t}
-                                <button class="picker-opt small" class:selected={comboStaging.b === t.file} onclick={() => (comboStaging = { ...comboStaging, b: t.file })}>
-                                  <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
-                                </button>
-                              {/each}
-                            </div>
-                          </div>
-                          <button class="btn-apply" disabled={!comboStaging.a || !comboStaging.b} onclick={() => applyCombo(r.id, rowIdx, 'special', i)}>Применить</button>
-                        {/if}
-                      </div>
+                  <button class="orb-slot special" onclick={(e) => openSlot(e, r.id, rowIdx, 'special', i)}>
+                    {#if Array.isArray(slotDisplay(rb, 'special', i))}
+                      {@const cell = slotDisplay(rb, 'special', i) as [string, string]}
+                      <img src={textureUrl(`/orbs/${cell[0]}`)} alt="" class="half half-a" />
+                      <img src={textureUrl(`/orbs/${cell[1]}`)} alt="" class="half half-b" />
+                    {:else}
+                      <img src={textureUrl(`/orbs/${slotDisplay(rb, 'special', i)}`)} alt="" loading="lazy" decoding="async" />
                     {/if}
-                  </div>
+                  </button>
                 {/each}
                 {#if build.length > 1}
                   <button class="row-del" title="Убрать ряд" onclick={() => removeRow(r.id, rowIdx)}>✕</button>
@@ -447,6 +350,53 @@
     </tbody>
   </table>
 </div>
+
+{#if openPicker}
+  {@const label = openPicker.kind === 'basic' ? BASIC_ORB_TYPES : SPECIAL_ORB_TYPES}
+  {@const emptyFile = openPicker.kind === 'basic' ? EMPTY_BASIC_SLOT : EMPTY_SPECIAL_SLOT}
+  <div class="modal-overlay" onclick={closePicker}>
+    <div class="picker-pop" onclick={(e) => e.stopPropagation()}>
+      <div class="picker-modes">
+        <button class:active={!comboMode} onclick={() => (comboMode = false)}>Одна</button>
+        <button class:active={comboMode} onclick={() => (comboMode = true)}>Сдвоенная</button>
+      </div>
+      {#if !comboMode}
+        <button class="picker-opt clear" onclick={() => pickOrb(openPicker.id, openPicker.rowIdx, openPicker.kind, openPicker.index, null)}>
+          <img src={textureUrl(`/orbs/${emptyFile}`)} alt="" />
+          <span>Очистить</span>
+        </button>
+        <div class="picker-grid">
+          {#each label as t}
+            <button class="picker-opt" onclick={() => pickOrb(openPicker.id, openPicker.rowIdx, openPicker.kind, openPicker.index, t.file)}>
+              <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
+              <span>{t.label}</span>
+            </button>
+          {/each}
+        </div>
+      {:else}
+        <div class="combo-cols">
+          <div class="combo-col">
+            <div class="combo-col-title">Часть 1</div>
+            {#each label as t}
+              <button class="picker-opt small" class:selected={comboStaging.a === t.file} onclick={() => (comboStaging = { ...comboStaging, a: t.file })}>
+                <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
+              </button>
+            {/each}
+          </div>
+          <div class="combo-col">
+            <div class="combo-col-title">Часть 2</div>
+            {#each label as t}
+              <button class="picker-opt small" class:selected={comboStaging.b === t.file} onclick={() => (comboStaging = { ...comboStaging, b: t.file })}>
+                <img src={textureUrl(`/orbs/${t.file}`)} alt="" />
+              </button>
+            {/each}
+          </div>
+        </div>
+        <button class="btn-apply" disabled={!comboStaging.a || !comboStaging.b} onclick={() => applyCombo(openPicker.id, openPicker.rowIdx, openPicker.kind, openPicker.index)}>Применить</button>
+      {/if}
+    </div>
+  </div>
+{/if}
 
 <style>
   .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.4rem; }
@@ -481,7 +431,7 @@
 
   .tier-cell { text-align: center; font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,0.6); white-space: nowrap; }
 
-  .orbs-cell { min-width: 260px; padding-top: 0.3rem; padding-bottom: 0.3rem; }
+  .orbs-cell { min-width: 300px; padding-top: 0.3rem; padding-bottom: 0.3rem; }
   .orb-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
   .orb-row:last-of-type { margin-bottom: 0; }
   .row-label { width: 14px; flex-shrink: 0; text-align: center; color: #64748b; font-size: 0.66rem; font-weight: 700; }
@@ -496,8 +446,7 @@
   }
   .row-add:hover { color: #93c5fd; border-color: #38bdf8; }
 
-  .orb-picker-wrap { position: relative; }
-  .orb-slot { appearance: none; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); border-radius: 6px; padding: 2px; cursor: pointer; width: 34px; height: 34px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .orb-slot { appearance: none; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); border-radius: 7px; padding: 2px; cursor: pointer; width: 41px; height: 41px; position: relative; overflow: hidden; flex-shrink: 0; }
   .orb-slot:hover { border-color: #38bdf8; }
   .orb-slot.special { border-color: rgba(250,204,21,0.35); }
   .orb-slot > img:not(.half) { width: 100%; height: 100%; object-fit: contain; }
@@ -505,26 +454,30 @@
   .orb-slot .half-a { clip-path: inset(0 50% 0 0); }
   .orb-slot .half-b { clip-path: inset(0 0 0 50%); }
 
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,0.55);
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+  }
   .picker-pop {
-    position: fixed; z-index: 20; background: #0d1117; border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 8px; padding: 0.4rem; max-height: 360px; overflow-y: auto;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.55); width: 230px;
+    background: #0d1117; border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 0.7rem; max-height: min(80vh, 520px); overflow-y: auto;
+    box-shadow: 0 20px 48px rgba(0,0,0,0.6); width: min(90vw, 320px);
   }
   .picker-modes { display: flex; gap: 4px; margin-bottom: 0.35rem; }
-  .picker-modes button { flex: 1; appearance: none; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #94a3b8; border-radius: 5px; padding: 3px 4px; font-size: 0.66rem; cursor: pointer; }
+  .picker-modes button { flex: 1; appearance: none; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #94a3b8; border-radius: 5px; padding: 4px; font-size: 0.72rem; cursor: pointer; }
   .picker-modes button.active { background: rgba(56,189,248,0.2); border-color: #38bdf8; color: #7dd3fc; }
-  .picker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 4px; }
-  .picker-opt { appearance: none; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); border-radius: 6px; padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; color: #cbd5f5; font-size: 0.6rem; text-align: center; }
+  .picker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 4px; }
+  .picker-opt { appearance: none; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); border-radius: 6px; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; color: #cbd5f5; font-size: 0.68rem; text-align: center; }
   .picker-opt:hover { background: rgba(56,189,248,0.15); border-color: #38bdf8; }
-  .picker-opt img { width: 28px; height: 28px; object-fit: contain; }
+  .picker-opt img { width: 34px; height: 34px; object-fit: contain; }
   .picker-opt.clear { width: 100%; flex-direction: row; justify-content: center; }
-  .picker-opt.clear img { width: 20px; height: 20px; }
+  .picker-opt.clear img { width: 24px; height: 24px; }
 
-  .combo-cols { display: flex; gap: 6px; }
-  .combo-col { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; align-content: start; }
-  .combo-col-title { grid-column: 1 / -1; font-size: 0.62rem; color: #64748b; text-align: center; margin-bottom: 2px; }
-  .picker-opt.small { padding: 3px; }
-  .picker-opt.small img { width: 22px; height: 22px; }
+  .combo-cols { display: flex; gap: 8px; }
+  .combo-col { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; align-content: start; }
+  .combo-col-title { grid-column: 1 / -1; font-size: 0.68rem; color: #64748b; text-align: center; margin-bottom: 2px; }
+  .picker-opt.small { padding: 4px; }
+  .picker-opt.small img { width: 27px; height: 27px; }
   .picker-opt.small.selected { border-color: #38bdf8; background: rgba(56,189,248,0.2); }
   .btn-apply { width: 100%; margin-top: 0.4rem; appearance: none; border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.2); color: #86efac; border-radius: 6px; padding: 0.3rem; font-size: 0.72rem; font-weight: 600; cursor: pointer; }
   .btn-apply:disabled { opacity: 0.4; cursor: not-allowed; }

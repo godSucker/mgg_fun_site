@@ -213,10 +213,10 @@
   const sortedRows = $derived.by(() => {
     const list = [...filteredRows]
     if (sortHistory.length === 0) {
-      // Дефолт: Тир до (лучше -> выше), при равенстве - скорость по убыванию.
+      // Дефолт: Тир после (лучше -> выше), при равенстве - скорость по убыванию.
       list.sort((a, b) => {
-        const ta = TIER_RANK[tiers.get(a.id)!.before] ?? 99
-        const tb = TIER_RANK[tiers.get(b.id)!.before] ?? 99
+        const ta = TIER_RANK[tiers.get(a.id)!.after] ?? 99
+        const tb = TIER_RANK[tiers.get(b.id)!.after] ?? 99
         if (ta !== tb) return ta - tb
         return b.speed - a.speed
       })
@@ -350,6 +350,38 @@
     }
   }
 
+  let posterLoading = $state(false)
+
+  // Постер собирается из текущего "после" (включая несохранённые правки в
+  // таблице - та же логика источника данных, что и у "→ в прод"), сервер
+  // берёт иконки/имена/гены сам из mutants.json по id, через URL летит только
+  // компактный {id: тир} - см. tier-poster-render.astro.
+  async function downloadPoster() {
+    posterLoading = true
+    statusMsg = ''
+    try {
+      const tiersOut: Record<string, string> = {}
+      for (const [id, t] of tiers) if (t.after !== '-') tiersOut[id] = t.after
+      const state = encodeURIComponent(JSON.stringify({ tiers: tiersOut }))
+      const res = await fetch(`/api/tier-poster?state=${state}`)
+      if (!res.ok) {
+        statusMsg = `Ошибка генерации постера: ${res.status}`
+        return
+      }
+      const blob = await res.blob()
+      const blobUrl = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = blobUrl
+      a.download = 'tier-poster.png'
+      a.click()
+      URL.revokeObjectURL(blobUrl)
+    } catch {
+      statusMsg = 'Ошибка сети при генерации постера'
+    } finally {
+      posterLoading = false
+    }
+  }
+
   function fmt(n: number): string {
     return n.toLocaleString('ru-RU')
   }
@@ -391,6 +423,9 @@
     <span class="toolbar-sep"></span>
     <button class="btn btn-danger" onclick={pushTiersToProd} disabled={pushingProd}>
       {pushingProd ? 'Отправляю…' : '🚀 Тир после → в прод'}
+    </button>
+    <button class="btn" onclick={downloadPoster} disabled={posterLoading}>
+      {posterLoading ? 'Генерирую…' : '📸 Тир-постер'}
     </button>
     <span class="toolbar-sep"></span>
     {#each TOOLBAR_FILTER_DEFS as fd}
