@@ -27,9 +27,10 @@ async function fetchGithubJsonFile(
   owner: string,
   repo: string,
   path: string,
+  branch: string = BRANCH,
 ): Promise<{ json: unknown; sha: string } | null> {
   const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${BRANCH}`,
+    `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
     { headers: { Authorization: `Bearer ${githubToken}` } },
   )
   if (!res.ok) return null
@@ -55,14 +56,53 @@ async function putGithubJsonFile(
   sha: string,
   json: unknown,
   message: string,
+  branch: string = BRANCH,
 ): Promise<boolean> {
   const content = Buffer.from(JSON.stringify(json, null, 2) + '\n', 'utf-8').toString('base64')
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message, content, sha, branch: BRANCH }),
+    body: JSON.stringify({ message, content, sha, branch }),
   })
   return res.ok
+}
+
+const MUTANTS_PATH = 'src/data/mutants/mutants.json'
+const MAIN_BRANCH = 'main'
+
+// Диф между текущим состоянием колонки "после" в таблице и живым mutants.json
+// в main - используется и для превью перед пушем (без записи), и для самого
+// коммита (с записью). '-' в таблице значит "без тира" -> поле tier удаляется
+// целиком (в mutants.json нет значения-заглушки вроде 'un-tired', см. память).
+function computeTierDiff(
+  liveMutants: Array<{ id: string; tier?: string | null; name?: string }>,
+  desiredTiers: Record<string, string>,
+): {
+  set: number
+  changed: number
+  cleared: number
+  unchanged: number
+  details: { id: string; name: string; from: string; to: string }[]
+} {
+  let set = 0
+  let changed = 0
+  let cleared = 0
+  let unchanged = 0
+  const details: { id: string; name: string; from: string; to: string }[] = []
+  for (const m of liveMutants) {
+    if (!(m.id in desiredTiers)) continue
+    const from = m.tier ?? '-'
+    const to = desiredTiers[m.id] && VALID_TIERS.has(desiredTiers[m.id]) ? desiredTiers[m.id] : '-'
+    if (from === to) {
+      unchanged++
+      continue
+    }
+    if (from === '-') set++
+    else if (to === '-') cleared++
+    else changed++
+    details.push({ id: m.id, name: m.name ?? m.id, from, to })
+  }
+  return { set, changed, cleared, unchanged, details }
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -78,11 +118,69 @@ export const POST: APIRoute = async ({ request }) => {
     )
   }
 
-  let body: { action?: string; changes?: Record<string, { before?: string; after?: string }> }
+  let body: {
+    action?: string
+    changes?: Record<string, { before?: string; after?: string }>
+    tiers?: Record<string, string>
+  }
   try {
     body = await request.json()
   } catch {
     return new Response(JSON.stringify({ error: 'Некорректный JSON' }), { status: 400 })
+  }
+
+  // Публикация текущей колонки "после" из тир-таблицы в прод (mutants.json на
+  // main) - отдельная ветка, читает/пишет ДРУГОЙ файл на ДРУГОЙ ветке, не
+  // трогает tier-table.json. 'tier-diff' - только просчёт разницы для
+  // подтверждения на клиенте, 'sync-to-prod' - реальный коммит (со своим
+  // свежим sha, читается непосредственно перед записью).
+  if (body.action === 'tier-diff' || body.action === 'sync-to-prod') {
+    if (!body.tiers) return new Response(JSON.stringify({ error: 'Нет tiers' }), { status: 400 })
+    const mutantsFile = await fetchGithubJsonFile(
+      GITHUB_TOKEN,
+      REPO_OWNER,
+      REPO_NAME,
+      MUTANTS_PATH,
+      MAIN_BRANCH,
+    )
+    if (!mutantsFile) {
+      return new Response(JSON.stringify({ error: 'Не удалось прочитать mutants.json из main' }), {
+        status: 502,
+      })
+    }
+    const liveMutants = mutantsFile.json as Array<{
+      id: string
+      tier?: string | null
+      name?: string
+    }>
+    const diff = computeTierDiff(liveMutants, body.tiers)
+
+    if (body.action === 'tier-diff') {
+      return new Response(JSON.stringify({ ok: true, diff }), { status: 200 })
+    }
+
+    for (const d of diff.details) {
+      const idx = liveMutants.findIndex((m) => m.id === d.id)
+      if (idx === -1) continue
+      if (d.to === '-') delete liveMutants[idx].tier
+      else liveMutants[idx].tier = d.to
+    }
+    const ok = await putGithubJsonFile(
+      GITHUB_TOKEN,
+      REPO_OWNER,
+      REPO_NAME,
+      MUTANTS_PATH,
+      mutantsFile.sha,
+      liveMutants,
+      `🛠️ Tier Table → прод: ${diff.set} новых, ${diff.changed} изменено, ${diff.cleared} снято`,
+      MAIN_BRANCH,
+    )
+    if (!ok)
+      return new Response(
+        JSON.stringify({ error: 'Коммит не прошёл (устаревший sha? перезагрузи страницу)' }),
+        { status: 409 },
+      )
+    return new Response(JSON.stringify({ ok: true, diff }), { status: 200 })
   }
 
   const file = await fetchGithubJsonFile(GITHUB_TOKEN, REPO_OWNER, REPO_NAME, TIER_TABLE_PATH)

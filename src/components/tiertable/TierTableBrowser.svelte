@@ -54,6 +54,7 @@
   let dirty = $state(new Set<string>())
   let saving = $state(false)
   let refreshing = $state(false)
+  let pushingProd = $state(false)
   let statusMsg = $state('')
 
   type FilterCol = 'tierBefore' | 'tierAfter' | 'gene1' | 'gene2' | 'abilityKey'
@@ -293,6 +294,62 @@
     }
   }
 
+  // Публикует текущую колонку "после" (tiers.get(id).after, включая
+  // несохранённые в tier-table.json правки - это то, что реально видно в
+  // таблице прямо сейчас) в mutants.json.tier на main. Сначала диф без
+  // записи для подтверждения, потом отдельный запрос на сам коммит - см.
+  // память tier-table-preview-pipeline про то, почему сюда нельзя тащить
+  // билд-тайм импорт mutants.json (устареет относительно main).
+  async function pushTiersToProd() {
+    pushingProd = true
+    statusMsg = ''
+    const current: Record<string, string> = {}
+    for (const [id, t] of tiers) current[id] = t.after
+    try {
+      const diffRes = await fetch('/api/tier-table', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'tier-diff', tiers: current }),
+      })
+      if (!diffRes.ok) {
+        const err = await diffRes.json().catch(() => ({}))
+        statusMsg = `Ошибка расчёта диффа: ${err.error ?? diffRes.status}`
+        return
+      }
+      const { diff } = await diffRes.json()
+      const total = diff.set + diff.changed + diff.cleared
+      if (total === 0) {
+        statusMsg = 'В проде и так всё совпадает — нечего отправлять'
+        return
+      }
+      const preview = diff.details
+        .slice(0, 15)
+        .map((d: { name: string; from: string; to: string }) => `${d.name}: ${d.from} → ${d.to}`)
+        .join('\n')
+      const more = diff.details.length > 15 ? `\n… и ещё ${diff.details.length - 15}` : ''
+      const confirmed = confirm(
+        `Отправить в прод (mutants.json, ветка main)?\n\nНовых тиров: ${diff.set}\nИзменено: ${diff.changed}\nСнято: ${diff.cleared}\n\n${preview}${more}`,
+      )
+      if (!confirmed) return
+      const res = await fetch('/api/tier-table', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'sync-to-prod', tiers: current }),
+      })
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}))
+        statusMsg = `Ошибка публикации: ${err.error ?? res.status}`
+      } else {
+        statusMsg = `Отправлено в прод ✓ (${total})`
+        setTimeout(() => (statusMsg = ''), 4000)
+      }
+    } catch {
+      statusMsg = 'Ошибка сети при публикации в прод'
+    } finally {
+      pushingProd = false
+    }
+  }
+
   function fmt(n: number): string {
     return n.toLocaleString('ru-RU')
   }
@@ -331,6 +388,10 @@
       {saving ? 'Сохраняю…' : `💾 Сохранить изменения${dirty.size ? ` (${dirty.size})` : ''}`}
     </button>
     <button class="btn" onclick={resetAll}>Сбросить всё</button>
+    <span class="toolbar-sep"></span>
+    <button class="btn btn-danger" onclick={pushTiersToProd} disabled={pushingProd}>
+      {pushingProd ? 'Отправляю…' : '🚀 Тир после → в прод'}
+    </button>
     <span class="toolbar-sep"></span>
     {#each TOOLBAR_FILTER_DEFS as fd}
       <div class="filterable">
@@ -480,6 +541,8 @@
   .btn:disabled { opacity: 0.45; cursor: not-allowed; }
   .btn-primary { background: rgba(34,197,94,0.2); border-color: rgba(34,197,94,0.4); color: #86efac; }
   .btn-primary:hover:not(:disabled) { background: rgba(34,197,94,0.32); }
+  .btn-danger { background: rgba(220,38,38,0.18); border-color: rgba(220,38,38,0.4); color: #fca5a5; }
+  .btn-danger:hover:not(:disabled) { background: rgba(220,38,38,0.3); }
   .status-msg { font-size: 0.78rem; color: #93c5fd; }
 
   .table-wrap {

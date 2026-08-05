@@ -1,0 +1,67 @@
+---
+// Конструктор сферовок - рабочий инструмент, не публичный раздел (см.
+// prompt в переписке). Живёт за Vercel Deployment Protection превью-домена,
+// сознательно не в BaseLayout nav - см. память tier-table-preview-pipeline,
+// тот же прецедент.
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import mutantsData from '../data/mutants/mutants.json';
+import orbingData from '../data/mutants/orbing.json';
+import { sortMutantsByGene } from '../lib/mutant-sort';
+import { baseMutantId } from '../lib/utils';
+import { slotsForType } from '../lib/orb-catalog';
+import SferovkaBrowser from '../components/sferovki/SferovkaBrowser.svelte';
+
+const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'];
+
+interface Mutant {
+  id: string;
+  name: string;
+  genes?: string[];
+  type?: string;
+  tier?: string;
+  stars: Record<string, { images?: string[] } | undefined>;
+  orbs?: { normal?: number; special?: number };
+}
+
+function maxStar(m: Mutant): string {
+  for (const key of STAR_ORDER) if (m.stars?.[key]) return key;
+  return 'normal';
+}
+function mutantIcon(m: Mutant, star: string): string {
+  const raw = m.stars?.[star]?.images?.[0];
+  if (!raw) return '';
+  return raw.startsWith('/') ? raw : `/${raw}`;
+}
+
+type OrbCell = string | [string, string];
+const orbing = orbingData as Record<string, { rows: OrbCell[][] }>;
+const orbingByBase = new Map<string, { key: string; rows: OrbCell[][] }>();
+for (const [key, val] of Object.entries(orbing)) {
+  orbingByBase.set(baseMutantId(key), { key, rows: val.rows });
+}
+
+const orderedMutants = (mutantsData as Mutant[]).slice().sort(sortMutantsByGene);
+
+const rows = orderedMutants.map((m) => {
+  const star = maxStar(m);
+  const existing = orbingByBase.get(baseMutantId(m.id));
+  return {
+    id: m.id,
+    orbingKey: existing?.key ?? m.id,
+    name: m.name,
+    icon: mutantIcon(m, star),
+    type: m.type ?? '',
+    tier: m.tier ?? '-',
+    gene1: (m.genes?.[0] ?? '').toUpperCase(),
+    gene2: (m.genes?.[1] ?? 'neutro').toUpperCase(),
+    basicSlotCount: Number.isFinite(m.orbs?.normal) ? (m.orbs!.normal as number) : slotsForType(m.type),
+    specialSlotCount: Number.isFinite(m.orbs?.special) ? (m.orbs!.special as number) : 1,
+    rows: existing?.rows ?? [],
+  };
+});
+---
+
+<BaseLayout title="Конструктор сферовок" description="Рабочий инструмент сборки сферовок мутантов" canonical="https://archivist-library.com/sferovki">
+  <SferovkaBrowser client:load rows={rows} />
+</BaseLayout>
