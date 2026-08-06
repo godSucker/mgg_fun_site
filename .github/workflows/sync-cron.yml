@@ -179,6 +179,25 @@ jobs:
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
         run: npx tsx scripts/build-toplists.ts
 
+      - name: 4.7 Авто-подтяжка иконок скинов (модалка мутанта)
+        # Идёт ПОСЛЕ build-skins (4.3/4.5) - источник правды, какие skin id вообще
+        # существуют, это src/data/mutants/skins.json. Additive-only: докачивает
+        # icon_<skinId>.png с Kobojo CDN только для новых id, не трогает уже
+        # известные записи skin-icons.json. См. scripts/sync-skin-icons.ts.
+        if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
+        run: npx tsx scripts/sync-skin-icons.ts
+
+      - name: 4.8 Сохранение изменений иконок скинов
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🤖 Auto-Sync: иконки скинов'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
+          branch: main
+          file_pattern: 'src/data/mutants/skin-icons.json public/skins/**'
+
       - name: 5. Проверка изменений
         id: check-changes
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
@@ -293,6 +312,10 @@ jobs:
           fi
           if [ -f scripts/.cache/exchange-summary.md ]; then
             cat scripts/.cache/exchange-summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f scripts/.cache/skin-icons-summary.md ]; then
+            cat scripts/.cache/skin-icons-summary.md >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
           if [ -f scripts/.cache/parser-summary.md ]; then

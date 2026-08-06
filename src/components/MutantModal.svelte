@@ -23,6 +23,7 @@
   import { baseMutantId as baseId } from '@/lib/utils';
   import obtainData from '@/data/mutants/obtain.json';
   import toplistsData from '@/data/mutants/toplists.json';
+  import skinIconsData from '@/data/mutants/skin-icons.json';
 
   // Топ/анти-топ бейджи - берём только "текущий" (последний) снапшот toplists.json,
   // который пересобирается build-toplists.ts при каждом обновлении mutants.json,
@@ -161,94 +162,14 @@
       : currentMultiplier
   );
 
-  const SKIN_ICON: Record<string, string> = {
-    // --- Имена гачи (skins.json генерируется из gacha.xml) -> существующие файлы иконок.
-    // Старые ключи ниже оставлены как алиасы на случай ручных/легаси-данных.
-    'girl': '/skins/icon_girl_power.webp',
-    'starwars': '/skins/icon_star_wars.webp',
-    'summer': '/skins/icon_summer_skin.webp',
-    'spring': '/skins/icon_spring_skin.webp',
-    'autumn': '/skins/icon_autumn_skin.webp',
-    'school': '/skins/icon_school_skin.webp',
-    'villains': '/skins/icon_villain.webp',
-    'heroes': '/skins/icon_hero.webp',
-    'worker': '/skins/icon_workers_day.webp',
-    'labor': '/skins/icon_workers_day.webp',
-    'europe': '/skins/icon_europe_day.webp',
-    'independence': '/skins/icon_independence_day.webp',
-    'blueplanet': '/skins/icon_blue_planet.webp',
-    'valentines': '/skins/icon_valentine_s_day.webp',
-    'aprilfools': '/skins/icon_1_april.webp',
-    'tcg': '/skins/icon_card_game_skin.webp',
-    'elements': '/skins/icon_elementals_team.webp',
-    'lucha': '/skins/icon_muchachos.webp',
-    'olympians': '/skins/icon_gods_of_olympus.webp',
-    'patrick': '/skins/icon_saint_patrick_day.webp',
-    'vegetal': '/skins/icon_photosynthesis.webp',
-    'camo': '/skins/icon_army.webp',
-    'revolution': '/skins/icon_french_revolution.webp',
-    'beach': '/skins/icon_tropical_summer.webp',
-    'music': '/skins/icon_disco.webp',
-    'gachaboss': '/skins/icon_big_boss.webp',
-    'movies': '/skins/icon_film.webp',
-    'kings': '/skins/icon_royal.webp',
-    // Скачаны с CDN игры (assets/gachacontent/icon_<gachaId>.png) -> webp.
-    'advent': '/skins/icon_advent.webp',
-    'chess': '/skins/icon_chess.webp',
-    'confrontation': '/skins/icon_confrontation.webp',
-    'honeybee': '/skins/icon_honeybee.webp',
-    'jefferson': '/skins/icon_jefferson.webp',
-    'masks': '/skins/icon_masks.webp',
-    'olympics': '/skins/icon_olympics.webp',
-    'science': '/skins/icon_science.webp',
-    'soldiers': '/skins/icon_soldiers.webp',
-    'xinnian': '/skins/icon_xinnian.webp',
-    'xmas25': '/skins/icon_xmas25.webp',
-
-    'anniversary': '/skins/icon_anniversary.webp',
-    '1_april': '/skins/icon_1_april.webp',
-    'autumn_skin': '/skins/icon_autumn_skin.webp',
-    'carnival': '/skins/icon_carnival.webp',
-    'card_game_skin': '/skins/icon_card_game_skin.webp',
-    'easter': '/skins/icon_easter.webp',
-    'elementals_team': '/skins/icon_elementals_team.webp',
-    'europe_day': '/skins/icon_europe_day.webp',
-    'fantasy': '/skins/icon_fantasy.webp',
-    'girl_power': '/skins/icon_girl_power.webp',
-    'gothic': '/skins/icon_gothic.webp',
-    'halloween': '/skins/icon_halloween.webp',
-    'hero': '/skins/icon_hero.webp',
-    'japan': '/skins/icon_japan.webp',
-    'muchachos': '/skins/icon_muchachos.webp',
-    'oktoberfest': '/skins/icon_oktoberfest.webp',
-    'Gods_of_Olympus': '/skins/icon_gods_of_olympus.webp',
-    'royal': '/skins/icon_royal.webp',
-    'saint_patrick_day': '/skins/icon_saint_patrick_day.webp',
-    'school_skin': '/skins/icon_school_skin.webp',
-    'photosynthesis': '/skins/icon_photosynthesis.webp',
-    'army': '/skins/icon_army.webp',
-    'spring_skin': '/skins/icon_spring_skin.webp',
-    'star_wars': '/skins/icon_star_wars.webp',
-    'steampunk': '/skins/icon_steampunk.webp',
-    'summer_skin': '/skins/icon_summer_skin.webp',
-    'blue_planet': '/skins/icon_blue_planet.webp',
-    "valentine's_day": '/skins/icon_valentine_s_day.webp',
-    "St. Valentine's Day": '/skins/icon_st._valentine_s_day.webp',
-    'villain': '/skins/icon_villain.webp',
-    'western': '/skins/icon_western.webp',
-    'winter': '/skins/icon_winter.webp',
-    'workers_day': '/skins/icon_workers_day.webp',
-    'french_revolution': '/skins/icon_french_revolution.webp',
-    'tropical_summer': '/skins/icon_tropical_summer.webp',
-    'tropical summer': '/skins/icon_tropical_summer.webp',
-    'disco': '/skins/icon_disco.webp',
-    'independence_day': '/skins/icon_independence_day.webp',
-    'big_boss': '/skins/icon_big_boss.webp',
-    'blood_sport': '/skins/icon_blood_sport.webp',
-    'britani_buranka': '/skins/icon_britani_buranka.webp',
-    'film': '/skins/icon_film.webp',
-    'timecop': '/skins/icon_timecop.webp',
-  };
+  // Иконки скинов - официальный арт игры (assets/gachacontent/icon_<gachaId>.png на
+  // Kobojo CDN), .png. Ключ = живой gachaId, тот же id, что хранится в skins.json
+  // (skin-поле, генерится из gacha.xml). Карта живёт в data/mutants/skin-icons.json,
+  // а не здесь - её умеет пополнять scripts/sync-skin-icons.ts. Часть skin id НЕ
+  // имеют иконки на CDN игры вообще (404, не баг сайта) - для них skinIcon() вернёт
+  // null, кнопка скина откатится на текстуру скина через onerror-фолбэк (см. память
+  // skin-icons-cdn).
+  const SKIN_ICON: Record<string, string> = skinIconsData;
   const skinIcon = (skinName: string) => {
     if (!skinName) return null;
     if (SKIN_ICON[skinName]) return SKIN_ICON[skinName];
