@@ -1,4 +1,47 @@
 {
+  "gemstones": {
+    "token_cost": 5,
+    "hc_cost": 2500,
+    "filter": "gacha_pack_gemstones",
+    "basic_elements": [
+      {
+        "specimen": "Specimen_AF_04",
+        "stars": 3,
+        "odds": 32,
+        "bonus": 15
+      },
+      {
+        "specimen": "Specimen_AD_04",
+        "stars": 3,
+        "odds": 23,
+        "bonus": 15
+      },
+      {
+        "specimen": "Specimen_FA_07",
+        "stars": 2,
+        "odds": 20,
+        "bonus": 25
+      },
+      {
+        "specimen": "Specimen_AD_07",
+        "stars": 3,
+        "odds": 15,
+        "bonus": 10
+      },
+      {
+        "specimen": "Specimen_FF_10",
+        "stars": 4,
+        "odds": 10,
+        "bonus": 10
+      }
+    ],
+    "completion_reward": {
+      "specimen": "Specimen_EF_15",
+      "stars": 4,
+      "odds": 11,
+      "bonus": 0
+    }
+  },
   "girl": {
     "token_cost": 1,
     "hc_cost": 1125,
@@ -857,6 +900,6 @@
       "stars": 4,
       "odds": 11,
       "bonus": 0
-     }
-   }
- }
+    }
+  }
+}

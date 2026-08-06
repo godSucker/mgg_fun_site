@@ -846,6 +846,13 @@
             "value": 1556
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 1554
+          },
+          {
             "id": "specimen_ab_15",
             "name": "Глючное сердце",
             "star": "normal",
@@ -2173,6 +2180,13 @@
             "name": "Кудамоно",
             "star": "platinum",
             "icon": "/textures_by_mutant/fc_08/specimen_fc_08_platinum.webp",
+            "value": 1014
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
             "value": 1014
           },
           {
@@ -4924,6 +4938,13 @@
             "value": 6666
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 6666
+          },
+          {
             "id": "specimen_cd_06",
             "name": "Сэр Мопсингтон",
             "star": "platinum",
@@ -5496,6 +5517,13 @@
             "star": "platinum",
             "icon": "/textures_by_mutant/ae_12/specimen_ae_12_platinum.webp",
             "value": 4682
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 4680
           },
           {
             "id": "specimen_cc_11",
@@ -10869,6 +10897,13 @@
             "value": 4.65
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 4.63
+          },
+          {
             "id": "specimen_ba_01",
             "name": "Зомборг",
             "star": "platinum",
@@ -12185,6 +12220,13 @@
             "value": 3.57
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 3.57
+          },
+          {
             "id": "specimen_dc_13",
             "name": "Пилометродон",
             "star": "platinum",
@@ -12733,6 +12775,13 @@
             "value": 84
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 84
+          },
+          {
             "id": "specimen_cf_99",
             "name": "Рид, Истинный герой",
             "star": "normal",
@@ -12751,6 +12800,13 @@
             "name": "Сверхмассивная бесконечность",
             "star": "normal",
             "icon": "/textures_by_mutant/de_14/specimen_de_14_normal.webp",
+            "value": 45
+          },
+          {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
             "value": 45
           },
           {
@@ -17149,6 +17205,14 @@
           ],
           "ability_regen_plus": [
             {
+              "id": "specimen_ef_15",
+              "name": "Гео-Алмаз",
+              "star": "platinum",
+              "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+              "pct": 77,
+              "value": 1197
+            },
+            {
               "id": "specimen_b_12",
               "name": "Костосборка",
               "star": "platinum",
@@ -19651,6 +19715,14 @@
               "value": 403
             },
             {
+              "id": "specimen_fa_15",
+              "name": "Маджика, Королева Арифмантики",
+              "star": "normal",
+              "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+              "pct": 39,
+              "value": 395
+            },
+            {
               "id": "specimen_ef_06",
               "name": "Мэндор",
               "star": "platinum",
@@ -21173,6 +21245,13 @@
             "value": 12682
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 12566
+          },
+          {
             "id": "specimen_cc_10",
             "name": "Урган",
             "star": "platinum",
@@ -22186,6 +22265,13 @@
             "star": "platinum",
             "icon": "/textures_by_mutant/a_14/specimen_a_14_platinum.webp",
             "value": 8666
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 8568
           },
           {
             "id": "specimen_ba_10",
@@ -25881,6 +25967,13 @@
             "value": 26520
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 25998
+          },
+          {
             "id": "specimen_fb_14",
             "name": "Загам, Великий Король Жадности",
             "star": "normal",
@@ -26460,6 +26553,13 @@
             "star": "platinum",
             "icon": "/textures_by_mutant/ae_12/specimen_ae_12_platinum.webp",
             "value": 18260
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 18252
           },
           {
             "id": "specimen_cc_11",
@@ -31833,6 +31933,13 @@
             "value": 4.65
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 4.63
+          },
+          {
             "id": "specimen_ba_01",
             "name": "Зомборг",
             "star": "platinum",
@@ -33149,6 +33256,13 @@
             "value": 3.57
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 3.57
+          },
+          {
             "id": "specimen_dc_13",
             "name": "Пилометродон",
             "star": "platinum",
@@ -33697,6 +33811,13 @@
             "value": 2520
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 2520
+          },
+          {
             "id": "specimen_cf_99",
             "name": "Рид, Истинный герой",
             "star": "normal",
@@ -33715,6 +33836,13 @@
             "name": "Сверхмассивная бесконечность",
             "star": "normal",
             "icon": "/textures_by_mutant/de_14/specimen_de_14_normal.webp",
+            "value": 1350
+          },
+          {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
             "value": 1350
           },
           {
@@ -38113,6 +38241,14 @@
           ],
           "ability_regen_plus": [
             {
+              "id": "specimen_ef_15",
+              "name": "Гео-Алмаз",
+              "star": "platinum",
+              "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+              "pct": 77,
+              "value": 9676
+            },
+            {
               "id": "specimen_b_12",
               "name": "Костосборка",
               "star": "platinum",
@@ -40407,6 +40543,14 @@
               "value": 3408
             },
             {
+              "id": "specimen_fa_15",
+              "name": "Маджика, Королева Арифмантики",
+              "star": "normal",
+              "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+              "pct": 39,
+              "value": 3342
+            },
+            {
               "id": "specimen_eb_99",
               "name": "Диабло",
               "star": "normal",
@@ -41984,6 +42128,13 @@
             "value": 6666
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 6666
+          },
+          {
             "id": "specimen_cd_06",
             "name": "Сэр Мопсингтон",
             "star": "platinum",
@@ -42514,6 +42665,13 @@
             "star": "platinum",
             "icon": "/textures_by_mutant/ae_12/specimen_ae_12_platinum.webp",
             "value": 4682
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 4680
           },
           {
             "id": "specimen_cc_11",
@@ -47929,6 +48087,13 @@
             "value": 4.65
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 4.63
+          },
+          {
             "id": "specimen_ba_01",
             "name": "Зомборг",
             "star": "platinum",
@@ -49238,6 +49403,13 @@
             "value": 3.57
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 3.57
+          },
+          {
             "id": "specimen_dc_13",
             "name": "Пилометродон",
             "star": "platinum",
@@ -49793,6 +49965,13 @@
             "value": 84
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 84
+          },
+          {
             "id": "specimen_cf_99",
             "name": "Рид, Истинный герой",
             "star": "normal",
@@ -49811,6 +49990,13 @@
             "name": "Сверхмассивная бесконечность",
             "star": "normal",
             "icon": "/textures_by_mutant/de_14/specimen_de_14_normal.webp",
+            "value": 45
+          },
+          {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
             "value": 45
           },
           {
@@ -53788,6 +53974,13 @@
             "value": 12682
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 12566
+          },
+          {
             "id": "specimen_cc_10",
             "name": "Урган",
             "star": "platinum",
@@ -54780,6 +54973,13 @@
             "star": "normal",
             "icon": "/textures_by_mutant/bf_09/specimen_bf_09_normal.webp",
             "value": 8596
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 8568
           },
           {
             "id": "specimen_ba_10",
@@ -58510,6 +58710,13 @@
             "value": 25997
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 25997
+          },
+          {
             "id": "specimen_cd_06",
             "name": "Сэр Мопсингтон",
             "star": "platinum",
@@ -59040,6 +59247,13 @@
             "star": "platinum",
             "icon": "/textures_by_mutant/ae_12/specimen_ae_12_platinum.webp",
             "value": 18260
+          },
+          {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 18252
           },
           {
             "id": "specimen_cc_11",
@@ -64455,6 +64669,13 @@
             "value": 4.65
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 4.63
+          },
+          {
             "id": "specimen_ba_01",
             "name": "Зомборг",
             "star": "platinum",
@@ -65764,6 +65985,13 @@
             "value": 3.57
           },
           {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+            "value": 3.57
+          },
+          {
             "id": "specimen_dc_13",
             "name": "Пилометродон",
             "star": "platinum",
@@ -66319,6 +66547,13 @@
             "value": 2520
           },
           {
+            "id": "specimen_fa_15",
+            "name": "Маджика, Королева Арифмантики",
+            "star": "normal",
+            "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+            "value": 2520
+          },
+          {
             "id": "specimen_cf_99",
             "name": "Рид, Истинный герой",
             "star": "normal",
@@ -66337,6 +66572,13 @@
             "name": "Сверхмассивная бесконечность",
             "star": "normal",
             "icon": "/textures_by_mutant/de_14/specimen_de_14_normal.webp",
+            "value": 1350
+          },
+          {
+            "id": "specimen_ef_15",
+            "name": "Гео-Алмаз",
+            "star": "platinum",
+            "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
             "value": 1350
           },
           {
@@ -70735,6 +70977,14 @@
           ],
           "ability_regen_plus": [
             {
+              "id": "specimen_ef_15",
+              "name": "Гео-Алмаз",
+              "star": "platinum",
+              "icon": "/textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+              "pct": 77,
+              "value": 9676
+            },
+            {
               "id": "specimen_b_12",
               "name": "Костосборка",
               "star": "platinum",
@@ -73027,6 +73277,14 @@
               "icon": "/textures_by_mutant/da_13/specimen_da_13_platinum.webp",
               "pct": 45,
               "value": 3408
+            },
+            {
+              "id": "specimen_fa_15",
+              "name": "Маджика, Королева Арифмантики",
+              "star": "normal",
+              "icon": "/textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+              "pct": 39,
+              "value": 3342
             },
             {
               "id": "specimen_ba_13",

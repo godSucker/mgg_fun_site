@@ -4093,6 +4093,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Самоцветы"
     }
   ],
   "specimen_ad_05": [
@@ -4583,6 +4587,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Самоцветы"
     }
   ],
   "specimen_ad_08": [
@@ -6795,6 +6803,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Lucky Slots»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Самоцветы"
     }
   ],
   "specimen_af_05": [
@@ -42703,6 +42715,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Самоцветы"
     }
   ],
   "specimen_fa_08": [
@@ -49573,6 +49589,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Самоцветы"
     }
   ],
   "specimen_ff_11": [
@@ -49688,6 +49708,12 @@
     {
       "type": "jackpot_hall",
       "where": "Зал обмена — 3900 жетонов Hexcity"
+    }
+  ],
+  "specimen_ef_15": [
+    {
+      "type": "gacha",
+      "where": "Реактор — Самоцветы"
     }
   ]
 }
