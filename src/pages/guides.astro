@@ -23,45 +23,33 @@ import { calculateFinalStats } from '../lib/stats/unified-calculator';
 import divisionFightsData from '../data/guides/division-fights.json';
 import GuidesBrowser from '../components/guides/GuidesBrowser.svelte';
 import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
+import {
+  resolveMutantLite,
+  maxStar,
+  mutantIcon,
+  resolveReward as resolveRewardShared,
+  resolveCurrencySummary as resolveCurrencySummaryShared,
+  resolveItemList as resolveItemListShared,
+  resolveDungeon as resolveDungeonShared,
+  type MutantRaw,
+  type RewardResolveCtx,
+  type RewardRaw as SharedRewardRaw,
+} from '../lib/guides-resolve';
 
-const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'];
-
-interface Mutant {
-  id: string;
-  name: string;
-  genes?: string[];
-  stars: Record<string, { images?: string[] } | undefined>;
+interface Mutant extends MutantRaw {
   base_stats: { lvl1: { silver: number } };
 }
 
 const mutantsById = new Map((mutantsData as Mutant[]).map((m) => [m.id, m]));
 
-function maxStar(m: Mutant): string {
-  for (const key of STAR_ORDER) if (m.stars?.[key]) return key;
-  return 'normal';
-}
-function mutantIcon(m: Mutant): string {
-  const star = maxStar(m);
-  const raw = m.stars?.[star]?.images?.[0];
-  if (!raw) return '';
-  return raw.startsWith('/') ? raw : `/${raw}`;
-}
 function mutantIconAtStar(m: Mutant, star: string): string {
   const raw = m.stars?.[star]?.images?.[0];
   if (!raw) return mutantIcon(m);
   return raw.startsWith('/') ? raw : `/${raw}`;
 }
-function mutantFullArt(m: Mutant): string {
-  const star = maxStar(m);
-  const folder = m.id.replace(/^specimen_/, '');
-  const suffix = star === 'normal' ? '' : `_${star}`;
-  return `/textures_by_mutant/${folder}/FULL_${folder}${suffix}.png`;
-}
 
 function resolve(id: string) {
-  const m = mutantsById.get(id);
-  if (!m) return null;
-  return { id: m.id, name: m.name, genes: m.genes ?? [], icon: mutantIcon(m), fullArt: mutantFullArt(m) };
+  return resolveMutantLite(id, mutantsById);
 }
 
 const legendaries = (legendaryIds as string[]).map(resolve).filter((x): x is NonNullable<typeof x> => x !== null);
@@ -106,68 +94,25 @@ const farmers = (farmerRows as FarmerRow[]).map((row) => {
   return { ...row, mutants, silverPerHour, relative };
 });
 
-function prettifyId(id: string): string {
-  return id.replace(/_/g, ' ').replace(/\bHC\b/, '').trim();
-}
-
 // Событийные жетоны (Material_*_Token) не всегда есть в localisation_ru.txt /
 // craft-simulator.ts, но почти всегда описаны на /materials (material.json).
 interface MaterialEntry { id: string; name?: string; texture?: string }
 const materialsById = new Map((materialData as MaterialEntry[]).map((m) => [m.id, m]));
-function getMaterialName(id: string): string | null {
-  return materialsById.get(id)?.name ?? null;
-}
-function getMaterialTexture(id: string): string | null {
-  return materialsById.get(id)?.texture ?? null;
-}
 
-interface RewardRaw { type: string; id?: string | null; amount?: string | number | null }
-interface MutantLiteFull { id: string; name: string; genes: string[]; icon: string; fullArt: string }
-interface ResolvedReward { label: string; icon: string | null; mutant?: MutantLiteFull }
+const rewardCtx: RewardResolveCtx = {
+  mutantsById,
+  materialsById,
+  translateItemId,
+  getItemTexture,
+  getLocalisedName,
+  getGeneIcon,
+  geneRu: GENE_RU,
+};
 
-function resolveReward(reward: RewardRaw | null): ResolvedReward {
-  if (!reward) return { label: '—', icon: null };
-  const amount = reward.amount ? String(reward.amount) : '';
-  const amountSuffix = amount && amount !== '1' ? ` ×${amount}` : '';
-  if (reward.type === 'softcurrency') {
-    return { label: `${Number(amount).toLocaleString('ru-RU')} серебра`, icon: '/cash/softcurrency.webp' };
-  }
-  if (reward.type === 'hardcurrency') {
-    return { label: `${Number(amount).toLocaleString('ru-RU')} золота`, icon: '/cash/hardcurrency.webp' };
-  }
-  if (reward.type === 'experience') {
-    return { label: `${Number(amount).toLocaleString('ru-RU')} опыта`, icon: getItemTexture('Material_XP1000') };
-  }
-  if (reward.type === 'custom' && reward.id?.startsWith('allele-')) {
-    const gene = reward.id.split('-')[1];
-    return { label: `Открывает ген «${GENE_RU[gene] ?? gene}» для скрещивания`, icon: getGeneIcon(gene) };
-  }
-  if (reward.type === 'entity' && reward.id) {
-    if (reward.id.startsWith('Specimen_')) {
-      const m = resolve(reward.id.toLowerCase());
-      if (m) return { label: m.name, icon: m.icon, mutant: m };
-      return { label: translateItemId(reward.id), icon: null };
-    }
-    if (reward.id.startsWith('Habitat_') || reward.id.startsWith('Building_')) {
-      const match = reward.id.match(/_(\d+)_HC$/);
-      const size = match ? Number(match[1]) + 1 : null;
-      const label = getLocalisedName(reward.id) ?? (size ? `Люкс-зона x${size}` : prettifyId(reward.id));
-      return { label, icon: null };
-    }
-    // Временные ("заряд N боёв") орбы: orb_x_y_NN_ephemeral_10 - в локализации почти
-    // никогда нет точного ключа с конкретным числом зарядов, но базовый orb_x_y_NN есть.
-    const ephemeralMatch = reward.id.match(/^(.+)_ephemeral_(\d+)$/);
-    if (ephemeralMatch) {
-      const [, baseId, charges] = ephemeralMatch;
-      const baseName = getLocalisedName(reward.id) ?? getLocalisedName(baseId) ?? getMaterialName(baseId) ?? translateItemId(baseId);
-      return { label: `${baseName} (заряд ${charges})${amountSuffix}`, icon: getItemTexture(baseId) ?? getMaterialTexture(baseId) };
-    }
-    return {
-      label: `${getLocalisedName(reward.id) ?? getMaterialName(reward.id) ?? translateItemId(reward.id)}${amountSuffix}`,
-      icon: getItemTexture(reward.id) ?? getMaterialTexture(reward.id),
-    };
-  }
-  return { label: '—', icon: null };
+type RewardRaw = SharedRewardRaw;
+
+function resolveReward(reward: RewardRaw | null) {
+  return resolveRewardShared(reward, rewardCtx);
 }
 
 const locationsByMapId = new Map((divisionLocations as { map_id: string; name: string; lore: string }[]).map((l) => [l.map_id, l]));
@@ -277,28 +222,15 @@ interface EventLadderRaw {
 }
 
 function resolveCurrencySummary(currency: RewardCurrency) {
-  const out: ResolvedReward[] = [];
-  if (currency.softcurrency) out.push(resolveReward({ type: 'softcurrency', amount: currency.softcurrency }));
-  if (currency.hardcurrency) out.push(resolveReward({ type: 'hardcurrency', amount: currency.hardcurrency }));
-  if (currency.experience) out.push(resolveReward({ type: 'experience', amount: currency.experience }));
-  return out;
+  return resolveCurrencySummaryShared(currency, rewardCtx);
 }
 
 function resolveItemList(items: RewardItem[]) {
-  return items.map((it) => resolveReward({ type: 'entity', id: it.id, amount: it.amount }));
+  return resolveItemListShared(items, rewardCtx);
 }
 
 function resolveDungeon(d: DungeonRaw) {
-  return {
-    id: d.id,
-    name: d.name,
-    nameAuthored: d.nameAuthored,
-    mutant: d.mutantId ? resolve(d.mutantId.toLowerCase()) : null,
-    fightCount: d.fightCount,
-    bossCount: d.bossCount,
-    currency: resolveCurrencySummary(d.rewards.currency),
-    items: resolveItemList(d.rewards.items),
-  };
+  return resolveDungeonShared(d, rewardCtx);
 }
 
 const raids = (raidsData as DungeonRaw[]).map(resolveDungeon);

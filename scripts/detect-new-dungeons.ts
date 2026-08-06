@@ -42,13 +42,15 @@ async function loadJson<T>(p: string, fallback: T): Promise<T> {
   }
 }
 
-interface ParsedDungeon {
+export interface ParsedDungeon {
   id: string
   type: 'raid' | 'experiment' | 'challenge'
   rewards: { id: string; amount: string }[]
 }
 
-function parseDungeonsXml(xml: string): ParsedDungeon[] {
+// Экспортируется для finish-pending.ts (нужен mutantId - витринная награда
+// уровня <Dungeon>, её нет в per-fight dungeon_<id>.xml).
+export function parseDungeonsXml(xml: string): ParsedDungeon[] {
   const result: ParsedDungeon[] = []
   const blocks = xml.match(/<Dungeon\b[^>]*>[\s\S]*?<\/Dungeon>/g) ?? []
   for (const block of blocks) {
@@ -142,7 +144,10 @@ async function main() {
   await fs.writeFile(PENDING_PATH, JSON.stringify(pending, null, 2) + '\n', 'utf-8')
 }
 
-main().catch((err) => {
-  console.error('[DUNGEON-WATCH] Ошибка:', err instanceof Error ? err.message : err)
-  process.exit(1)
-})
+// Только при прямом запуске - см. аналогичный комментарий в detect-new-reactors.ts.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('[DUNGEON-WATCH] Ошибка:', err instanceof Error ? err.message : err)
+    process.exit(1)
+  })
+}

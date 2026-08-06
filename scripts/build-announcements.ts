@@ -48,6 +48,8 @@ interface Ledger {
   box: string[]
   exchange: string[]
   rebalance: string[]
+  raid: string[]
+  ladder: string[]
 }
 
 const EMPTY_LEDGER: Ledger = {
@@ -57,6 +59,8 @@ const EMPTY_LEDGER: Ledger = {
   box: [],
   exchange: [],
   rebalance: [],
+  raid: [],
+  ladder: [],
 }
 
 async function loadJson<T>(relPath: string, fallback: T): Promise<T> {
@@ -229,6 +233,78 @@ async function detectExchange(seen: string[]): Promise<DetectResult> {
   }
 }
 
+// Полноценный resolveReward из src/lib/guides-resolve.ts требует craft-simulator.ts/
+// localisation.ts, которые тянут `?raw`-txt и `@/`-алиасы - это Vite-фичи, недоступные
+// в голом tsx-скрипте вне Astro/Vite-пайплайна (детектор запускается через `npx tsx`
+// напрямую в CI). Поэтому здесь - упрощённый резолвер только через material.json
+// (обычный JSON, грузится как все остальные детекторы) + mutants.json. Награды рейдов/
+// лесенок на практике это звёзды/материалы/орбы/жетоны/валюта/мутант - всё это material.json
+// покрывает; для остального (тот же fallback, что у SKIN_NAME_RU) - сырой id.
+async function dungeonItemName(
+  id: string,
+  materialsById: Map<string, { name?: string; texture?: string }>,
+  mutantsById: Map<string, { name: string; stars?: StarsMap }>,
+): Promise<{ label: string; image: string | null }> {
+  if (id.startsWith('Specimen_')) {
+    const m = mutantsById.get(id.toLowerCase())
+    return { label: m?.name ?? id, image: firstMutantImage(m?.stars) }
+  }
+  const mat = materialsById.get(id)
+  return { label: mat?.name ?? id, image: mat?.texture ?? null }
+}
+
+interface DungeonRawShape {
+  id: string
+  name: string
+  mutantId: string | null
+  fightCount: number
+  rewards: { currency: { softcurrency: number; hardcurrency: number }; items: { id: string; amount: number }[] }
+}
+
+async function detectDungeons(
+  seen: string[],
+  entries: DungeonRawShape[],
+  linePrefix: string,
+): Promise<DetectResult> {
+  const [materials, mutants] = await Promise.all([
+    loadJson<{ id: string; name?: string; texture?: string }[]>('src/data/materials/material.json', []),
+    loadJson<{ id: string; name: string; stars?: StarsMap }[]>('src/data/mutants/mutants.json', []),
+  ])
+  const materialsById = new Map(materials.map((m) => [m.id, m]))
+  const mutantsById = new Map(mutants.map((m) => [m.id, m]))
+
+  const seenSet = new Set(seen)
+  const fresh = entries.filter((d) => !seenSet.has(d.id))
+
+  const items = await Promise.all(
+    fresh.map(async (d) => {
+      const image = d.mutantId
+        ? (await dungeonItemName(d.mutantId, materialsById, mutantsById)).image
+        : (d.rewards.items[0] ? (await dungeonItemName(d.rewards.items[0].id, materialsById, mutantsById)).image : null)
+      return {
+        id: d.id,
+        name: `${linePrefix} «${d.name}» (${d.fightCount} боёв)`,
+        image,
+      }
+    }),
+  )
+
+  return { newIds: entries.map((d) => d.id), items }
+}
+
+async function detectRaids(seen: string[]): Promise<DetectResult> {
+  const raids = await loadJson<DungeonRawShape[]>('src/data/guides/raids.json', [])
+  return detectDungeons(seen, raids, 'Рейд')
+}
+
+async function detectLadders(seen: string[]): Promise<DetectResult> {
+  const special = await loadJson<{ experiment: DungeonRawShape[]; challenge: DungeonRawShape[] }>(
+    'src/data/guides/special-ladders.json',
+    { experiment: [], challenge: [] },
+  )
+  return detectDungeons(seen, [...special.experiment, ...special.challenge], 'Лесенка')
+}
+
 async function detectRebalance(seen: string[]): Promise<DetectResult> {
   const history = await loadJson<{ date: string; entries: { id: string; name: string }[] }[]>(
     'src/data/mutants/rebalance-history.json',
@@ -257,6 +333,8 @@ const DETECTORS: {
   { category: 'bingo', title: 'Новые бинго-доски', link: '/bingo', run: detectBingo },
   { category: 'box', title: 'Новые боксы', link: '/boxes', run: detectBoxes },
   { category: 'exchange', title: 'Обновление зала обмена', link: '/mutants', run: detectExchange },
+  { category: 'raid', title: 'Новые рейды', link: '/guides', run: detectRaids },
+  { category: 'ladder', title: 'Новые лесенки', link: '/guides', run: detectLadders },
   { category: 'rebalance', title: 'Ребаланс статов', link: '/rebalance', run: detectRebalance },
 ]
 

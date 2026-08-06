@@ -27,15 +27,22 @@ const CATEGORY_RU: Record<string, string> = {
   skin: 'Скины',
   bingo: 'Бинго',
   box: 'Боксы',
-  exchange: 'Зал обмена',
-  rebalance: 'Ребаланс',
-  reactor: 'Реактор',
+  exchange: 'Обменники',
+  raid: 'Рейды',
   ladder: 'Лесенки',
+  reactor: 'Реакторы',
+  rebalance: 'Ребаланс',
 };
 
 const announcements = ((announcementsData as Announcement[]) ?? [])
   .slice()
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Порядок вкладок - по частоте/важности, не по алфавиту; "Все" всегда первая.
+const CATEGORY_ORDER = ['mutant', 'skin', 'exchange', 'box', 'reactor', 'raid', 'ladder', 'bingo', 'rebalance'];
+const presentCategories = [...new Set(announcements.map((a) => a.category).filter((c): c is string => !!c))].sort(
+  (a, b) => CATEGORY_ORDER.indexOf(a) - CATEGORY_ORDER.indexOf(b),
+);
 
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -49,9 +56,19 @@ const fmtDate = (iso: string) =>
     {announcements.length === 0 ? (
       <div class="empty">Анонсов пока нет — заглядывай позже.</div>
     ) : (
-      <div class="feed">
+      <>
+        {presentCategories.length > 1 && (
+          <div class="filter-bar" role="tablist">
+            <button type="button" class="filter-pill is-active" data-filter="all">Все</button>
+            {presentCategories.map((c) => (
+              <button type="button" class="filter-pill" data-filter={c}>{CATEGORY_RU[c] ?? c}</button>
+            ))}
+          </div>
+        )}
+        <div class="feed">
         {announcements.map((a) => (
-          <article class="card">
+          <article class="card" data-category={a.category ?? ''}>
+
             {a.imagePath && (
               <div class="card-image">
                 <img src={a.imagePath} alt="" loading="lazy" decoding="async" />
@@ -87,10 +104,28 @@ const fmtDate = (iso: string) =>
             </div>
           </article>
         ))}
-      </div>
+        </div>
+      </>
     )}
   </main>
 </BaseLayout>
+
+<script>
+  const bar = document.querySelector<HTMLDivElement>('.filter-bar');
+  if (bar) {
+    const pills = Array.from(bar.querySelectorAll<HTMLButtonElement>('.filter-pill'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.card'));
+    bar.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.filter-pill');
+      if (!btn) return;
+      const filter = btn.dataset.filter ?? 'all';
+      pills.forEach((p) => p.classList.toggle('is-active', p === btn));
+      cards.forEach((card) => {
+        card.style.display = filter === 'all' || card.dataset.category === filter ? '' : 'none';
+      });
+    });
+  }
+</script>
 
 <style>
   .announcements-page {
@@ -113,6 +148,32 @@ const fmtDate = (iso: string) =>
     background: rgba(30, 41, 59, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
+  }
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .filter-pill {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+  }
+  .filter-pill:hover {
+    color: #e2e8f0;
+  }
+  .filter-pill.is-active {
+    color: rgb(96, 165, 250);
+    background: rgba(96, 165, 250, 0.12);
+    border-color: rgba(96, 165, 250, 0.35);
   }
   .feed {
     display: flex;

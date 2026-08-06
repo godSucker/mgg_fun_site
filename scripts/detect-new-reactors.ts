@@ -35,21 +35,26 @@ async function loadJson<T>(p: string, fallback: T): Promise<T> {
   }
 }
 
-interface GachaSpecimen {
+export interface GachaSpecimen {
   specimen: string
   stars: number
+  odds: number
+  bonus: number
 }
 
-interface ParsedGacha {
+export interface ParsedGacha {
   id: string
   tokenCost: number
   hcCost: number
   promo: string
+  filter: string
   basicElements: GachaSpecimen[]
   completionReward: GachaSpecimen | null
 }
 
-function parseGachaXml(xml: string): ParsedGacha[] {
+// Экспортируется для finish-pending.ts - тот же парсер, чтобы не разъезжаться
+// с детектором при изменении формата gacha.xml.
+export function parseGachaXml(xml: string): ParsedGacha[] {
   const result: ParsedGacha[] = []
   const gachaBlocks = xml.match(/<Gacha\b[^>]*>[\s\S]*?<\/Gacha>/g) ?? []
   for (const block of gachaBlocks) {
@@ -58,34 +63,39 @@ function parseGachaXml(xml: string): ParsedGacha[] {
     const tokenMatch = block.match(/tokenCost="([^"]+)"/)
     const hcMatch = block.match(/hcCost="([^"]+)"/)
     const promoMatch = block.match(/promo="([^"]*)"/)
+    const filterMatch = block.match(/filter="([^"]*)"/)
     if (!idMatch || hackMatch?.[1] !== 'false') continue
 
     // Атрибуты GachaSpecimen идут в непостоянном порядке (иногда id= перед
-    // specimen=) - ищем specimen/stars по всему тегу, а не по позиции.
+    // specimen=) - ищем specimen/stars/odds/bonus по всему тегу, а не по позиции.
+    const parseSpecimenTag = (tag: string): GachaSpecimen | null => {
+      const specimen = tag.match(/specimen="([^"]+)"/)?.[1]
+      const stars = tag.match(/stars="(\d+)"/)?.[1]
+      if (!specimen || !stars) return null
+      const odds = tag.match(/odds="(\d+)"/)?.[1] ?? '0'
+      const bonus = tag.match(/bonus="(\d+)"/)?.[1] ?? '0'
+      return { specimen, stars: Number(stars), odds: Number(odds), bonus: Number(bonus) }
+    }
+
     const basicElements: GachaSpecimen[] = []
     const basicBlock = block.match(/<BasicElements>([\s\S]*?)<\/BasicElements>/)?.[1] ?? ''
     for (const tag of basicBlock.match(/<GachaSpecimen\b[^>]*\/>/g) ?? []) {
-      const specimen = tag.match(/specimen="([^"]+)"/)?.[1]
-      const stars = tag.match(/stars="(\d+)"/)?.[1]
-      if (specimen && stars) basicElements.push({ specimen, stars: Number(stars) })
+      const parsed = parseSpecimenTag(tag)
+      if (parsed) basicElements.push(parsed)
     }
     const completionBlock =
       block.match(/<CompletionReward>([\s\S]*?)<\/CompletionReward>/)?.[1] ?? ''
     const completionTag = completionBlock.match(/<GachaSpecimen\b[^>]*\/>/)?.[0] ?? ''
-    const completionSpecimen = completionTag.match(/specimen="([^"]+)"/)?.[1]
-    const completionStars = completionTag.match(/stars="(\d+)"/)?.[1]
-    const completionMatch =
-      completionSpecimen && completionStars ? [null, completionSpecimen, completionStars] : null
+    const completionReward = completionTag ? parseSpecimenTag(completionTag) : null
 
     result.push({
       id: idMatch[1],
       tokenCost: Number(tokenMatch?.[1] ?? 0),
       hcCost: Number(hcMatch?.[1] ?? 0),
       promo: promoMatch?.[1] ?? '',
+      filter: filterMatch?.[1] ?? '',
       basicElements,
-      completionReward: completionMatch
-        ? { specimen: completionMatch[1], stars: Number(completionMatch[2]) }
-        : null,
+      completionReward,
     })
   }
   return result
@@ -182,7 +192,12 @@ async function main() {
   await fs.writeFile(PENDING_PATH, JSON.stringify(pending, null, 2) + '\n', 'utf-8')
 }
 
-main().catch((err) => {
-  console.error('[REACTOR-WATCH] Ошибка:', err instanceof Error ? err.message : err)
-  process.exit(1)
-})
+// Только при прямом запуске (`tsx detect-new-reactors.ts`) - finish-pending.ts
+// импортирует parseGachaXml из этого модуля и не должен попутно триггерить
+// полный прогон детектора с алертами.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('[REACTOR-WATCH] Ошибка:', err instanceof Error ? err.message : err)
+    process.exit(1)
+  })
+}

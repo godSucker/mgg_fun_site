@@ -104,6 +104,35 @@ jobs:
           branch: main
           file_pattern: 'src/data/mutants/obtain.json'
 
+      - name: 3.7 Сторож новых реакторов (gacha.xml, s-beta)
+        # Активные генераторы без официального RU-имени - только алертит в
+        # Telegram и просит .локал reactor:<id> "Имя", ничего не пишет в
+        # данные (ledger scripts/pending-names-cache.json не даёт слать один
+        # и тот же алерт дважды). См. scripts/detect-new-reactors.ts.
+        run: npx tsx scripts/detect-new-reactors.ts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: 3.8 Сторож новых рейдов/лесенок/спец-лесенок (dungeons.xml, s-beta)
+        # Та же логика, для type=raid/experiment/challenge из мастер-реестра.
+        # См. scripts/detect-new-dungeons.ts.
+        run: npx tsx scripts/detect-new-dungeons.ts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: 3.9 Сохранение pending-names-cache.json (алерты реакторов/данжей)
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🤖 Auto-Sync: алерты реакторов/данжей без имени'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
+          branch: main
+          file_pattern: 'scripts/pending-names-cache.json'
+
       - name: 4. Запуск Парсера (Режим FULL)
         id: parser
         timeout-minutes: 25
