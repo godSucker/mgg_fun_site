@@ -2,14 +2,36 @@
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import announcementsData from '@/data/announcements.json';
+import { textureUrl } from '@/lib/texture-cdn';
+
+interface AnnouncementItem {
+  id: string;
+  name: string;
+  image?: string | null;
+}
 
 interface Announcement {
   id: string;
   date: string;
-  text: string;
+  category?: string;
+  title?: string;
+  text?: string | null;
   imagePath?: string | null;
   sourceUrl?: string | null;
+  items?: AnnouncementItem[] | null;
+  link?: string | null;
 }
+
+const CATEGORY_RU: Record<string, string> = {
+  mutant: 'Мутанты',
+  skin: 'Скины',
+  bingo: 'Бинго',
+  box: 'Боксы',
+  exchange: 'Зал обмена',
+  rebalance: 'Ребаланс',
+  reactor: 'Реактор',
+  ladder: 'Лесенки',
+};
 
 const announcements = ((announcementsData as Announcement[]) ?? [])
   .slice()
@@ -37,7 +59,26 @@ const fmtDate = (iso: string) =>
             )}
             <div class="card-body">
               <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
-              <p class="card-text">{a.text}</p>
+              {a.category && <span class="card-category">{CATEGORY_RU[a.category] ?? a.category}</span>}
+              {a.title && <h2 class="card-title">{a.title}</h2>}
+              {a.text && <p class="card-text">{a.text}</p>}
+              {a.items && a.items.length > 0 && (
+                <ul class="item-grid">
+                  {a.items.map((it) => (
+                    <li class="item-card">
+                      {it.image && (
+                        <img class="item-image" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />
+                      )}
+                      <span class="item-name">{it.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {a.link && (
+                <a class="card-source" href={a.link}>
+                  Подробнее →
+                </a>
+              )}
               {a.sourceUrl && (
                 <a class="card-source" href={a.sourceUrl} target="_blank" rel="noopener noreferrer">
                   Источник →
@@ -111,11 +152,57 @@ const fmtDate = (iso: string) =>
     padding: 0.2rem 0.6rem;
     margin-bottom: 0.6rem;
   }
+  .card-category {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: rgb(250, 204, 21);
+    background: rgba(250, 204, 21, 0.12);
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+  }
+  .card-title {
+    margin: 0.6rem 0 0.3rem;
+    font-size: 1.15rem;
+    color: #fceabb;
+  }
   .card-text {
     color: #e2e8f0;
     line-height: 1.6;
     white-space: pre-wrap;
     word-break: break-word;
+  }
+  .item-grid {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0.7rem 0;
+    padding: 0;
+  }
+  .item-card {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.4rem 0.7rem 0.4rem 0.4rem;
+  }
+  .item-image {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .item-name {
+    font-size: 0.85rem;
+    color: #e2e8f0;
   }
   .card-source {
     display: inline-block;

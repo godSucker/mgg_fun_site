@@ -198,6 +198,29 @@ jobs:
           branch: main
           file_pattern: 'src/data/mutants/skin-icons.json public/skins/**'
 
+      - name: 4.9 Авто-публикация анонсов (мутанты/скины/бинго/боксы/обменники/ребаланс)
+        # Идёт ПОСЛЕДНИМ из data-шагов - нужны самые свежие версии ВСЕХ JSON
+        # разом (mutants/skins/bingos/boxes/obtain/rebalance-history). Ledger
+        # (scripts/announced-ids-cache.json, НЕ scripts/.cache/ - та папка в
+        # .gitignore и не переживает между прогонами CI) хранит уже
+        # опубликованные id, так что повторный прогон не задублирует пост,
+        # даже если этот шаг упадёт и перезапустится завтра. См. память
+        # auto-announcements-architecture - это Фаза 1 (без LLM, без .локал -
+        # только типы, где RU-имя уже есть в самих данных).
+        if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
+        run: npx tsx scripts/build-announcements.ts
+
+      - name: 4.10 Сохранение анонсов
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🤖 Auto-Sync: анонсы'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
+          branch: main
+          file_pattern: 'src/data/announcements.json scripts/announced-ids-cache.json'
+
       - name: 5. Проверка изменений
         id: check-changes
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
@@ -316,6 +339,10 @@ jobs:
           fi
           if [ -f scripts/.cache/skin-icons-summary.md ]; then
             cat scripts/.cache/skin-icons-summary.md >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f scripts/.cache/announcements-summary.md ]; then
+            cat scripts/.cache/announcements-summary.md >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
           if [ -f scripts/.cache/parser-summary.md ]; then

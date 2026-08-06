@@ -63,6 +63,26 @@ jobs:
           branch: main
           file_pattern: 'src/data/mutants/*.json'
 
+      - name: 6.1 Авто-публикация анонса (ребаланс)
+        # Публикуем сразу, не дожидаясь завтрашнего дневного sync-cron -
+        # ребаланс запускается вручную/по вебхуку, задержка в анонсе не нужна.
+        # Тот же ledger (scripts/announced-ids-cache.json), что у sync-cron.yml -
+        # общая concurrency-группа "sync-cron" (см. комментарий вверху файла)
+        # не даёт этому и дневному прогону писать в него одновременно.
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: npx tsx scripts/build-announcements.ts
+
+      - name: 6.2 Сохранение анонса
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🤖 Parser Rebalance: анонс'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
+          branch: main
+          file_pattern: 'src/data/announcements.json scripts/announced-ids-cache.json'
+
       - name: 7. Итоги работы
         if: always()
         run: |
