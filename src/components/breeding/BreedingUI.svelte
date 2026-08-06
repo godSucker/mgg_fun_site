@@ -5,6 +5,7 @@
   import type { Mutant, BreedingResult, BuildingLevel, StarLevel } from '@/lib/breeding/breeding';
   import { fly, fade, slide } from 'svelte/transition';
   import { normalizeSearch } from '@/lib/search-normalize';
+  import { isBreedableLegend } from '@/lib/breeding/type-filters';
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { textureUrl } from '@/lib/texture-cdn';
   import { getGeneIcon as getGeneIconPath, getTypeIcon as getTypeIconPath } from '@/lib/mutant-icons';
@@ -264,29 +265,57 @@
   let sortAsc = $state(true);
   let showAll = $state(false);
   let reverseStar: StarLevel = $state(0);
+  let easyMode = $state(false);
+  let easyModalOpen = $state(false);
 
   const TOP_N = 15;
 
+  // "Доступные мутанты" - пул для лёгкой прогрессии: сам целевой мутант (любой
+  // тип), Обычные/Начальные, выводимые легендарки (BREEDABLE_LEGENDS) и два
+  // именных исключения (Ксенарахнид - первый дивизион, Ориас - за регу в FB).
+  const EASY_MODE_EXTRA = new Set([normalizeSearch('Ксенарахнид'), normalizeSearch('Ориас')]);
+  function isEasyModePool(m: Mutant): boolean {
+    if (!target) return true;
+    if (String(m.id) === String(target.id)) return true;
+    if ((m.type || 'default').toLowerCase() === 'default') return true;
+    if (isBreedableLegend(m.name)) return true;
+    if (EASY_MODE_EXTRA.has(normalizeSearch(m.name))) return true;
+    return false;
+  }
+  function passesEasyMode(r: any): boolean {
+    return !easyMode || (isEasyModePool(r.p1) && isEasyModePool(r.p2));
+  }
+
   const byRecommended = $derived(() => {
-    const sorted = guideResults.filter((r: any) => !r.isSecret).sort((a, b) =>
+    const sorted = guideResults.filter((r: any) => !r.isSecret && passesEasyMode(r)).sort((a, b) =>
       recommendedScore(b.probability, b.duration) - recommendedScore(a.probability, a.duration)
     );
     return sorted.slice(0, 200);
   });
 
   const byTime = $derived(() => {
-    const sorted = guideResults.filter((r: any) => !r.isSecret).sort((a, b) =>
+    const sorted = guideResults.filter((r: any) => !r.isSecret && passesEasyMode(r)).sort((a, b) =>
       a.duration !== b.duration ? a.duration - b.duration : b.probability - a.probability
     );
     return sorted.slice(0, 200);
   });
 
   const byProbability = $derived(() => {
-    const sorted = guideResults.filter((r: any) => !r.isSecret).sort((a, b) =>
+    const sorted = guideResults.filter((r: any) => !r.isSecret && passesEasyMode(r)).sort((a, b) =>
       b.probability !== a.probability ? b.probability - a.probability : a.duration - b.duration
     );
     return sorted.slice(0, 200);
   });
+
+  function toggleEasyMode() {
+    easyMode = !easyMode;
+    if (easyMode) {
+      easyModalOpen = true;
+      sortField = 'recommended';
+      sortAsc = true;
+    }
+    showAll = false;
+  }
 
   let tabCount = $derived(() => {
     if (allSecrets) return guideResults.length;
@@ -610,6 +639,9 @@
                                       <button class="sort-btn rec-btn {sortField === 'recommended' ? 'active' : ''}" onclick={() => toggleSort('recommended')}>
                                           Рекомендуемое
                                       </button>
+                                      <button class="sort-btn easy-btn {easyMode ? 'active' : ''}" onclick={toggleEasyMode}>
+                                          Доступные мутанты
+                                      </button>
                                       <button class="sort-btn {sortField === 'duration' ? 'active' : ''}" onclick={() => toggleSort('duration')}>
                                           Время {sortField === 'duration' ? (sortAsc ? '↑' : '↓') : ''}
                                       </button>
@@ -774,6 +806,21 @@
   <div class="notification-toast" in:fly={{y: 40, duration: 300}} out:fade={{duration: 200}}>
     <span class="notification-text">{notificationMessage}</span>
     <button class="notification-close" onclick={() => { showNotification = false; if (notificationTimeout) clearTimeout(notificationTimeout); }}>✕</button>
+  </div>
+{/if}
+
+{#if easyModalOpen}
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <div class="easy-modal-overlay" onclick={(e) => { if (e.target === e.currentTarget) easyModalOpen = false; }} in:fade={{duration: 150}} out:fade={{duration: 150}}>
+    <div class="easy-modal-panel" role="dialog" aria-modal="true" aria-label="Доступные мутанты">
+      <p>
+        Этот фильтр отображает варианты только с легкодоступными мутантами (начальные + выводимые
+        легендарки). Данный фильтр подойдет только для игроков на ранней прогрессии и может содержать
+        не самые оптимальные варианты для скрещивания.
+      </p>
+      <button class="easy-modal-ok" onclick={() => easyModalOpen = false}>Понятно</button>
+    </div>
   </div>
 {/if}
 
@@ -1210,6 +1257,27 @@
   .rec-btn { border-color: rgba(251,191,36,0.25); color: #fbbf24; }
   .rec-btn:hover { background: rgba(251,191,36,0.1); color: #fcd34d; }
   .rec-btn.active { background: rgba(251,191,36,0.15); color: #fbbf24; border-color: rgba(251,191,36,0.4); }
+  .easy-btn { border-color: rgba(248,113,113,0.3); color: #f87171; }
+  .easy-btn:hover { background: rgba(248,113,113,0.1); color: #fca5a5; }
+  .easy-btn.active { background: rgba(248,113,113,0.18); color: #f87171; border-color: rgba(248,113,113,0.5); }
+
+  .easy-modal-overlay {
+    position: fixed; inset: 0; z-index: 95; background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center; padding: 1rem;
+  }
+  .easy-modal-panel {
+    max-width: 420px; background: #0f172a; border: 1px solid rgba(248,113,113,0.3);
+    border-radius: 14px; padding: 1.25rem; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .easy-modal-panel p { font-size: 0.85rem; line-height: 1.5; color: #cbd5e1; margin: 0; }
+  .easy-modal-ok {
+    align-self: flex-end; background: rgba(248,113,113,0.15); color: #f87171;
+    border: 1px solid rgba(248,113,113,0.4); border-radius: 8px; padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.15s;
+  }
+  .easy-modal-ok:hover { background: rgba(248,113,113,0.25); }
 
   .results-list {
     padding: 0.5rem;
@@ -1362,17 +1430,17 @@
   .p-names { font-size: 0.7rem; color: #cbd5e1; font-weight: 600; line-height: 1.2; }
   .p-name { display: none; }
   .pair-stats {
-    display: flex; gap: 0.5rem; align-items: center;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem;
     flex-shrink: 0; margin-left: auto; margin-right: 1.5rem;
-    min-width: 120px; justify-content: flex-end;
+    min-width: 78px;
   }
   .pair-time {
     font-size: 0.65rem; color: #94a3b8; white-space: nowrap;
-    width: 60px; text-align: right;
+    text-align: right;
   }
   .pair-prob {
     font-size: 0.65rem; color: #4ade80; font-weight: 700; white-space: nowrap;
-    width: 42px; text-align: right;
+    text-align: right;
   }
   @media (max-width: 480px) {
     .pair-card {
@@ -1400,19 +1468,19 @@
     }
     .p-imgs .plus { font-size: 0.55rem; }
     .pair-stats {
-        display: flex; flex-direction: row; gap: 0.35rem;
-        flex-shrink: 0; margin-left: auto; margin-right: 0.3rem;
+        display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem;
+        flex-shrink: 0; margin-left: auto; margin-right: 0.3rem; min-width: 0;
     }
     .pair-time, .pair-prob {
-        display: flex; align-items: center; justify-content: center;
-        width: 52px; padding: 0.2rem 0;
-        box-sizing: border-box;
+        display: flex; align-items: center; justify-content: flex-end;
+        padding: 0; box-sizing: border-box; white-space: nowrap;
     }
-    .pair-time { font-size: 0.7rem; color: #94a3b8; width: 60px; }
-    .pair-prob { font-size: 0.7rem; color: #4ade80; font-weight: 700; width: 56px; }
+    .pair-time { font-size: 0.7rem; color: #94a3b8; }
+    .pair-prob { font-size: 0.7rem; color: #4ade80; font-weight: 700; }
     .sort-btn { width: 46px; justify-content: center; padding: 0.15rem 0.2rem; font-size: 0.6rem; }
-    .sort-btn.rec-btn { width: auto; padding: 0.15rem 0.35rem; }
-    .sort-controls { gap: 0.35rem; }
+    .sort-btn.rec-btn, .sort-btn.easy-btn { width: auto; padding: 0.15rem 0.35rem; }
+    .sort-controls { gap: 0.35rem; flex-wrap: wrap; justify-content: flex-start; }
+    .results-header { flex-direction: column; align-items: center; gap: 0.5rem; }
   }
   .show-all-btn {
     width: 100%; margin-top: 0.5rem;

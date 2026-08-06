@@ -293,7 +293,6 @@
                   <li>
                     <div class="history-info">
                       <img class="history-icon" src={textureUrl(spin.icon)} alt={spin.label} loading="lazy" />
-                      <span class="title">{spin.label}</span>
                     </div>
                     <span class="odds">+{formatAmountWithUnit(spin.reward.amount, spin.reward.type)}</span>
                   </li>
@@ -725,7 +724,7 @@
   .results-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     align-items: flex-start;
   }
 
@@ -767,11 +766,12 @@
 
   .table-row {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.7fr) minmax(0, 1fr);
+    grid-template-columns: minmax(4rem, 1fr) minmax(3.2rem, auto) minmax(5.5rem, auto);
     gap: 0.75rem;
     align-items: center;
     color: rgba(248, 250, 252, 0.85);
   }
+  .table-row > span:last-child { text-align: right; }
 
   .table-row.head {
     font-size: 0.75rem;

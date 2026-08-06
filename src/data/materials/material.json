@@ -24,16 +24,58 @@
     "texture": "/materials/Material_Event_Token.png"
   },
   {
-    "id": "Material_7th_Anniversary_Token",
-    "name": "Жетон 7-й годовщины",
-    "description": "Жетон в честь 7-й годовщины игры Mutants: Genetic Gladiators",
-    "texture": "/materials/Material_7th_Anniversary_Token.png"
+    "id": "Material_Halloween_Soul",
+    "name": "Потерянная душа",
+    "description": "Душа мутанта. Можно обменять у Торговца душами.",
+    "texture": "/materials/Material_Halloween_Soul.png"
   },
   {
-    "id": "Material_Easter_Token",
-    "name": "Пасхальный жетон",
-    "description": "Жетон на пасху",
-    "texture": "/materials/Material_Easter_Token.png"
+    "id": "Material_Love_Token",
+    "name": "Жетон любви",
+    "description": "Жетон любви",
+    "texture": "/materials/Material_Love_Token.png"
+  },
+  {
+    "id": "Material_Easter_2019_Chocobase",
+    "name": "Chocobase",
+    "description": "Маленькая шоколадная конфета. Можно использовать, чтобы получить немного опыта, или рафинировать в Черной дыре и получить продвинутый шоколад.",
+    "texture": "/materials/Material_Easter_2019_Chocobase.png"
+  },
+  {
+    "id": "Material_Easter_2019_Chocoplus",
+    "name": "Chocoplus",
+    "description": "Продвинутый шоколад. Можно использовать, чтобы получить хорошее количество опыта, или еще больше рафинировать его в Черной дыре.",
+    "texture": "/materials/Material_Easter_2019_Chocoplus.png"
+  },
+  {
+    "id": "Material_Easter_2019_Chocomax",
+    "name": "Chocomax",
+    "description": "Лучший шоколад. Можно использовать, чтобы получить много опыта, или обменять в Обменном пункте.",
+    "texture": "/materials/Material_Easter_2019_Chocomax.png"
+  },
+  {
+    "id": "Material_Dark_Matter",
+    "name": "Осколок темной материи",
+    "description": "Стабильный осколок странного черного-фиолетового кристалла. Возможно, они связаны с текущими событиями?",
+    "texture": "/materials/Material_Dark_Matter.png"
+  },
+  {
+    "id": "Material_Antimatter",
+    "name": "Осколок антиматерии",
+    "description": "Осторожно! Может рвануть!",
+    "texture": "/materials/Material_Antimatter.png"
+  },
+  {
+    "id": "Material_Winter_Orange",
+    "name": "Апельсин",
+    "description": "Подарок, который можно получить, выполнив задания Рождественского события.",
+    "texture": "/materials/Material_Winter_Orange.png"
+  },
+  {
+    "id": "Material_Winter_Coal",
+    "name": "Уголь",
+    "description": "Жетон на новый год",
+    "texture": "/materials/Material_Winter_Coal.png"
   },
   {
     "id": "Material_Plague_Token",
@@ -46,6 +88,12 @@
     "name": "Жетон ящика игрушек",
     "description": "Жетон ящика игрушек",
     "texture": "/materials/Material_Toybox_Token.png"
+  },
+  {
+    "id": "Material_7th_Anniversary_Token",
+    "name": "Жетон 7-й годовщины",
+    "description": "Жетон в честь 7-й годовщины игры Mutants: Genetic Gladiators",
+    "texture": "/materials/Material_7th_Anniversary_Token.png"
   },
   {
     "id": "Material_Easter21_Token",
@@ -78,10 +126,22 @@
     "texture": "/materials/Material_Valentines22_Token.png"
   },
   {
+    "id": "Material_Easter22_Token",
+    "name": "Жетон зайца",
+    "description": "Жетон на пасху",
+    "texture": "/materials/Material_Easter22_Token.png"
+  },
+  {
     "id": "Material_Data_Token",
     "name": "Жетон данных",
     "description": "Жетон данных",
     "texture": "/materials/Material_Data_Token.png"
+  },
+  {
+    "id": "Material_Grave_Token",
+    "name": "Могильный жетон",
+    "description": "Могильный жетон",
+    "texture": "/materials/Material_Grave_Token.png"
   },
   {
     "id": "Material_Snowstorm_Token",
@@ -100,12 +160,6 @@
     "name": "Жетон спелеологии",
     "description": "Жетон спелеологии",
     "texture": "/materials/Material_Spelunking_Token.png"
-  },
-  {
-    "id": "Material_Weirdtech_Token",
-    "name": "Жетон FutureTech",
-    "description": "Жетон спелеологии",
-    "texture": "/materials/Material_Weirdtech_Token.png"
   },
   {
     "id": "Material_Overlay_Token",
@@ -156,12 +210,6 @@
     "texture": "/materials/Material_Xmas24_Token.png"
   },
   {
-    "id": "Material_Mystery25_Token",
-    "name": "Таинственный жетон 2025",
-    "description": "Таинственный жетон 2025",
-    "texture": "/materials/Material_Mystery25_Token.png"
-  },
-  {
     "id": "Material_Runic_Token",
     "name": "Рунический жетон",
     "description": "Рунический жетон",
@@ -180,40 +228,70 @@
     "texture": "/materials/Material_Masks_Token.png"
   },
   {
+    "id": "Material_Mystery25_Token",
+    "name": "Таинственный жетон 2025",
+    "description": "Таинственный жетон 2025",
+    "texture": "/materials/Material_Mystery25_Token.png"
+  },
+  {
+    "id": "Material_Signal_Token",
+    "name": "Жетон сигнала",
+    "description": "Жетон сигнала",
+    "texture": "/materials/Material_Signal_Token.png"
+  },
+  {
+    "id": "Material_Xmas25_Token",
+    "name": "Рождественский жетон 2025",
+    "description": "Рождественский жетон 2025",
+    "texture": "/materials/Material_Xmas25_Token.png"
+  },
+  {
+    "id": "Material_Valentines26_Token",
+    "name": "Жетон Валентина 2026",
+    "description": "Жетон Валентина 2026",
+    "texture": "/materials/Material_Valentines26_Token.png"
+  },
+  {
+    "id": "Material_Easter26_Token",
+    "name": "Пасхальный жетон 2026",
+    "description": "Пасхальный жетон 2026",
+    "texture": "/materials/Material_Easter26_Token.png"
+  },
+  {
+    "id": "Material_Mystery26_Token",
+    "name": "Таинственный жетон 2026",
+    "description": "Таинственный жетон 2026",
+    "texture": "/materials/Material_Mystery26_Token.png"
+  },
+  {
+    "id": "Material_Easter_Token",
+    "name": "Пасхальный жетон",
+    "description": "Жетон на пасху",
+    "texture": "/materials/Material_Easter_Token.png"
+  },
+  {
+    "id": "Material_Weirdtech_Token",
+    "name": "Жетон FutureTech",
+    "description": "Жетон спелеологии",
+    "texture": "/materials/Material_Weirdtech_Token.png"
+  },
+  {
+    "id": "Material_Preorder_Token",
+    "name": "Жетон Сержанта Сумерки",
+    "description": "Жетон Сержанта Сумерки",
+    "texture": "/materials/Material_Preorder_Token.png"
+  },
+  {
+    "id": "Preorder_Token_DE_10_gold",
+    "name": "Жетон «Золотой Безумный Майк»",
+    "description": "Жетон «Золотой Безумный Майк»",
+    "texture": "/materials/Preorder_Token_DE_10_gold.png"
+  },
+  {
     "id": "Material_Tcg_Corgi_Token",
     "name": "Жетон корги",
     "description": "Можно было получить купив пакет в магазине",
     "texture": "/materials/Material_Tcg_Corgi_Token.png"
-  },
-  {
-    "id": "Material_Easter_2019_Chocobase",
-    "name": "Chocobase",
-    "description": "Маленькая шоколадная конфета. Можно использовать, чтобы получить немного опыта, или рафинировать в Черной дыре и получить продвинутый шоколад.",
-    "texture": "/materials/Material_Easter_2019_Chocobase.png"
-  },
-  {
-    "id": "Material_Easter_2019_Chocoplus",
-    "name": "Chocoplus",
-    "description": "Продвинутый шоколад. Можно использовать, чтобы получить хорошее количество опыта, или еще больше рафинировать его в Черной дыре.",
-    "texture": "/materials/Material_Easter_2019_Chocoplus.png"
-  },
-  {
-    "id": "Material_Easter_2019_Chocomax",
-    "name": "Chocomax",
-    "description": "Лучший шоколад. Можно использовать, чтобы получить много опыта, или обменять в Обменном пункте.",
-    "texture": "/materials/Material_Easter_2019_Chocomax.png"
-  },
-  {
-    "id": "Material_Dark_Matter",
-    "name": "Осколок темной материи",
-    "description": "Стабильный осколок странного черного-фиолетового кристалла. Возможно, они связаны с текущими событиями?",
-    "texture": "/materials/Material_Dark_Matter.png"
-  },
-  {
-    "id": "Material_Antimatter",
-    "name": "Осколок антиматерии",
-    "description": "Осторожно! Может рвануть!",
-    "texture": "/materials/Material_Antimatter.png"
   },
   {
     "id": "Material_Banshee_Veil",
@@ -222,28 +300,10 @@
     "texture": "/materials/Material_Banshee_Veil.png"
   },
   {
-    "id": "Material_Easter22_Token",
-    "name": "Жетон зайца",
-    "description": "Жетон на пасху",
-    "texture": "/materials/Material_Easter22_Token.png"
-  },
-  {
     "id": "Material_Winter_Snowball",
     "name": "Снежный ком",
     "description": "Снежный ком",
     "texture": "/materials/Material_Winter_Snowball.png"
-  },
-  {
-    "id": "Material_Winter_Orange",
-    "name": "Апельсин",
-    "description": "Подарок, который можно получить, выполнив задания Рождественского события.",
-    "texture": "/materials/Material_Winter_Orange.png"
-  },
-  {
-    "id": "Material_Winter_Coal",
-    "name": "Уголь",
-    "description": "Жетон на новый год",
-    "texture": "/materials/Material_Winter_Coal.png"
   },
   {
     "id": "Material_Mutenstein_Token",
@@ -288,69 +348,9 @@
     "texture": "/materials/Material_Claiomh_Solais.png"
   },
   {
-    "id": "Material_Grave_Token",
-    "name": "Могильный жетон",
-    "description": "Могильный жетон",
-    "texture": "/materials/Material_Grave_Token.png"
-  },
-  {
-    "id": "Material_Love_Token",
-    "name": "Жетон любви",
-    "description": "Жетон любви",
-    "texture": "/materials/Material_Love_Token.png"
-  },
-  {
-    "id": "Material_Preorder_Token",
-    "name": "Жетон Сержанта Сумерки",
-    "description": "Жетон Сержанта Сумерки",
-    "texture": "/materials/Material_Preorder_Token.png"
-  },
-  {
-    "id": "Preorder_Token_DE_10_gold",
-    "name": "Жетон «Золотой Безумный Майк»",
-    "description": "Жетон «Золотой Безумный Майк»",
-    "texture": "/materials/Preorder_Token_DE_10_gold.png"
-  },
-  {
-    "id": "Material_Signal_Token",
-    "name": "Жетон сигнала",
-    "description": "Жетон сигнала",
-    "texture": "/materials/Material_Signal_Token.png"
-  },
-  {
-    "id": "Material_Xmas25_Token",
-    "name": "Рождественский жетон 2025",
-    "description": "Рождественский жетон 2025",
-    "texture": "/materials/Material_Xmas25_Token.png"
-  },
-  {
-    "id": "Material_Mystery26_Token",
-    "name": "Таинственный жетон 2026",
-    "description": "Таинственный жетон 2026",
-    "texture": "/materials/Material_Mystery26_Token.png"
-  },
-  {
-    "id": "Material_Valentines26_Token",
-    "name": "Жетон Валентина 2026",
-    "description": "Жетон Валентина 2026",
-    "texture": "/materials/Material_Valentines26_Token.png"
-  },
-  {
-    "id": "Material_Easter26_Token",
-    "name": "Пасхальный жетон 2026",
-    "description": "Пасхальный жетон 2026",
-    "texture": "/materials/Material_Easter26_Token.png"
-  },
-  {
     "id": "Material_Hallowen_Nightmare",
     "name": "Жетон кошмара",
     "description": "Жетон на хеллоуин"
-  },
-  {
-    "id": "Material_Halloween_Soul",
-    "name": "Потерянная душа",
-    "description": "Душа мутанта. Можно обменять у Торговца душами.",
-    "texture": "/materials/Material_Halloween_Soul.png"
   },
   {
     "id": "Material_Hexcity_Token",

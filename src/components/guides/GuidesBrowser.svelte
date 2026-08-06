@@ -151,8 +151,6 @@
   }
   const GENE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
-  const CRIT_ORB_PCT = [2, 5, 11, 13, 15, 17, 18, 19]
-
   let activeTab = $state('legendaries')
 
   function openMutant(specimenId: string) {
@@ -640,23 +638,24 @@
 
       <h2>Крит-шанс</h2>
       <p>
-        Базовый шанс крита — <strong>5%</strong>. К нему добавляются все бонусы критшанса (чармы +
-        сферы), и вся сумма умножается на эти 5%, а не складывается напрямую:
+        Базовый шанс крита — <strong>5%</strong>.
+      </p>
+      <p>
+        К нему добавляются все бонусы крит-шанса (бустеры + сферы), и вся сумма умножается на эти 5%,
+        а не складывается напрямую:
+      </p>
+      <p class="formula-legend">
+        бустеры<sub>даю</sub> — ваш бустер крита; бустеры<sub>получаю</sub> — антикрит-бустер противника
       </p>
       <div class="formula-box">
-        шанс крита = 5% × (100 + чармы<sub>даю</sub> + чармы<sub>получаю</sub> + сферы<sub>крит</sub>) / 100
+        шанс крита = 5% × (100 + бустеры<sub>даю</sub> + бустеры<sub>получаю</sub> + сферы<sub>крит</sub>) / 100
       </div>
       <p>
-        Сферы крит шанса дают <strong>2 → 5 → 11 → 13 → 15 → 17 → 18 → 19%</strong> и бустят именно
-        <strong> шанс</strong> крита, а не урон от него — в ру локализации написано иначе, и это опечатка
-        локализаторов. Чарм крита даёт +50% (тир меняет только длительность действия, не силу), антикрит-чарм
-        — −75% получаемого шанса.
+        Сферы крит шанса с 0 по 7 уровень дают <strong>2 → 5 → 11 → 13 → 15 → 17 → 18 → 19%</strong> и
+        бустят именно <strong>шанс</strong> крита, а не урон от него — в ру локализации написано иначе, и
+        это опечатка локализаторов. Бустер крита даёт +50% (тир меняет только длительность действия, не
+        силу), антикрит-бустер — −75% получаемого шанса.
       </p>
-      <div class="chip-row">
-        {#each CRIT_ORB_PCT as pct, i (i)}
-          <span class="chip">+{pct}%</span>
-        {/each}
-      </div>
 
       <h2>Формула урона</h2>
       <p>Итоговый урон считается в три шага, в таком порядке:</p>
@@ -756,6 +755,36 @@
         по гарантированному не-крит урону. Настоящий бросок крита происходит один раз, уже в момент
         реального удара уже выбранным ходом — тем же кодом, что обрабатывает ваш собственный тап по
         экрану.
+      </p>
+
+      <h2>Хил неиспользованного тандема</h2>
+      <p>
+        Тандем, который вы не задействовали в бою, всё равно лечит вашего мутанта — да, тандемы умеют
+        хилить.
+      </p>
+      <div class="formula-box">
+        хил = уровень славы тандема × 100 ÷ 3 &nbsp;(или, что то же самое, уровень славы ÷ 0,03)
+      </div>
+      <div class="numbers-grid">
+        <div class="number-card ok">
+          <div class="number-card-title">Слава 100</div>
+          <div class="number-card-value">3 333 HP</div>
+        </div>
+        <div class="number-card ok">
+          <div class="number-card-title">Слава 200</div>
+          <div class="number-card-value">6 666 HP</div>
+        </div>
+        <div class="number-card ok">
+          <div class="number-card-title">Слава 300</div>
+          <div class="number-card-value">10 000 HP</div>
+        </div>
+        <div class="number-card ok">
+          <div class="number-card-title">Слава 400</div>
+          <div class="number-card-value">13 333 HP</div>
+        </div>
+      </div>
+      <p>
+        При поражении в PvP тандем не лечит — этот хил срабатывает только при победе.
       </p>
     </div>
   {:else}
@@ -883,6 +912,9 @@
   }
   .note { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.87rem; color: #bfdbfe; }
 
+  .numbers-tab .formula-legend {
+    font-size: 0.8rem; color: #94a3b8; margin: 0.5rem 0 0;
+  }
   .numbers-tab .formula-box {
     background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px;
     padding: 0.85rem 1rem; margin: 0.6rem 0 0.9rem; font-family: ui-monospace, "SF Mono", Menlo, monospace;
@@ -894,12 +926,6 @@
     flex-shrink: 0; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: rgba(96,165,250,0.18);
     color: #93c5fd; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
   }
-  .numbers-tab .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; }
-  .numbers-tab .chip {
-    background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #86efac;
-    border-radius: 999px; padding: 0.2rem 0.65rem; font-size: 0.78rem; font-weight: 600;
-  }
-
   .type-table-wrap { overflow-x: auto; margin: 0 0 1.25rem; }
   .type-table { border-collapse: collapse; width: 100%; min-width: 480px; font-size: 0.82rem; }
   .type-table th, .type-table td { padding: 0.45rem 0.6rem; text-align: center; border: 1px solid rgba(255,255,255,0.07); }

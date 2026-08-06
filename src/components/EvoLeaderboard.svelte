@@ -264,10 +264,10 @@
   .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
 
   .list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .list-header { display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; padding: 0 1.5rem; color: #e5e7eb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  .list-header { display: grid; grid-template-columns: 72px 1.5fr 1fr 100px; column-gap: 0.75rem; padding: 0 1.5rem; color: #e5e7eb; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
   .col-lvl { text-align: right; }
 
-  .row { position: relative; display: grid; grid-template-columns: 60px 1.5fr 1fr 100px; align-items: center; background: rgb(30, 41, 59); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); padding: 1rem 1.5rem; transition: transform 0.2s, background 0.2s; cursor: pointer; }
+  .row { position: relative; display: grid; grid-template-columns: 72px 1.5fr 1fr 100px; column-gap: 0.75rem; align-items: center; background: rgb(30, 41, 59); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); padding: 1rem 1.5rem; transition: transform 0.2s, background 0.2s; cursor: pointer; }
   .row:hover { background: rgba(30, 41, 59, 0.8); transform: scale(1.01); }
 
   .rank-gold { background: linear-gradient(90deg, rgb(234, 179, 8), rgb(30, 41, 59)); border-color: rgb(234, 179, 8); transition: background-color 0.3s ease, opacity 0.3s ease; }
@@ -280,7 +280,7 @@
   .rank-bronze .cell.rank { color: #fbbf24; }
 
   .rank-badge { position: absolute; left: -55px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; white-space: nowrap; }
-  .cell.rank span { display: inline-block; padding-left: 15px; }
+  .cell.rank span { display: inline-block; padding-left: 15px; padding-right: 8px; white-space: nowrap; }
 
   .cell.name { font-weight: 600; color: #f1f5f9; font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
   .cell.tandem { color: #e5e7eb; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans"; }
