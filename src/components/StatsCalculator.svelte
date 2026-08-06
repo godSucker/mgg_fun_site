@@ -2372,11 +2372,11 @@
   .mut-row{ display:flex; align-items:center; gap:12px; background:#1b212a; border:1px solid #2e3948; border-radius:12px; padding:10px; width:100%; text-align: left; cursor: pointer; }
   .mut-row.active{ border-color:#90f36b; }
   .mut-icon{ width:44px; height:44px; border-radius:8px; background:#0f1319; object-fit:cover; flex-shrink: 0; }
-  .mut-meta{ flex:1; display:flex; flex-direction:column; }
+  .mut-meta{ flex:1; min-width:0; display:flex; flex-direction:column; }
   .mut-meta .name{ font-size:13px; color:#e9eef6; }
   .mut-meta .genes{ display:flex; gap:4px; }
   .mut-meta .genes img{ width:20px; height:20px; }
-  .rar{ font-size:11px; color:#aab6c8; }
+  .rar{ font-size:11px; color:#aab6c8; flex-shrink:0; max-width:80px; text-align:right; }
 
   .panel{ background:#2a313c; border-radius:16px; padding:10px 12px; display:flex; flex-direction:column; gap:6px; position: relative; }
   @media (min-width: 768px) {
