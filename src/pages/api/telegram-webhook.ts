@@ -48,6 +48,12 @@ function getFormatsMessage(): string {
     '.анонс',
     '```',
     '',
+    '🏷️ *Локализация* — ответ на алерт про новый реактор/рейд/лесенку без офиц. RU-имени:',
+    '```',
+    '.локал reactor:gemstones "Самоцветы"',
+    '.локал dungeon:hexcity_2 "Hex City: Часть 2"',
+    '```',
+    '',
     '🏆 *Тир* — .txt-файл, в подписи к файлу обязательно `.тир`; строки внутри файла — любой из форматов:',
     '```',
     'Азимов (2+)',
@@ -614,6 +620,40 @@ async function processOrbingFile(
   return results.join('\n')
 }
 
+// ".локал <key> \"Имя\"" - Фаза 2 авто-анонсов (реакторы/рейды/лесенки).
+// Detect-скрипты (scripts/detect-new-reactors.ts, detect-new-dungeons.ts,
+// запускаются из sync-cron.yml) находят новый объект в игровых данных,
+// шлют алерт в этот чат с ключом вида "reactor:<id>"/"dungeon:<id>" и
+// контекстом (что за объект, награды и т.п.) - в игре у таких объектов
+// официального RU-имени нет (проверено на живых данных, см. память
+// auto-announcements-architecture), так что имя придумывает человек.
+//
+// Сам вебхук НЕ качает арт и не пишет в gacha.json/raids.json - для этого
+// нужны rclone/aws-креды, которых у serverless-функции быть не должно.
+// Вебхук только сохраняет сырое имя в resolved-names-cache.json и дёргает
+// GitHub Actions workflow_dispatch (finish-pending.yml) - тот уже в CI,
+// с полным тулингом, докачивает арт/CDN/пишет данные/публикует анонс.
+const LOCAL_NAME_TRIGGER = '.локал'
+const RESOLVED_NAMES_PATH = 'scripts/resolved-names-cache.json'
+const FINISH_PENDING_WORKFLOW = 'finish-pending.yml'
+
+async function triggerWorkflow(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  workflowFile: string,
+): Promise<boolean> {
+  const res = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflowFile}/dispatches`,
+    {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ref: 'main' }),
+    },
+  )
+  return res.status === 204
+}
+
 async function resolveMutantIdByName(
   githubToken: string,
   owner: string,
@@ -841,6 +881,64 @@ export const POST: APIRoute = async ({ request }) => {
           return await reply('🔴 Не удалось сохранить announcements.json')
         }
         return await reply(`✅ Опубликовано: https://archivist-library.com/announcements`)
+      }
+      if (text.trim().toLowerCase().startsWith(LOCAL_NAME_TRIGGER)) {
+        const targetChatId = chatId
+        const reply = async (msg: string) => {
+          await sendTelegramMessage(BOT_TOKEN, targetChatId, `[Локализация]\n${msg}`)
+          return new Response(JSON.stringify({ ok: true }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          })
+        }
+
+        if (!GITHUB_TOKEN || !REPO_OWNER || !REPO_NAME) {
+          return await reply('🔴 GitHub credentials не настроены')
+        }
+
+        const match = text.match(/\.локал\s+(\S+)\s+"([^"]+)"/i)
+        if (!match) {
+          return await reply('🔴 Формат: .локал reactor:<id> "Имя" (или dungeon:<id> "Имя")')
+        }
+        const [, key, name] = match
+
+        const file = await fetchGithubJsonFile(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          RESOLVED_NAMES_PATH,
+        )
+        if (!file) {
+          return await reply('🔴 Не удалось загрузить resolved-names-cache.json')
+        }
+        const data = (file.json as Record<string, string>) ?? {}
+        data[key] = name
+
+        const ok = await putGithubJsonFile(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          RESOLVED_NAMES_PATH,
+          file.sha,
+          data,
+          `Локализация: ${key} = "${name}"`,
+        )
+        if (!ok) {
+          return await reply('🔴 Не удалось сохранить имя')
+        }
+
+        const triggered = await triggerWorkflow(
+          GITHUB_TOKEN,
+          REPO_OWNER,
+          REPO_NAME,
+          FINISH_PENDING_WORKFLOW,
+        )
+        return await reply(
+          `✅ Имя "${name}" сохранено для ${key}.` +
+            (triggered
+              ? ' Запускаю доделку (арт/CDN/публикация)...'
+              : ' ⚠️ Не удалось запустить workflow — доделка произойдёт на следующем sync-cron.'),
+        )
       }
       if (text.trim().toLowerCase().startsWith(ORBING_TRIGGER)) {
         const targetChatId = chatId
