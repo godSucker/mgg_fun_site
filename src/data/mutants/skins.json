@@ -831,6 +831,32 @@
       ]
     },
     {
+      "id": "Specimen_AD_04",
+      "name": "Смертожук 1",
+      "genes": [
+        "A",
+        "D"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2484,
+          "atk1": 676,
+          "atk2": 676
+        },
+        "lvl30": {
+          "hp": 9688,
+          "atk1": 3955,
+          "atk2": 3955
+        }
+      },
+      "star": "gold",
+      "skin": "gemstones",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_ad_04_gemstones.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_04_gemstones.webp"
+      ]
+    },
+    {
       "id": "Specimen_AD_05",
       "name": "Киберкрок",
       "genes": [
@@ -880,6 +906,32 @@
       "image": [
         "textures_by_skins/textures_by_skin/full/FULL_ad_06_valentines.png",
         "textures_by_skins/textures_by_skin/semi-full/specimen_ad_06_valentines.webp"
+      ]
+    },
+    {
+      "id": "Specimen_AD_07",
+      "name": "Бензиновая оса",
+      "genes": [
+        "A",
+        "D"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3648,
+          "atk1": 512,
+          "atk2": 512
+        },
+        "lvl30": {
+          "hp": 14227,
+          "atk1": 3002,
+          "atk2": 3002
+        }
+      },
+      "star": "gold",
+      "skin": "gemstones",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_ad_07_gemstones.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ad_07_gemstones.webp"
       ]
     },
     {
@@ -1140,6 +1192,32 @@
       "image": [
         "textures_by_skins/textures_by_skin/full/FULL_af_03_winter.png",
         "textures_by_skins/textures_by_skin/semi-full/specimen_af_03_winter.webp"
+      ]
+    },
+    {
+      "id": "Specimen_AF_04",
+      "name": "Стремглав",
+      "genes": [
+        "A",
+        "F"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2648,
+          "atk1": 326,
+          "atk2": 326
+        },
+        "lvl30": {
+          "hp": 10328,
+          "atk1": 2080,
+          "atk2": 2080
+        }
+      },
+      "star": "gold",
+      "skin": "gemstones",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_af_04_gemstones.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_af_04_gemstones.webp"
       ]
     },
     {
@@ -2464,6 +2542,32 @@
       "image": [
         "textures_by_skins/textures_by_skin/full/FULL_be_09_masks.png",
         "textures_by_skins/textures_by_skin/semi-full/specimen_be_09_masks.webp"
+      ]
+    },
+    {
+      "id": "Specimen_BE_11",
+      "name": "Окулюс",
+      "genes": [
+        "B",
+        "E"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 3517,
+          "atk1": 2200,
+          "atk2": 2200
+        },
+        "lvl30": {
+          "hp": 13716,
+          "atk1": 12865,
+          "atk2": 12865
+        }
+      },
+      "star": "gold",
+      "skin": "hexcity",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_be_11_hexcity.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_be_11_hexcity.webp"
       ]
     },
     {
@@ -5323,6 +5427,32 @@
       ]
     },
     {
+      "id": "Specimen_EB_07",
+      "name": "Звездонатор",
+      "genes": [
+        "E",
+        "B"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2906,
+          "atk1": 767,
+          "atk2": 767
+        },
+        "lvl30": {
+          "hp": 11334,
+          "atk1": 4880,
+          "atk2": 4880
+        }
+      },
+      "star": "gold",
+      "skin": "hexcity",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_eb_07_hexcity.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_eb_07_hexcity.webp"
+      ]
+    },
+    {
       "id": "Specimen_EB_09",
       "name": "Королева Сильвидра",
       "genes": [
@@ -6332,6 +6462,32 @@
       "image": [
         "textures_by_skins/textures_by_skin/full/FULL_fa_05_winter.png",
         "textures_by_skins/textures_by_skin/semi-full/specimen_fa_05_winter.webp"
+      ]
+    },
+    {
+      "id": "Specimen_FA_07",
+      "name": "Доктор Фрост",
+      "genes": [
+        "F",
+        "A"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 2222,
+          "atk1": 836,
+          "atk2": 836
+        },
+        "lvl30": {
+          "hp": 8665,
+          "atk1": 5444,
+          "atk2": 5444
+        }
+      },
+      "star": "silver",
+      "skin": "gemstones",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_fa_07_gemstones.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_fa_07_gemstones.webp"
       ]
     },
     {
@@ -7476,6 +7632,32 @@
       "image": [
         "textures_by_skins/textures_by_skin/full/FULL_ff_09_halloween.png",
         "textures_by_skins/textures_by_skin/semi-full/specimen_ff_09_halloween.webp"
+      ]
+    },
+    {
+      "id": "Specimen_FF_10",
+      "name": "Брегбим",
+      "genes": [
+        "F",
+        "F"
+      ],
+      "base_stats": {
+        "lvl1": {
+          "hp": 6175,
+          "atk1": 2505,
+          "atk2": 1265
+        },
+        "lvl30": {
+          "hp": 24082,
+          "atk1": 14649,
+          "atk2": 7405
+        }
+      },
+      "star": "platinum",
+      "skin": "gemstones",
+      "image": [
+        "textures_by_skins/textures_by_skin/full/FULL_ff_10_gemstones.png",
+        "textures_by_skins/textures_by_skin/semi-full/specimen_ff_10_gemstones.webp"
       ]
     }
   ]
