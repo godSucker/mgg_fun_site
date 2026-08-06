@@ -441,6 +441,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Диско"
     }
   ],
   "specimen_aa_04": [
@@ -1496,6 +1500,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Супер злодеи"
     }
   ],
   "specimen_ab_03": [
@@ -1868,6 +1876,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Патруль времени"
     }
   ],
   "specimen_ab_05": [
@@ -1895,6 +1907,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Боссы"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Большой босс"
     }
   ],
   "specimen_ab_06": [
@@ -2100,6 +2116,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Тропическое лето"
     }
   ],
   "specimen_ab_08": [
@@ -2476,6 +2496,10 @@
     {
       "type": "gacha",
       "where": "Реактор — olympians"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Боги арены"
     }
   ],
   "specimen_ac_02": [
@@ -2760,6 +2784,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Темное фентези"
     }
   ],
   "specimen_ac_04": [
@@ -3115,6 +3143,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Лучадоры"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Мучачо's"
     }
   ],
   "specimen_ac_08": [
@@ -4261,6 +4293,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Патруль времени"
     }
   ],
   "specimen_ad_06": [
@@ -6210,6 +6246,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Растения"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Фотосинтез"
     }
   ],
   "specimen_af_02": [
@@ -7088,6 +7128,10 @@
     {
       "type": "pvp",
       "where": "PVP: Сезон 103"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Тропическое лето"
     }
   ],
   "specimen_af_09": [
@@ -7505,6 +7549,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Злодеи"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Супер злодеи"
     }
   ],
   "specimen_b_03": [
@@ -7981,6 +8029,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Супер злодеи"
     }
   ],
   "specimen_ba_04": [
@@ -9486,6 +9538,10 @@
     {
       "type": "pvp",
       "where": "PVP: Сезон 73"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Фотосинтез"
     }
   ],
   "specimen_bb_03": [
@@ -9678,6 +9734,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Боги арены"
     }
   ],
   "specimen_bb_04": [
@@ -10372,6 +10432,10 @@
     {
       "type": "pvp",
       "where": "PVP: Сезон 91"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Тропическое лето"
     }
   ],
   "specimen_bb_09": [
@@ -10742,6 +10806,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Боги арены"
     }
   ],
   "specimen_bc_03": [
@@ -10943,6 +11011,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Патруль времени"
     }
   ],
   "specimen_bc_05": [
@@ -12534,6 +12606,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Команда элементалей"
     }
   ],
   "specimen_bd_05": [
@@ -12728,6 +12804,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Темное фентези"
     }
   ],
   "specimen_bd_06": [
@@ -12929,6 +13009,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Солдаты"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Патруль времени"
     }
   ],
   "specimen_bd_08": [
@@ -14028,6 +14112,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Мучачо's"
     }
   ],
   "specimen_be_06": [
@@ -15553,6 +15641,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Диско"
     }
   ],
   "specimen_bf_07": [
@@ -16279,6 +16371,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Кровавые игры"
     }
   ],
   "specimen_ca_03": [
@@ -17132,6 +17228,10 @@
     {
       "type": "event_raid",
       "where": "Лесенки: Антарктика"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Фотосинтез"
     }
   ],
   "specimen_ca_07": [
@@ -17301,6 +17401,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Кровавые игры"
     }
   ],
   "specimen_ca_08": [
@@ -17452,6 +17556,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Кровавые игры"
     }
   ],
   "specimen_ca_09": [
@@ -17600,6 +17708,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Пляж"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Тропическое лето"
     }
   ],
   "specimen_ca_12": [
@@ -17648,6 +17760,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Олимпиада"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Кровавые игры"
     }
   ],
   "specimen_ca_99": [
@@ -19420,6 +19536,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Боги арены"
     }
   ],
   "specimen_cc_05": [
@@ -20955,6 +21075,10 @@
     {
       "type": "quest",
       "where": "Квест: Желтые усилители!"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Патруль времени"
     }
   ],
   "specimen_cd_07": [
@@ -21812,6 +21936,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Боги арены"
     }
   ],
   "specimen_ce_04": [
@@ -22064,6 +22192,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Злодеи"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Супер злодеи"
     }
   ],
   "specimen_ce_06": [
@@ -23082,6 +23214,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Патруль времени"
     }
   ],
   "specimen_cf_03": [
@@ -23321,6 +23457,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Мучачо's"
     }
   ],
   "specimen_cf_04": [
@@ -24441,6 +24581,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Боссы"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Большой босс"
     }
   ],
   "specimen_d_03": [
@@ -24580,6 +24724,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Злодеи"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Супер злодеи"
     }
   ],
   "specimen_da_02": [
@@ -25632,6 +25780,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Музыка"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Диско"
     }
   ],
   "specimen_da_10": [
@@ -25886,6 +26038,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Боссы"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Большой босс"
     }
   ],
   "specimen_db_02": [
@@ -26502,6 +26658,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Темное фентези"
     }
   ],
   "specimen_db_07": [
@@ -27690,6 +27850,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Мучачо's"
     }
   ],
   "specimen_dc_06": [
@@ -28081,6 +28245,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Фотосинтез"
     }
   ],
   "specimen_dc_09": [
@@ -30379,6 +30547,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Мучачо's"
     }
   ],
   "specimen_de_05": [
@@ -30618,6 +30790,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Диско"
     }
   ],
   "specimen_de_06": [
@@ -31103,6 +31279,10 @@
     {
       "type": "quest",
       "where": "Квест: Синие усилители!"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Фотосинтез"
     }
   ],
   "specimen_de_10": [
@@ -31871,6 +32051,10 @@
     {
       "type": "campaign",
       "where": "Дивизион Омега: Новый Нью-Дели"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Команда элементалей"
     }
   ],
   "specimen_df_05": [
@@ -32624,6 +32808,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Растения"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Фотосинтез"
     }
   ],
   "specimen_df_13": [
@@ -33097,6 +33285,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Боссы"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Большой босс"
     }
   ],
   "specimen_ea_02": [
@@ -34798,6 +34990,10 @@
     {
       "type": "pvp",
       "where": "PVP: Сезон 89"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Команда элементалей"
     }
   ],
   "specimen_eb_03": [
@@ -35351,12 +35547,20 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Команда элементалей"
     }
   ],
   "specimen_eb_06": [
     {
       "type": "gacha",
       "where": "Реактор — Стихии"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Команда элементалей"
     }
   ],
   "specimen_eb_07": [
@@ -36272,6 +36476,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Супер злодеи"
     }
   ],
   "specimen_ec_04": [
@@ -36584,6 +36792,10 @@
     {
       "type": "gacha",
       "where": "Реактор — olympians"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Боги арены"
     }
   ],
   "specimen_ec_07": [
@@ -39439,6 +39651,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Диско"
     }
   ],
   "specimen_ee_05": [
@@ -39847,6 +40063,10 @@
     {
       "type": "pvp",
       "where": "PVP: Сезон 80"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Тропическое лето"
     }
   ],
   "specimen_ee_08": [
@@ -40299,6 +40519,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Стихии"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Команда элементалей"
     }
   ],
   "specimen_ef_02": [
@@ -42853,6 +43077,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Lucky Slots»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Кровавые игры"
     }
   ],
   "specimen_fa_09": [
@@ -43597,6 +43825,10 @@
     {
       "type": "pvp",
       "where": "PVP: Сезон 20"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Большой босс"
     }
   ],
   "specimen_fb_04": [
@@ -43995,6 +44227,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Диско"
     }
   ],
   "specimen_fb_06": [
@@ -44933,6 +45169,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Темное фентези"
     }
   ],
   "specimen_fc_05": [
@@ -44973,6 +45213,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Темное фентези"
     }
   ],
   "specimen_fc_06": [
@@ -45353,6 +45597,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Фэнтези"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Темное фентези"
     }
   ],
   "specimen_fc_10": [
@@ -46259,6 +46507,10 @@
     {
       "type": "event_raid",
       "where": "Лесенки: Пляжные бои Майами"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Кровавые игры"
     }
   ],
   "specimen_fd_07": [
@@ -47239,6 +47491,10 @@
     {
       "type": "roulette",
       "where": "Рулетка «Mutants Madness»"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Мучачо's"
     }
   ],
   "specimen_fe_05": [
@@ -47787,6 +48043,10 @@
     {
       "type": "event_raid",
       "where": "Лесенки: Космопорт"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Тропическое лето"
     }
   ],
   "specimen_fe_09": [
@@ -48365,6 +48625,10 @@
     {
       "type": "gacha",
       "where": "Реактор — Боссы"
+    },
+    {
+      "type": "gacha",
+      "where": "Реактор — Большой босс"
     }
   ],
   "specimen_ff_02": [
