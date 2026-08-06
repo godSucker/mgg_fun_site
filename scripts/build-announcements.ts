@@ -6,7 +6,7 @@
 // где RU-имя уже есть в данных (не нужен ни LLM, ни .локал-алерт) - мутанты,
 // скины, бинго-доски, боксы, обменники, ребаланс. Реакторы/лесенки - Фаза 2.
 //
-// Механизм ledger'а (scripts/.cache/announced-ids.json, коммитится в репо):
+// Механизм ledger'а (scripts/announced-ids-cache.json, коммитится в репо):
 // на каждом прогоне сравниваем текущий набор id по каждому типу с тем, что
 // уже было объявлено. Новые id -> одна запись в announcements.json на тип
 // за прогон (не по записи на каждый id - иначе разовая партия из 20 новых
@@ -147,10 +147,9 @@ async function detectMutants(seen: string[]): Promise<DetectResult> {
 }
 
 async function detectSkins(seen: string[]): Promise<DetectResult> {
-  const data = await loadJson<{ specimens: { id: string; name: string; skin: string; image?: string[] }[] }>(
-    'src/data/mutants/skins.json',
-    { specimens: [] },
-  )
+  const data = await loadJson<{
+    specimens: { id: string; name: string; skin: string; image?: string[] }[]
+  }>('src/data/mutants/skins.json', { specimens: [] })
   const seenSet = new Set(seen)
   const byKey = new Map<string, { id: string; name: string; skin: string; image?: string[] }>()
   for (const s of data.specimens) {
@@ -184,7 +183,10 @@ async function detectBingo(seen: string[]): Promise<DetectResult> {
 }
 
 async function detectBoxes(seen: string[]): Promise<DetectResult> {
-  const boxes = await loadJson<{ itemId: string; name: string; icon?: string }[]>('src/data/boxes.json', [])
+  const boxes = await loadJson<{ itemId: string; name: string; icon?: string }[]>(
+    'src/data/boxes.json',
+    [],
+  )
   const seenSet = new Set(seen)
   const fresh = boxes.filter((b) => !seenSet.has(b.itemId))
   return {
@@ -244,7 +246,12 @@ async function detectRebalance(seen: string[]): Promise<DetectResult> {
   }
 }
 
-const DETECTORS: { category: keyof Ledger; title: string; link: string; run: typeof detectMutants }[] = [
+const DETECTORS: {
+  category: keyof Ledger
+  title: string
+  link: string
+  run: typeof detectMutants
+}[] = [
   { category: 'mutant', title: 'Новые мутанты', link: '/mutants', run: detectMutants },
   { category: 'skin', title: 'Новые скины', link: '/mutants', run: detectSkins },
   { category: 'bingo', title: 'Новые бинго-доски', link: '/bingo', run: detectBingo },
@@ -258,7 +265,9 @@ async function main() {
   const announcements = await loadJson<Announcement[]>('src/data/announcements.json', [])
 
   if (isBootstrap) {
-    console.log('[ANNOUNCE] Ledger не найден - бутстрап без публикации (сохраняем текущее состояние).')
+    console.log(
+      '[ANNOUNCE] Ledger не найден - бутстрап без публикации (сохраняем текущее состояние).',
+    )
     for (const d of DETECTORS) {
       const { newIds } = await d.run(ledger[d.category])
       ledger[d.category] = newIds
