@@ -58820,5 +58820,174 @@
     "name_attack2": "Вихрь узоров",
     "name_attack3": "",
     "name_lore": "Странное существо из Хекс-Сити. Похоже, оно умеет манипулировать обоими аспектами местной магии, проецируя светящиеся шестиугольники и фрактальные взрывы. Его роль в происходящих там событиях пока остается неясной. Но его интерес к исследованию других измерений делает его идеальным мутантом для арен Генетического города."
+  },
+  {
+    "id": "specimen_ef_15",
+    "name": "Гео-Алмаз",
+    "genes": [
+      "E",
+      "F"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 3333,
+        "atk1": 777,
+        "atk2": 777,
+        "ability": 427,
+        "speed": 3.57,
+        "silver": 45,
+        "atk1_gene": "e",
+        "atk2_gene": "f",
+        "atk1_AOE": false,
+        "atk2_AOE": false
+      },
+      "lvl30": {
+        "hp": 12999,
+        "atk1": 6283,
+        "atk2": 6283,
+        "ability": 4838,
+        "speed": 3.57,
+        "silver": 1350,
+        "atk1_gene": "e",
+        "atk2_gene": "f",
+        "atk1_AOE": false,
+        "atk2_AOE": false
+      },
+      "hp_base": 3333,
+      "atk1_base": 777,
+      "atk1p_base": 1611,
+      "atk2_base": 777,
+      "atk2p_base": 1611,
+      "speed_base": 3.57,
+      "bank_base": 45,
+      "abilityPct1": 55,
+      "abilityPct2": 77
+    },
+    "abilities": [
+      {
+        "name": "ability_regen",
+        "pct": 55,
+        "value_atk1_lvl1": 427,
+        "value_atk2_lvl1": 427,
+        "value_atk1_lvl30": 3456,
+        "value_atk2_lvl30": 3456
+      },
+      {
+        "name": "ability_regen_plus",
+        "pct": 77,
+        "value_atk1_lvl1": 598,
+        "value_atk2_lvl1": 598,
+        "value_atk1_lvl30": 4838,
+        "value_atk2_lvl30": 4838
+      }
+    ],
+    "stars": {
+      "platinum": {
+        "images": [
+          "textures_by_mutant/ef_15/specimen_ef_15_normal.webp",
+          "textures_by_mutant/ef_15/larva_ef_15.webp"
+        ],
+        "multiplier": 2
+      }
+    },
+    "type": "GACHA",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [],
+    "chance": 0,
+    "bank": 45,
+    "tier": "",
+    "name_attack1": "Кристаллический луч",
+    "name_attack2": "Осколки Адаманта",
+    "name_attack3": "",
+    "name_lore": "Странное существо, упавшее на Землю миллионы лет назад и кристаллизовавшееся внутри геоды из чистого алмаза. Это инопланетное существо объединило свою энергию с энергией окружающих кристаллов, чтобы обрести физическую форму, но это ни в коей мере не мешает ему использовать свою природную способность генерировать мощные энергетические лучи."
+  },
+  {
+    "id": "specimen_fa_15",
+    "name": "Маджика, Королева Арифмантики",
+    "genes": [
+      "F",
+      "A"
+    ],
+    "base_stats": {
+      "lvl1": {
+        "hp": 4680,
+        "atk1": 1014,
+        "atk2": 1014,
+        "ability": 132,
+        "speed": 4.63,
+        "silver": 84,
+        "atk1_gene": "f",
+        "atk2_gene": "a",
+        "atk1_AOE": false,
+        "atk2_AOE": false
+      },
+      "lvl30": {
+        "hp": 18252,
+        "atk1": 8568,
+        "atk2": 8568,
+        "ability": 3342,
+        "speed": 4.63,
+        "silver": 2520,
+        "atk1_gene": "f",
+        "atk2_gene": "a",
+        "atk1_AOE": false,
+        "atk2_AOE": false
+      },
+      "hp_base": 4680,
+      "atk1_base": 1014,
+      "atk1p_base": 2197,
+      "atk2_base": 1014,
+      "atk2p_base": 2197,
+      "speed_base": 4.63,
+      "bank_base": 84,
+      "abilityPct1": 13,
+      "abilityPct2": 39
+    },
+    "abilities": [
+      {
+        "name": "ability_strengthen",
+        "pct": 13,
+        "value_atk1_lvl1": 132,
+        "value_atk2_lvl1": 132,
+        "value_atk1_lvl30": 1114,
+        "value_atk2_lvl30": 1114
+      },
+      {
+        "name": "ability_strengthen_plus",
+        "pct": 39,
+        "value_atk1_lvl1": 395,
+        "value_atk2_lvl1": 395,
+        "value_atk1_lvl30": 3342,
+        "value_atk2_lvl30": 3342
+      }
+    ],
+    "stars": {
+      "normal": {
+        "images": [
+          "textures_by_mutant/fa_15/specimen_fa_15_normal.webp",
+          "textures_by_mutant/fa_15/larva_fa_15.webp"
+        ]
+      }
+    },
+    "type": "SEASONAL",
+    "incub_time": 60,
+    "orbs": {
+      "normal": 2,
+      "special": 1
+    },
+    "bingo": [
+      "anniversary_26"
+    ],
+    "chance": 0,
+    "bank": 84,
+    "tier": "",
+    "name_attack1": "Бесконечный фрактал",
+    "name_attack2": "Геометрический гекс",
+    "name_attack3": "",
+    "name_lore": "Правительница города Хекс. Её наряд постоянно отражает бесконечные фракталы, а её снаряжение — арифмантические структуры, управляющие измерительной зоной, в которой она обитает. Именно она была ответственна за изгнание некого существа, но влияние этого существа до сих пор ощущается во многих измерениях."
   }
 ]

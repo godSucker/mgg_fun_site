@@ -79,13 +79,30 @@ jobs:
           branch: main
           file_pattern: 'src/data/boxes.json public/boxes/**'
 
-      - name: 3.5 Сторож ротации обменников (джекпот/ивент)
+      - name: 3.5 Сторож ротации обменников (джекпот/ивент) - авто-запись в obtain.json
         # Building_Tokens_Jackpot/Building_Event_1 в gamedefinitions.xml - фиксированные
         # слоты, чьё содержимое ПЕРЕЗАПИСЫВАЕТСЯ при новой ротации (не накапливается на
-        # CDN) - см. память re-binary-formulas-plan. Только отчёт: obtain.json не трогается,
-        # это кураторские данные (см. detect-missing-obtain.ts). Не завязан на парсер -
-        # тянет свой gamedefinitions.xml независимо.
+        # CDN) - см. память re-binary-formulas-plan. Для известных жетонов (TOKEN_PHRASES/
+        # FIXED_PHRASES) собирает полностью готовую запись {type, where} и пишет её в
+        # obtain.json additive-only (только новые связки specimen+type+where, ничего не
+        # перезаписывает и не удаляет). Неизвестный жетон - только отчёт, нужна ручная
+        # фраза. Не завязан на парсер - тянет свой gamedefinitions.xml независимо.
         run: npx tsx scripts/detect-exchange-rotation.ts
+
+      - name: 3.6 Сохранение изменений obtain.json (ротация обменников)
+        # Отдельный коммит ДО парсера (шаг 4): если парсер ниже упадёт, гейт
+        # "steps.parser.outcome == 'success'" на шаге 6 не даст закоммитить ничего,
+        # и только что найденную ротацию обменника затрёт следующий прогон
+        # (см. комментарий в detect-exchange-rotation.ts про несохраняемую историю).
+        if: always()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🤖 Auto-Sync: obtain.json (ротация обменников)'
+          commit_user_name: 'MGG Parser Bot'
+          commit_user_email: 'bot@archivist-library.com'
+          commit_author: 'MGG Parser Bot <bot@archivist-library.com>'
+          branch: main
+          file_pattern: 'src/data/mutants/obtain.json'
 
       - name: 4. Запуск Парсера (Режим FULL)
         id: parser

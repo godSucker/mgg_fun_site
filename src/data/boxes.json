@@ -24824,1514 +24824,6 @@
     ]
   },
   {
-    "itemId": "LuckyBox_Zoo_Prime",
-    "icon": "/boxes/mystery_zoo.png",
-    "category": "Лаки-бокс",
-    "name": "Легендарный зооморфаконтейнер",
-    "groups": [
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_02",
-            "name": "Арахно",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_da_02",
-            "name": "Арахно",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_02",
-            "name": "Арахно",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_02",
-            "name": "Зомбат",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_db_02",
-            "name": "Зомбат",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_02",
-            "name": "Зомбат",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_02",
-            "name": "Леогарт",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_02",
-            "name": "Леогарт",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_02",
-            "name": "Мастер Коготь",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_02",
-            "name": "Мастер Коготь",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_02",
-            "name": "Мастер Коготь",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_02",
-            "name": "Космо-Конг",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_02",
-            "name": "Космо-Конг",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_02",
-            "name": "Космо-Конг",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_02",
-            "name": "Сатир-шаман",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_02",
-            "name": "Сатир-шаман",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_02",
-            "name": "Сатир-шаман",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_03",
-            "name": "Кобракай",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_db_03",
-            "name": "Кобракай",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_03",
-            "name": "Кобракай",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_03",
-            "name": "Пси-вепрь",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_03",
-            "name": "Пси-вепрь",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_03",
-            "name": "Пси-вепрь",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_03",
-            "name": "Панголин",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_03",
-            "name": "Панголин",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_03",
-            "name": "Панголин",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_03",
-            "name": "Абсолем",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_03",
-            "name": "Абсолем",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_03",
-            "name": "Абсолем",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_04",
-            "name": "Эскадрилья «Носорог»",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_da_04",
-            "name": "Эскадрилья «Носорог»",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_04",
-            "name": "Эскадрилья «Носорог»",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_04",
-            "name": "Сезанн",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_04",
-            "name": "Сезанн",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_04",
-            "name": "Сезанн",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_04",
-            "name": "Кернунн",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_04",
-            "name": "Кернунн",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_04",
-            "name": "Кернунн",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_04",
-            "name": "Генсириоку",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_04",
-            "name": "Генсириоку",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_04",
-            "name": "Генсириоку",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_04",
-            "name": "Кон-Тики",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_04",
-            "name": "Кон-Тики",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_04",
-            "name": "Кон-Тики",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_05",
-            "name": "Фенек-Ультралис",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_da_05",
-            "name": "Фенек-Ультралис",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_05",
-            "name": "Фенек-Ультралис",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_05",
-            "name": "Король обезьян",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_05",
-            "name": "Король обезьян",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_05",
-            "name": "Король обезьян",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_05",
-            "name": "Хищнозавр",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_05",
-            "name": "Хищнозавр",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_05",
-            "name": "Хищнозавр",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_05",
-            "name": "Халкомяк",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_05",
-            "name": "Халкомяк",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_05",
-            "name": "Халкомяк",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_05",
-            "name": "Мать Драконов",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_05",
-            "name": "Мать Драконов",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_05",
-            "name": "Мать Драконов",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_06",
-            "name": "Трицератанк",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_da_06",
-            "name": "Трицератанк",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_06",
-            "name": "Трицератанк",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_06",
-            "name": "Зомбобр",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_db_06",
-            "name": "Зомбобр",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_06",
-            "name": "Зомбобр",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_06",
-            "name": "Бабка-волчанка",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_06",
-            "name": "Бабка-волчанка",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_06",
-            "name": "Бабка-волчанка",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_06",
-            "name": "Кенгура",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_06",
-            "name": "Кенгура",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_06",
-            "name": "Кенгура",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_07",
-            "name": "Мопсец",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_da_07",
-            "name": "Мопсец",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_07",
-            "name": "Мопсец",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_07",
-            "name": "Шершеляшар",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_07",
-            "name": "Шершеляшар",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_07",
-            "name": "Шершеляшар",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_07",
-            "name": "Капитан Космоцып",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_07",
-            "name": "Капитан Космоцып",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_07",
-            "name": "Капитан Космоцып",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_07",
-            "name": "Химера",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_07",
-            "name": "Химера",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_07",
-            "name": "Химера",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_08",
-            "name": "Смертозавр",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_db_08",
-            "name": "Смертозавр",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_08",
-            "name": "Смертозавр",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_08",
-            "name": "Саник",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_08",
-            "name": "Саник",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_08",
-            "name": "Саник",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_08",
-            "name": "Ринотавр",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_08",
-            "name": "Ринотавр",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_08",
-            "name": "Ринотавр",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_08",
-            "name": "Космопанды",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_08",
-            "name": "Космопанды",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_08",
-            "name": "Космопанды",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_09",
-            "name": "Хоракс",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_db_09",
-            "name": "Хоракс",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_09",
-            "name": "Хоракс",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_09",
-            "name": "Мастер Синдзо",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_09",
-            "name": "Мастер Синдзо",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_09",
-            "name": "Мастер Синдзо",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_09",
-            "name": "Мистер Тигр",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_09",
-            "name": "Мистер Тигр",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_09",
-            "name": "Мистер Тигр",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_09",
-            "name": "Зигмо",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_de_09",
-            "name": "Зигмо",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_de_09",
-            "name": "Зигмо",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_09",
-            "name": "Кетцалькоатль",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_09",
-            "name": "Кетцалькоатль",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_09",
-            "name": "Кетцалькоатль",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_10",
-            "name": "Соколиный глаз",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_da_10",
-            "name": "Соколиный глаз",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_da_10",
-            "name": "Соколиный глаз",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_10",
-            "name": "Буффалор",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_db_10",
-            "name": "Буффалор",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_db_10",
-            "name": "Буффалор",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_10",
-            "name": "Крампус",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dc_10",
-            "name": "Крампус",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dc_10",
-            "name": "Крампус",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_10",
-            "name": "Камео",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_dd_10",
-            "name": "Камео",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_dd_10",
-            "name": "Камео",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.4903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_10",
-            "name": "Gwenn",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7451564828614009,
-        "mutants": [
-          {
-            "id": "specimen_df_10",
-            "name": "Gwenn",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.14903129657228018,
-        "mutants": [
-          {
-            "id": "specimen_df_10",
-            "name": "Gwenn",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      }
-    ]
-  },
-  {
     "itemId": "LuckyBox_Saber_Elite",
     "icon": "/boxes/mystery_elite_saber.png",
     "category": "Лаки-бокс",
@@ -27831,6 +26323,1514 @@
           {
             "id": "specimen_fc_10",
             "name": "Гефест",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      }
+    ]
+  },
+  {
+    "itemId": "LuckyBox_Zoo_Prime",
+    "icon": "/boxes/mystery_zoo.png",
+    "category": "Лаки-бокс",
+    "name": "Легендарный зооморфаконтейнер",
+    "groups": [
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_02",
+            "name": "Арахно",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_da_02",
+            "name": "Арахно",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_02",
+            "name": "Арахно",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_02",
+            "name": "Зомбат",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_db_02",
+            "name": "Зомбат",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_02",
+            "name": "Зомбат",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_02",
+            "name": "Леогарт",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_02",
+            "name": "Леогарт",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_02",
+            "name": "Мастер Коготь",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_02",
+            "name": "Мастер Коготь",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_02",
+            "name": "Мастер Коготь",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_02",
+            "name": "Космо-Конг",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_02",
+            "name": "Космо-Конг",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_02",
+            "name": "Космо-Конг",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_02",
+            "name": "Сатир-шаман",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_02",
+            "name": "Сатир-шаман",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_02",
+            "name": "Сатир-шаман",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_03",
+            "name": "Кобракай",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_db_03",
+            "name": "Кобракай",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_03",
+            "name": "Кобракай",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_03",
+            "name": "Пси-вепрь",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_03",
+            "name": "Пси-вепрь",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_03",
+            "name": "Пси-вепрь",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_03",
+            "name": "Панголин",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_03",
+            "name": "Панголин",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_03",
+            "name": "Панголин",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_03",
+            "name": "Абсолем",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_03",
+            "name": "Абсолем",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_03",
+            "name": "Абсолем",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_04",
+            "name": "Эскадрилья «Носорог»",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_da_04",
+            "name": "Эскадрилья «Носорог»",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_04",
+            "name": "Эскадрилья «Носорог»",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_04",
+            "name": "Сезанн",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_04",
+            "name": "Сезанн",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_04",
+            "name": "Сезанн",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_04",
+            "name": "Кернунн",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_04",
+            "name": "Кернунн",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_04",
+            "name": "Кернунн",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_04",
+            "name": "Генсириоку",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_04",
+            "name": "Генсириоку",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_04",
+            "name": "Генсириоку",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_04",
+            "name": "Кон-Тики",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_04",
+            "name": "Кон-Тики",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_04",
+            "name": "Кон-Тики",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_05",
+            "name": "Фенек-Ультралис",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_da_05",
+            "name": "Фенек-Ультралис",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_05",
+            "name": "Фенек-Ультралис",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_05",
+            "name": "Король обезьян",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_05",
+            "name": "Король обезьян",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_05",
+            "name": "Король обезьян",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_05",
+            "name": "Хищнозавр",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_05",
+            "name": "Хищнозавр",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_05",
+            "name": "Хищнозавр",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_05",
+            "name": "Халкомяк",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_05",
+            "name": "Халкомяк",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_05",
+            "name": "Халкомяк",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_05",
+            "name": "Мать Драконов",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_05",
+            "name": "Мать Драконов",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_05",
+            "name": "Мать Драконов",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_06",
+            "name": "Трицератанк",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_da_06",
+            "name": "Трицератанк",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_06",
+            "name": "Трицератанк",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_06",
+            "name": "Зомбобр",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_db_06",
+            "name": "Зомбобр",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_06",
+            "name": "Зомбобр",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_06",
+            "name": "Бабка-волчанка",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_06",
+            "name": "Бабка-волчанка",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_06",
+            "name": "Бабка-волчанка",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_06",
+            "name": "Кенгура",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_06",
+            "name": "Кенгура",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_06",
+            "name": "Кенгура",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_07",
+            "name": "Мопсец",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_da_07",
+            "name": "Мопсец",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_07",
+            "name": "Мопсец",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_07",
+            "name": "Шершеляшар",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_07",
+            "name": "Шершеляшар",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_07",
+            "name": "Шершеляшар",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_07",
+            "name": "Капитан Космоцып",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_07",
+            "name": "Капитан Космоцып",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_07",
+            "name": "Капитан Космоцып",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_07",
+            "name": "Химера",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_07",
+            "name": "Химера",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_07",
+            "name": "Химера",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_08",
+            "name": "Смертозавр",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_db_08",
+            "name": "Смертозавр",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_08",
+            "name": "Смертозавр",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_08",
+            "name": "Саник",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_08",
+            "name": "Саник",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_08",
+            "name": "Саник",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_08",
+            "name": "Ринотавр",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_08",
+            "name": "Ринотавр",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_08",
+            "name": "Ринотавр",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_08",
+            "name": "Космопанды",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_08",
+            "name": "Космопанды",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_08",
+            "name": "Космопанды",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_09",
+            "name": "Хоракс",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_db_09",
+            "name": "Хоракс",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_09",
+            "name": "Хоракс",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_09",
+            "name": "Мастер Синдзо",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_09",
+            "name": "Мастер Синдзо",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_09",
+            "name": "Мастер Синдзо",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_09",
+            "name": "Мистер Тигр",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_09",
+            "name": "Мистер Тигр",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_09",
+            "name": "Мистер Тигр",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_09",
+            "name": "Зигмо",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_de_09",
+            "name": "Зигмо",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_de_09",
+            "name": "Зигмо",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_09",
+            "name": "Кетцалькоатль",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_09",
+            "name": "Кетцалькоатль",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_09",
+            "name": "Кетцалькоатль",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_10",
+            "name": "Соколиный глаз",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_da_10",
+            "name": "Соколиный глаз",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_da_10",
+            "name": "Соколиный глаз",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_10",
+            "name": "Буффалор",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_db_10",
+            "name": "Буффалор",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_db_10",
+            "name": "Буффалор",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_10",
+            "name": "Крампус",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dc_10",
+            "name": "Крампус",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dc_10",
+            "name": "Крампус",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_10",
+            "name": "Камео",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_dd_10",
+            "name": "Камео",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_dd_10",
+            "name": "Камео",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.4903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_10",
+            "name": "Gwenn",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7451564828614009,
+        "mutants": [
+          {
+            "id": "specimen_df_10",
+            "name": "Gwenn",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.14903129657228018,
+        "mutants": [
+          {
+            "id": "specimen_df_10",
+            "name": "Gwenn",
             "tier": "золото",
             "skin": null
           }
@@ -32232,1430 +32232,6 @@
     ]
   },
   {
-    "itemId": "LuckyBox_Mythic_Prime",
-    "icon": "/boxes/mystery_mystic.png",
-    "category": "Лаки-бокс",
-    "name": "Легендарный мификаконтейнер",
-    "groups": [
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_02",
-            "name": "Мекали",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_02",
-            "name": "Мекали",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_02",
-            "name": "Мекали",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_02",
-            "name": "Принц-скорпион",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_02",
-            "name": "Принц-скорпион",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_02",
-            "name": "Синеглазка",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_02",
-            "name": "Синеглазка",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_02",
-            "name": "Синеглазка",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_02",
-            "name": "Ангел Мести",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_02",
-            "name": "Ангел Мести",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_02",
-            "name": "Ангел Мести",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_03",
-            "name": "Баззингер",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_03",
-            "name": "Баззингер",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_03",
-            "name": "Баззингер",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_03",
-            "name": "Анубис",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_03",
-            "name": "Анубис",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_03",
-            "name": "Анубис",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_03",
-            "name": "Астромаг",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_03",
-            "name": "Астромаг",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_03",
-            "name": "Астромаг",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_03",
-            "name": "Вороний Глаз",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_03",
-            "name": "Вороний Глаз",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_03",
-            "name": "Вороний Глаз",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_04",
-            "name": "Злобная ведьма",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_04",
-            "name": "Злобная ведьма",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_04",
-            "name": "Злобная ведьма",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fd_04",
-            "name": "Буранка",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fd_04",
-            "name": "Буранка",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fd_04",
-            "name": "Буранка",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_04",
-            "name": "Принцесса Селена",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_04",
-            "name": "Принцесса Селена",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_04",
-            "name": "Принцесса Селена",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_04",
-            "name": "Монолит",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_04",
-            "name": "Монолит",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_04",
-            "name": "Монолит",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_05",
-            "name": "Теневой шаман",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_05",
-            "name": "Теневой шаман",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_05",
-            "name": "Теневой шаман",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_05",
-            "name": "Аццкий металл",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_05",
-            "name": "Аццкий металл",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_05",
-            "name": "Аццкий металл",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fd_05",
-            "name": "Пандомонах",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fd_05",
-            "name": "Пандомонах",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fd_05",
-            "name": "Пандомонах",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_05",
-            "name": "Небулус",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_05",
-            "name": "Небулус",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_05",
-            "name": "Глаббер",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_05",
-            "name": "Глаббер",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_05",
-            "name": "Глаббер",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_06",
-            "name": "Колдунья",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_06",
-            "name": "Колдунья",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_06",
-            "name": "Колдунья",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fd_06",
-            "name": "Кунг Чоу",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fd_06",
-            "name": "Кунг Чоу",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fd_06",
-            "name": "Кунг Чоу",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_06",
-            "name": "Марионетрон",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_06",
-            "name": "Марионетрон",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_06",
-            "name": "Марионетрон",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_06",
-            "name": "Намасте",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_06",
-            "name": "Намасте",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_06",
-            "name": "Намасте",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_07",
-            "name": "Доктор Фрост",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_07",
-            "name": "Доктор Фрост",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_07",
-            "name": "Доктор Фрост",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_07",
-            "name": "Мойры",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_07",
-            "name": "Мойры",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_07",
-            "name": "Мойры",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fc_07",
-            "name": "Амарок",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fc_07",
-            "name": "Амарок",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fc_07",
-            "name": "Амарок",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_07",
-            "name": "Король жуков",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_07",
-            "name": "Король жуков",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_07",
-            "name": "Король жуков",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_08",
-            "name": "Футбот",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_08",
-            "name": "Футбот",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_08",
-            "name": "Футбот",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_08",
-            "name": "Слизун",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_08",
-            "name": "Слизун",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_08",
-            "name": "Слизун",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fc_08",
-            "name": "Кудамоно",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fc_08",
-            "name": "Кудамоно",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fc_08",
-            "name": "Кудамоно",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fd_08",
-            "name": "Омиками",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fd_08",
-            "name": "Омиками",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fd_08",
-            "name": "Омиками",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_08",
-            "name": "Маджин Зам",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_08",
-            "name": "Маджин Зам",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_08",
-            "name": "Маджин Зам",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_08",
-            "name": "Огненная Буря",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_08",
-            "name": "Огненная Буря",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_08",
-            "name": "Огненная Буря",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_09",
-            "name": "Дзенгуру",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_09",
-            "name": "Дзенгуру",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_09",
-            "name": "Дзенгуру",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fb_09",
-            "name": "Смерть",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fb_09",
-            "name": "Смерть",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fb_09",
-            "name": "Смерть",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fd_09",
-            "name": "Маг-дракон",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fd_09",
-            "name": "Маг-дракон",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fd_09",
-            "name": "Маг-дракон",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_09",
-            "name": "Кселерот",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_09",
-            "name": "Кселерот",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_09",
-            "name": "Кселерот",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_09",
-            "name": "Мокрушник",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_09",
-            "name": "Мокрушник",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_09",
-            "name": "Мокрушник",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fa_10",
-            "name": "Часовщица Мими",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fa_10",
-            "name": "Часовщица Мими",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fa_10",
-            "name": "Часовщица Мими",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fc_10",
-            "name": "Гефест",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fc_10",
-            "name": "Гефест",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fc_10",
-            "name": "Гефест",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_fe_10",
-            "name": "Бахамут",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_fe_10",
-            "name": "Бахамут",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_fe_10",
-            "name": "Бахамут",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 1.5673981191222568,
-        "mutants": [
-          {
-            "id": "specimen_ff_10",
-            "name": "Брегбим",
-            "tier": null,
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.7836990595611284,
-        "mutants": [
-          {
-            "id": "specimen_ff_10",
-            "name": "Брегбим",
-            "tier": "серебро",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      },
-      {
-        "chance": 0.1567398119122257,
-        "mutants": [
-          {
-            "id": "specimen_ff_10",
-            "name": "Брегбим",
-            "tier": "золото",
-            "skin": null
-          }
-        ],
-        "rewards": []
-      }
-    ]
-  },
-  {
     "itemId": "Mysterybox_Ability_Strengthen",
     "icon": "/boxes/shop_mystery_strengthen.png",
     "category": "Мистери-бокс",
@@ -35072,6 +33648,1430 @@
             "id": "specimen_eb_02",
             "name": "Сирения",
             "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      }
+    ]
+  },
+  {
+    "itemId": "LuckyBox_Mythic_Prime",
+    "icon": "/boxes/mystery_mystic.png",
+    "category": "Лаки-бокс",
+    "name": "Легендарный мификаконтейнер",
+    "groups": [
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_02",
+            "name": "Мекали",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_02",
+            "name": "Мекали",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_02",
+            "name": "Мекали",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_02",
+            "name": "Принц-скорпион",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_02",
+            "name": "Принц-скорпион",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_02",
+            "name": "Синеглазка",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_02",
+            "name": "Синеглазка",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_02",
+            "name": "Синеглазка",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_02",
+            "name": "Ангел Мести",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_02",
+            "name": "Ангел Мести",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_02",
+            "name": "Ангел Мести",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_03",
+            "name": "Баззингер",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_03",
+            "name": "Баззингер",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_03",
+            "name": "Баззингер",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_03",
+            "name": "Анубис",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_03",
+            "name": "Анубис",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_03",
+            "name": "Анубис",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_03",
+            "name": "Астромаг",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_03",
+            "name": "Астромаг",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_03",
+            "name": "Астромаг",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_03",
+            "name": "Вороний Глаз",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_03",
+            "name": "Вороний Глаз",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_03",
+            "name": "Вороний Глаз",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_04",
+            "name": "Злобная ведьма",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_04",
+            "name": "Злобная ведьма",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_04",
+            "name": "Злобная ведьма",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fd_04",
+            "name": "Буранка",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fd_04",
+            "name": "Буранка",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fd_04",
+            "name": "Буранка",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_04",
+            "name": "Принцесса Селена",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_04",
+            "name": "Принцесса Селена",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_04",
+            "name": "Принцесса Селена",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_04",
+            "name": "Монолит",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_04",
+            "name": "Монолит",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_04",
+            "name": "Монолит",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_05",
+            "name": "Теневой шаман",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_05",
+            "name": "Теневой шаман",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_05",
+            "name": "Теневой шаман",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_05",
+            "name": "Аццкий металл",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_05",
+            "name": "Аццкий металл",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_05",
+            "name": "Аццкий металл",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fd_05",
+            "name": "Пандомонах",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fd_05",
+            "name": "Пандомонах",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fd_05",
+            "name": "Пандомонах",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_05",
+            "name": "Небулус",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_05",
+            "name": "Небулус",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_05",
+            "name": "Глаббер",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_05",
+            "name": "Глаббер",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_05",
+            "name": "Глаббер",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_06",
+            "name": "Колдунья",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_06",
+            "name": "Колдунья",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_06",
+            "name": "Колдунья",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fd_06",
+            "name": "Кунг Чоу",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fd_06",
+            "name": "Кунг Чоу",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fd_06",
+            "name": "Кунг Чоу",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_06",
+            "name": "Марионетрон",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_06",
+            "name": "Марионетрон",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_06",
+            "name": "Марионетрон",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_06",
+            "name": "Намасте",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_06",
+            "name": "Намасте",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_06",
+            "name": "Намасте",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_07",
+            "name": "Доктор Фрост",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_07",
+            "name": "Доктор Фрост",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_07",
+            "name": "Доктор Фрост",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_07",
+            "name": "Мойры",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_07",
+            "name": "Мойры",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_07",
+            "name": "Мойры",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fc_07",
+            "name": "Амарок",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fc_07",
+            "name": "Амарок",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fc_07",
+            "name": "Амарок",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_07",
+            "name": "Король жуков",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_07",
+            "name": "Король жуков",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_07",
+            "name": "Король жуков",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_08",
+            "name": "Футбот",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_08",
+            "name": "Футбот",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_08",
+            "name": "Футбот",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_08",
+            "name": "Слизун",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_08",
+            "name": "Слизун",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_08",
+            "name": "Слизун",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fc_08",
+            "name": "Кудамоно",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fc_08",
+            "name": "Кудамоно",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fc_08",
+            "name": "Кудамоно",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fd_08",
+            "name": "Омиками",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fd_08",
+            "name": "Омиками",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fd_08",
+            "name": "Омиками",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_08",
+            "name": "Маджин Зам",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_08",
+            "name": "Маджин Зам",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_08",
+            "name": "Маджин Зам",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_08",
+            "name": "Огненная Буря",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_08",
+            "name": "Огненная Буря",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_08",
+            "name": "Огненная Буря",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_09",
+            "name": "Дзенгуру",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_09",
+            "name": "Дзенгуру",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_09",
+            "name": "Дзенгуру",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fb_09",
+            "name": "Смерть",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fb_09",
+            "name": "Смерть",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fb_09",
+            "name": "Смерть",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fd_09",
+            "name": "Маг-дракон",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fd_09",
+            "name": "Маг-дракон",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fd_09",
+            "name": "Маг-дракон",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_09",
+            "name": "Кселерот",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_09",
+            "name": "Кселерот",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_09",
+            "name": "Кселерот",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_09",
+            "name": "Мокрушник",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_09",
+            "name": "Мокрушник",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_09",
+            "name": "Мокрушник",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fa_10",
+            "name": "Часовщица Мими",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fa_10",
+            "name": "Часовщица Мими",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fa_10",
+            "name": "Часовщица Мими",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fc_10",
+            "name": "Гефест",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fc_10",
+            "name": "Гефест",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fc_10",
+            "name": "Гефест",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_fe_10",
+            "name": "Бахамут",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_fe_10",
+            "name": "Бахамут",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_fe_10",
+            "name": "Бахамут",
+            "tier": "золото",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 1.5673981191222568,
+        "mutants": [
+          {
+            "id": "specimen_ff_10",
+            "name": "Брегбим",
+            "tier": null,
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.7836990595611284,
+        "mutants": [
+          {
+            "id": "specimen_ff_10",
+            "name": "Брегбим",
+            "tier": "серебро",
+            "skin": null
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 0.1567398119122257,
+        "mutants": [
+          {
+            "id": "specimen_ff_10",
+            "name": "Брегбим",
+            "tier": "золото",
             "skin": null
           }
         ],
@@ -71766,6 +71766,116 @@
             "name": "Material_Jackpot_Token",
             "type": "entity",
             "amount": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "itemId": "Mystery_Anniversary26_2",
+    "icon": "/boxes/mystery_anniversary26_2.png",
+    "category": "Мистери-бокс",
+    "name": "13-я годовщина Mystery Box — Часть 2",
+    "groups": [
+      {
+        "chance": 16.666666666666664,
+        "mutants": [
+          {
+            "id": "specimen_be_11",
+            "name": "Окулюс",
+            "tier": "золото",
+            "skin": "hexcity"
+          }
+        ],
+        "rewards": []
+      },
+      {
+        "chance": 16.666666666666664,
+        "mutants": [
+          {
+            "id": "specimen_be_09",
+            "name": "Пиротроп",
+            "tier": "золото",
+            "skin": "masks"
+          }
+        ],
+        "rewards": [
+          {
+            "name": "Material_Mystery26_Token",
+            "type": "entity",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "chance": 16.666666666666664,
+        "mutants": [
+          {
+            "id": "specimen_fa_10",
+            "name": "Часовщица Мими",
+            "tier": "золото",
+            "skin": "anniversary"
+          }
+        ],
+        "rewards": [
+          {
+            "name": "Material_Mystery26_Token",
+            "type": "entity",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "chance": 16.666666666666664,
+        "mutants": [
+          {
+            "id": "specimen_aa_07",
+            "name": "Проект 3V3",
+            "tier": "золото",
+            "skin": "wireframe"
+          }
+        ],
+        "rewards": [
+          {
+            "name": "Material_Mystery26_Token",
+            "type": "entity",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "chance": 16.666666666666664,
+        "mutants": [
+          {
+            "id": "specimen_bd_06",
+            "name": "Мор'Гул",
+            "tier": "золото",
+            "skin": "anniversary"
+          }
+        ],
+        "rewards": [
+          {
+            "name": "Material_Mystery26_Token",
+            "type": "entity",
+            "amount": 1
+          }
+        ]
+      },
+      {
+        "chance": 16.666666666666664,
+        "mutants": [
+          {
+            "id": "specimen_fd_04",
+            "name": "Буранка",
+            "tier": "золото",
+            "skin": "confrontation"
+          }
+        ],
+        "rewards": [
+          {
+            "name": "Material_Mystery26_Token",
+            "type": "entity",
+            "amount": 1
           }
         ]
       }

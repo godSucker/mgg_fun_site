@@ -3,14 +3,20 @@ import fs from 'fs/promises'
 import path from 'path'
 import { pluralize } from '../src/lib/utils'
 
-// Сторож, не генератор: obtain.json - кураторские данные, этот скрипт НИКОГДА
-// в него не пишет (см. detect-missing-obtain.ts - тот же принцип). Джекпот- и
-// ивент-обменник (Building_Tokens_Jackpot / Building_Event_1 в gamedefinitions.xml)
-// - это фиксированные 25 + 9 "слотов", чьё содержимое ПЕРЕЗАПИСЫВАЕТСЯ при каждой
-// новой ротации (не накапливается на CDN) - см. память re-binary-formulas-plan.
-// Единственный способ не терять историю - ловить новые связки (жетон, сумма,
-// мутант) в день, когда они появились в живом XML, пока их не затёрла следующая
-// ротация, и сообщать куратору готовую строку для ручной вставки в obtain.json.
+// Джекпот- и ивент-обменник (Building_Tokens_Jackpot / Building_Event_1 в
+// gamedefinitions.xml) - это фиксированные 25 + 9 "слотов", чьё содержимое
+// ПЕРЕЗАПИСЫВАЕТСЯ при каждой новой ротации (не накапливается на CDN) - см.
+// память re-binary-formulas-plan. Единственный способ не терять историю - ловить
+// новые связки (жетон, сумма, мутант) в день, когда они появились в живом XML,
+// пока их не затёрла следующая ротация.
+//
+// В отличие от detect-missing-obtain.ts (тот НИКОГДА не пишет - там нет
+// источника, откуда взять способ получения), этот скрипт умеет построить
+// ПОЛНОСТЬЮ готовую и самодостаточную запись {type, where} прямо из XML для
+// известных жетонов (TOKEN_PHRASES/FIXED_PHRASES) - такие пишутся в obtain.json
+// автоматически, additive-only (только новые связки specimen+type+where,
+// существующие записи не трогаются и не удаляются). Неизвестный жетон (нет
+// русской фразы) - по-прежнему только репортится, туда нужна ручная калибровка.
 
 const GAME_DEFS_URL = 'https://s-beta.kobojo.com/mutants/gameconfig/gamedefinitions.xml'
 
@@ -160,13 +166,24 @@ async function main() {
     }
   }
 
+  let written: typeof missing = []
+  if (missing.length > 0) {
+    for (const m of missing) {
+      const entries = obtain[m.specimenId] ?? []
+      entries.push({ type: m.obtainType, where: m.where })
+      obtain[m.specimenId] = entries
+    }
+    written = missing
+    await fs.writeFile(OBTAIN_PATH, JSON.stringify(obtain, null, 2) + '\n', 'utf-8')
+  }
+
   const lines: string[] = ['### Ротация обменников (джекпот/ивент)']
-  if (missing.length === 0 && unknownTokens.length === 0) {
+  if (written.length === 0 && unknownTokens.length === 0) {
     lines.push('✅ Текущая ротация обоих обменников полностью отражена в obtain.json')
   } else {
-    if (missing.length > 0) {
-      lines.push(`⚠️ Не хватает записей в obtain.json (${missing.length}):`)
-      for (const m of missing) {
+    if (written.length > 0) {
+      lines.push(`✅ Записано в obtain.json (${written.length}):`)
+      for (const m of written) {
         lines.push(`- \`${m.specimenId}\`: \`{"type": "${m.obtainType}", "where": "${m.where}"}\``)
       }
     }
@@ -177,12 +194,13 @@ async function main() {
       for (const u of unknownTokens) {
         lines.push(`- \`${u.specimenId}\` (${u.obtainType}): ${u.amount} × \`${u.item}\``)
       }
+      lines.push('')
+      lines.push(
+        'Для этих строк нет русской фразы для жетона - obtain.json не трогается, ' +
+          'нужно вручную добавить жетон в TOKEN_PHRASES/FIXED_PHRASES, пока их не ' +
+          'затёрла следующая ротация обменника (см. память re-binary-formulas-plan).',
+      )
     }
-    lines.push('')
-    lines.push(
-      '`obtain.json` не трогается автоматически - строки выше можно вставить руками, ' +
-        'пока их не затёрла следующая ротация обменника (см. память re-binary-formulas-plan).',
-    )
   }
 
   const cacheDir = path.join(process.cwd(), 'scripts/.cache')
