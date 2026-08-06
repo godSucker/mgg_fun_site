@@ -161,6 +161,18 @@
     markDirty(id, b)
     if (openPicker?.id === id) openPicker = null
   }
+  // Единственный ряд удалить нельзя (минимум 1) - вместо этого крестик
+  // просто очищает его слоты, не трогая сам ряд.
+  function clearRow(id: string, rowIdx: number) {
+    const r = rows.find((x) => x.id === id)!
+    const next = new Map(builds)
+    const cur = next.get(id)!
+    const b = cur.map((rb, i) => (i === rowIdx ? emptyRowBuild(r) : rb))
+    next.set(id, b)
+    builds = next
+    markDirty(id, b)
+    if (openPicker?.id === id) openPicker = null
+  }
 
   // Попап выбора сферы для конкретного слота - одна открытая панель за раз.
   // comboMode переключает попап в режим "сдвоенной" сферы (одна физическая
@@ -338,6 +350,8 @@
                 {/each}
                 {#if build.length > 1}
                   <button class="row-del" title="Убрать ряд" onclick={() => removeRow(r.id, rowIdx)}>✕</button>
+                {:else if rb.basic.some((s) => s) || rb.special.some((s) => s)}
+                  <button class="row-del" title="Очистить ряд" onclick={() => clearRow(r.id, rowIdx)}>✕</button>
                 {/if}
               </div>
             {/each}
