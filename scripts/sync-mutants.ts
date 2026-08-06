@@ -211,7 +211,11 @@ function specimenIconPath(
   return { targetDir, iconPath: path.join(targetDir, iconName) }
 }
 
-async function downloadSpecimen(mutantId: string, rating: string): Promise<boolean> {
+async function downloadSpecimen(
+  mutantId: string,
+  rating: string,
+  bypassNegativeCache = false,
+): Promise<boolean> {
   const idLower = mutantId.toLowerCase()
   const { targetDir, iconPath } = specimenIconPath(mutantId, rating)
   const suffix = `_${rating}`
@@ -239,10 +243,15 @@ async function downloadSpecimen(mutantId: string, rating: string): Promise<boole
 
   // Негативный кэш: если уже подтверждали недавно, что этой текстуры нет на
   // Kobojo — не ходим в сеть заново, экономим 15с таймаут на пустышку.
+  // bypassNegativeCache=true для мутантов, которых ЕЩЁ НЕТ в mutants.json:
+  // для них кэш "текстуры нет" не просто экономит время, а блокирует появление
+  // мутанта на сайте целиком до истечения MISSING_TEXTURE_RECHECK_DAYS (баг,
+  // поймавший specimen_ef_15 — задескрипторен 2026-07-29 раньше арта, попал в
+  // негативный кэш, и не подхватился бы до ~12 августа несмотря на появившийся арт).
   const cache = await loadMissingTextureCache()
   const cacheKey = `${idLower}${suffix}`
   const cachedAt = cache[cacheKey]
-  if (cachedAt && isMissingTextureCacheFresh(cachedAt)) {
+  if (!bypassNegativeCache && cachedAt && isMissingTextureCacheFresh(cachedAt)) {
     return false
   }
 
@@ -284,13 +293,14 @@ async function getAvailableRatings(
   mutantId: string,
   mode: 'full' | 'stats',
   isGacha: boolean,
+  bypassNegativeCache = false,
 ): Promise<string[]> {
   const ratingsToCheck = isGacha ? ['normal'] : CONFIG.RATINGS
   const found: string[] = []
 
   for (const rating of ratingsToCheck) {
     if (mode === 'full') {
-      const ok = await downloadSpecimen(mutantId, rating)
+      const ok = await downloadSpecimen(mutantId, rating, bypassNegativeCache)
       if (ok) found.push(rating)
     } else {
       const { iconPath } = specimenIconPath(mutantId, rating)
@@ -649,9 +659,11 @@ async function sync(options: {
     // Переиспользуем результат проверки выше вместо повторного похода в сеть за
     // теми же самыми рейтингами (раньше это удваивало сетевые запросы на каждого
     // мутанта с неполным набором звёзд — основная причина раздувания времени прогона).
+    // Мутант ещё не в mutants.json (ratingsFromExistingCheck не считался) - живая
+    // проверка без негативного кэша, см. комментарий в downloadSpecimen().
     const textureRatings =
       ratingsFromExistingCheck ??
-      (await getAvailableRatings(mutantId, skipExisting ? 'full' : 'stats', isGacha))
+      (await getAvailableRatings(mutantId, skipExisting ? 'full' : 'stats', isGacha, true))
 
     if (textureRatings.length === 0) {
       console.log(`[SKIP] ${mutantId}: текстуры не найдены`)
@@ -1076,7 +1088,9 @@ async function syncTexturesOnly() {
 
     stats.checked++
 
-    const ratings = await getAvailableRatings(mutantId, 'full', isGacha)
+    // TEXTURES ONLY - режим ручной докачки, живая проверка без негативного
+    // кэша (весь смысл режима - обойти "мы уже проверяли и её там нет").
+    const ratings = await getAvailableRatings(mutantId, 'full', isGacha, true)
     const neededRatings = isGacha ? ['normal'] : CONFIG.RATINGS
     const missing = neededRatings.filter((r) => !ratings.includes(r))
 
