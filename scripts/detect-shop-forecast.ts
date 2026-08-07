@@ -70,7 +70,9 @@ export async function fetchShopForecast(): Promise<ShopForecast | null> {
       if (byStripped) return balanceQuotes(byStripped)
     }
     if (caption) {
-      const strippedKey = caption.replace(/^\$/, '').replace(/_(description|payment_text|tooltip)$/, '')
+      const strippedKey = caption
+        .replace(/^\$/, '')
+        .replace(/_(description|payment_text|tooltip)$/, '')
       const byCaption = lookup(strippedKey) ?? lookup(caption)
       if (byCaption && byCaption.length <= 80) return balanceQuotes(byCaption)
     }
@@ -90,7 +92,10 @@ export async function fetchShopForecast(): Promise<ShopForecast | null> {
   // (любой "SPRINT N") обозначает конец блока текущего спринта.
   const afterMarkerTag = xml.indexOf('</ShopItem>', startIdx) + '</ShopItem>'.length
   const nextMarkerIdx = xml.indexOf('SPRINT', afterMarkerTag)
-  const block = xml.slice(afterMarkerTag, nextMarkerIdx === -1 ? undefined : xml.lastIndexOf('<ShopItem', nextMarkerIdx))
+  const block = xml.slice(
+    afterMarkerTag,
+    nextMarkerIdx === -1 ? undefined : xml.lastIndexOf('<ShopItem', nextMarkerIdx),
+  )
 
   const items: ForecastItem[] = []
   for (const itemXml of block.match(/<ShopItem\b[^>]*>[\s\S]*?<\/ShopItem>/g) ?? []) {

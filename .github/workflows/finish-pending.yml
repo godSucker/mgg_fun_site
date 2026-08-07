@@ -65,7 +65,7 @@ jobs:
             src/data/simulators/reactor/gacha.json
             src/data/simulators/reactor/gacha-name-ru.json
             src/data/simulators/reactor/gacha-covers.json
-            src/pages/simulators/reactor/index.astro
+            src/data/simulators/reactor/priority-gachas.json
             src/data/guides/raids.json
             src/data/guides/special-ladders.json
             src/data/mutants/obtain.json
@@ -74,6 +74,7 @@ jobs:
             scripts/resolved-names-cache.json
             scripts/pending-names-cache.json
             public/reactor/**
+            public/dungeon-covers/**
 
       - name: 7. Синхронизация обложек реакторов с Яндекс CDN
         # Тот же приём, что в sync-cron.yml (шаг 7) - заливаем только файлы,
@@ -88,7 +89,7 @@ jobs:
             exit 0
           fi
 
-          git diff --name-only --no-renames --diff-filter=ACM "$BASE" HEAD -- 'public/reactor/' | while read -r f; do
+          git diff --name-only --no-renames --diff-filter=ACM "$BASE" HEAD -- 'public/reactor/' 'public/dungeon-covers/' | while read -r f; do
             [ -f "$f" ] || continue
             key="${f#public/}"
             echo "↑ $key"

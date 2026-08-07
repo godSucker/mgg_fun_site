@@ -292,11 +292,21 @@ async function detectDungeons(
 
   const items = await Promise.all(
     fresh.map(async (d) => {
-      const image = d.mutantId
-        ? (await dungeonItemName(d.mutantId, materialsById, mutantsById)).image
-        : d.rewards.items[0]
-          ? (await dungeonItemName(d.rewards.items[0].id, materialsById, mutantsById)).image
-          : null
+      // finish-pending.ts качает титульный баннер (title_<id>-ru.png) в
+      // public/dungeon-covers/ при доделке - если он есть, он лучше сырой
+      // иконки мутанта/материала для карточки анонса.
+      const coverPath = path.join(ROOT, 'public/dungeon-covers', `${d.id}.png`)
+      const hasCover = await fs
+        .access(coverPath)
+        .then(() => true)
+        .catch(() => false)
+      const image = hasCover
+        ? `/dungeon-covers/${d.id}.png`
+        : d.mutantId
+          ? (await dungeonItemName(d.mutantId, materialsById, mutantsById)).image
+          : d.rewards.items[0]
+            ? (await dungeonItemName(d.rewards.items[0].id, materialsById, mutantsById)).image
+            : null
       return {
         id: d.id,
         name: `${linePrefix} «${d.name}» (${d.fightCount} боёв)`,
@@ -405,7 +415,12 @@ const DETECTORS: {
   { category: 'raid', title: 'Новые рейды', link: '/guides', run: detectRaids },
   { category: 'ladder', title: 'Новые лесенки', link: '/guides', run: detectLadders },
   { category: 'token', title: 'Новые жетоны', link: '/materials', run: detectTokens },
-  { category: 'shopForecast', title: 'Прогноз магазина', link: '/materials', run: detectShopForecast },
+  {
+    category: 'shopForecast',
+    title: 'Прогноз магазина',
+    link: '/materials',
+    run: detectShopForecast,
+  },
   { category: 'dailyNews', title: 'Скоро в игре', link: '/announcements', run: detectDailyNews },
   { category: 'rebalance', title: 'Ребаланс статов', link: '/rebalance', run: detectRebalance },
 ]

@@ -3,12 +3,16 @@ export const prerender = true;
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { listGachas } from '../../../lib/reactor-gacha';
 import { textureUrl } from '../../../lib/texture-cdn';
+import priorityGachasRaw from '../../../data/simulators/reactor/priority-gachas.json';
 
 const gachas = listGachas();
 
 // --- УПОРЯДОЧИВАНИЕ ГЕНЕРАТОРОВ ---
-// Самоцветы — первый, так как это последний релиз
-const PRIORITY_GACHAS = ['Самоцветы', 'Шахматы', 'Кровавые игры', 'Фотосинтез', 'Тропическое лето', 'Боги арены'];
+// Вынесено в JSON (2026-08-07) - раньше был текстовый массив прямо тут,
+// finish-pending.ts патчил его строковым regex-ом, что хрупко (сломается
+// от любого переформатирования prettier). Первый элемент = последний релиз,
+// finish-pending.ts делает unshift в этот файл через GitHub Contents API.
+const PRIORITY_GACHAS = priorityGachasRaw as string[];
 
 const sortedGachas = [...gachas].sort((a, b) => {
   const nameA = a.name || '';

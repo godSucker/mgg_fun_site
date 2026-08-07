@@ -34,7 +34,10 @@ export function sprintStartDate(sprint: number): Date {
 }
 
 export function sprintEndDate(sprint: number): Date {
-  return addDays(SPRINT_ANCHOR.startDate, (sprint - SPRINT_ANCHOR.sprint) * DAYS_PER_SPRINT + DAYS_PER_SPRINT - 1)
+  return addDays(
+    SPRINT_ANCHOR.startDate,
+    (sprint - SPRINT_ANCHOR.sprint) * DAYS_PER_SPRINT + DAYS_PER_SPRINT - 1,
+  )
 }
 
 // "a"/"b" - предположительно две недельные половины одного 2-недельного

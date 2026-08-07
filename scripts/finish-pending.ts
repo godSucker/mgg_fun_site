@@ -28,7 +28,7 @@ const GACHA_COVER_URL = (id: string) =>
 const GACHA_JSON_PATH = path.join(ROOT, 'src/data/simulators/reactor/gacha.json')
 const GACHA_NAME_RU_PATH = path.join(ROOT, 'src/data/simulators/reactor/gacha-name-ru.json')
 const GACHA_COVERS_PATH = path.join(ROOT, 'src/data/simulators/reactor/gacha-covers.json')
-const REACTOR_INDEX_ASTRO = path.join(ROOT, 'src/pages/simulators/reactor/index.astro')
+const PRIORITY_GACHAS_PATH = path.join(ROOT, 'src/data/simulators/reactor/priority-gachas.json')
 const RAIDS_PATH = path.join(ROOT, 'src/data/guides/raids.json')
 const SPECIAL_LADDERS_PATH = path.join(ROOT, 'src/data/guides/special-ladders.json')
 const OBTAIN_PATH = path.join(ROOT, 'src/data/mutants/obtain.json')
@@ -117,16 +117,14 @@ async function finishReactor(id: string, name: string) {
     )
   }
 
-  // PRIORITY_GACHAS - обычный массив-литерал в .astro, не JSON. Новый релиз
-  // ставим первым (тот же приём, что при ручном добавлении "Самоцветов").
-  const astroSrc = await fs.readFile(REACTOR_INDEX_ASTRO, 'utf-8')
-  const priorityMatch = astroSrc.match(/const PRIORITY_GACHAS = \[([^\]]*)\];/)
-  if (priorityMatch && !priorityMatch[1].includes(`'${name}'`)) {
-    const patched = astroSrc.replace(
-      /const PRIORITY_GACHAS = \[/,
-      `const PRIORITY_GACHAS = ['${name}', `,
-    )
-    await fs.writeFile(REACTOR_INDEX_ASTRO, patched, 'utf-8')
+  // priority-gachas.json (2026-08-07: вынесен из .astro в JSON именно ради
+  // этого места - строковый regex-патч .astro-файла был хрупким, prettier
+  // мог сломать формат и патч молча перестал бы применяться). Новый релиз -
+  // первым в списке (тот же приём, что раньше при ручном добавлении "Самоцветов").
+  const priority = await loadJson<string[]>(PRIORITY_GACHAS_PATH, [])
+  if (!priority.includes(name)) {
+    priority.unshift(name)
+    await saveJson(PRIORITY_GACHAS_PATH, priority)
   }
 
   const specimens = [
@@ -240,6 +238,23 @@ async function finishDungeon(
   if (mutantReward) {
     const label = dungeonType === 'raid' ? `Рейд: ${name}` : `Лесенки: ${name}`
     await appendObtain([mutantReward.id], 'event_raid', label)
+  }
+
+  // Обложка для карточки анонса (НЕ для /guides - там своя схема через
+  // mutant.fullArt/fallbackIcon, трогать её не стали, чтобы не расширять
+  // DungeonEntry ради одного нового поля). Найдено 2026-08-07: у каждого
+  // рейда/лесенки есть титульный баннер по прямому URL, подтверждено даже
+  // для hexcity_2 (который мы только что сами добавили).
+  try {
+    const coverRes = await axios.get(
+      `https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_${id}-ru.png`,
+      { responseType: 'arraybuffer', timeout: 20000, validateStatus: (s) => s === 200 },
+    )
+    const coverPath = path.join(ROOT, 'public/dungeon-covers', `${id}.png`)
+    await fs.mkdir(path.dirname(coverPath), { recursive: true })
+    await fs.writeFile(coverPath, coverRes.data)
+  } catch {
+    console.log(`[FINISH-PENDING] Обложка данжа "${id}" не найдена (title_${id}-ru.png)`)
   }
 
   return entry

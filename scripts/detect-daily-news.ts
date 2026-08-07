@@ -1,20 +1,22 @@
 // Анонс ближайших daily_news-баннеров (Фаза 3, задача B). dailypopup.xml
 // размечен теми же SPRINT-метками, что shopitems.xml (см. src/lib/sprint-
 // calendar.ts) - берём блок офферов под ближайшим ещё не наступившим спринтом
-// и пытаемся достать баннер каждого. ВАЖНО: у каждого <Offer> в файле есть
-// СВОЙ семантический путь картинки (image="hud/daily_news/news_X$$.jpg"), но
-// эти конкретные файлы по прямому URL 404-ят (проверено 2026-08-07 - похоже,
-// не все банально лежат статикой, часть может резолвиться только внутри
-// клиентского asset-бандла). Единственный подтверждённый рабочий паттерн -
-// news_shop_24h_<year>_<sprint><a|b>-ru.jpg (подсказка коллеги, "24-часовой"
-// флеш-сейл, отдельный от общей карусели daily_news). Поэтому: пробуем прямой
-// URL оффера, если 404 - не блокируем анонс, просто без картинки.
+// и достаём баннер каждого.
+//
+// ИСПРАВЛЕНО 2026-08-07: у каждого <Offer> есть СВОЙ путь картинки
+// (image="hud/daily_news/news_X$$.jpg") - баннер РЕАЛЬНО существует, просто
+// нужен языковой суффикс (-ru.jpg/-en.jpg), который я раньше не добавлял и
+// поэтому ловил 404 на голом "news_X.jpg". Пользователь прислал список
+// подтверждённых рабочих URL той же схемы (news_release_shop_db_13-ru.jpg,
+// news_adaptive_shield-ru.jpg и т.д.) - все 200 OK. Пробуем -ru, потом -en.
+export const LANG_SUFFIXES = ['ru', 'en'] as const
 
 import axios from 'axios'
 import { currentSprint, sprintRangeLabel, sprintStartDate } from '../src/lib/sprint-calendar'
 
 const DAILYPOPUP_URL = 'https://s-beta.kobojo.com/mutants/gameconfig/dailypopup.xml'
 const BANNER_BASE = 'https://s-beta.kobojo.com/mutants/assets/hud/daily_news/'
+const ASSETS_BASE = 'https://s-beta.kobojo.com/mutants/assets/'
 
 interface DailyNewsItem {
   filter: string
@@ -42,15 +44,33 @@ async function findCoverImage(sprint: number, year: number): Promise<string | nu
 
 async function bannerExists(url: string): Promise<boolean> {
   try {
-    const res = await axios.head(url, { timeout: 8000, validateStatus: (s) => s === 200 || s === 404 })
+    const res = await axios.head(url, {
+      timeout: 8000,
+      validateStatus: (s) => s === 200 || s === 404,
+    })
     return res.status === 200
   } catch {
     return false
   }
 }
 
+// image="hud/daily_news/news_X$$.jpg" - путь УЖЕ содержит "hud/daily_news/",
+// поэтому база - ASSETS_BASE (общий assets/), не BANNER_BASE. "$$" убираем,
+// дальше пробуем оба языковых суффикса по очереди.
+async function resolveOfferBanner(imageRaw: string): Promise<string | null> {
+  const base = imageRaw.replace(/\$\$/g, '').replace(/\.jpg$/i, '')
+  for (const lang of LANG_SUFFIXES) {
+    const url = `${ASSETS_BASE}${base}-${lang}.jpg`
+    if (await bannerExists(url)) return url
+  }
+  return null
+}
+
 export async function fetchDailyNewsForecast(): Promise<DailyNewsForecast | null> {
-  const { data: xml } = await axios.get<string>(DAILYPOPUP_URL, { responseType: 'text', timeout: 20000 })
+  const { data: xml } = await axios.get<string>(DAILYPOPUP_URL, {
+    responseType: 'text',
+    timeout: 20000,
+  })
 
   const target = currentSprint() + 1
   const markerRe = new RegExp(`<!--\\s*DEBUT SPRINT ${target}\\s*-->`)
@@ -61,20 +81,22 @@ export async function fetchDailyNewsForecast(): Promise<DailyNewsForecast | null
   const nextMarkerIdx = xml.indexOf('<!-- DEBUT SPRINT', startIdx)
   const block = xml.slice(startIdx, nextMarkerIdx === -1 ? undefined : nextMarkerIdx)
 
-  // Прямые семантические банеры отдельных офферов (image="hud/daily_news/news_X$$.jpg")
-  // не отдаются по HTTP (проверено 2026-08-07 - 404 на обоих хостах), поэтому
-  // для отдельных items картинку не тянем вообще - только filter/category как
-  // текстовый список, а обложку блока даёт findCoverImage() (подтверждённый
-  // паттерн 24h-баннера).
-  const items: DailyNewsItem[] = []
+  const rawItems: { filter: string; category: string | null; imageRaw: string | null }[] = []
   for (const offerXml of block.match(/<Offer\b[^>]*>[\s\S]*?<\/Offer>/g) ?? []) {
     const filter = offerXml.match(/<Filter>([^<]*)<\/Filter>/)?.[1]
     const category = offerXml.match(/category="([^"]*)"/)?.[1] ?? null
-    if (filter) items.push({ filter, category, image: null })
+    const imageRaw = offerXml.match(/image="([^"]+)"/)?.[1] ?? null
+    if (filter) rawItems.push({ filter, category, imageRaw })
+  }
+
+  const items: DailyNewsItem[] = []
+  for (const it of rawItems) {
+    const image = it.imageRaw ? await resolveOfferBanner(it.imageRaw) : null
+    items.push({ filter: it.filter, category: it.category, image })
   }
 
   const year = sprintStartDate(target).getUTCFullYear()
-  const coverImage = await findCoverImage(target, year)
+  const coverImage = items.find((it) => it.image)?.image ?? (await findCoverImage(target, year))
 
   return { sprint: target, dateRangeLabel: sprintRangeLabel(target), items, coverImage }
 }
