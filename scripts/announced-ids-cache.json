@@ -1196,6 +1196,7 @@
     "anniversary_24_2",
     "anniversary_25_1",
     "anniversary_25_2",
+    "hexcity_2",
     "jungle_bells_1",
     "jungle_bells_2",
     "jungle_bells_3",
@@ -1271,6 +1272,10 @@
     "Material_Mutenstein_Token",
     "Material_Hexcity_Token"
   ],
-  "shopForecast": [],
-  "dailyNews": []
+  "shopForecast": [
+    "254"
+  ],
+  "dailyNews": [
+    "254"
+  ]
 }

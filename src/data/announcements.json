@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "id": "ladder-1786065851507",
+    "date": "2026-08-07T01:24:11.430Z",
+    "category": "ladder",
+    "title": "Лесенка «Гекс-Сити II» (150 боёв)",
+    "items": [
+      {
+        "id": "hexcity_2",
+        "name": "Лесенка «Гекс-Сити II» (150 боёв)",
+        "image": "/dungeon-covers/hexcity_2.png"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "shopForecast-1786065852483",
+    "date": "2026-08-07T01:24:11.430Z",
+    "category": "shopForecast",
+    "title": "Прогноз магазина (8 августа — 21 августа): 70 предложений",
+    "items": [
+      {
+        "id": "254",
+        "name": "Прогноз магазина (8 августа — 21 августа): 70 предложений",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_anniversary26_2.png"
+      }
+    ],
+    "link": "/materials"
+  },
+  {
+    "id": "dailyNews-1786065855921",
+    "date": "2026-08-07T01:24:11.430Z",
+    "category": "dailyNews",
+    "title": "Скоро в игре (8 августа — 21 августа): 24 событий",
+    "items": [
+      {
+        "id": "254",
+        "name": "Скоро в игре (8 августа — 21 августа): 24 событий",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_anniversary26_pt2-ru.jpg"
+      }
+    ],
+    "link": "/announcements"
+  }
+]
