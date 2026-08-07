@@ -1,737 +1,156 @@
 ---
-export const prerender = true
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import feedData from '@/data/announcements.json'
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import announcementsData from '@/data/announcements.json';
+import BoxModal from '@/components/boxes/BoxModal.svelte';
+import BingoMutantModal from '@/components/bingo/BingoMutantModal.svelte';
+import AnnouncementCard from '@/components/announcements/AnnouncementCard.astro';
+import { CATEGORY_RU, buildAnnouncementContext, type Announcement } from '@/lib/announcements-render';
 
-interface Content {
-  typeId: string
-  name: string
-  amount: number
-  icon: string | null
-  skin?: string
-}
-interface Tier {
-  label: string
-  icon: string | null
-}
-interface Option {
-  key: string
-  slots: number
-  totalSlots: number
-  items?: Content[]
-  specimenName?: string
-  tiers?: Tier[]
-  companions?: Content[]
-}
-interface Day {
-  day: number
-  picture: string | null
-  price: Price | null
-  contents: Content[]
-}
-interface SpecimenChip {
-  name: string
-  icon: string | null
-}
-interface Price {
-  amount?: number
-  type?: string
-}
-interface Entry {
-  kind: 'offer' | 'mutant' | 'bingo'
-  id: string
-  order: number
-  name: string
-  name_en?: string
-  picture?: string | null
-  event?: string
-  price?: Price | null
-  mode?: 'bundle' | 'random' | 'rotation'
-  contents?: Content[]
-  options?: Option[]
-  days?: Day[]
-  life?: string
-  atk1?: string
-  atk2?: string
-  dna?: string
-  grid_size?: number
-  lines?: number
-  specimens?: SpecimenChip[]
-  rewards?: Content[]
-}
+const ctx = buildAnnouncementContext();
 
-const feed = ((feedData as Entry[]) ?? []).slice().sort((a, b) => b.order - a.order)
+// Жетоны исключены со страницы анонсов по просьбе юзера 2026-08-08 -
+// категория осталась в детекторе/леджере (build-announcements.ts), просто не
+// показывается здесь.
+const announcements = ((announcementsData as Announcement[]) ?? [])
+  .filter((a) => a.category !== 'token')
+  .slice()
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const KIND_LABEL: Record<Entry['kind'], string> = {
-  offer: 'Предложение магазина',
-  mutant: 'В центре внимания',
-  bingo: 'Бинго-событие',
-}
-
-const CURRENCY: Record<string, string> = {
-  hardcurrency: 'золота',
-  softcurrency: 'серебра',
-}
-
-const priceLabel = (p?: Price | null) => {
-  if (!p || p.amount == null) return null
-  return { value: p.amount.toLocaleString('ru-RU'), unit: CURRENCY[p.type ?? ''] ?? '' }
-}
-
-const isMutant = (typeId: string) => typeId.toLowerCase().startsWith('specimen_')
-const counts = feed.reduce<Record<string, number>>((a, e) => ((a[e.kind] = (a[e.kind] ?? 0) + 1), a), {})
-const offerCount = feed.filter((e) => e.kind === 'offer').length
-
-const eventCounts = feed.reduce<Record<string, number>>((a, e) => {
-  if (e.event) a[e.event] = (a[e.event] ?? 0) + 1
-  return a
-}, {})
-const currentEvent = Object.entries(eventCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null
+// Порядок вкладок - по частоте/важности, не по алфавиту; "Все" всегда первая.
+const CATEGORY_ORDER = [
+  'dailyNews',
+  'shopForecast',
+  'mutant',
+  'skin',
+  'exchange',
+  'box',
+  'reactor',
+  'raid',
+  'ladder',
+  'token',
+  'bingo',
+  'rebalance',
+];
+const presentCategories = [...new Set(announcements.map((a) => a.category).filter((c): c is string => !!c))].sort(
+  (a, b) => CATEGORY_ORDER.indexOf(a) - CATEGORY_ORDER.indexOf(b),
+);
 ---
 
 <BaseLayout title="Анонсы — Archivist-Library">
-  <main class="anons">
-    <header class="hero">
-      <span class="eyebrow">Датамайн · бета-сервер</span>
-      <h1>Анонсы игры</h1>
-      <p class="lede">
-        {currentEvent ? (
-          <>Точный срез текущего события беты — «{currentEvent}». Для каждой коробки
-          показано её реальное содержимое: цена, гарантированные предметы и случайные
-          варианты — то, что обычно видно только после покупки.</>
-        ) : (
-          <>Точный срез того, что сейчас есть в магазине беты: цена, гарантированные
-          предметы и случайные варианты — то, что обычно видно только после покупки.</>
-        )}
-      </p>
-      <span class="prelim">Предварительно</span>
-      <div class="tally">
-        <span><b>{offerCount}</b> предложений</span>
-        <span><b>{counts.bingo ?? 0}</b> бинго</span>
-        <span><b>{counts.mutant ?? 0}</b> в фокусе</span>
-      </div>
-    </header>
+  <main class="announcements-page">
+    <h1>Анонсы</h1>
+    <p class="intro">Новости и анонсы по игре Mutants Genetic Gladiators.</p>
 
-    {feed.length === 0 ? (
-      <div class="empty">Пока пусто — новые находки появятся здесь после сканирования беты.</div>
+    {announcements.length === 0 ? (
+      <div class="empty">Анонсов пока нет — заглядывай позже.</div>
     ) : (
-      <ol class="feed">
-        {feed.map((e) => {
-          const price = priceLabel(e.price)
-          return (
-            <li class={`card k-${e.kind}`}>
-              <div class="rail" aria-hidden="true"></div>
-              <div class="card-inner">
-                <div class="head">
-                  <span class={`kind kind-${e.kind}`}>{KIND_LABEL[e.kind]}</span>
-                  {e.event && <span class="event">{e.event}</span>}
-                </div>
-
-                {/* OFFER: bundle / random / rotation */}
-                {e.kind === 'offer' && e.mode !== 'rotation' && (
-                  <div class="offer">
-                    <div class="offer-top">
-                      {e.picture && (
-                        <div class="banner">
-                          <img src={e.picture} alt="" loading="lazy" decoding="async" />
-                        </div>
-                      )}
-                      <div class="offer-meta">
-                        <h2>{e.name}</h2>
-                        {price && (
-                          <div class="price">
-                            <span class="price-val">{price.value}</span>
-                            {price.unit && <span class="price-unit">{price.unit}</span>}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {e.mode === 'bundle' && e.contents && e.contents.length > 0 && (
-                      <div class="loot">
-                        <span class="loot-label">Гарантированно внутри</span>
-                        <ul class="loot-grid">
-                          {e.contents.map((c) => (
-                            <li class={`loot-item${isMutant(c.typeId) ? ' is-mutant' : ''}`} title={c.name}>
-                              <div class="icon-slot">
-                                <div class="loot-icon">
-                                  {c.icon ? (
-                                    <img src={c.icon} alt="" loading="lazy" decoding="async" />
-                                  ) : (
-                                    <span class="loot-fallback">{c.name.slice(0, 1)}</span>
-                                  )}
-                                </div>
-                                {c.amount > 1 && <span class="qty">×{c.amount}</span>}
-                              </div>
-                              <span class="loot-name">{c.name}{c.skin && <em> · {c.skin}</em>}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {e.mode === 'random' && e.options && (
-                      <div class="loot">
-                        <span class="loot-label">
-                          Случайный выбор · {e.options.reduce((s, o) => s + o.slots, 0)} равновероятных слотов
-                          на {e.options.length} мутантов — у части несколько слотов (ступени редкости), их шанс выше
-                        </span>
-                        <ul class="option-grid">
-                          {e.options.slice(0, 30).map((o) => (
-                            <li class="option-item">
-                              {o.tiers ? (
-                                <>
-                                  <div class="option-icons">
-                                    {o.tiers.map((t) => (
-                                      <div class="loot-icon is-mutant" title={`${o.specimenName} · ${t.label}`}>
-                                        {t.icon ? (
-                                          <img src={t.icon} alt="" loading="lazy" decoding="async" />
-                                        ) : (
-                                          <span class="loot-fallback">{(o.specimenName ?? '?').slice(0, 1)}</span>
-                                        )}
-                                      </div>
-                                    ))}
-                                  </div>
-                                  <span class="loot-name">{o.specimenName}</span>
-                                  <span class="tier-list">{o.tiers.map((t) => t.label).join(' / ')}</span>
-                                </>
-                              ) : (
-                                <>
-                                  <div class="option-icons">
-                                    {(o.items ?? []).map((it) => (
-                                      <div class={`loot-icon${isMutant(it.typeId) ? ' is-mutant' : ''}`} title={it.name}>
-                                        {it.icon ? (
-                                          <img src={it.icon} alt="" loading="lazy" decoding="async" />
-                                        ) : (
-                                          <span class="loot-fallback">{it.name.slice(0, 1)}</span>
-                                        )}
-                                      </div>
-                                    ))}
-                                  </div>
-                                  <span class="loot-name">
-                                    {(o.items ?? []).map((it) => it.name).join(' + ')}
-                                  </span>
-                                </>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                        {e.options.length > 30 && (
-                          <p class="more-note">+{e.options.length - 30} ещё вариантов в пуле</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* OFFER: 12-day rotation */}
-                {e.kind === 'offer' && e.mode === 'rotation' && e.days && (
-                  <div class="rotation">
-                    <h2>{e.name}</h2>
-                    <ul class="day-list">
-                      {e.days.map((d) => {
-                        const dp = priceLabel(d.price)
-                        return (
-                          <li class="day-row">
-                            <div class="day-head">
-                              {d.picture && <img class="day-icon" src={d.picture} alt="" loading="lazy" decoding="async" />}
-                              <span class="day-num">День {d.day}</span>
-                              {dp && <span class="day-price">{dp.value} {dp.unit}</span>}
-                            </div>
-                            <ul class="day-contents">
-                              {d.contents.map((c) => (
-                                <li title={c.name}>
-                                  {c.icon && <img src={c.icon} alt="" loading="lazy" decoding="async" />}
-                                  <span>{c.name} ×{c.amount}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </div>
-                )}
-
-                {/* MUTANT (spotlighted this week, not claimed as new) */}
-                {e.kind === 'mutant' && (
-                  <div class="mutant">
-                    {e.picture && (
-                      <div class="portrait">
-                        <img src={e.picture} alt="" loading="lazy" decoding="async" />
-                      </div>
-                    )}
-                    <div class="mutant-meta">
-                      <h2>{e.name}{e.name_en && e.name_en !== e.name && <span class="alt"> · {e.name_en}</span>}</h2>
-                      <div class="stats">
-                        <span class="stat hp"><i>HP</i>{Number(e.life).toLocaleString('ru-RU')}</span>
-                        <span class="stat atk"><i>Атака 1</i>{e.atk1}</span>
-                        <span class="stat atk"><i>Атака 2</i>{e.atk2}</span>
-                        {e.dna && <span class="gene">Ген {e.dna}</span>}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* BINGO */}
-                {e.kind === 'bingo' && (
-                  <div class="bingo">
-                    <h2>{e.name}</h2>
-                    <p class="bingo-meta">{e.grid_size} клеток сетки · {e.lines} линий</p>
-                    {e.specimens && (
-                      <ul class="loot-grid pool">
-                        {e.specimens.map((s) => (
-                          <li class="loot-item is-mutant" title={s.name}>
-                            <div class="loot-icon">
-                              {s.icon ? (
-                                <img src={s.icon} alt="" loading="lazy" decoding="async" />
-                              ) : (
-                                <span class="loot-fallback">{s.name.slice(0, 1)}</span>
-                              )}
-                            </div>
-                            <span class="loot-name">{s.name}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {e.rewards && e.rewards.length > 0 && (
-                      <div class="loot">
-                        <span class="loot-label">Награды за линии</span>
-                        <ul class="loot-grid">
-                          {e.rewards.map((r) => (
-                            <li class="loot-item" title={r.name}>
-                              <div class="icon-slot">
-                                <div class="loot-icon">
-                                  {r.icon ? (
-                                    <img src={r.icon} alt="" loading="lazy" decoding="async" />
-                                  ) : (
-                                    <span class="loot-fallback">{r.name.slice(0, 1)}</span>
-                                  )}
-                                </div>
-                                {r.amount > 1 && <span class="qty">×{r.amount}</span>}
-                              </div>
-                              <span class="loot-name">{r.name}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </li>
-          )
-        })}
-      </ol>
+      <>
+        {presentCategories.length > 1 && (
+          <div class="filter-bar" role="tablist">
+            <button type="button" class="filter-pill is-active" data-filter="all">Все</button>
+            {presentCategories.map((c) => (
+              <button type="button" class="filter-pill" data-filter={c}>{CATEGORY_RU[c] ?? c}</button>
+            ))}
+          </div>
+        )}
+        <div class="feed">
+          {announcements.map((a) => (
+            <AnnouncementCard a={a} ctx={ctx} mode="feed" />
+          ))}
+        </div>
+      </>
     )}
   </main>
+
+  <BoxModal client:load />
+  <BingoMutantModal client:load />
 </BaseLayout>
 
+<script>
+  const bar = document.querySelector<HTMLDivElement>('.filter-bar');
+  if (bar) {
+    const pills = Array.from(bar.querySelectorAll<HTMLButtonElement>('.filter-pill'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.card'));
+    bar.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.filter-pill');
+      if (!btn) return;
+      const filter = btn.dataset.filter ?? 'all';
+      pills.forEach((p) => p.classList.toggle('is-active', p === btn));
+      cards.forEach((card) => {
+        card.style.display = filter === 'all' || card.dataset.category === filter ? '' : 'none';
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-open-mutant]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('archivist:open-mutant', { detail: { specimenId: el.dataset.openMutant } }),
+      );
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-open-box]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('archivist:open-box', { detail: { boxId: el.dataset.openBox } }),
+      );
+    });
+  });
+</script>
+
 <style>
-  .anons {
-    --gold: #f3b13b;
-    --cyan: #45d0c0;
-    --violet: #a98bff;
-    --rose: #ff7a6b;
-    --panel: #10151f;
-    --panel-2: #0c1119;
-    --line: rgba(255, 255, 255, 0.07);
-    --ink: #e6eaf2;
-    --muted: #7f8a9e;
-    max-width: 900px;
+  .announcements-page {
+    max-width: 760px;
     margin: 0 auto;
-    padding: 2rem 1rem 4rem;
+    padding: 1.5rem 1rem 3rem;
   }
-  .anons img {
-    -webkit-user-drag: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    pointer-events: none;
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
   }
-
-  /* hero */
-  .hero {
-    margin-bottom: 2.25rem;
+  .intro {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
   }
-  .eyebrow {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.6rem;
-  }
-  .hero h1 {
-    font-size: clamp(1.9rem, 5vw, 2.9rem);
-    line-height: 1.02;
-    letter-spacing: -0.01em;
-    margin: 0 0 0.7rem;
-    color: #fff;
-  }
-  .lede {
-    color: var(--muted);
-    max-width: 60ch;
-    line-height: 1.6;
-    margin: 0 0 1.2rem;
-  }
-  .prelim {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--rose);
-    border: 1px dashed rgba(255, 122, 107, 0.4);
-    background: rgba(255, 122, 107, 0.07);
-    border-radius: 999px;
-    padding: 0.32rem 0.85rem;
-    margin-bottom: 1.4rem;
-  }
-  .tally {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.4rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    padding-top: 1rem;
-    border-top: 1px solid var(--line);
-  }
-  .tally b {
-    color: var(--ink);
-    font-size: 1.05rem;
-  }
-
   .empty {
-    padding: 3rem 1rem;
+    padding: 2rem;
     text-align: center;
-    color: var(--muted);
-    border: 1px dashed var(--line);
-    border-radius: 14px;
+    color: #94a3b8;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
   }
-
-  /* feed */
-  .feed {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .filter-bar {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .card {
-    position: relative;
-    background: linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: transform 0.15s ease, border-color 0.15s ease;
-  }
-  .card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.16);
-  }
-  .rail {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 3px;
-  }
-  .k-offer .rail { background: var(--gold); }
-  .k-mutant .rail { background: var(--cyan); }
-  .k-bingo .rail { background: var(--violet); }
-  .card-inner {
-    padding: 1.1rem 1.2rem 1.2rem 1.4rem;
-  }
-
-  .head {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 0.85rem;
     flex-wrap: wrap;
-  }
-  .kind {
-    font-size: 0.66rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.22rem 0.55rem;
-    border-radius: 6px;
-    border: 1px solid transparent;
-  }
-  .kind-offer { color: var(--gold); background: rgba(243, 177, 59, 0.12); border-color: rgba(243, 177, 59, 0.3); }
-  .kind-mutant { color: var(--cyan); background: rgba(69, 208, 192, 0.1); border-color: rgba(69, 208, 192, 0.28); }
-  .kind-bingo { color: var(--violet); background: rgba(169, 139, 255, 0.1); border-color: rgba(169, 139, 255, 0.28); }
-  .event {
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  h2 {
-    font-size: 1.12rem;
-    line-height: 1.25;
-    margin: 0;
-    color: #fff;
-  }
-  .alt { color: var(--muted); font-weight: 400; font-size: 0.92rem; }
-
-  /* offer */
-  .offer-top {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  .banner {
-    flex: 0 0 auto;
-    width: 100px;
-    height: 128px;
-    border-radius: 10px;
-    background: #0a0e15;
-    border: 1px solid var(--line);
-    overflow: hidden;
-    padding: 4px;
-    box-sizing: border-box;
-  }
-  .banner img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  .offer-meta { min-width: 0; }
-  .price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.35rem;
-    margin-top: 0.5rem;
-  }
-  .price-val {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--gold);
-  }
-  .price-unit { font-size: 0.8rem; color: var(--muted); }
-
-  .loot {
-    margin-top: 1rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--line);
-  }
-  .loot-label {
-    display: block;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.7rem;
-  }
-  .loot-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-    gap: 0.7rem;
-  }
-  .loot-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    text-align: center;
-  }
-  .icon-slot {
-    position: relative;
-    width: 52px;
-    height: 52px;
-  }
-  .loot-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 10px;
-    background: #0a0e15;
-    border: 1px solid var(--line);
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-  }
-  .is-mutant .loot-icon, .loot-icon.is-mutant {
-    border-color: rgba(69, 208, 192, 0.4);
-    background: radial-gradient(circle at 50% 30%, rgba(69, 208, 192, 0.14), #0a0e15 70%);
-  }
-  .loot-icon img { width: 100%; height: 100%; object-fit: contain; }
-  .loot-fallback { color: var(--muted); font-weight: 700; }
-  .qty {
-    position: absolute;
-    right: -6px;
-    bottom: -6px;
-    font-size: 0.66rem;
-    font-weight: 800;
-    color: #0a0e15;
-    background: var(--gold);
-    border-radius: 6px;
-    padding: 0.05rem 0.28rem;
-    box-shadow: 0 0 0 2px var(--panel-2);
-    z-index: 1;
-  }
-  .loot-name {
-    font-size: 0.7rem;
-    line-height: 1.2;
-    color: var(--muted);
-    max-width: 9ch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-  .loot-name em { font-style: normal; color: var(--violet); }
-
-  /* random-pick options */
-  .option-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0.6rem;
-  }
-  .option-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    text-align: center;
-    padding: 0.5rem;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.02);
-  }
-  .option-icons { display: flex; gap: 0.3rem; flex-wrap: wrap; justify-content: center; }
-  .tier-list {
-    font-size: 0.66rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .more-note { margin: 0.7rem 0 0; font-size: 0.78rem; color: var(--muted); text-align: center; }
-
-  /* rotation (12-day) */
-  .rotation h2 { margin-bottom: 0.9rem; }
-  .day-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-  .day-row {
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 0.55rem 0.7rem;
-  }
-  .day-head {
-    display: flex;
-    align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 1.25rem;
   }
-  .day-icon {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    border-radius: 6px;
-    background: #0a0e15;
+  .filter-pill {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
   }
-  .day-num { font-weight: 700; font-size: 0.85rem; color: var(--ink); }
-  .day-price { margin-left: auto; font-size: 0.8rem; color: var(--gold); font-weight: 700; }
-  .day-contents {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .filter-pill:hover {
+    color: #e2e8f0;
+  }
+  .filter-pill.is-active {
+    color: rgb(96, 165, 250);
+    background: rgba(96, 165, 250, 0.12);
+    border-color: rgba(96, 165, 250, 0.35);
+  }
+  .feed {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.9rem;
-  }
-  .day-contents li {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .day-contents img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    border-radius: 4px;
-  }
-
-  /* mutant */
-  .mutant { display: flex; gap: 1rem; align-items: center; }
-  .portrait {
-    flex: 0 0 auto;
-    width: 84px;
-    height: 84px;
-    border-radius: 10px;
-    background: radial-gradient(circle at 50% 25%, rgba(69, 208, 192, 0.16), #0a0e15 72%);
-    border: 1px solid rgba(69, 208, 192, 0.3);
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-  }
-  .portrait img { width: 100%; height: 100%; object-fit: contain; }
-  .stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-top: 0.55rem;
-  }
-  .stat {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.35rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--ink);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--line);
-    border-radius: 7px;
-    padding: 0.2rem 0.5rem;
-  }
-  .stat i {
-    font-style: normal;
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .stat.hp i { color: var(--cyan); }
-  .stat.atk i { color: var(--rose); }
-  .gene {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--cyan);
-    align-self: center;
-  }
-
-  /* bingo */
-  .bingo h2 { margin-bottom: 0.3rem; }
-  .bingo-meta { margin: 0 0 0.9rem; color: var(--muted); font-size: 0.85rem; }
-
-  @media (max-width: 560px) {
-    .offer-top { flex-direction: column; align-items: flex-start; }
-    .banner { width: 100%; height: 130px; }
-    .mutant { flex-direction: column; align-items: flex-start; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .card { transition: none; }
-    .card:hover { transform: none; }
+    flex-direction: column;
+    gap: 1.25rem;
   }
 </style>

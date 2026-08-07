@@ -3089,6 +3089,63 @@
           }
         ]
       }
+    },
+    {
+      "id": "hexcity_2",
+      "name": "Гекс-Сити II",
+      "nameAuthored": true,
+      "mutantId": null,
+      "fightCount": 150,
+      "bossCount": 20,
+      "rewards": {
+        "currency": {
+          "softcurrency": 416000,
+          "hardcurrency": 0,
+          "experience": 41600
+        },
+        "items": [
+          {
+            "id": "Star_Bronze",
+            "amount": 4
+          },
+          {
+            "id": "Material_Hexcity_Token",
+            "amount": 150
+          },
+          {
+            "id": "Material_Jackpot_Token",
+            "amount": 25
+          },
+          {
+            "id": "orb_special_speed_01",
+            "amount": 2
+          },
+          {
+            "id": "Material_XP1000",
+            "amount": 15
+          },
+          {
+            "id": "Star_Silver",
+            "amount": 1
+          },
+          {
+            "id": "orb_basic_attack_03",
+            "amount": 2
+          },
+          {
+            "id": "orb_basic_critical_03",
+            "amount": 2
+          },
+          {
+            "id": "Material_Gacha_Token",
+            "amount": 1
+          },
+          {
+            "id": "Star_Gold",
+            "amount": 4
+          }
+        ]
+      }
     }
   ],
   "challenge": [

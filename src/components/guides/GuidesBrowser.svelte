@@ -83,6 +83,8 @@
     eventLadders = [],
     specialLadders = { experiment: [], challenge: [] },
     specialOffers = [],
+    dungeonCovers = {},
+    divisionArenas = {},
   }: {
     legendaries: MutantLite[]
     zodiac: ZodiacEntry[]
@@ -94,7 +96,16 @@
     eventLadders: EventLadderEntry[]
     specialLadders: SpecialLadders
     specialOffers: SpecialOffer[]
+    dungeonCovers: Record<string, string | null>
+    divisionArenas: Record<string, string | null>
   } = $props()
+
+  // Готовые баннеры/бейджи с Kobojo CDN (найдены 2026-08-07, см. память
+  // auto-announcements-architecture) - хотлинк, не качаем на свой CDN, эти
+  // картинки только фоны/бейджи карточек, не постоянный сайтовый актив.
+  function divisionBadge(campaignId: string): string {
+    return `https://s-beta.kobojo.com/mutants/assets/hud/fight_screen/division_${campaignId}.png`
+  }
 
   let activeDivision = $state(0)
   let zodiacStar: 'normal' | 'silver' = $state('normal')
@@ -150,6 +161,22 @@
     F: { A: 0, B: 50, C: -50, D: -25, E: 25, F: 0 },
   }
   const GENE_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+
+  // Крит-шанс = 5% × (100 + бустеры + сферы) / 100. Бустер крита +50%,
+  // антикрит противника -75% (см. секцию "Крит-шанс" на этой странице).
+  const CRIT_SPHERE_PERCENTS = [2, 5, 11, 13, 15, 17, 18, 19]
+  const CRIT_BASE = 5
+  const CRIT_BOOST_NET = 50 - 75
+  function critChance(bonus: number): number {
+    return Math.round(CRIT_BASE * (100 + bonus) / 100 * 100) / 100
+  }
+  const CRIT_SPHERE_LEVELS = CRIT_SPHERE_PERCENTS.map((percent, level) => ({
+    level,
+    percent,
+    oneSphere: critChance(percent),
+    twoSpheres: critChance(percent * 2),
+    twoSpheresBoosted: critChance(CRIT_BOOST_NET + percent * 2),
+  }))
 
   let activeTab = $state('legendaries')
 
@@ -215,6 +242,8 @@
 
 <div class="tab-content">
   {#snippet activityCard(
+    id: string,
+    dungeonType: 'raid' | 'experiment' | 'challenge' | 'event',
     name: string,
     nameAuthored: boolean,
     mutant: MutantLite | null,
@@ -223,13 +252,22 @@
     items: ResolvedItem[],
   )}
     {@const fallbackIcon = items.find((it) => it.icon)?.icon ?? currency.find((c) => c.icon)?.icon ?? '/stars/star_gold.webp'}
+    {@const cover = dungeonCovers[id]}
     <div class="activity-card" class:no-mutant={!mutant}>
       {#if mutant}
-        <button class="activity-hero" onclick={() => openMutant(mutant.id)} title={`Открыть ${mutant.name}`}>
+        <button
+          class="activity-hero"
+          style={cover ? `background-image: linear-gradient(180deg, rgba(10,14,22,0.15), rgba(10,14,22,0.75)), url(${cover})` : ''}
+          onclick={() => openMutant(mutant.id)}
+          title={`Открыть ${mutant.name}`}
+        >
           <img class="activity-hero-art" src={textureUrl(mutant.fullArt)} alt={mutant.name} loading="lazy" decoding="async" />
         </button>
       {:else}
-        <div class="activity-hero activity-hero-empty">
+        <div
+          class="activity-hero activity-hero-empty"
+          style={cover ? `background-image: linear-gradient(180deg, rgba(10,14,22,0.15), rgba(10,14,22,0.75)), url(${cover})` : ''}
+        >
           <img class="activity-hero-empty-art" src={textureUrl(fallbackIcon)} alt="" loading="lazy" decoding="async" />
         </div>
       {/if}
@@ -531,11 +569,16 @@
     </div>
     {#if divisions[activeDivision]}
       <div class="division-rec">
+        <img class="division-rec-badge" src={divisionBadge(divisions[activeDivision].id)} alt="" loading="lazy" decoding="async" />
         Рекомендуемый эво для прохождение: «{divisions[activeDivision].recommendedLevel}»
       </div>
       <div class="division-maps">
         {#each divisions[activeDivision].maps as m, i (m.mapId)}
-          <div class="division-map-card">
+          {@const arena = divisionArenas[m.mapId]}
+          <div
+            class="division-map-card"
+            style={arena ? `background-image: linear-gradient(180deg, rgba(15,23,42,0.75), rgba(15,23,42,0.92)), url(${arena}); background-size: cover; background-position: center;` : ''}
+          >
             <div class="division-map-head">
               <span class="division-map-num">Карта {i + 1}</span>
               <span class="division-map-title">{m.locationName}</span>
@@ -581,13 +624,13 @@
     {#if activeLadderSection === 'event'}
       <div class="activity-grid">
         {#each eventLadders as e (e.id)}
-          {@render activityCard(e.name, e.nameAuthored, e.mutant, `${e.mapCount} этапов`, [], e.items)}
+          {@render activityCard(e.id, 'event', e.name, e.nameAuthored, e.mutant, `${e.mapCount} этапов`, [], e.items)}
         {/each}
       </div>
     {:else}
       <div class="activity-grid">
         {#each specialLadders[activeLadderSection] as d (d.id)}
-          {@render activityCard(d.name, d.nameAuthored, d.mutant, `${d.fightCount} этапов`, d.currency, d.items)}
+          {@render activityCard(d.id, activeLadderSection, d.name, d.nameAuthored, d.mutant, `${d.fightCount} этапов`, d.currency, d.items)}
         {/each}
       </div>
     {/if}
@@ -601,7 +644,7 @@
     </div>
     <div class="activity-grid">
       {#each raids as r (r.id)}
-        {@render activityCard(r.name, r.nameAuthored, r.mutant, `${r.fightCount} этапов`, r.currency, r.items)}
+        {@render activityCard(r.id, 'raid', r.name, r.nameAuthored, r.mutant, `${r.fightCount} этапов`, r.currency, r.items)}
       {/each}
     </div>
   {:else if activeTab === 'special-offers'}
@@ -636,6 +679,59 @@
         Раздел основан на реверс-инжиниринге игрового бинарника — не догадки и не подсчёты по наблюдениям.
       </div>
 
+      <h2>Рост HP с уровнем мутанта</h2>
+      <p>
+        При повышении уровня мутант получает +10% HP от базового HP (HP мутанта на первом уровне).
+      </p>
+      <div class="formula-box">
+        Итоговое HP = HP на первом уровне × (уровень / 10 + 0.9)
+      </div>
+
+      <h2>Рост урона с уровнем мутанта</h2>
+      <p>
+        Каждый уровень добавляет +10% от атаки мутанта на первом уровне (не от текущей атаки, а именно от
+        «базового» значения).
+      </p>
+      <p>
+        В файлах игры у каждого мутанта изначально прописаны два варианта базовых характеристик:
+        <strong>atk1</strong> и <strong>atk2</strong> — стандартная база, <strong>atk1p</strong> и
+        <strong>atk2p</strong> — усиленная база (начинает использоваться с 10 и 15 уровня соответственно).
+      </p>
+      <p>
+        На 10 уровне игра не просто накидывает бонус к текущему урону — она полностью подменяет переменную
+        в формуле расчёта: старая база atk1 заменяется на усиленную atk1p. После этого все накопленные
+        бонусы за уровни пересчитываются так, будто мутант с самого 1-го уровня имел эту новую, более
+        высокую атаку. Так же это работает и для второй атаки (atk2), но на 15 уровне.
+      </p>
+      <div class="formula-box">
+        Итоговый урон (до 10/15 уровня) = урон на первом уровне × (уровень / 10 + 0.9)
+      </div>
+      <div class="formula-box">
+        Итоговый урон (после 10/15 уровня) = усиленный урон на первом уровне × (уровень / 10 + 0.9)
+      </div>
+      <p>
+        Пример: на 1 уровне (atk1) у мутанта 200 атаки — игра прибавляет по 10% (20 атаки) за уровень, на 9
+        уровне атака становится 360. Без замены базы на 10 уровне атака стала бы 380, но вместо этого atk1
+        (200) меняется на atk1p (300), и все накопленные бонусы (+90% за уровни) применяются уже к новой
+        базе: 300 + 90% = <strong>570</strong>. Каждый следующий уровень прибавляет по 10% уже от atk1p
+        (300).
+      </p>
+
+      <h2>Прибавка звёзд к характеристикам мутантов</h2>
+      <p>
+        При получении любой звезды характеристики (урон и HP) мутанта увеличиваются на то значение,
+        которое звезда даёт: бронза ×1.1, серебро ×1.3, золото ×1.75, платина ×2.0.
+      </p>
+
+      <h2>Рост доходов серебра мутантов с уровнем</h2>
+      <p>
+        Базовый доход мутанта равен 42 единицам серебра в час (с/ч). На следующих уровнях базовое значение
+        умножается на уровень мутанта. У некоторых мутантов базовое значение доходов отличается.
+      </p>
+      <div class="formula-box">
+        Итоговый доход = 42 с/ч × уровень мутанта
+      </div>
+
       <h2>Крит-шанс</h2>
       <p>
         Базовый шанс крита — <strong>5%</strong>.
@@ -644,33 +740,49 @@
         К нему добавляются все бонусы крит-шанса (бустеры + сферы), и вся сумма умножается на эти 5%,
         а не складывается напрямую:
       </p>
-      <p class="formula-legend">
-        бустеры<sub>даю</sub> — ваш бустер крита; бустеры<sub>получаю</sub> — антикрит-бустер противника
-      </p>
       <div class="formula-box">
         шанс крита = 5% × (100 + бустеры<sub>даю</sub> + бустеры<sub>получаю</sub> + сферы<sub>крит</sub>) / 100
       </div>
       <p>
         Сферы крит шанса с 0 по 7 уровень дают <strong>2 → 5 → 11 → 13 → 15 → 17 → 18 → 19%</strong> и
         бустят именно <strong>шанс</strong> крита, а не урон от него — в ру локализации написано иначе, и
-        это опечатка локализаторов. Бустер крита даёт +50% (тир меняет только длительность действия, не
-        силу), антикрит-бустер — −75% получаемого шанса.
+        это опечатка локализаторов.
+      </p>
+      <p class="crit-booster-line">
+        <img src={textureUrl('/boosters/Charm_Critical_97.png')} alt="" class="crit-booster-icon" loading="lazy" decoding="async" />
+        Бустер крита даёт +50% получаемого шанса.
+        <img src={textureUrl('/boosters/Charm_Anticritical_97.png')} alt="" class="crit-booster-icon" loading="lazy" decoding="async" />
+        Антикрит-бустер — −75% получаемого шанса.
+      </p>
+      <p class="formula-example">
+        Пример (сфера +2%, ваш бустер крита, античит-бустер противника): 5% × (100 + 50 − 75 + 2) / 100 =
+        <strong>3.85%</strong>.
       </p>
 
-      <h2>Рост атаки и HP с уровнем</h2>
-      <p>
-        Все характеристики мутанта (кроме скорости — она фиксирована) растут с уровнем по одной и той же
-        линейной формуле:
-      </p>
-      <div class="formula-box">
-        итог = базовое_значение × звёздный_множитель × (уровень / 10 + 0.9)
+      <div class="type-table-wrap">
+        <table class="type-table">
+          <thead>
+            <tr>
+              <th class="corner">Ур. сферы</th>
+              <th>Бонус от сферы крита</th>
+              <th>Крит шанс с 1 сферой</th>
+              <th>Крит шанс с 2 сферами</th>
+              <th>Крит шанс с 2 сферами и бустерами</th>
+            </tr>
+          </thead>
+          <tbody>
+            {#each CRIT_SPHERE_LEVELS as row (row.level)}
+              <tr>
+                <th>{row.level}</th>
+                <td>+{row.percent}%</td>
+                <td>{row.oneSphere}%</td>
+                <td>{row.twoSpheres}%</td>
+                <td>{row.twoSpheresBoosted}%</td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
       </div>
-      <p>
-        Звёздный множитель: обычный ×1.0, бронза ×1.1, серебро ×1.3, золото ×1.75, платина ×2.0. На 10
-        уровне атака 1 переключается на «прокачанное» базовое значение, на 15 уровне то же самое
-        происходит с атакой 2, а на 25 уровне — со способностью (проценты урона способности всегда
-        считаются от текущей атаки 1). Серебро с боя = базовая ставка × текущий уровень мутанта.
-      </p>
 
       <h2>Формула урона</h2>
       <p>
@@ -973,8 +1085,16 @@
   }
   .note { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.75rem 1rem; margin: 0.75rem 0; font-size: 0.87rem; color: #bfdbfe; }
 
-  .numbers-tab .formula-legend {
-    font-size: 0.8rem; color: #94a3b8; margin: 0.5rem 0 0;
+  .numbers-tab .crit-booster-line {
+    display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+    font-size: 0.9rem; color: #e2e8f0;
+  }
+  .numbers-tab .crit-booster-icon {
+    width: 1.6rem; height: 1.6rem; object-fit: contain; flex-shrink: 0;
+    border-radius: 0.3rem; background: rgba(255,255,255,0.06);
+  }
+  .numbers-tab .formula-example {
+    font-size: 0.85rem; color: #94a3b8; margin: 0.4rem 0 1rem;
   }
   .numbers-tab .formula-box {
     background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px;
@@ -1088,17 +1208,18 @@
   .division-btn { appearance: none; border: 1px solid rgba(48, 54, 61, 0.6); background: rgba(15, 23, 42, 0.6); color: #94a3b8; border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
   .division-btn:hover { color: #e2e8f0; border-color: rgba(96,165,250,0.3); }
   .division-btn.active { background: rgba(30, 58, 138, 0.4); color: #60a5fa; border-color: rgba(96,165,250,0.4); }
-  .division-rec { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.65rem 0.9rem; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 700; color: #bfdbfe; }
+  .division-rec { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.65rem 0.9rem; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 700; color: #bfdbfe; display: flex; align-items: center; gap: 0.5rem; }
+  .division-rec-badge { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
   .division-maps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
   .division-map-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; }
   .division-map-head { display: flex; align-items: baseline; gap: 0.5rem; }
-  .division-map-num { font-size: 10.5px; text-transform: uppercase; color: #64748b; font-weight: 700; }
+  .division-map-num { font-size: 10.5px; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
   .division-map-title { font-size: 0.92rem; font-weight: 800; color: #e2e8f0; }
   .division-map-meta { display: flex; gap: 0.9rem; font-size: 0.76rem; color: #94a3b8; }
   .division-map-meta strong { color: #cbd5f5; }
   .division-map-reward { font-size: 0.78rem; color: #94a3b8; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
   .division-map-reward strong { color: #86efac; }
-  .division-map-reward-label { color: #64748b; }
+  .division-map-reward-label { color: #94a3b8; }
   .division-map-toggle {
     appearance: none; align-self: flex-start; border: 1px solid rgba(96,165,250,0.25); background: rgba(30, 58, 138, 0.15);
     color: #60a5fa; border-radius: 6px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;
@@ -1153,6 +1274,7 @@
   .activity-hero {
     appearance: none; border: none; padding: 0; cursor: pointer; display: block;
     position: relative; height: 148px; background: radial-gradient(circle at 50% 30%, rgba(96,165,250,0.16), transparent 70%);
+    background-size: cover; background-position: center;
     overflow: hidden;
   }
   .activity-hero-art { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }

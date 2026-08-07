@@ -1,5 +1,7 @@
 import gachaRaw from '@/data/simulators/reactor/gacha.json'
 import mutantNamesRaw from '@/data/simulators/reactor/mutant_names.json'
+import gachaNameRuRaw from '@/data/simulators/reactor/gacha-name-ru.json'
+import gachaCoversRaw from '@/data/simulators/reactor/gacha-covers.json'
 
 export type GachaId = keyof typeof gachaRaw
 
@@ -41,29 +43,10 @@ export const STAR_ICON: Record<number, string> = {
   4: '/stars/star_platinum.webp',
 }
 
-export const GACHA_NAME_RU: Record<string, string> = {
-  western: 'Вестерн',
-  gachaboss: 'Большой босс',
-  japan: 'Япония',
-  fantasy: 'Темное фентези',
-  lucha: "Мучачо's",
-  olympians: 'Боги арены',
-  music: 'Диско',
-  villains: 'Супер злодеи',
-  starwars: 'Космические войны',
-  beach: 'Тропическое лето',
-  heroes: 'Супергерои',
-  soldiers: 'Патруль времени',
-  gothic: 'Готика',
-  movies: 'Кино',
-  elements: 'Команда элементалей',
-  steampunk: 'Стимпанк',
-  vegetal: 'Фотосинтез',
-  girl: 'Хищницы',
-  olympics: 'Кровавые игры',
-  checkmate: 'Шахматы',
-  gemstones: 'Самоцветы',
-}
+// Вынесено в JSON (2026-08-07, Фаза 2 авто-анонсов) - .локал-флоу в
+// telegram-webhook.ts дописывает сюда RU-имя через GitHub Contents API PUT,
+// патчить объект внутри .ts строковыми правками было бы хрупко.
+export const GACHA_NAME_RU: Record<string, string> = gachaNameRuRaw
 
 // Обложки - официальный крoп-арт игры (assets/gachacontent/btn_gacha_<live-id>-ru.png
 // на Kobojo CDN), локализованная RU-версия с русским текстом на баннере, .png
@@ -71,29 +54,9 @@ export const GACHA_NAME_RU: Record<string, string> = {
 // наш локальный slug генератора, который может отличаться от текущего id в игре
 // (checkmate -> chess, см. gacha.json) - подтверждено сверкой fingerprint'а по
 // составу specimen'ов basic_elements/completion_reward.
-export const GACHA_COVERS: Partial<Record<string, string>> = {
-  western: '/reactor/western.png',
-  beach: '/reactor/beach.png',
-  soldiers: '/reactor/soldiers.png',
-  heroes: '/reactor/heroes.png',
-  villains: '/reactor/villains.png',
-  steampunk: '/reactor/steampunk.png',
-  starwars: '/reactor/starwars.png',
-  lucha: '/reactor/lucha.png',
-  movies: '/reactor/movies.png',
-  girl: '/reactor/girl.png',
-  japan: '/reactor/japan.png',
-  gothic: '/reactor/gothic.png',
-  olympians: '/reactor/olympians.png',
-  fantasy: '/reactor/fantasy.png',
-  elements: '/reactor/elements.png',
-  music: '/reactor/music.png',
-  olympics: '/reactor/olympics.png',
-  gachaboss: '/reactor/gachaboss.png',
-  vegetal: '/reactor/vegetal.png',
-  checkmate: '/reactor/checkmate.png',
-  gemstones: '/reactor/gemstones.png',
-}
+// Вынесено в JSON по той же причине, что и GACHA_NAME_RU выше - Фаза 2
+// авто-добавления реакторов дописывает сюда путь после загрузки арта на CDN.
+export const GACHA_COVERS: Partial<Record<string, string>> = gachaCoversRaw
 
 export const mutantNames: Record<string, string> = mutantNamesRaw
 

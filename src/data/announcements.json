@@ -1,1569 +1,1028 @@
 [
   {
-    "kind": "offer",
-    "id": "Mystery_Anniversary26_1",
-    "order": 299,
-    "name": "13-я годовщина Mystery Box — Часть 1",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/mystery_anniversary26_1.png",
-    "price": {
-      "amount": 1000,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "random",
-    "options": [
+    "id": "ladder-1786065851507",
+    "date": "2026-08-07T01:24:11.430Z",
+    "category": "ladder",
+    "title": "Лесенка «Гекс-Сити II» (150 боёв)",
+    "items": [
       {
-        "key": "Specimen_EC_08",
-        "slots": 1,
-        "totalSlots": 6,
-        "items": [
-          {
-            "typeId": "Specimen_EC_08",
-            "name": "Спектр",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ec_08_hexcity.png",
-            "skin": "hexcity"
-          }
-        ]
-      },
-      {
-        "key": "Specimen_EE_06",
-        "slots": 1,
-        "totalSlots": 6,
-        "items": [
-          {
-            "typeId": "Specimen_EE_06",
-            "name": "Королева Раккти",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ee_06_masks.png",
-            "skin": "masks"
-          },
-          {
-            "typeId": "Material_Mystery26_Token",
-            "name": "Таинственный жетон 2026",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_mystery26_token.png"
-          }
-        ]
-      },
-      {
-        "key": "Specimen_BA_10",
-        "slots": 1,
-        "totalSlots": 6,
-        "items": [
-          {
-            "typeId": "Specimen_BA_10",
-            "name": "Адский Дровосек",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ba_10_anniversary.png",
-            "skin": "anniversary"
-          },
-          {
-            "typeId": "Material_Mystery26_Token",
-            "name": "Таинственный жетон 2026",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_mystery26_token.png"
-          }
-        ]
-      },
-      {
-        "key": "Specimen_AC_05",
-        "slots": 1,
-        "totalSlots": 6,
-        "items": [
-          {
-            "typeId": "Specimen_AC_05",
-            "name": "Киберпанк",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ac_05_wireframe.png",
-            "skin": "wireframe"
-          },
-          {
-            "typeId": "Material_Mystery26_Token",
-            "name": "Таинственный жетон 2026",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_mystery26_token.png"
-          }
-        ]
-      },
-      {
-        "key": "Specimen_AB_05",
-        "slots": 1,
-        "totalSlots": 6,
-        "items": [
-          {
-            "typeId": "Specimen_AB_05",
-            "name": "Неоурбан XIII",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_05_anniversary.png",
-            "skin": "anniversary"
-          },
-          {
-            "typeId": "Material_Mystery26_Token",
-            "name": "Таинственный жетон 2026",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_mystery26_token.png"
-          }
-        ]
-      },
-      {
-        "key": "Specimen_BF_05",
-        "slots": 1,
-        "totalSlots": 6,
-        "items": [
-          {
-            "typeId": "Specimen_BF_05",
-            "name": "Британи",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_bf_05_confrontation.png",
-            "skin": "confrontation"
-          },
-          {
-            "typeId": "Material_Mystery26_Token",
-            "name": "Таинственный жетон 2026",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_mystery26_token.png"
-          }
-        ]
+        "id": "hexcity_2",
+        "name": "Лесенка «Гекс-Сити II» (150 боёв)",
+        "image": "/dungeon-covers/hexcity_2.png"
       }
-    ]
+    ],
+    "link": "/guides"
   },
   {
-    "kind": "offer",
-    "id": "Pack_Token_Anniversary26_2",
-    "order": 298,
-    "name": "Пакет «Шестзаклинание жетон»",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary26_token_pack.png",
-    "price": {
-      "amount": 400,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
+    "id": "token-1786118399992",
+    "date": "2026-08-07T15:59:59.921Z",
+    "category": "token",
+    "title": "Material Preorder Token FC 11",
+    "items": [
       {
-        "typeId": "Material_Hexcity_Token",
-        "name": "Жетон Hexcity",
-        "amount": 260,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
+        "id": "Material_Preorder_Token_FC_11",
+        "name": "Material Preorder Token FC 11",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/material_preorder_token_fc_11.png"
       }
-    ]
+    ],
+    "link": "/materials"
   },
   {
-    "kind": "offer",
-    "id": "Pack_Token_Anniversary26_1",
-    "order": 297,
-    "name": "Пакет «Шестзаклинание жетон»",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary26_token_pack.png",
-    "price": {
-      "amount": 400,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
+    "id": "test-box-1",
+    "date": "2026-05-15T21:17:36.232Z",
+    "category": "box",
+    "title": "Золотой легендарный контейнер х2",
+    "items": [
       {
-        "typeId": "Material_Hexcity_Token",
-        "name": "Жетон Hexcity",
-        "amount": 260,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
+        "id": "LuckyBox_Legend_Gold_Duo",
+        "name": "Золотой легендарный контейнер х2",
+        "image": "/boxes/lucky_box_xmas_gold.png"
       }
-    ]
+    ],
+    "link": "/boxes"
   },
   {
-    "kind": "offer",
-    "id": "Super_Pack_Anniversary26_2",
-    "order": 296,
-    "name": "Суперпакет «Юбилейная»",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/pack_anniversary26_2.png",
-    "price": {
-      "amount": 4500,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
+    "id": "test-ladder-1",
+    "date": "2026-05-22T21:17:36.233Z",
+    "category": "ladder",
+    "title": "Лесенка «Адское пламя»",
+    "items": [
       {
-        "typeId": "Specimen_DB_10",
-        "name": "Буффалор",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_db_10_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "typeId": "Specimen_EB_13",
-        "name": "Ксиномас",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_eb_13.png"
-      },
-      {
-        "typeId": "Specimen_AA_11",
-        "name": "ТреАД",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_11_anniversary.png",
-        "skin": "anniversary"
+        "id": "hellfire_13",
+        "name": "Лесенка «Адское пламя» (66 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/screen_hellfire.jpg"
       }
-    ]
+    ],
+    "link": "/guides"
   },
   {
-    "kind": "offer",
-    "id": "Super_Pack_Anniversary26_1",
-    "order": 295,
-    "name": "Суперпакет «Юбилейная»",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/pack_anniversary26_1.png",
-    "price": {
-      "amount": 4500,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
+    "id": "test-reactor-1",
+    "date": "2026-05-22T21:17:36.233Z",
+    "category": "reactor",
+    "title": "Вестерн",
+    "items": [
       {
-        "typeId": "Specimen_EB_09",
-        "name": "Королева Сильвидра",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_eb_09_masks.png",
-        "skin": "masks"
-      },
-      {
-        "typeId": "Specimen_AF_99",
-        "name": "A027441",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_99.png"
-      },
-      {
-        "typeId": "Specimen_EE_09",
-        "name": "Мегастрал",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ee_09_wireframe.png",
-        "skin": "wireframe"
+        "id": "western",
+        "name": "Вестерн",
+        "image": "/reactor/western.png"
       }
-    ]
+    ],
+    "link": "/simulators/reactor"
   },
   {
-    "kind": "offer",
-    "id": "Specimen_EF_11_Hexcity",
-    "order": 294,
-    "name": "Зимний золотой Диментио",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ef_11_hexcity.png",
-    "price": {
-      "amount": 2100,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
+    "id": "test-mutant-1",
+    "date": "2026-05-27T21:17:36.233Z",
+    "category": "mutant",
+    "title": "Робот",
+    "items": [
       {
-        "typeId": "Specimen_EF_11",
-        "name": "Диментио",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ef_11_hexcity.png",
-        "skin": "hexcity"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_mutants_platinum_advanced",
-    "order": 293,
-    "name": "Моногенный платиновый суперпакет",
-    "picture": null,
-    "price": {
-      "amount": 3500,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "Specimen_D_01",
-        "name": "Зверь",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_d_01_platinum.png",
-        "skin": "platinum"
-      },
-      {
-        "typeId": "Specimen_E_01",
-        "name": "Пришелец",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_e_01_platinum.png",
-        "skin": "platinum"
-      },
-      {
-        "typeId": "Specimen_F_01",
-        "name": "Демон",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_f_01_platinum.png",
-        "skin": "platinum"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_orbs_experimental_hyper_03",
-    "order": 292,
-    "name": "Experimental hyper 03",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_bundle_hyper.png",
-    "price": {
-      "amount": 800,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "orb_basic_attack_05",
-        "name": "Атака +16%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_attack_05.png"
-      },
-      {
-        "typeId": "orb_basic_strengthen_05",
-        "name": "Усиление +24%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_strengthen_05.png"
-      },
-      {
-        "typeId": "orb_special_speed_04",
-        "name": "Скорость +18%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_special_speed_04.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_orbs_speed_4_21",
-    "order": 291,
-    "name": "Скоростной пакет 4",
-    "picture": null,
-    "price": {
-      "amount": 1200,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "orb_special_speed_04",
-        "name": "Скорость +18%",
-        "amount": 3,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_special_speed_04.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "Pack_Stone",
-    "order": 290,
-    "name": "Пакет «Камень»",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/pack_stone.png",
-    "price": {
-      "amount": 3000,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "Specimen_FF_04",
-        "name": "Монолит",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ff_04_bronze.png",
-        "skin": "bronze"
-      },
-      {
-        "typeId": "Specimen_EE_08",
-        "name": "Големаг",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ee_08_bronze.png",
-        "skin": "bronze"
-      },
-      {
-        "typeId": "Specimen_FD_11",
-        "name": "Иши-но-Оками",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fd_11.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "Campaign_Pack",
-    "order": 289,
-    "name": "Пакет миссий",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/promo_bundle_campaign_01.png",
-    "price": {
-      "amount": 500,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "Material_Energy25",
-        "name": "Пропусков x25",
-        "amount": 5,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_energy25.png"
-      },
-      {
-        "typeId": "softcurrency",
-        "name": "серебро",
-        "amount": 500000,
-        "icon": "https://cdn.archivist-library.com/cash/softcurrency.webp"
-      },
-      {
-        "typeId": "Material_LP100",
-        "name": "Аптечка",
-        "amount": 20,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_lp100.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_orbs_experimental_barrier_10",
-    "order": 288,
-    "name": "Пучок барьерных сфер",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_bundle_barrier.png",
-    "price": {
-      "amount": 800,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "orb_basic_shield_05",
-        "name": "Щит +24%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_shield_05.png"
-      },
-      {
-        "typeId": "orb_basic_regenerate_05",
-        "name": "Вытягивание жизни +28%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_regenerate_05.png"
-      },
-      {
-        "typeId": "orb_special_addregenerate_04",
-        "name": "Вытягивание жизни (29%)",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_special_addregenerate_04.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "pack_daily_3_gold_67",
-    "order": 287,
-    "name": "Звездное предложение",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/pack_daily_3_gold.png",
-    "price": {
-      "amount": 500,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "Star_Gold",
-        "name": "Золотая звезда",
-        "amount": 3,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_gold.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_orbs_core_06_13",
-    "order": 286,
-    "name": "Пакет сфер 6",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/bundle_orbs_core_06.png",
-    "price": {
-      "amount": 500,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "orb_basic_attack_06",
-        "name": "Атака +17%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_attack_06.png"
-      },
-      {
-        "typeId": "orb_basic_life_06",
-        "name": "Здоровье +30%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_life_06.png"
-      },
-      {
-        "typeId": "orb_basic_critical_06",
-        "name": "Критический урон +18%",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_critical_06.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_mutants_platinum_starter",
-    "order": 285,
-    "name": "Моногенный платиновый пакет",
-    "picture": null,
-    "price": {
-      "amount": 3000,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "Specimen_A_01",
+        "id": "specimen_a_01",
         "name": "Робот",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_a_01_platinum.png",
-        "skin": "platinum"
-      },
-      {
-        "typeId": "Specimen_B_01",
-        "name": "Зомби",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_b_01_platinum.png",
-        "skin": "platinum"
-      },
-      {
-        "typeId": "Specimen_C_01",
-        "name": "Воин",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_c_01_platinum.png",
-        "skin": "platinum"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_orbs_crafting_master",
-    "order": 284,
-    "name": "Мастер ремесла",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/pack_crafting_master.png",
-    "price": {
-      "amount": 1000,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "orb_basic_attack_01",
-        "name": "Атака +5%",
-        "amount": 25,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_attack_01.png"
-      },
-      {
-        "typeId": "orb_basic_life_01",
-        "name": "Здоровье +10%",
-        "amount": 25,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_life_01.png"
-      },
-      {
-        "typeId": "Star_Bronze",
-        "name": "Бронзовая звезда",
-        "amount": 25,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_bronze.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "bundle_orbs_weaken_5_26",
-    "order": 283,
-    "name": "Проклятие пакет",
-    "picture": null,
-    "price": {
-      "amount": 600,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "bundle",
-    "contents": [
-      {
-        "typeId": "orb_basic_weaken_05",
-        "name": "Проклятие +24%",
-        "amount": 3,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_weaken_05.png"
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "Mysterybox_Ability_Shield",
-    "order": 282,
-    "name": "Усиленный контейнер «Щит»",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/shop_mystery_shield.png",
-    "price": {
-      "amount": 600,
-      "type": "hardcurrency"
-    },
-    "event": "Morphology anniversary26",
-    "mode": "random",
-    "options": [
-      {
-        "key": "Specimen_AE_02",
-        "slots": 2,
-        "totalSlots": 69,
-        "specimenName": "Либраро",
-        "tiers": [
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_02_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_02.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AF_02",
-        "slots": 2,
-        "totalSlots": 69,
-        "specimenName": "Виргон",
-        "tiers": [
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_02_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_02.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AF_03",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Бородыш",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_03_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_03_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_03.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AB_03",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Ксенарахнид",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_03_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_03_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_03.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AD_03",
-        "slots": 2,
-        "totalSlots": 69,
-        "specimenName": "Быкоскок",
-        "tiers": [
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_03_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_03.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AD_04",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Смертожук 1",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_04_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_04_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_04.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AF_04",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Стремглав",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_04_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_04_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_04.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_A_05",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Охотник за головами",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_a_05_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_a_05_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_a_05.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AA_05",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Максимус Альфа",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_05_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_05_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_05.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AA_06",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Геркулес",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_06_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_06_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_06.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_CD_06",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Сэр Мопсингтон",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cd_06_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cd_06_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cd_06.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AD_06",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Биоеж",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_06_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_06_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_06.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AE_06",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Марв",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_06_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_06_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_06.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AB_06",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Друзелла",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_06_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_06_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ab_06.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_CA_07",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Рокки Болтбоа",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ca_07_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ca_07_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ca_07.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_FA_07",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Доктор Фрост",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fa_07_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fa_07_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fa_07.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_EA_07",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Капитан Патриот",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ea_07_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ea_07_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ea_07.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AA_07",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Проект 3V3",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_07_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_07_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_07.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_CB_08",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Щратх",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cb_08_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cb_08_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cb_08.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AA_08",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Страж R0B-H4N",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_08_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_08_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_08.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AF_08",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "ГYд1/-/1",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_08_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_08_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_af_08.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AD_09",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Гигантский Краб",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_09_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_09_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ad_09.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AE_09",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "Центавр",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_09_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_09_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_09.png"
-          }
-        ],
-        "companions": []
-      },
-      {
-        "key": "Specimen_AA_09",
-        "slots": 3,
-        "totalSlots": 69,
-        "specimenName": "О.Х.0.Т.Н.№.К",
-        "tiers": [
-          {
-            "label": "золото",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_09_gold.png"
-          },
-          {
-            "label": "серебро",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_09_silver.png"
-          },
-          {
-            "label": "база",
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_09.png"
-          }
-        ],
-        "companions": []
-      }
-    ]
-  },
-  {
-    "kind": "offer",
-    "id": "Anniversary26_OOTD",
-    "order": 250,
-    "name": "Контейнер дня — вся ротация",
-    "mode": "rotation",
-    "days": [
-      {
-        "day": 1,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_green.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Material_LP10",
-            "name": "Маленькая аптечка",
-            "amount": 10,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_lp10.png"
-          }
-        ]
-      },
-      {
-        "day": 2,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_green.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "orb_basic_life_02",
-            "name": "Здоровье +15%",
-            "amount": 10,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_life_02.png"
-          }
-        ]
-      },
-      {
-        "day": 3,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_red.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Star_Bronze",
-            "name": "Бронзовая звезда",
-            "amount": 2,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_bronze.png"
-          }
-        ]
-      },
-      {
-        "day": 4,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_green.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Material_Jackpot_Token",
-            "name": "Жетон джекпота",
-            "amount": 10,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_jackpot_token.png"
-          }
-        ]
-      },
-      {
-        "day": 5,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_yellow.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Material_XP1000",
-            "name": "Банка опыта",
-            "amount": 5,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_xp1000.png"
-          }
-        ]
-      },
-      {
-        "day": 6,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_red.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Specimen_ED_09",
-            "name": "Лисобот",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ed_09.png"
-          }
-        ]
-      },
-      {
-        "day": 7,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_yellow.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "orb_basic_attack_03",
-            "name": "Атака +12%",
-            "amount": 2,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_attack_03.png"
-          }
-        ]
-      },
-      {
-        "day": 8,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_red.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Star_Silver",
-            "name": "Серебряная звезда",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_silver.png"
-          }
-        ]
-      },
-      {
-        "day": 9,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_green.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "orb_basic_shield_04",
-            "name": "Щит +22%",
-            "amount": 2,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_shield_04.png"
-          }
-        ]
-      },
-      {
-        "day": 10,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_yellow.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 130,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          }
-        ]
-      },
-      {
-        "day": 11,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_red.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Star_Gold",
-            "name": "Золотая звезда",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_gold.png"
-          }
-        ]
-      },
-      {
-        "day": 12,
-        "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/anniversary_box_yellow.png",
-        "price": {
-          "amount": 30,
-          "type": "hardcurrency"
-        },
-        "contents": [
-          {
-            "typeId": "Material_Hexcity_Token",
-            "name": "Жетон Hexcity",
-            "amount": 13,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_hexcity_token.png"
-          },
-          {
-            "typeId": "Material_Gacha_Token",
-            "name": "Жетон генератора",
-            "amount": 1,
-            "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_gacha_token.png"
-          }
-        ]
+        "image": "textures_by_mutant/a_01/specimen_a_01_normal.webp"
       }
     ],
-    "event": "Morphology anniversary26"
+    "link": "/mutants"
   },
   {
-    "kind": "bingo",
-    "id": "morphology_anniversary26",
-    "order": 249,
-    "name": "Бинго «Morphology anniversary26»",
-    "event": "Morphology anniversary26",
-    "grid_size": 25,
-    "lines": 15,
-    "specimens": [
+    "id": "test-bingo-1",
+    "date": "2026-06-05T21:17:36.233Z",
+    "category": "bingo",
+    "title": "morphology_anniversary26",
+    "items": [
       {
-        "name": "A00-C0R3-КОНТРОЛЬ",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_99.png"
-      },
-      {
-        "name": "Диментио",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ef_11_hexcity.png",
-        "skin": "hexcity"
-      },
-      {
-        "name": "Маг-дракон",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fd_09_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Пиротроп",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_be_09_masks.png",
-        "skin": "masks"
-      },
-      {
-        "name": "Часовщица Мими",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fa_10_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Клык Ярости",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_bc_11_masks.png",
-        "skin": "masks"
-      },
-      {
-        "name": "Случайним",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ae_99.png"
-      },
-      {
-        "name": "Королева Сильвидра",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_eb_09_masks.png",
-        "skin": "masks"
-      },
-      {
-        "name": "Отпетые приматы",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cd_09_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Спектр",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ec_08_hexcity.png",
-        "skin": "hexcity"
-      },
-      {
-        "name": "Ан0малия",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_da_11_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Буффалор",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_db_10_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Specimen_FA_15",
-        "icon": null
-      },
-      {
-        "name": "Астромаг",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fe_03_wireframe.png",
-        "skin": "wireframe"
-      },
-      {
-        "name": "Аран",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ce_07_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Звездонатор",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_eb_07.png",
-        "skin": "hexcity"
-      },
-      {
-        "name": "Адский Дровосек",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ba_10_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Полиглоб",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_04_hexcity.png",
-        "skin": "hexcity"
-      },
-      {
-        "name": "Эмоциональная маскарада",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ff_99.png"
-      },
-      {
-        "name": "Бахамут",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fe_10_masks.png",
-        "skin": "masks"
-      },
-      {
-        "name": "ТреАД",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_aa_11_anniversary.png",
-        "skin": "anniversary"
-      },
-      {
-        "name": "Королева Раккти",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ee_06_masks.png",
-        "skin": "masks"
-      },
-      {
-        "name": "Мегастрал",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_ee_09_wireframe.png",
-        "skin": "wireframe"
-      },
-      {
-        "name": "Окулюс",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_be_11.png",
-        "skin": "hexcity"
-      },
-      {
-        "name": "Рид, Истинный герой",
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_cf_99.png"
+        "id": "anniversary_26",
+        "name": "morphology_anniversary26",
+        "image": null
       }
     ],
-    "rewards": [
-      {
-        "typeId": "Star_Bronze",
-        "name": "Бронзовая звезда",
-        "amount": 10,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_bronze.png"
-      },
-      {
-        "typeId": "Material_Event_Token",
-        "name": "Жетон испытаний",
-        "amount": 5,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_event_token.png"
-      },
-      {
-        "typeId": "Star_Gold",
-        "name": "Золотая звезда",
-        "amount": 1,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_gold.png"
-      },
-      {
-        "typeId": "orb_basic_xp_04",
-        "name": "Опыт +150%",
-        "amount": 2,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/orb_basic_xp_04.png"
-      },
-      {
-        "typeId": "Material_Mystery26_Token",
-        "name": "Таинственный жетон 2026",
-        "amount": 5,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_mystery26_token.png"
-      },
-      {
-        "typeId": "Material_Jackpot_Token",
-        "name": "Жетон джекпота",
-        "amount": 40,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_jackpot_token.png"
-      },
-      {
-        "typeId": "Star_Silver",
-        "name": "Серебряная звезда",
-        "amount": 5,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/star_silver.png"
-      },
-      {
-        "typeId": "Material_Gacha_Token",
-        "name": "Жетон генератора",
-        "amount": 2,
-        "icon": "https://s-ak.kobojo.com/mutants/assets/thumbnails/material_gacha_token.png"
-      }
-    ]
+    "link": "/bingo"
   },
   {
-    "kind": "mutant",
-    "id": "Specimen_FA_14",
-    "order": 247,
-    "name": "Фрактальный заклинатель",
-    "name_en": "Fractal Hexcaster",
-    "life": "1420",
-    "atk1": "1451",
-    "atk2": "1451",
-    "dna": "FA",
-    "picture": "https://s-ak.kobojo.com/mutants/assets/thumbnails/specimen_fa_14.png",
-    "event": "Morphology anniversary26"
+    "id": "test-shopForecast-254",
+    "date": "2026-06-05T21:17:36.233Z",
+    "category": "shopForecast",
+    "title": "Прогноз магазина (8 августа — 21 августа)",
+    "items": [
+      {
+        "id": "254|Mystery_Anniversary26_2",
+        "name": "13-я годовщина Mystery Box — Часть 2",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_anniversary26_2.png",
+        "price": {
+          "amount": 1000,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Pack_Token_Anniversary26_4",
+        "name": "Пакет «Шестзаклинание жетон»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary26_token_pack.png",
+        "price": {
+          "amount": 400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Pack_Token_Anniversary26_3",
+        "name": "Пакет «Шестзаклинание жетон»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary26_token_pack.png",
+        "price": {
+          "amount": 400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|bundle_bank_anniversary26_2_t5",
+        "name": "Пакет «Шестзаклинание»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary26_final_t5.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary26_2_t4",
+        "name": "Пакет «Шестзаклинание»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary26_final_t4.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary26_2_t3",
+        "name": "Пакет ветерана «Шестзаклинание»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary26_final_t3.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary26_2_t2",
+        "name": "Пакет ветерана «Шестзаклинание»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary26_final_t2.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary26_2_t1",
+        "name": "Престижный пакет «Шестзаклинание»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary26_final_t1.png",
+        "price": null
+      },
+      {
+        "id": "254|Anniversary26_Box_24",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_blue.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_23",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_yellow.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_22",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_blue.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_21",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_purple.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_20",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_red.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_19",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_green.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_18",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_purple.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_17",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_yellow.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_16",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_red.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_15",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_green.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_14",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_blue.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Anniversary26_Box_13",
+        "name": "Ежедневное предложение по случаю 13-летнего юбилея",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/anniversary_box_purple.png",
+        "price": {
+          "amount": 30,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Mysterybox_Ability_Retaliate",
+        "name": "Усиленный контейнер «Контратака» ",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_mystery_retaliate.png",
+        "price": {
+          "amount": 600,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_BD_06_Silver",
+        "name": "Серебряный Мор'Гул",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_bd_06_silver.png",
+        "price": {
+          "amount": 1200,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|boosted_omega_pack_13",
+        "name": "Усиленный пакет «Омега»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_omega_boosted.png",
+        "price": {
+          "amount": 750,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_DB_02_sc",
+        "name": "Зомбат",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_db_02.png",
+        "price": {
+          "amount": 5500000,
+          "type": "softcurrency"
+        }
+      },
+      {
+        "id": "254|Mysterybox_Ability_Regenerate",
+        "name": "Усиленный контейнер «Вытягивание жизни» ",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_mystery_regenerate.png",
+        "price": {
+          "amount": 600,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_DA_06_Bronze",
+        "name": "Бронзовый Трицератанк",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_da_06_bronze.png",
+        "price": {
+          "amount": 1020,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|pack_daily_orbs_xp4_11",
+        "name": "Предложение сфер",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bundle_orbs_xp_4.png",
+        "price": {
+          "amount": 400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Mysterybox_Ability_Slash",
+        "name": "Усиленный контейнер «Ранение» ",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_mystery_slash.png",
+        "price": {
+          "amount": 600,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_CD_09_Silver",
+        "name": "Серебряный Отпетые приматы",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_cd_09_silver.png",
+        "price": {
+          "amount": 1400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_A_03",
+        "name": "Гаруда",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_a_03.png",
+        "price": {
+          "amount": 1000,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Mysterybox_Ability_Shield",
+        "name": "Усиленный контейнер «Щит» ",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_mystery_shield.png",
+        "price": {
+          "amount": 600,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_ED_14_rc",
+        "name": "Гидридра",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_ed_14.png",
+        "price": null
+      },
+      {
+        "id": "254|Specimen_DC_09",
+        "name": "Мастер Синдзо",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_dc_09.png",
+        "price": {
+          "amount": 1000,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Super_Pack_Anniversary26_3",
+        "name": "Суперпакет «Юбилейная»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_anniversary26_2.png",
+        "price": {
+          "amount": 4500,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Bundle_Casino_100jt_20",
+        "name": "Пакет «Казино 100»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/promo_casino_pack4.png",
+        "price": null
+      },
+      {
+        "id": "254|Bundle_Casino_300jt_20",
+        "name": "Пакет «Казино 300»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/promo_casino_300.png",
+        "price": null
+      },
+      {
+        "id": "254|Mysterybox_Ability_Strengthen",
+        "name": "Усиленный контейнер «Усиление» ",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_mystery_strengthen.png",
+        "price": {
+          "amount": 600,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_AD_04_gold",
+        "name": "Смертожук 1",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_ad_04.png",
+        "price": {
+          "amount": 1350,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|bundle_orbs_experimental_counter_03",
+        "name": "Этот пакет содержит: – Отражение (20%) – Атака +16% – Усиление +24%",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/orb_bundle_counter.png",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|LuckyBox_Necro_Elite",
+        "name": "элитный контейнер «Мертвяк»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_elite_necro.png",
+        "price": {
+          "amount": 700,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_FE_02_sc",
+        "name": "Синеглазка",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_fe_02.png",
+        "price": {
+          "amount": 5000000,
+          "type": "softcurrency"
+        }
+      },
+      {
+        "id": "254|pack_daily_6_gacha_52",
+        "name": "Предложение «Реактор»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_daily_6_gacha.png",
+        "price": null
+      },
+      {
+        "id": "254|LuckyBox_Saber_Elite",
+        "name": "элитный контейнер «Рубака»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_elite_saber.png",
+        "price": {
+          "amount": 700,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_BE_06_Bronze",
+        "name": "Бронзовый Апофис",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_be_06_bronze.png",
+        "price": {
+          "amount": 1020,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Pack_Cooking",
+        "name": "Пакет кулинарии",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_cooking.png",
+        "price": {
+          "amount": 2780,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|LuckyBox_Mystic_Elite",
+        "name": "элитный контейнер «Мифик»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_elite_mystic.png",
+        "price": {
+          "amount": 700,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_DA_05",
+        "name": "Фенек-Ультралис",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_da_05.png",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|pack_conversion_aug_2026_1",
+        "name": "Золотой котел",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_conversion_jan_5000.png",
+        "price": null
+      },
+      {
+        "id": "254|pack_conversion_aug_2026_2",
+        "name": "Большой золотой котел",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/shop_conversion_jan_15000.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_orbs_basic_06_13",
+        "name": "Пакет сфер 6",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bundle_orbs_basic_06.png",
+        "price": {
+          "amount": 950,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|LuckyBox_Galactic_Elite",
+        "name": "элитный контейнер «Галактики»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_elite_galactic.png",
+        "price": {
+          "amount": 700,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_BF_07_Silver_sc",
+        "name": "Серебряный Грибень",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_bf_07_silver.png",
+        "price": {
+          "amount": 12600000,
+          "type": "softcurrency"
+        }
+      },
+      {
+        "id": "254|LuckyBox_Cyber_Elite",
+        "name": "элитный контейнер «зооморфа»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_elite_cyber.png",
+        "price": {
+          "amount": 700,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_A_01_Platinum",
+        "name": "Платиновый робот",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_a_01_platinum.png",
+        "price": {
+          "amount": 2000,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|bundle_mutants_platinum_advanced",
+        "name": "Моногенный платиновый суперпакет",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_mono_plat_2.png",
+        "price": {
+          "amount": 3500,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|pack_powerlevel_89",
+        "name": "Пакет прокачки",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_powerlevel.png",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|LuckyBox_Zoo_Elite",
+        "name": "элитный контейнер «зооморфа»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_elite_zoo.png",
+        "price": {
+          "amount": 700,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_AF_14_Gold",
+        "name": "Золотой Система «Черная ИКС».",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_af_14_gold.png",
+        "price": {
+          "amount": 2800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_DA_04_Bronze_sc",
+        "name": "Бронзовый Эскадрилья «Носорог»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_da_04_bronze.png",
+        "price": {
+          "amount": 9000000,
+          "type": "softcurrency"
+        }
+      },
+      {
+        "id": "254|bundle_bank_anniversary24_2_t5",
+        "name": "Пакет «Дарвин»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary24_2_t5.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary24_2_t4",
+        "name": "Пакет ветерана «Неоурбан XIII»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary24_2_t4.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary24_2_t3",
+        "name": "Пакет ветерана «Репликация Евы»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary24_2_t3.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary24_2_t2",
+        "name": "Престижный пакет «Мисси Пробужденная»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary24_2_t2.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_bank_anniversary24_2_t1",
+        "name": "Престижный пакет «Рид, Истинный герой»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/bank_anniversary24_2_t1.png",
+        "price": null
+      },
+      {
+        "id": "254|bundle_orbs_experimental_hyper_04",
+        "name": "Этот пакет содержит: – Скорость +18% – Атака +16% – Усиление +24%",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/orb_bundle_hyper.png",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|LuckyBox_Research_IV",
+        "name": "Сундук «Исследование IV»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/luckybox_research_iv.png",
+        "price": {
+          "amount": 550,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_FB_09_Bronze",
+        "name": "Бронзовый Смерть",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_fb_09_bronze.png",
+        "price": {
+          "amount": 1200,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|pack_daily_3_platinum_31",
+        "name": "Звездное предложение",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/pack_daily_3_platinum.png",
+        "price": null
+      },
+      {
+        "id": "254|LuckyBox_Research_VI_v3",
+        "name": "Сундук «Исследование VI»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/mystery_research_6.png",
+        "price": {
+          "amount": 750,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Specimen_AD_08_Silver",
+        "name": "Серебряный Котик-рейнджер",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/specimen_ad_08_silver.png",
+        "price": {
+          "amount": 1330,
+          "type": "hardcurrency"
+        }
+      }
+    ],
+    "link": "/announcements"
+  },
+  {
+    "id": "test-reactor-2",
+    "date": "2026-06-11T21:17:36.233Z",
+    "category": "reactor",
+    "title": "Большой босс",
+    "items": [
+      {
+        "id": "gachaboss",
+        "name": "Большой босс",
+        "image": "/reactor/gachaboss.png"
+      }
+    ],
+    "link": "/simulators/reactor"
+  },
+  {
+    "id": "test-skin-1",
+    "date": "2026-06-18T21:17:36.233Z",
+    "category": "skin",
+    "title": "Робот — скин",
+    "items": [
+      {
+        "id": "Specimen_A_01|japan",
+        "name": "Робот — japan",
+        "image": "textures_by_skins/textures_by_skin/full/FULL_a_01_japan.png"
+      }
+    ],
+    "link": "/mutants"
+  },
+  {
+    "id": "test-raid-1",
+    "date": "2026-06-18T21:17:36.233Z",
+    "category": "raid",
+    "title": "Рейд «Архитектура»",
+    "items": [
+      {
+        "id": "architecture",
+        "name": "Рейд «Архитектура» (300 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/screen_architecture.jpg"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-token-1",
+    "date": "2026-07-03T21:17:36.233Z",
+    "category": "token",
+    "title": "Магнитный ключ",
+    "items": [
+      {
+        "id": "Daily_Token",
+        "name": "Магнитный ключ",
+        "image": "/materials/Daily_Token.png"
+      }
+    ],
+    "link": "/materials"
+  },
+  {
+    "id": "test-box-2",
+    "date": "2026-07-03T21:17:36.233Z",
+    "category": "box",
+    "title": "Легендарный киберконтейнер",
+    "items": [
+      {
+        "id": "Luckybox_Xmas_Bronze_2018",
+        "name": "Легендарный киберконтейнер",
+        "image": "/boxes/lucky_box_xmas_bronze.png"
+      }
+    ],
+    "link": "/boxes"
+  },
+  {
+    "id": "test-raid-2",
+    "date": "2026-07-10T21:17:36.233Z",
+    "category": "raid",
+    "title": "Рейд «Астероиды»",
+    "items": [
+      {
+        "id": "asteroids",
+        "name": "Рейд «Астероиды» (300 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/screen_asteroids.jpg"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-dailyNews-254",
+    "date": "2026-07-16T21:17:36.233Z",
+    "category": "dailyNews",
+    "title": "Скоро в игре (8 августа — 21 августа)",
+    "items": [
+      {
+        "id": "254|filter_dungeon_hexcity_2",
+        "name": "Hexcity 2",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_anniversary26_pt2-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|News_bank_anniversary26_2",
+        "name": "Престижный пакет «Шестзаклинание»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_bank_anniversary26_final-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Shop_Mystery_Anniversary26_2",
+        "name": "13-я годовщина Mystery Box — Часть 2",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_mystery_anniversary26_2-ru.jpg",
+        "price": {
+          "amount": 1000,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Shop_Pack_Token_Anniversary26_3",
+        "name": "Пакет «Шестзаклинание жетон»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_anniversary26_token_pack-ru.jpg",
+        "price": {
+          "amount": 400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Shop_Pack_Token_Anniversary26_4",
+        "name": "Пакет «Шестзаклинание жетон»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_anniversary26_token_pack-ru.jpg",
+        "price": {
+          "amount": 400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|shop_omega_pack_13",
+        "name": "Усиленный пакет «Омега»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_pack_omega_boosted-ru.jpg",
+        "price": {
+          "amount": 750,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Shop_pack_daily_orbs_xp4_11",
+        "name": "Предложение сфер",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_bundle_orbs_xp_4-ru.jpg",
+        "price": {
+          "amount": 400,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Shop_Bundle_Casino_20",
+        "name": "Пакет «Казино 100»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_casino_pack4-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Shop_bundle_orbs_experimental_counter_03",
+        "name": "Этот пакет содержит: – Отражение (20%) – Атака +16% – Усиление +24%",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/orb_experimental_bundle-ru.jpg",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Daily_news_shop_24h_2026_254b",
+        "name": "Daily News Shop 24h 2026 254b",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_24h_2026_254b-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|shop_pack_daily_6_gacha_52",
+        "name": "Предложение «Реактор»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_casinoreactortokenx6-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|daily_news_jackpot_madness_weekend_25jt",
+        "name": "Daily News Jackpot Madness Weekend 25jt",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_jackpot_madness_weekend_25jt-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Daily_news_gacha_gemstones",
+        "name": "Daily News Gacha Gemstones",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_gacha_gemstones-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Shop_Pack_Cooking",
+        "name": "Пакет кулинарии",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_pack_cooking-ru.jpg",
+        "price": {
+          "amount": 2780,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Shop_pack_conversion_aug_2026",
+        "name": "Золотой котел",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_conversion_jan_2017-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Shop_bundle_orbs_basic_06_13",
+        "name": "Пакет сфер 6",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_bundle_orbs_basic_06-ru.jpg",
+        "price": {
+          "amount": 950,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Daily_news_tech_V2",
+        "name": "Daily News Tech V2",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_tech_v2-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Shop_bundle_mutants_platinum_advanced",
+        "name": "Моногенный платиновый суперпакет",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_bundle_mono_plat_2-ru.jpg",
+        "price": {
+          "amount": 3500,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|Shop_pack_powerlevel_89",
+        "name": "Пакет прокачки",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_pack_powerlevel-ru.jpg",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|OneDayOneBox_Elite",
+        "name": "Onedayonebox Elite",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_onedayonebox_elite-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|News_bank_anniversary26_chara",
+        "name": "Престижный пакет «Рид, Истинный герой»",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_bank_anniversary26_chara-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Shop_bundle_orbs_experimental_hyper_04",
+        "name": "Этот пакет содержит: – Скорость +18% – Атака +16% – Усиление +24%",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/orb_experimental_bundle-ru.jpg",
+        "price": {
+          "amount": 800,
+          "type": "hardcurrency"
+        }
+      },
+      {
+        "id": "254|shop_pack_daily_3_platinum_31",
+        "name": "Звездное предложение",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_starplatinium-ru.jpg",
+        "price": null
+      },
+      {
+        "id": "254|Daily_news_shop_24h_2026_254a",
+        "name": "Daily News Shop 24h 2026 254a",
+        "image": "https://s-beta.kobojo.com/mutants/assets/hud/daily_news/news_shop_24h_2026_254a-ru.jpg",
+        "price": null
+      }
+    ],
+    "link": "/announcements"
+  },
+  {
+    "id": "test-mutant-2",
+    "date": "2026-07-16T21:17:36.233Z",
+    "category": "mutant",
+    "title": "Андроид",
+    "items": [
+      {
+        "id": "specimen_aa_01",
+        "name": "Андроид",
+        "image": "textures_by_mutant/aa_01/specimen_aa_01_normal.webp"
+      }
+    ],
+    "link": "/mutants"
+  },
+  {
+    "id": "test-box-3",
+    "date": "2026-07-23T21:17:36.233Z",
+    "category": "box",
+    "title": "Золотой Рождественский подарок",
+    "items": [
+      {
+        "id": "Luckybox_Xmas_Gold_2018",
+        "name": "Золотой Рождественский подарок",
+        "image": "/boxes/lucky_box_xmas_gold.png"
+      }
+    ],
+    "link": "/boxes"
+  },
+  {
+    "id": "test-ladder-2",
+    "date": "2026-07-31T21:17:36.233Z",
+    "category": "ladder",
+    "title": "Лесенка «Гиперборея»",
+    "items": [
+      {
+        "id": "hyperborea_13",
+        "name": "Лесенка «Гиперборея» (60 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/screen_hyperborea.jpg"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-reactor-3",
+    "date": "2026-07-31T21:17:36.233Z",
+    "category": "reactor",
+    "title": "Япония",
+    "items": [
+      {
+        "id": "japan",
+        "name": "Япония",
+        "image": "/reactor/japan.png"
+      }
+    ],
+    "link": "/simulators/reactor"
+  },
+  {
+    "id": "test-mutant-3",
+    "date": "2026-08-06T21:17:36.233Z",
+    "category": "mutant",
+    "title": "Некробот",
+    "items": [
+      {
+        "id": "specimen_ab_01",
+        "name": "Некробот",
+        "image": "textures_by_mutant/ab_01/specimen_ab_01_normal.webp"
+      }
+    ],
+    "link": "/mutants"
   }
 ]

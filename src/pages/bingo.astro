@@ -247,6 +247,10 @@ function getSubBingos(bingo: Bingo): Bingo[] {
                 <h2 class="bingo-card-title">{formatBingoTitle(originalBingo.title, originalBingo.id)}</h2>
                 {originalBingo.archived && <span class="bingo-archived-tag card">Архивное</span>}
               </div>
+              <button type="button" class="bingo-share-btn" data-share-bingo-id={originalBingo.id} title="Скопировать ссылку на это бинго">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span class="bingo-share-label">Поделиться</span>
+              </button>
             </div>
 
             <div class="bingo-sub-grids">
@@ -381,16 +385,57 @@ function getSubBingos(bingo: Bingo): Bingo[] {
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".bingo-tab");
+    const selectByIndex = (idx, btn) => {
+      document.querySelectorAll(".bingo-panel").forEach(p => p.hidden = true);
+      const panel = document.querySelector(`.bingo-panel[data-bingo-index="${idx}"]`);
+      if (panel) panel.hidden = false;
+      tabs.forEach(t => t.setAttribute("aria-selected", "false"));
+      if (btn) btn.setAttribute("aria-selected", "true");
+    };
+    // Держим URL (?board=<id>) в синхроне с открытой вкладкой, чтобы текущий
+    // адрес всегда был готовой ссылкой на конкретное бинго (без лишнего
+    // клика "поделиться" - обычный copy-paste адресной строки тоже работает).
+    const setBoardParam = (id) => {
+      const url = new URL(location.href);
+      url.searchParams.set("board", id);
+      history.replaceState(null, "", url);
+    };
+
     tabs.forEach(tab => {
       tab.addEventListener("click", (e) => {
         const btn = e.currentTarget;
-        const idx = btn.dataset.bingoIndex;
-        document.querySelectorAll(".bingo-panel").forEach(p => p.hidden = true);
-        const panel = document.querySelector(`.bingo-panel[data-bingo-index="${idx}"]`);
-        if (panel) panel.hidden = false;
-        tabs.forEach(t => t.setAttribute("aria-selected", "false"));
-        btn.setAttribute("aria-selected", "true");
+        selectByIndex(btn.dataset.bingoIndex, btn);
+        setBoardParam(btn.dataset.bingoId);
         btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      });
+    });
+
+    // ?board=<id> - открыть конкретную доску напрямую (используется скриншот-
+    // эндпоинтом api/screenshot-bingo.ts для кросс-поста в Telegram, и теперь
+    // и обычными пользовательскими ссылками "поделиться").
+    const boardId = new URLSearchParams(location.search).get("board");
+    if (boardId) {
+      const btn = document.querySelector(`.bingo-tab[data-bingo-id="${boardId}"]`);
+      if (btn) selectByIndex(btn.dataset.bingoIndex, btn);
+    }
+
+    document.querySelectorAll(".bingo-share-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.dataset.shareBingoId;
+        const url = new URL(location.href);
+        url.searchParams.set("board", id);
+        try {
+          await navigator.clipboard.writeText(url.toString());
+        } catch {
+          window.prompt("Скопируйте ссылку:", url.toString());
+          return;
+        }
+        const label = btn.querySelector(".bingo-share-label");
+        if (label) {
+          const original = label.textContent;
+          label.textContent = "Скопировано!";
+          setTimeout(() => { label.textContent = original; }, 1500);
+        }
       });
     });
 
@@ -444,10 +489,22 @@ function getSubBingos(bingo: Bingo): Bingo[] {
   }
 
   .bingo-card { background: rgba(15, 23, 42, 0.7); border-radius: 24px; border: 1px solid rgba(96, 165, 250, 0.15); padding: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; width: 100%; box-sizing: border-box; }
-  .bingo-card-header { display: flex; justify-content: center; }
-  .bingo-card-title-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 1.5rem; }
+  .bingo-card-header { position: relative; display: flex; justify-content: center; }
+  .bingo-card-title-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
   .bingo-card-title { margin: 0; font-size: 1.8rem; color: #f8fafc; font-weight: 800; }
   .bingo-header-icon { width: 40px; height: 40px; background-size: contain; background-repeat: no-repeat; filter: drop-shadow(0 2px 8px rgba(96, 165, 250, 0.3)); }
+  .bingo-share-btn {
+    position: absolute; right: 0; top: 0;
+    display: flex; align-items: center; gap: 6px;
+    appearance: none; border: 1px solid rgba(96, 165, 250, 0.3); background: rgba(30, 58, 138, 0.15);
+    color: #93c5fd; border-radius: 999px; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+  }
+  .bingo-share-btn:hover { background: rgba(30, 58, 138, 0.35); color: #fff; }
+  @media (max-width: 640px) {
+    .bingo-share-btn { position: static; margin: 0 auto 0.75rem; }
+    .bingo-card-header { flex-direction: column; }
+  }
 
   /* --- GRID STRUCTURE --- */
   .bingo-board-wrapper {

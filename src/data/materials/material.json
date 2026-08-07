@@ -355,7 +355,8 @@
   {
     "id": "Material_Hexcity_Token",
     "name": "Жетон Hex City",
-    "description": "Жетон нового (ещё не вышедшего) ивента Hex City. Текстура и точное название пока недоступны в игровых данных."
+    "description": "Жетон ивента Hex City",
+    "texture": "/materials/Material_Hexcity_Token.png"
   },
   {
     "id": "Star_Bronze",
@@ -460,5 +461,11 @@
     "name": "+10 пропусков",
     "description": "Навсегда увеличивает максимальное количество пропусков энергии на 10.",
     "texture": "/materials/Material_EnergyMax10.png"
+  },
+  {
+    "id": "Material_Preorder_Token_FC_11",
+    "name": "Material Preorder Token FC 11",
+    "description": "",
+    "texture": "https://s-beta.kobojo.com/mutants/assets/thumbnails/material_preorder_token_fc_11.png"
   }
 ]

@@ -643,6 +643,16 @@ const structuredData = [
       mobileNavLinks?.forEach(link => {
         link.addEventListener('click', closeMenu);
       });
+
+      // Запрет перетаскивания/открытия текстур в новой вкладке (крит-эффект +
+      // правый клик "открыть картинку"/"сохранить как"). Это сдерживающий
+      // барьер, не защита - через devtools картинку всё равно можно достать.
+      document.addEventListener('dragstart', (e) => {
+        if (e.target instanceof HTMLImageElement) e.preventDefault();
+      });
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target instanceof HTMLImageElement) e.preventDefault();
+      });
     </script>
     <SpeedInsights />
     <Analytics />

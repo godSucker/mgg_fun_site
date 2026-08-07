@@ -724,7 +724,10 @@
   .results-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    /* "Статистика призов" несёт 3 колонки данных против 2 у "Последних выигрышей" -
+       ей нужен больший вес, иначе числа переносятся построчно даже на широких
+       экранах (см. фикс max-width модалки ниже). */
+    grid-template-columns: minmax(360px, 1.4fr) minmax(300px, 1fr);
     align-items: flex-start;
   }
 
@@ -766,7 +769,7 @@
 
   .table-row {
     display: grid;
-    grid-template-columns: minmax(4rem, 1fr) minmax(3.2rem, auto) minmax(5.5rem, auto);
+    grid-template-columns: minmax(6rem, 1fr) minmax(4rem, auto) minmax(7rem, auto);
     gap: 0.75rem;
     align-items: center;
     color: rgba(248, 250, 252, 0.85);
@@ -996,9 +999,29 @@
     background: rgba(255,255,255,0.15);
   }
 
+  /* На Full HD/2K modal-content всё равно упирался в фикс max-width:900px, и
+     .results-grid делил эту узкую ширину пополам - "Статистика призов" (3 колонки
+     данных) не помещалась и переносила текст построчно, хотя на экране полно
+     свободного места по бокам. */
+  @media (min-width: 1440px) {
+    .modal-content {
+      max-width: 1160px;
+    }
+  }
+
   .modal-close-bottom {
     width: 100%;
     margin-top: 0.5rem;
+  }
+
+  /* Неравные minmax-колонки .results-grid (1.4fr/1fr, см. выше) не умеют сами
+     схлопываться в 1 колонку как умел старый repeat(auto-fit, ...) - без этого
+     правила модалка получала горизонтальный скролл в диапазоне ~640-860px,
+     где сумма минимумов (360+300+gap) уже не помещается. */
+  @media (max-width: 860px) {
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 640px) {

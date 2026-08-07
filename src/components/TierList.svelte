@@ -1,10 +1,13 @@
 <script lang="ts">
   import { sortMutantsByGene } from '@/lib/mutant-sort'
   import { textureUrl } from '@/lib/texture-cdn'
-  import { pluralize } from '@/lib/utils'
+  import { pluralize, baseMutantId as baseId, buildSkinLookup } from '@/lib/utils'
   import MutantModal from './MutantModal.svelte'
+  import skinsData from '@/data/mutants/skins.json'
 
   let { mutants = [] }: { mutants: any[] } = $props()
+
+  const skinLookup = buildSkinLookup((skinsData as any)?.specimens ?? [])
 
   const MAIN_TIERS = ['1', '2', '3', '4']
 
@@ -47,6 +50,7 @@
   let modalOpen = $state(false)
   let selectedMutant: any = $state(null)
   let selectedStar = $state('normal')
+  let selectedSkins: any[] = $state([])
 
   function openModal(m: any) {
     selectedMutant = m
@@ -56,12 +60,14 @@
     } else {
       selectedStar = 'normal'
     }
+    selectedSkins = skinLookup.get(baseId(m.id)) ?? []
     modalOpen = true
   }
 
   function closeModal() {
     modalOpen = false
     selectedMutant = null
+    selectedSkins = []
   }
 
   const STAR_ORDER = ['platinum', 'gold', 'silver', 'bronze', 'normal'] as const
@@ -186,6 +192,7 @@
     open={modalOpen}
     mutant={selectedMutant}
     star={selectedStar}
+    skins={selectedSkins}
     onclose={closeModal}
   />
 {/if}

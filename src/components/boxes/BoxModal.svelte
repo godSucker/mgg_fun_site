@@ -19,12 +19,23 @@
     mutants: BoxMutantRef[]
     rewards: BoxReward[]
   }
+  interface BoxPrice {
+    amount: number
+    type: 'hardcurrency' | 'softcurrency'
+  }
   interface Box {
     itemId: string
     icon: string | null
     category: string
     name: string
+    price: BoxPrice | null
     groups: BoxGroup[]
+  }
+
+  function formatPrice(price: BoxPrice | null): string | null {
+    if (!price) return null
+    const label = price.type === 'hardcurrency' ? 'золота' : 'серебра'
+    return `${price.amount.toLocaleString('ru-RU')} ${label}`
   }
 
   const boxes = boxesData as Box[]
@@ -127,6 +138,7 @@
         <div class="flex-1 min-w-0">
           {#if box.category}<div class="text-[11px] uppercase tracking-wide text-blue-300/80">{box.category}</div>{/if}
           <h2 class="text-lg font-bold text-white leading-snug break-words">{box.name}</h2>
+          {#if formatPrice(box.price)}<div class="text-sm font-semibold text-amber-400 mt-0.5">{formatPrice(box.price)}</div>{/if}
           {#if allMutants(box).length}<div class="text-xs text-slate-400 mt-1">Мутантов в дроп-листе: {allMutants(box).length}</div>{/if}
         </div>
         <button class="close-btn shrink-0" onclick={close} aria-label="Закрыть">&times;</button>

@@ -60,11 +60,16 @@ interface BoxGroup {
   mutants: BoxMutantRef[]
   rewards: BoxReward[]
 }
+interface BoxPrice {
+  amount: number
+  type: 'hardcurrency' | 'softcurrency'
+}
 interface BoxEntry {
   itemId: string
   icon: string | null
   category: string
   name: string
+  price: BoxPrice | null
   groups: BoxGroup[]
 }
 
@@ -260,6 +265,14 @@ async function main() {
     const icon = await ensureIcon(picture)
     if (!iconBefore && icon) downloaded++
 
+    // <Cost amount="1350" type="hardcurrency" /> - не у всех предложений есть
+    // цена (часть боксов - чисто наградные/ивентовые, покупаются не за
+    // валюту), тогда null.
+    const costMatch = body.match(/<Cost amount="(\d+)" type="(hardcurrency|softcurrency)"\s*\/>/)
+    const price: BoxPrice | null = costMatch
+      ? { amount: Number(costMatch[1]), type: costMatch[2] as 'hardcurrency' | 'softcurrency' }
+      : null
+
     const captionMatch = m[0].match(/caption="([^"]*)"/)
     const name = resolveName(itemId, captionMatch?.[1])
     const category = /luckybox|lucky_box/i.test(itemId)
@@ -326,7 +339,7 @@ async function main() {
       groups[0].rewards[0].name.toLowerCase() === itemId.toLowerCase()
     if (isSelfReferential) continue
 
-    boxes.push({ itemId, icon, category, name, groups })
+    boxes.push({ itemId, icon, category, name, price, groups })
   }
 
   // Игра часто выставляет один и тот же продукт под несколькими itemId одновременно
@@ -365,7 +378,10 @@ async function main() {
   }
   const dedupedBoxes = [...bySignature.values()]
   const duplicatesRemoved = boxes.length - dedupedBoxes.length
-  dedupedBoxes.sort((a, b) => countMutants(b) - countMutants(a))
+  // Даты релиза в shopitems.xml нет - используем позицию в файле как прокси
+  // "новизны" (игра дописывает новые ShopItem в конец файла), реверсируем
+  // порядок парсинга, чтобы новые боксы были дефолтно вначале списка.
+  dedupedBoxes.reverse()
 
   await fs.writeFile(OUT_PATH, JSON.stringify(dedupedBoxes, null, 2) + '\n', 'utf-8')
 

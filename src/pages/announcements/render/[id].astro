@@ -1,0 +1,43 @@
+---
+// Изолированная страница с ОДНОЙ карточкой анонса - никакой ленты, фильтров,
+// шапки/подвала сайта. Существует ТОЛЬКО для api/screenshot-announcement.ts.
+// Раньше бот скриншотил карточку прямо на живой /announcements - там она
+// стояла среди ~20 других карточек с lazy-картинками; пока Chromium скроллил
+// её в viewport, соседние карточки начинали догружаться и двигали разметку
+// ПОСЛЕ того, как Playwright уже вычислил прямоугольник для скриншота ->
+// "съехавшие"/обрезанные кадры на проде (фидбек 2026-08-07). Тут скроллить
+// нечего и сдвигать нечем - на странице ровно один элемент.
+export const prerender = false;
+import announcementsData from '@/data/announcements.json';
+import AnnouncementCard from '@/components/announcements/AnnouncementCard.astro';
+import { buildAnnouncementContext, type Announcement } from '@/lib/announcements-render';
+
+const id = Astro.params.id;
+const announcements = (announcementsData as Announcement[]) ?? [];
+const a = announcements.find((x) => x.id === id);
+const ctx = buildAnnouncementContext();
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/tt-supermolot-neue/TTSupermolotNeue-Bold.woff2" crossorigin />
+  <link rel="stylesheet" href="/fonts/tt-supermolot-neue/tt-supermolot-neue.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #0d1117;
+      color: #e2e8f0;
+      font-family: "TT Supermolot Neue", ui-sans-serif, system-ui, sans-serif;
+    }
+    .wrap { width: 760px; padding: 6px; }
+    .missing { padding: 2rem; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    {a ? <AnnouncementCard a={a} ctx={ctx} mode="render" /> : <div class="missing">Анонс не найден: {id}</div>}
+  </div>
+</body>
+</html>

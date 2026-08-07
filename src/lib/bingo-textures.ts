@@ -269,3 +269,57 @@ export function getRewardLabel(reward: {
   }
   return translated
 }
+
+const BINGO_ICON_BASE = 'https://cdn.archivist-library.com/bingo/'
+
+// Соответствие id бинго -> иконка. Продублировано из CSS-классов .icon-<id>
+// в src/pages/bingo.astro (там это background-image, здесь нужен голый URL
+// для JS-компонентов вроде дропдауна фильтра на /mutants).
+const BINGO_ICON_FILE: Record<string, string> = {
+  '2025_skins': 'bingo_2025_skins.webp',
+  '2025_mutants': 'bingo_mutants_2025.webp',
+  anniversary_25: 'bingo_anniversery.webp',
+  anniversary_26: 'bingo_anniversery.webp',
+  cross_mutation: 'bingo_cross_mutation.webp',
+  research_1: 'bingo_1.webp',
+  research_2: 'bingo_2.webp',
+  research_3: 'bingo_3.webp',
+  research_4: 'bingo_4.webp',
+  research_5: 'bingo_5.webp',
+  research_6: 'bingo_6.webp',
+  research_7: 'bingo_7.webp',
+  research_8: 'bingo_8.webp',
+  research_9: 'bingo_9.webp',
+  research_10: 'bingo_10.webp',
+  research_11: 'bingo_11.webp',
+  reactor: 'bingo_reactor.webp',
+  legend: 'bingo_legendary.webp',
+  rumble: 'bingo_rumble.webp',
+  heroic: 'bingo_heroic.webp',
+  event_2019: 'bingo_special.webp',
+  event_2020: 'bingo_special.webp',
+  event_2021: 'bingo_special.webp',
+  event_2022: 'bingo_special.webp',
+  event_2023: 'bingo_special.webp',
+  event_2024: 'bingo_special.webp',
+  '10years': 'bingo_special.webp',
+  events: 'bingo_special.webp',
+  '2025_events': 'bingo_2025_events.webp',
+  '2026_events': 'bingo_2025_events.webp',
+  '2026_skins': 'bingo_2025_skins.webp',
+  '2026_mutants': 'bingo_mutants_2025.webp',
+  zodiac: 'bingo_zodiac.webp',
+  zodiac_silver: 'bingo_silver_zodiac.webp',
+  amazons: 'bingo_amazons.webp',
+  bingo_bronze: 'bingo_bronze.webp',
+  bingo_silver: 'bingo_silver.webp',
+  bingo_gold: 'bingo_gold.webp',
+  bingo_plat: 'bingo_platinum.webp',
+  starter_plat: 'bingo_starter_platinum.webp',
+  Starter: 'bingo_starter.webp',
+}
+
+export function bingoIconUrl(id: string): string {
+  const file = BINGO_ICON_FILE[id]
+  return file ? `${BINGO_ICON_BASE}${file}` : '/etc/icon_bingo.webp'
+}

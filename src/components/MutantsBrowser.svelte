@@ -5,6 +5,8 @@
   import { sortMutantsByGene } from '@/lib/mutant-sort';
   import { textureUrl } from '@/lib/texture-cdn';
   import { pluralize, baseMutantId as baseId } from '@/lib/utils';
+  import { getTypeIcon } from '@/lib/mutant-icons';
+  import { bingoIconUrl } from '@/lib/bingo-textures';
 
   const normalizeForSearch = normalizeSearch;
 
@@ -143,6 +145,9 @@
   let typeOptions = $derived(uniq(items.map(it => it?.type).filter(Boolean))
       .sort((a:any,b:any) => String(TYPE_RU?.[a] ?? a).localeCompare(String(TYPE_RU?.[b] ?? b), 'ru')));
   let typeSel = $state('');
+  let typeDropdownOpen = $state(false);
+  let bingoDropdownOpen = $state(false);
+  function closeIconDropdowns() { typeDropdownOpen = false; bingoDropdownOpen = false; }
 
   function collectBingoKeys(it:any): string[] {
     const b = it?.bingo;
@@ -437,6 +442,7 @@
   const closeModal = () => { openItem = null; };
 </script>
 
+<svelte:window onclick={closeIconDropdowns} />
 <div class="mx-auto max-w-[1400px] px-4 py-6 page-2k">
   {#if title}
     <h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-4">
@@ -524,33 +530,67 @@
     </div>
   </div>
 
-  <!-- Тип/Бинго (селекты) -->
+  <!-- Тип/Бинго (кастомные дропдауны с иконками) -->
   <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
-    <label class="flex flex-col gap-1">
-      <span class="text-xs text-slate-300">Тип</span>
-      <select
+    <div class="icon-select-wrap">
+      <span id="mutant-type-filter-label" class="text-xs text-slate-300">Тип</span>
+      <button
+        type="button"
         id="mutant-type-filter"
-        name="mutant-type-filter"
-        class="px-3 py-2 rounded-lg ring-1 bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-        bind:value={typeSel}
+        aria-labelledby="mutant-type-filter-label"
+        class="icon-select-trigger"
+        aria-haspopup="listbox"
+        aria-expanded={typeDropdownOpen}
+        onclick={(e) => { e.stopPropagation(); bingoDropdownOpen = false; typeDropdownOpen = !typeDropdownOpen; }}
       >
-        <option value=''>Любой</option>
-        {#each typeOptions as t}<option value={t}>{TYPE_RU?.[t] ?? t}</option>{/each}
-      </select>
-    </label>
+        {#if typeSel}<img src={textureUrl(getTypeIcon(typeSel))} alt="" class="icon-select-icon" />{/if}
+        <span class="icon-select-label">{typeSel ? (TYPE_RU?.[typeSel] ?? typeSel) : 'Любой'}</span>
+        <span class="icon-select-caret">▾</span>
+      </button>
+      {#if typeDropdownOpen}
+        <div class="icon-select-panel" role="listbox">
+          <button type="button" class="icon-select-option {!typeSel ? 'active' : ''}" role="option" aria-selected={!typeSel} onclick={() => { typeSel = ''; typeDropdownOpen = false; }}>
+            <span class="icon-select-label">Любой</span>
+          </button>
+          {#each typeOptions as t}
+            <button type="button" class="icon-select-option {typeSel === t ? 'active' : ''}" role="option" aria-selected={typeSel === t} onclick={() => { typeSel = t; typeDropdownOpen = false; }}>
+              <img src={textureUrl(getTypeIcon(t))} alt="" class="icon-select-icon" />
+              <span class="icon-select-label">{TYPE_RU?.[t] ?? t}</span>
+            </button>
+          {/each}
+        </div>
+      {/if}
+    </div>
 
-    <label class="flex flex-col gap-1">
-      <span class="text-xs text-slate-300">Бинго</span>
-      <select
+    <div class="icon-select-wrap">
+      <span id="mutant-bingo-filter-label" class="text-xs text-slate-300">Бинго</span>
+      <button
+        type="button"
         id="mutant-bingo-filter"
-        name="mutant-bingo-filter"
-        class="px-3 py-2 rounded-lg ring-1 bg-slate-900 text-slate-100 ring-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-        bind:value={bingoSel}
+        aria-labelledby="mutant-bingo-filter-label"
+        class="icon-select-trigger"
+        aria-haspopup="listbox"
+        aria-expanded={bingoDropdownOpen}
+        onclick={(e) => { e.stopPropagation(); typeDropdownOpen = false; bingoDropdownOpen = !bingoDropdownOpen; }}
       >
-        <option value=''>Любое</option>
-        {#each bingoOptions as b}<option value={b}>{bingoLabel?.(b) ?? b}</option>{/each}
-      </select>
-    </label>
+        {#if bingoSel}<img src={textureUrl(bingoIconUrl(bingoSel))} alt="" class="icon-select-icon" />{/if}
+        <span class="icon-select-label">{bingoSel ? (bingoLabel?.(bingoSel) ?? bingoSel) : 'Любое'}</span>
+        <span class="icon-select-caret">▾</span>
+      </button>
+      {#if bingoDropdownOpen}
+        <div class="icon-select-panel" role="listbox">
+          <button type="button" class="icon-select-option {!bingoSel ? 'active' : ''}" role="option" aria-selected={!bingoSel} onclick={() => { bingoSel = ''; bingoDropdownOpen = false; }}>
+            <span class="icon-select-label">Любое</span>
+          </button>
+          {#each bingoOptions as b}
+            <button type="button" class="icon-select-option {bingoSel === b ? 'active' : ''}" role="option" aria-selected={bingoSel === b} onclick={() => { bingoSel = b; bingoDropdownOpen = false; }}>
+              <img src={textureUrl(bingoIconUrl(b))} alt="" class="icon-select-icon" />
+              <span class="icon-select-label">{bingoLabel?.(b) ?? b}</span>
+            </button>
+          {/each}
+        </div>
+      {/if}
+    </div>
   </div>
 
   <!-- Переключатель вида: полные текстуры / головы -->
@@ -658,6 +698,33 @@
   .scroll-top-btn:hover {
     background: rgba(51, 65, 85, 0.95);
   }
+
+  .icon-select-wrap { position: relative; display: flex; flex-direction: column; gap: 0.25rem; }
+  .icon-select-trigger {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 0.75rem; border-radius: 0.5rem;
+    background: rgb(15 23 42); color: rgb(241 245 249);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+    cursor: pointer; text-align: left; width: 100%;
+  }
+  .icon-select-trigger:focus-visible { outline: none; box-shadow: inset 0 0 0 2px rgb(34 211 238); }
+  .icon-select-icon { width: 1.5em; height: 1.5em; object-fit: contain; flex-shrink: 0; border-radius: 0.25em; background: rgba(255,255,255,0.06); }
+  .icon-select-label { flex: 1; font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .icon-select-caret { font-size: 0.7em; opacity: 0.6; flex-shrink: 0; }
+  .icon-select-panel {
+    position: absolute; top: calc(100% + 0.25rem); left: 0; right: 0; z-index: 30;
+    max-height: 18rem; overflow-y: auto;
+    background: rgb(15 23 42); border-radius: 0.5rem;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1), 0 10px 30px rgba(0,0,0,0.5);
+    padding: 0.25rem;
+  }
+  .icon-select-option {
+    display: flex; align-items: center; gap: 0.5rem; width: 100%;
+    padding: 0.4rem 0.5rem; border-radius: 0.375rem;
+    background: transparent; color: rgb(203 213 225); cursor: pointer; text-align: left;
+  }
+  .icon-select-option:hover { background: rgba(34, 211, 238, 0.1); color: #fff; }
+  .icon-select-option.active { background: rgba(34, 211, 238, 0.18); color: #67e8f9; }
 
   /* Апскейл на ≥2K */
   @media (min-width: 1921px){ .page-2k { font-size: 1.0625rem; } }

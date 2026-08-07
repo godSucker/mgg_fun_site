@@ -1,0 +1,23 @@
+{
+  "western": "/reactor/western.png",
+  "beach": "/reactor/beach.png",
+  "soldiers": "/reactor/soldiers.png",
+  "heroes": "/reactor/heroes.png",
+  "villains": "/reactor/villains.png",
+  "steampunk": "/reactor/steampunk.png",
+  "starwars": "/reactor/starwars.png",
+  "lucha": "/reactor/lucha.png",
+  "movies": "/reactor/movies.png",
+  "girl": "/reactor/girl.png",
+  "japan": "/reactor/japan.png",
+  "gothic": "/reactor/gothic.png",
+  "olympians": "/reactor/olympians.png",
+  "fantasy": "/reactor/fantasy.png",
+  "elements": "/reactor/elements.png",
+  "music": "/reactor/music.png",
+  "olympics": "/reactor/olympics.png",
+  "gachaboss": "/reactor/gachaboss.png",
+  "vegetal": "/reactor/vegetal.png",
+  "checkmate": "/reactor/checkmate.png",
+  "gemstones": "/reactor/gemstones.png"
+}
