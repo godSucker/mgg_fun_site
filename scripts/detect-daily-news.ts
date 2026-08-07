@@ -20,8 +20,24 @@ const ASSETS_BASE = 'https://s-beta.kobojo.com/mutants/assets/'
 
 interface DailyNewsItem {
   filter: string
+  name: string
   category: string | null
   image: string | null
+}
+
+// dailypopup.xml хранит только внутренний Filter-тег ("Shop_Mystery_Anniversary26_2",
+// "filter_dungeon_hexcity_2"), не готовое название - в отличие от shopitems.xml
+// у оффера тут нет своего itemId/caption для похода в локализацию.
+// Прогноз живёт 1-2 недели до попадания в build-boxes.ts/build-special-offers.ts
+// с постоянным человекочитаемым именем - прямо сейчас достаточно причёсанного id.
+function prettifyFilter(filter: string): string {
+  return filter
+    .replace(/^(shop_|filter_dungeon_|filter_)/i, '')
+    .replace(/_/g, ' ')
+    .trim()
+    .split(' ')
+    .map((w) => (w.length > 0 ? w.charAt(0).toUpperCase() + w.slice(1).toLowerCase() : w))
+    .join(' ')
 }
 
 export interface DailyNewsForecast {
@@ -92,7 +108,7 @@ export async function fetchDailyNewsForecast(): Promise<DailyNewsForecast | null
   const items: DailyNewsItem[] = []
   for (const it of rawItems) {
     const image = it.imageRaw ? await resolveOfferBanner(it.imageRaw) : null
-    items.push({ filter: it.filter, category: it.category, image })
+    items.push({ filter: it.filter, name: prettifyFilter(it.filter), category: it.category, image })
   }
 
   const year = sprintStartDate(target).getUTCFullYear()

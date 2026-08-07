@@ -239,21 +239,43 @@ async function postExchange(a: CrossPostAnnouncement): Promise<void> {
   await sendMessage(`🔁 *Обновление зала обмена*\n\n${list}${LINK_LINE}`)
 }
 
+// shopForecast/dailyNews каждый теперь - полноценная карточка-сетка (см.
+// announcements.astro, kind="forecast") с РЕАЛЬНЫМИ офферами (детекторы
+// отдают items = все офферы спринта, не один summary-item, см.
+// build-announcements.ts). Пользователь просил объединить оба в один пост -
+// берём скриншот карточки прогноза магазина (обычно больше офферов), daily
+// news сворачиваем в caption текстом со ссылкой на полную сетку на сайте.
 async function postShopAndDailyNews(
   shop: CrossPostAnnouncement | null,
   daily: CrossPostAnnouncement | null,
 ): Promise<void> {
-  const shopIt = shop?.items[0]
-  const dailyIt = daily?.items[0]
-  const dateLabel = (shopIt?.name.match(/\(([^)]+)\)/) ?? [])[1] ?? ''
-
-  const lines: string[] = [`🛒 *Прогноз магазина${dateLabel ? `: ${dateLabel}` : ''}*`]
-  if (shopIt) lines.push(`\n📋 *Офферы:* ${shopIt.name.replace(/^Прогноз магазина[^:]*:\s*/, '')}`)
-  if (dailyIt)
-    lines.push(`\n📰 *Скоро в игре:* ${dailyIt.name.replace(/^Скоро в игре[^:]*:\s*/, '')}`)
+  const lines: string[] = []
+  if (shop) lines.push(`🛒 *${shop.title}*`)
+  if (daily) lines.push(`📰 *${daily.title}*`)
   const caption = `${lines.join('\n')}${LINK_LINE}`
 
-  const image = shopIt?.image ?? dailyIt?.image
+  const primary = shop ?? daily
+  if (primary) {
+    try {
+      const res = await fetch(
+        `${SITE_ORIGIN}/api/screenshot-announcement?id=${encodeURIComponent(primary.id)}`,
+        { signal: AbortSignal.timeout(30000) },
+      )
+      if (res.ok) {
+        const buffer = Buffer.from(await res.arrayBuffer())
+        await sendPhotoByBuffer(buffer, caption, `forecast-${primary.id}.png`)
+        return
+      }
+      console.error('[CROSS-POST] screenshot-announcement (forecast) вернул', res.status)
+    } catch (err) {
+      console.error(
+        '[CROSS-POST] screenshot-announcement (forecast) error:',
+        err instanceof Error ? err.message : err,
+      )
+    }
+  }
+
+  const image = shop?.items[0]?.image ?? daily?.items[0]?.image
   if (image) {
     await sendPhotoByUrl(toAbsolute(image), caption)
   } else {

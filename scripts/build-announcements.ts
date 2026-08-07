@@ -424,6 +424,12 @@ async function detectReactors(seen: string[]): Promise<DetectResult> {
 
 // Прогноз магазина/daily_news (Фаза 3, задачи A/B) - ledger ключ тут не id, а
 // номер спринта: одна публикация на спринт, не на каждый оффер внутри.
+// Раньше сворачивали весь спринт в ОДИН summary-item (просто число "N
+// предложений") - карточка не могла показать сетку офферов, т.к. данные о
+// них терялись. Теперь каждый оффер - отдельный AnnouncementItem с
+// id="<sprint>|<itemId>" (префикс спринта нужен странице, чтобы вытащить
+// диапазон дат через sprintRangeLabel() без повторного похода в игровые
+// файлы). Announcement остаётся ОДИН на спринт (ledger-ключ не меняется).
 async function detectShopForecast(seen: string[]): Promise<DetectResult> {
   const forecast = await fetchShopForecast()
   if (!forecast) return { newIds: seen, items: [] }
@@ -431,13 +437,11 @@ async function detectShopForecast(seen: string[]): Promise<DetectResult> {
   if (seen.includes(key)) return { newIds: seen, items: [] }
   return {
     newIds: [...seen, key],
-    items: [
-      {
-        id: key,
-        name: `Прогноз магазина (${forecast.dateRangeLabel}): ${forecast.items.length} предложений`,
-        image: forecast.items[0]?.image ?? null,
-      },
-    ],
+    items: forecast.items.map((it) => ({
+      id: `${key}|${it.itemId}`,
+      name: it.name,
+      image: it.image,
+    })),
   }
 }
 
@@ -448,13 +452,11 @@ async function detectDailyNews(seen: string[]): Promise<DetectResult> {
   if (seen.includes(key)) return { newIds: seen, items: [] }
   return {
     newIds: [...seen, key],
-    items: [
-      {
-        id: key,
-        name: `Скоро в игре (${forecast.dateRangeLabel}): ${forecast.items.length} событий`,
-        image: forecast.coverImage,
-      },
-    ],
+    items: forecast.items.map((it) => ({
+      id: `${key}|${it.filter}`,
+      name: it.name,
+      image: it.image ?? forecast.coverImage,
+    })),
   }
 }
 

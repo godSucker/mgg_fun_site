@@ -56,6 +56,12 @@ export const GET: APIRoute = async ({ url }) => {
         viewport: { width: 700, height: 1000 },
       })
 
+      // Другие карточки на /announcements (бинго) сами встраивают
+      // <img src="/api/screenshot-bingo"> - если такая карточка попадёт в
+      // 700x1000 вьюпорт, браузер запросит её и словит Chromium-в-Chromium
+      // на Vercel. Обрезаем эти запросы: скриншотим не бинго-карточки здесь.
+      await page.route('**/api/screenshot-bingo*', (route) => route.abort())
+
       await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 15000 })
 
       const selector = `article.card[data-announcement-id="${id}"]`

@@ -26,6 +26,7 @@ import BoxModal from '@/components/boxes/BoxModal.svelte';
 import BingoMutantModal from '@/components/bingo/BingoMutantModal.svelte';
 import boxesData from '@/data/boxes.json';
 import { getMutantTexturePath } from '@/lib/bingo-textures';
+import { sprintRangeLabel } from '@/lib/sprint-calendar';
 
 interface AnnouncementItem {
   id: string;
@@ -107,6 +108,10 @@ interface BoxEntry {
   groups: BoxGroup[];
 }
 const boxesById = new Map((boxesData as BoxEntry[]).map((b) => [b.itemId, b]));
+const boxesByIdLower = new Map((boxesData as BoxEntry[]).map((b) => [b.itemId.toLowerCase(), b]));
+function findBox(itemId: string): BoxEntry | undefined {
+  return boxesById.get(itemId) ?? boxesByIdLower.get(itemId.toLowerCase());
+}
 const TIER_ICON: Record<string, string> = {
   'бронза': '/stars/star_bronze.webp',
   'серебро': '/stars/star_silver.webp',
@@ -146,7 +151,7 @@ function boxDescription(box: BoxEntry): string {
   return `Случайный выбор · ${pool.length} слотов с разным шансом`.toUpperCase();
 }
 
-type CardKind = 'dungeon' | 'mutant' | 'skin' | 'reactor' | 'box' | 'bingo' | 'generic';
+type CardKind = 'dungeon' | 'mutant' | 'skin' | 'reactor' | 'box' | 'bingo' | 'forecast' | 'generic';
 
 function cardKind(category: string | undefined): CardKind {
   if (category === 'raid' || category === 'ladder') return 'dungeon';
@@ -155,7 +160,17 @@ function cardKind(category: string | undefined): CardKind {
   if (category === 'reactor') return 'reactor';
   if (category === 'box') return 'box';
   if (category === 'bingo') return 'bingo';
+  if (category === 'shopForecast' || category === 'dailyNews') return 'forecast';
   return 'generic';
+}
+
+// id оффера внутри прогноза = "<sprint>|<filter>" (см. detectShopForecast/
+// detectDailyNews в build-announcements.ts) - вытаскиваем номер спринта из
+// первого айтема, чтобы показать диапазон дат без похода в игровые файлы.
+function forecastSprint(items: AnnouncementItem[]): number | null {
+  const raw = items[0]?.id.split('|')[0];
+  const n = raw ? Number(raw) : NaN;
+  return Number.isFinite(n) ? n : null;
 }
 
 const announcements = ((announcementsData as Announcement[]) ?? [])
@@ -293,8 +308,8 @@ const fmtDate = (iso: string) =>
                   <a class="card-source" href={`/simulators/reactor/${it.id}`}>Открыть реактор →</a>
                 </div>
               </div>
-            ) : a.kind === 'box' && it && boxesById.get(it.id) ? (
-              (() => { const box = boxesById.get(it.id)!; const boxMutants = uniqueBoxMutants(box).slice(0, 8); return (
+            ) : a.kind === 'box' && it && findBox(it.id) ? (
+              (() => { const box = findBox(it.id)!; const boxMutants = uniqueBoxMutants(box).slice(0, 8); return (
               <button class="box-preview-card" data-open-box={box.itemId} title={`Открыть ${box.name}`}>
                 <div class="box-preview-head">
                   <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
@@ -343,6 +358,28 @@ const fmtDate = (iso: string) =>
                     <div class="dg-secondary">Новое бинго</div>
                   )}
                   <a class="card-source" href={a.link ?? '/bingo'}>Подробнее →</a>
+                </div>
+              </div>
+            ) : a.kind === 'forecast' && a.items && a.items.length > 0 ? (
+              <div class="forecast-card">
+                <div class="forecast-head">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU[a.category ?? ''] ?? a.category}</span>
+                  {forecastSprint(a.items) !== null && (
+                    <span class="forecast-range">{sprintRangeLabel(forecastSprint(a.items)!)}</span>
+                  )}
+                </div>
+                <div class="forecast-grid">
+                  {a.items.slice(0, 12).map((offer) => (
+                    <div class="forecast-tile">
+                      {offer.image && <img src={offer.image} alt={offer.name} loading="lazy" decoding="async" />}
+                      <span class="forecast-tile-name">{offer.name}</span>
+                    </div>
+                  ))}
+                </div>
+                <div class="forecast-watermark">
+                  <img src="/favicon.png" alt="" loading="lazy" decoding="async" />
+                  <span>archivist-library.com/announcements</span>
                 </div>
               </div>
             ) : (
@@ -808,6 +845,68 @@ const fmtDate = (iso: string) =>
   .box-preview-tier {
     width: 12px;
     height: 12px;
+  }
+  .forecast-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 0.9rem 1rem 1rem;
+  }
+  .forecast-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .forecast-range {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-left: auto;
+  }
+  .forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.5rem;
+  }
+  .forecast-tile {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    aspect-ratio: 4 / 3;
+  }
+  .forecast-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .forecast-tile-name {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.3rem 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    background: linear-gradient(180deg, transparent, rgba(5, 8, 14, 0.92) 70%);
+    line-height: 1.2;
+  }
+  .forecast-watermark {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+  .forecast-watermark img {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
   }
   .hero-art-btn {
     appearance: none;

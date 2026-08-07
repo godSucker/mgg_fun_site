@@ -45,6 +45,13 @@ function daysAgo(n: number): string {
 }
 
 async function main() {
+  const { fetchShopForecast } = await import('./detect-shop-forecast')
+  const { fetchDailyNewsForecast } = await import('./detect-daily-news')
+  const [shopForecast, dailyNewsForecast] = await Promise.all([
+    fetchShopForecast().catch(() => null),
+    fetchDailyNewsForecast().catch(() => null),
+  ])
+
   const [
     mutants,
     skinsData,
@@ -209,6 +216,36 @@ async function main() {
         link: '/bingo',
       }
     },
+    shopForecast: () => {
+      if (!shopForecast) return null
+      return {
+        id: `test-shopForecast-${shopForecast.sprint}`,
+        date: '',
+        category: 'shopForecast',
+        title: `Прогноз магазина (${shopForecast.dateRangeLabel})`,
+        items: shopForecast.items.map((it) => ({
+          id: `${shopForecast.sprint}|${it.itemId}`,
+          name: it.name,
+          image: it.image,
+        })),
+        link: '/announcements',
+      }
+    },
+    dailyNews: () => {
+      if (!dailyNewsForecast) return null
+      return {
+        id: `test-dailyNews-${dailyNewsForecast.sprint}`,
+        date: '',
+        category: 'dailyNews',
+        title: `Скоро в игре (${dailyNewsForecast.dateRangeLabel})`,
+        items: dailyNewsForecast.items.map((it) => ({
+          id: `${dailyNewsForecast.sprint}|${it.filter}`,
+          name: it.name,
+          image: it.image ?? dailyNewsForecast.coverImage,
+        })),
+        link: '/announcements',
+      }
+    },
   }
 
   const categoryCycle = Object.keys(gens)
@@ -224,7 +261,10 @@ async function main() {
     for (let k = 0; k < perWeek; k++) {
       const cat = categoryCycle[(week * 3 + k) % categoryCycle.length]
       const a = gens[cat]()
-      if (a) {
+      // shopForecast/dailyNews не циклятся по образцам как остальные категории
+      // (генератор всегда отдаёт ТЕКУЩИЙ живой спринт) - при повторном выпадении
+      // в цикле недель id совпадёт, пропускаем дубль.
+      if (a && !fresh.some((f) => f.id === a.id)) {
         a.date = daysAgo(day)
         fresh.push(a)
       }
