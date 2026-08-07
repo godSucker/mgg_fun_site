@@ -19,6 +19,7 @@ import path from 'path'
 import axios from 'axios'
 import { fetchShopForecast } from './detect-shop-forecast'
 import { fetchDailyNewsForecast } from './detect-daily-news'
+import { crossPostAnnouncement, postShopAndDailyNews } from './telegram-cross-post'
 
 const ROOT = process.cwd()
 // НЕ scripts/.cache/ - та папка в .gitignore и не переживает между прогонами
@@ -54,6 +55,7 @@ interface Ledger {
   raid: string[]
   ladder: string[]
   token: string[]
+  reactor: string[]
   shopForecast: string[]
   dailyNews: string[]
 }
@@ -68,6 +70,7 @@ const EMPTY_LEDGER: Ledger = {
   raid: [],
   ladder: [],
   token: [],
+  reactor: [],
   shopForecast: [],
   dailyNews: [],
 }
@@ -368,6 +371,24 @@ async function detectTokens(seen: string[]): Promise<DetectResult> {
   }
 }
 
+// Реакторы - раньше публиковались только "в теории" (комментарий в
+// finish-pending.ts обещал, что build-announcements.ts их подхватит), но
+// детектора для них тут не было вообще - реальный пробел, найден и закрыт
+// 2026-08-07 при разработке кросс-постинга в Telegram-канал.
+async function detectReactors(seen: string[]): Promise<DetectResult> {
+  const [names, covers] = await Promise.all([
+    loadJson<Record<string, string>>('src/data/simulators/reactor/gacha-name-ru.json', {}),
+    loadJson<Record<string, string>>('src/data/simulators/reactor/gacha-covers.json', {}),
+  ])
+  const ids = Object.keys(names)
+  const seenSet = new Set(seen)
+  const fresh = ids.filter((id) => !seenSet.has(id))
+  return {
+    newIds: ids,
+    items: fresh.map((id) => ({ id, name: names[id], image: covers[id] ?? null })),
+  }
+}
+
 // Прогноз магазина/daily_news (Фаза 3, задачи A/B) - ledger ключ тут не id, а
 // номер спринта: одна публикация на спринт, не на каждый оффер внутри.
 async function detectShopForecast(seen: string[]): Promise<DetectResult> {
@@ -436,6 +457,12 @@ const DETECTORS: {
   { category: 'ladder', title: 'Новые лесенки', link: '/guides', run: detectLadders },
   { category: 'token', title: 'Новые жетоны', link: '/materials', run: detectTokens },
   {
+    category: 'reactor',
+    title: 'Новые реакторы',
+    link: '/simulators/reactor',
+    run: detectReactors,
+  },
+  {
     category: 'shopForecast',
     title: 'Прогноз магазина',
     link: '/materials',
@@ -463,18 +490,21 @@ async function main() {
 
   const now = new Date().toISOString()
   const published: string[] = []
+  const newlyAdded: Announcement[] = []
 
   for (const d of DETECTORS) {
     const { newIds, items } = await d.run(ledger[d.category])
     if (items.length > 0) {
-      announcements.push({
+      const a: Announcement = {
         id: `${d.category}-${Date.now()}`,
         date: now,
         category: d.category,
         title: items.length === 1 ? items[0].name : `${d.title}: ${items.length}`,
         items,
         link: d.link,
-      })
+      }
+      announcements.push(a)
+      newlyAdded.push(a)
       published.push(`${d.category} (${items.length})`)
     }
     ledger[d.category] = newIds
@@ -482,6 +512,27 @@ async function main() {
 
   await saveLedger(ledger)
   await fs.writeFile(ANNOUNCEMENTS_PATH, JSON.stringify(announcements, null, 2) + '\n', 'utf-8')
+
+  // Кросс-пост в Telegram-канал - best-effort, ошибки не должны срывать
+  // коммит уже посчитанных данных (см. scripts/telegram-cross-post.ts).
+  // shopForecast/dailyNews объединяются в один пост (юзер: "dailyNews можно
+  // засунуть в прогноз магазина"), rebalance никогда не кросс-постится
+  // (юзер: "уже есть человек, который делает это вручную").
+  const shopForecastPost = newlyAdded.find((a) => a.category === 'shopForecast') ?? null
+  const dailyNewsPost = newlyAdded.find((a) => a.category === 'dailyNews') ?? null
+  if (shopForecastPost || dailyNewsPost) {
+    await postShopAndDailyNews(shopForecastPost, dailyNewsPost).catch((err) =>
+      console.error('[CROSS-POST] shopForecast/dailyNews:', err),
+    )
+  }
+  for (const a of newlyAdded) {
+    if (a.category === 'rebalance' || a.category === 'shopForecast' || a.category === 'dailyNews') {
+      continue
+    }
+    await crossPostAnnouncement(a).catch((err) =>
+      console.error(`[CROSS-POST] ${a.category}:`, err),
+    )
+  }
 
   const cacheDir = path.join(ROOT, 'scripts/.cache')
   await fs.mkdir(cacheDir, { recursive: true })

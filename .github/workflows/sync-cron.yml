@@ -147,6 +147,9 @@ jobs:
         # только типы, где RU-имя уже есть в самих данных).
         if: ${{ !cancelled() && steps.parser.outcome == 'success' }}
         run: npx tsx scripts/build-announcements.ts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
 
       - name: 4.10 Сохранение анонсов
         if: always()

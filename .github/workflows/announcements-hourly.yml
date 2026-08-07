@@ -60,12 +60,17 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      - name: 10. Публикация анонсов (в т.ч. прогноз магазина/daily_news)
+      - name: 10. Публикация анонсов (в т.ч. прогноз магазина/daily_news) + кросс-пост в канал
         # Прогноз магазина и daily_news не пишут отдельных файлов - тянут
         # shopitems.xml/dailypopup.xml прямо внутри build-announcements.ts
         # (detectShopForecast/detectDailyNews), публикуют сразу в announcements.json.
+        # TELEGRAM_CHANNEL_ID - id ПУБЛИЧНОГО канала (не путать с TELEGRAM_CHAT_ID,
+        # личным чатом владельца) - см. scripts/telegram-cross-post.ts.
         if: always()
         run: npx tsx scripts/build-announcements.ts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
 
       - name: 11. Коммит всех изменений
         if: always()

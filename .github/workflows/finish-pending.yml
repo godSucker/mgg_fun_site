@@ -45,12 +45,15 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-      - name: 5. Публикация анонса (сразу, без ожидания sync-cron)
+      - name: 5. Публикация анонса (сразу, без ожидания sync-cron) + кросс-пост в канал
         # Реактор/данж только что дописан в gacha.json/raids.json/
         # special-ladders.json - build-announcements.ts увидит его как обычный
         # diff, без дублирования логики резолвинга иконок отдельно здесь.
         if: always()
         run: npx tsx scripts/build-announcements.ts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
 
       - name: 6. Коммит данных
         if: always()

@@ -381,18 +381,28 @@ function getSubBingos(bingo: Bingo): Bingo[] {
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".bingo-tab");
+    const selectByIndex = (idx, btn) => {
+      document.querySelectorAll(".bingo-panel").forEach(p => p.hidden = true);
+      const panel = document.querySelector(`.bingo-panel[data-bingo-index="${idx}"]`);
+      if (panel) panel.hidden = false;
+      tabs.forEach(t => t.setAttribute("aria-selected", "false"));
+      if (btn) btn.setAttribute("aria-selected", "true");
+    };
     tabs.forEach(tab => {
       tab.addEventListener("click", (e) => {
         const btn = e.currentTarget;
-        const idx = btn.dataset.bingoIndex;
-        document.querySelectorAll(".bingo-panel").forEach(p => p.hidden = true);
-        const panel = document.querySelector(`.bingo-panel[data-bingo-index="${idx}"]`);
-        if (panel) panel.hidden = false;
-        tabs.forEach(t => t.setAttribute("aria-selected", "false"));
-        btn.setAttribute("aria-selected", "true");
+        selectByIndex(btn.dataset.bingoIndex, btn);
         btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
       });
     });
+
+    // ?board=<id> - открыть конкретную доску напрямую (используется скриншот-
+    // эндпоинтом api/screenshot-bingo.ts для кросс-поста в Telegram).
+    const boardId = new URLSearchParams(location.search).get("board");
+    if (boardId) {
+      const btn = document.querySelector(`.bingo-tab[data-bingo-id="${boardId}"]`);
+      if (btn) selectByIndex(btn.dataset.bingoIndex, btn);
+    }
 
     // Клик по мутанту в сетке бинго - открыть его модалку (тот же паттерн,
     // что и на странице тир-листа: MutantModal, смонтированная отдельным
