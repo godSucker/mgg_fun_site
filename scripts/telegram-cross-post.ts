@@ -29,15 +29,25 @@ function getCreds() {
   const botToken = process.env.TELEGRAM_BOT_TOKEN
   const channelId = process.env.TELEGRAM_CHANNEL_ID
   if (!botToken || !channelId) {
-    console.log('[CROSS-POST] TELEGRAM_BOT_TOKEN/TELEGRAM_CHANNEL_ID не заданы, кросс-пост пропущен')
+    console.log(
+      '[CROSS-POST] TELEGRAM_BOT_TOKEN/TELEGRAM_CHANNEL_ID не заданы, кросс-пост пропущен',
+    )
     return null
   }
   return { botToken, channelId }
 }
 
+// CROSS_POST_TEST_MODE - для симуляции (scripts/simulate-announcements-test.ts)
+// без риска перепутать тестовый пост с настоящим анонсом в канале. Прод-путь
+// (env не задан) не меняется вообще.
+function withTestLabel(text: string): string {
+  return process.env.CROSS_POST_TEST_MODE ? `🧪 *ТЕСТ*\n${text}` : text
+}
+
 async function sendMessage(text: string): Promise<void> {
   const creds = getCreds()
   if (!creds) return
+  text = withTestLabel(text)
   try {
     const res = await fetch(`https://api.telegram.org/bot${creds.botToken}/sendMessage`, {
       method: 'POST',
@@ -53,6 +63,7 @@ async function sendMessage(text: string): Promise<void> {
 async function sendPhotoByUrl(photoUrl: string, caption: string): Promise<void> {
   const creds = getCreds()
   if (!creds) return
+  caption = withTestLabel(caption)
   try {
     const res = await fetch(`https://api.telegram.org/bot${creds.botToken}/sendPhoto`, {
       method: 'POST',
@@ -77,6 +88,7 @@ async function sendPhotoByUrl(photoUrl: string, caption: string): Promise<void> 
 async function sendPhotoByBuffer(buffer: Buffer, caption: string, filename: string): Promise<void> {
   const creds = getCreds()
   if (!creds) return
+  caption = withTestLabel(caption)
   try {
     const form = new FormData()
     form.append('chat_id', creds.channelId)
@@ -123,7 +135,11 @@ export interface CrossPostAnnouncement {
   items: CrossPostItem[]
 }
 
-async function postSimplePhoto(icon: string, a: CrossPostAnnouncement, prefix: string): Promise<void> {
+async function postSimplePhoto(
+  icon: string,
+  a: CrossPostAnnouncement,
+  prefix: string,
+): Promise<void> {
   const it = a.items[0]
   const image = it?.image
   const caption = `${icon} *${it?.name ?? a.title}*${LINK_LINE}`
@@ -200,7 +216,8 @@ async function postShopAndDailyNews(
 
   const lines: string[] = [`🛒 *Прогноз магазина${dateLabel ? `: ${dateLabel}` : ''}*`]
   if (shopIt) lines.push(`\n📋 *Офферы:* ${shopIt.name.replace(/^Прогноз магазина[^:]*:\s*/, '')}`)
-  if (dailyIt) lines.push(`\n📰 *Скоро в игре:* ${dailyIt.name.replace(/^Скоро в игре[^:]*:\s*/, '')}`)
+  if (dailyIt)
+    lines.push(`\n📰 *Скоро в игре:* ${dailyIt.name.replace(/^Скоро в игре[^:]*:\s*/, '')}`)
   const caption = `${lines.join('\n')}${LINK_LINE}`
 
   const image = shopIt?.image ?? dailyIt?.image

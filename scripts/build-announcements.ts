@@ -529,9 +529,7 @@ async function main() {
     if (a.category === 'rebalance' || a.category === 'shopForecast' || a.category === 'dailyNews') {
       continue
     }
-    await crossPostAnnouncement(a).catch((err) =>
-      console.error(`[CROSS-POST] ${a.category}:`, err),
-    )
+    await crossPostAnnouncement(a).catch((err) => console.error(`[CROSS-POST] ${a.category}:`, err))
   }
 
   const cacheDir = path.join(ROOT, 'scripts/.cache')
