@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Запрет перетаскивания текстур (доп. к JS-обработчику в BaseLayout) */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 /* CSS переменные проекта */
 :root {
   /* Шрифт */
