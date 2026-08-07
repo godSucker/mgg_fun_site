@@ -33,6 +33,9 @@ interface AnnouncementItem {
   name: string
   image?: string | null
   category?: string | null
+  // Только для bingo: если задано - это НЕ новая доска, а список мутантов,
+  // добавленных в уже существующую (см. detectBingo).
+  addedNames?: string[]
 }
 
 interface Announcement {
@@ -207,14 +210,44 @@ async function detectSkins(seen: string[]): Promise<DetectResult> {
   }
 }
 
+// Ledger хранит ключ НЕ по доске целиком, а "boardId|specimenId" на каждого
+// мутанта в доске (тот же приём, что у detectSkins/detectExchange) - иначе
+// добавление 1-2 мутантов в УЖЕ анонсированную доску (доска не новая, id уже
+// в seen) осталось бы незамеченным навсегда. isNewBoard = все ключи доски
+// свежие сразу (доска только что появилась целиком), иначе - "добавили
+// участников" в существующую.
 async function detectBingo(seen: string[]): Promise<DetectResult> {
-  const bingos = await loadJson<{ id: string; title: string }[]>('src/data/bingos.json', [])
+  const [bingos, mutantNames] = await Promise.all([
+    loadJson<{ id: string; title: string; mutants: { specimenId: string }[] }[]>(
+      'src/data/bingos.json',
+      [],
+    ),
+    loadJson<Record<string, string>>('src/data/mutant_names.json', {}),
+  ])
   const seenSet = new Set(seen)
-  const fresh = bingos.filter((b) => !seenSet.has(b.id))
-  return {
-    newIds: bingos.map((b) => b.id),
-    items: fresh.map((b) => ({ id: b.id, name: b.title, image: null })),
+  const allKeys: string[] = []
+  const items: AnnouncementItem[] = []
+
+  for (const b of bingos) {
+    const boardKeys = b.mutants.map((m) => `${b.id}|${m.specimenId}`)
+    allKeys.push(...boardKeys)
+    const freshKeys = boardKeys.filter((k) => !seenSet.has(k))
+    if (freshKeys.length === 0) continue
+
+    const isNewBoard = freshKeys.length === boardKeys.length
+    const addedNames = freshKeys.map((k) => {
+      const specimenId = k.slice(b.id.length + 1)
+      return mutantNames[specimenId] ?? specimenId
+    })
+    items.push({
+      id: b.id,
+      name: isNewBoard ? b.title : `${b.title}: добавлен(ы) ${addedNames.join(', ')}`,
+      image: null,
+      addedNames: isNewBoard ? undefined : addedNames,
+    })
   }
+
+  return { newIds: allKeys, items }
 }
 
 async function detectBoxes(seen: string[]): Promise<DetectResult> {

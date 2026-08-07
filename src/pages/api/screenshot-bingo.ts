@@ -62,6 +62,15 @@ export const GET: APIRoute = async ({ url }) => {
         page.evaluate(() => document.fonts.ready),
       ])
 
+      // .mutant-img использует loading="lazy" (нужен для реальных посетителей,
+      // не трогаем разметку) - без scroll/intersection браузер их не грузит
+      // вообще, скриншот ловил пустые ячейки. Форсим eager именно для захвата.
+      await page.evaluate((sel) => {
+        document
+          .querySelectorAll(`${sel} img[loading="lazy"]`)
+          .forEach((img) => img.setAttribute('loading', 'eager'))
+      }, selector)
+
       await page
         .waitForFunction(
           (sel) => {
@@ -69,7 +78,7 @@ export const GET: APIRoute = async ({ url }) => {
             return imgs.length === 0 || imgs.every((i) => (i as HTMLImageElement).complete)
           },
           selector,
-          { timeout: 6000 },
+          { timeout: 10000 },
         )
         .catch(() => {})
 

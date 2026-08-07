@@ -45,31 +45,41 @@ function daysAgo(n: number): string {
 }
 
 async function main() {
-  const [mutants, skinsData, raids, special, reactors, gachaCovers, tokens, boxes, bingos, dungeonCovers] =
-    await Promise.all([
-      loadJson<{ id: string; name: string; stars?: Record<string, { images?: string[] }> }[]>(
-        'src/data/mutants/mutants.json',
-        [],
-      ),
-      loadJson<{ specimens: { id: string; name: string; skin: string; image?: string[] }[] }>(
-        'src/data/mutants/skins.json',
-        { specimens: [] },
-      ),
-      loadJson<{ id: string; name: string; fightCount: number }[]>('src/data/guides/raids.json', []),
-      loadJson<{
-        experiment: { id: string; name: string; fightCount: number }[]
-        challenge: { id: string; name: string; fightCount: number }[]
-      }>('src/data/guides/special-ladders.json', { experiment: [], challenge: [] }),
-      loadJson<Record<string, string>>('src/data/simulators/reactor/gacha-name-ru.json', {}),
-      loadJson<Record<string, string>>('src/data/simulators/reactor/gacha-covers.json', {}),
-      loadJson<{ id: string; name: string; texture?: string | null }[]>(
-        'src/data/materials/material.json',
-        [],
-      ),
-      loadJson<{ itemId: string; name: string; icon?: string }[]>('src/data/boxes.json', []),
-      loadJson<{ id: string; title: string }[]>('src/data/bingos.json', []),
-      loadJson<Record<string, string | null>>('src/data/guides/dungeon-covers.json', {}),
-    ])
+  const [
+    mutants,
+    skinsData,
+    raids,
+    special,
+    reactors,
+    gachaCovers,
+    tokens,
+    boxes,
+    bingos,
+    dungeonCovers,
+  ] = await Promise.all([
+    loadJson<{ id: string; name: string; stars?: Record<string, { images?: string[] }> }[]>(
+      'src/data/mutants/mutants.json',
+      [],
+    ),
+    loadJson<{ specimens: { id: string; name: string; skin: string; image?: string[] }[] }>(
+      'src/data/mutants/skins.json',
+      { specimens: [] },
+    ),
+    loadJson<{ id: string; name: string; fightCount: number }[]>('src/data/guides/raids.json', []),
+    loadJson<{
+      experiment: { id: string; name: string; fightCount: number }[]
+      challenge: { id: string; name: string; fightCount: number }[]
+    }>('src/data/guides/special-ladders.json', { experiment: [], challenge: [] }),
+    loadJson<Record<string, string>>('src/data/simulators/reactor/gacha-name-ru.json', {}),
+    loadJson<Record<string, string>>('src/data/simulators/reactor/gacha-covers.json', {}),
+    loadJson<{ id: string; name: string; texture?: string | null }[]>(
+      'src/data/materials/material.json',
+      [],
+    ),
+    loadJson<{ itemId: string; name: string; icon?: string }[]>('src/data/boxes.json', []),
+    loadJson<{ id: string; title: string }[]>('src/data/bingos.json', []),
+    loadJson<Record<string, string | null>>('src/data/guides/dungeon-covers.json', {}),
+  ])
 
   const tokenList = tokens.filter((t) => /token/i.test(t.id))
   const skinList = skinsData.specimens.filter((s) => s.skin && !['_any', 'none'].includes(s.skin))
@@ -114,7 +124,9 @@ async function main() {
         date: '',
         category: 'skin',
         title: `${s.name} — скин`,
-        items: [{ id: `${s.id}|${s.skin}`, name: `${s.name} — ${s.skin}`, image: s.image?.[0] ?? null }],
+        items: [
+          { id: `${s.id}|${s.skin}`, name: `${s.name} — ${s.skin}`, image: s.image?.[0] ?? null },
+        ],
         link: '/mutants',
       }
     },
@@ -127,7 +139,9 @@ async function main() {
         date: '',
         category: 'raid',
         title: `Рейд «${r.name}»`,
-        items: [{ id: r.id, name: `Рейд «${r.name}» (${r.fightCount} боёв)`, image: cover ?? null }],
+        items: [
+          { id: r.id, name: `Рейд «${r.name}» (${r.fightCount} боёв)`, image: cover ?? null },
+        ],
         link: '/guides',
       }
     },
@@ -140,7 +154,9 @@ async function main() {
         date: '',
         category: 'ladder',
         title: `Лесенка «${l.name}»`,
-        items: [{ id: l.id, name: `Лесенка «${l.name}» (${l.fightCount} боёв)`, image: cover ?? null }],
+        items: [
+          { id: l.id, name: `Лесенка «${l.name}» (${l.fightCount} боёв)`, image: cover ?? null },
+        ],
         link: '/guides',
       }
     },
@@ -217,7 +233,9 @@ async function main() {
 
   const merged = [...existing, ...fresh]
   await fs.writeFile(ANNOUNCEMENTS_PATH, JSON.stringify(merged, null, 2) + '\n', 'utf-8')
-  console.log(`[SIMULATE-PAGE] Добавлено ${fresh.length} тестовых записей (id начинаются с "test-").`)
+  console.log(
+    `[SIMULATE-PAGE] Добавлено ${fresh.length} тестовых записей (id начинаются с "test-").`,
+  )
 }
 
 main().catch((err) => {

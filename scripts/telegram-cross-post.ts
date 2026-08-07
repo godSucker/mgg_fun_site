@@ -127,6 +127,9 @@ export interface CrossPostItem {
   id: string
   name: string
   image?: string | null
+  // Только для bingo: список мутантов, добавленных в УЖЕ существующую доску
+  // (не новая доска целиком) - см. detectBingo в build-announcements.ts.
+  addedNames?: string[]
 }
 
 export interface CrossPostAnnouncement {
@@ -179,10 +182,19 @@ async function postBingo(a: CrossPostAnnouncement): Promise<void> {
     loadJson<Record<string, string>>('src/data/mutant_names.json', {}),
   ])
   const bingo = bingos.find((b) => b.id === it.id)
-  const names = bingo?.mutants.map((m) => mutantNames[m.specimenId] ?? m.specimenId) ?? []
-  const preview = names.slice(0, 5).join(', ')
-  const rest = names.length > 5 ? ` и ещё ${names.length - 5}` : ''
-  const caption = `🎲 *Новая бинго-доска: ${it.name}*\n\nУчастники: ${preview}${rest}${LINK_LINE}`
+  const title = bingo?.title ?? it.name
+
+  let caption: string
+  if (it.addedNames && it.addedNames.length > 0) {
+    // Доска уже существовала - это пополнение, не "новая доска".
+    const who = it.addedNames.length === 1 ? 'Добавлен' : 'Добавлены'
+    caption = `🎲 *Бинго «${title}»: новые участники*\n\n${who}: ${it.addedNames.join(', ')}${LINK_LINE}`
+  } else {
+    const names = bingo?.mutants.map((m) => mutantNames[m.specimenId] ?? m.specimenId) ?? []
+    const preview = names.slice(0, 5).join(', ')
+    const rest = names.length > 5 ? ` и ещё ${names.length - 5}` : ''
+    caption = `🎲 *Новая бинго-доска: ${title}*\n\nУчастники: ${preview}${rest}${LINK_LINE}`
+  }
 
   try {
     const res = await fetch(
