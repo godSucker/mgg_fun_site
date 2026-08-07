@@ -25,14 +25,14 @@ export const GET: APIRoute = async ({ url }) => {
   const origin = url.origin
   const pageUrl = `${origin}/announcements`
 
-  const Chromium = (await import('@sparticuz/chromium')).default
-  const execPath = await Chromium.executablePath()
-  const browser = await chromium.launch({
-    executablePath: execPath,
-    args: Chromium.args,
-  })
-
+  let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined
   try {
+    const Chromium = (await import('@sparticuz/chromium')).default
+    const execPath = await Chromium.executablePath()
+    browser = await chromium.launch({
+      executablePath: execPath,
+      args: Chromium.args,
+    })
     const page = await browser.newPage({
       deviceScaleFactor: 2,
       viewport: { width: 700, height: 1000 },
@@ -93,7 +93,7 @@ export const GET: APIRoute = async ({ url }) => {
     return new Response(`Screenshot error: ${message}`, { status: 500 })
   } finally {
     try {
-      await browser.close()
+      await browser?.close()
     } catch {}
   }
 }
