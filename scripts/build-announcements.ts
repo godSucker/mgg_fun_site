@@ -149,7 +149,10 @@ function firstMutantImage(stars: StarsMap | undefined): string | null {
 async function opengraphObtainImage(id: string): Promise<string | null> {
   const url = `https://s-beta.kobojo.com/mutants/assets/opengraph/${id.toLowerCase()}_obtain.jpg`
   try {
-    const res = await axios.head(url, { timeout: 8000, validateStatus: (s) => s === 200 || s === 404 })
+    const res = await axios.head(url, {
+      timeout: 8000,
+      validateStatus: (s) => s === 200 || s === 404,
+    })
     return res.status === 200 ? url : null
   } catch {
     return null
@@ -165,11 +168,13 @@ async function detectMutants(seen: string[]): Promise<DetectResult> {
   const fresh = mutants.filter((m) => !seenSet.has(m.id))
   return {
     newIds: mutants.map((m) => m.id),
-    items: await Promise.all(fresh.map(async (m) => ({
-      id: m.id,
-      name: m.name,
-      image: (await opengraphObtainImage(m.id)) ?? firstMutantImage(m.stars),
-    }))),
+    items: await Promise.all(
+      fresh.map(async (m) => ({
+        id: m.id,
+        name: m.name,
+        image: (await opengraphObtainImage(m.id)) ?? firstMutantImage(m.stars),
+      })),
+    ),
   }
 }
 

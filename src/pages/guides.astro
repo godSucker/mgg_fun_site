@@ -22,6 +22,8 @@ import { GENE_RU } from '../lib/mutant-dicts';
 import { calculateFinalStats } from '../lib/stats/unified-calculator';
 import divisionFightsData from '../data/guides/division-fights.json';
 import GuidesBrowser from '../components/guides/GuidesBrowser.svelte';
+import dungeonCovers from '../data/guides/dungeon-covers.json';
+import divisionArenas from '../data/guides/division-arenas.json';
 import BingoMutantModal from '../components/bingo/BingoMutantModal.svelte';
 import {
   resolveMutantLite,
@@ -328,6 +330,8 @@ const specialOffers = (specialOffersData as SpecialOfferRaw[]).map((o) => ({
     eventLadders={eventLadders}
     specialLadders={specialLadders}
     specialOffers={specialOffers}
+    dungeonCovers={dungeonCovers}
+    divisionArenas={divisionArenas}
   />
   <BingoMutantModal client:load />
 </BaseLayout>

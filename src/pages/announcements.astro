@@ -82,8 +82,16 @@ const fmtDate = (iso: string) =>
           </div>
         )}
         <div class="feed">
-        {announcements.map((a) => (
-          <article class="card" data-category={a.category ?? ''}>
+        {announcements.map((a) => {
+          const isDungeonCard = a.category === 'raid' || a.category === 'ladder';
+          const dungeonBg = isDungeonCard ? a.items?.[0]?.image : null;
+          return (
+          <article
+            class="card"
+            class:list={[{ 'card-with-bg': !!dungeonBg }]}
+            data-category={a.category ?? ''}
+            style={dungeonBg ? `background-image: linear-gradient(180deg, rgba(15,23,42,0.55), rgba(15,23,42,0.94)), url(${dungeonBg}); background-size: cover; background-position: center;` : undefined}
+          >
 
             {a.imagePath && (
               <div class="card-image">
@@ -99,7 +107,7 @@ const fmtDate = (iso: string) =>
                 <ul class="item-grid">
                   {a.items.map((it) => (
                     <li class="item-card">
-                      {it.image && (
+                      {it.image && !isDungeonCard && (
                         <img class="item-image" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />
                       )}
                       <span class="item-name">{it.name}</span>
@@ -119,7 +127,8 @@ const fmtDate = (iso: string) =>
               )}
             </div>
           </article>
-        ))}
+          );
+        })}
         </div>
       </>
     )}
@@ -201,6 +210,12 @@ const fmtDate = (iso: string) =>
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     overflow: hidden;
+  }
+  .card-with-bg {
+    background-color: rgba(15, 23, 42, 0.6);
+  }
+  .card-with-bg .card-body {
+    position: relative;
   }
   .card-image {
     width: 100%;

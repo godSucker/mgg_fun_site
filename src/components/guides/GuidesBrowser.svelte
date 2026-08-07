@@ -83,6 +83,8 @@
     eventLadders = [],
     specialLadders = { experiment: [], challenge: [] },
     specialOffers = [],
+    dungeonCovers = {},
+    divisionArenas = {},
   }: {
     legendaries: MutantLite[]
     zodiac: ZodiacEntry[]
@@ -94,7 +96,21 @@
     eventLadders: EventLadderEntry[]
     specialLadders: SpecialLadders
     specialOffers: SpecialOffer[]
+    dungeonCovers: Record<string, string | null>
+    divisionArenas: Record<string, string | null>
   } = $props()
+
+  // Готовые баннеры/бейджи с Kobojo CDN (найдены 2026-08-07, см. память
+  // auto-announcements-architecture) - хотлинк, не качаем на свой CDN, эти
+  // картинки только фоны/бейджи карточек, не постоянный сайтовый актив.
+  const DUNGEON_TYPE_BADGE: Record<string, string> = {
+    raid: 'https://s-beta.kobojo.com/mutants/assets/hud/fight_screen/dungeon_block_raid.png',
+    experiment: 'https://s-beta.kobojo.com/mutants/assets/hud/fight_screen/dungeon_block_experiment.png',
+    challenge: 'https://s-beta.kobojo.com/mutants/assets/hud/fight_screen/dungeon_block_challenge.png',
+  }
+  function divisionBadge(campaignId: string): string {
+    return `https://s-beta.kobojo.com/mutants/assets/hud/fight_screen/division_${campaignId}.png`
+  }
 
   let activeDivision = $state(0)
   let zodiacStar: 'normal' | 'silver' = $state('normal')
@@ -215,6 +231,8 @@
 
 <div class="tab-content">
   {#snippet activityCard(
+    id: string,
+    dungeonType: 'raid' | 'experiment' | 'challenge' | 'event',
     name: string,
     nameAuthored: boolean,
     mutant: MutantLite | null,
@@ -223,13 +241,25 @@
     items: ResolvedItem[],
   )}
     {@const fallbackIcon = items.find((it) => it.icon)?.icon ?? currency.find((c) => c.icon)?.icon ?? '/stars/star_gold.webp'}
+    {@const cover = dungeonCovers[id]}
+    {@const badge = DUNGEON_TYPE_BADGE[dungeonType]}
     <div class="activity-card" class:no-mutant={!mutant}>
       {#if mutant}
-        <button class="activity-hero" onclick={() => openMutant(mutant.id)} title={`Открыть ${mutant.name}`}>
+        <button
+          class="activity-hero"
+          style={cover ? `background-image: linear-gradient(180deg, rgba(10,14,22,0.15), rgba(10,14,22,0.75)), url(${cover})` : ''}
+          onclick={() => openMutant(mutant.id)}
+          title={`Открыть ${mutant.name}`}
+        >
+          {#if badge}<img class="activity-badge" src={badge} alt="" loading="lazy" decoding="async" />{/if}
           <img class="activity-hero-art" src={textureUrl(mutant.fullArt)} alt={mutant.name} loading="lazy" decoding="async" />
         </button>
       {:else}
-        <div class="activity-hero activity-hero-empty">
+        <div
+          class="activity-hero activity-hero-empty"
+          style={cover ? `background-image: linear-gradient(180deg, rgba(10,14,22,0.15), rgba(10,14,22,0.75)), url(${cover})` : ''}
+        >
+          {#if badge}<img class="activity-badge" src={badge} alt="" loading="lazy" decoding="async" />{/if}
           <img class="activity-hero-empty-art" src={textureUrl(fallbackIcon)} alt="" loading="lazy" decoding="async" />
         </div>
       {/if}
@@ -531,11 +561,16 @@
     </div>
     {#if divisions[activeDivision]}
       <div class="division-rec">
+        <img class="division-rec-badge" src={divisionBadge(divisions[activeDivision].id)} alt="" loading="lazy" decoding="async" />
         Рекомендуемый эво для прохождение: «{divisions[activeDivision].recommendedLevel}»
       </div>
       <div class="division-maps">
         {#each divisions[activeDivision].maps as m, i (m.mapId)}
-          <div class="division-map-card">
+          {@const arena = divisionArenas[m.mapId]}
+          <div
+            class="division-map-card"
+            style={arena ? `background-image: linear-gradient(180deg, rgba(15,23,42,0.75), rgba(15,23,42,0.92)), url(${arena}); background-size: cover; background-position: center;` : ''}
+          >
             <div class="division-map-head">
               <span class="division-map-num">Карта {i + 1}</span>
               <span class="division-map-title">{m.locationName}</span>
@@ -581,13 +616,13 @@
     {#if activeLadderSection === 'event'}
       <div class="activity-grid">
         {#each eventLadders as e (e.id)}
-          {@render activityCard(e.name, e.nameAuthored, e.mutant, `${e.mapCount} этапов`, [], e.items)}
+          {@render activityCard(e.id, 'event', e.name, e.nameAuthored, e.mutant, `${e.mapCount} этапов`, [], e.items)}
         {/each}
       </div>
     {:else}
       <div class="activity-grid">
         {#each specialLadders[activeLadderSection] as d (d.id)}
-          {@render activityCard(d.name, d.nameAuthored, d.mutant, `${d.fightCount} этапов`, d.currency, d.items)}
+          {@render activityCard(d.id, activeLadderSection, d.name, d.nameAuthored, d.mutant, `${d.fightCount} этапов`, d.currency, d.items)}
         {/each}
       </div>
     {/if}
@@ -601,7 +636,7 @@
     </div>
     <div class="activity-grid">
       {#each raids as r (r.id)}
-        {@render activityCard(r.name, r.nameAuthored, r.mutant, `${r.fightCount} этапов`, r.currency, r.items)}
+        {@render activityCard(r.id, 'raid', r.name, r.nameAuthored, r.mutant, `${r.fightCount} этапов`, r.currency, r.items)}
       {/each}
     </div>
   {:else if activeTab === 'special-offers'}
@@ -1088,7 +1123,8 @@
   .division-btn { appearance: none; border: 1px solid rgba(48, 54, 61, 0.6); background: rgba(15, 23, 42, 0.6); color: #94a3b8; border-radius: 8px; padding: 0.4rem 0.8rem; font-size: 0.82rem; font-weight: 700; cursor: pointer; }
   .division-btn:hover { color: #e2e8f0; border-color: rgba(96,165,250,0.3); }
   .division-btn.active { background: rgba(30, 58, 138, 0.4); color: #60a5fa; border-color: rgba(96,165,250,0.4); }
-  .division-rec { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.65rem 0.9rem; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 700; color: #bfdbfe; }
+  .division-rec { background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.25); border-radius: 8px; padding: 0.65rem 0.9rem; margin-bottom: 1rem; font-size: 0.85rem; font-weight: 700; color: #bfdbfe; display: flex; align-items: center; gap: 0.5rem; }
+  .division-rec-badge { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
   .division-maps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
   .division-map-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; }
   .division-map-head { display: flex; align-items: baseline; gap: 0.5rem; }
@@ -1153,7 +1189,14 @@
   .activity-hero {
     appearance: none; border: none; padding: 0; cursor: pointer; display: block;
     position: relative; height: 148px; background: radial-gradient(circle at 50% 30%, rgba(96,165,250,0.16), transparent 70%);
+    background-size: cover; background-position: center;
     overflow: hidden;
+  }
+  .activity-badge {
+    position: absolute; top: 8px; right: 8px; width: 42px; height: 42px;
+    object-fit: contain; z-index: 1;
+    background: rgba(10,14,22,0.65); border-radius: 50%; padding: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
   }
   .activity-hero-art { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }
   .activity-hero-empty { display: flex; align-items: center; justify-content: center; background: rgba(15,23,42,0.5); cursor: default; }
