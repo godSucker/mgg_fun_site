@@ -20,6 +20,7 @@ interface AnnouncementItem {
   id: string
   name: string
   image?: string | null
+  price?: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null
 }
 interface Announcement {
   id: string
@@ -227,6 +228,7 @@ async function main() {
           id: `${shopForecast.sprint}|${it.itemId}`,
           name: it.name,
           image: it.image,
+          price: it.price,
         })),
         link: '/announcements',
       }
@@ -242,6 +244,7 @@ async function main() {
           id: `${dailyNewsForecast.sprint}|${it.filter}`,
           name: it.name,
           image: it.image ?? dailyNewsForecast.coverImage,
+          price: it.price,
         })),
         link: '/announcements',
       }

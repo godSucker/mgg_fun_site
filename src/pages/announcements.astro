@@ -9,7 +9,11 @@ import { CATEGORY_RU, buildAnnouncementContext, type Announcement } from '@/lib/
 
 const ctx = buildAnnouncementContext();
 
+// Жетоны исключены со страницы анонсов по просьбе юзера 2026-08-08 -
+// категория осталась в детекторе/леджере (build-announcements.ts), просто не
+// показывается здесь.
 const announcements = ((announcementsData as Announcement[]) ?? [])
+  .filter((a) => a.category !== 'token')
   .slice()
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

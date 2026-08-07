@@ -30,10 +30,15 @@ function balanceQuotes(name: string): string {
   return open > close ? name + '»'.repeat(open - close) : name
 }
 
+export interface ForecastPrice {
+  amount: number
+  type: 'hardcurrency' | 'softcurrency'
+}
 interface ForecastItem {
   itemId: string
   name: string
   image: string | null
+  price: ForecastPrice | null
 }
 
 export interface ShopForecast {
@@ -104,10 +109,12 @@ export async function fetchShopForecast(): Promise<ShopForecast | null> {
     const picture = itemXml.match(/picture="([^"]+)"/)?.[1]
     const caption = itemXml.match(/caption="([^"]+)"/)?.[1]
     if (!itemId || hidden === 'true') continue
+    const costMatch = itemXml.match(/<Cost amount="(\d+)" type="(hardcurrency|softcurrency)"\s*\/>/)
     items.push({
       itemId,
       name: resolveName(itemId, caption),
       image: picture ? `${THUMB_BASE}${picture.replace(/\$\$$/, '')}.png` : null,
+      price: costMatch ? { amount: Number(costMatch[1]), type: costMatch[2] as 'hardcurrency' | 'softcurrency' } : null,
     })
   }
 

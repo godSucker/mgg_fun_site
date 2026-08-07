@@ -81,6 +81,16 @@ export const GET: APIRoute = async ({ url }) => {
       await page.waitForFunction(check, selector, { timeout: 6000 }).catch(() => {})
     }
 
+    // Vercel Toolbar (виджет фидбека, инжектится скриптом с vercel.live
+    // независимо от нашего кода) рисуется fixed-элементом поверх низа
+    // страницы - в скриншот попадали его пиксели (фидбек 2026-08-08). Он
+    // JS-инжектится не сразу, поэтому убираем ПРЯМО перед снимком, не раньше.
+    await page.evaluate(() => {
+      document
+        .querySelectorAll('[id*="vercel" i], [class*="vercel" i], iframe[src*="vercel.live"]')
+        .forEach((el) => el.remove())
+    })
+
     await page.waitForTimeout(200)
 
     const card = await page.$(selector)

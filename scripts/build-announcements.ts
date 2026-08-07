@@ -36,6 +36,8 @@ interface AnnouncementItem {
   // Только для bingo: если задано - это НЕ новая доска, а список мутантов,
   // добавленных в уже существующую (см. detectBingo).
   addedNames?: string[]
+  // Только для shopForecast/dailyNews.
+  price?: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null
 }
 
 interface Announcement {
@@ -441,6 +443,7 @@ async function detectShopForecast(seen: string[]): Promise<DetectResult> {
       id: `${key}|${it.itemId}`,
       name: it.name,
       image: it.image,
+      price: it.price,
     })),
   }
 }
@@ -456,6 +459,7 @@ async function detectDailyNews(seen: string[]): Promise<DetectResult> {
       id: `${key}|${it.filter}`,
       name: it.name,
       image: it.image ?? forecast.coverImage,
+      price: it.price,
     })),
   }
 }

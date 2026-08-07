@@ -192,7 +192,13 @@ const forecastOffers =
         {forecastOffers.map((offer) => (
           <div class="forecast-tile">
             {offer.image && <img src={offer.image} alt={offer.name} loading="lazy" decoding="async" />}
-            <span class="forecast-tile-name">{offer.name}</span>
+            <div class="forecast-tile-info">
+              <span class="forecast-tile-name">{offer.name}</span>
+              <span class="forecast-tile-meta">
+                {formatPrice(offer.price) && <span class="forecast-tile-price">{formatPrice(offer.price)}</span>}
+                {sprint !== null && <span class="forecast-tile-date">{sprintRangeLabel(sprint)}</span>}
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -581,6 +587,7 @@ const forecastOffers =
   .forecast-head {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.6rem;
     flex-wrap: wrap;
   }
@@ -608,12 +615,32 @@ const forecastOffers =
     background: rgba(0, 0, 0, 0.35);
     display: block;
   }
+  .forecast-tile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.4rem 0.5rem 0.5rem;
+  }
   .forecast-tile-name {
-    padding: 0.4rem 0.5rem;
     font-size: 0.74rem;
     font-weight: 600;
     color: #f1f5f9;
     line-height: 1.25;
+  }
+  .forecast-tile-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: baseline;
+  }
+  .forecast-tile-price {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fbbf24;
+  }
+  .forecast-tile-date {
+    font-size: 0.66rem;
+    color: #94a3b8;
   }
   .forecast-watermark {
     display: flex;

@@ -30,6 +30,9 @@ export interface AnnouncementItem {
   name: string
   image?: string | null
   addedNames?: string[]
+  // Только для shopForecast/dailyNews - реальная цена оффера, если она есть
+  // (не у всех, часть daily_news - чисто событийные анонсы без покупки).
+  price?: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null
 }
 
 export interface Announcement {
@@ -107,7 +110,7 @@ export const TIER_ICON: Record<string, string> = {
   'платина': '/stars/star_platinum.webp',
 }
 
-export function formatPrice(price: BoxEntry['price']): string | null {
+export function formatPrice(price: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null | undefined): string | null {
   if (!price) return null
   const label = price.type === 'hardcurrency' ? 'золота' : 'серебра'
   return `${price.amount.toLocaleString('ru-RU')} ${label}`
