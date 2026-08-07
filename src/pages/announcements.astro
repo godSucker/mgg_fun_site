@@ -370,7 +370,10 @@ const fmtDate = (iso: string) =>
                   )}
                 </div>
                 <div class="forecast-grid">
-                  {a.items.slice(0, 12).map((offer) => (
+                  {a.items
+                    .filter((o, i, arr) => !o.image || arr.findIndex((x) => x.image === o.image) === i)
+                    .slice(0, 12)
+                    .map((offer) => (
                     <div class="forecast-tile">
                       {offer.image && <img src={offer.image} alt={offer.name} loading="lazy" decoding="async" />}
                       <span class="forecast-tile-name">{offer.name}</span>
