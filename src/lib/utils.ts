@@ -24,6 +24,21 @@ export function baseMutantId(id: unknown): string {
     .replace(/_+(?:normal|bronze|silver|gold|platinum|plat).*$/i, '')
 }
 
+/**
+ * Группирует записи skins.json по базовому id мутанта.
+ * Общий хелпер для всех мест, монтирующих MutantModal (skins-проп).
+ */
+export function buildSkinLookup(skins: unknown[]): Map<string, unknown[]> {
+  const map = new Map<string, unknown[]>()
+  for (const skin of Array.isArray(skins) ? skins : []) {
+    const key = baseMutantId((skin as { id?: unknown })?.id)
+    if (!key) continue
+    if (!map.has(key)) map.set(key, [])
+    map.get(key)!.push(skin)
+  }
+  return map
+}
+
 export function normalizeMutantId(specimenId: string): {
   folder: string
   fileId: string
