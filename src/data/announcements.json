@@ -40,5 +40,19 @@
       }
     ],
     "link": "/announcements"
+  },
+  {
+    "id": "token-1786118399992",
+    "date": "2026-08-07T15:59:59.921Z",
+    "category": "token",
+    "title": "Material Preorder Token FC 11",
+    "items": [
+      {
+        "id": "Material_Preorder_Token_FC_11",
+        "name": "Material Preorder Token FC 11",
+        "image": "https://s-beta.kobojo.com/mutants/assets/thumbnails/material_preorder_token_fc_11.png"
+      }
+    ],
+    "link": "/materials"
   }
 ]

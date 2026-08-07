@@ -1,1 +1,7 @@
-{}
+{
+  "reactor:zodiac": {
+    "type": "reactor",
+    "id": "zodiac",
+    "alertedAt": "2026-08-07T15:59:57.842Z"
+  }
+}
