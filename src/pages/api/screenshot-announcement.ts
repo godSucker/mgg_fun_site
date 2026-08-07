@@ -1,43 +1,21 @@
 import type { APIRoute } from 'astro'
-import { chromium, type Browser } from 'playwright-core'
+import { chromium } from 'playwright-core'
 
-// Тот же паттерн, что screenshot-bingo.ts/screenshot-rebalance.ts - отдельный
-// singleton-браузер на модуль, дублирование намеренное. Генерирует скриншот
-// ЛЮБОЙ карточки анонса по её data-announcement-id, чтобы бот-кросспост не
-// держал отдельный текстовый шаблон под каждую категорию - карточка на сайте
-// (announcements.astro) единственный источник правды по виду.
-let browserPromise: Promise<Browser> | null = null
-
-async function launchBrowser(): Promise<Browser> {
-  const Chromium = (await import('@sparticuz/chromium')).default
-  const execPath = await Chromium.executablePath()
-  const browser = await chromium.launch({
-    executablePath: execPath,
-    args: Chromium.args,
-  })
-  browser.on('disconnected', () => {
-    if (browserPromise === launchingPromise) browserPromise = null
-  })
-  return browser
-}
-
-let launchingPromise: Promise<Browser> | null = null
-
-async function getBrowser(): Promise<Browser> {
-  if (browserPromise) {
-    try {
-      const existing = await browserPromise
-      if (existing.isConnected()) return existing
-    } catch {
-      // предыдущий запуск упал - пересоздаём ниже
-    }
-    browserPromise = null
-  }
-  launchingPromise = launchBrowser()
-  browserPromise = launchingPromise
-  return browserPromise
-}
-
+// Генерирует скриншот ЛЮБОЙ карточки анонса по её data-announcement-id, чтобы
+// бот-кросспост не держал отдельный текстовый шаблон под каждую категорию -
+// карточка на сайте (announcements.astro) единственный источник правды по виду.
+//
+// НЕ держим browser-singleton между запросами (в отличие от старой ревизии
+// этого файла и screenshot-bingo.ts) - на живом прогоне 2026-08-07 (7 вызовов
+// подряд с интервалом ~2с из cross-post батча) singleton копил свежий
+// user-data-dir на КАЖДЫЙ запуск (реального переиспользования тёплого браузера
+// не происходило - Vercel логи показали новый launch с новым профилем на
+// каждый вызов), эти профили не удалялись и за несколько таких прогонов
+// забили /tmp контейнера до 0 байт свободного места -> Chromium падал на
+// "Less than 64MB of free space" / "AllocateRingBuffer() failed" - ЛЮБОЙ
+// следующий скриншот (включая уже год как работающий screenshot-bingo в том
+// же контейнере) падал вместе с ним. Полный launch+close на каждый запрос
+// медленнее на холодный старт, но не копит мусор между вызовами.
 export const GET: APIRoute = async ({ url }) => {
   const id = url.searchParams.get('id')
   if (!id) {
@@ -47,81 +25,75 @@ export const GET: APIRoute = async ({ url }) => {
   const origin = url.origin
   const pageUrl = `${origin}/announcements`
 
-  for (let attempt = 0; attempt < 2; attempt++) {
-    let page
-    try {
-      const browser = await getBrowser()
-      page = await browser.newPage({
-        deviceScaleFactor: 2,
-        viewport: { width: 700, height: 1000 },
-      })
+  const Chromium = (await import('@sparticuz/chromium')).default
+  const execPath = await Chromium.executablePath()
+  const browser = await chromium.launch({
+    executablePath: execPath,
+    args: Chromium.args,
+  })
 
-      // Другие карточки на /announcements (бинго) сами встраивают
-      // <img src="/api/screenshot-bingo"> - если такая карточка попадёт в
-      // 700x1000 вьюпорт, браузер запросит её и словит Chromium-в-Chromium
-      // на Vercel. Обрезаем эти запросы: скриншотим не бинго-карточки здесь.
-      await page.route('**/api/screenshot-bingo*', (route) => route.abort())
+  try {
+    const page = await browser.newPage({
+      deviceScaleFactor: 2,
+      viewport: { width: 700, height: 1000 },
+    })
 
-      await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 15000 })
+    // Бинго-карточка на /announcements сама встраивает
+    // <img src="/api/screenshot-bingo"> - если она попадёт в 700x1000
+    // вьюпорт, браузер запросит её и словит Chromium-в-Chromium. Обрезаем эти
+    // запросы: бот берёт скриншот бинго отдельным путём (screenshot-bingo.ts).
+    await page.route('**/api/screenshot-bingo*', (route) => route.abort())
 
-      const selector = `article.card[data-announcement-id="${id}"]`
-      await Promise.all([
-        page.waitForSelector(selector, { timeout: 12000, state: 'attached' }),
-        page.evaluate(() => document.fonts.ready),
-      ])
+    await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 15000 })
 
-      // Карточки используют loading="lazy" (нужно для реальных посетителей
-      // ленты, не трогаем разметку) - без scroll/intersection браузер их не
-      // грузит, скриншот ловил бы пустые ячейки. Форсим eager для захвата.
-      // Скриншот бинго-карточки НЕ идёт через этот эндпоинт (она сама
-      // встраивает <img src="/api/screenshot-bingo">, второй проход тут
-      // вызвал бы Chromium-в-Chromium) - бот берёт её отдельным путём.
-      await page.evaluate((sel) => {
-        document
-          .querySelectorAll(`${sel} img[loading="lazy"]`)
-          .forEach((img) => img.setAttribute('loading', 'eager'))
-      }, selector)
+    const selector = `article.card[data-announcement-id="${id}"]`
+    await Promise.all([
+      page.waitForSelector(selector, { timeout: 12000, state: 'attached' }),
+      page.evaluate(() => document.fonts.ready),
+    ])
 
-      await page
-        .waitForFunction(
-          (sel) => {
-            const imgs = Array.from(document.querySelectorAll(`${sel} img`))
-            return imgs.length === 0 || imgs.every((i) => (i as HTMLImageElement).complete)
-          },
-          selector,
-          { timeout: 12000 },
-        )
-        .catch(() => {})
+    // Карточки используют loading="lazy" (нужно для реальных посетителей
+    // ленты, не трогаем разметку) - без scroll/intersection браузер их не
+    // грузит, скриншот ловил бы пустые ячейки. Форсим eager для захвата.
+    await page.evaluate((sel) => {
+      document
+        .querySelectorAll(`${sel} img[loading="lazy"]`)
+        .forEach((img) => img.setAttribute('loading', 'eager'))
+    }, selector)
 
-      await page.waitForTimeout(200)
-
-      const card = await page.$(selector)
-      if (!card) {
-        return new Response('Announcement card not found', { status: 404 })
-      }
-      const buffer = (await card.screenshot({ type: 'png' })) as Buffer
-
-      return new Response(new Uint8Array(buffer), {
-        status: 200,
-        headers: {
-          'Content-Type': 'image/png',
-          'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+    await page
+      .waitForFunction(
+        (sel) => {
+          const imgs = Array.from(document.querySelectorAll(`${sel} img`))
+          return imgs.length === 0 || imgs.every((i) => (i as HTMLImageElement).complete)
         },
-      })
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err)
-      const browserDied = /has been closed|disconnected|Target closed/i.test(message)
-      if (browserDied && attempt === 0) {
-        browserPromise = null
-        continue
-      }
-      console.error('[Screenshot-Announcement]', message)
-      return new Response(`Screenshot error: ${message}`, { status: 500 })
-    } finally {
-      try {
-        await page?.close()
-      } catch {}
+        selector,
+        { timeout: 12000 },
+      )
+      .catch(() => {})
+
+    await page.waitForTimeout(200)
+
+    const card = await page.$(selector)
+    if (!card) {
+      return new Response('Announcement card not found', { status: 404 })
     }
+    const buffer = (await card.screenshot({ type: 'png' })) as Buffer
+
+    return new Response(new Uint8Array(buffer), {
+      status: 200,
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+      },
+    })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('[Screenshot-Announcement]', message)
+    return new Response(`Screenshot error: ${message}`, { status: 500 })
+  } finally {
+    try {
+      await browser.close()
+    } catch {}
   }
-  return new Response('Screenshot error: browser unavailable after retry', { status: 500 })
 }
