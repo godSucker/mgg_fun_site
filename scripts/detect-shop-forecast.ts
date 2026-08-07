@@ -114,7 +114,9 @@ export async function fetchShopForecast(): Promise<ShopForecast | null> {
       itemId,
       name: resolveName(itemId, caption),
       image: picture ? `${THUMB_BASE}${picture.replace(/\$\$$/, '')}.png` : null,
-      price: costMatch ? { amount: Number(costMatch[1]), type: costMatch[2] as 'hardcurrency' | 'softcurrency' } : null,
+      price: costMatch
+        ? { amount: Number(costMatch[1]), type: costMatch[2] as 'hardcurrency' | 'softcurrency' }
+        : null,
     })
   }
 

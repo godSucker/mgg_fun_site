@@ -131,7 +131,9 @@ async function buildShopItemIndex(): Promise<Map<string, ShopItemInfo>> {
       if (byStripped) return balanceQuotes(byStripped)
     }
     if (caption) {
-      const strippedKey = caption.replace(/^\$/, '').replace(/_(description|payment_text|tooltip)$/, '')
+      const strippedKey = caption
+        .replace(/^\$/, '')
+        .replace(/_(description|payment_text|tooltip)$/, '')
       const byCaption = lookup(strippedKey) ?? lookup(caption)
       if (byCaption && byCaption.length <= 80) return balanceQuotes(byCaption)
     }
@@ -150,7 +152,9 @@ async function buildShopItemIndex(): Promise<Map<string, ShopItemInfo>> {
     const costMatch = itemXml.match(/<Cost amount="(\d+)" type="(hardcurrency|softcurrency)"\s*\/>/)
     index.set(itemId.toLowerCase(), {
       name: resolveName(itemId, caption),
-      price: costMatch ? { amount: Number(costMatch[1]), type: costMatch[2] as 'hardcurrency' | 'softcurrency' } : null,
+      price: costMatch
+        ? { amount: Number(costMatch[1]), type: costMatch[2] as 'hardcurrency' | 'softcurrency' }
+        : null,
     })
   }
   return index
@@ -171,7 +175,12 @@ export async function fetchDailyNewsForecast(): Promise<DailyNewsForecast | null
   const nextMarkerIdx = xml.indexOf('<!-- DEBUT SPRINT', startIdx)
   const block = xml.slice(startIdx, nextMarkerIdx === -1 ? undefined : nextMarkerIdx)
 
-  const rawItems: { filter: string; category: string | null; imageRaw: string | null; entity: string | null }[] = []
+  const rawItems: {
+    filter: string
+    category: string | null
+    imageRaw: string | null
+    entity: string | null
+  }[] = []
   for (const offerXml of block.match(/<Offer\b[^>]*>[\s\S]*?<\/Offer>/g) ?? []) {
     const filter = offerXml.match(/<Filter>([^<]*)<\/Filter>/)?.[1]
     const category = offerXml.match(/category="([^"]*)"/)?.[1] ?? null

@@ -552,29 +552,38 @@ async function main() {
   await saveLedger(ledger)
   await fs.writeFile(ANNOUNCEMENTS_PATH, JSON.stringify(announcements, null, 2) + '\n', 'utf-8')
 
-  // Кросс-пост в Telegram-канал - best-effort, ошибки не должны срывать
-  // коммит уже посчитанных данных (см. scripts/telegram-cross-post.ts).
-  // shopForecast/dailyNews объединяются в один пост (юзер: "dailyNews можно
-  // засунуть в прогноз магазина"), rebalance никогда не кросс-постится
-  // (юзер: "уже есть человек, который делает это вручную").
-  const shopForecastPost = newlyAdded.find((a) => a.category === 'shopForecast') ?? null
-  const dailyNewsPost = newlyAdded.find((a) => a.category === 'dailyNews') ?? null
-  if (shopForecastPost || dailyNewsPost) {
-    await postShopAndDailyNews(shopForecastPost, dailyNewsPost).catch((err) =>
-      console.error('[CROSS-POST] shopForecast/dailyNews:', err),
-    )
-  }
-  // Пауза между постами - несколько скриншот-эндпоинтов подряд без неё на
-  // живом прогоне 2026-08-07 упирались в исчерпание /tmp одного тёплого
-  // Vercel-контейнера (см. cleanupStalePlaywrightProfiles в
-  // src/lib/chromium-tmp-cleanup.ts - подметает мусор, но не резиновое место).
-  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
-  for (const a of newlyAdded) {
-    if (a.category === 'rebalance' || a.category === 'shopForecast' || a.category === 'dailyNews') {
-      continue
+  // Кросс-пост в Telegram-канал ОТКЛЮЧЁН 2026-08-08 (юзер: "пока надо
+  // отключить" - после нескольких раундов нестабильности скриншот-эндпоинта
+  // на холодном Vercel-контейнере решил не постить в ПУБЛИЧНЫЙ канал, пока
+  // не решили, оставлять ли картиночный кросс-пост вообще или заменить на
+  // текстовый алерт "на сайте что-то новое"). Код ниже рабочий и не удалён -
+  // просто выключен флагом, чтобы включить обратно было одной правкой.
+  const CROSS_POST_ENABLED = false
+  if (CROSS_POST_ENABLED) {
+    // shopForecast/dailyNews объединяются в один пост (юзер: "dailyNews можно
+    // засунуть в прогноз магазина"), rebalance никогда не кросс-постится
+    // (юзер: "уже есть человек, который делает это вручную").
+    const shopForecastPost = newlyAdded.find((a) => a.category === 'shopForecast') ?? null
+    const dailyNewsPost = newlyAdded.find((a) => a.category === 'dailyNews') ?? null
+    if (shopForecastPost || dailyNewsPost) {
+      await postShopAndDailyNews(shopForecastPost, dailyNewsPost).catch((err) =>
+        console.error('[CROSS-POST] shopForecast/dailyNews:', err),
+      )
     }
-    await crossPostAnnouncement(a).catch((err) => console.error(`[CROSS-POST] ${a.category}:`, err))
-    await sleep(5000)
+    // Пауза между постами - несколько скриншот-эндпоинтов подряд без неё на
+    // живом прогоне 2026-08-07 упирались в исчерпание /tmp одного тёплого
+    // Vercel-контейнера (см. cleanupStalePlaywrightProfiles в
+    // src/lib/chromium-tmp-cleanup.ts - подметает мусор, но не резиновое место).
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+    for (const a of newlyAdded) {
+      if (a.category === 'rebalance' || a.category === 'shopForecast' || a.category === 'dailyNews') {
+        continue
+      }
+      await crossPostAnnouncement(a).catch((err) => console.error(`[CROSS-POST] ${a.category}:`, err))
+      await sleep(5000)
+    }
+  } else if (newlyAdded.length > 0) {
+    console.log(`[CROSS-POST] Отключён (CROSS_POST_ENABLED=false) - ${newlyAdded.length} новых записей не отправлены в канал.`)
   }
 
   const cacheDir = path.join(ROOT, 'scripts/.cache')

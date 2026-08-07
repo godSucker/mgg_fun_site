@@ -51,7 +51,9 @@ export const GET: APIRoute = async ({ url }) => {
     // Страница рендерит только эту карточку (не живая лента) - можно смело
     // форсить eager на ВСЕ картинки, не только внутри selector.
     await page.evaluate(() => {
-      document.querySelectorAll('img[loading="lazy"]').forEach((img) => img.setAttribute('loading', 'eager'))
+      document
+        .querySelectorAll('img[loading="lazy"]')
+        .forEach((img) => img.setAttribute('loading', 'eager'))
     })
 
     // .complete у <img> становится true и при ОШИБКЕ загрузки, не только при

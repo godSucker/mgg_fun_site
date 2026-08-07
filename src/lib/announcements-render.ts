@@ -62,7 +62,8 @@ export const CATEGORY_RU: Record<string, string> = {
   rebalance: 'Ребаланс',
 }
 
-export type CardKind = 'dungeon' | 'mutant' | 'skin' | 'reactor' | 'box' | 'bingo' | 'forecast' | 'generic'
+export type CardKind =
+  'dungeon' | 'mutant' | 'skin' | 'reactor' | 'box' | 'bingo' | 'forecast' | 'generic'
 
 export function cardKind(category: string | undefined): CardKind {
   if (category === 'raid' || category === 'ladder') return 'dungeon'
@@ -104,22 +105,26 @@ export interface BoxEntry {
 }
 
 export const TIER_ICON: Record<string, string> = {
-  'бронза': '/stars/star_bronze.webp',
-  'серебро': '/stars/star_silver.webp',
-  'золото': '/stars/star_gold.webp',
-  'платина': '/stars/star_platinum.webp',
+  бронза: '/stars/star_bronze.webp',
+  серебро: '/stars/star_silver.webp',
+  золото: '/stars/star_gold.webp',
+  платина: '/stars/star_platinum.webp',
 }
 
-export function formatPrice(price: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null | undefined): string | null {
+export function formatPrice(
+  price: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null | undefined,
+): string | null {
   if (!price) return null
   const label = price.type === 'hardcurrency' ? 'золота' : 'серебра'
   return `${price.amount.toLocaleString('ru-RU')} ${label}`
 }
 
 export function boxMutantIcon(m: BoxMutantRef): string {
-  const variant = (m.tier && ['бронза', 'серебро', 'золото', 'платина'].includes(m.tier)
-    ? { 'бронза': 'bronze', 'серебро': 'silver', 'золото': 'gold', 'платина': 'platinum' }[m.tier]
-    : 'normal') as 'normal' | 'bronze' | 'silver' | 'gold' | 'platinum'
+  const variant = (
+    m.tier && ['бронза', 'серебро', 'золото', 'платина'].includes(m.tier)
+      ? { бронза: 'bronze', серебро: 'silver', золото: 'gold', платина: 'platinum' }[m.tier]
+      : 'normal'
+  ) as 'normal' | 'bronze' | 'silver' | 'gold' | 'platinum'
   return getMutantTexturePath(m.id, m.skin ?? '_any', variant)
 }
 
@@ -195,7 +200,9 @@ export function buildAnnouncementContext(): AnnouncementRenderContext {
   const dungeonCoversMap = dungeonCovers as Record<string, string | null>
   const boxesById = new Map((boxesData as BoxEntry[]).map((b) => [b.itemId, b]))
   const boxesByIdLower = new Map((boxesData as BoxEntry[]).map((b) => [b.itemId.toLowerCase(), b]))
-  const bingosById = new Map((bingosData as { id: string; title: string }[]).map((b) => [b.id, b.title]))
+  const bingosById = new Map(
+    (bingosData as { id: string; title: string }[]).map((b) => [b.id, b.title]),
+  )
 
   return {
     mutantsById,

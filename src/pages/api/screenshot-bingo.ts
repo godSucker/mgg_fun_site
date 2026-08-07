@@ -56,11 +56,14 @@ export const GET: APIRoute = async ({ url }) => {
     // соседний эндпоинт по этой же причине, чиним и тут).
     const check = (sel: string) => {
       const imgs = Array.from(document.querySelectorAll(`${sel} img`))
-      return imgs.length === 0 || imgs.every((i) => {
-        const img = i as HTMLImageElement
-        if (!img.getAttribute('src')) return true
-        return img.complete && img.naturalWidth > 0
-      })
+      return (
+        imgs.length === 0 ||
+        imgs.every((i) => {
+          const img = i as HTMLImageElement
+          if (!img.getAttribute('src')) return true
+          return img.complete && img.naturalWidth > 0
+        })
+      )
     }
     const allLoaded = await page
       .waitForFunction(check, selector, { timeout: 12000 })
