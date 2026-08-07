@@ -16,6 +16,8 @@
 
 import fs from 'fs/promises'
 import path from 'path'
+import { fetchShopForecast } from './detect-shop-forecast'
+import { fetchDailyNewsForecast } from './detect-daily-news'
 
 const ROOT = process.cwd()
 // НЕ scripts/.cache/ - та папка в .gitignore и не переживает между прогонами
@@ -50,6 +52,9 @@ interface Ledger {
   rebalance: string[]
   raid: string[]
   ladder: string[]
+  token: string[]
+  shopForecast: string[]
+  dailyNews: string[]
 }
 
 const EMPTY_LEDGER: Ledger = {
@@ -61,6 +66,9 @@ const EMPTY_LEDGER: Ledger = {
   rebalance: [],
   raid: [],
   ladder: [],
+  token: [],
+  shopForecast: [],
+  dailyNews: [],
 }
 
 async function loadJson<T>(relPath: string, fallback: T): Promise<T> {
@@ -258,7 +266,10 @@ interface DungeonRawShape {
   name: string
   mutantId: string | null
   fightCount: number
-  rewards: { currency: { softcurrency: number; hardcurrency: number }; items: { id: string; amount: number }[] }
+  rewards: {
+    currency: { softcurrency: number; hardcurrency: number }
+    items: { id: string; amount: number }[]
+  }
 }
 
 async function detectDungeons(
@@ -267,7 +278,10 @@ async function detectDungeons(
   linePrefix: string,
 ): Promise<DetectResult> {
   const [materials, mutants] = await Promise.all([
-    loadJson<{ id: string; name?: string; texture?: string }[]>('src/data/materials/material.json', []),
+    loadJson<{ id: string; name?: string; texture?: string }[]>(
+      'src/data/materials/material.json',
+      [],
+    ),
     loadJson<{ id: string; name: string; stars?: StarsMap }[]>('src/data/mutants/mutants.json', []),
   ])
   const materialsById = new Map(materials.map((m) => [m.id, m]))
@@ -280,7 +294,9 @@ async function detectDungeons(
     fresh.map(async (d) => {
       const image = d.mutantId
         ? (await dungeonItemName(d.mutantId, materialsById, mutantsById)).image
-        : (d.rewards.items[0] ? (await dungeonItemName(d.rewards.items[0].id, materialsById, mutantsById)).image : null)
+        : d.rewards.items[0]
+          ? (await dungeonItemName(d.rewards.items[0].id, materialsById, mutantsById)).image
+          : null
       return {
         id: d.id,
         name: `${linePrefix} «${d.name}» (${d.fightCount} боёв)`,
@@ -303,6 +319,59 @@ async function detectLadders(seen: string[]): Promise<DetectResult> {
     { experiment: [], challenge: [] },
   )
   return detectDungeons(seen, [...special.experiment, ...special.challenge], 'Лесенка')
+}
+
+// Жетоны сами в material.json пишет scripts/detect-tokens.ts (Phase-1-детектор
+// с сетевым фетчем game-defs) - здесь только diff уже-записанных данных, тот
+// же приём, что у остальных Phase-1-детекторов (никакого XML тут не трогаем).
+async function detectTokens(seen: string[]): Promise<DetectResult> {
+  const materials = await loadJson<{ id: string; name: string; texture?: string | null }[]>(
+    'src/data/materials/material.json',
+    [],
+  )
+  const tokens = materials.filter((m) => /token/i.test(m.id))
+  const seenSet = new Set(seen)
+  const fresh = tokens.filter((m) => !seenSet.has(m.id))
+  return {
+    newIds: tokens.map((m) => m.id),
+    items: fresh.map((m) => ({ id: m.id, name: m.name, image: m.texture ?? null })),
+  }
+}
+
+// Прогноз магазина/daily_news (Фаза 3, задачи A/B) - ledger ключ тут не id, а
+// номер спринта: одна публикация на спринт, не на каждый оффер внутри.
+async function detectShopForecast(seen: string[]): Promise<DetectResult> {
+  const forecast = await fetchShopForecast()
+  if (!forecast) return { newIds: seen, items: [] }
+  const key = String(forecast.sprint)
+  if (seen.includes(key)) return { newIds: seen, items: [] }
+  return {
+    newIds: [...seen, key],
+    items: [
+      {
+        id: key,
+        name: `Прогноз магазина (${forecast.dateRangeLabel}): ${forecast.items.length} предложений`,
+        image: forecast.items[0]?.image ?? null,
+      },
+    ],
+  }
+}
+
+async function detectDailyNews(seen: string[]): Promise<DetectResult> {
+  const forecast = await fetchDailyNewsForecast()
+  if (!forecast) return { newIds: seen, items: [] }
+  const key = String(forecast.sprint)
+  if (seen.includes(key)) return { newIds: seen, items: [] }
+  return {
+    newIds: [...seen, key],
+    items: [
+      {
+        id: key,
+        name: `Скоро в игре (${forecast.dateRangeLabel}): ${forecast.items.length} событий`,
+        image: forecast.coverImage,
+      },
+    ],
+  }
 }
 
 async function detectRebalance(seen: string[]): Promise<DetectResult> {
@@ -335,6 +404,9 @@ const DETECTORS: {
   { category: 'exchange', title: 'Обновление зала обмена', link: '/mutants', run: detectExchange },
   { category: 'raid', title: 'Новые рейды', link: '/guides', run: detectRaids },
   { category: 'ladder', title: 'Новые лесенки', link: '/guides', run: detectLadders },
+  { category: 'token', title: 'Новые жетоны', link: '/materials', run: detectTokens },
+  { category: 'shopForecast', title: 'Прогноз магазина', link: '/materials', run: detectShopForecast },
+  { category: 'dailyNews', title: 'Скоро в игре', link: '/announcements', run: detectDailyNews },
   { category: 'rebalance', title: 'Ребаланс статов', link: '/rebalance', run: detectRebalance },
 ]
 

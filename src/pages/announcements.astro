@@ -31,6 +31,9 @@ const CATEGORY_RU: Record<string, string> = {
   raid: 'Рейды',
   ladder: 'Лесенки',
   reactor: 'Реакторы',
+  token: 'Жетоны',
+  shopForecast: 'Прогноз магазина',
+  dailyNews: 'Скоро в игре',
   rebalance: 'Ребаланс',
 };
 
@@ -39,7 +42,20 @@ const announcements = ((announcementsData as Announcement[]) ?? [])
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 // Порядок вкладок - по частоте/важности, не по алфавиту; "Все" всегда первая.
-const CATEGORY_ORDER = ['mutant', 'skin', 'exchange', 'box', 'reactor', 'raid', 'ladder', 'bingo', 'rebalance'];
+const CATEGORY_ORDER = [
+  'dailyNews',
+  'shopForecast',
+  'mutant',
+  'skin',
+  'exchange',
+  'box',
+  'reactor',
+  'raid',
+  'ladder',
+  'token',
+  'bingo',
+  'rebalance',
+];
 const presentCategories = [...new Set(announcements.map((a) => a.category).filter((c): c is string => !!c))].sort(
   (a, b) => CATEGORY_ORDER.indexOf(a) - CATEGORY_ORDER.indexOf(b),
 );

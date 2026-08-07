@@ -91,11 +91,20 @@ export function resolveMutantLite(
 ): MutantLite | null {
   const m = mutantsById.get(id)
   if (!m) return null
-  return { id: m.id, name: m.name, genes: m.genes ?? [], icon: mutantIcon(m), fullArt: mutantFullArt(m) }
+  return {
+    id: m.id,
+    name: m.name,
+    genes: m.genes ?? [],
+    icon: mutantIcon(m),
+    fullArt: mutantFullArt(m),
+  }
 }
 
 function prettifyId(id: string): string {
-  return id.replace(/_/g, ' ').replace(/\bHC\b/, '').trim()
+  return id
+    .replace(/_/g, ' ')
+    .replace(/\bHC\b/, '')
+    .trim()
 }
 
 export interface RewardResolveCtx {
@@ -116,10 +125,16 @@ export function resolveReward(reward: RewardRaw | null, ctx: RewardResolveCtx): 
   const getMaterialTexture = (id: string) => ctx.materialsById.get(id)?.texture ?? null
 
   if (reward.type === 'softcurrency') {
-    return { label: `${Number(amount).toLocaleString('ru-RU')} серебра`, icon: '/cash/softcurrency.webp' }
+    return {
+      label: `${Number(amount).toLocaleString('ru-RU')} серебра`,
+      icon: '/cash/softcurrency.webp',
+    }
   }
   if (reward.type === 'hardcurrency') {
-    return { label: `${Number(amount).toLocaleString('ru-RU')} золота`, icon: '/cash/hardcurrency.webp' }
+    return {
+      label: `${Number(amount).toLocaleString('ru-RU')} золота`,
+      icon: '/cash/hardcurrency.webp',
+    }
   }
   if (reward.type === 'experience') {
     return {
@@ -129,7 +144,10 @@ export function resolveReward(reward: RewardRaw | null, ctx: RewardResolveCtx): 
   }
   if (reward.type === 'custom' && reward.id?.startsWith('allele-')) {
     const gene = reward.id.split('-')[1]
-    return { label: `Открывает ген «${ctx.geneRu[gene] ?? gene}» для скрещивания`, icon: ctx.getGeneIcon(gene) }
+    return {
+      label: `Открывает ген «${ctx.geneRu[gene] ?? gene}» для скрещивания`,
+      icon: ctx.getGeneIcon(gene),
+    }
   }
   if (reward.type === 'entity' && reward.id) {
     if (reward.id.startsWith('Specimen_')) {
@@ -140,7 +158,8 @@ export function resolveReward(reward: RewardRaw | null, ctx: RewardResolveCtx): 
     if (reward.id.startsWith('Habitat_') || reward.id.startsWith('Building_')) {
       const match = reward.id.match(/_(\d+)_HC$/)
       const size = match ? Number(match[1]) + 1 : null
-      const label = ctx.getLocalisedName(reward.id) ?? (size ? `Люкс-зона x${size}` : prettifyId(reward.id))
+      const label =
+        ctx.getLocalisedName(reward.id) ?? (size ? `Люкс-зона x${size}` : prettifyId(reward.id))
       return { label, icon: null }
     }
     const ephemeralMatch = reward.id.match(/^(.+)_ephemeral_(\d+)$/)
@@ -169,13 +188,19 @@ export function resolveCurrencySummary(
   ctx: RewardResolveCtx,
 ): ResolvedReward[] {
   const out: ResolvedReward[] = []
-  if (currency.softcurrency) out.push(resolveReward({ type: 'softcurrency', amount: currency.softcurrency }, ctx))
-  if (currency.hardcurrency) out.push(resolveReward({ type: 'hardcurrency', amount: currency.hardcurrency }, ctx))
-  if (currency.experience) out.push(resolveReward({ type: 'experience', amount: currency.experience }, ctx))
+  if (currency.softcurrency)
+    out.push(resolveReward({ type: 'softcurrency', amount: currency.softcurrency }, ctx))
+  if (currency.hardcurrency)
+    out.push(resolveReward({ type: 'hardcurrency', amount: currency.hardcurrency }, ctx))
+  if (currency.experience)
+    out.push(resolveReward({ type: 'experience', amount: currency.experience }, ctx))
   return out
 }
 
-export function resolveItemList(items: { id: string; amount: number }[], ctx: RewardResolveCtx): ResolvedReward[] {
+export function resolveItemList(
+  items: { id: string; amount: number }[],
+  ctx: RewardResolveCtx,
+): ResolvedReward[] {
   return items.map((it) => resolveReward({ type: 'entity', id: it.id, amount: it.amount }, ctx))
 }
 

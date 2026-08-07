@@ -53,7 +53,9 @@ async function sendTelegramMessage(text: string) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN
   const chatId = process.env.TELEGRAM_CHAT_ID
   if (!botToken || !chatId) {
-    console.log('[FINISH-PENDING] TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID не заданы, сообщение не отправлено')
+    console.log(
+      '[FINISH-PENDING] TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID не заданы, сообщение не отправлено',
+    )
     return
   }
   await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -110,7 +112,9 @@ async function finishReactor(id: string, name: string) {
     covers[id] = `/reactor/${id}.png`
     await saveJson(GACHA_COVERS_PATH, covers)
   } catch {
-    console.log(`[FINISH-PENDING] Обложка реактора "${id}" не найдена на CDN (btn_gacha_${id}-ru.png) - оставлена без обложки`)
+    console.log(
+      `[FINISH-PENDING] Обложка реактора "${id}" не найдена на CDN (btn_gacha_${id}-ru.png) - оставлена без обложки`,
+    )
   }
 
   // PRIORITY_GACHAS - обычный массив-литерал в .astro, не JSON. Новый релиз
@@ -125,7 +129,10 @@ async function finishReactor(id: string, name: string) {
     await fs.writeFile(REACTOR_INDEX_ASTRO, patched, 'utf-8')
   }
 
-  const specimens = [...gacha.basicElements, ...(gacha.completionReward ? [gacha.completionReward] : [])]
+  const specimens = [
+    ...gacha.basicElements,
+    ...(gacha.completionReward ? [gacha.completionReward] : []),
+  ]
   await appendObtain(
     specimens.map((s) => s.specimen),
     'gacha',
@@ -189,7 +196,11 @@ function aggregateDungeonFights(xml: string) {
   }
 }
 
-async function finishDungeon(id: string, name: string, dungeonType: 'raid' | 'experiment' | 'challenge') {
+async function finishDungeon(
+  id: string,
+  name: string,
+  dungeonType: 'raid' | 'experiment' | 'challenge',
+) {
   const [dungeonsRes, fightsRes] = await Promise.all([
     axios.get(DUNGEONS_XML_URL, { timeout: 20000 }),
     axios.get(DUNGEON_XML_URL(id), { timeout: 20000 }),
@@ -241,7 +252,11 @@ async function finishDungeon(id: string, name: string, dungeonType: 'raid' | 'ex
 // в resolved-names-cache.json за один прогон - переживает и гонку (два
 // .локал подряд до того, как отработает предыдущий workflow_dispatch), и
 // ручной повторный запуск.
-async function processOne(key: string, name: string, pending: Record<string, { dungeonType?: string }>) {
+async function processOne(
+  key: string,
+  name: string,
+  pending: Record<string, { dungeonType?: string }>,
+) {
   const [type, id] = key.split(':')
   if (!type || !id) throw new Error(`Некорректный ключ: "${key}"`)
 
@@ -250,7 +265,9 @@ async function processOne(key: string, name: string, pending: Record<string, { d
     return [
       `✅ *Реактор "${name}" (${id}) добавлен*`,
       `Мутантов в пуле: ${r.specimenCount}`,
-      r.hasCover ? 'Обложка: загружена с CDN' : 'Обложка: НЕ найдена, добавь вручную в public/reactor/',
+      r.hasCover
+        ? 'Обложка: загружена с CDN'
+        : 'Обложка: НЕ найдена, добавь вручную в public/reactor/',
     ].join('\n')
   }
   if (type === 'dungeon') {
@@ -259,7 +276,9 @@ async function processOne(key: string, name: string, pending: Record<string, { d
     return [
       `✅ *${dungeonType === 'raid' ? 'Рейд' : 'Лесенка'} "${name}" (${id}) добавлен(а)*`,
       `Боёв: ${entry.fightCount}, боссов: ${entry.bossCount}`,
-      entry.mutantId ? `Мутант-награда: ${entry.mutantId}` : 'Мутант-награда: не найдена в dungeons.xml',
+      entry.mutantId
+        ? `Мутант-награда: ${entry.mutantId}`
+        : 'Мутант-награда: не найдена в dungeons.xml',
     ].join('\n')
   }
   throw new Error(`Неизвестный тип ключа: "${key}"`)
