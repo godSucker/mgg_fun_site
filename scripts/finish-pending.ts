@@ -240,21 +240,32 @@ async function finishDungeon(
     await appendObtain([mutantReward.id], 'event_raid', label)
   }
 
-  // Обложка для карточки анонса (НЕ для /guides - там своя схема через
-  // mutant.fullArt/fallbackIcon, трогать её не стали, чтобы не расширять
-  // DungeonEntry ради одного нового поля). Найдено 2026-08-07: у каждого
-  // рейда/лесенки есть титульный баннер по прямому URL, подтверждено даже
-  // для hexcity_2 (который мы только что сами добавили).
-  try {
-    const coverRes = await axios.get(
-      `https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_${id}-ru.png`,
-      { responseType: 'arraybuffer', timeout: 20000, validateStatus: (s) => s === 200 },
-    )
+  // Обложка для /guides (activity-hero background) и карточки анонса.
+  // screen_<id>.jpg - реальный скриншот арены, предпочтителен для фона на
+  // всю карточку; title_<id>-ru.png - логотип на прозрачном фоне, криво
+  // растягивается под background-size:cover (найдено 2026-08-07 при разборе
+  // фидбека по /guides), оставлен как фолбэк если screen_ не существует.
+  const PVEEVENT_BASE = 'https://s-beta.kobojo.com/mutants/assets/pveeventcontent/'
+  let coverBuffer: Buffer | null = null
+  for (const url of [`${PVEEVENT_BASE}screen_${id}.jpg`, `${PVEEVENT_BASE}title_${id}-ru.png`]) {
+    try {
+      const res = await axios.get(url, {
+        responseType: 'arraybuffer',
+        timeout: 20000,
+        validateStatus: (s) => s === 200,
+      })
+      coverBuffer = res.data
+      break
+    } catch {
+      // пробуем следующий вариант
+    }
+  }
+  if (coverBuffer) {
     const coverPath = path.join(ROOT, 'public/dungeon-covers', `${id}.png`)
     await fs.mkdir(path.dirname(coverPath), { recursive: true })
-    await fs.writeFile(coverPath, coverRes.data)
-  } catch {
-    console.log(`[FINISH-PENDING] Обложка данжа "${id}" не найдена (title_${id}-ru.png)`)
+    await fs.writeFile(coverPath, coverBuffer)
+  } else {
+    console.log(`[FINISH-PENDING] Обложка данжа "${id}" не найдена (ни screen_, ни title_)`)
   }
 
   return entry

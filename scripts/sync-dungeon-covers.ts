@@ -51,6 +51,13 @@ async function resolveCover(id: string): Promise<string | null> {
   const noSeason = id.replace(/^season_/, '')
   const base = noSeason.replace(/_\d+$/, '')
   const candidates = [...new Set([id, noSeason, base])]
+  // screen_<id>.jpg - реальный скриншот арены (хорош под background-size:
+  // cover), title_<id>-ru.png - логотип на прозрачном фоне (криво растягивается,
+  // фидбек по /guides 2026-08-07) - оставлен фолбэком, если screen_ нет.
+  for (const c of candidates) {
+    const screenUrl = `${ASSET_BASE}screen_${c}.jpg`
+    if (await checkExists(screenUrl)) return screenUrl
+  }
   for (const c of candidates) {
     for (const suffix of ['-ru.png', '.png']) {
       const url = `${ASSET_BASE}title_${c}${suffix}`
