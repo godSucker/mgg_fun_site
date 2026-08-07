@@ -4,12 +4,18 @@
 // с "Post Messages"). Best-effort: без секретов просто логирует и молчит,
 // не роняет build-announcements.ts.
 //
-// Шаблоны по категориям обсуждены с пользователем 2026-08-07:
-// - mutant/skin/raid/ladder/reactor/token: sendPhoto с готовой картинкой + caption.
-// - box: sendPhoto (иконка бокса) + список мутантов из groups (обычно 6).
-// - bingo: sendPhoto СО СКРИНШОТОМ доски с сайта (api/screenshot-bingo.ts,
-//   Chromium на Vercel) + короткий текст "кто добавился".
-// - exchange: sendMessage, простой текст (юзер сказал "и так норм").
+// Шаблоны по категориям (обновлено 2026-08-07 - "шаблоны бота как сейчас на
+// странице анонсов"): mutant/skin/raid/ladder/reactor/token/box шлются
+// СКРИНШОТОМ реальной карточки с /announcements (api/screenshot-announcement.ts,
+// Chromium на Vercel, тот же паттерн, что уже был у bingo) - карточка на сайте
+// единственный источник правды по виду, бот её не дублирует вторым шаблоном.
+// Фолбэк на старый текст+картинка-по-URL, если скриншот не удался (сеть,
+// таймаут Chromium) - см. postGenericCard.
+// - bingo: ОТДЕЛЬНЫЙ путь (api/screenshot-bingo.ts) - карточка бинго сама
+//   встраивает <img src="/api/screenshot-bingo">, скриншотить её через общий
+//   эндпоинт means Chromium-в-Chromium, не делаем.
+// - exchange: sendMessage, простой текст (юзер сказал "и так норм") - пост
+//   агрегирует НЕСКОЛЬКО обменников разом, 1:1 с одной карточкой сайта не бьётся.
 // - shopForecast + dailyNews: ОБЪЕДИНЯЮТСЯ в один пост (юзер: "dailyNews
 //   можно засунуть сразу в прогноз магазина"), стиль по референсу pokradex.org
 //   ("NOVEDADES DEL X AL Y" + разделы) - у нас текстовый аналог, т.к. нет
@@ -151,41 +157,38 @@ export interface CrossPostItem {
 }
 
 export interface CrossPostAnnouncement {
+  id: string
   category: string
   title: string
   items: CrossPostItem[]
 }
 
-async function postSimplePhoto(
-  icon: string,
-  a: CrossPostAnnouncement,
-  prefix: string,
-): Promise<void> {
+// Скриншотит РЕАЛЬНУЮ карточку с /announcements (та же вёрстка, что видит
+// живой посетитель сайта) через api/screenshot-announcement.ts. Фолбэк на
+// старый текст+картинка-по-URL, если Chromium не ответил/упал по таймауту -
+// кросс-пост не должен молчать только из-за недоступности рендера.
+async function postGenericCard(icon: string, a: CrossPostAnnouncement, prefix: string): Promise<void> {
   const it = a.items[0]
-  const image = it?.image
   const caption = `${icon} *${it?.name ?? a.title}*${LINK_LINE}`
+  try {
+    const res = await fetch(
+      `${SITE_ORIGIN}/api/screenshot-announcement?id=${encodeURIComponent(a.id)}`,
+      { signal: AbortSignal.timeout(30000) },
+    )
+    if (res.ok) {
+      const buffer = Buffer.from(await res.arrayBuffer())
+      await sendPhotoByBuffer(buffer, caption, `announcement-${a.id}.png`)
+      return
+    }
+    console.error('[CROSS-POST] screenshot-announcement вернул', res.status)
+  } catch (err) {
+    console.error('[CROSS-POST] screenshot-announcement error:', err instanceof Error ? err.message : err)
+  }
+  const image = it?.image
   if (image) {
     await sendPhotoByUrl(toAbsolute(image), caption)
   } else {
     await sendMessage(`${icon} *${prefix}: ${it?.name ?? a.title}*${LINK_LINE}`)
-  }
-}
-
-async function postBox(a: CrossPostAnnouncement): Promise<void> {
-  const it = a.items[0]
-  const boxes = await loadJson<
-    { itemId: string; icon?: string; groups: { mutants: { name: string }[] }[] }[]
-  >('src/data/boxes.json', [])
-  const box = boxes.find((b) => b.itemId === it?.id)
-  const names = box
-    ? [...new Set(box.groups.flatMap((g) => g.mutants.map((m) => m.name)))].slice(0, 10)
-    : []
-  const list = names.length > 0 ? `\n\nВ боксе: ${names.join(', ')}` : ''
-  const caption = `📦 *Новый бокс: ${it?.name ?? a.title}*${list}${LINK_LINE}`
-  if (box?.icon) {
-    await sendPhotoByUrl(toAbsolute(box.icon), caption)
-  } else {
-    await sendMessage(caption)
   }
 }
 
@@ -265,6 +268,7 @@ const PHOTO_ICON: Record<string, { icon: string; prefix: string }> = {
   ladder: { icon: '🪜', prefix: 'Новая лесенка' },
   reactor: { icon: '🎰', prefix: 'Новый реактор' },
   token: { icon: '🪙', prefix: 'Новый жетон' },
+  box: { icon: '📦', prefix: 'Новый бокс' },
 }
 
 // Вызывается из build-announcements.ts для каждой СВЕЖЕОПУБЛИКОВАННОЙ записи
@@ -272,14 +276,12 @@ const PHOTO_ICON: Record<string, { icon: string; prefix: string }> = {
 // в main() (комбо-пост и полное игнорирование соответственно).
 export async function crossPostAnnouncement(a: CrossPostAnnouncement): Promise<void> {
   if (a.items.length === 0) return
-  const simple = PHOTO_ICON[a.category]
-  if (simple) {
-    await postSimplePhoto(simple.icon, a, simple.prefix)
-    return
-  }
-  if (a.category === 'box') return postBox(a)
   if (a.category === 'bingo') return postBingo(a)
   if (a.category === 'exchange') return postExchange(a)
+  const simple = PHOTO_ICON[a.category]
+  if (simple) {
+    await postGenericCard(simple.icon, a, simple.prefix)
+  }
 }
 
 export { postShopAndDailyNews }

@@ -24,6 +24,8 @@ import {
 } from '@/lib/guides-resolve';
 import BoxModal from '@/components/boxes/BoxModal.svelte';
 import BingoMutantModal from '@/components/bingo/BingoMutantModal.svelte';
+import boxesData from '@/data/boxes.json';
+import { getMutantTexturePath } from '@/lib/bingo-textures';
 
 interface AnnouncementItem {
   id: string;
@@ -97,6 +99,53 @@ const dungeonById = new Map<string, ResolvedDungeon>(
 );
 const dungeonCoversMap = dungeonCovers as Record<string, string | null>;
 
+interface BoxMutantRef { id: string; name: string; tier: string | null; skin: string | null }
+interface BoxGroup { chance: number | null; mutants: BoxMutantRef[]; rewards: { name: string; type: string; amount: number }[] }
+interface BoxEntry {
+  itemId: string; icon: string | null; category: string; name: string;
+  price: { amount: number; type: 'hardcurrency' | 'softcurrency' } | null;
+  groups: BoxGroup[];
+}
+const boxesById = new Map((boxesData as BoxEntry[]).map((b) => [b.itemId, b]));
+const TIER_ICON: Record<string, string> = {
+  'бронза': '/stars/star_bronze.webp',
+  'серебро': '/stars/star_silver.webp',
+  'золото': '/stars/star_gold.webp',
+  'платина': '/stars/star_platinum.webp',
+};
+function formatPrice(price: BoxEntry['price']): string | null {
+  if (!price) return null;
+  const label = price.type === 'hardcurrency' ? 'золота' : 'серебра';
+  return `${price.amount.toLocaleString('ru-RU')} ${label}`;
+}
+function boxMutantIcon(m: BoxMutantRef): string {
+  const variant = (m.tier && ['бронза', 'серебро', 'золото', 'платина'].includes(m.tier)
+    ? { 'бронза': 'bronze', 'серебро': 'silver', 'золото': 'gold', 'платина': 'platinum' }[m.tier]
+    : 'normal') as 'normal' | 'bronze' | 'silver' | 'gold' | 'platinum';
+  return getMutantTexturePath(m.id, m.skin ?? '_any', variant);
+}
+function uniqueBoxMutants(box: BoxEntry): BoxMutantRef[] {
+  const seen = new Set<string>();
+  const out: BoxMutantRef[] = [];
+  for (const g of box.groups) {
+    for (const m of g.mutants) {
+      if (seen.has(m.id)) continue;
+      seen.add(m.id);
+      out.push(m);
+    }
+  }
+  return out;
+}
+function boxDescription(box: BoxEntry): string {
+  const pool = box.groups.filter((g) => g.chance != null);
+  if (pool.length === 0) return 'Гарантированное содержимое';
+  const chances = new Set(pool.map((g) => g.chance!.toFixed(1)));
+  if (chances.size === 1) {
+    return `Случайный выбор · ${pool.length} равновероятных слотов, шанс ${pool[0].chance!.toFixed(1)}%`.toUpperCase();
+  }
+  return `Случайный выбор · ${pool.length} слотов с разным шансом`.toUpperCase();
+}
+
 type CardKind = 'dungeon' | 'mutant' | 'skin' | 'reactor' | 'box' | 'bingo' | 'generic';
 
 function cardKind(category: string | undefined): CardKind {
@@ -162,7 +211,7 @@ const fmtDate = (iso: string) =>
           const mutantLite = a.kind === 'mutant' && it ? resolveMutantLite(it.id, mutantsById) : null;
           const skinBaseId = a.kind === 'skin' && it ? it.id.split('|')[0]?.toLowerCase() : null;
           return (
-          <article class="card" data-category={a.category ?? ''}>
+          <article class="card" data-category={a.category ?? ''} data-announcement-id={a.id}>
             {a.kind === 'dungeon' && dungeon ? (
               <div class="dg-card">
                 <div
@@ -244,17 +293,41 @@ const fmtDate = (iso: string) =>
                   <a class="card-source" href={`/simulators/reactor/${it.id}`}>Открыть реактор →</a>
                 </div>
               </div>
-            ) : a.kind === 'box' && it ? (
-              <button class="hero-card box-card-btn" data-open-box={it.id} title={`Открыть ${it.name}`}>
-                <div class="hero-art-btn">
-                  {it.image && <img class="hero-art" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />}
-                </div>
-                <div class="card-body">
+            ) : a.kind === 'box' && it && boxesById.get(it.id) ? (
+              (() => { const box = boxesById.get(it.id)!; const boxMutants = uniqueBoxMutants(box).slice(0, 8); return (
+              <button class="box-preview-card" data-open-box={box.itemId} title={`Открыть ${box.name}`}>
+                <div class="box-preview-head">
                   <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
-                  <span class="card-category">{CATEGORY_RU.box}</span>
-                  <div class="hero-name-btn">{it.name}</div>
+                  <div class="box-preview-tags">
+                    <span class="card-category">{CATEGORY_RU.box}</span>
+                    {box.category && <span class="box-preview-subcat">{box.category}</span>}
+                  </div>
                 </div>
+                <div class="box-preview-main">
+                  {box.icon && <img class="box-preview-icon" src={textureUrl(box.icon)} alt="" loading="lazy" decoding="async" />}
+                  <div class="box-preview-title">
+                    <div class="box-preview-name">{box.name}</div>
+                    {formatPrice(box.price) && <div class="box-preview-price">{formatPrice(box.price)}</div>}
+                  </div>
+                </div>
+                <div class="box-preview-desc">{boxDescription(box)}</div>
+                {boxMutants.length > 0 && (
+                  <div class="box-preview-grid">
+                    {boxMutants.map((m) => (
+                      <div class="box-preview-mutant">
+                        <span class="box-preview-mutant-img">
+                          <img src={textureUrl(boxMutantIcon(m))} alt="" loading="lazy" decoding="async" />
+                        </span>
+                        <span class="box-preview-mutant-name">{m.name}</span>
+                        {m.tier && TIER_ICON[m.tier] && (
+                          <img class="box-preview-tier" src={textureUrl(TIER_ICON[m.tier])} alt={m.tier} loading="lazy" decoding="async" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </button>
+              ); })()
             ) : a.kind === 'bingo' && it ? (
               <div class="hero-card">
                 <div class="dg-hero bingo-hero">
@@ -631,6 +704,110 @@ const fmtDate = (iso: string) =>
   }
   .box-card-btn {
     cursor: pointer;
+  }
+  .box-preview-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.9rem 1rem 1rem;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .box-preview-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .box-preview-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .box-preview-subcat {
+    font-size: 0.72rem;
+    color: #94a3b8;
+  }
+  .box-preview-main {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .box-preview-icon {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 5px;
+    flex-shrink: 0;
+  }
+  .box-preview-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .box-preview-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    line-height: 1.25;
+  }
+  .box-preview-price {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fbbf24;
+  }
+  .box-preview-desc {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #94a3b8;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0.55rem;
+  }
+  .box-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 0.5rem;
+  }
+  .box-preview-mutant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+  }
+  .box-preview-mutant-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .box-preview-mutant-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .box-preview-mutant-name {
+    font-size: 0.62rem;
+    color: #cbd5f5;
+    line-height: 1.15;
+    word-break: break-word;
+  }
+  .box-preview-tier {
+    width: 12px;
+    height: 12px;
   }
   .hero-art-btn {
     appearance: none;

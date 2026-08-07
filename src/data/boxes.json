@@ -4,6 +4,10 @@
     "icon": "/boxes/lucky_box_xmas_gold.png",
     "category": "Лаки-бокс",
     "name": "Золотой легендарный контейнер х2",
+    "price": {
+      "amount": 1350,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.8849557522123894,
@@ -2046,6 +2050,10 @@
     "icon": "/boxes/lucky_box_xmas_bronze.png",
     "category": "Лаки-бокс",
     "name": "Легендарный киберконтейнер",
+    "price": {
+      "amount": 10000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": 0.5617977528089888,
@@ -4201,6 +4209,10 @@
     "icon": "/boxes/lucky_box_xmas_gold.png",
     "category": "Лаки-бокс",
     "name": "Золотой Рождественский подарок",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.5617977528089888,
@@ -6356,6 +6368,10 @@
     "icon": "/boxes/mystery_basic_mutants.png",
     "category": "Лаки-бокс",
     "name": "Контейнер новичка",
+    "price": {
+      "amount": 350,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.3082155939298796,
@@ -8380,6 +8396,10 @@
     "icon": "/boxes/mystery_elite_zoo.png",
     "category": "Лаки-бокс",
     "name": "элитный контейнер «зооморфа»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.0638297872340425,
@@ -10236,6 +10256,10 @@
     "icon": "/boxes/mystery_elite_galactic.png",
     "category": "Лаки-бокс",
     "name": "элитный контейнер «Галактики»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.0822510822510822,
@@ -12044,6 +12068,10 @@
     "icon": "/boxes/mystery_elite_cyber.png",
     "category": "Лаки-бокс",
     "name": "элитный контейнер «зооморфа»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.1848341232227488,
@@ -13708,6 +13736,10 @@
     "icon": "/boxes/mystery_space.png",
     "category": "Лаки-бокс",
     "name": "Усиленный контейнер «Космос»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.1737089201877933,
@@ -15372,6 +15404,10 @@
     "icon": "/boxes/mystery_space.png",
     "category": "Лаки-бокс",
     "name": "Галактический контейнер",
+    "price": {
+      "amount": 550,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.1904761904761905,
@@ -17000,6 +17036,10 @@
     "icon": "/boxes/mystery_undead.png",
     "category": "Лаки-бокс",
     "name": "Усиленный контейнер «Мертвяк»",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.2195121951219512,
@@ -18616,6 +18656,10 @@
     "icon": "/boxes/mystery_undead.png",
     "category": "Лаки-бокс",
     "name": "Легендарный Мертвякконтейнер",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.394700139470014,
@@ -20208,6 +20252,10 @@
     "icon": "/boxes/mystery_mystic.png",
     "category": "Лаки-бокс",
     "name": "контейнер мификов",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.2594458438287155,
@@ -21764,6 +21812,10 @@
     "icon": "/boxes/mystery_galactic.png",
     "category": "Лаки-бокс",
     "name": "Легендарный галактикаконтейнер",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.4577259475218658,
@@ -23296,6 +23348,10 @@
     "icon": "/boxes/mystery_saber.png",
     "category": "Лаки-бокс",
     "name": "Рубакаконтейнер",
+    "price": {
+      "amount": 350,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.2401352874859075,
@@ -24828,6 +24884,10 @@
     "icon": "/boxes/mystery_elite_saber.png",
     "category": "Лаки-бокс",
     "name": "элитный контейнер «Рубака»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.3123359580052494,
@@ -26336,6 +26396,10 @@
     "icon": "/boxes/mystery_zoo.png",
     "category": "Лаки-бокс",
     "name": "Легендарный зооморфаконтейнер",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.4903129657228018,
@@ -27844,6 +27908,10 @@
     "icon": "/boxes/mystery_elite_necro.png",
     "category": "Лаки-бокс",
     "name": "элитный контейнер «Мертвяк»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.3440860215053763,
@@ -29340,6 +29408,10 @@
     "icon": "/boxes/luckybox_research_iv.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование IV»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.2956419316843346,
@@ -30800,6 +30872,10 @@
     "icon": "/boxes/shop_mystery_slash.png",
     "category": "Мистери-бокс",
     "name": "Усиленный контейнер «Ранение» ",
+    "price": {
+      "amount": 600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.1564945226917058,
@@ -32236,6 +32312,10 @@
     "icon": "/boxes/shop_mystery_strengthen.png",
     "category": "Мистери-бокс",
     "name": "Усиленный контейнер «Усиление» ",
+    "price": {
+      "amount": 600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.1567398119122257,
@@ -33660,6 +33740,10 @@
     "icon": "/boxes/mystery_mystic.png",
     "category": "Лаки-бокс",
     "name": "Легендарный мификаконтейнер",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.5673981191222568,
@@ -35084,6 +35168,10 @@
     "icon": "/boxes/mystery_mystic.png",
     "category": "Лаки-бокс",
     "name": "Предложение контейнеров мификов",
+    "price": {
+      "amount": 400,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.3513513513513513,
@@ -36508,6 +36596,10 @@
     "icon": "/boxes/shop_mystery_regenerate.png",
     "category": "Мистери-бокс",
     "name": "Усиленный контейнер «Вытягивание жизни» ",
+    "price": {
+      "amount": 600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.8488964346349746,
@@ -37812,6 +37904,10 @@
     "icon": "/boxes/mystery_cyber.png",
     "category": "Лаки-бокс",
     "name": "Усиленный контейнер «Киборг»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.5432098765432098,
@@ -39116,6 +39212,10 @@
     "icon": "/boxes/lucky_box_xmas_gold.png",
     "category": "Лаки-бокс",
     "name": "Легендарный золотой контейнер",
+    "price": {
+      "amount": 900,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.9433962264150944,
@@ -40402,6 +40502,10 @@
     "icon": "/boxes/lucky_box_xmas_bronze.png",
     "category": "Лаки-бокс",
     "name": "Легендарный бронзовый контейнер",
+    "price": {
+      "amount": 350,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.9433962264150944,
@@ -41688,6 +41792,10 @@
     "icon": "/boxes/shop_mystery_retaliate.png",
     "category": "Мистери-бокс",
     "name": "Усиленный контейнер «Контратака» ",
+    "price": {
+      "amount": 600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.17921146953405018,
@@ -42950,6 +43058,10 @@
     "icon": "/boxes/mystery_cyber.png",
     "category": "Лаки-бокс",
     "name": "Легендарный киберконтейнер",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.7452006980802792,
@@ -44218,6 +44330,10 @@
     "icon": "/boxes/mystery_saber.png",
     "category": "Лаки-бокс",
     "name": "Легендарный рубакаконтейнер",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.7921146953405016,
@@ -45462,6 +45578,10 @@
     "icon": "/boxes/lucky_box_bing_3_v2.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование III»",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.3793103448275863,
@@ -46670,6 +46790,10 @@
     "icon": "/boxes/lucky_box_xmas_bronze.png",
     "category": "Лаки-бокс",
     "name": "Бронзовый контейнер ко Дню умника",
+    "price": {
+      "amount": 3000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": 1.0204081632653061,
@@ -47865,6 +47989,10 @@
     "icon": "/boxes/lucky_box_xmas_gold.png",
     "category": "Лаки-бокс",
     "name": "Золотой контейнер ко Дню умника",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.0204081632653061,
@@ -49060,6 +49188,10 @@
     "icon": "/boxes/mystery_undead.png",
     "category": "Лаки-бокс",
     "name": "Усиленный контейнер «Мертвяк»",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.7006802721088436,
@@ -50244,6 +50376,10 @@
     "icon": "/boxes/mystery_elite_mystic.png",
     "category": "Лаки-бокс",
     "name": "элитный контейнер «Мифик»",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.773049645390071,
@@ -51380,6 +51516,10 @@
     "icon": "/boxes/mystery_legendary.png",
     "category": "Лаки-бокс",
     "name": "Легендарный киберконтейнер",
+    "price": {
+      "amount": 600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.1764705882352942,
@@ -52408,6 +52548,10 @@
     "icon": "/boxes/pack_daily_saber_v3.png",
     "category": "Лаки-бокс",
     "name": "Предложение контейнеров",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.0325203252032518,
@@ -53400,6 +53544,10 @@
     "icon": "/boxes/mystery_zoo.png",
     "category": "Лаки-бокс",
     "name": "Контейнер зооморфа",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.1459227467811157,
@@ -54332,6 +54480,10 @@
     "icon": "/boxes/shop_mystery_shield.png",
     "category": "Мистери-бокс",
     "name": "Усиленный контейнер «Щит» ",
+    "price": {
+      "amount": 600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.3123359580052494,
@@ -55186,6 +55338,10 @@
     "icon": "/boxes/mystery_research_7.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование VII»",
+    "price": {
+      "amount": 750,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.835270768358378,
@@ -56022,6 +56178,10 @@
     "icon": "/boxes/lucky_box_xmas_gold.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Годовщина золотых легенд»",
+    "price": {
+      "amount": 1100,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.5649452269170578,
@@ -56846,6 +57006,10 @@
     "icon": "/boxes/lucky_box_xmas_bronze.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Годовщина бронзовых легенд»",
+    "price": {
+      "amount": 3000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": 1.5649452269170578,
@@ -57670,6 +57834,10 @@
     "icon": "/boxes/shop_research_viii.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование VIII»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.8481913984619767,
@@ -58458,6 +58626,10 @@
     "icon": "/boxes/mystery_research_ix.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование IX»",
+    "price": {
+      "amount": 1500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.149606299212598,
@@ -59246,6 +59418,10 @@
     "icon": "/boxes/mystery_research_6.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование VI»",
+    "price": {
+      "amount": 750,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.53356890459364,
@@ -59998,6 +60174,10 @@
     "icon": "/boxes/mystery_research_6.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование VI»",
+    "price": {
+      "amount": 750,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.53356890459364,
@@ -60750,6 +60930,10 @@
     "icon": "/boxes/mystery_research_5.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование V»",
+    "price": {
+      "amount": 750,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.163555836760519,
@@ -61490,6 +61674,10 @@
     "icon": "/boxes/luckybox_research_iv.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование IV»",
+    "price": {
+      "amount": 550,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.9717682020802374,
@@ -62218,6 +62406,10 @@
     "icon": "/boxes/luckybox_tank.png",
     "category": "Лаки-бокс",
     "name": "Контейнер с мутантом-танком",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 1.8796992481203008,
@@ -62922,6 +63114,10 @@
     "icon": "/boxes/mystery_hyperheavy2.png",
     "category": "Лаки-бокс",
     "name": "Огромный таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 4.317789291882556,
@@ -63482,6 +63678,10 @@
     "icon": "/boxes/mystery_zodiac.png",
     "category": "Лаки-бокс",
     "name": "Контейнер «Зодиак»",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.7453183520599254,
@@ -64203,6 +64403,10 @@
     "icon": "/boxes/lucky_box_xmas_gold.png",
     "category": "Лаки-бокс",
     "name": "Золотой Рождественский подарок",
+    "price": {
+      "amount": 900,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.017501508750754,
@@ -64678,6 +64882,10 @@
     "icon": "/boxes/mystery_cyber.png",
     "category": "Лаки-бокс",
     "name": "Легендарный киберконтейнер",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.7027027027027026,
@@ -65130,6 +65338,10 @@
     "icon": "/boxes/lucky_box_bingo_1.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование I»",
+    "price": {
+      "amount": 350,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 2.857142857142857,
@@ -65558,6 +65770,10 @@
     "icon": "/boxes/luckybox_speed.png",
     "category": "Лаки-бокс",
     "name": "Контейнер с мутантом-Молниеносный",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.1948881789137378,
@@ -65974,6 +66190,10 @@
     "icon": "/boxes/lucky_box_bingo_2.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование II»",
+    "price": {
+      "amount": 450,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 3.4246575342465753,
@@ -66378,6 +66598,10 @@
     "icon": "/boxes/lucky_box_xmas_bronze.png",
     "category": "Лаки-бокс",
     "name": "Бронзовый рождественский подарок",
+    "price": {
+      "amount": 7000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": 3.0303030303030303,
@@ -66793,6 +67017,10 @@
     "icon": "/boxes/mystery_hyperspeed.png",
     "category": "Лаки-бокс",
     "name": "Контейнер с мутантом-Молниеносный",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 0.3494060097833683,
@@ -67149,6 +67377,10 @@
     "icon": "/boxes/lucky_box_bing_3_v2.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование III»",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 4,
@@ -67457,6 +67689,10 @@
     "icon": "/boxes/mystery_saber.png",
     "category": "Лаки-бокс",
     "name": "Рубакаконтейнер",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 4,
@@ -67897,6 +68133,10 @@
     "icon": "/boxes/lucky_box_bingo_2.png",
     "category": "Лаки-бокс",
     "name": "Сундук «Исследование II»",
+    "price": {
+      "amount": 750,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 5.4945054945054945,
@@ -68205,6 +68445,10 @@
     "icon": "/boxes/mystery_zodiac.png",
     "category": "Лаки-бокс",
     "name": "Контейнер «Зодиак»",
+    "price": {
+      "amount": 500,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 6.25,
@@ -68501,6 +68745,10 @@
     "icon": "/boxes/mystery_basic_v3.png",
     "category": "Лаки-бокс",
     "name": "Усиленный контейнер",
+    "price": {
+      "amount": 399,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 5,
@@ -68967,6 +69215,10 @@
     "icon": "/boxes/luckybox_heroic_4.png",
     "category": "Мистери-бокс",
     "name": "Контейнер героя",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 5,
@@ -69215,6 +69467,10 @@
     "icon": "/boxes/mystery_galactic.png",
     "category": "",
     "name": "Галактический сундук",
+    "price": {
+      "amount": 750,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 6.993006993006993,
@@ -69463,6 +69719,10 @@
     "icon": "/boxes/shop_luckybox_heroic_gold.png",
     "category": "Лаки-бокс",
     "name": "Золотой контейнер героя",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 6.25,
@@ -69663,6 +69923,10 @@
     "icon": "/boxes/mystery_girl.png",
     "category": "Лаки-бокс",
     "name": "Контейнер воительницы",
+    "price": {
+      "amount": 700,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 6.25,
@@ -69863,6 +70127,10 @@
     "icon": "/boxes/shop_luckybox_heroic_gold.png",
     "category": "",
     "name": "Золотой контейнер героя",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 6.666666666666667,
@@ -70051,6 +70319,10 @@
     "icon": "/boxes/mystery_zodiac_v2.png",
     "category": "Лаки-бокс",
     "name": "Серебряный контейнер «Зодиак»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 8.333333333333332,
@@ -70203,6 +70475,10 @@
     "icon": "/boxes/mystery_breed.png",
     "category": "Лаки-бокс",
     "name": "Контейнер Дарвина",
+    "price": {
+      "amount": 120,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 7.2992700729927,
@@ -70486,6 +70762,10 @@
     "icon": "/boxes/mystery_halloween.png",
     "category": "Лаки-бокс",
     "name": "контейнер «Хэллоуин»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 9.090909090909092,
@@ -70656,6 +70936,10 @@
     "icon": "/boxes/mystery_halloween.png",
     "category": "Лаки-бокс",
     "name": "контейнер «Хэллоуин»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10,
@@ -70814,6 +71098,10 @@
     "icon": "/boxes/mystery_glasscannon.png",
     "category": "Мистери-бокс",
     "name": "Таинственный коробка «Стеклянная пушка»",
+    "price": {
+      "amount": 800,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 18.181818181818183,
@@ -70930,6 +71218,10 @@
     "icon": "/boxes/mystery_winter.png",
     "category": "Лаки-бокс",
     "name": "Мероприятия контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 12.5,
@@ -71034,6 +71326,10 @@
     "icon": "/boxes/mystery_plague.png",
     "category": "Лаки-бокс",
     "name": "контейнер «Хэллоуин»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 12.5,
@@ -71168,6 +71464,10 @@
     "icon": "/boxes/mystery_winter.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 12.5,
@@ -71272,6 +71572,10 @@
     "icon": "/boxes/mystery_anniversary_2025_2.png",
     "category": "Лаки-бокс",
     "name": "12-я годовщина Mystery Box — Часть 2",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 11.11111111111111,
@@ -71394,6 +71698,10 @@
     "icon": "/boxes/mystery_valentines.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер св. Валентина",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 14.285714285714285,
@@ -71486,6 +71794,10 @@
     "icon": "/boxes/mystery_halloween.png",
     "category": "Лаки-бокс",
     "name": "контейнер «Хэллоуин»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 8.333333333333332,
@@ -71578,6 +71890,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 399,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10,
@@ -71776,6 +72092,10 @@
     "icon": "/boxes/mystery_anniversary26_2.png",
     "category": "Мистери-бокс",
     "name": "13-я годовщина Mystery Box — Часть 2",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -71886,6 +72206,10 @@
     "icon": "/boxes/mystery_anniversary26_1.png",
     "category": "Мистери-бокс",
     "name": "13-я годовщина Mystery Box — Часть 1",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -71996,6 +72320,10 @@
     "icon": "/boxes/mystery_revolution_2025.png",
     "category": "Мистери-бокс",
     "name": "Тайная коробка Революция",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72106,6 +72434,10 @@
     "icon": "/boxes/mystery_independence.png",
     "category": "Лаки-бокс",
     "name": "Загадочная коробка «День независимости»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72216,6 +72548,10 @@
     "icon": "/boxes/mystery_summer.png",
     "category": "Лаки-бокс",
     "name": "Летний таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72326,6 +72662,10 @@
     "icon": "/boxes/mystery_blueplanet.png",
     "category": "Мистери-бокс",
     "name": "Загадочная коробка «Голубая планета»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72436,6 +72776,10 @@
     "icon": "/boxes/mystery_bees.png",
     "category": "Мистери-бокс",
     "name": "Загадочная коробка «Пчелы»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72546,6 +72890,10 @@
     "icon": "/boxes/mystery_europe.png",
     "category": "Мистери-бокс",
     "name": "Таинственная коробка ко Дню Европы",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72656,6 +73004,10 @@
     "icon": "/boxes/mystery_labor.png",
     "category": "Мистери-бокс",
     "name": "Таинственный коробка Дня труда",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72766,6 +73118,10 @@
     "icon": "/boxes/mystery_easter26.png",
     "category": "Мистери-бокс",
     "name": "Пасхальный таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72876,6 +73232,10 @@
     "icon": "/boxes/mystery_fools.png",
     "category": "Мистери-бокс",
     "name": "Контейнер для Апрельские дураки",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -72986,6 +73346,10 @@
     "icon": "/boxes/mystery_spring.png",
     "category": "Мистери-бокс",
     "name": "Таинственный контейнер весны",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73096,6 +73460,10 @@
     "icon": "/boxes/mystery_lucky_2019.png",
     "category": "Мистери-бокс",
     "name": "Контейнер для святого Патрика",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73206,6 +73574,10 @@
     "icon": "/boxes/mystery_carnival.png",
     "category": "Мистери-бокс",
     "name": "Карнавальная загадочная коробка",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73316,6 +73688,10 @@
     "icon": "/boxes/mystery_xinnian.png",
     "category": "Мистери-бокс",
     "name": "Таинственная коробка «Китайский Новый год»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73426,6 +73802,10 @@
     "icon": "/boxes/valentines_26.png",
     "category": "Мистери-бокс",
     "name": "Таинственный контейнер св. Валентина",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73536,6 +73916,10 @@
     "icon": "/boxes/mystery_kings.png",
     "category": "Мистери-бокс",
     "name": "Загадочная коробка Kings",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73646,6 +74030,10 @@
     "icon": "/boxes/mystery_xmas25_2.png",
     "category": "Мистери-бокс",
     "name": "Таинственная коробка «Созвездие» 2",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73750,6 +74138,10 @@
     "icon": "/boxes/mystery_xmas25_1.png",
     "category": "Мистери-бокс",
     "name": "Таинственная коробка «Созвездие»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73860,6 +74252,10 @@
     "icon": "/boxes/mystery_winter_2.png",
     "category": "Мистери-бокс",
     "name": "Зимняя таинственная коробка",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -73970,6 +74366,10 @@
     "icon": "/boxes/mystery_cyberweek.png",
     "category": "Мистери-бокс",
     "name": "Таинственная коробка Кибернедели",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74080,6 +74480,10 @@
     "icon": "/boxes/mystery_thanksgiving.png",
     "category": "Мистери-бокс",
     "name": "Таинственный контейнер Дня благодарения",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74190,6 +74594,10 @@
     "icon": "/boxes/mystery_science.png",
     "category": "Лаки-бокс",
     "name": "Таинственная коробка ко Дню науки",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74300,6 +74708,10 @@
     "icon": "/boxes/mystery_halloween.png",
     "category": "Лаки-бокс",
     "name": "контейнер «Хэллоуин»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74410,6 +74822,10 @@
     "icon": "/boxes/mystery_oktoberfest.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер Октоберфеста",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74520,6 +74936,10 @@
     "icon": "/boxes/mystery_autumn.png",
     "category": "Лаки-бокс",
     "name": "Осенний таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74630,6 +75050,10 @@
     "icon": "/boxes/mystery_school.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер «Снова в школу»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74740,6 +75164,10 @@
     "icon": "/boxes/mystery_anniversary_2025_1.png",
     "category": "Лаки-бокс",
     "name": "12-я годовщина Mystery Box — Часть 1",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -74850,6 +75278,10 @@
     "icon": "/boxes/mystery_xmas24_2.png",
     "category": "Мистери-бокс",
     "name": "Сумеречная рождественская коробка с тайной",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 18.75,
@@ -74930,6 +75362,10 @@
     "icon": "/boxes/mystery_xmas24_1.png",
     "category": "Мистери-бокс",
     "name": "Тайная коробка «Закатный курорт»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 19.35483870967742,
@@ -75010,6 +75446,10 @@
     "icon": "/boxes/mystery_anniversary24_2.png",
     "category": "Лаки-бокс",
     "name": "Тайная коробка Заговор",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75090,6 +75530,10 @@
     "icon": "/boxes/mystery_anniversary24_1.png",
     "category": "Лаки-бокс",
     "name": "Тайная коробка Заговор",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75170,6 +75614,10 @@
     "icon": "/boxes/mystery_winter23.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75250,6 +75698,10 @@
     "icon": "/boxes/mystery_winter23.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75330,6 +75782,10 @@
     "icon": "/boxes/mystery_anniversary23_3.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер «Перекрестные реальности»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75410,6 +75866,10 @@
     "icon": "/boxes/mystery_weirdtech.png",
     "category": "Мистери-бокс",
     "name": "таинственный контейнер FutureTech",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75490,6 +75950,10 @@
     "icon": "/boxes/mystery_valentines.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер св. Валентина",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75570,6 +76034,10 @@
     "icon": "/boxes/mystery_snowstorm.png",
     "category": "Мистери-бокс",
     "name": "mystery box xmas22 1",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75650,6 +76118,10 @@
     "icon": "/boxes/mystery_winter.png",
     "category": "Мистери-бокс",
     "name": "mystery box xmas22 2",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 16.666666666666664,
@@ -75730,6 +76202,10 @@
     "icon": "/boxes/mystery_memorial.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер ветеранов",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 20,
@@ -75798,6 +76274,10 @@
     "icon": "/boxes/mystery_easter.png",
     "category": "Лаки-бокс",
     "name": "Пасхальный таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 20,
@@ -75866,6 +76346,10 @@
     "icon": "/boxes/mystery_anniversary23_2.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер «Перекрестные реальности»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 20,
@@ -75934,6 +76418,10 @@
     "icon": "/boxes/mystery_anniversary23_1.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер «Перекрестные реальности»",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -75990,6 +76478,10 @@
     "icon": "/boxes/mystery_anniversary22.png",
     "category": "Лаки-бокс",
     "name": "данных контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76046,6 +76538,10 @@
     "icon": "/boxes/mystery_rabbit.png",
     "category": "Лаки-бокс",
     "name": "Кроличий таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76102,6 +76598,10 @@
     "icon": "/boxes/mystery_valentines.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер св. Валентина",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76158,6 +76658,10 @@
     "icon": "/boxes/mystery_winter_3.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76214,6 +76718,10 @@
     "icon": "/boxes/mystery_winter_2.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76270,6 +76778,10 @@
     "icon": "/boxes/mystery_basic_2021_1.png",
     "category": "Мистери-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10,
@@ -76326,6 +76838,10 @@
     "icon": "/boxes/mystery_basic_2021_2.png",
     "category": "Мистери-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10,
@@ -76382,6 +76898,10 @@
     "icon": "/boxes/mystery_basic_2021_3.png",
     "category": "Мистери-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10,
@@ -76438,6 +76958,10 @@
     "icon": "/boxes/mystery_basic_2021_4.png",
     "category": "Мистери-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10,
@@ -76494,6 +77018,10 @@
     "icon": "/boxes/mystery_easter.png",
     "category": "Лаки-бокс",
     "name": "Пасхальный таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76550,6 +77078,10 @@
     "icon": "/boxes/mystery_valentines.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер св. Валентина",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76606,6 +77138,10 @@
     "icon": "/boxes/mystery_winter_2.png",
     "category": "Лаки-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76662,6 +77198,10 @@
     "icon": "/boxes/mystery_toybox.png",
     "category": "Лаки-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76718,6 +77258,10 @@
     "icon": "/boxes/shop_e_12_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Звездный исследователь",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -76774,6 +77318,10 @@
     "icon": "/boxes/mystery_easter.png",
     "category": "Лаки-бокс",
     "name": "Пасхальный таинственный контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76830,6 +77378,10 @@
     "icon": "/boxes/mystery_winter_2.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76886,6 +77438,10 @@
     "icon": "/boxes/mystery_winter.png",
     "category": "Мистери-бокс",
     "name": "Зимний контейнер",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -76942,6 +77498,10 @@
     "icon": "/boxes/shop_ed_11_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Совабатор",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -76998,6 +77558,10 @@
     "icon": "/boxes/shop_ce_11_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Чунь Ли",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -77054,6 +77618,10 @@
     "icon": "/boxes/shop_bd_11_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Коктуй",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -77110,6 +77678,10 @@
     "icon": "/boxes/mystery_winter.png",
     "category": "Мистери-бокс",
     "name": "Зимний золотой контейнер",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 25,
@@ -77166,6 +77738,10 @@
     "icon": "/boxes/shop_be_10_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Запредел",
+    "price": {
+      "amount": 2000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -77222,6 +77798,10 @@
     "icon": "/boxes/shop_ba_07_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Бабайка",
+    "price": {
+      "amount": 1200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -77278,6 +77858,10 @@
     "icon": "/boxes/shop_da_10_random.png",
     "category": "Мистери-бокс",
     "name": "Случайный элитный Соколиный глаз",
+    "price": {
+      "amount": 1600,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 30,
@@ -77334,6 +77918,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "Мистери-бокс",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -77401,6 +77989,10 @@
     "icon": "/boxes/lucky_box_1.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -77444,6 +78036,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77475,6 +78068,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77506,6 +78100,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77537,6 +78132,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77568,6 +78164,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77599,6 +78196,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77630,6 +78228,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77661,6 +78260,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77692,6 +78292,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77723,6 +78324,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77754,6 +78356,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77785,6 +78388,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77816,6 +78420,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77847,6 +78452,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77878,6 +78484,7 @@
     "icon": "/boxes/mystery_heroic.png",
     "category": "Лаки-бокс",
     "name": "Контейнер героя",
+    "price": null,
     "groups": [
       {
         "chance": null,
@@ -77909,6 +78516,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -77940,6 +78551,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -77971,6 +78586,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -78002,6 +78621,10 @@
     "icon": "/boxes/lucky_box_1.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -78044,6 +78667,10 @@
     "icon": "/boxes/lucky_box_1.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -78086,6 +78713,10 @@
     "icon": "/boxes/luckybox_stars.png",
     "category": "Лаки-бокс",
     "name": "Контейнер звезд",
+    "price": {
+      "amount": 200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 10.498687664041995,
@@ -78464,6 +79095,10 @@
     "icon": "/boxes/mystery_basic_2021_1.png",
     "category": "Лаки-бокс",
     "name": "Таинственный контейнер с оберегами на удачу",
+    "price": {
+      "amount": 50,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 12.5,
@@ -78604,6 +79239,10 @@
     "icon": "/boxes/mystery_orbs_2019.png",
     "category": "Лаки-бокс",
     "name": "Контейнер со сферами",
+    "price": {
+      "amount": 200,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 5.555555555555555,
@@ -78920,6 +79559,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -78950,6 +79593,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -78980,6 +79627,10 @@
     "icon": "/boxes/lucky_box_2.png",
     "category": "",
     "name": "Юбилейная коробка",
+    "price": {
+      "amount": 5000000,
+      "type": "softcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -79010,6 +79661,10 @@
     "icon": "/boxes/lucky_box_1.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -79040,6 +79695,10 @@
     "icon": "/boxes/lucky_box_1.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -79070,6 +79729,10 @@
     "icon": "/boxes/lucky_box_1.png",
     "category": "Лаки-бокс",
     "name": "Тайное мутобезумие",
+    "price": {
+      "amount": 1000,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": null,
@@ -79100,6 +79763,10 @@
     "icon": "/boxes/mystery_fight.png",
     "category": "Лаки-бокс",
     "name": "Контейнер Барона Урбана",
+    "price": {
+      "amount": 120,
+      "type": "hardcurrency"
+    },
     "groups": [
       {
         "chance": 5.681818181818182,
