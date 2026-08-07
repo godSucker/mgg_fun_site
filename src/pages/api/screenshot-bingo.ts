@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import { chromium } from 'playwright-core'
+import { cleanupStalePlaywrightProfiles } from '@/lib/chromium-tmp-cleanup'
 
 // НЕ держим browser-singleton между запросами - см. подробное объяснение в
 // screenshot-announcement.ts (тот же паттерн раньше был и тут). На живом
@@ -19,6 +20,7 @@ export const GET: APIRoute = async ({ url }) => {
 
   let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined
   try {
+    await cleanupStalePlaywrightProfiles()
     const Chromium = (await import('@sparticuz/chromium')).default
     const execPath = await Chromium.executablePath()
     browser = await chromium.launch({

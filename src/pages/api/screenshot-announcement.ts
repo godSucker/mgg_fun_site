@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 import { chromium } from 'playwright-core'
+import { cleanupStalePlaywrightProfiles } from '@/lib/chromium-tmp-cleanup'
 
 // Генерирует скриншот ЛЮБОЙ карточки анонса по её data-announcement-id, чтобы
 // бот-кросспост не держал отдельный текстовый шаблон под каждую категорию -
@@ -27,6 +28,7 @@ export const GET: APIRoute = async ({ url }) => {
 
   let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined
   try {
+    await cleanupStalePlaywrightProfiles()
     const Chromium = (await import('@sparticuz/chromium')).default
     const execPath = await Chromium.executablePath()
     browser = await chromium.launch({
