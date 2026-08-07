@@ -355,7 +355,8 @@
   {
     "id": "Material_Hexcity_Token",
     "name": "Жетон Hex City",
-    "description": "Жетон нового (ещё не вышедшего) ивента Hex City. Текстура и точное название пока недоступны в игровых данных."
+    "description": "Жетон ивента Hex City",
+    "texture": "/materials/Material_Hexcity_Token.png"
   },
   {
     "id": "Star_Bronze",

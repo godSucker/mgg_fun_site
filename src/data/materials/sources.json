@@ -120,7 +120,7 @@
   "Material_Easter_Token": [
     {
       "type": "event",
-      "where": "Пасхальный ивент"
+      "where": "Пасхальный ивент 2020"
     }
   ],
   "Material_Plague_Token": [
@@ -180,7 +180,7 @@
   "Material_Weirdtech_Token": [
     {
       "type": "event",
-      "where": "Мистический ивент «Weirdtech»"
+      "where": "Мистический ивент «Weirdtech» 2023"
     }
   ],
   "Material_Overlay_Token": [
@@ -301,6 +301,48 @@
     {
       "type": "event",
       "where": "Хэллоуин 2018"
+    }
+  ],
+  "Material_Easter_Egg_Bronze": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2018"
+    }
+  ],
+  "Material_Easter_Egg_Silver": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2018"
+    }
+  ],
+  "Material_Easter_Egg_Basic": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2018"
+    }
+  ],
+  "Material_Easter_Egg_Gold": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2018"
+    }
+  ],
+  "Material_Easter_Egg_Platinum": [
+    {
+      "type": "event",
+      "where": "Пасхальный ивент 2018"
+    }
+  ],
+  "Material_Banshee_Veil": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2019"
+    }
+  ],
+  "Material_Claiomh_Solais": [
+    {
+      "type": "event",
+      "where": "Хэллоуин 2019"
     }
   ]
 }
