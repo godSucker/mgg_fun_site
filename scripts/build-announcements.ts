@@ -16,6 +16,7 @@
 
 import fs from 'fs/promises'
 import path from 'path'
+import axios from 'axios'
 import { fetchShopForecast } from './detect-shop-forecast'
 import { fetchDailyNewsForecast } from './detect-daily-news'
 
@@ -141,6 +142,20 @@ function firstMutantImage(stars: StarsMap | undefined): string | null {
   return anyKey ? (stars[anyKey]?.images?.[0] ?? null) : null
 }
 
+// Готовая промо-карточка мутанта с Kobojo CDN (найдено 2026-08-07 в присланных
+// пользователем ссылках) - лучше сырого спрайта из firstMutantImage() для
+// карточки анонса "новый мутант". Не гарантирована для 100% id (не проверяли
+// на GACHA/HEROIC), поэтому HEAD-проверка с фоллбеком, не слепая подстановка.
+async function opengraphObtainImage(id: string): Promise<string | null> {
+  const url = `https://s-beta.kobojo.com/mutants/assets/opengraph/${id.toLowerCase()}_obtain.jpg`
+  try {
+    const res = await axios.head(url, { timeout: 8000, validateStatus: (s) => s === 200 || s === 404 })
+    return res.status === 200 ? url : null
+  } catch {
+    return null
+  }
+}
+
 async function detectMutants(seen: string[]): Promise<DetectResult> {
   const mutants = await loadJson<{ id: string; name: string; stars?: StarsMap }[]>(
     'src/data/mutants/mutants.json',
@@ -150,11 +165,11 @@ async function detectMutants(seen: string[]): Promise<DetectResult> {
   const fresh = mutants.filter((m) => !seenSet.has(m.id))
   return {
     newIds: mutants.map((m) => m.id),
-    items: fresh.map((m) => ({
+    items: await Promise.all(fresh.map(async (m) => ({
       id: m.id,
       name: m.name,
-      image: firstMutantImage(m.stars),
-    })),
+      image: (await opengraphObtainImage(m.id)) ?? firstMutantImage(m.stars),
+    }))),
   }
 }
 
