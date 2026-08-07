@@ -378,7 +378,10 @@ async function main() {
   }
   const dedupedBoxes = [...bySignature.values()]
   const duplicatesRemoved = boxes.length - dedupedBoxes.length
-  dedupedBoxes.sort((a, b) => countMutants(b) - countMutants(a))
+  // Даты релиза в shopitems.xml нет - используем позицию в файле как прокси
+  // "новизны" (игра дописывает новые ShopItem в конец файла), реверсируем
+  // порядок парсинга, чтобы новые боксы были дефолтно вначале списка.
+  dedupedBoxes.reverse()
 
   await fs.writeFile(OUT_PATH, JSON.stringify(dedupedBoxes, null, 2) + '\n', 'utf-8')
 
