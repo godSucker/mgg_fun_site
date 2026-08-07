@@ -49,16 +49,37 @@ export const GET: APIRoute = async ({ url }) => {
         .forEach((img) => img.setAttribute('loading', 'eager'))
     }, selector)
 
-    await page
-      .waitForFunction(
-        (sel) => {
-          const imgs = Array.from(document.querySelectorAll(`${sel} img`))
-          return imgs.length === 0 || imgs.every((i) => (i as HTMLImageElement).complete)
-        },
-        selector,
-        { timeout: 10000 },
-      )
-      .catch(() => {})
+    // .complete у <img> становится true и при ОШИБКЕ загрузки - проверка
+    // только на complete раньше пропускала битые головы мутантов в готовый
+    // скриншот молча (регрессия 2026-08-07, вызвана нехваткой ресурсов
+    // контейнера под нагрузкой, не самой этой функцией - но раз уж чиним
+    // соседний эндпоинт по этой же причине, чиним и тут).
+    const check = (sel: string) => {
+      const imgs = Array.from(document.querySelectorAll(`${sel} img`))
+      return imgs.length === 0 || imgs.every((i) => {
+        const img = i as HTMLImageElement
+        if (!img.getAttribute('src')) return true
+        return img.complete && img.naturalWidth > 0
+      })
+    }
+    const allLoaded = await page
+      .waitForFunction(check, selector, { timeout: 12000 })
+      .then(() => true)
+      .catch(() => false)
+
+    if (!allLoaded) {
+      await page.evaluate((sel) => {
+        document.querySelectorAll(`${sel} img`).forEach((i) => {
+          const img = i as HTMLImageElement
+          if (img.getAttribute('src') && (!img.complete || img.naturalWidth === 0)) {
+            const src = img.src
+            img.src = ''
+            img.src = src
+          }
+        })
+      }, selector)
+      await page.waitForFunction(check, selector, { timeout: 6000 }).catch(() => {})
+    }
 
     await page.waitForTimeout(200)
 

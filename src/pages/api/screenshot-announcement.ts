@@ -2,21 +2,16 @@ import type { APIRoute } from 'astro'
 import { chromium } from 'playwright-core'
 import { cleanupStalePlaywrightProfiles } from '@/lib/chromium-tmp-cleanup'
 
-// Генерирует скриншот ЛЮБОЙ карточки анонса по её data-announcement-id, чтобы
-// бот-кросспост не держал отдельный текстовый шаблон под каждую категорию -
-// карточка на сайте (announcements.astro) единственный источник правды по виду.
-//
-// НЕ держим browser-singleton между запросами (в отличие от старой ревизии
-// этого файла и screenshot-bingo.ts) - на живом прогоне 2026-08-07 (7 вызовов
-// подряд с интервалом ~2с из cross-post батча) singleton копил свежий
-// user-data-dir на КАЖДЫЙ запуск (реального переиспользования тёплого браузера
-// не происходило - Vercel логи показали новый launch с новым профилем на
-// каждый вызов), эти профили не удалялись и за несколько таких прогонов
-// забили /tmp контейнера до 0 байт свободного места -> Chromium падал на
-// "Less than 64MB of free space" / "AllocateRingBuffer() failed" - ЛЮБОЙ
-// следующий скриншот (включая уже год как работающий screenshot-bingo в том
-// же контейнере) падал вместе с ним. Полный launch+close на каждый запрос
-// медленнее на холодный старт, но не копит мусор между вызовами.
+// Генерирует скриншот ОДНОЙ карточки анонса через изолированную страницу
+// /announcements/render/[id] (не живую /announcements) - карточка там
+// единственный элемент на странице, без ленты/фильтров/reflow от соседних
+// lazy-картинок. Раньше скриншотили карточку прямо в ленте - под нагрузкой
+// на проде соседние карточки догружались, пока Chromium скроллил целевую в
+// viewport, и сдвигали её ПОСЛЕ того, как Playwright уже вычислил
+// прямоугольник для скриншота -> обрезанные/съехавшие кадры (фидбек
+// 2026-08-07). Разметка /announcements/render/[id] переиспользует ТОТ ЖЕ
+// компонент AnnouncementCard.astro, что и живая лента - карточка на сайте и
+// в боте не расходятся.
 export const GET: APIRoute = async ({ url }) => {
   const id = url.searchParams.get('id')
   if (!id) {
@@ -24,7 +19,7 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   const origin = url.origin
-  const pageUrl = `${origin}/announcements`
+  const pageUrl = `${origin}/announcements/render/${encodeURIComponent(id)}`
 
   let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined
   try {
@@ -37,44 +32,78 @@ export const GET: APIRoute = async ({ url }) => {
     })
     const page = await browser.newPage({
       deviceScaleFactor: 2,
-      viewport: { width: 700, height: 1000 },
+      viewport: { width: 800, height: 1000 },
     })
 
-    // Бинго-карточка на /announcements сама встраивает
-    // <img src="/api/screenshot-bingo"> - если она попадёт в 700x1000
-    // вьюпорт, браузер запросит её и словит Chromium-в-Chromium. Обрезаем эти
-    // запросы: бот берёт скриншот бинго отдельным путём (screenshot-bingo.ts).
+    // Бинго-карточка сама встраивает <img src="/api/screenshot-bingo"> - на
+    // практике crossPostAnnouncement никогда не зовёт этот эндпоинт для
+    // категории bingo (у неё свой путь через postBingo), но обрезаем запрос
+    // защитно, чтобы прямой вызов с id бинго-анонса не поймал
+    // Chromium-в-Chromium.
     await page.route('**/api/screenshot-bingo*', (route) => route.abort())
 
     await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 15000 })
 
-    const selector = `article.card[data-announcement-id="${id}"]`
-    await Promise.all([
-      page.waitForSelector(selector, { timeout: 12000, state: 'attached' }),
-      page.evaluate(() => document.fonts.ready),
-    ])
+    const selector = 'article.card'
+    await page.waitForSelector(selector, { timeout: 12000, state: 'attached' })
+    await page.evaluate(() => document.fonts.ready)
 
-    // Карточки используют loading="lazy" (нужно для реальных посетителей
-    // ленты, не трогаем разметку) - без scroll/intersection браузер их не
-    // грузит, скриншот ловил бы пустые ячейки. Форсим eager для захвата.
-    await page.evaluate((sel) => {
-      document
-        .querySelectorAll(`${sel} img[loading="lazy"]`)
-        .forEach((img) => img.setAttribute('loading', 'eager'))
-    }, selector)
+    // Страница рендерит только эту карточку (не живая лента) - можно смело
+    // форсить eager на ВСЕ картинки, не только внутри selector.
+    await page.evaluate(() => {
+      document.querySelectorAll('img[loading="lazy"]').forEach((img) => img.setAttribute('loading', 'eager'))
+    })
 
-    await page
+    // .complete у <img> становится true и при ОШИБКЕ загрузки, не только при
+    // успехе - проверка только на complete раньше пропускала битые картинки
+    // в готовый скриншот молча (фидбек 2026-08-07: незагруженные иконки на
+    // проде). Ждём complete + naturalWidth>0 (успешная отрисовка) для КАЖДОЙ
+    // картинки с непустым src.
+    const allLoaded = await page
       .waitForFunction(
-        (sel) => {
-          const imgs = Array.from(document.querySelectorAll(`${sel} img`))
-          return imgs.length === 0 || imgs.every((i) => (i as HTMLImageElement).complete)
+        () => {
+          const imgs = Array.from(document.querySelectorAll('img'))
+          return imgs.every((i) => {
+            const img = i as HTMLImageElement
+            if (!img.getAttribute('src')) return true
+            return img.complete && img.naturalWidth > 0
+          })
         },
-        selector,
-        { timeout: 12000 },
+        { timeout: 15000 },
       )
-      .catch(() => {})
+      .then(() => true)
+      .catch(() => false)
 
-    await page.waitForTimeout(200)
+    if (!allLoaded) {
+      // Одна фактическая попытка реанимировать зависшие картинки - сброс src
+      // форсит повторный запрос к CDN (частая причина - холодный кэш, не
+      // настоящая 404), затем короткое повторное ожидание.
+      await page.evaluate(() => {
+        document.querySelectorAll('img').forEach((img) => {
+          const el = img as HTMLImageElement
+          if (el.getAttribute('src') && (!el.complete || el.naturalWidth === 0)) {
+            const src = el.src
+            el.src = ''
+            el.src = src
+          }
+        })
+      })
+      await page
+        .waitForFunction(
+          () => {
+            const imgs = Array.from(document.querySelectorAll('img'))
+            return imgs.every((i) => {
+              const img = i as HTMLImageElement
+              if (!img.getAttribute('src')) return true
+              return img.complete && img.naturalWidth > 0
+            })
+          },
+          { timeout: 8000 },
+        )
+        .catch(() => {})
+    }
+
+    await page.waitForTimeout(150)
 
     const card = await page.$(selector)
     if (!card) {

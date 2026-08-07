@@ -167,7 +167,11 @@ export interface CrossPostAnnouncement {
 // живой посетитель сайта) через api/screenshot-announcement.ts. Фолбэк на
 // старый текст+картинка-по-URL, если Chromium не ответил/упал по таймауту -
 // кросс-пост не должен молчать только из-за недоступности рендера.
-async function postGenericCard(icon: string, a: CrossPostAnnouncement, prefix: string): Promise<void> {
+async function postGenericCard(
+  icon: string,
+  a: CrossPostAnnouncement,
+  prefix: string,
+): Promise<void> {
   const it = a.items[0]
   const caption = `${icon} *${it?.name ?? a.title}*${LINK_LINE}`
   try {
@@ -182,7 +186,10 @@ async function postGenericCard(icon: string, a: CrossPostAnnouncement, prefix: s
     }
     console.error('[CROSS-POST] screenshot-announcement вернул', res.status)
   } catch (err) {
-    console.error('[CROSS-POST] screenshot-announcement error:', err instanceof Error ? err.message : err)
+    console.error(
+      '[CROSS-POST] screenshot-announcement error:',
+      err instanceof Error ? err.message : err,
+    )
   }
   const image = it?.image
   if (image) {
@@ -239,48 +246,46 @@ async function postExchange(a: CrossPostAnnouncement): Promise<void> {
   await sendMessage(`🔁 *Обновление зала обмена*\n\n${list}${LINK_LINE}`)
 }
 
-// shopForecast/dailyNews каждый теперь - полноценная карточка-сетка (см.
-// announcements.astro, kind="forecast") с РЕАЛЬНЫМИ офферами (детекторы
+// shopForecast/dailyNews каждый - полноценная карточка-сетка (см.
+// AnnouncementCard.astro, kind="forecast") с РЕАЛЬНЫМИ офферами (детекторы
 // отдают items = все офферы спринта, не один summary-item, см.
-// build-announcements.ts). Пользователь просил объединить оба в один пост -
-// берём скриншот карточки прогноза магазина (обычно больше офферов), daily
-// news сворачиваем в caption текстом со ссылкой на полную сетку на сайте.
-async function postShopAndDailyNews(
-  shop: CrossPostAnnouncement | null,
-  daily: CrossPostAnnouncement | null,
-): Promise<void> {
-  const lines: string[] = []
-  if (shop) lines.push(`🛒 *${shop.title}*`)
-  if (daily) lines.push(`📰 *${daily.title}*`)
-  const caption = `${lines.join('\n')}${LINK_LINE}`
-
-  const primary = shop ?? daily
-  if (primary) {
-    try {
-      const res = await fetch(
-        `${SITE_ORIGIN}/api/screenshot-announcement?id=${encodeURIComponent(primary.id)}`,
-        { signal: AbortSignal.timeout(30000) },
-      )
-      if (res.ok) {
-        const buffer = Buffer.from(await res.arrayBuffer())
-        await sendPhotoByBuffer(buffer, caption, `forecast-${primary.id}.png`)
-        return
-      }
-      console.error('[CROSS-POST] screenshot-announcement (forecast) вернул', res.status)
-    } catch (err) {
-      console.error(
-        '[CROSS-POST] screenshot-announcement (forecast) error:',
-        err instanceof Error ? err.message : err,
-      )
+// build-announcements.ts). РАНЬШЕ слался ОДИН пост (skip второго через
+// `primary = shop ?? daily`) - на практике это тихо теряло dailyNews целиком,
+// пользователь его в канале не видел вообще (фидбек 2026-08-07: "так и не
+// пришло в телегу"). Теперь - два независимых поста, каждый своим скриншотом.
+async function postForecastCard(a: CrossPostAnnouncement, icon: string): Promise<void> {
+  const caption = `${icon} *${a.title}*${LINK_LINE}`
+  try {
+    const res = await fetch(
+      `${SITE_ORIGIN}/api/screenshot-announcement?id=${encodeURIComponent(a.id)}`,
+      { signal: AbortSignal.timeout(30000) },
+    )
+    if (res.ok) {
+      const buffer = Buffer.from(await res.arrayBuffer())
+      await sendPhotoByBuffer(buffer, caption, `forecast-${a.id}.png`)
+      return
     }
+    console.error('[CROSS-POST] screenshot-announcement (forecast) вернул', res.status)
+  } catch (err) {
+    console.error(
+      '[CROSS-POST] screenshot-announcement (forecast) error:',
+      err instanceof Error ? err.message : err,
+    )
   }
-
-  const image = shop?.items[0]?.image ?? daily?.items[0]?.image
+  const image = a.items[0]?.image
   if (image) {
     await sendPhotoByUrl(toAbsolute(image), caption)
   } else {
     await sendMessage(caption)
   }
+}
+
+async function postShopAndDailyNews(
+  shop: CrossPostAnnouncement | null,
+  daily: CrossPostAnnouncement | null,
+): Promise<void> {
+  if (shop) await postForecastCard(shop, '🛒')
+  if (daily) await postForecastCard(daily, '📰')
 }
 
 const PHOTO_ICON: Record<string, { icon: string; prefix: string }> = {
