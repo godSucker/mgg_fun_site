@@ -307,10 +307,16 @@
     return sorted.slice(0, 200);
   });
 
+  const EASY_MODE_HINT_KEY = 'breeding_easy_mode_hint_seen';
   function toggleEasyMode() {
     easyMode = !easyMode;
     if (easyMode) {
-      easyModalOpen = true;
+      // Подсказку показываем один раз за вход в раздел (за вкладку/сессию),
+      // не при каждом включении фильтра.
+      if (typeof sessionStorage !== 'undefined' && !sessionStorage.getItem(EASY_MODE_HINT_KEY)) {
+        easyModalOpen = true;
+        sessionStorage.setItem(EASY_MODE_HINT_KEY, '1');
+      }
       sortField = 'recommended';
       sortAsc = true;
     }
@@ -344,6 +350,21 @@
     }
     showAll = false;
   }
+
+  // При смене целевого мутанта фильтр "Доступные мутанты" сбрасывается
+  // на "Рекомендуемое" - фильтр не должен молча переезжать на нового мутанта.
+  let lastTargetId: string | null = $state(null);
+  $effect(() => {
+    const tid = target?.id ?? null;
+    if (tid !== lastTargetId) {
+      lastTargetId = tid;
+      if (easyMode) {
+        easyMode = false;
+        sortField = 'recommended';
+        sortAsc = true;
+      }
+    }
+  });
 
   $effect(() => {
     if (mode === 'reverse' && target) {
@@ -1430,9 +1451,8 @@
   .p-names { font-size: 0.7rem; color: #cbd5e1; font-weight: 600; line-height: 1.2; }
   .p-name { display: none; }
   .pair-stats {
-    display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem;
+    display: flex; flex-direction: row; align-items: baseline; justify-content: flex-end; gap: 0.4em;
     flex-shrink: 0; margin-left: auto; margin-right: 1.5rem;
-    min-width: 78px;
   }
   .pair-time {
     font-size: 0.65rem; color: #94a3b8; white-space: nowrap;
@@ -1468,7 +1488,7 @@
     }
     .p-imgs .plus { font-size: 0.55rem; }
     .pair-stats {
-        display: flex; flex-direction: column; align-items: flex-end; gap: 0.15rem;
+        display: flex; flex-direction: row; align-items: baseline; justify-content: flex-end; gap: 0.35em;
         flex-shrink: 0; margin-left: auto; margin-right: 0.3rem; min-width: 0;
     }
     .pair-time, .pair-prob {
