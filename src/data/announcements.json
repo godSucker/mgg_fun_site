@@ -54,5 +54,270 @@
       }
     ],
     "link": "/materials"
-  }
+  },
+  {
+    "id": "test-reactor-1",
+    "date": "2026-05-13T14:46:14.328Z",
+    "category": "reactor",
+    "title": "Вестерн",
+    "items": [
+      {
+        "id": "western",
+        "name": "Вестерн",
+        "image": "/reactor/western.png"
+      }
+    ],
+    "link": "/simulators/reactor"
+  },
+  {
+    "id": "test-skin-1",
+    "date": "2026-05-21T14:46:14.328Z",
+    "category": "skin",
+    "title": "Робот — скин",
+    "items": [
+      {
+        "id": "Specimen_A_01|japan",
+        "name": "Робот — japan",
+        "image": "textures_by_skins/textures_by_skin/full/FULL_a_01_japan.png"
+      }
+    ],
+    "link": "/mutants"
+  },
+  {
+    "id": "test-raid-1",
+    "date": "2026-05-21T14:46:14.328Z",
+    "category": "raid",
+    "title": "Рейд «Архитектура»",
+    "items": [
+      {
+        "id": "architecture",
+        "name": "Рейд «Архитектура» (300 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_architecture-ru.png"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-box-1",
+    "date": "2026-05-29T14:46:14.328Z",
+    "category": "box",
+    "title": "Золотой легендарный контейнер х2",
+    "items": [
+      {
+        "id": "LuckyBox_Legend_Gold_Duo",
+        "name": "Золотой легендарный контейнер х2",
+        "image": "/boxes/lucky_box_xmas_gold.png"
+      }
+    ],
+    "link": "/boxes"
+  },
+  {
+    "id": "test-ladder-1",
+    "date": "2026-06-04T14:46:14.328Z",
+    "category": "ladder",
+    "title": "Лесенка «Адское пламя»",
+    "items": [
+      {
+        "id": "hellfire_13",
+        "name": "Лесенка «Адское пламя» (66 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_hellfire-ru.png"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-reactor-2",
+    "date": "2026-06-04T14:46:14.328Z",
+    "category": "reactor",
+    "title": "Большой босс",
+    "items": [
+      {
+        "id": "gachaboss",
+        "name": "Большой босс",
+        "image": "/reactor/gachaboss.png"
+      }
+    ],
+    "link": "/simulators/reactor"
+  },
+  {
+    "id": "test-mutant-1",
+    "date": "2026-06-11T14:46:14.328Z",
+    "category": "mutant",
+    "title": "Робот",
+    "items": [
+      {
+        "id": "specimen_a_01",
+        "name": "Робот",
+        "image": "textures_by_mutant/a_01/specimen_a_01_normal.webp"
+      }
+    ],
+    "link": "/mutants"
+  },
+  {
+    "id": "test-token-1",
+    "date": "2026-06-17T14:46:14.328Z",
+    "category": "token",
+    "title": "Магнитный ключ",
+    "items": [
+      {
+        "id": "Daily_Token",
+        "name": "Магнитный ключ",
+        "image": "/materials/Daily_Token.png"
+      }
+    ],
+    "link": "/materials"
+  },
+  {
+    "id": "test-box-2",
+    "date": "2026-06-17T14:46:14.328Z",
+    "category": "box",
+    "title": "Легендарный киберконтейнер",
+    "items": [
+      {
+        "id": "Luckybox_Xmas_Bronze_2018",
+        "name": "Легендарный киберконтейнер",
+        "image": "/boxes/lucky_box_xmas_bronze.png"
+      }
+    ],
+    "link": "/boxes"
+  },
+  {
+    "id": "test-raid-2",
+    "date": "2026-06-24T14:46:14.328Z",
+    "category": "raid",
+    "title": "Рейд «Астероиды»",
+    "items": [
+      {
+        "id": "asteroids",
+        "name": "Рейд «Астероиды» (300 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_asteroids-ru.png"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-bingo-1",
+    "date": "2026-07-02T14:46:14.328Z",
+    "category": "bingo",
+    "title": "morphology_anniversary26",
+    "items": [
+      {
+        "id": "anniversary_26",
+        "name": "morphology_anniversary26",
+        "image": null
+      }
+    ],
+    "link": "/bingo"
+  },
+  {
+    "id": "test-mutant-2",
+    "date": "2026-07-02T14:46:14.328Z",
+    "category": "mutant",
+    "title": "Андроид",
+    "items": [
+      {
+        "id": "specimen_aa_01",
+        "name": "Андроид",
+        "image": "textures_by_mutant/aa_01/specimen_aa_01_normal.webp"
+      }
+    ],
+    "link": "/mutants"
+  },
+  {
+    "id": "test-reactor-3",
+    "date": "2026-07-10T14:46:14.328Z",
+    "category": "reactor",
+    "title": "Япония",
+    "items": [
+      {
+        "id": "japan",
+        "name": "Япония",
+        "image": "/reactor/japan.png"
+      }
+    ],
+    "link": "/simulators/reactor"
+  },
+  {
+    "id": "test-skin-2",
+    "date": "2026-07-17T14:46:14.328Z",
+    "category": "skin",
+    "title": "Охотник за головами — скин",
+    "items": [
+      {
+        "id": "Specimen_A_05|winter",
+        "name": "Охотник за головами — winter",
+        "image": "textures_by_skins/textures_by_skin/full/FULL_a_05_winter.png"
+      }
+    ],
+    "link": "/mutants"
+  },
+  {
+    "id": "test-raid-3",
+    "date": "2026-07-17T14:46:14.328Z",
+    "category": "raid",
+    "title": "Рейд «Бездна»",
+    "items": [
+      {
+        "id": "abyss",
+        "name": "Рейд «Бездна» (300 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_abyss-ru.png"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-box-3",
+    "date": "2026-07-22T14:46:14.328Z",
+    "category": "box",
+    "title": "Золотой Рождественский подарок",
+    "items": [
+      {
+        "id": "Luckybox_Xmas_Gold_2018",
+        "name": "Золотой Рождественский подарок",
+        "image": "/boxes/lucky_box_xmas_gold.png"
+      }
+    ],
+    "link": "/boxes"
+  },
+  {
+    "id": "test-ladder-2",
+    "date": "2026-07-29T14:46:14.328Z",
+    "category": "ladder",
+    "title": "Лесенка «Гиперборея»",
+    "items": [
+      {
+        "id": "hyperborea_13",
+        "name": "Лесенка «Гиперборея» (60 боёв)",
+        "image": "https://s-beta.kobojo.com/mutants/assets/pveeventcontent/title_hyperborea-ru.png"
+      }
+    ],
+    "link": "/guides"
+  },
+  {
+    "id": "test-reactor-4",
+    "date": "2026-07-29T14:46:14.328Z",
+    "category": "reactor",
+    "title": "Темное фентези",
+    "items": [
+      {
+        "id": "fantasy",
+        "name": "Темное фентези",
+        "image": "/reactor/fantasy.png"
+      }
+    ],
+    "link": "/simulators/reactor"
+  },
+  {
+    "id": "test-mutant-3",
+    "date": "2026-08-07T14:46:14.328Z",
+    "category": "mutant",
+    "title": "Некробот",
+    "items": [
+      {
+        "id": "specimen_ab_01",
+        "name": "Некробот",
+        "image": "textures_by_mutant/ab_01/specimen_ab_01_normal.webp"
+      }
+    ],
+    "link": "/mutants"  }
 ]
