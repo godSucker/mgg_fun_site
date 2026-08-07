@@ -1120,13 +1120,13 @@
   .division-maps { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
   .division-map-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 0.75rem 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; }
   .division-map-head { display: flex; align-items: baseline; gap: 0.5rem; }
-  .division-map-num { font-size: 10.5px; text-transform: uppercase; color: #64748b; font-weight: 700; }
+  .division-map-num { font-size: 10.5px; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
   .division-map-title { font-size: 0.92rem; font-weight: 800; color: #e2e8f0; }
   .division-map-meta { display: flex; gap: 0.9rem; font-size: 0.76rem; color: #94a3b8; }
   .division-map-meta strong { color: #cbd5f5; }
   .division-map-reward { font-size: 0.78rem; color: #94a3b8; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
   .division-map-reward strong { color: #86efac; }
-  .division-map-reward-label { color: #64748b; }
+  .division-map-reward-label { color: #94a3b8; }
   .division-map-toggle {
     appearance: none; align-self: flex-start; border: 1px solid rgba(96,165,250,0.25); background: rgba(30, 58, 138, 0.15);
     color: #60a5fa; border-radius: 6px; padding: 0.3rem 0.65rem; font-size: 0.74rem; font-weight: 700; cursor: pointer;

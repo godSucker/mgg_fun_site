@@ -30,7 +30,10 @@ async function loadJson<T>(p: string, fallback: T): Promise<T> {
 
 async function checkExists(url: string): Promise<boolean> {
   try {
-    const res = await axios.head(url, { timeout: 8000, validateStatus: (s) => s === 200 || s === 404 })
+    const res = await axios.head(url, {
+      timeout: 8000,
+      validateStatus: (s) => s === 200 || s === 404,
+    })
     return res.status === 200
   } catch {
     return false

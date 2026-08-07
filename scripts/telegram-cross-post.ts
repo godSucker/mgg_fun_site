@@ -21,6 +21,24 @@
 
 import fs from 'fs/promises'
 import path from 'path'
+import { bingoLabel } from '../src/lib/mutant-dicts'
+
+// Тот же приём, что formatBingoTitle в bingo.astro/announcements.astro - id
+// доски типа "morphology_anniversary26" вместо RU-названия иначе выглядит
+// в посте как техническая абракадабра (фидбек 2026-08-07).
+function formatBingoTitle(title: string, id: string): string {
+  const labelById = bingoLabel(id)
+  if (labelById && labelById !== id) return labelById
+  const labelByTitle = bingoLabel(title)
+  if (labelByTitle && labelByTitle !== title) return labelByTitle
+  return title
+    .replace(/^--------/, '')
+    .replace(/_/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ')
+}
 
 const ROOT = process.cwd()
 const SITE_ORIGIN = 'https://archivist-library.com'
@@ -182,7 +200,7 @@ async function postBingo(a: CrossPostAnnouncement): Promise<void> {
     loadJson<Record<string, string>>('src/data/mutant_names.json', {}),
   ])
   const bingo = bingos.find((b) => b.id === it.id)
-  const title = bingo?.title ?? it.name
+  const title = formatBingoTitle(bingo?.title ?? it.name, it.id)
 
   let caption: string
   if (it.addedNames && it.addedNames.length > 0) {

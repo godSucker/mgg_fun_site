@@ -94,7 +94,9 @@ export const GET: APIRoute = async ({ url }) => {
         status: 200,
         headers: {
           'Content-Type': 'image/png',
-          'Cache-Control': 'no-store',
+          // Встраивается как обычная <img> на /announcements - без кэша
+          // каждый визит гонял бы Chromium заново. Доска меняется редко.
+          'Cache-Control': 'public, max-age=3600, s-maxage=3600',
         },
       })
     } catch (err) {

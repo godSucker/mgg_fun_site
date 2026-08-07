@@ -2,12 +2,49 @@
 export const prerender = true;
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import announcementsData from '@/data/announcements.json';
+import mutantsData from '@/data/mutants/mutants.json';
+import raidsData from '@/data/guides/raids.json';
+import specialLaddersData from '@/data/guides/special-ladders.json';
+import materialData from '@/data/materials/material.json';
+import dungeonCovers from '@/data/guides/dungeon-covers.json';
 import { textureUrl } from '@/lib/texture-cdn';
+import { translateItemId, getItemTexture } from '@/lib/craft-simulator';
+import { getLocalisedName } from '@/lib/localisation';
+import { getGeneIcon } from '@/lib/mutant-icons';
+import { GENE_RU, bingoLabel } from '@/lib/mutant-dicts';
+import bingosData from '@/data/bingos.json';
+import {
+  resolveDungeon,
+  resolveMutantLite,
+  type DungeonRaw,
+  type MutantRaw,
+  type MaterialEntry,
+  type RewardResolveCtx,
+  type ResolvedDungeon,
+} from '@/lib/guides-resolve';
+import BoxModal from '@/components/boxes/BoxModal.svelte';
+import BingoMutantModal from '@/components/bingo/BingoMutantModal.svelte';
 
 interface AnnouncementItem {
   id: string;
   name: string;
   image?: string | null;
+  addedNames?: string[];
+}
+
+const bingosById = new Map((bingosData as { id: string; title: string }[]).map((b) => [b.id, b.title]));
+function formatBingoTitle(title: string, id: string): string {
+  const labelById = bingoLabel(id);
+  if (labelById && labelById !== id) return labelById;
+  const labelByTitle = bingoLabel(title);
+  if (labelByTitle && labelByTitle !== title) return labelByTitle;
+  return title
+    .replace(/^--------/, '')
+    .replace(/_/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
 }
 
 interface Announcement {
@@ -37,9 +74,45 @@ const CATEGORY_RU: Record<string, string> = {
   rebalance: 'Ребаланс',
 };
 
+// Тот же резолвер наград/данжей, что и /guides (src/lib/guides-resolve.ts) -
+// рейды/лесенки на анонсах показывают ТЕ ЖЕ иконки/названия/фон, без второй
+// независимой реализации, которая рано или поздно разъедется.
+const mutantsById = new Map((mutantsData as MutantRaw[]).map((m) => [m.id, m]));
+const materialsById = new Map((materialData as MaterialEntry[]).map((m) => [m.id, m]));
+const rewardCtx: RewardResolveCtx = {
+  mutantsById,
+  materialsById,
+  translateItemId,
+  getItemTexture,
+  getLocalisedName,
+  getGeneIcon,
+  geneRu: GENE_RU,
+};
+const dungeonById = new Map<string, ResolvedDungeon>(
+  [
+    ...(raidsData as DungeonRaw[]),
+    ...(specialLaddersData as { experiment: DungeonRaw[]; challenge: DungeonRaw[] }).experiment,
+    ...(specialLaddersData as { experiment: DungeonRaw[]; challenge: DungeonRaw[] }).challenge,
+  ].map((d) => [d.id, resolveDungeon(d, rewardCtx)]),
+);
+const dungeonCoversMap = dungeonCovers as Record<string, string | null>;
+
+type CardKind = 'dungeon' | 'mutant' | 'skin' | 'reactor' | 'box' | 'bingo' | 'generic';
+
+function cardKind(category: string | undefined): CardKind {
+  if (category === 'raid' || category === 'ladder') return 'dungeon';
+  if (category === 'mutant') return 'mutant';
+  if (category === 'skin') return 'skin';
+  if (category === 'reactor') return 'reactor';
+  if (category === 'box') return 'box';
+  if (category === 'bingo') return 'bingo';
+  return 'generic';
+}
+
 const announcements = ((announcementsData as Announcement[]) ?? [])
   .slice()
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .map((a) => ({ ...a, kind: cardKind(a.category) }));
 
 // Порядок вкладок - по частоте/важности, не по алфавиту; "Все" всегда первая.
 const CATEGORY_ORDER = [
@@ -83,49 +156,155 @@ const fmtDate = (iso: string) =>
         )}
         <div class="feed">
         {announcements.map((a) => {
-          const isDungeonCard = a.category === 'raid' || a.category === 'ladder';
-          const dungeonBg = isDungeonCard ? a.items?.[0]?.image : null;
+          const it = a.items?.[0];
+          const dungeon = a.kind === 'dungeon' && it ? dungeonById.get(it.id) : null;
+          const dungeonCover = a.kind === 'dungeon' && it ? dungeonCoversMap[it.id] : null;
+          const mutantLite = a.kind === 'mutant' && it ? resolveMutantLite(it.id, mutantsById) : null;
+          const skinBaseId = a.kind === 'skin' && it ? it.id.split('|')[0]?.toLowerCase() : null;
           return (
-          <article
-            class="card"
-            class:list={[{ 'card-with-bg': !!dungeonBg }]}
-            data-category={a.category ?? ''}
-            style={dungeonBg ? `background-image: linear-gradient(180deg, rgba(15,23,42,0.55), rgba(15,23,42,0.94)), url(${dungeonBg}); background-size: cover; background-position: center;` : undefined}
-          >
-
-            {a.imagePath && (
-              <div class="card-image">
-                <img src={a.imagePath} alt="" loading="lazy" decoding="async" />
+          <article class="card" data-category={a.category ?? ''}>
+            {a.kind === 'dungeon' && dungeon ? (
+              <div class="dg-card">
+                <div
+                  class="dg-hero"
+                  style={dungeonCover ? `background-image: linear-gradient(180deg, rgba(10,14,22,0.15), rgba(10,14,22,0.8)), url(${dungeonCover})` : undefined}
+                >
+                  {dungeon.mutant && (
+                    <button class="dg-hero-btn" data-open-mutant={dungeon.mutant.id} title={`Открыть ${dungeon.mutant.name}`}>
+                      <img class="dg-hero-art" src={textureUrl(dungeon.mutant.fullArt)} alt={dungeon.mutant.name} loading="lazy" decoding="async" />
+                    </button>
+                  )}
+                </div>
+                <div class="dg-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU[a.category ?? ''] ?? a.category}</span>
+                  <div class="dg-name">{dungeon.name}</div>
+                  {dungeon.mutant ? (
+                    <button class="dg-mutant-name" data-open-mutant={dungeon.mutant.id}>{dungeon.mutant.name}</button>
+                  ) : (
+                    <div class="dg-mutant-name muted">без уникального мутанта</div>
+                  )}
+                  <div class="dg-secondary">{dungeon.fightCount} боёв</div>
+                  {dungeon.currency.length > 0 && (
+                    <div class="dg-currency">
+                      {dungeon.currency.map((c) => (
+                        <span class="reward-inline">
+                          {c.icon && <img src={textureUrl(c.icon)} alt="" loading="lazy" decoding="async" />}
+                          {c.label}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {dungeon.items.length > 0 && (
+                    <div class="dg-items">
+                      {dungeon.items.map((it2) => (
+                        <span class="dg-item-chip" title={it2.label}>
+                          {it2.icon && <img src={textureUrl(it2.icon)} alt="" loading="lazy" decoding="async" />}
+                          <span>{it2.label}</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <a class="card-source" href={a.link ?? '/guides'}>Подробнее →</a>
+                </div>
               </div>
+            ) : a.kind === 'mutant' && mutantLite ? (
+              <div class="hero-card">
+                <button class="hero-art-btn" data-open-mutant={mutantLite.id} title={`Открыть ${mutantLite.name}`}>
+                  <img class="hero-art" src={textureUrl(mutantLite.fullArt)} alt={mutantLite.name} loading="lazy" decoding="async" />
+                </button>
+                <div class="card-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU.mutant}</span>
+                  <button class="hero-name-btn" data-open-mutant={mutantLite.id}>{mutantLite.name}</button>
+                  <a class="card-source" href={a.link ?? '/mutants'}>Подробнее →</a>
+                </div>
+              </div>
+            ) : a.kind === 'skin' && it && skinBaseId ? (
+              <div class="hero-card">
+                <button class="hero-art-btn" data-open-mutant={skinBaseId} title={`Открыть ${it.name}`}>
+                  {it.image && <img class="hero-art" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />}
+                </button>
+                <div class="card-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU.skin}</span>
+                  <button class="hero-name-btn" data-open-mutant={skinBaseId}>{it.name}</button>
+                  <a class="card-source" href={a.link ?? '/mutants'}>Подробнее →</a>
+                </div>
+              </div>
+            ) : a.kind === 'reactor' && it ? (
+              <div class="hero-card">
+                <a class="hero-art-btn" href={`/simulators/reactor/${it.id}`} title={`Открыть реактор «${it.name}»`}>
+                  {it.image && <img class="hero-art" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />}
+                </a>
+                <div class="card-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU.reactor}</span>
+                  <a class="hero-name-btn" href={`/simulators/reactor/${it.id}`}>{it.name}</a>
+                  <a class="card-source" href={`/simulators/reactor/${it.id}`}>Открыть реактор →</a>
+                </div>
+              </div>
+            ) : a.kind === 'box' && it ? (
+              <button class="hero-card box-card-btn" data-open-box={it.id} title={`Открыть ${it.name}`}>
+                <div class="hero-art-btn">
+                  {it.image && <img class="hero-art" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />}
+                </div>
+                <div class="card-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU.box}</span>
+                  <div class="hero-name-btn">{it.name}</div>
+                </div>
+              </button>
+            ) : a.kind === 'bingo' && it ? (
+              <div class="hero-card">
+                <div class="dg-hero bingo-hero">
+                  <img class="bingo-screenshot" src={`/api/screenshot-bingo?board=${encodeURIComponent(it.id)}`} alt={formatBingoTitle(bingosById.get(it.id) ?? it.name, it.id)} loading="lazy" decoding="async" />
+                </div>
+                <div class="card-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  <span class="card-category">{CATEGORY_RU.bingo}</span>
+                  <div class="dg-name">{formatBingoTitle(bingosById.get(it.id) ?? it.name, it.id)}</div>
+                  {it.addedNames && it.addedNames.length > 0 ? (
+                    <div class="dg-secondary">Добавлен{it.addedNames.length > 1 ? 'ы' : ''}: {it.addedNames.join(', ')}</div>
+                  ) : (
+                    <div class="dg-secondary">Новое бинго</div>
+                  )}
+                  <a class="card-source" href={a.link ?? '/bingo'}>Подробнее →</a>
+                </div>
+              </div>
+            ) : (
+              <>
+                {a.imagePath && (
+                  <div class="card-image">
+                    <img src={a.imagePath} alt="" loading="lazy" decoding="async" />
+                  </div>
+                )}
+                <div class="card-body">
+                  <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
+                  {a.category && <span class="card-category">{CATEGORY_RU[a.category] ?? a.category}</span>}
+                  {a.title && <h2 class="card-title">{a.title}</h2>}
+                  {a.text && <p class="card-text">{a.text}</p>}
+                  {a.items && a.items.length > 0 && (
+                    <ul class:list={['item-grid', { 'item-grid-token': a.category === 'token' }]}>
+                      {a.items.map((it2) => (
+                        <li class="item-card">
+                          {it2.image && (
+                            <img class="item-image" src={textureUrl(it2.image)} alt={it2.name} loading="lazy" decoding="async" />
+                          )}
+                          <span class="item-name">{it2.name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {a.link && (
+                    <a class="card-source" href={a.link}>Подробнее →</a>
+                  )}
+                  {a.sourceUrl && (
+                    <a class="card-source" href={a.sourceUrl} target="_blank" rel="noopener noreferrer">Источник →</a>
+                  )}
+                </div>
+              </>
             )}
-            <div class="card-body">
-              <time class="card-date" datetime={a.date}>{fmtDate(a.date)}</time>
-              {a.category && <span class="card-category">{CATEGORY_RU[a.category] ?? a.category}</span>}
-              {a.title && <h2 class="card-title">{a.title}</h2>}
-              {a.text && <p class="card-text">{a.text}</p>}
-              {a.items && a.items.length > 0 && (
-                <ul class="item-grid">
-                  {a.items.map((it) => (
-                    <li class="item-card">
-                      {it.image && !isDungeonCard && (
-                        <img class="item-image" src={textureUrl(it.image)} alt={it.name} loading="lazy" decoding="async" />
-                      )}
-                      <span class="item-name">{it.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {a.link && (
-                <a class="card-source" href={a.link}>
-                  Подробнее →
-                </a>
-              )}
-              {a.sourceUrl && (
-                <a class="card-source" href={a.sourceUrl} target="_blank" rel="noopener noreferrer">
-                  Источник →
-                </a>
-              )}
-            </div>
           </article>
           );
         })}
@@ -133,6 +312,9 @@ const fmtDate = (iso: string) =>
       </>
     )}
   </main>
+
+  <BoxModal client:load />
+  <BingoMutantModal client:load />
 </BaseLayout>
 
 <script>
@@ -150,11 +332,27 @@ const fmtDate = (iso: string) =>
       });
     });
   }
+
+  document.querySelectorAll<HTMLElement>('[data-open-mutant]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('archivist:open-mutant', { detail: { specimenId: el.dataset.openMutant } }),
+      );
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-open-box]').forEach((el) => {
+    el.addEventListener('click', () => {
+      window.dispatchEvent(
+        new CustomEvent('archivist:open-box', { detail: { boxId: el.dataset.openBox } }),
+      );
+    });
+  });
 </script>
 
 <style>
   .announcements-page {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 1.5rem 1rem 3rem;
   }
@@ -210,12 +408,6 @@ const fmtDate = (iso: string) =>
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     overflow: hidden;
-  }
-  .card-with-bg {
-    background-color: rgba(15, 23, 42, 0.6);
-  }
-  .card-with-bg .card-body {
-    position: relative;
   }
   .card-image {
     width: 100%;
@@ -292,6 +484,13 @@ const fmtDate = (iso: string) =>
     border-radius: 6px;
     background: rgba(0, 0, 0, 0.3);
   }
+  .item-grid-token .item-image {
+    width: 56px;
+    height: 56px;
+  }
+  .item-grid-token .item-card {
+    padding: 0.5rem 0.9rem 0.5rem 0.5rem;
+  }
   .item-name {
     font-size: 0.85rem;
     color: #e2e8f0;
@@ -306,5 +505,177 @@ const fmtDate = (iso: string) =>
   }
   .card-source:hover {
     text-decoration: underline;
+  }
+
+  /* Рейды/лесенки - тот же визуальный язык, что activityCard на /guides */
+  .dg-hero {
+    position: relative;
+    height: 180px;
+    background: radial-gradient(circle at 50% 30%, rgba(96, 165, 250, 0.16), transparent 70%);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .dg-hero-btn {
+    appearance: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: none;
+  }
+  .dg-hero-art {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+  }
+  .dg-body {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+  .dg-name {
+    margin-top: 0.4rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fceabb;
+  }
+  .dg-mutant-name {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    cursor: pointer;
+    display: block;
+    margin-top: 0.15rem;
+  }
+  .dg-mutant-name:hover {
+    color: #60a5fa;
+  }
+  .dg-mutant-name.muted {
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: default;
+  }
+  .dg-secondary {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+  }
+  .dg-currency {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-top: 0.5rem;
+  }
+  .reward-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: #86efac;
+  }
+  .reward-inline img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+  .dg-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 0.4rem;
+  }
+  .dg-item-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.76rem;
+    color: #cbd5f5;
+    max-width: 220px;
+  }
+  .dg-item-chip img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .dg-item-chip span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Мутанты/скины/реакторы/боксы - крупный кликабельный рендер */
+  .hero-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: default;
+  }
+  .box-card-btn {
+    cursor: pointer;
+  }
+  .hero-art-btn {
+    appearance: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    background: radial-gradient(circle at 50% 30%, rgba(96, 165, 250, 0.14), transparent 70%);
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .hero-art {
+    max-width: 88%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.55));
+  }
+  .hero-name-btn {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    cursor: pointer;
+    display: block;
+    margin-top: 0.5rem;
+    text-decoration: none;
+  }
+  .hero-name-btn:hover {
+    color: #60a5fa;
+  }
+
+  /* Бинго - тот же скриншот доски, что уходит в Telegram-канал */
+  .bingo-hero {
+    height: auto;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .bingo-screenshot {
+    width: 100%;
+    display: block;
   }
 </style>
