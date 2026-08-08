@@ -597,7 +597,7 @@
   },
   "specimen_ef_04": {
     "before": "-",
-    "after": "4"
+    "after": "-"
   },
   "specimen_fa_04": {
     "before": "-",
@@ -717,7 +717,7 @@
   },
   "specimen_dd_05": {
     "before": "4",
-    "after": "4"
+    "after": "-"
   },
   "specimen_de_05": {
     "before": "-",
@@ -917,7 +917,7 @@
   },
   "specimen_fc_06": {
     "before": "3-",
-    "after": "3-"
+    "after": "4"
   },
   "specimen_fd_06": {
     "before": "-",
@@ -1005,7 +1005,7 @@
   },
   "specimen_da_07": {
     "before": "3-",
-    "after": "3-"
+    "after": "4"
   },
   "specimen_db_07": {
     "before": "-",
@@ -1093,7 +1093,7 @@
   },
   "specimen_ae_08": {
     "before": "4",
-    "after": "4"
+    "after": "-"
   },
   "specimen_af_08": {
     "before": "3-",
@@ -1185,7 +1185,7 @@
   },
   "specimen_ed_08": {
     "before": "-",
-    "after": "4"
+    "after": "-"
   },
   "specimen_ee_08": {
     "before": "4",
@@ -1437,7 +1437,7 @@
   },
   "specimen_da_10": {
     "before": "-",
-    "after": "4"
+    "after": "-"
   },
   "specimen_db_10": {
     "before": "-",
@@ -1485,7 +1485,7 @@
   },
   "specimen_fa_10": {
     "before": "2-",
-    "after": "2-"
+    "after": "3+"
   },
   "specimen_fb_10": {
     "before": "3+",
@@ -1589,7 +1589,7 @@
   },
   "specimen_dc_11": {
     "before": "-",
-    "after": "4"
+    "after": "-"
   },
   "specimen_dd_11": {
     "before": "2+",
@@ -1629,7 +1629,7 @@
   },
   "specimen_fa_11": {
     "before": "2-",
-    "after": "2-"
+    "after": "3+"
   },
   "specimen_fb_11": {
     "before": "2+",
@@ -1665,7 +1665,7 @@
   },
   "specimen_ad_12": {
     "before": "2-",
-    "after": "2-"
+    "after": "2"
   },
   "specimen_ae_12": {
     "before": "3",
@@ -1737,7 +1737,7 @@
   },
   "specimen_dd_12": {
     "before": "2-",
-    "after": "2-"
+    "after": "2"
   },
   "specimen_de_12": {
     "before": "3+",
@@ -1849,7 +1849,7 @@
   },
   "specimen_bd_13": {
     "before": "3+",
-    "after": "3+"
+    "after": "3"
   },
   "specimen_be_13": {
     "before": "-",
@@ -2029,7 +2029,7 @@
   },
   "specimen_ee_99": {
     "before": "2-",
-    "after": "2-"
+    "after": "2"
   },
   "specimen_ef_99": {
     "before": "-",
