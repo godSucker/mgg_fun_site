@@ -4,11 +4,20 @@
 // обычный Phase-1-паттерн: пишет данные сразу, build-announcements.ts
 // объявляет через diff material.json (см. detectTokens там же).
 //
-// Иконка - хотлинк на Kobojo thumbnail CDN (та же база, что build-boxes.ts),
-// best-effort по конвенции id.toLowerCase(). Если файла там нет - просто
-// битая картинка в таблице материалов до тех пор, пока кто-то не подберёт
-// нормальный арт руками (тот же компромисс, что раньше решался вручную для
-// части материалов - см. память materials-buildings-schema).
+// Иконка: качаем из Kobojo /assets/thumbnails/ (тот же CDN, что build-boxes.ts)
+// и кладём в public/materials/<Id>.png. В JSON пишем ЛОКАЛЬНЫЙ путь
+// (/materials/<Id>.png), не хотлинк - иначе:
+//   1) Kobojo может удалить/обновить thumbnail (не под нашим контролем);
+//   2) естественный размер иконок в /thumbnails/ разный (одни 96x96, другие
+//      175x175) - в верстке .thumb img { max-width: 100%; width: auto } это
+//      даёт неодинаковый визуальный размер жетонов в таблице. Наш CDN
+//      (build ->  Yandex S3 через workflow) отдаёт то, что мы положили.
+// Дальше файл заливается на Яндекс-CDN шагом 12 в announcements-hourly.yml
+// (`aws s3 cp public/materials/*`).
+//
+// Если файла на Kobojo нет (404) - оставляем entry без texture, следующий
+// прогон попробует ещё раз (иногда thumbnail появляется чуть позже игровых
+// данных).
 
 import fs from 'fs/promises'
 import path from 'path'
@@ -19,6 +28,7 @@ const GAME_DEFS_URL = 'https://s-beta.kobojo.com/mutants/gameconfig/gamedefiniti
 const LOC_RU_URL = 'https://s-beta.kobojo.com/mutants/gameconfig/localisation_ru.txt'
 const THUMB_BASE = 'https://s-beta.kobojo.com/mutants/assets/thumbnails/'
 const MATERIAL_PATH = path.join(ROOT, 'src/data/materials/material.json')
+const MATERIALS_DIR = path.join(ROOT, 'public/materials')
 
 interface MaterialEntry {
   id: string
@@ -32,6 +42,38 @@ async function loadJson<T>(p: string, fallback: T): Promise<T> {
     return JSON.parse(await fs.readFile(p, 'utf-8'))
   } catch {
     return fallback
+  }
+}
+
+async function fileExists(p: string): Promise<boolean> {
+  try {
+    await fs.access(p)
+    return true
+  } catch {
+    return false
+  }
+}
+
+// Качает иконку жетона в public/materials/<Id>.png (переиспользуя ID как имя
+// файла, не toLowerCase - иначе один и тот же жетон в разных прогонах может
+// иметь разные регистры имени файла на диске и в git разное). Возвращает путь
+// для JSON.texture или null если Kobojo вернул не-200.
+async function downloadTokenIcon(id: string): Promise<string | null> {
+  const localName = `${id}.png`
+  const localPath = path.join(MATERIALS_DIR, localName)
+  if (await fileExists(localPath)) return `/materials/${localName}`
+  const url = `${THUMB_BASE}${id.toLowerCase()}.png`
+  try {
+    const res = await axios.get<ArrayBuffer>(url, {
+      responseType: 'arraybuffer',
+      timeout: 15000,
+      validateStatus: (s) => s === 200,
+    })
+    await fs.mkdir(MATERIALS_DIR, { recursive: true })
+    await fs.writeFile(localPath, Buffer.from(res.data))
+    return `/materials/${localName}`
+  } catch {
+    return null
   }
 }
 
@@ -55,26 +97,52 @@ async function main() {
     tokenIds.add(m[1])
   }
 
-  const known = new Set(materials.map((m) => m.id))
+  const known = new Map(materials.map((m, i) => [m.id, i]))
   const fresh = [...tokenIds].filter((id) => !known.has(id))
 
-  if (fresh.length === 0) {
-    console.log('[TOKENS] Новых жетонов не найдено.')
+  // Ретро-фикс: если у УЖЕ известного жетона осталась дырявая ссылка на
+  // Kobojo-хотлинк (старый формат до этого рефакторинга) - тихо переезжаем
+  // на локальную копию тем же путём. Не гоняем ретро-скачивание для всех,
+  // только для тех, у кого texture начинается на "https://" - остальные
+  // либо уже нормальные, либо руками положены.
+  const retroMigrateIds = materials
+    .filter((m) => tokenIds.has(m.id) && typeof m.texture === 'string' && m.texture.startsWith('http'))
+    .map((m) => m.id)
+
+  const targets = [...fresh, ...retroMigrateIds]
+  if (targets.length === 0) {
+    console.log('[TOKENS] Новых жетонов не найдено, миграций хотлинков нет.')
     return
   }
 
-  for (const id of fresh) {
-    const name = loc.get(id.toLowerCase()) ?? id.replace(/_/g, ' ')
-    materials.push({
-      id,
-      name,
-      description: loc.get(`tooltip_${id.toLowerCase()}`) ?? '',
-      texture: `${THUMB_BASE}${id.toLowerCase()}.png`,
-    })
-    console.log(`[TOKENS] Новый: ${id} -> "${name}"`)
+  let downloaded = 0
+  let missedThumb = 0
+  for (const id of targets) {
+    const texture = await downloadTokenIcon(id)
+    if (texture) downloaded++
+    else missedThumb++
+
+    const existingIdx = known.get(id)
+    if (existingIdx !== undefined) {
+      // Ретро-миграция: только перезаписываем texture, остальное не трогаем.
+      materials[existingIdx].texture = texture ?? materials[existingIdx].texture
+      console.log(`[TOKENS] Ретро-миграция ${id}: texture -> ${texture ?? '(осталась старая)'}`)
+    } else {
+      const name = loc.get(id.toLowerCase()) ?? id.replace(/_/g, ' ')
+      materials.push({
+        id,
+        name,
+        description: loc.get(`tooltip_${id.toLowerCase()}`) ?? '',
+        texture,
+      })
+      console.log(`[TOKENS] Новый: ${id} -> "${name}" (texture=${texture ?? 'нет'})`)
+    }
   }
 
   await fs.writeFile(MATERIAL_PATH, JSON.stringify(materials, null, 2) + '\n', 'utf-8')
+  console.log(
+    `[TOKENS] Итого: скачано ${downloaded}, не найдено на CDN ${missedThumb}, обработано ${targets.length}.`,
+  )
 }
 
 main().catch((err) => {

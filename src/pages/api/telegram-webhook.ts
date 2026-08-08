@@ -284,14 +284,61 @@ async function putGithubJsonFile(
   sha: string,
   json: unknown,
   message: string,
-): Promise<boolean> {
+): Promise<{ ok: true } | { ok: false; status: number }> {
   const content = Buffer.from(JSON.stringify(json, null, 2) + '\n', 'utf-8').toString('base64')
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${githubToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ message, content, sha, branch: 'main' }),
   })
-  return res.ok
+  return res.ok ? { ok: true } : { ok: false, status: res.status }
+}
+
+// Универсальный read-modify-write под GitHub Contents API с retry-on-409.
+// 409 = "sha уже не соответствует HEAD" (кто-то запушил параллельно - в нашем
+// случае обычно finish-pending.yml или announcements-hourly.yml коммитит поверх
+// resolved-names-cache.json/orbing.json/announcements.json). Правильный ответ -
+// перечитать актуальный файл, ПРИМЕНИТЬ мутатор ещё раз к свежему JSON, PUT
+// повторно. Просто повторить PUT с тем же sha бесполезно - он всё ещё старый.
+//
+// Мутатор ДОЛЖЕН быть идемпотентен относительно повтора (данные внутри могут
+// быть уже почти те же, что после первой попытки) - в наших вызывающих это
+// либо `obj[key] = value` (тривиально идемпотентно), либо `list.push({new})`.
+// Push НЕ идемпотентен, поэтому мутатор для .анонс получает свежий list и
+// делает push поверх - дубликата не будет, т.к. между попытками мутатор не
+// хранит промежуточный state.
+async function mutateGithubJsonFile<T>(
+  githubToken: string,
+  owner: string,
+  repo: string,
+  path: string,
+  mutator: (current: T) => T | Promise<T>,
+  message: string,
+  maxAttempts = 4,
+): Promise<{ ok: true } | { ok: false; reason: string }> {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const file = await fetchGithubJsonFile(githubToken, owner, repo, path)
+    if (!file) return { ok: false, reason: `не удалось загрузить ${path}` }
+    const nextJson = await mutator(file.json as T)
+    const result = await putGithubJsonFile(
+      githubToken,
+      owner,
+      repo,
+      path,
+      file.sha,
+      nextJson,
+      message,
+    )
+    if (result.ok) return { ok: true }
+    if (result.status !== 409) {
+      return { ok: false, reason: `PUT ${path} вернул ${result.status}` }
+    }
+    // 409: sha устарел. Экспоненциальный джиттер, чтобы два параллельных
+    // клиента не попали в один и тот же слот на повторе.
+    const delayMs = 200 * Math.pow(2, attempt - 1) + Math.floor(Math.random() * 250)
+    await new Promise((r) => setTimeout(r, delayMs))
+  }
+  return { ok: false, reason: `PUT ${path}: не удалось после ${maxAttempts} попыток (гонка на main)` }
 }
 
 async function getPaymentsMessage(
@@ -312,26 +359,35 @@ async function markPaymentPaid(
   repo: string,
   serviceId: string,
 ): Promise<string> {
-  const file = await fetchGithubJsonFile(githubToken, owner, repo, PAYMENTS_PATH)
-  if (!file) return '🔴 Не удалось загрузить список платежей'
-  const data = file.json as PaymentsData
-  const service = data.services.find((s) => s.id === serviceId)
-  if (!service) {
-    const ids = data.services.map((s) => s.id).join(', ')
+  // Мутатор нужен, чтобы прочитать service.name для commit-message ДО вызова
+  // mutate - через IIFE-подгляд файла отдельным первым fetch (легковесно, у
+  // нас всё равно один retry цикл сверху). Альтернативно можно было бы делать
+  // mutate + сохранять name в замыкание, но так проще для читателя.
+  const preview = await fetchGithubJsonFile(githubToken, owner, repo, PAYMENTS_PATH)
+  if (!preview) return '🔴 Не удалось загрузить список платежей'
+  const previewService = (preview.json as PaymentsData).services.find((s) => s.id === serviceId)
+  if (!previewService) {
+    const ids = (preview.json as PaymentsData).services.map((s) => s.id).join(', ')
     return `🔴 Не найден сервис "${serviceId}". Доступные id: ${ids}`
   }
-  service.nextDue = advanceUntilFuture(service.nextDue, service.period)
-  const ok = await putGithubJsonFile(
+
+  let nextDue = ''
+  const result = await mutateGithubJsonFile<PaymentsData>(
     githubToken,
     owner,
     repo,
     PAYMENTS_PATH,
-    file.sha,
-    data,
-    `Payments: отметить "${service.name}" оплаченным`,
+    (data) => {
+      const service = data.services.find((s) => s.id === serviceId)
+      if (!service) return data // между preview и retry сервис пропал - маловероятно
+      service.nextDue = advanceUntilFuture(service.nextDue, service.period)
+      nextDue = service.nextDue
+      return data
+    },
+    `Payments: отметить "${previewService.name}" оплаченным`,
   )
-  if (!ok) return '🔴 Не удалось сохранить изменения'
-  return `✅ ${service.name}: следующий платёж — ${service.nextDue}`
+  if (!result.ok) return `🔴 Не удалось сохранить изменения (${result.reason})`
+  return `✅ ${previewService.name}: следующий платёж — ${nextDue}`
 }
 
 // ".анонс" - публикация анонса на /announcements. У Bot API нет способа
@@ -592,29 +648,24 @@ async function processOrbingFile(
   }
 
   if (updates.length > 0) {
-    const orbingFile = await fetchGithubJsonFile(githubToken, owner, repo, ORBING_PATH)
-    if (!orbingFile) {
-      results.push('🔴 не удалось загрузить orbing.json')
-    } else {
-      const orbingData = orbingFile.json as Record<string, { rows: OrbCellValue[][] }>
-      for (const u of updates) {
-        orbingData[u.id] = { rows: u.rows }
-      }
-      const ok = await putGithubJsonFile(
-        githubToken,
-        owner,
-        repo,
-        ORBING_PATH,
-        orbingFile.sha,
-        orbingData,
-        `Orbing: обновить сферовку из файла (${updates.length})`,
-      )
-      results.push(
-        ok
-          ? `✅ обновлено (${updates.length}): ${updates.map((u) => `${u.name}`).join(', ')}`
-          : '🔴 не удалось сохранить orbing.json',
-      )
-    }
+    const result = await mutateGithubJsonFile<Record<string, { rows: OrbCellValue[][] }>>(
+      githubToken,
+      owner,
+      repo,
+      ORBING_PATH,
+      (orbingData) => {
+        for (const u of updates) {
+          orbingData[u.id] = { rows: u.rows }
+        }
+        return orbingData
+      },
+      `Orbing: обновить сферовку из файла (${updates.length})`,
+    )
+    results.push(
+      result.ok
+        ? `✅ обновлено (${updates.length}): ${updates.map((u) => `${u.name}`).join(', ')}`
+        : `🔴 не удалось сохранить orbing.json (${result.reason})`,
+    )
   }
 
   return results.join('\n')
@@ -851,34 +902,25 @@ export const POST: APIRoute = async ({ request }) => {
           )
         }
 
-        const file = await fetchGithubJsonFile(
+        const result = await mutateGithubJsonFile<Announcement[]>(
           GITHUB_TOKEN,
           REPO_OWNER,
           REPO_NAME,
           ANNOUNCEMENTS_PATH,
-        )
-        if (!file) {
-          return await reply('🔴 Не удалось загрузить announcements.json')
-        }
-        const list = (file.json as Announcement[]) ?? []
-        list.push({
-          id,
-          date: new Date().toISOString().slice(0, 10),
-          text: combinedText,
-          imagePath,
-        })
-
-        const ok = await putGithubJsonFile(
-          GITHUB_TOKEN,
-          REPO_OWNER,
-          REPO_NAME,
-          ANNOUNCEMENTS_PATH,
-          file.sha,
-          list,
+          (list) => {
+            const arr = list ?? []
+            arr.push({
+              id,
+              date: new Date().toISOString().slice(0, 10),
+              text: combinedText,
+              imagePath,
+            })
+            return arr
+          },
           `Announcements: новый анонс ${id}`,
         )
-        if (!ok) {
-          return await reply('🔴 Не удалось сохранить announcements.json')
+        if (!result.ok) {
+          return await reply(`🔴 Не удалось сохранить announcements.json (${result.reason})`)
         }
         return await reply(`✅ Опубликовано: https://archivist-library.com/announcements`)
       }
@@ -902,29 +944,20 @@ export const POST: APIRoute = async ({ request }) => {
         }
         const [, key, name] = match
 
-        const file = await fetchGithubJsonFile(
+        const result = await mutateGithubJsonFile<Record<string, string>>(
           GITHUB_TOKEN,
           REPO_OWNER,
           REPO_NAME,
           RESOLVED_NAMES_PATH,
-        )
-        if (!file) {
-          return await reply('🔴 Не удалось загрузить resolved-names-cache.json')
-        }
-        const data = (file.json as Record<string, string>) ?? {}
-        data[key] = name
-
-        const ok = await putGithubJsonFile(
-          GITHUB_TOKEN,
-          REPO_OWNER,
-          REPO_NAME,
-          RESOLVED_NAMES_PATH,
-          file.sha,
-          data,
+          (data) => {
+            const map = data ?? {}
+            map[key] = name
+            return map
+          },
           `Локализация: ${key} = "${name}"`,
         )
-        if (!ok) {
-          return await reply('🔴 Не удалось сохранить имя')
+        if (!result.ok) {
+          return await reply(`🔴 Не удалось сохранить имя (${result.reason})`)
         }
 
         const triggered = await triggerWorkflow(
@@ -969,29 +1002,19 @@ export const POST: APIRoute = async ({ request }) => {
           return await reply(`🔴 ${resolved.error}`)
         }
 
-        const orbingFile = await fetchGithubJsonFile(
+        const result = await mutateGithubJsonFile<Record<string, { rows: OrbCellValue[][] }>>(
           GITHUB_TOKEN,
           REPO_OWNER,
           REPO_NAME,
           ORBING_PATH,
-        )
-        if (!orbingFile) {
-          return await reply('🔴 Не удалось загрузить orbing.json')
-        }
-        const orbingData = orbingFile.json as Record<string, { rows: OrbCellValue[][] }>
-        orbingData[resolved.id] = { rows }
-
-        const ok = await putGithubJsonFile(
-          GITHUB_TOKEN,
-          REPO_OWNER,
-          REPO_NAME,
-          ORBING_PATH,
-          orbingFile.sha,
-          orbingData,
+          (orbingData) => {
+            orbingData[resolved.id] = { rows }
+            return orbingData
+          },
           `Orbing: обновить сферовку "${resolved.name}"`,
         )
-        if (!ok) {
-          return await reply('🔴 Не удалось сохранить orbing.json')
+        if (!result.ok) {
+          return await reply(`🔴 Не удалось сохранить orbing.json (${result.reason})`)
         }
         return await reply(`✅ Сферовка "${resolved.name}" (${resolved.id}) обновлена`)
       }

@@ -16,8 +16,11 @@ on:
 permissions:
   contents: write
 
+# Общая группа с announcements-hourly.yml - см. комментарий там. Оба пишут
+# в announcements.json/announced-ids-cache.json через git-auto-commit-action,
+# запускать их одновременно = гонка на push в main.
 concurrency:
-  group: finish-pending
+  group: announcements-writes
   cancel-in-progress: false
 
 jobs:
