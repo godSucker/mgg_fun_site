@@ -14,8 +14,15 @@ on:
 permissions:
   contents: write
 
+# Общая группа с finish-pending.yml - оба финально запускают
+# build-announcements.ts и коммитят src/data/announcements.json +
+# scripts/announced-ids-cache.json через git-auto-commit-action. Раньше у
+# каждого была своя группа, они не блокировали друг друга - если .локал
+# пришёл во время часового прогона, второй workflow мог упереться в
+# non-fast-forward push и потерять коммит. Общая группа = ровно один пишет
+# в эти файлы одновременно, второй ждёт в очереди.
 concurrency:
-  group: announcements-hourly
+  group: announcements-writes
   cancel-in-progress: false
 
 jobs:
@@ -85,15 +92,19 @@ jobs:
             src/data/bingos.json
             src/data/boxes.json
             public/boxes/**
+            public/materials/**
             src/data/mutants/obtain.json
             src/data/materials/material.json
             scripts/pending-names-cache.json
             src/data/announcements.json
             scripts/announced-ids-cache.json
 
-      - name: 12. Синхронизация новых иконок боксов с Яндекс CDN
+      - name: 12. Синхронизация новых иконок боксов/жетонов с Яндекс CDN
         # Тот же инкрементальный приём, что в sync-cron.yml (шаг 7) - только
-        # изменённые в этом коммите файлы, не вся папка целиком.
+        # изменённые в этом коммите файлы, не вся папка целиком. Жетоны
+        # добавлены 2026-08-08 - detect-tokens.ts теперь качает их в
+        # public/materials/, а не подставляет хотлинк на Kobojo (см. память
+        # feedback-tokens-download-not-hotlink).
         if: always()
         run: |
           pip install awscli
@@ -104,7 +115,7 @@ jobs:
             exit 0
           fi
 
-          git diff --name-only --no-renames --diff-filter=ACM "$BASE" HEAD -- 'public/boxes/' | while read -r f; do
+          git diff --name-only --no-renames --diff-filter=ACM "$BASE" HEAD -- 'public/boxes/' 'public/materials/' | while read -r f; do
             [ -f "$f" ] || continue
             key="${f#public/}"
             echo "↑ $key"

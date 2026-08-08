@@ -511,6 +511,25 @@ const DETECTORS: {
   { category: 'rebalance', title: 'Ребаланс статов', link: '/rebalance', run: detectRebalance },
 ]
 
+// Личный чат владельца (не публичный канал!) - для тревог о поломках детектора.
+// Тот же ENV, что и у detect-new-reactors.ts/detect-new-dungeons.ts.
+async function notifyDetectorFailure(category: string, err: unknown) {
+  const token = process.env.TELEGRAM_BOT_TOKEN
+  const chatId = process.env.TELEGRAM_CHAT_ID
+  if (!token || !chatId) return // тихо, без падения - алертинг это best-effort
+  const message = err instanceof Error ? err.message : String(err)
+  const text = `🔴 build-announcements: детектор \`${category}\` упал\n\n${message.slice(0, 3500)}`
+  try {
+    await axios.post(
+      `https://api.telegram.org/bot${token}/sendMessage`,
+      { chat_id: chatId, text, parse_mode: 'Markdown' },
+      { timeout: 10_000 },
+    )
+  } catch (e) {
+    console.error('[ANNOUNCE] Не удалось отправить алерт в Telegram:', e)
+  }
+}
+
 async function main() {
   const { ledger, isBootstrap } = await loadLedger()
   const announcements = await loadJson<Announcement[]>('src/data/announcements.json', [])
@@ -519,34 +538,58 @@ async function main() {
     console.log(
       '[ANNOUNCE] Ledger не найден - бутстрап без публикации (сохраняем текущее состояние).',
     )
+    // В бутстрапе ЛЮБОЕ падение детектора = отказ сохранять ledger целиком.
+    // Иначе категория залетит в ledger пустой, а на следующем прогоне (когда
+    // сеть/файл починятся) выстрелит "новыми" пачкой в сотни id разом.
+    let bootstrapOk = true
     for (const d of DETECTORS) {
-      const { newIds } = await d.run(ledger[d.category])
-      ledger[d.category] = newIds
+      try {
+        const { newIds } = await d.run(ledger[d.category])
+        ledger[d.category] = newIds
+      } catch (err) {
+        bootstrapOk = false
+        console.error(`[ANNOUNCE] Бутстрап-детектор ${d.category} упал:`, err)
+        await notifyDetectorFailure(`${d.category} (bootstrap)`, err)
+      }
     }
-    await saveLedger(ledger)
+    if (bootstrapOk) {
+      await saveLedger(ledger)
+    } else {
+      console.error('[ANNOUNCE] Бутстрап неполный - ledger НЕ сохранён, повтор на след. прогоне.')
+    }
     return
   }
 
   const now = new Date().toISOString()
   const published: string[] = []
+  const failed: string[] = []
   const newlyAdded: Announcement[] = []
 
   for (const d of DETECTORS) {
-    const { newIds, items } = await d.run(ledger[d.category])
-    if (items.length > 0) {
-      const a: Announcement = {
-        id: `${d.category}-${Date.now()}`,
-        date: now,
-        category: d.category,
-        title: items.length === 1 ? items[0].name : `${d.title}: ${items.length}`,
-        items,
-        link: d.link,
+    try {
+      const { newIds, items } = await d.run(ledger[d.category])
+      if (items.length > 0) {
+        const a: Announcement = {
+          id: `${d.category}-${Date.now()}`,
+          date: now,
+          category: d.category,
+          title: items.length === 1 ? items[0].name : `${d.title}: ${items.length}`,
+          items,
+          link: d.link,
+        }
+        announcements.push(a)
+        newlyAdded.push(a)
+        published.push(`${d.category} (${items.length})`)
       }
-      announcements.push(a)
-      newlyAdded.push(a)
-      published.push(`${d.category} (${items.length})`)
+      // Ledger обновляется ТОЛЬКО при успехе: если детектор упал, оставляем
+      // старое значение - на следующем прогоне попробуем ещё раз, ничего не
+      // потеряется.
+      ledger[d.category] = newIds
+    } catch (err) {
+      failed.push(d.category)
+      console.error(`[ANNOUNCE] Детектор ${d.category} упал:`, err)
+      await notifyDetectorFailure(d.category, err)
     }
-    ledger[d.category] = newIds
   }
 
   await saveLedger(ledger)
@@ -576,22 +619,31 @@ async function main() {
     // src/lib/chromium-tmp-cleanup.ts - подметает мусор, но не резиновое место).
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
     for (const a of newlyAdded) {
-      if (a.category === 'rebalance' || a.category === 'shopForecast' || a.category === 'dailyNews') {
+      if (
+        a.category === 'rebalance' ||
+        a.category === 'shopForecast' ||
+        a.category === 'dailyNews'
+      ) {
         continue
       }
-      await crossPostAnnouncement(a).catch((err) => console.error(`[CROSS-POST] ${a.category}:`, err))
+      await crossPostAnnouncement(a).catch((err) =>
+        console.error(`[CROSS-POST] ${a.category}:`, err),
+      )
       await sleep(5000)
     }
   } else if (newlyAdded.length > 0) {
-    console.log(`[CROSS-POST] Отключён (CROSS_POST_ENABLED=false) - ${newlyAdded.length} новых записей не отправлены в канал.`)
+    console.log(
+      `[CROSS-POST] Отключён (CROSS_POST_ENABLED=false) - ${newlyAdded.length} новых записей не отправлены в канал.`,
+    )
   }
 
   const cacheDir = path.join(ROOT, 'scripts/.cache')
   await fs.mkdir(cacheDir, { recursive: true })
-  const summary =
-    published.length > 0
-      ? `### Авто-анонсы\n✅ Опубликовано: ${published.join(', ')}`
-      : '### Авто-анонсы\nℹ️ Новых записей нет'
+  const parts: string[] = ['### Авто-анонсы']
+  if (published.length > 0) parts.push(`✅ Опубликовано: ${published.join(', ')}`)
+  else parts.push('ℹ️ Новых записей нет')
+  if (failed.length > 0) parts.push(`🔴 Упали детекторы: ${failed.join(', ')}`)
+  const summary = parts.join('\n')
   await fs.writeFile(path.join(cacheDir, 'announcements-summary.md'), summary + '\n', 'utf-8')
   console.log(summary)
 }
