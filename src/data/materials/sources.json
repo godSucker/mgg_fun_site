@@ -117,6 +117,12 @@
       "where": "Таинственные ивенты 2026"
     }
   ],
+  "Material_Hexcity_Token": [
+    {
+      "type": "event",
+      "where": "Ивент Hex City (2026)"
+    }
+  ],
   "Material_Easter_Token": [
     {
       "type": "event",
